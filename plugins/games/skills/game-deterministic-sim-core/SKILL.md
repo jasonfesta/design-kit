@@ -81,7 +81,7 @@ An input command log needs only the simulation version, starting seed, tick rate
 `scripts/verify_sim_determinism.py` (PEP 723, zero external dependencies) checks real simulation source files and optional headless replay commands without imposing any naming convention or replay schema:
 
 ```bash
-python3 ~/.gemini/config/skills/game-deterministic-sim-core/scripts/verify_sim_determinism.py \
+python3 ~/design-kit/skills/game-deterministic-sim-core/scripts/verify_sim_determinism.py \
   --sim-path ./src/sim \
   --json
 ```

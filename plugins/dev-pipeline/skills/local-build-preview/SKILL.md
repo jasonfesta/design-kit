@@ -90,7 +90,7 @@ node ./skills/local-build-preview/scripts/install-skill-everywhere.mjs
 ```
 
 This script:
-1. Installs/symlinks `local-build-preview` (and all companion Golden Template skills from `./skills/`) into `~/.gemini/config/skills/` (Global Machine-Local Discovery, which Jetski loads in every workspace).
+1. Global discovery is already handled by `~/.gemini/config/plugins.json` → `~/design-kit/plugins` (the `dev-pipeline` plugin), so no global symlinks are written. Pass `--legacy-global-symlinks` only if you need the old `~/.gemini/config/skills/` links.
 2. Optionally registers `./skills` in any specific workspace's `_agents/skills.json` when `--workspace=/path/to/workspace` is passed.
 
 ---
@@ -98,6 +98,6 @@ This script:
 ## 4. Bundled Resources
 
 - **[`scripts/build-local-artifact.mjs`](./scripts/build-local-artifact.mjs)** — Offline-capable Golden Template React 19 + Vite 7 + Tailwind v4 single-file compiler and right-pane artifact stager.
-- **[`scripts/install-skill-everywhere.mjs`](./scripts/install-skill-everywhere.mjs)** — Cross-workspace skill installer (`~/.gemini/config/skills/` + workspace `_agents/skills.json`).
+- **[`scripts/install-skill-everywhere.mjs`](./scripts/install-skill-everywhere.mjs)** — Cross-workspace skill installer (workspace `_agents/skills.json`; global discovery comes from the design-kit plugins).
 - **[`references/right-pane-artifact-pipeline.md`](./references/right-pane-artifact-pipeline.md)** — Deep-dive into how Jetski's right-hand Artifact Viewer, `ArtifactMetadata` snapshotting, `<agent-embed>`, and UI Plugin Sidecars (`AuxPane`) work without `x20`.
 - **[`examples/hello-world-local-build-walkthrough.md`](./examples/hello-world-local-build-walkthrough.md)** — Complete walkthrough of scaffolding, compiling, and rendering a Golden Template React 19 + Vite 7 + Tailwind v4 build in the right-hand Artifact Pane.

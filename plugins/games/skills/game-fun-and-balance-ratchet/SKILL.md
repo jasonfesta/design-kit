@@ -85,7 +85,7 @@ State what improvement looks like before running the sweep (for example, cutting
 `scripts/assay_playtest_outcomes.py` (PEP 723, zero external dependencies) reads standard CSV or newline-delimited JSON (`JSONL`) episode logs from any game genre using whatever column names your runner already emits, and prints exact counts and Wilson 95% confidence intervals as JSON:
 
 ```bash
-python3 ~/.gemini/config/skills/game-fun-and-balance-ratchet/scripts/assay_playtest_outcomes.py \
+python3 ~/design-kit/skills/game-fun-and-balance-ratchet/scripts/assay_playtest_outcomes.py \
   --input ./playtests.jsonl \
   --outcome-col outcome \
   --option-col loadout \

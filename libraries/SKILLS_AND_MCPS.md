@@ -29,7 +29,7 @@ Canonical folder for WDA and moodboard skills. Details are in [`skills/README.md
 | 12 | `motion` | [`skills/motion/SKILL.md`](./skills/motion/SKILL.md) · [`.agents/skills/motion/SKILL.md`](./.agents/skills/motion/SKILL.md) · [`motion-ai-kit/`](./motion-ai-kit/README.md) | Animation skill for Motion (`motion.dev`, `motion/react`) and CSS `linear()` springs: platform-specific best practices, documentation/example search, CSS spring & bounce generation, MotionScore (`S–F`) performance audits (`motion-reviewer` agent), and transition preview. |
 | 13 | `stageshow` | [`.agents/skills/stageshow/SKILL.md`](./.agents/skills/stageshow/SKILL.md) · [`stageshow/`](./stageshow/README.md) | Benji Taylor's (`benji.org/stageshow`, `benjitaylor/skills`) faux-product UI, bento grid, and cursor-demo skill + React/CSS kit (`Stage`, `Window`, `Phone`, `Act`, `film.mjs` contact-sheet rehearsal gate, and 72 gold scenes & product studies). |
 
-### 1B. Global Jetski skills (`~/.gemini/config/skills/`)
+### 1B. Global Jetski skills (`~/design-kit/plugins`, loaded via `~/.gemini/config/plugins.json`)
 
 Loaded in every workspace. Grouped by pipeline.
 
@@ -64,7 +64,7 @@ Loaded in every workspace. Grouped by pipeline.
 | `interaction` | No dead controls: sliders, pagination, scroll triggers. |
 | `feel` | 60fps scroll, tactile press, GPU motion, reduced motion. |
 | `golden-template` | `dating` blueprint scaffold, lint, and package. |
-| `clean-up` | **Pre-linter before `golden-template`.** One skill, one script: strips any generated artifact to one injectable prompt plus one pure-React `App.tsx` (imports only `react`), enforces Google / React Native safe naming as a hard gate, and builds an esbuild preview, in about 0.15 s. Run: `python3 ~/.gemini/config/skills/clean-up/scripts/clean_up.py page.html --name slug [--fix]`. |
+| `clean-up` | **Pre-linter before `golden-template`.** One skill, one script: strips any generated artifact to one injectable prompt plus one pure-React `App.tsx` (imports only `react`), enforces Google / React Native safe naming as a hard gate, and builds an esbuild preview, in about 0.15 s. Run: `python3 ~/design-kit/skills/clean-up/scripts/clean_up.py page.html --name slug [--fix]`. |
 | `warmup` | Multi-model image-to-React benchmark. |
 | `skill-maker` | Validates, wraps, and catalogs skills. |
 
@@ -218,4 +218,4 @@ Use these for browsing, copying source, and steering plates. None of them has an
 1. Decide whether it is a **skill** (Part 1), an **MCP server** (Part 2), or a **component registry** (Part 3).
 2. MCP: add it to `.agents/mcp_config.json`, run a handshake test (`initialize` → `tools/list`), and record its status here.
 3. Registry: add it to `components.json` → `registries` so the `shadcn` MCP can see it.
-4. Skill: put it in `skills/<name>/` (workspace) or `~/.gemini/config/skills/<name>/` (global), and add a row here.
+4. Skill: put it in `skills/<name>/` (workspace) or `~/design-kit/skills/<name>/` (global), and add a row here.

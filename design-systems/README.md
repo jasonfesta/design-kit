@@ -4,7 +4,7 @@ Complete offline-first installation of the **Six Interactive Design Systems** (`
 
 - **Source Directory Index**: `index.html` (*Six interactive design systems — Product & Workspace systems*)
 - **Source Marketing Index**: `marketing.html` (*Marketing and media components across all six systems*)
-- **Skill & Verification Suite**: `SKILL.md`, `references/`, `scripts/verify_design_system.py`, `scripts/font_manifest.json` (also installed in `/usr/local/google/home/jfesta/wda/skills/design-system-creation/` and `/usr/local/google/home/jfesta/wda/skills/product-design-system/`)
+- **Skill & Verification Suite**: `SKILL.md`, `references/`, `scripts/verify_design_system.py`, `scripts/font_manifest.json` (also installed in `/usr/local/google/home/jfesta/design-kit/skills/design-system-creation/` and `/usr/local/google/home/jfesta/design-kit/skills/product-design-system/`)
 - **Component Registry**: `registry.json`
 
 ---

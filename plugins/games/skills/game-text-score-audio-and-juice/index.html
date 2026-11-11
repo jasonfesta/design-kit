@@ -212,7 +212,7 @@
 </ul>
 <h2>CLI acoustic safety check</h2>
 <p><code>scripts/audit_game_audio_safety.py</code> (PEP 723, zero external dependencies) inspects any rendered 16/24/32-bit PCM <code>.wav</code> bounce directly—regardless of how your game authored or synthesized its audio—to catch clipping, dead silence, DC offset, optional loop-seam clicks (<code>--loop</code>), and harsh <code>&gt; 6 kHz</code> energy spikes:</p>
-<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-text-score-audio-and-juice/scripts/audit_game_audio_safety.py \
+<pre data-lang="bash"><code>python3 ~/design-kit/skills/game-text-score-audio-and-juice/scripts/audit_game_audio_safety.py \
   --wav ./preview.wav \
   --json</code></pre>
 <h2>Traps</h2>

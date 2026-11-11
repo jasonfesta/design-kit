@@ -15,7 +15,7 @@ Iterate pure-procedural Three.js architectural reconstructions to high geometric
 
 ## [LOCKED] First-Principles Axioms
 
-1. **Pure-3D Anti-Cheat & Read-Only Skill Guard:** **NEVER** load, project, draw, base64-encode, or sample `<ref.jpg>` or external URLs onto WebGL meshes, canvases, or CSS backgrounds, and never spray uniform screen-space static noise across smooth skies/walls. Sub-agents treat `~/.gemini/config/skills/arch-*` and shared `scripts/` as **strictly read-only**.
+1. **Pure-3D Anti-Cheat & Read-Only Skill Guard:** **NEVER** load, project, draw, base64-encode, or sample `<ref.jpg>` or external URLs onto WebGL meshes, canvases, or CSS backgrounds, and never spray uniform screen-space static noise across smooth skies/walls. Sub-agents treat `~/design-kit/skills/arch-*` and shared `scripts/` as **strictly read-only**.
 2. **Frontier Model Floor (`Carbon-G` Primary, `>= Gemini 4 Argon` Floor):** Every coordinator and reconstruction sub-agent must run on the latest full-thinking Carbon/frontier Gemini model (`Carbon-G`: `gemini-4-carbon-teamfood` / `gemini-4-carbon` / `le-01-tf`) and **never** fall back to any model older than `Gemini 4 Argon` (`gemini-launch-candidate-high` / `gemini-4-argon-teamfood`). Abort rather than running on `pro` (`snowball`), `gemini-3.*`, or `flash*`.
 3. **Joint Parity + Hyperrealism Gate & 3D Walkthrough Integrity:** Passing `build_and_render_plate.mjs --strict` requires **both** `hyperreal_passed === true` (`94-110%` sensor sharpness, `48/48` local texture parity `0 UNDER / 0 OVER`, `chroma_clip_pct <= 0.25%`, `StaticBoil = 0`) **and** `overall_similarity >= 78.0%` (`target 82%+`). Never call `.dispose()` after Frame 0 and give all masses, roofs, and rooms real 3D thickness (`arch_nav_rig.js`).
 

@@ -213,7 +213,7 @@
 </ul>
 <h2>CLI bundle check</h2>
 <p><code>scripts/audit_web_game_bundle.py</code> (PEP 723, zero external dependencies) inspects built <code>.html</code>, <code>.css</code>, and <code>.js</code> files for opaque-origin sandbox blockers (<code>type=&quot;module&quot;</code>, <code>importmap</code>, leaked <code>import.meta</code>, local <code>crossorigin</code>, relative <code>fetch()</code>, unguarded storage), mobile viewport/touch rules, and detected rendering surfaces (<code>webgl_or_3d</code>, <code>canvas2d</code>, <code>svg</code>):</p>
-<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-procedural-3d-and-cutaway/scripts/audit_web_game_bundle.py \
+<pre data-lang="bash"><code>python3 ~/design-kit/skills/game-procedural-3d-and-cutaway/scripts/audit_web_game_bundle.py \
   --dist-dir ./dist \
   --forbid-svg-only \
   --json</code></pre>

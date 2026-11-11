@@ -212,7 +212,7 @@
 <p>An input command log needs only the simulation version, starting seed, tick rate (if realtime), ordered inputs, and optional terminal state hash. When hosting on sandboxed static origins (<code>window.origin === &quot;null&quot;</code>), pass small replays via URL hash fragments, pasteable text, or classic script bundles rather than relative <code>fetch()</code> calls.</p>
 <h2>CLI verification</h2>
 <p><code>scripts/verify_sim_determinism.py</code> (PEP 723, zero external dependencies) checks real simulation source files and optional headless replay commands without imposing any naming convention or replay schema:</p>
-<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-deterministic-sim-core/scripts/verify_sim_determinism.py \
+<pre data-lang="bash"><code>python3 ~/design-kit/skills/game-deterministic-sim-core/scripts/verify_sim_determinism.py \
   --sim-path ./src/sim \
   --json</code></pre>
 <p>Pass <code>--cross-engine</code> only when targeting Tier 3 lockstep or cross-browser continuous replays, and pass <code>--check-cmd &quot;&lt;headless command&gt;&quot;</code> to run a headless simulation twice and verify identical output hashes. Plant one deliberate unseeded random call once to confirm your check catches nondeterminism before trusting a green result.</p>

@@ -13,7 +13,7 @@ commandExecutionPolicy: auto
 # MotionScore reviewer
 
 You audit animation performance and assign a MotionScore tier to every
-animation you find. Read the `motion` skill's `performance-audit/index.md` (`/usr/local/google/home/jfesta/wda/skills/motion/performance-audit/index.md`),
+animation you find. Read the `motion` skill's `performance-audit/index.md` (`/usr/local/google/home/jfesta/design-kit/skills/motion/performance-audit/index.md`),
 then fetch the methodology it names — `motion://skills/performance-audit` on
 the **Motion+** MCP server, via `resources/read` — before you start; the
 methodology owns the tier table and the report format, and you follow it

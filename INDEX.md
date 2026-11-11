@@ -30,5 +30,5 @@
 
 ## Not in the kit (still in `~/wda`, referenced here)
 - `fluid-functionalism/` (`@fluid` source, 83 items), `easeui-registry/` (54 components), `motion-ai-kit/`: these are WDA projects with their own `node_modules`.
-- `~/wda/skills/`: an older, git-tracked copy in the WDA repo. **The kit is canonical.**
+- `~/wda/skills/`: an older, git-tracked copy in the WDA repo. **Retired: nothing in the kit reads it. The kit is canonical.**
 - `~/moodboards/skills/`: a legacy copy, left untouched.

@@ -2,7 +2,7 @@
 """probe_white_studio_chair.py -- Studio white-cyclorama & optical camera probe for single-chair reference images.
 
 Delegates base perspective/radiometric probing to:
-  ~/.gemini/config/skills/arch-camera-matching-and-perspective/scripts/probe_reference_plate.py
+  ~/design-kit/skills/arch-camera-matching-and-perspective/scripts/probe_reference_plate.py
 and adds studio-furniture-specific checks:
   1. Outer border ring white purity (`white_border_purity`, `border_mean_srgb`, `border_std_luma`).
   2. Connected-component foreground silhouette analysis (`connected_fg_components`, `largest_component_share`)
@@ -28,7 +28,7 @@ def _load_arch_probe():
       Path.home()
       / "skills/arch-camera-matching-and-perspective/scripts/probe_reference_plate.py",
       Path.home()
-      / ".gemini/config/skills/arch-camera-matching-and-perspective/scripts/probe_reference_plate.py",
+      / "design-kit/skills/arch-camera-matching-and-perspective/scripts/probe_reference_plate.py",
   ]
   for cand in candidates:
     if cand.exists():

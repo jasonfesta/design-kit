@@ -76,7 +76,7 @@ Careless browser synthesis can cause real physical listener discomfort—especia
 `scripts/audit_game_audio_safety.py` (PEP 723, zero external dependencies) inspects any rendered 16/24/32-bit PCM `.wav` bounce directly—regardless of how your game authored or synthesized its audio—to catch clipping, dead silence, DC offset, optional loop-seam clicks (`--loop`), and harsh `> 6 kHz` energy spikes:
 
 ```bash
-python3 ~/.gemini/config/skills/game-text-score-audio-and-juice/scripts/audit_game_audio_safety.py \
+python3 ~/design-kit/skills/game-text-score-audio-and-juice/scripts/audit_game_audio_safety.py \
   --wav ./preview.wav \
   --json
 ```

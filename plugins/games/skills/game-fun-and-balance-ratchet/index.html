@@ -214,7 +214,7 @@
 <p>State what improvement looks like before running the sweep (for example, cutting timeout stalemates below 5% while keeping episode survival or comeback rates inside a healthy band). If an edit makes the numbers worse or leaves them within sampling noise, revert it cleanly instead of stacking speculative tweaks.</p>
 <h2>CLI outcome assay</h2>
 <p><code>scripts/assay_playtest_outcomes.py</code> (PEP 723, zero external dependencies) reads standard CSV or newline-delimited JSON (<code>JSONL</code>) episode logs from any game genre using whatever column names your runner already emits, and prints exact counts and Wilson 95% confidence intervals as JSON:</p>
-<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-fun-and-balance-ratchet/scripts/assay_playtest_outcomes.py \
+<pre data-lang="bash"><code>python3 ~/design-kit/skills/game-fun-and-balance-ratchet/scripts/assay_playtest_outcomes.py \
   --input ./playtests.jsonl \
   --outcome-col outcome \
   --option-col loadout \

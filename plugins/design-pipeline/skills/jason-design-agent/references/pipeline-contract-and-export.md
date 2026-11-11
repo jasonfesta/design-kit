@@ -113,7 +113,7 @@ act 3    design-critique m3   critique/final-design-signoff.md
 | :--- | :--- |
 | coordinator skill | `jason-design-agent/` (`SKILL.md`, `agent.md`, `references/`, `scripts/`, `BUILD`, `EVAL.txtpb`, `TEST.md`, `skill.json`, `index.html`) |
 | sub-skills | `concept-art/`, `research/`, `style-direction/`, `google-font-selection/`, `image-gen/`, `polish/`, `eval/`, `design-critique/`, `nanofy/` (same layout each) |
-| agent definitions | `jason-design-agent/agent.md` (canonical, used by `agent_config` in `BUILD`) and its byte-identical copy `_agents/agents/jason-design-agent.md` (Jetski discovery via `~/.gemini/config/agents/`) |
+| agent definitions | `jason-design-agent/agent.md` (canonical, used by `agent_config` in `BUILD`) and its byte-identical copy `_agents/agents/jason-design-agent.md` (Jetski discovery via the `design-pipeline` plugin in `~/design-kit/plugins`) |
 | bundles | `<skills-root>/<skill>.skill` + `<skill>.zip` per skill (built by `validate_and_wrap.py`) |
 | catalog | `README.md`, `catalog.json`, `index.html`, `_agents/skills.json` (built by `build_catalog.py`) |
 | hooks | `_agents/hooks.json` (auto-allow `google-font-selection/scripts/*.py`) |
@@ -131,7 +131,7 @@ cmp /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/agent.md 
 
 ### 6.3 install targets
 
-- **Jetski (web / cli)**: the workspace `_agents/skills.json` and `_agents/agents.json` discover every skill and both agents; global use via symlinks in `~/.gemini/config/skills/` and `~/.gemini/config/agents/` (`sync_x20.py --skip-x20` refreshes them outside the sandbox).
+- **Jetski (web / cli)**: the workspace `_agents/skills.json` and `_agents/agents.json` discover every skill and both agents; global use via `~/.gemini/config/plugins.json` → `~/design-kit/plugins` (every workspace loads the kit's plugins; no per-skill symlinks needed).
 - **YAQS / standalone agent host**: load `jason-design-agent/agent.md` as the system prompt and attach the 10 skill folders listed in its `skills:` frontmatter (absolute paths); provide `run_command`, `read_file`, `write_file`, `edit_file`, `run_workflow`, `invoke_subagent`, `send_message`, `ask_question`, `search_web`, plus an `image-generator` subagent.
 - **Google3**: each skill folder carries a `BUILD` with `agent_skill`, `validate_skill_test`, `eval_suite` (`EVAL.txtpb`), and `agent_config` (`agent.md`); scripts are `pytype_strict_binary` targets under `//experimental/users/jfesta/skills/<snake_name>/scripts`.
 - **x20 (only when explicitly requested)**: `sync_x20.py` without `--skip-x20` mirrors to `/google/data/rw/users/jf/jfesta/www/skills/`.

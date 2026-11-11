@@ -82,11 +82,17 @@ function registerInWorkspaceSkillsJson(workspaceDir) {
 }
 
 const { workspaces } = parseArgs(process.argv);
-const globalResults = ensureGlobalSkillSymlinks();
 
-console.log('[install-skill-everywhere] Global skills synced to ~/.gemini/config/skills/:');
-for (const item of globalResults) {
-  console.log(`  - ${item.skill}: ${item.target} (${item.mode})`);
+// Global discovery now comes from ~/.gemini/config/plugins.json -> ~/design-kit/plugins.
+// Writing ~/.gemini/config/skills/ symlinks would load every skill twice, so it is opt-in.
+if (process.argv.includes('--legacy-global-symlinks')) {
+  const globalResults = ensureGlobalSkillSymlinks();
+  console.log('[install-skill-everywhere] Global skills synced to ~/.gemini/config/skills/:');
+  for (const item of globalResults) {
+    console.log(`  - ${item.skill}: ${item.target} (${item.mode})`);
+  }
+} else {
+  console.log('[install-skill-everywhere] Global discovery is via ~/.gemini/config/plugins.json -> ~/design-kit/plugins (no global symlinks written).');
 }
 
 for (const ws of workspaces) {

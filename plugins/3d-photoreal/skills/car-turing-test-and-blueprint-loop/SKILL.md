@@ -12,7 +12,7 @@ Drive pure-procedural Three.js vehicle reconstructions to concours-grade dimensi
 
 ## [LOCKED] First-Principles Axioms
 <!-- BEGIN LOCKED AXIOMS -->
-1. **Pure-3D Anti-Cheat & Read-Only Skill Guard:** **NEVER** load, camera-project, texture-map, base64-encode, or sample `<ref.jpg>`, secondary photos, or orthographic blueprints onto WebGL meshes, canvases, or CSS backgrounds. Sub-agents treat `~/.gemini/config/skills/car-*` and shared `scripts/` as **strictly read-only**.
+1. **Pure-3D Anti-Cheat & Read-Only Skill Guard:** **NEVER** load, camera-project, texture-map, base64-encode, or sample `<ref.jpg>`, secondary photos, or orthographic blueprints onto WebGL meshes, canvases, or CSS backgrounds. Sub-agents treat `~/design-kit/skills/car-*` and shared `scripts/` as **strictly read-only**.
 2. **Frontier Model Floor (`Carbon-G` Primary, `>= Gemini 4 Argon` Floor):** Every coordinator and vehicle-reconstruction sub-agent must run on the latest full-thinking Carbon/frontier Gemini model (`Carbon-G`: `gemini-4-carbon-teamfood` / `gemini-4-carbon` / `le-01-tf`) and **never** fall back below `Gemini 4 Argon`. Abort rather than running on `pro` (`snowball`), `gemini-3.*`, or `flash*`.
 3. **Triple Parity Gate (`Hero Hyperrealism + 360° Class-A Zebra + Blueprint Ortho IoU`):** Passing `build_and_audit_car_plate.mjs --strict` requires: (a) `hyperreal_passed === true` (`90–120%` sharpness, `chroma_clip_pct <= 0.25%` with zero electric `[255,0,0]` brake-light clip, `StaticBoil = 0`) and `overall_similarity >= 78.0%` (`target 82%+`), (b) complete 360° + 3D-cockpit volumetric bounds (`window.__CAR_GROUP__` `W/L` and `H/L` within automotive physical bounds, zero `.dispose()` after Frame 0), and (c) `mean_ortho_iou >= 0.88` (`target 0.92+`) whenever `--blueprint-dir` is supplied.
 <!-- END LOCKED AXIOMS -->
@@ -28,7 +28,7 @@ Drive pure-procedural Three.js vehicle reconstructions to concours-grade dimensi
   2. Lock global studio scrims or sun/sky lighting and pixel Turing scoring strictly to `VIEW 1`; evaluate secondary angles (`window.__CAR_CAMERAS__`) in `renders/iter_0<k>_multiview_sxs.jpg` on lighting-invariant edge alignment and Weber micro-sharpness rather than raw exposure deltas.
 - **WHEN iterating a vehicle build (`8–15` hill-climbing passes, classic IIFE x20 bundle):**
   1. Resolve the latest npm `three` release before bundling, stamp `window.__BUILD_META__ = { threeRevision: THREE.REVISION, threeVersion }` into the classic-IIFE entry wrapper, defer startup via `requestAnimationFrame(() => setTimeout(init, 0))`, and run:
-     `node ~/.gemini/config/skills/car-turing-test-and-blueprint-loop/scripts/build_and_audit_car_plate.mjs <plate_dir> <ref.jpg> [--blueprint-dir <bp_dir>] --iter <k> --strict`
+     `node ~/design-kit/skills/car-turing-test-and-blueprint-loop/scripts/build_and_audit_car_plate.mjs <plate_dir> <ref.jpg> [--blueprint-dir <bp_dir>] --iter <k> --strict`
   2. Inspect **all** generated diagnostic plates via `read_file` on every pass:
      - `renders/iter_0<k>_turing_strip.png` (`Ref | Render | Error Heatmap` + `4` `200%` semantic loupes: `Greenhouse/Frit`, `Lamp/Grille`, `Worst Tile`, `Wheel/Caliper/Tire`),
      - `renders/iter_0<k>_zebra_360.jpg` (Class-A reflection-stripe continuity—fix any kinked normals, flat `0 mm` oil-canned roofs, or spline ripples immediately),

@@ -123,12 +123,24 @@ def main() -> None:
   parser = argparse.ArgumentParser(description="Sync ~/design-kit/skills to ~/.gemini/config/{skills,agents} and x20.")
   parser.add_argument("--skills-root", default=str(SKILLS_WS), help="Canonical skills workspace directory")
   parser.add_argument("--x20-dir", default=str(X20_SKILLS), help="Target x20 directory")
-  parser.add_argument("--skip-x20", action="store_true", help="Only update global symlinks")
+  parser.add_argument("--skip-x20", action="store_true", help="Skip the x20 copy")
+  parser.add_argument(
+      "--legacy-global-symlinks",
+      action="store_true",
+      help=(
+          "Also symlink skills into ~/.gemini/config/{skills,agents}. Off by"
+          " default: Jetski loads the kit via ~/.gemini/config/plugins.json ->"
+          " ~/design-kit/plugins, so these links would load every skill twice."
+      ),
+  )
   args = parser.parse_args()
 
   skills_root = pathlib.Path(args.skills_root).resolve()
-  linked_skills, linked_agents = sync_global_symlinks(skills_root)
-  print(f"Updated {linked_skills} skill symlinks in {GLOBAL_SKILLS} and {linked_agents} agent symlinks in {GLOBAL_AGENTS}")
+  if args.legacy_global_symlinks:
+    linked_skills, linked_agents = sync_global_symlinks(skills_root)
+    print(f"Updated {linked_skills} skill symlinks in {GLOBAL_SKILLS} and {linked_agents} agent symlinks in {GLOBAL_AGENTS}")
+  else:
+    print("Global discovery is via ~/.gemini/config/plugins.json -> ~/design-kit/plugins (no symlinks written).")
 
   if not args.skip_x20:
     x20_dir = pathlib.Path(args.x20_dir)

@@ -240,7 +240,7 @@ async function main() {
     ? JSON.parse(fs.readFileSync(path.join(threeNodeDir, 'three', 'package.json'), 'utf8')).version
     : 'unknown';
 
-  const skillsRoot = path.join(home, '.gemini/config/skills');
+  const skillsRoot = path.join(home, 'design-kit/skills');
   const scriptsDir = path.dirname(new URL(import.meta.url).pathname);
   const helperMap = [
     [/car_surface_kernel\.js$/, path.join(skillsRoot, 'car-class-a-surfacing-and-proportions/scripts/car_surface_kernel.js')],

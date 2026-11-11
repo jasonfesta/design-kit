@@ -77,7 +77,7 @@ Internal state names, pixel coordinates, frame counters, and chunk indices belon
 `scripts/audit_web_game_bundle.py` (PEP 723, zero external dependencies) inspects built `.html`, `.css`, and `.js` files for opaque-origin sandbox blockers (`type="module"`, `importmap`, leaked `import.meta`, local `crossorigin`, relative `fetch()`, unguarded storage), mobile viewport/touch rules, and detected rendering surfaces (`webgl_or_3d`, `canvas2d`, `svg`):
 
 ```bash
-python3 ~/.gemini/config/skills/game-procedural-3d-and-cutaway/scripts/audit_web_game_bundle.py \
+python3 ~/design-kit/skills/game-procedural-3d-and-cutaway/scripts/audit_web_game_bundle.py \
   --dist-dir ./dist \
   --forbid-svg-only \
   --json
