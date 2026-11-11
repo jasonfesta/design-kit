@@ -1,0 +1,12 @@
+{
+  "suite": "jason_dev_agent",
+  "cases": [
+    {
+      "name": "jason_dev_agent_primary_flow",
+      "prompt": "Run jason-dev-agent on a curated study folder and execute the full dev evaluation receipt loop.",
+      "expected_artifacts": [
+        "projects/dev-turns.json"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "interaction",
+  "display_name": "interaction",
+  "google3_package": "interaction",
+  "title": "interaction",
+  "icon": "\ud83d\udd79\ufe0f",
+  "category": "sub-skill of image-to-react \u00b7 controls, scroll points & animation triggers",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "interaction",
+  "agent_md": "interaction/agent.md",
+  "skill_md": "interaction/SKILL.md",
+  "html_page": "interaction/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/interaction",
+  "bundle_skill": "interaction.skill",
+  "bundle_zip": "interaction.zip",
+  "short_summary": "wires 100% live controls, sliders, pagination, intersectionobserver scroll points, and animation triggers while keeping t=0 locked.",
+  "when_to_use": "use in stage 3 of jason-dev-agent when wiring buttons, sliders, pagination, scroll-point waypoints, and animation triggers.",
+  "quick_cmd": "python3 interaction/scripts/eval-interaction.py --project=./projects/01-website-app --require-scroll-points",
+  "summary": "Audits, upgrades, and evaluates Golden Template React builds so every page element has live stateful interaction while keeping the initial t=0 render visually locked. Explores and grades rich pattern upgrades grounded in original inspiration\u2014sliders, carousels, pagination, live filters, swatches, scroll navigation, and story progression\u2014in a multi-turn dev self-eval loop, then hands the same stage back to jason-design-agent via design-critique until approved. Use whenever adding, checking, or critiquing interactive elements, sliders, pagination, scrolling, or storytelling in an image-to-React build. Don't use for static pixel extraction alone (use replicate-mock) or motion timing tuning alone (use feel).",
+  "references": [
+    "./references/contributing.md",
+    "./references/element-coverage-and-audit.md",
+    "./references/sliders-pagination-scroll-and-story.md",
+    "./scripts/eval-interaction.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=interaction"
+  }
+}

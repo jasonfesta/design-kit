@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shadcnblocks (@shadcnblocks) — Interactive Design System Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/switchyard-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: var(--sb-card);
+      border: 1px solid var(--sb-border); border-radius: var(--sb-radius-md);
+      margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      height: 32px; padding: 0 12px; border-radius: var(--sb-radius-sm);
+      border: 1px solid var(--sb-border-strong); background: var(--sb-card);
+      color: var(--sb-foreground); font-size: 12px; font-weight: 500;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    }
+    .btn:hover { background: var(--sb-card-hover); }
+    .block-stage {
+      background: var(--sb-card); border: 1px solid var(--sb-border);
+      border-radius: var(--sb-radius-lg); padding: 20px; margin-bottom: 22px;
+      box-shadow: var(--sb-shadow-bento);
+    }
+    .swatch-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px;
+    }
+    .swatch {
+      border: 1px solid var(--sb-border); border-radius: var(--sb-radius-sm); overflow: hidden;
+    }
+    .swatch-fill { height: 40px; border-bottom: 1px solid var(--sb-border); }
+    .swatch-meta { padding: 8px; font-size: 11px; font-family: var(--sb-font-mono); }
+    /* 12-Col Bento Grid */
+    .bento-12 {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px;
+    }
+    .span-8 { grid-column: span 8; }
+    .span-4 { grid-column: span 4; }
+    @media (max-width: 960px) {
+      .span-8, .span-4 { grid-column: span 12; }
+    }
+    .bento-cell {
+      border: 1px solid var(--sb-border); border-radius: var(--sb-radius-md);
+      padding: 16px; background: var(--sb-surface-muted);
+    }
+    .score-bar {
+      height: 8px; border-radius: 999px; background: var(--sb-border); overflow: hidden; margin-top: 6px;
+    }
+    .score-fill { height: 100%; background: var(--sb-accent-blue); transition: width 160ms ease; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong style="font-size:14px;">Shadcnblocks (`shadcnblocks.com` · `@shadcnblocks`)</strong>
+        <div style="font-size:11.5px;color:var(--sb-muted-foreground);">12-Column Asymmetric Bento Scorecards, Data Toolbars &amp; Comparison Blocks · Prompts #02, #04, #05</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn" id="theme-btn" type="button">Toggle Light / Dark</button>
+        <a class="btn" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="block-stage">
+      <h2 style="margin:0 0 12px;font-size:15px;">1. Extracted `@shadcnblocks` Surface, Border &amp; Accent Tokens (Hex + OKLCH)</h2>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-fill" style="background:var(--sb-background);"></div><div class="swatch-meta"><strong>--sb-background</strong><br>#FFFFFF / #09090B</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--sb-surface-muted);"></div><div class="swatch-meta"><strong>--sb-surface-muted</strong><br>#F8FAFC · oklch(0.984 0.003 248)</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--sb-foreground);"></div><div class="swatch-meta"><strong>--sb-foreground</strong><br>#09090B · oklch(0.141 0.005 286)</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--sb-border);"></div><div class="swatch-meta"><strong>--sb-border</strong><br>#E4E4E7 · 1px Bento Divider</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--sb-accent-blue);"></div><div class="swatch-meta"><strong>--sb-accent-blue</strong><br>#0284C7 · Cobalt Scorecard</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--sb-accent-emerald);"></div><div class="swatch-meta"><strong>--sb-accent-emerald</strong><br>#059669 · Pass Threshold</div></div>
+      </div>
+    </section>
+
+    <section class="block-stage">
+      <h2 style="margin:0 0 12px;font-size:15px;">2. Interactive 12-Column Bento Weighted Site Scorecard &amp; Telemetry Block</h2>
+      <div class="bento-12">
+        <div class="bento-cell span-8">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+            <strong>Composite 100-Point Site Screening Scorecard (Interactive Weights)</strong>
+            <span class="tabular-nums" id="comp-score" style="font-family:var(--sb-font-mono);font-size:16px;font-weight:700;color:var(--sb-accent-blue);">88.4 / 100</span>
+          </div>
+          <div style="display:grid;gap:12px;">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+                <span>1. Power Availability &amp; RTO/ISO Deliverability (PJM / ERCOT / Canary Microgrid)</span>
+                <span class="tabular-nums" id="w1-val">45% weight · 92 pts</span>
+              </div>
+              <input id="w1-slider" type="range" min="10" max="70" value="45" style="width:100%;margin-top:4px;">
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+                <span>2. Environmental Compliance &amp; Risk (FEMA Flood, NWI Wetlands, Slope %)</span>
+                <span class="tabular-nums" id="w2-val">30% weight · 86 pts</span>
+              </div>
+              <input id="w2-slider" type="range" min="10" max="60" value="30" style="width:100%;margin-top:4px;">
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+                <span>3. Community Impact &amp; Acoustic Setback Buffer</span>
+                <span class="tabular-nums" id="w3-val">25% weight · 84 pts</span>
+              </div>
+              <div class="score-bar"><div class="score-fill" id="comp-bar" style="width:88.4%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bento-cell span-4">
+          <strong>Regional Grid Module Status</strong>
+          <div class="tabular-nums" style="margin-top:10px;display:grid;gap:8px;font-size:12.5px;">
+            <div style="padding:8px;background:var(--sb-card);border:1px solid var(--sb-border);border-radius:6px;">
+              <strong>PJM Interconnection</strong> · 142 MW Headroom · Queue: 18 mos
+            </div>
+            <div style="padding:8px;background:var(--sb-card);border:1px solid var(--sb-border);border-radius:6px;">
+              <strong>ERCOT North Hub</strong> · 210 MW Headroom · Queue: 11 mos
+            </div>
+            <div style="padding:8px;background:var(--sb-card);border:1px solid var(--sb-border);border-radius:6px;">
+              <strong>Canary Islands Microgrid</strong> · Islanded N-1 Ring Verified
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+    const s1 = document.getElementById('w1-slider');
+    const s2 = document.getElementById('w2-slider');
+    function updateScore() {
+      const w1 = Number(s1.value);
+      const w2 = Number(s2.value);
+      const w3 = Math.max(5, 100 - w1 - w2);
+      const total = w1 + w2 + w3;
+      const comp = ((w1 * 92 + w2 * 86 + w3 * 84) / total).toFixed(1);
+      document.getElementById('w1-val').textContent = w1 + '% weight · 92 pts';
+      document.getElementById('w2-val').textContent = w2 + '% weight · 86 pts';
+      document.getElementById('w3-val').textContent = w3 + '% weight · 84 pts';
+      document.getElementById('comp-score').textContent = comp + ' / 100';
+      document.getElementById('comp-bar').style.width = comp + '%';
+    }
+    s1.addEventListener('input', updateScore);
+    s2.addEventListener('input', updateScore);
+  </script>
+</body>
+</html>

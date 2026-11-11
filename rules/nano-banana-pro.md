@@ -1,0 +1,1 @@
+/usr/local/google/home/jfesta/.gemini/config/rules/nano-banana-pro.md

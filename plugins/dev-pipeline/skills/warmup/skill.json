@@ -1,0 +1,41 @@
+{
+  "id": "warmup",
+  "display_name": "warmup",
+  "google3_package": "warmup",
+  "title": "Warmup: Image-to-React Pre-Bench, Post-Bench Build Comparator & Tear-Apart Design Eval",
+  "icon": "\ud83d\udd25",
+  "category": "core skill \u00b7 pre-bench & post-bench model comparator",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "warmup",
+  "agent_md": "warmup/agent.md",
+  "skill_md": "warmup/SKILL.md",
+  "html_page": "warmup/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/warmup",
+  "bundle_skill": "warmup.skill",
+  "bundle_zip": "warmup.zip",
+  "short_summary": "runs a locked pre-bench image-to-react translation or post-bench head-to-head build comparison across frontier models and generates a 100-point tear-apart design evaluation report.",
+  "when_to_use": "use when benchmarking how multiple models translate a ui mockup to react or comparing multiple existing react builds head-to-head.",
+  "quick_cmd": "python3 warmup/scripts/run_warmup.py --mode=post-bench --image=./ref.png --output=./warmup-out",
+  "summary": "Runs a pre-benchmark (\"pre-bench\") or post-benchmark (\"post-bench\") image-to-React translation, head-to-head build comparison, and tear-apart design evaluation across frontier models (Grok, Claude, Astra, GPT, and Argon) or existing React builds using a locked, minimal zero-drift prompt. Supports single UI images or 4K multi-layout grid sheets, API key discovery with interactive host assistant model offering, headless WebKit2GTK DOM geometry and AutoRaterV1 64x64 cell visual diffing, post-build model self-analysis of image differences and hidden instructions, runnable Golden Template React project generation, and comparative design grading. Use when running a pre-bench warmup from an image or 4K layout grid to React, comparing multiple React builds against a reference design image, or grading image-to-React translations on visual fidelity, CSS integrity, button optical padding, typography, and interactivity. Don't use for incremental post-Dial layout change benchmarking without an image reference (use...",
+  "references": [
+    "./references/contributing.md",
+    "./references/design-eval-rubric.md",
+    "./references/model-routing.md",
+    "./references/prompt-protocol.md",
+    "./references/sub-skills-and-credits.md",
+    "./scripts/check_models.py",
+    "./scripts/compare_builds.py",
+    "./scripts/eval_warmup.py",
+    "./scripts/prepare_and_extract.py",
+    "./scripts/run_warmup.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=warmup"
+  }
+}

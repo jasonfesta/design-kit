@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>design-flywheel</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>design-flywheel</h1>
+      <p>iterative self-improving design flywheel skill for jason-design-agent. runs an automated multi-turn loop (up to 5 iterations) targeting typography, color, and individual touts using targeted nano banana 1k re-renders and micro-research before presenting at the designer checkpoint.</p>
+      <div class="actions">
+        <a href="../design-flywheel.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>design-flywheel</h1>
+<pre data-lang="text"><code>jason-design-agent / design-flywheel (iterative 1k self-improvement loop)
+───────────────────────────────────────────────────────────────────────
+input         initial 1k desktop + mobile concept plates (per style range)
+loop (1..5)   1. inspect full page (header -&gt; touts -&gt; footer)
+              2. identify weak typography, color, or tout structure
+              3. retrieve targeted competitor visual references (micro-research)
+              4. steer Nano Banana prompt and re-render at 1K
+              5. re-eval -&gt; if improved, continue; if stalled, repeat or halt at max 5
+output        fully optimized 1k concept plates presented at Designer Checkpoint</code></pre>
+<h2>core instructions</h2>
+<ol>
+<li><strong>Scope</strong>: Target every aspect of the full-page layout—from the top sticky header and navigation down to individual <strong>touts</strong> (hero, card grids, features, tables, complete footers) across both desktop and mobile viewports.</li>
+<li><strong>The 5-Turn Flywheel</strong>:</li>
+</ol>
+<ul>
+<li>Run up to <strong>5 iterations</strong> of self-critique and Nano Banana 1K re-rendering.</li>
+<li>After each 1K render, audit typography, color harmony, negative space, and individual tout mechanics.</li>
+</ul>
+<ol>
+<li><strong>Targeted Micro-Research Injection</strong>: If a tout or layout section fails to improve or shows generic AI styling, immediately pull targeted competitor screenshots and UI examples for <em>that exact pattern</em> and inject them into the next Nano Banana prompt.</li>
+<li><strong>Automatic Checkpoint Handoff</strong>: Once the 5-turn maximum is reached (or visual sign-off is achieved earlier), automatically halt the loop and present the polished 1K desktop and mobile plates to the designer at the <strong>Pre-Moodboard Designer Image Checkpoint</strong>.</li>
+</ol>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

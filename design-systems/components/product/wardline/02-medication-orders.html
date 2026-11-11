@@ -1,0 +1,2243 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-density="standard">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Wardline — Medication orders</title>
+<link href="../../../fonts/wardline-fonts.css" rel="stylesheet"/>
+<style>
+    @layer reset, tokens, base, layout, components, utilities;
+
+    @layer reset {
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      html, body, h1, h2, h3, h4, p, figure, ul, ol, dl, dd, fieldset {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @layer tokens {
+      :root {
+        color-scheme: light;
+
+        /* Daylight sage-porcelain & crisp clinical white surfaces */
+        --wl-porcelain: oklch(0.978 0.006 185);
+        --wl-white: oklch(0.998 0.001 185);
+        --wl-inset: oklch(0.952 0.009 185);
+        --wl-inset-deep: oklch(0.924 0.011 185);
+
+        /* Slate clinical ink hierarchy */
+        --wl-slate-900: oklch(0.200 0.015 210);
+        --wl-slate-700: oklch(0.360 0.016 205);
+        --wl-slate-500: oklch(0.440 0.015 205);
+
+        /* Deep juniper-teal primary care action */
+        --wl-juniper: oklch(0.350 0.062 196);
+        --wl-juniper-hover: oklch(0.302 0.058 196);
+        --wl-juniper-soft: oklch(0.942 0.018 190);
+        --wl-sage-band: oklch(0.560 0.065 182 / 0.13);
+        --wl-sage-stroke: oklch(0.460 0.068 186 / 0.28);
+
+        /* Clinical exception inks — reserved strictly for out-of-range markers & errors */
+        --wl-ochre: oklch(0.415 0.105 68);
+        --wl-ochre-wash: oklch(0.962 0.022 76);
+        --wl-coral: oklch(0.425 0.142 25);
+        --wl-coral-hover: oklch(0.368 0.135 25);
+        --wl-coral-wash: oklch(0.964 0.018 25);
+
+        /* Semantic mappings */
+        --surface-canvas: var(--wl-porcelain);
+        --surface-card: var(--wl-white);
+        --surface-subtle: var(--wl-inset);
+        --surface-shimmer: var(--wl-inset-deep);
+        --surface-overlay: oklch(1 0 0);
+
+        --ink-primary: var(--wl-slate-900);
+        --ink-secondary: var(--wl-slate-700);
+        --ink-muted: var(--wl-slate-500);
+
+        --link-ink: var(--wl-juniper);
+        --link-hover: var(--wl-juniper-hover);
+        --focus-ring: oklch(0.395 0.088 198);
+
+        --btn-pri-bg: var(--wl-juniper);
+        --btn-pri-hover: var(--wl-juniper-hover);
+        --btn-pri-fg: oklch(0.998 0.001 185);
+        --btn-pri-shadow: 0 1px 2px oklch(0.24 0.04 196 / 0.16), 0 6px 14px -4px oklch(0.28 0.05 196 / 0.20);
+
+        --btn-sec-bg: var(--wl-white);
+        --btn-sec-hover: var(--wl-inset);
+        --btn-sec-fg: var(--wl-slate-900);
+
+        --border-card: oklch(0.908 0.008 185);
+        --border-divider: oklch(0.898 0.008 185);
+        --border-field: oklch(0.530 0.016 200);
+        --disabled-bg: oklch(0.948 0.005 185);
+        --disabled-fg: oklch(0.535 0.010 200);
+
+        --chart-grid: oklch(0.360 0.015 205 / 0.10);
+        --chart-line: oklch(0.350 0.068 194);
+        --chart-secondary: oklch(0.510 0.045 210);
+        --range-track: oklch(0.915 0.008 185);
+        --range-zone: oklch(0.760 0.042 184);
+
+        --shadow-card: 0 1px 3px oklch(0.25 0.02 195 / 0.05), 0 12px 30px -10px oklch(0.25 0.02 195 / 0.07);
+        --shadow-overlay: 0 4px 12px oklch(0.20 0.02 200 / 0.08), 0 24px 48px -12px oklch(0.20 0.02 200 / 0.16);
+        --backdrop-scrim: oklch(0.16 0.015 205 / 0.48);
+
+        /* Typography */
+        --font-ui: 'Source Sans 3', 'Liberation Sans', system-ui, sans-serif;
+        --font-mono: 'Fira Code', 'Liberation Mono', ui-monospace, monospace;
+
+        /* Soft-clinical geometry */
+        --radius-surface: 12px;
+        --radius-control: 8px;
+        --radius-check: 5px;
+        --row-pad-y: 16px;
+        --ctrl-h: 40px;
+        --section-pad: clamp(46px, 5.2vw, 72px);
+      }
+
+      /* Dark slate clinical mode */
+      html[data-theme="dark"] {
+        color-scheme: dark;
+
+        --surface-canvas: oklch(0.165 0.012 205);
+        --surface-card: oklch(0.208 0.013 205);
+        --surface-subtle: oklch(0.248 0.014 205);
+        --surface-shimmer: oklch(0.288 0.015 205);
+        --surface-overlay: oklch(0.225 0.014 205);
+
+        --ink-primary: oklch(0.948 0.006 190);
+        --ink-secondary: oklch(0.822 0.010 195);
+        --ink-muted: oklch(0.735 0.012 195);
+
+        --link-ink: oklch(0.795 0.082 188);
+        --link-hover: oklch(0.855 0.072 188);
+        --focus-ring: oklch(0.795 0.085 188);
+
+        /* Luminous sea-sage primary button in dark mode */
+        --btn-pri-bg: oklch(0.800 0.076 188);
+        --btn-pri-hover: oklch(0.852 0.068 188);
+        --btn-pri-fg: oklch(0.152 0.018 202);
+        --btn-pri-shadow: 0 2px 6px oklch(0.05 0.01 205 / 0.55), 0 10px 24px -6px oklch(0.05 0.01 205 / 0.65);
+
+        --btn-sec-bg: oklch(0.232 0.014 205);
+        --btn-sec-hover: oklch(0.272 0.015 205);
+        --btn-sec-fg: oklch(0.942 0.006 190);
+
+        --wl-ochre: oklch(0.820 0.112 75);
+        --wl-ochre-wash: oklch(0.258 0.030 74);
+        --wl-coral: oklch(0.792 0.112 25);
+        --wl-coral-hover: oklch(0.842 0.100 25);
+        --wl-coral-wash: oklch(0.258 0.036 25);
+        --wl-juniper-soft: oklch(0.258 0.026 192);
+
+        --wl-sage-band: oklch(0.740 0.075 186 / 0.14);
+        --wl-sage-stroke: oklch(0.760 0.075 186 / 0.30);
+        --chart-grid: oklch(0.900 0.008 195 / 0.10);
+        --chart-line: oklch(0.810 0.082 188);
+        --chart-secondary: oklch(0.690 0.042 208);
+        --range-track: oklch(0.285 0.014 205);
+        --range-zone: oklch(0.460 0.052 188);
+
+        --border-card: oklch(0.292 0.014 205);
+        --border-divider: oklch(0.285 0.014 205);
+        --border-field: oklch(0.585 0.014 200);
+        --disabled-bg: oklch(0.222 0.010 205);
+        --disabled-fg: oklch(0.530 0.010 200);
+
+        --shadow-card: 0 2px 6px oklch(0.05 0.01 205 / 0.36), 0 16px 36px -12px oklch(0.05 0.01 205 / 0.50);
+        --shadow-overlay: 0 20px 48px oklch(0.04 0.01 205 / 0.72);
+        --backdrop-scrim: oklch(0.06 0.01 205 / 0.72);
+      }
+
+      html[data-density="compact"] {
+        --row-pad-y: 9px;
+        --ctrl-h: 35px;
+      }
+    }
+
+    @layer base {
+      html {
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      html, body, button, input, select, textarea, output {
+        font-kerning: normal;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: normal;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-variant-numeric: lining-nums;
+        line-height: 1.56;
+        overflow-x: clip;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      h1, h2, h3, h4 {
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-weight: 600;
+        text-wrap: balance;
+        max-width: none;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 3vw, 2.45rem);
+        line-height: 1.14;
+        letter-spacing: -0.015em;
+      }
+
+      h2 {
+        font-size: clamp(1.35rem, 1.9vw, 1.625rem);
+        line-height: 1.22;
+        letter-spacing: -0.01em;
+      }
+
+      h3 {
+        font-size: 1.09375rem;
+        line-height: 1.3;
+      }
+
+      p {
+        max-width: 64ch;
+        color: var(--ink-secondary);
+      }
+
+      a {
+        color: var(--link-ink);
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+        transition: color 130ms ease;
+      }
+      a:hover {
+        color: var(--link-hover);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      section[id] {
+        scroll-margin-top: 4.5rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      /* All dosages, vitals, and lab readings stay in Source Sans 3 tabular-nums */
+      .tnum,
+      th[data-numeric="true"],
+      td[data-numeric="true"],
+      output {
+        font-family: var(--font-ui);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      /* Fira Code reserved strictly for machine order/specimen IDs */
+      .specimen-id {
+        font-family: var(--font-mono);
+        font-size: 0.84375rem;
+        font-weight: 400;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+    }
+
+    @layer layout {
+      .wl-shell {
+        width: 100%;
+        max-width: 1180px;
+        margin-inline: auto;
+        padding-inline: clamp(20px, 4vw, 44px);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 12px;
+        z-index: 200;
+        padding: 10px 16px;
+        border-radius: var(--radius-control);
+        background: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        left: 20px;
+      }
+
+      /* Edge-to-edge single-row header */
+      .site-header {
+        background-color: var(--surface-canvas);
+        border-bottom: 1px solid var(--border-divider);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-block: 18px;
+      }
+
+      .brand-mark {
+        font-size: 1.1875rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .brand-mark:hover {
+        color: var(--ink-primary);
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .site-nav a {
+        color: var(--ink-secondary);
+        text-decoration: none;
+        padding-block: 4px;
+        white-space: nowrap;
+      }
+      .site-nav a:hover {
+        color: var(--ink-primary);
+      }
+
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .wl-section {
+        padding-block: var(--section-pad);
+        border-bottom: 1px solid var(--border-divider);
+      }
+
+      .visit-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+
+      .visit-subtitle {
+        margin-top: 8px;
+        font-size: 1rem;
+        color: var(--ink-secondary);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .inline-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* Airy 12px porcelain surfaces */
+      .wl-card {
+        background-color: var(--surface-card);
+        border-radius: var(--radius-surface);
+        box-shadow: 0 0 0 1px var(--border-card), var(--shadow-card);
+        padding: clamp(24px, 3vw, 34px);
+        min-width: 0;
+      }
+
+      .wl-card + .wl-card {
+        margin-top: 28px;
+      }
+
+      .trend-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .vital-reading-row {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 10px 18px;
+      }
+
+      .vital-figure {
+        font-family: var(--font-ui);
+        font-size: clamp(2.05rem, 2.9vw, 2.4rem);
+        font-weight: 600;
+        line-height: 1.05;
+        color: var(--ink-primary);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .vital-unit {
+        font-size: 1.125rem;
+        font-weight: 400;
+        color: var(--ink-secondary);
+        margin-left: 4px;
+      }
+
+      .vital-summary {
+        font-size: 0.9375rem;
+        color: var(--ink-secondary);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .chart-stage {
+        margin-top: 24px;
+        width: 100%;
+      }
+      .chart-stage svg {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      .panel-header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      /* Foundations Grid */
+      .swatch-grid {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .type-list {
+        margin-top: 44px;
+        display: flex;
+        flex-direction: column;
+      }
+      .type-band {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 12px 44px;
+        align-items: baseline;
+        padding-block: 24px;
+        border-top: 1px solid var(--border-divider);
+      }
+
+      /* Clinical Care Cards Grid (#components) */
+      .care-grid {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        align-items: start;
+      }
+
+      .care-card {
+        background-color: var(--surface-card);
+        border-radius: var(--radius-surface);
+        box-shadow: 0 0 0 1px var(--border-card), var(--shadow-card);
+        padding: clamp(22px, 2.6vw, 28px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 1.25rem;
+        min-width: 0;
+      }
+
+      .care-card-head {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .care-card-sub {
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .care-divider {
+        padding-top: 1.125rem;
+        border-top: 1px solid var(--border-card);
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+      }
+
+      .rx-banner {
+        padding: 14px 16px;
+        border-radius: var(--radius-control);
+        background-color: var(--surface-subtle);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 6px 14px;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .rx-drug {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .rx-meta {
+        font-size: 0.84375rem;
+        color: var(--ink-secondary);
+      }
+
+      .site-footer {
+        padding-block: 42px;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      @media (max-width: 940px) {
+        .care-grid,
+        .type-band {
+          grid-template-columns: 1fr;
+        }
+        .swatch-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 767px) {
+        .header-inner {
+          flex-wrap: wrap;
+          gap: 12px 16px;
+          padding-block: 15px;
+        }
+        .site-nav {
+          order: 3;
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 8px 18px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .swatch-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+
+    @layer components {
+      /* Clinical buttons — 8px radius, intrinsic widths */
+      .wl-btn {
+        appearance: none;
+        display: inline-flex;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: var(--ctrl-h);
+        margin: 0;
+        padding: 0.58em 1.15em;
+        border: 1px solid var(--border-field);
+        border-radius: var(--radius-control);
+        background-color: var(--btn-sec-bg);
+        color: var(--btn-sec-fg);
+        font-family: var(--font-ui);
+        font-size: 0.90625rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.15;
+        text-decoration: none;
+        cursor: pointer;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        box-shadow: 0 1px 2px oklch(0.22 0.02 200 / 0.05);
+        transition: background-color 130ms ease, border-color 130ms ease, color 130ms ease, transform 120ms ease;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .wl-btn:not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):hover {
+          background-color: var(--btn-sec-hover);
+          border-color: var(--ink-primary);
+        }
+      }
+      .wl-btn:not(:disabled):not([aria-disabled="true"]):active {
+        transform: translateY(1px);
+        transition-duration: 45ms;
+      }
+
+      .wl-btn--pri {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+        box-shadow: inset 0 1px 0 oklch(1 0 0 / 0.16), var(--btn-pri-shadow);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .wl-btn--pri:not(:disabled):not([aria-disabled="true"]):hover {
+          background-color: var(--btn-pri-hover);
+          border-color: var(--btn-pri-hover);
+          color: var(--btn-pri-fg);
+          transform: translateY(-1px);
+        }
+      }
+      .wl-btn--pri:not(:disabled):not([aria-disabled="true"]):active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 2px oklch(0.22 0.04 196 / 0.22);
+      }
+
+      .wl-btn--ghost {
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        color: var(--ink-secondary);
+        padding-inline: 0.8em;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .wl-btn--ghost:not(:disabled):hover {
+          background-color: var(--surface-subtle);
+          border-color: transparent;
+          color: var(--ink-primary);
+        }
+      }
+
+      .wl-btn--toolbar {
+        min-height: 34px;
+        padding: 0.38em 0.85em;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        border-color: var(--border-card);
+        background-color: var(--surface-card);
+        color: var(--ink-secondary);
+        box-shadow: none;
+      }
+      .wl-btn--toolbar[aria-pressed="true"] {
+        background-color: var(--ink-primary);
+        border-color: var(--ink-primary);
+        color: var(--surface-card);
+        font-weight: 600;
+      }
+
+      /* Restrained hold/danger button: neutral at rest, coral on hover/focus */
+      .wl-btn--hold {
+        background-color: transparent;
+        border-color: var(--border-card);
+        color: var(--ink-secondary);
+        box-shadow: none;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .wl-btn--hold:not(:disabled):hover {
+          background-color: var(--wl-coral-wash);
+          border-color: var(--wl-coral);
+          color: var(--wl-coral);
+        }
+      }
+      .wl-btn--hold:focus-visible {
+        border-color: var(--wl-coral);
+        color: var(--wl-coral);
+      }
+
+      .wl-btn:disabled,
+      .wl-btn[aria-disabled="true"] {
+        background-color: var(--disabled-bg);
+        border-color: var(--border-card);
+        color: var(--disabled-fg);
+        box-shadow: none;
+        cursor: not-allowed;
+      }
+
+      /* Zero-shift loading button grid */
+      .btn-load-stack {
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+      }
+      .btn-load-stack > .btn-label,
+      .btn-load-stack > .btn-spin {
+        grid-area: 1 / 1;
+      }
+      .btn-spin {
+        display: none;
+        width: 15px;
+        height: 15px;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: wl-spin 700ms linear infinite;
+      }
+      [data-loading="true"] .btn-label {
+        visibility: hidden;
+      }
+      [data-loading="true"] .btn-spin {
+        display: inline-block;
+      }
+      @keyframes wl-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Soft Segmented Switch (8px outer, 6px inner concentric) */
+      .seg-switch {
+        display: inline-flex;
+        align-self: flex-start;
+        align-items: center;
+        padding: 3px;
+        border-radius: var(--radius-control);
+        background-color: var(--surface-subtle);
+        gap: 2px;
+      }
+      .seg-switch button {
+        appearance: none;
+        border: 0;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--ink-secondary);
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        padding: 5px 12px;
+        min-height: 29px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background-color 130ms ease, color 130ms ease, box-shadow 130ms ease;
+      }
+      .seg-switch button[aria-pressed="true"] {
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        box-shadow: 0 1px 2px oklch(0.20 0.02 200 / 0.10);
+      }
+
+      /* Metabolic & Check-in Tables */
+      .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .wl-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.90625rem;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .wl-table th {
+        padding: 10px 14px;
+        text-align: left;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ink-muted);
+        border-bottom: 1px solid var(--border-divider);
+        white-space: nowrap;
+      }
+      .wl-table td {
+        padding: var(--row-pad-y) 14px;
+        border-bottom: 1px solid var(--border-card);
+        color: var(--ink-secondary);
+        vertical-align: middle;
+      }
+      .wl-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+      .wl-table th:first-child,
+      .wl-table td:first-child {
+        padding-left: 0;
+      }
+      .wl-table th:last-child,
+      .wl-table td:last-child {
+        padding-right: 0;
+      }
+      .wl-table th[data-numeric="true"],
+      .wl-table td[data-numeric="true"] {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .sort-btn {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+      .sort-btn:hover,
+      th[aria-sort="ascending"] .sort-btn,
+      th[aria-sort="descending"] .sort-btn {
+        color: var(--ink-primary);
+      }
+      .sort-icon {
+        width: 10px;
+        height: 10px;
+        flex-shrink: 0;
+      }
+
+      .marker-btn {
+        appearance: none;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        text-align: left;
+        cursor: pointer;
+        text-decoration-line: underline;
+        text-decoration-color: transparent;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+        transition: color 120ms ease, text-decoration-color 120ms ease;
+      }
+      .marker-btn:hover {
+        color: var(--link-ink);
+        text-decoration-color: var(--link-ink);
+      }
+
+      .range-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .range-caption {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+        font-variant-numeric: tabular-nums lining-nums;
+        white-space: nowrap;
+      }
+
+      /* SVG shape + text status labels (zero circular dots, zero pills) */
+      .status-normal {
+        color: var(--ink-secondary);
+        font-size: 0.84375rem;
+      }
+      .status-elevated {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--wl-ochre);
+        font-size: 0.84375rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .status-review {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--wl-coral);
+        font-size: 0.84375rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* Custom Form Controls */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: 100%;
+      }
+      @media (max-width: 560px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .wl-field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+        min-width: 0;
+      }
+      .wl-field--full {
+        grid-column: 1 / -1;
+      }
+      .wl-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+      .wl-hint {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .wl-error {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--wl-coral);
+      }
+
+      .wl-input,
+      .wl-select {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        min-height: var(--ctrl-h);
+        margin: 0;
+        padding: 0.52em 0.85em;
+        border: 1px solid var(--border-field);
+        border-radius: var(--radius-control);
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 0.9375rem;
+        line-height: 1.38;
+        transition: border-color 130ms ease, background-color 130ms ease;
+      }
+      .wl-input.specimen-id {
+        font-family: var(--font-mono);
+        font-size: 0.84375rem;
+      }
+      .wl-input::placeholder {
+        color: var(--ink-muted);
+        opacity: 1;
+      }
+      .wl-input:hover:not(:disabled):not([readonly]),
+      .wl-select:hover:not(:disabled) {
+        border-color: var(--ink-primary);
+      }
+      .wl-input[aria-invalid="true"] {
+        border-color: var(--wl-coral);
+        background-color: var(--wl-coral-wash);
+      }
+      /* Solid subtle inset readonly — zero dashed-border look */
+      .wl-input[readonly] {
+        background-color: var(--surface-subtle);
+        border-color: var(--border-card);
+        color: var(--ink-secondary);
+      }
+
+      .select-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+      }
+      .select-wrap .wl-select {
+        padding-right: 2.35em;
+        cursor: pointer;
+      }
+      .select-chevron {
+        position: absolute;
+        right: 12px;
+        width: 13px;
+        height: 13px;
+        color: var(--ink-secondary);
+        pointer-events: none;
+      }
+
+      /* First-line-aligned Checkboxes, Radios, Switch & Range */
+      .choice-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 0;
+      }
+      .choice-row-inline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 22px;
+      }
+      .choice-children {
+        padding-left: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .choice-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.90625rem;
+        line-height: 1.42;
+        color: var(--ink-primary);
+        cursor: pointer;
+        user-select: none;
+      }
+
+      input[type="checkbox"].wl-check {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        margin: 2px 0 0;
+        flex-shrink: 0;
+        border: 1.5px solid var(--border-field);
+        border-radius: var(--radius-check);
+        background-color: var(--surface-card);
+        cursor: pointer;
+        display: inline-grid;
+        place-content: center;
+      }
+      input[type="checkbox"].wl-check:checked,
+      input[type="checkbox"].wl-check:indeterminate {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+      }
+      input[type="checkbox"].wl-check:checked::after {
+        content: "";
+        width: 9px;
+        height: 5px;
+        border-left: 2px solid var(--btn-pri-fg);
+        border-bottom: 2px solid var(--btn-pri-fg);
+        transform: translateY(-1px) rotate(-45deg);
+      }
+      input[type="checkbox"].wl-check:indeterminate::after {
+        content: "";
+        width: 10px;
+        height: 2px;
+        border-radius: 1px;
+        background-color: var(--btn-pri-fg);
+      }
+
+      input[type="radio"].wl-radio {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        margin: 2px 0 0;
+        flex-shrink: 0;
+        border: 1.5px solid var(--border-field);
+        border-radius: 50%;
+        background-color: var(--surface-card);
+        cursor: pointer;
+        display: inline-grid;
+        place-content: center;
+      }
+      input[type="radio"].wl-radio:checked {
+        border-color: var(--btn-pri-bg);
+      }
+      input[type="radio"].wl-radio:checked::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--btn-pri-bg);
+      }
+
+      .switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        font-size: 0.90625rem;
+        color: var(--ink-primary);
+      }
+      .wl-switch {
+        appearance: none;
+        width: 44px;
+        height: 25px;
+        padding: 2px;
+        margin: 0;
+        flex-shrink: 0;
+        border: 1px solid var(--border-field);
+        border-radius: 999px;
+        background-color: var(--surface-subtle);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        transition: background-color 150ms ease, border-color 150ms ease;
+      }
+      .wl-switch-thumb {
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;
+        background-color: var(--ink-secondary);
+        pointer-events: none;
+        transition: transform 150ms cubic-bezier(0.2, 0, 0, 1), background-color 150ms ease;
+      }
+      .wl-switch[aria-checked="true"] {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+      }
+      .wl-switch[aria-checked="true"] .wl-switch-thumb {
+        transform: translateX(19px);
+        background-color: var(--btn-pri-fg);
+      }
+
+      /* Clinical Numeric Stepper Display + Compact Fine Track */
+      .range-box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .stepper-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 16px;
+      }
+      .wl-stepper {
+        display: inline-flex;
+        align-items: stretch;
+        border: 1px solid var(--border-field);
+        border-radius: 6px;
+        background-color: var(--surface-card);
+      }
+      .wl-step-btn {
+        appearance: none;
+        width: 38px;
+        min-height: 38px;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 1.0625rem;
+        font-weight: 600;
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .wl-step-btn:first-child {
+        border-right: 1px solid var(--border-card);
+        border-radius: 5px 0 0 5px;
+      }
+      .wl-step-btn:last-child {
+        border-left: 1px solid var(--border-card);
+        border-radius: 0 5px 5px 0;
+      }
+      .wl-step-btn:hover {
+        background: var(--surface-subtle);
+      }
+      .wl-stepper-val {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        padding: 0 14px;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+        background-color: var(--surface-subtle);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      input[type="range"].wl-range {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        max-width: 240px;
+        height: 20px;
+        margin: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      input[type="range"].wl-range::-webkit-slider-runnable-track {
+        height: 3px;
+        border-radius: 1px;
+        background: var(--range-track);
+      }
+      input[type="range"].wl-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 12px;
+        height: 16px;
+        margin-top: -6.5px;
+        border-radius: 3px;
+        background: var(--btn-pri-bg);
+        border: 1.5px solid var(--surface-card);
+        box-shadow: 0 1px 3px oklch(0.18 0.02 200 / 0.25);
+      }
+      input[type="range"].wl-range::-moz-range-track {
+        height: 3px;
+        border-radius: 1px;
+        background: var(--range-track);
+      }
+      input[type="range"].wl-range::-moz-range-thumb {
+        width: 12px;
+        height: 16px;
+        border-radius: 3px;
+        background: var(--btn-pri-bg);
+        border: 1.5px solid var(--surface-card);
+      }
+
+      /* Breadcrumbs & Roving Tabs */
+      .wl-crumbs ol {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        font-size: 0.84375rem;
+        color: var(--ink-muted);
+      }
+      .wl-crumbs li + li::before {
+        content: "/";
+        margin-right: 8px;
+        color: var(--ink-muted);
+      }
+      .wl-crumbs a {
+        color: var(--ink-secondary);
+        text-decoration: none;
+      }
+      .wl-crumbs a:hover {
+        color: var(--link-ink);
+        text-decoration: underline;
+      }
+      .wl-crumbs [aria-current="page"] {
+        color: var(--ink-primary);
+        font-weight: 600;
+      }
+
+      .wl-tabs {
+        width: 100%;
+      }
+      .wl-tablist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        border-bottom: 1px solid var(--border-divider);
+      }
+      .wl-tab {
+        appearance: none;
+        margin: 0 0 -1px 0;
+        padding: 6px 2px 15px 2px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: var(--ink-muted);
+        font-family: var(--font-ui);
+        font-size: 0.90625rem;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .wl-tab:hover {
+        color: var(--ink-primary);
+      }
+      .wl-tab[aria-selected="true"] {
+        color: var(--ink-primary);
+        font-weight: 600;
+        border-bottom-color: var(--link-ink);
+      }
+      .wl-tabpanel {
+        padding-top: 19px;
+        font-size: 0.90625rem;
+        line-height: 1.56;
+        color: var(--ink-secondary);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      /* Foundations Swatch Cards */
+      .swatch-card {
+        background: var(--surface-card);
+        border-radius: var(--radius-surface);
+        padding: 20px;
+        box-shadow: 0 0 0 1px var(--border-card), var(--shadow-card);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .swatch-chip {
+        height: 62px;
+        border-radius: var(--radius-control);
+        box-shadow: inset 0 0 0 1px var(--border-card);
+      }
+      .swatch-title {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+      .swatch-desc {
+        font-size: 0.8125rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-muted);
+      }
+
+      /* Empty & Skeleton States */
+      .empty-state {
+        padding: 14px 0 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .skeleton-rows {
+        width: 100%;
+        padding-block: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .skel-bar {
+        height: 14px;
+        border-radius: 6px;
+        background: linear-gradient(90deg, var(--surface-subtle) 20%, var(--surface-shimmer) 50%, var(--surface-subtle) 80%);
+        background-size: 200% 100%;
+        animation: wl-shimmer 1.6s ease-in-out infinite;
+      }
+      @keyframes wl-shimmer {
+        0% { background-position: 100% 0; }
+        100% { background-position: -100% 0; }
+      }
+
+      /* Modal & History Slide-Over Drawer */
+      dialog.wl-modal,
+      dialog.wl-drawer {
+        padding: 0;
+        border: 1px solid var(--border-card);
+        background: var(--surface-overlay);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-overlay);
+      }
+      dialog::backdrop {
+        background: var(--backdrop-scrim);
+      }
+
+      dialog.wl-modal {
+        width: min(490px, calc(100vw - 32px));
+        margin: auto;
+        border-radius: var(--radius-surface);
+      }
+
+      dialog.wl-drawer {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(440px, 100vw);
+        height: 100dvh;
+        max-height: 100dvh;
+        margin: 0;
+        border-radius: var(--radius-surface) 0 0 var(--radius-surface);
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        overflow-y: auto;
+      }
+
+      .dialog-pad {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .dialog-close {
+        appearance: none;
+        width: 36px;
+        height: 36px;
+        border: 1px solid transparent;
+        border-radius: var(--radius-control);
+        background: transparent;
+        color: var(--ink-secondary);
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .dialog-close:hover {
+        background: var(--surface-subtle);
+        color: var(--ink-primary);
+      }
+
+      .dose-summary {
+        padding: 16px 18px;
+        border-radius: var(--radius-control);
+        background: var(--surface-subtle);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .dose-step {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .history-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        border-top: 1px solid var(--border-card);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .history-list li {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-block: 12px;
+        border-bottom: 1px solid var(--border-card);
+        font-size: 0.90625rem;
+        color: var(--ink-secondary);
+      }
+
+      .wl-toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 150;
+        max-width: min(380px, calc(100vw - 32px));
+        padding: 14px 20px;
+        border-radius: var(--radius-control);
+        background: var(--ink-primary);
+        color: var(--surface-card);
+        font-size: 0.875rem;
+        font-weight: 500;
+        box-shadow: var(--shadow-overlay);
+      }
+    }
+
+    @layer utilities {
+      @media (any-pointer: coarse) {
+        .wl-btn, .wl-input, .wl-select, .wl-step-btn, .dialog-close {
+          min-height: 44px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+        .wl-btn {
+          transform: none !important;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .wl-btn--pri,
+        .wl-btn--toolbar[aria-pressed="true"],
+        .wl-switch[aria-checked="true"],
+        .seg-switch button[aria-pressed="true"],
+        input.wl-check:checked,
+        input.wl-check:indeterminate,
+        input.wl-radio:checked {
+          forced-color-adjust: none;
+          background: Highlight !important;
+          color: HighlightText !important;
+          border: 1.5px solid Highlight !important;
+        }
+        .wl-btn,
+        .wl-input,
+        .wl-select,
+        .wl-switch,
+        .wl-step-btn,
+        .dialog-close,
+        .wl-card,
+        .care-card,
+        input.wl-check,
+        input.wl-radio,
+        input.wl-range,
+        dialog.wl-modal,
+        dialog.wl-drawer {
+          border: 1.5px solid ButtonText !important;
+          box-shadow: none !important;
+        }
+        .wl-tab[aria-selected="true"] {
+          border-bottom: 3px solid Highlight !important;
+          color: Highlight !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+<div class="wl-shell header-inner">
+<a class="brand-mark" href="#workspace">Wardline</a>
+<nav aria-label="Primary" class="site-nav">
+<a href="../../../index.html">All systems</a>
+<a href="#workspace">Overview</a>
+<a href="#tokens">Foundations</a>
+<a href="#components">Components</a>
+<a href="../../../marketing/wardline.html">Membership</a>
+</nav>
+<div class="header-controls">
+<button aria-pressed="false" class="wl-btn wl-btn--toolbar" data-density-toggle="" type="button">Compact</button>
+<button aria-pressed="false" class="wl-btn wl-btn--toolbar" data-theme-toggle="" type="button">Dark</button>
+</div>
+</div>
+</header>
+  <main id="main-content">
+    <section id="components" data-section="components" class="wl-section" aria-labelledby="components-title"><div class="fa-shell wl-shell"><article aria-labelledby="card-rx-title" class="care-card">
+<div class="care-card-head">
+<h3 id="card-rx-title">Medication orders</h3>
+<p class="care-card-sub">Pharmacy check passed at 08:40 · Linden Street Clinic</p>
+</div>
+<div class="rx-banner">
+<span class="rx-drug">Atorvastatin · 10 mg → 20 mg evening</span>
+<span class="rx-meta">Recheck lipid panel in 8 weeks</span>
+</div>
+<div class="inline-actions">
+<button class="wl-btn wl-btn--pri" data-open-modal="#dosage-dialog" type="button">Confirm dosage</button>
+<button class="wl-btn" data-trigger-toast="Fasting lipid draw scheduled for 3 January" type="button">Schedule lab draw</button>
+<button class="wl-btn wl-btn--ghost" data-loading="false" id="wl-demo-load" type="button">
+<span class="btn-load-stack">
+<span class="btn-label">Send visit note</span>
+<span aria-hidden="true" class="btn-spin"></span>
+</span>
+</button>
+</div>
+<div class="inline-actions">
+<button class="wl-btn wl-btn--hold" data-trigger-toast="Medication hold recorded for pharmacist review" type="button">Hold prescription</button>
+<button class="wl-btn" disabled="" type="button">Dispensed</button>
+</div>
+<fieldset class="care-divider choice-stack">
+<legend class="wl-label" style="margin-bottom:6px">Eight-week follow-up format</legend>
+<div class="choice-row-inline">
+<label class="choice-row"><input checked="" class="wl-radio" name="wl-visit-kind" type="radio"/><span>In-clinic morning check</span></label>
+<label class="choice-row"><input class="wl-radio" name="wl-visit-kind" type="radio"/><span>Video review with Dr. Patel</span></label>
+</div>
+</fieldset>
+</article></div></section>
+  </main>
+  <dialog aria-labelledby="dosage-dialog-title" class="wl-modal" id="dosage-dialog">
+<div class="dialog-pad">
+<div class="dialog-head">
+<div>
+<h2 id="dosage-dialog-title">Update dosage</h2>
+<p style="margin-top:4px;font-size:0.875rem;color:var(--ink-muted)">Claire Lindqvist · Preventive cardiology</p>
+</div>
+<button aria-label="Close prescription dialog" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14" width="14"><path d="M2 2l10 10M12 2L2 12"></path></svg>
+</button>
+</div>
+<div class="dose-summary">
+<div style="font-size:0.8125rem;color:var(--ink-muted)">Evening tablet adjustment</div>
+<div class="dose-step">
+<span>Atorvastatin</span>
+<span>10 mg → 20 mg</span>
+<span style="font-size:0.875rem;font-weight:400;color:var(--ink-secondary)">once daily</span>
+</div>
+<p style="font-size:0.85rem;margin-top:4px">Pharmacist check passed · Compatible with morning Vitamin D3 supplement.</p>
+</div>
+<form id="dosage-form" style="display:flex;flex-direction:column;gap:16px">
+<div class="wl-field">
+<label class="wl-label" for="rx-pharmacy">Dispensing pharmacy</label>
+<div class="select-wrap">
+<select class="wl-select" id="rx-pharmacy">
+<option value="Linden Street Pharmacy">Linden Street Pharmacy (Ready today)</option>
+<option value="Home mail delivery">Wardline Home Delivery (2 days)</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="rx-recheck">Follow-up lipid panel</label>
+<div class="select-wrap">
+<select class="wl-select" id="rx-recheck">
+<option value="8 weeks">In 8 weeks (Recommended)</option>
+<option value="12 weeks">In 12 weeks</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="inline-actions" style="padding-top:4px">
+<button class="wl-btn wl-btn--pri" type="submit">Confirm 20 mg dosage</button>
+<button class="wl-btn" data-close-dialog="" type="button">Cancel</button>
+</div>
+</form>
+</div>
+</dialog>
+<dialog aria-labelledby="drawer-marker-title" class="wl-drawer" id="history-drawer">
+<div class="dialog-pad">
+<div class="dialog-head">
+<div>
+<h2 id="drawer-marker-title">LDL cholesterol</h2>
+<p class="tnum" id="drawer-marker-range" style="margin-top:4px;font-size:0.875rem;color:var(--ink-muted)">Healthy reference: Under 130 mg/dL</p>
+</div>
+<button aria-label="Close history drawer" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14" width="14"><path d="M2 2l10 10M12 2L2 12"></path></svg>
+</button>
+</div>
+<p class="tnum" id="drawer-marker-note" style="font-size:0.95rem;line-height:1.62;color:var(--ink-primary)">LDL drifted above 130 mg/dL since spring. Stepping Atorvastatin from 10 mg to 20 mg typically lowers LDL by an additional 15 to 22 mg/dL within eight weeks.</p>
+<div>
+<h3 style="font-size:0.8125rem;color:var(--ink-muted);margin-bottom:10px">Recent readings</h3>
+<ul class="history-list" id="drawer-history-list"></ul>
+</div>
+<div class="inline-actions">
+<button class="wl-btn" data-close-dialog="" type="button">Done</button>
+</div>
+</div>
+</dialog>
+<div aria-live="polite" class="wl-toast" hidden="" id="wl-toast" role="status"></div>
+  <script>
+    (function () {
+      "use strict";
+
+      var memPrefs = {};
+      function savePref(k, v) {
+        memPrefs[k] = v;
+        try { window.localStorage.setItem("wl_" + k, v); } catch (_e) {}
+      }
+
+      var BIOMARKERS = [
+        {
+          id: "hr",
+          name: "Resting heart rate",
+          rangeText: "52–68 bpm",
+          result: "58 bpm",
+          num: 58,
+          zoneStart: 28,
+          zoneWidth: 68,
+          markerX: 54,
+          flagged: false,
+          status: "Normal",
+          note: "Resting heart rate settled steadily from 62 bpm to 58 bpm over the past four weeks of regular morning walks.",
+          history: [
+            ["5 November 2026", "58 bpm"],
+            ["6 October 2026", "62 bpm"],
+            ["12 May 2026", "63 bpm"],
+            ["14 November 2025", "65 bpm"]
+          ]
+        },
+        {
+          id: "bp",
+          name: "Blood pressure",
+          rangeText: "Under 120 / 80",
+          result: "118 / 74 mmHg",
+          num: 118,
+          zoneStart: 22,
+          zoneWidth: 74,
+          markerX: 84,
+          flagged: false,
+          status: "Normal",
+          note: "Seated morning blood pressure remains well controlled below the 120 / 80 mmHg preventive target.",
+          history: [
+            ["5 November 2026", "118 / 74 mmHg"],
+            ["6 October 2026", "123 / 77 mmHg"],
+            ["12 May 2026", "120 / 76 mmHg"],
+            ["14 November 2025", "124 / 78 mmHg"]
+          ]
+        },
+        {
+          id: "glucose",
+          name: "Fasting glucose",
+          rangeText: "70–99 mg/dL",
+          result: "89 mg/dL",
+          num: 89,
+          zoneStart: 28,
+          zoneWidth: 68,
+          markerX: 66,
+          flagged: false,
+          status: "Normal",
+          note: "Overnight fasting glucose sits in the middle of the reference range with steady year-over-year stability.",
+          history: [
+            ["5 November 2026", "89 mg/dL"],
+            ["12 May 2026", "91 mg/dL"],
+            ["14 November 2025", "88 mg/dL"],
+            ["9 May 2025", "90 mg/dL"]
+          ]
+        },
+        {
+          id: "hdl",
+          name: "HDL cholesterol",
+          rangeText: "50–90 mg/dL",
+          result: "64 mg/dL",
+          num: 64,
+          zoneStart: 32,
+          zoneWidth: 72,
+          markerX: 62,
+          flagged: false,
+          status: "Normal",
+          note: "Protective HDL cholesterol remains strong at 64 mg/dL, supporting balanced overall lipid transport.",
+          history: [
+            ["5 November 2026", "64 mg/dL"],
+            ["12 May 2026", "62 mg/dL"],
+            ["14 November 2025", "61 mg/dL"],
+            ["9 May 2025", "59 mg/dL"]
+          ]
+        },
+        {
+          id: "ldl",
+          name: "LDL cholesterol",
+          rangeText: "Under 130 mg/dL",
+          result: "142 mg/dL",
+          num: 142,
+          zoneStart: 18,
+          zoneWidth: 74,
+          markerX: 108,
+          flagged: true,
+          status: "Above range",
+          note: "LDL drifted above 130 mg/dL since spring. Stepping Atorvastatin from 10 mg to 20 mg typically brings LDL back into the 115 to 125 mg/dL range within eight weeks.",
+          history: [
+            ["5 November 2026", "142 mg/dL"],
+            ["12 May 2026", "134 mg/dL"],
+            ["14 November 2025", "124 mg/dL"],
+            ["9 May 2025", "142 mg/dL"]
+          ]
+        },
+        {
+          id: "crp",
+          name: "hs-CRP",
+          rangeText: "Under 2.0 mg/L",
+          result: "0.8 mg/L",
+          num: 0.8,
+          zoneStart: 16,
+          zoneWidth: 76,
+          markerX: 46,
+          flagged: false,
+          status: "Normal",
+          note: "High-sensitivity C-reactive protein stays well under 1.0 mg/L, indicating low baseline vascular inflammation.",
+          history: [
+            ["5 November 2026", "0.8 mg/L"],
+            ["12 May 2026", "0.9 mg/L"],
+            ["14 November 2025", "0.9 mg/L"],
+            ["9 May 2025", "1.1 mg/L"]
+          ]
+        }
+      ];
+
+      var TRENDS = {
+        hr: {
+          heading: "Resting heart rate",
+          fig: '58<span class="vital-unit">bpm</span>',
+          summary: "Steady · \u22124 bpm vs last month · Healthy target 52–68 bpm",
+          yTop: "72", yMid: "60", yBot: "48",
+          bandY: 55, bandH: 98,
+          bandLbl: "Healthy target (52–68 bpm)",
+          curve: "M 42,86 C 110,83 158,98 230,94 C 302,90 356,106 419,103 C 482,100 546,113 608,110 C 670,107 734,118 796,116",
+          sec: "",
+          startY: 86, endY: 116
+        },
+        bp: {
+          heading: "Blood pressure",
+          fig: '118 / 74<span class="vital-unit">mmHg</span>',
+          summary: "Steady · \u22125 mmHg systolic vs last month · Target under 120 / 80 mmHg",
+          yTop: "135", yMid: "105", yBot: "65",
+          bandY: 60, bandH: 82,
+          bandLbl: "Healthy systolic range (95–120 mmHg)",
+          curve: "M 42,66 C 115,64 166,74 230,71 C 298,68 358,77 419,74 C 482,71 546,78 608,76 C 672,74 734,80 796,79",
+          sec: "M 42,152 C 145,150 280,156 419,154 C 560,152 680,158 796,156",
+          startY: 66, endY: 79
+        }
+      };
+
+      var CHECKINS = [
+        { date: "14 Nov 2025", delta: -18, status: "normal" },
+        { date: "12 May 2026", delta: 10, status: "normal" },
+        { date: "5 Nov 2026", delta: 8, status: "review" }
+      ];
+
+      function formatMgDelta(n) {
+        if (n > 0) return "+" + n + " mg/dL";
+        if (n < 0) return "\u2212" + Math.abs(n) + " mg/dL";
+        return "0 mg/dL";
+      }
+
+      /* Single polite toast */
+      var toastEl = document.getElementById("wl-toast");
+      var toastTimer = null;
+      function showToast(msg) {
+        if (!toastEl) return;
+        toastEl.textContent = msg;
+        toastEl.hidden = false;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { toastEl.hidden = true; }, 3800);
+      }
+
+      document.querySelectorAll("[data-trigger-toast]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          showToast(btn.getAttribute("data-trigger-toast") || "Updated");
+        });
+      });
+
+      /* Theme & Density toggles (static labels, aria-pressed state) */
+      var htmlEl = document.documentElement;
+      var themeBtn = document.querySelector("[data-theme-toggle]");
+      var densityBtn = document.querySelector("[data-density-toggle]");
+
+      var cCvs = document.createElement("canvas");
+      cCvs.width = 1;
+      cCvs.height = 1;
+      var cCtx = cCvs.getContext("2d", { willReadFrequently: true });
+      function lumOf(varName) {
+        var v = getComputedStyle(htmlEl).getPropertyValue(varName).trim();
+        if (!cCtx || !v) return 0;
+        cCtx.clearRect(0, 0, 1, 1);
+        cCtx.fillStyle = v;
+        cCtx.fillRect(0, 0, 1, 1);
+        var d = cCtx.getImageData(0, 0, 1, 1).data;
+        var lin = [d[0], d[1], d[2]].map(function (c) {
+          var s = c / 255;
+          return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+        });
+        return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2];
+      }
+      function ratioBetween(v1, v2) {
+        var l1 = lumOf(v1), l2 = lumOf(v2);
+        return ((Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05)).toFixed(1) + ":1";
+      }
+      function updateSwatches() {
+        var map = {
+          ink: ["--ink-primary", "--surface-card"],
+          pri: ["--btn-pri-bg", "--btn-pri-fg"],
+          ochre: ["--wl-ochre", "--surface-card"],
+          coral: ["--wl-coral", "--surface-card"]
+        };
+        Object.keys(map).forEach(function (k) {
+          var el = document.querySelector('[data-wl-contrast="' + k + '"]');
+          if (el) el.textContent = ratioBetween(map[k][0], map[k][1]);
+        });
+      }
+
+      if (themeBtn) {
+        themeBtn.addEventListener("click", function () {
+          var next = htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          htmlEl.setAttribute("data-theme", next);
+          themeBtn.setAttribute("aria-pressed", String(next === "dark"));
+          savePref("theme", next);
+          updateSwatches();
+        });
+      }
+      if (densityBtn) {
+        densityBtn.addEventListener("click", function () {
+          var next = htmlEl.getAttribute("data-density") === "compact" ? "standard" : "compact";
+          htmlEl.setAttribute("data-density", next);
+          densityBtn.setAttribute("aria-pressed", String(next === "compact"));
+          savePref("density", next);
+        });
+      }
+      updateSwatches();
+
+      /* 30-Day Trend Mode Switch (Heart rate / Blood pressure) */
+      document.querySelectorAll("[data-trend-mode]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var mode = btn.getAttribute("data-trend-mode");
+          var cfg = TRENDS[mode];
+          if (!cfg) return;
+          document.querySelectorAll("[data-trend-mode]").forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b === btn));
+          });
+          document.getElementById("trend-heading").textContent = cfg.heading;
+          document.getElementById("trend-figure").innerHTML = cfg.fig;
+          document.getElementById("trend-summary").textContent = cfg.summary;
+          document.getElementById("y-lbl-top").textContent = cfg.yTop;
+          document.getElementById("y-lbl-mid").textContent = cfg.yMid;
+          document.getElementById("y-lbl-bot").textContent = cfg.yBot;
+          var band = document.getElementById("trend-band");
+          band.setAttribute("y", String(cfg.bandY));
+          band.setAttribute("height", String(cfg.bandH));
+          document.getElementById("trend-band-lbl").textContent = cfg.bandLbl;
+          document.getElementById("trend-curve").setAttribute("d", cfg.curve);
+          var sec = document.getElementById("trend-secondary");
+          sec.setAttribute("d", cfg.sec || "M0,0");
+          sec.setAttribute("opacity", cfg.sec ? "0.85" : "0");
+          document.getElementById("trend-pt-start").setAttribute("cy", String(cfg.startY));
+          document.getElementById("trend-pt-end").setAttribute("cy", String(cfg.endY));
+        });
+      });
+
+      /* Render Metabolic & Lipid Panel */
+      var panelState = { col: null, dir: "ascending" };
+      var panelTbody = document.getElementById("panel-tbody");
+
+      function makeRangeSvg(m) {
+        var markerColor = m.flagged ? "var(--wl-ochre)" : "var(--ink-primary)";
+        return (
+          '<svg width="132" height="16" viewBox="0 0 132 16" aria-hidden="true" focusable="false" style="flex-shrink:0">' +
+            '<rect x="0" y="6" width="132" height="4" rx="2" fill="var(--range-track)"/>' +
+            '<rect x="' + m.zoneStart + '" y="4.5" width="' + m.zoneWidth + '" height="7" rx="3" fill="var(--range-zone)" fill-opacity="0.45" stroke="var(--range-zone)" stroke-width="1"/>' +
+            '<rect x="' + (m.markerX - 1.5) + '" y="1.5" width="3" height="13" rx="1.5" fill="' + markerColor + '"/>' +
+          '</svg>'
+        );
+      }
+
+      function renderPanel() {
+        var rows = BIOMARKERS.slice();
+        if (panelState.col) {
+          rows.sort(function (a, b) {
+            var cmp = panelState.col === "num"
+              ? (a.num - b.num)
+              : a.name.localeCompare(b.name);
+            return panelState.dir === "ascending" ? cmp : -cmp;
+          });
+        }
+
+        panelTbody.innerHTML = "";
+        rows.forEach(function (m) {
+          var tr = document.createElement("tr");
+
+          var tdName = document.createElement("td");
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "marker-btn";
+          btn.textContent = m.name;
+          btn.addEventListener("click", function () { openHistoryDrawer(m.id, btn); });
+          tdName.appendChild(btn);
+
+          var tdRange = document.createElement("td");
+          var rWrap = document.createElement("div");
+          rWrap.className = "range-cell";
+          rWrap.innerHTML = makeRangeSvg(m) + '<span class="range-caption">' + m.rangeText + "</span>";
+          tdRange.appendChild(rWrap);
+
+          var tdRes = document.createElement("td");
+          tdRes.setAttribute("data-numeric", "true");
+          tdRes.style.color = "var(--ink-primary)";
+          if (m.flagged) tdRes.style.fontWeight = "600";
+          tdRes.textContent = m.result;
+
+          var tdStatus = document.createElement("td");
+          if (m.flagged) {
+            tdStatus.innerHTML =
+              '<span class="status-elevated">' +
+                '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><polygon points="5,1.2 9.2,8.8 0.8,8.8"/></svg>' +
+                '<span>Above range</span>' +
+              "</span>";
+          } else {
+            var sp = document.createElement("span");
+            sp.className = "status-normal";
+            sp.textContent = "Normal";
+            tdStatus.appendChild(sp);
+          }
+
+          tr.appendChild(tdName);
+          tr.appendChild(tdRange);
+          tr.appendChild(tdRes);
+          tr.appendChild(tdStatus);
+          panelTbody.appendChild(tr);
+        });
+      }
+
+      document.querySelectorAll("#panel-table th[data-panel-sort]").forEach(function (th) {
+        var sbtn = th.querySelector("button");
+        var col = th.getAttribute("data-panel-sort");
+        sbtn.addEventListener("click", function () {
+          if (panelState.col === col) {
+            panelState.dir = panelState.dir === "ascending" ? "descending" : "ascending";
+          } else {
+            panelState.col = col;
+            panelState.dir = "ascending";
+          }
+          document.querySelectorAll("#panel-table th[data-panel-sort]").forEach(function (other) {
+            var active = other === th;
+            other.setAttribute("aria-sort", active ? panelState.dir : "none");
+            var path = other.querySelector("svg path");
+            if (path) {
+              if (!active) path.setAttribute("d", "M2.5 3.8L5 1.3l2.5 2.5M2.5 6.2L5 8.7l2.5-2.5");
+              else if (panelState.dir === "ascending") path.setAttribute("d", "M2.5 6.5L5 3.5l2.5 3");
+              else path.setAttribute("d", "M2.5 3.5L5 6.5l2.5-3");
+            }
+          });
+          renderPanel();
+        });
+      });
+      renderPanel();
+
+      /* Past Visits Table */
+      var ciDir = "ascending";
+      var ciTh = document.querySelector("#checkins-table th[data-ci-sort]");
+      var ciTbody = document.getElementById("checkins-tbody");
+      function renderCheckins() {
+        if (!ciTbody) return;
+        var sorted = CHECKINS.slice().sort(function (a, b) {
+          return ciDir === "ascending" ? (a.delta - b.delta) : (b.delta - a.delta);
+        });
+        ciTbody.innerHTML = "";
+        sorted.forEach(function (row) {
+          var tr = document.createElement("tr");
+          var td1 = document.createElement("td");
+          td1.style.color = "var(--ink-primary)";
+          td1.style.fontWeight = "500";
+          td1.textContent = row.date;
+          var td2 = document.createElement("td");
+          td2.setAttribute("data-numeric", "true");
+          td2.textContent = formatMgDelta(row.delta);
+          var td3 = document.createElement("td");
+          if (row.status === "review") {
+            td3.innerHTML =
+              '<span class="status-review">' +
+                '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><polygon points="5,0.8 9.2,5 5,9.2 0.8,5"/></svg>' +
+                '<span>Review needed</span>' +
+              "</span>";
+          } else {
+            td3.innerHTML = '<span class="status-normal">Normal</span>';
+          }
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          ciTbody.appendChild(tr);
+        });
+      }
+      if (ciTh) {
+        ciTh.querySelector("button").addEventListener("click", function () {
+          ciDir = ciDir === "ascending" ? "descending" : "ascending";
+          ciTh.setAttribute("aria-sort", ciDir);
+          var p = ciTh.querySelector("svg path");
+          if (p) p.setAttribute("d", ciDir === "ascending" ? "M2.5 6.5L5 3.5l2.5 3" : "M2.5 3.5L5 6.5l2.5-3");
+          renderCheckins();
+        });
+      }
+      renderCheckins();
+
+      document.querySelectorAll("[data-checkins-view]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var v = btn.getAttribute("data-checkins-view");
+          document.getElementById("checkins-live").hidden = v !== "live";
+          document.getElementById("checkins-skeleton").hidden = v !== "skeleton";
+          document.getElementById("checkins-empty").hidden = v !== "empty";
+          document.querySelectorAll(".seg-switch [data-checkins-view]").forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b.getAttribute("data-checkins-view") === v));
+          });
+        });
+      });
+
+      /* Modal & History Drawer Lifecycle with Focus Return */
+      var lastOpener = null;
+      var doseDialog = document.getElementById("dosage-dialog");
+      var histDrawer = document.getElementById("history-drawer");
+
+      function openDialogSafe(dlg, trigger) {
+        if (!dlg) return;
+        lastOpener = trigger || document.activeElement;
+        if (typeof dlg.showModal === "function" && !dlg.open) {
+          dlg.showModal();
+        } else {
+          dlg.setAttribute("open", "");
+        }
+      }
+      function closeDialogSafe(dlg) {
+        if (!dlg) return;
+        if (typeof dlg.close === "function" && dlg.open) {
+          dlg.close();
+        } else {
+          dlg.removeAttribute("open");
+        }
+        if (lastOpener && typeof lastOpener.focus === "function") {
+          lastOpener.focus();
+        }
+      }
+
+      function openHistoryDrawer(markerId, trigger) {
+        var m = BIOMARKERS.find(function (x) { return x.id === markerId; }) || BIOMARKERS[4];
+        document.getElementById("drawer-marker-title").textContent = m.name;
+        document.getElementById("drawer-marker-range").textContent = "Healthy reference: " + m.rangeText;
+        document.getElementById("drawer-marker-note").textContent = m.note;
+        var ul = document.getElementById("drawer-history-list");
+        ul.innerHTML = "";
+        m.history.forEach(function (pair) {
+          var li = document.createElement("li");
+          var s1 = document.createElement("span");
+          s1.textContent = pair[0];
+          var s2 = document.createElement("span");
+          s2.className = "tnum";
+          s2.style.color = "var(--ink-primary)";
+          s2.style.fontWeight = "600";
+          s2.textContent = pair[1];
+          li.appendChild(s1);
+          li.appendChild(s2);
+          ul.appendChild(li);
+        });
+        openDialogSafe(histDrawer, trigger);
+      }
+
+      document.querySelectorAll("[data-open-modal]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var target = document.querySelector(btn.getAttribute("data-open-modal")) || doseDialog;
+          openDialogSafe(target, btn);
+        });
+      });
+      document.querySelectorAll("[data-open-drawer]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          openHistoryDrawer(btn.getAttribute("data-marker") || "ldl", btn);
+        });
+      });
+
+      [doseDialog, histDrawer].forEach(function (dlg) {
+        if (!dlg) return;
+        dlg.addEventListener("close", function () {
+          if (lastOpener && typeof lastOpener.focus === "function") lastOpener.focus();
+        });
+        dlg.addEventListener("click", function (e) {
+          if (e.target === dlg) closeDialogSafe(dlg);
+        });
+        dlg.querySelectorAll("[data-close-dialog]").forEach(function (c) {
+          c.addEventListener("click", function () { closeDialogSafe(dlg); });
+        });
+      });
+
+      var doseForm = document.getElementById("dosage-form");
+      if (doseForm) {
+        doseForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var pharm = document.getElementById("rx-pharmacy").value;
+          var recheck = document.getElementById("rx-recheck").value;
+          var doseSpan = document.getElementById("current-dose-txt");
+          if (doseSpan) doseSpan.textContent = "20 mg";
+          closeDialogSafe(doseDialog);
+          showToast("Atorvastatin 20 mg sent to " + pharm + " · Recheck in " + recheck);
+        });
+      }
+
+      /* Form Validation (Blur + Real Submit + Live Clear) */
+      var ciForm = document.getElementById("checkin-form");
+      var emailInp = document.getElementById("wl-patient-email");
+      var emailErr = document.getElementById("wl-email-err");
+      var savedMsg = document.getElementById("wl-form-saved");
+
+      function checkEmail() {
+        if (!emailInp || !emailErr) return true;
+        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInp.value.trim());
+        emailInp.setAttribute("aria-invalid", ok ? "false" : "true");
+        emailErr.hidden = ok;
+        if (!ok && savedMsg) savedMsg.hidden = true;
+        return ok;
+      }
+      if (emailInp) {
+        emailInp.addEventListener("blur", function () {
+          if (emailInp.value.trim().length > 0 || emailInp.getAttribute("aria-invalid") === "true") checkEmail();
+        });
+        emailInp.addEventListener("input", function () {
+          if (emailInp.getAttribute("aria-invalid") === "true") checkEmail();
+        });
+      }
+      if (ciForm) {
+        ciForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (checkEmail()) {
+            if (savedMsg) savedMsg.hidden = false;
+            showToast("Reminders set for " + emailInp.value.trim());
+          } else if (emailInp) {
+            emailInp.focus();
+          }
+        });
+      }
+
+      /* Loading Button Specimen */
+      var loadBtn = document.getElementById("wl-demo-load");
+      if (loadBtn) {
+        loadBtn.addEventListener("click", function () {
+          if (loadBtn.getAttribute("data-loading") === "true") return;
+          loadBtn.setAttribute("data-loading", "true");
+          loadBtn.setAttribute("aria-busy", "true");
+          setTimeout(function () {
+            loadBtn.setAttribute("data-loading", "false");
+            loadBtn.removeAttribute("aria-busy");
+            showToast("Visit note delivered to patient portal");
+          }, 800);
+        });
+      }
+
+      /* Indeterminate Checkbox Tree */
+      var allBox = document.getElementById("wl-check-all");
+      var childBoxes = Array.prototype.slice.call(document.querySelectorAll(".wl-child-check"));
+      function syncBoxes() {
+        if (!allBox) return;
+        var n = childBoxes.filter(function (c) { return c.checked; }).length;
+        allBox.checked = n === childBoxes.length;
+        allBox.indeterminate = n > 0 && n < childBoxes.length;
+      }
+      if (allBox) {
+        syncBoxes();
+        allBox.addEventListener("change", function () {
+          allBox.indeterminate = false;
+          childBoxes.forEach(function (c) { c.checked = allBox.checked; });
+        });
+        childBoxes.forEach(function (c) { c.addEventListener("change", syncBoxes); });
+      }
+
+      /* ARIA Switch */
+      document.querySelectorAll('[role="switch"]').forEach(function (sw) {
+        sw.addEventListener("click", function () {
+          var on = sw.getAttribute("aria-checked") === "true";
+          sw.setAttribute("aria-checked", String(!on));
+        });
+      });
+
+      /* Clinical Stepper + Synced Range in tabular Source Sans 3 */
+      var hrRange = document.getElementById("wl-hr-range");
+      var hrOut = document.getElementById("wl-range-out");
+      var hrNote = document.getElementById("wl-range-note");
+      function syncHrRange() {
+        if (!hrRange || !hrOut) return;
+        var v = Number(hrRange.value);
+        var d = v - 68;
+        hrOut.textContent = v + " bpm";
+        if (hrNote) {
+          hrNote.textContent = d === 0 ? "Target ceiling" : (d < 0 ? "\u2212" + Math.abs(d) + " bpm vs target" : "+" + d + " bpm vs target");
+        }
+      }
+      if (hrRange) {
+        hrRange.addEventListener("input", syncHrRange);
+        document.querySelectorAll("[data-wl-step]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var step = Number(b.getAttribute("data-wl-step"));
+            var next = Math.min(Number(hrRange.max), Math.max(Number(hrRange.min), Number(hrRange.value) + step));
+            hrRange.value = String(next);
+            syncHrRange();
+          });
+        });
+        syncHrRange();
+      }
+
+      /* Roving Tabindex Tabs */
+      document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        function selectTab(target, focusIt) {
+          tabs.forEach(function (t) {
+            var on = t === target;
+            t.setAttribute("aria-selected", String(on));
+            t.tabIndex = on ? 0 : -1;
+            var p = document.getElementById(t.getAttribute("aria-controls"));
+            if (p) p.hidden = !on;
+          });
+          if (focusIt) target.focus();
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener("click", function () { selectTab(tab, false); });
+          tab.addEventListener("keydown", function (e) {
+            var next = null;
+            if (e.key === "ArrowRight") next = (i + 1) % tabs.length;
+            else if (e.key === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+            else if (e.key === "Home") next = 0;
+            else if (e.key === "End") next = tabs.length - 1;
+            if (next !== null) {
+              e.preventDefault();
+              selectTab(tabs[next], true);
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

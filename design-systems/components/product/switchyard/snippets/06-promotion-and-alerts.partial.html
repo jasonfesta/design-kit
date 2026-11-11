@@ -1,0 +1,34 @@
+<article aria-labelledby="sy-comp-overlays" class="sy-spec-row">
+<div class="sy-spec-meta">
+<h3 id="sy-comp-overlays">Promotion and alerts</h3>
+<p class="sy-spec-rule"><kbd class="sy-kbd">⌘K</kbd> opens quick jump; <kbd class="sy-kbd">Esc</kbd> closes any dialog and restores focus.</p>
+</div>
+<div class="sy-spec-cell">
+<div class="sy-action-row">
+<button class="sy-btn" data-open-modal="#promote-dialog" type="button">Promote release</button>
+<button class="sy-btn" data-open-drawer="#issue-drawer" type="button">View activity</button>
+<button class="sy-btn" data-open-cmdk="#cmdk-dialog" type="button">Quick jump</button>
+<button class="sy-btn sy-btn-ghost" data-trigger-toast="Staging health verified across 3 pools" type="button">Verify pool health</button>
+</div>
+<div class="sy-spec-two">
+<div class="sy-state-pad">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+<span class="sy-label" style="color: var(--ink-primary);">No active incidents</span>
+<button class="sy-btn sy-btn-ghost sy-btn-sm" data-trigger-toast="Synthetic check passed across 18 endpoints" type="button">Run check</button>
+</div>
+<p class="sy-hint num">Zero Sev-1 or Sev-2 alerts across US East, EU Central, and Tokyo in the past 14 days.</p>
+</div>
+<div class="sy-state-pad">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+<span class="sy-label" style="color: var(--ink-primary);">Trace stream sync</span>
+<button aria-pressed="false" class="sy-btn sy-btn-ghost sy-btn-sm" id="sy-toggle-skel" type="button">Pause stream</button>
+</div>
+<div aria-label="Loading trace preview" class="sy-skeleton-stack" id="sy-skel-demo">
+<div class="sy-skel-line" style="width: 72%;"></div>
+<div class="sy-skel-line" style="width: 94%;"></div>
+<div class="sy-skel-line" style="width: 52%;"></div>
+</div>
+</div>
+</div>
+</div>
+</article>

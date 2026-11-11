@@ -1,0 +1,10 @@
+{
+  "skill": "design-critique",
+  "suite": "design_critique_smoke",
+  "status": "ready",
+  "checks": [
+    "SKILL.md frontmatter and line limits valid",
+    "All relative links in SKILL.md resolve on disk",
+    "BUILD, EVAL.txtpb, TEST.md, and references/contributing.md present"
+  ]
+}

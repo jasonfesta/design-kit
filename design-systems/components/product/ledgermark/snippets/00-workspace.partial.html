@@ -1,0 +1,118 @@
+<section class="lm-container lm-workspace" data-section="workspace" id="workspace">
+<div class="lm-work-head">
+<div>
+<h1>Operating cash</h1>
+<p class="lm-acct-sub num">Checking •••• 4819 · Sweeps nightly above <span id="lm-sweep-sub-val">$525,000</span> into Treasury Reserve</p>
+</div>
+<div class="lm-action-row">
+<button class="lm-btn" data-open-drawer="#receipt-drawer" type="button">Split expense</button>
+<button class="lm-btn lm-btn-primary" data-open-modal="#transfer-dialog" type="button">Send transfer</button>
+</div>
+</div>
+<div class="lm-treasury-card">
+<div class="lm-treasury-top">
+<div>
+<div class="lm-acct-label">Available balance</div>
+<div class="lm-balance num" id="lm-balance-hero">$482,910<span class="lm-balance-cents">.40</span></div>
+<div class="lm-balance-delta">
+<span class="lm-pos num">+$18,420.00</span>
+<span class="num">past 30 days · 4.65% reserve yield</span>
+</div>
+</div>
+<div class="lm-chart-box">
+<svg aria-label="Daily stepped cash balance from Oct 11 to Nov 4 showing $84,120 payroll drops on Oct 15 and Oct 31, AWS card settlement on Nov 2, and Stripe payout settling at $482,910.40 on Nov 4" class="lm-chart-svg" role="img" viewbox="0 0 544 134">
+<defs>
+<lineargradient id="lm-area-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="var(--chart-fill-top)"></stop>
+<stop offset="100%" stop-color="var(--chart-fill-bot)"></stop>
+</lineargradient>
+</defs>
+<!-- Horizontal reference hairlines at $520k (y=26), $480k (y=62), and $440k (y=98) -->
+<line stroke="var(--hairline)" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="484.8" y1="26" y2="26"></line>
+<text class="lm-chart-ref" x="493" y="29.5">$520k</text>
+<line stroke="var(--hairline)" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="484.8" y1="62" y2="62"></line>
+<text class="lm-chart-ref" x="493" y="65.5">$480k</text>
+<line stroke="var(--hairline)" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="484.8" y1="98" y2="98"></line>
+<text class="lm-chart-ref" x="493" y="101.5">$440k</text>
+<!-- Daily stepped balance: Oct 15 (-$84,120 at x=80.8), Oct 28 (+$1,890), Oct 29 (-$840), Oct 31 (-$84,120 at x=404.0: $530.5k -> $446.4k), Nov 2 (-$6,240 -> $440.1k), Nov 4 (+$42,800 -> $482,910.40) -->
+<path d="M0,76.0 H40.4 V47.5 H60.6 V22.3 H80.8 V98.0 H101.0 V84.1 H121.2 V68.8 H181.8 V54.4 H202.0 V58.1 H222.2 V44.5 H242.4 V34.1 H262.6 V26.5 H323.2 V17.5 H343.4 V15.8 H363.6 V16.6 H404.0 V92.3 H444.4 V97.9 H484.8 V59.4 V108 H0 Z" fill="url(#lm-area-grad)"></path>
+<path d="M0,76.0 H40.4 V47.5 H60.6 V22.3 H80.8 V98.0 H101.0 V84.1 H121.2 V68.8 H181.8 V54.4 H202.0 V58.1 H222.2 V44.5 H242.4 V34.1 H262.6 V26.5 H323.2 V17.5 H343.4 V15.8 H363.6 V16.6 H404.0 V92.3 H444.4 V97.9 H484.8 V59.4" fill="none" stroke="var(--chart-stroke)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65"></path>
+<circle cx="484.8" cy="59.4" fill="var(--chart-stroke)" r="3"></circle>
+<!-- Exact pixel x-anchored ticks & labels for Oct 15 payroll (x=80.8) and Oct 31 payroll (x=404.0) -->
+<line stroke="var(--border-control)" stroke-width="1" x1="80.8" x2="80.8" y1="101" y2="112"></line>
+<line stroke="var(--border-control)" stroke-width="1" x1="404.0" x2="404.0" y1="96" y2="112"></line>
+<text class="lm-chart-ref" text-anchor="start" x="0" y="126">Oct 11</text>
+<text class="lm-chart-ref" text-anchor="middle" x="80.8" y="126">Oct 15 payroll</text>
+<text class="lm-chart-ref" text-anchor="middle" x="242.4" y="126">Oct 23</text>
+<text class="lm-chart-ref" text-anchor="middle" x="404.0" y="126">Oct 31 payroll</text>
+<text class="lm-chart-ref" style="fill: var(--ink-primary); font-weight: 500;" text-anchor="end" x="484.8" y="126">Nov 4</text>
+</svg>
+</div>
+</div>
+<!-- Single-line filter toolbar -->
+<div class="lm-toolbar">
+<div class="lm-toolbar-filters">
+<div class="lm-search-wrap">
+<svg aria-hidden="true" class="lm-search-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<circle cx="7" cy="7" r="4.75"></circle>
+<line stroke-linecap="round" x1="10.5" x2="14" y1="10.5" y2="14"></line>
+</svg>
+<input aria-label="Search payee" class="lm-input" id="lm-payee-search" placeholder="Search payee..." type="search"/>
+</div>
+<div class="lm-select-wrap" style="width: auto;">
+<select aria-label="Filter account" class="lm-select" id="lm-acct-filter">
+<option value="all">All accounts</option>
+<option value="Checking •••• 4819">Checking •••• 4819</option>
+<option value="Cards •••• 1108">Cards •••• 1108</option>
+<option value="Treasury •••• 9024">Treasury •••• 9024</option>
+</select>
+<svg aria-hidden="true" class="lm-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+</div>
+<span class="muted num" style="font-size: 0.8125rem;">Showing Oct 28 – Nov 4 · ABA <span class="mono" style="font-size: 0.78125rem;">021000021</span></span>
+</div>
+<!-- Airy 52px-row Transaction Table -->
+<div class="lm-table-scroll">
+<table aria-label="Recent transactions" class="lm-table" id="lm-tx-table">
+<thead>
+<tr>
+<th aria-sort="none" data-sort-key="payee" scope="col">
+<button class="lm-sort-btn" type="button">
+<span>Payee</span>
+<svg aria-hidden="true" class="lm-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+<th scope="col">Account</th>
+<th aria-sort="descending" data-sort-key="order" scope="col">
+<button class="lm-sort-btn" type="button">
+<span>Date</span>
+<svg aria-hidden="true" class="lm-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+<th aria-sort="none" data-numeric="true" data-sort-key="cents" scope="col">
+<button class="lm-sort-btn" type="button">
+<span>Amount</span>
+<svg aria-hidden="true" class="lm-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+</tr>
+</thead>
+<tbody id="lm-tx-tbody">
+<!-- Populated synchronously by canonical JS store -->
+</tbody>
+</table>
+</div>
+<div class="lm-empty" hidden="" id="lm-tx-empty">
+<p class="muted">No transactions match your search.</p>
+<button class="lm-btn lm-btn-sm" id="lm-clear-search" type="button">Reset filters</button>
+</div>
+</div>
+</section>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>golden template</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>golden template</h1>
+      <p>standardizes react 19 + vite 7 + tailwind v4 projects using the bundled dating reference folder (assets/dating/) as the ground-truth judge for all config files, 3-tier src/ structure, and strict tsc linting.</p>
+      <div class="actions">
+        <a href="../golden-template.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Golden Template: <code>dating</code>-Judged Architecture, 3-Tier Extractor &amp; Research Folder Linker</h1>
+<p>Golden Template (<code>golden-template</code>) is the single canonical architecture, extraction, and folder-linking skill for React 19 + Vite 7 + Tailwind v4 deliverables. It consolidates <code>golden-template</code>, <code>golden-template</code>, and <code>golden-template-porter</code> into one zero-redundancy package and bundles the reference <a href="assets/dating/package.json"><code>assets/dating/</code></a> project directly inside the skill as its ground-truth judge.</p>
+<h2>Workflow Checklist</h2>
+<p>Copy this checklist when extracting, linting, or linking Golden Template projects and research folders:</p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 1</strong>: Verify every project folder matches the bundled <a href="assets/dating/package.json"><code>assets/dating/</code></a> file &amp; config blueprint (<a href="references/dating-blueprint-and-research-linking.md">dating blueprint and research linking guide</a>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 2</strong>: Decompose UI into the 3-tier <code>src/</code> architecture (<code>src/data/<em>Data.ts</code>, <code>src/components/&lt;Brand&gt;BrandLogo.tsx</code>, <code>src/components/</em>.tsx</code>, <code>src/App.tsx</code>) using the <a href="references/image-to-react-pipeline.md">image-to-react pipeline</a> or <a href="references/website-to-react-pipeline.md">website-to-react pipeline</a></span></li>
+<li><span class="check-box"></span><span><strong>Step 3</strong>: Run <a href="scripts/lint-golden-template.mjs">lint-golden-template.mjs</a> (<code>--fix</code>) to enforce byte-for-byte config parity with <code>assets/dating/</code>, vendor-neutral nomenclature, and strict <code>tsc --noEmit</code> (<a href="references/nomenclature-and-polish-rules.md">nomenclature and polish rules</a>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 4</strong>: Run <a href="scripts/build-all-projects.mjs">build-all-projects.mjs</a>, <a href="scripts/audit-all-projects.mjs">audit-all-projects.mjs</a>, and <a href="scripts/verify-html-bundle.mjs">verify-html-bundle.mjs</a> to link <code>projects/</code>, <code>references/research/</code> (or <code>briefs/</code>), <code>screenshots/</code>, <code>skills/</code>, <code>dist/projects/&lt;slug&gt;/{source,prompts}</code>, and <code>src/golden-projects.json</code> together</span></li>
+</ul>
+<h2>1. How the Bundled <code>assets/dating/</code> Folder Judges Every Project</h2>
+<p>Every standalone project inside <code>projects/&lt;NN&gt;-&lt;category&gt;-&lt;descriptor&gt;/</code> is judged directly against the bundled <a href="assets/dating/package.json"><code>assets/dating/</code></a> blueprint by <a href="scripts/lint-golden-template.mjs">lint-golden-template.mjs</a>:</p>
+<pre data-lang="text"><code>&lt;NN&gt;-&lt;category&gt;-&lt;descriptor&gt;/
+├── index.html                  # Judged against assets/dating/index.html (&lt;!doctype html&gt;, category &lt;title&gt;, Google Fonts, #root)
+├── package.json                # Byte-for-byte identical to assets/dating/package.json (only &quot;name&quot; changes to slug)
+├── tsconfig.json               # Byte-for-byte identical to assets/dating/tsconfig.json (strict: true, noUnusedLocals, @/* alias)
+├── vite.config.ts              # Byte-for-byte identical to assets/dating/vite.config.ts (base: &#x27;./&#x27;, react(), tailwindcss(), viteSingleFile())
+└── src/
+    ├── main.tsx                # Byte-for-byte identical to assets/dating/src/main.tsx (StrictMode + named { App } import)
+    ├── utils/
+    │   └── cn.ts               # Byte-for-byte identical to assets/dating/src/utils/cn.ts (clsx + tailwind-merge)
+    ├── index.css               # @import &quot;tailwindcss&quot;; @layer base tokens, .font-serif-display, .font-grotesk, .font-mono-tech
+    ├── App.tsx                 # Named `export function App()` root orchestrator (modeled after assets/dating/src/App.tsx)
+    ├── components/
+    │   ├── &lt;Brand&gt;BrandLogo.tsx # Custom vector SVG brand emblem (`aria-hidden=&quot;true&quot;`, JSDoc header)
+    │   └── &lt;Feature&gt;.tsx       # 3 to 6 modular `React.FC&lt;*Props&gt;` interactive components
+    └── data/
+        └── &lt;domain&gt;Data.ts     # Exported TypeScript interfaces, JSDoc headers, and UPPER_SNAKE_CASE seed constants</code></pre>
+<p>See the line-by-line verification checklist in <a href="examples/dating-blueprint-checklist.md">dating-blueprint-checklist.md</a>.</p>
+<h2>2. How Research, Prompt, Source, Screenshot &amp; Skill Folders Link Together</h2>
+<p>To make sure every project folder is properly linked to its research briefs, prompts, inspectable source code, screenshots, and workspace skills, <a href="scripts/build-all-projects.mjs">build-all-projects.mjs</a> and <a href="scripts/audit-all-projects.mjs">audit-all-projects.mjs</a> wire six folder trees together automatically:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Folder / Manifest</th><th>Linked Source Authority</th><th>How <code>golden-template</code> Links &amp; Verifies It</th></tr></thead>
+<tbody>
+<tr><td><code>projects/&lt;NN&gt;-&lt;category&gt;-&lt;slug&gt;/</code></td><td>Bundled <a href="assets/dating/package.json"><code>assets/dating/</code></a></td><td><code>lint-golden-template.mjs --fix</code> enforces exact config parity, 2-digit sequential category prefix (<code>01-website-<em></code>, <code>07-ui-</em></code>, <code>13-mobile-app-<em></code>, <code>19-chat-ui-</em></code>), and strict <code>tsc --noEmit</code>.</td></tr>
+<tr><td><code>&lt;brand&gt;/references/research/</code> &amp; <code>briefs/</code></td><td>Research specs (<code>GITHUB_RESEARCH_INDEX.md</code>, <code><em>-desktop-spec.md</code>, <code></em>-mobile-spec.md</code>, <code>prompt.md</code>)</td><td><code>build-all-projects.mjs</code> links each project slug to its reconstruction brief and multi-screen prompt, publishing them to <code>dist/projects/&lt;slug&gt;/prompts/</code> and the <code>#gt-inspector-host</code> <code>Prompts</code> tab.</td></tr>
+<tr><td><code>dist/projects/&lt;slug&gt;/source/</code> &amp; <code>public/projects/&lt;slug&gt;/source/</code></td><td><code>projects/&lt;slug&gt;/src/*<em>/</em></code> + root configs</td><td><code>build-all-projects.mjs</code> copies every source file and writes <code>source/manifest.json</code> so the floating <code>Files</code> inspector tab can browse the live Golden Template tree offline.</td></tr>
+<tr><td><code>screenshots/&lt;slug&gt;.png</code> &amp; <code>dist/screenshots/</code></td><td>Live WebKit2GTK render of <code>projects/&lt;slug&gt;/</code></td><td><code>audit-all-projects.mjs --sync-screenshots</code> renders every project, verifies <code>0</code> collisions/overflow/clipping, and syncs 1:1 screenshots to <code>screenshots/</code>, <code>public/screenshots/</code>, and <code>dist/screenshots/</code>.</td></tr>
+<tr><td><code>dist/skills/</code> &amp; <code>src/golden-skills.json</code></td><td>Workspace <code>skills/&lt;skill-id&gt;/SKILL.md</code></td><td><code>build-all-projects.mjs</code> mirrors workspace skills into <code>public/skills/</code> and <code>dist/skills/</code> and writes <code>src/golden-skills.json</code> for the <code>Skills</code> inspector tab.</td></tr>
+<tr><td><code>src/golden-projects.json</code></td><td>All <code>projects/&lt;slug&gt;/</code> + <code>screenshots/</code> + <code>source/</code></td><td>Generated registry linking the parent research/moodboard index page to every compiled <code>dist/projects/&lt;slug&gt;/index.html</code> deliverable.</td></tr>
+</tbody>
+</table></div>
+<h2>3. Running the Linter, Folder Linker &amp; Auditor</h2>
+<pre data-lang="bash"><code># 1. Judge all projects against bundled assets/dating/ and auto-fix config or nomenclature drift:
+node {skill_dir}/scripts/lint-golden-template.mjs --dir={workspace_or_moodboard_dir} --fix
+
+# 2. Audit DOM micro-physics (0 collisions, 0 overflow, symmetrical button padding, equal grids) &amp; sync screenshots:
+node {skill_dir}/scripts/audit-all-projects.mjs --dir={workspace_or_moodboard_dir} --sync-screenshots
+
+# 3. Compile single-file bundles and link research prompts, source manifests, skills, and golden-projects.json:
+node {skill_dir}/scripts/build-all-projects.mjs --dir={workspace_or_moodboard_dir}
+
+# 4. Verify compiled HTML bundles for 0 syntax/leak errors and mounted #root:
+node {skill_dir}/scripts/verify-html-bundle.mjs --dir={workspace_or_moodboard_dir}</code></pre>
+<h2>References</h2>
+<ul>
+<li>  <a href="references/dating-blueprint-and-research-linking.md">Canonical dating blueprint and cross-folder research linking architecture</a></li>
+<li>  <a href="references/image-to-react-pipeline.md">Image-to-React 3-tier extraction pipeline</a></li>
+<li>  <a href="references/website-to-react-pipeline.md">Website-to-React extraction and modularization pipeline</a></li>
+<li>  <a href="references/nomenclature-and-polish-rules.md">Nomenclature, vendor-neutrality, and optical button polish rules</a></li>
+<li>  <a href="references/nano_banana_multi_screen_protocol.md">Multi-screen Nano Banana protocol</a></li>
+<li>  <a href="references/subagent_parallel_execution_runbook.md">Parallel sub-agent execution runbook</a></li>
+<li>  <a href="examples/dating-blueprint-checklist.md">Line-by-line dating blueprint verification checklist</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

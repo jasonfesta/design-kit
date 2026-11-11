@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nanofy</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>nanofy</h1>
+      <p>intakes a zip or folder of plates plus the prompt mds behind them, re-outputs every plate through nano banana with the desktop anchor taking a 0.1-0.5 unique take propagated to all spokes (same size, same format, &gt;= 1k, invariants locked), and curates the design | development moodboard before handing to jason-dev-agent.</p>
+      <div class="actions">
+        <a href="../nanofy.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>nanofy</h1>
+<pre data-lang="text"><code>jason-design-agent / nanofy (intake + anchored nano banana refresh = design turn 1)
+──────────────────────────────────────────────────────────────────────────────────
+input         zip or folder: plates for everything + prompt MDs (style direction, research &amp; per-plate prompts)
+              across the five surfaces: desktop web · mobile web · application · components · experiences
+step 1        intake  -&gt; &lt;study&gt;/ in place (concepts/, prompts/, research/, selections.json, index.html)
+step 2        nanofy  -&gt; anchor (slot 01 = the DESKTOP WEB plate) reimagined at variation 0.5 (default; dial 0.1..0.5),
+              refinement note written, then every spoke gets the SAME refinement; &gt;= 1k, same size, same format,
+              invariants locked -&gt; nano/&lt;pillar&gt;/&lt;same file&gt; + nano/prompts/&lt;slug&gt;.md (new nano-based MDs)
+              gap fill: any surface under 3 plates gets new briefed plates in the same system; surplus is nanofied too
+              -&gt; inspiration/ provenance trace (dump file + md -&gt; concepts/ + prompts/ -&gt; nano/ + nano/prompts/)
+step 3        moodboard locally: Design | Development, 👍/👎 -&gt; selections.json  (pill: design: nanofy 0.5 · turn 1)
+turn          the whole pass counts as exactly ONE jason-design-agent turn (projects/design-turns.json)
+handoff       push 👍 selections to jason-dev-agent (it reads nano/ + nano/prompts/, never concepts/)</code></pre>
+<p><code>nanofy</code> is the <strong>intake path of <code>jason-design-agent</code></strong> for anything that arrives from outside the harness: a zip or folder of plates rendered elsewhere (a designer&#x27;s own Nano Banana session, possibly away from Jetski) together with the prompt MDs that explain the style direction, research, and how those plates were achieved. It makes sure <strong>everything that comes in gets nanofied</strong> — fresh, safe, most-recently generated imagery with one consistent, slightly unique take — and that the user curates it on the same <code>Design | Development</code> moodboard before anything is pushed to <code>jason-dev-agent</code>.</p>
+<p><strong>It is treated exactly as if <code>jason-design-agent</code> had gone through its design turns</strong>: intake + anchored refresh + moodboard <strong>= design turn 1</strong> (standing in for <code>research -&gt; style-direction -&gt; image-gen -&gt; moodboard</code>). Any remaining <code>design_agent_turns</code> go to <code>design-critique</code> talk-backs during the <code>jason-dev-agent</code> build. You end up with <strong>new images</strong> (<code>nano/&lt;pillar&gt;/</code>) <strong>and new nano-based MDs</strong> (<code>nano/prompts/&lt;slug&gt;.md</code>, one per plate: the imported prompt MD folded in + the anchor refinement note + the final Nano Banana prompt); the originals stay untouched in <code>concepts/</code> + <code>prompts/</code>.</p>
+<p><strong>Never run <code>nanofy</code> on a study <code>jason-design-agent</code> produced itself</strong> (<code>concept-art</code> plates are already fresh Nano Banana 2 <code>2k</code> output). <code>jason-dev-agent</code> never runs it either: it only ever receives a curated study.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 0 — turn budget</strong>: if the user has not given <code>design_agent_turns</code>, ask <strong>&quot;how many turns do you want out of the design agent?&quot;</strong>; pass it as <code>--design-agent-turns=N</code>. nanofy consumes turn <code>1</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 1 — intake the folder / zip (<code>scripts/intake-study-from-folder.py</code>)</strong>: pair every prompt MD to its plate (same sub-folder first, then same stem → normalized stem → leading slot number), promote an <code>anchor|constitution|style</code> MD to <code>prompts/01-anchor.md</code> (else slot <code>01</code>&#x27;s own prompt), file unpaired MDs into <code>research/</code>, sort plates into <code>concepts/&lt;web|mobile-web|app|component|experience&gt;/NN-…</code> (pillar from the designer&#x27;s <strong>sub-folder name</strong> first — <code>desktop-web/</code>, <code>mobile-web/</code>, <code>application/</code>, <code>components/</code>, <code>experiences/</code> — then the prompt&#x27;s <code>pillar:</code> hint → filename tokens → aspect ratio; the largest <code>2k</code> desktop web plate becomes slot <code>01</code>), and write <code>prompt.md</code> (<code>design_agent_turns: 1 of N</code>), <code>selections.json</code> (all <code>👍</code>), <code>style-direction/direction.md</code>, <code>manifest.json</code>, <code>projects/design-turns.json</code> (turn 1 = nanofy), zeroed <code>projects/dev-turns.json</code>, and the moodboard <code>index.html</code>. The folder is then treated <strong>as if <code>jason-design-agent</code> had produced it</strong> — the only thing that never exists is benchmark screenshots (never invent them).</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — choose the variation dial, check coverage &amp; confirm calls</strong>: default <code>--variation 0.5</code> (a distinct-but-faithful take); <code>0.0</code> is a pure mirror, <code>0.1-0.4</code> progressively subtler (see <a href="references/variation-dial-and-invariants.md">variation dial and invariants</a>). <code>plan</code> prints the exact call count (<code>1</code> anchor + <code>N</code> spokes + <code>K</code> generated), the per-surface <strong>coverage</strong> (<code>have / target 3 / fill</code>), and writes a draft <code>nano/prompts/&lt;slug&gt;.md</code> per plate; show the count and get the normal Nano Banana confirmation. <strong>Gap fill</strong>: any surface with fewer than <code>3</code> plates (<code>--target-per-pillar</code>, default <code>3</code>) gets its missing slots as <code>role: fill</code> jobs — brand-new plates in the anchor&#x27;s design system (e.g. the folder has web, mobile web, app, and components but no experiences → three experiences are generated). <strong>Surplus</strong>: a surface with more than <code>3</code> plates is simply nanofied in full; nothing is dropped.</span></li>
+<li><span class="check-box"></span><span><strong>step 3 — desktop anchor first (<code>run-anchor</code> → <code>verify-anchor</code>)</strong>: slot <code>01</code> — <strong>always the desktop web plate, the very first image</strong> — is re-output with the variation prompt, which already carries that plate&#x27;s imported style-direction MD. Verify same size, same format, <code>&gt;= 1k</code>, fresh, sharp, and drift <strong>inside the band</strong> for that variation (too little = no take, too much = redesign). Eyeball the hard invariants: titling/copy verbatim, logos, product UI, layout.</span></li>
+<li><span class="check-box"></span><span><strong>step 4 — write the refinement note (<code>note --text &quot;…&quot;</code>)</strong>: one paragraph stating exactly what the anchor refinement changed (materials, light, grain, color temperature, photographic grade). It is injected verbatim into every spoke prompt, every generated-plate prompt, and every <code>nano/prompts/&lt;slug&gt;.md</code> so the whole set reads as one system.</span></li>
+<li><span class="check-box"></span><span><strong>step 4b — brief every generated plate (<code>brief --slug &lt;slug&gt; --text &quot;…&quot;</code>)</strong>: for each <code>needs_brief</code> slot, read the breadth of what came in (every other surface&#x27;s plates + MDs, <code>prompts/01-anchor.md</code>, <code>research/</code>) and author the concept in one paragraph — <em>given all the components and application screens, what would this product&#x27;s second and third experiences be?</em> — naming the screen, its job, its key modules, and the copy voice. <code>run</code> refuses to start until every fill has a brief.</span></li>
+<li><span class="check-box"></span><span><strong>step 5 — spokes + generated plates (<code>run</code> → <code>verify</code> → <code>switch</code>)</strong>: every other plate (mobile web, app, components, experiences) is re-output with the same refinement (before/after anchor attached as reference images on routes that support it), each keeping its own layout, copy, and its own imported prompt MD; generated plates render from the anchor output + their surface&#x27;s siblings as references. <code>switch</code> repoints <code>selections.json</code>, <code>manifest.json</code>, and <code>index.html</code> to <code>nano/</code> + <code>nano/prompts/</code>, adds the generated plates as first-class items and cards (approved, <code>generated: true</code>), writes <strong><code>inspiration/manifest.json</code> + <code>inspiration/README.md</code></strong> (the provenance trace: designer dump file + MD → <code>concepts/</code> + <code>prompts/</code> → <code>nano/</code> + <code>nano/prompts/</code>), and closes design turn <code>1</code> in <code>projects/design-turns.json</code> — downstream <code>image-to-react</code>, <code>replicate-mock</code>, <code>responsiveness</code>, <code>interaction</code>, and <code>feel</code> peer into <code>nano/</code>; <code>concepts/</code> + <code>prompts/</code> stay as the untouched originals.</span></li>
+<li><span class="check-box"></span><span><strong>step 6 — curate locally, then push</strong>: open <code>&lt;study&gt;/index.html</code>, review in <code>Design</code> (pill reads <code>design: nanofy 0.5 · turn 1 of N</code>), <code>👍/👎</code> what should be built, and hand the study to <code>jason-dev-agent</code>. Its <code>Development</code> view fills in from <code>projects/dev-turns.json</code> as <code>jason-dev-agent</code> works.</span></li>
+</ul>
+<h2>1. the rules nanofy enforces on every plate</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>rule</th><th>value</th></tr></thead>
+<tbody>
+<tr><td>surfaces</td><td>five pillars: <code>web</code> (desktop web) · <code>mobile-web</code> · <code>app</code> · <code>component</code> · <code>experience</code></td></tr>
+<tr><td>anchor</td><td>slot <code>01</code> (the desktop web plate) is reimagined first by <code>--variation</code> (default <code>0.5</code>; <code>0.1</code>–<code>0.5</code>); everything else inherits that exact refinement</td></tr>
+<tr><td>style direction</td><td>each plate&#x27;s imported prompt MD is folded into its nano prompt (<code>STYLE DIRECTION OF THIS PLATE …</code>) so fonts, palette, materials, and canon are honoured, never re-interpreted</td></tr>
+<tr><td>invariants</td><td>all titling/copy verbatim · logos &amp; wordmarks · product UI (nav, buttons, pills, cards, prices, inputs, tabs, icons) · layout grid, spacing, aspect, framing · nothing added or removed</td></tr>
+<tr><td>quality</td><td>crystal-clear (<code>sharpness_ratio &gt;= 0.28</code>, <code>hf_detail_std &gt;= 0.8</code>), <strong>every edge <code>&gt;= 1k</code> (<code>min(w, h) &gt;= 1024px</code>)</strong> (plates with either edge under <code>1024px</code> are lifted proportionally so <code>min(w, h) &gt;= 1024</code> and flagged), strict image-to-image conditioning</td></tr>
+<tr><td>size &amp; format</td><td><strong>same exact pixel size</strong> and <strong>same format</strong> (<code>png</code>→<code>png</code>, <code>jpg</code>→<code>jpg</code>, <code>webp</code>→<code>webp</code>) as the plate arrived</td></tr>
+<tr><td>coverage</td><td>every surface reaches <code>&gt;= 3</code> plates (<code>--target-per-pillar</code>): missing slots are <strong>generated</strong> in the anchor&#x27;s design system after a <code>jason-design-agent</code> brief; surplus plates are all nanofied, never dropped</td></tr>
+<tr><td>speed</td><td>one call per plate, no polish rounds; a drifted spoke is re-run with the <strong>same</strong> prompt, never a new one</td></tr>
+<tr><td>drift gate</td><td><code>8x8</code> mean abs RGB delta vs. source must sit inside the variation band (<code>0.0</code>: <code>&lt;= 14</code> · <code>0.2</code>: <code>2-24</code> · <code>0.5</code>: <code>6-42</code>)</td></tr>
+<tr><td>turn accounting</td><td>the whole pass = <code>jason-design-agent</code> turn <code>1</code> (<code>projects/design-turns.json</code>, <code>prompt.md</code>, moodboard pill)</td></tr>
+<tr><td>output</td><td><code>&lt;study&gt;/nano/&lt;pillar&gt;/&lt;same filename&gt;</code> (+ <code>…-generated-&lt;role&gt;.png</code> for fills) + <code>nano/prompts/&lt;slug&gt;.md</code> + <code>nano/nanofy-plan.json</code>, <code>nano/refinement-note.md</code>, <code>nano/nanofy-report.json</code>, <code>nano/README.md</code> + <strong><code>inspiration/manifest.json</code> + <code>inspiration/README.md</code></strong> (trace back to the designer&#x27;s dump)</td></tr>
+</tbody>
+</table></div>
+<h2>2. commands</h2>
+<pre data-lang="bash"><code>N=/usr/local/google/home/jfesta/skills/nanofy/scripts
+python3 $N/intake-study-from-folder.py --source=&lt;folder | plates.zip&gt; [--study-dir=…] [--design-agent-turns=N] [--extract-tokens] [--select=all|none]
+python3 $N/nanofy-plates.py plan          --study=&lt;study&gt; --variation 0.5 [--target-per-pillar 3]   # 1 anchor + N spokes + K generated, coverage, draft nano/prompts/*.md, no model calls
+python3 $N/nanofy-plates.py run-anchor    --study=&lt;study&gt; --route=gempix      # desktop web 01 only; gempix outside the sandbox, or --route=manual
+python3 $N/nanofy-plates.py verify-anchor --study=&lt;study&gt;
+python3 $N/nanofy-plates.py note          --study=&lt;study&gt; --text &quot;&lt;what the anchor refinement changed&gt;&quot;
+python3 $N/nanofy-plates.py brief         --study=&lt;study&gt; --slug &lt;generated-slug&gt; --text &quot;&lt;concept from the rest of the set&gt;&quot;   # once per needs_brief
+python3 $N/nanofy-plates.py run           --study=&lt;study&gt; --route=gempix      # spokes inherit the note (+ their own style-direction MD); generated plates render from the anchor
+python3 $N/nanofy-plates.py verify        --study=&lt;study&gt;
+python3 $N/nanofy-plates.py switch        --study=&lt;study&gt;                      # downstream now reads nano/ + nano/prompts/; inspiration/ trace written; design turn 1 closed</code></pre>
+<p>Routes follow <code>nano-banana</code> (<code>gempix-1</code> CLI outside the sandbox → <code>image-generator</code> subagent → Gemini image API, then <code>--route=manual</code>). <code>verify</code> must pass before <code>switch</code>; <code>switch</code> refuses otherwise.</p>
+<h2>references</h2>
+<ul>
+<li><a href="references/variation-dial-and-invariants.md">variation dial, invariants, prompts &amp; drift bands</a></li>
+<li><a href="references/intake-folder-and-moodboard.md">intake folder contract &amp; the Design | Development moodboard</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

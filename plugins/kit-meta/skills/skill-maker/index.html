@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>skill maker</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>skill maker</h1>
+      <p>audits, validates, documents, and wraps agent skills into shareable google skills packages with build targets, evalin suites, html docs, and downloadable .skill / .zip archives.</p>
+      <div class="actions">
+        <a href="../skill-maker.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Skill Maker: Google Skill Wrapper, Validator &amp; x20 Publisher</h1>
+<p>Skill Maker (<code>skill-maker</code>) turns raw or workspace-local agent skills into clean, non-redundant, deployment-ready <strong>Google Skills packages</strong> that pass <code>validate_skill.py</code> presubmit checks and publish cleanly to both a unified local skills workspace (<code>~/skills/</code>) and an interactive <code>x20</code> catalog (<code>/google/data/rw/users/{user}/www/skills/</code>).</p>
+<h2>Workflow Checklist</h2>
+<p>Copy this checklist when wrapping or cleaning up one or more skills:</p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 1</strong>: Audit candidate skills for independence, clean identifiers, and zero duplicate scripts (<a href="references/deduplication-and-naming.md">deduplication and naming guide</a>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 2</strong>: Normalize <code>SKILL.md</code> frontmatter, links, and progressive disclosure structure (<a href="references/google-skill-spec.md">Google skill specification</a>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 3</strong>: Run <code>scripts/validate_and_wrap.py</code> to generate <code>BUILD</code>, <code>scripts/BUILD</code>, <code>EVAL.txtpb</code>, <code>TEST.md</code>, <code>references/contributing.md</code>, <code>skill.json</code>, <code>evals/smoke.json</code>, <code>index.html</code>, and <code>.skill</code> / <code>.zip</code> bundles</span></li>
+<li><span class="check-box"></span><span><strong>Step 4</strong>: Run <code>scripts/build_catalog.py</code> to generate the unified workspace <code>README.md</code>, <code>_agents/skills.json</code>, <code>catalog.json</code>, root <code>index.html</code> portal, and sync to <code>~/skills/</code> and <code>x20</code> (<a href="references/x20-and-bundle-packaging.md">x20 and bundle packaging guide</a>)</span></li>
+</ul>
+<h2>Step 1: Audit for Independence, Clean Identifiers &amp; Zero Redundancy</h2>
+<p>Before wrapping skills, eliminate overlap across the skill set:</p>
+<ol>
+<li><strong>Enforce Clean Identifiers</strong>:</li>
+</ol>
+<ul>
+<li>  Use concise, self-explanatory lowercase <code>kebab-case</code> identifiers in YAML frontmatter (<code>name: skill-maker</code>, <code>name: google-font-selection</code>, <code>name: golden-template</code>, <code>name: image-to-react</code>, <code>name: replicate-mock</code>, <code>name: nano-banana</code>, <code>name: responsiveness</code>, <code>name: interaction</code>, <code>name: feel</code>, <code>name: design-critique</code>, <code>name: warmup</code>).</li>
+<li>  For Google3 Blaze targets (<code>BUILD</code>), map <code>kebab-case</code> names to <code>snake_case</code> target and package names (<code>name.replace(&#x27;-&#x27;, &#x27;_&#x27;)</code>) to satisfy <code>CheckFileOperation:NoHyphensInPackageName</code>.</li>
+</ul>
+<ol>
+<li><strong>Eliminate Redundant Skills &amp; Duplicate Scripts</strong>:</li>
+</ol>
+<ul>
+<li>  Run the 4 Independence Tests (Outcome Equivalence, Trigger Overlap, Knowledge Delta, Reference-First Feasibility) in the <a href="references/deduplication-and-naming.md">deduplication and naming guide</a>.</li>
+<li>  If two skills share identical scripts or target the same deliverable (for example, <code>golden-template</code> and <code>golden-template</code>), consolidate them into one canonical skill (<code>golden-template</code>) and merge their unique <code>references/*.md</code> guides.</li>
+<li>  Each helper script must have a single canonical owner skill rather than being copied across multiple skill directories.</li>
+</ul>
+<h2>Step 2: Normalize <code>SKILL.md</code> for <code>validate_skill.py</code> Compliance</h2>
+<p>Every <code>SKILL.md</code> must satisfy Google&#x27;s <code>validate_skill.py</code> checks before packaging (see the <a href="references/google-skill-spec.md">Google skill specification</a>):</p>
+<ul>
+<li>  <strong>YAML Frontmatter (<code>name</code> and <code>description</code>)</strong>:</li>
+<li>  Use <code>description: &gt;-</code> (never bare <code>&gt;</code>).</li>
+<li>  Keep <code>description</code> under <code>1024</code> characters and <strong>never include <code>&lt;</code> or <code>&gt;</code> angle brackets</strong> in the frontmatter description (<code>validate_skill.py</code> rejects any description containing <code>&lt;</code> or <code>&gt;</code>).</li>
+<li>  Begin with a third-person capability statement, followed by <code>Use when...</code> triggers and <code>Don&#x27;t use for...</code> boundaries.</li>
+<li>  <strong>Sizing &amp; Progressive Disclosure</strong>:</li>
+<li>  Keep <code>SKILL.md</code> between <code>50</code> and <code>500</code> lines (hard ceiling: <code>800</code> lines and <code>46,080</code> bytes). Offload deep tables, schemas, and rubrics into <code>references/*.md</code>.</li>
+<li>  <strong>Portable Relative Links Only</strong>:</li>
+<li>  Never use <code>file:///</code>, <code>/google3/</code>, <code>/google/src/</code>, or machine-local <code>/usr/local/google/home/...</code> markdown link targets inside <code>SKILL.md</code>.</li>
+<li>  Every relative link (`<code>label</code><code> or </code><code>script</code>`) must resolve to an existing file inside the skill directory.</li>
+<li>  <strong>Code Block Hygiene (<code>SNIPPET_EM_DASH</code>)</strong>:</li>
+<li>  Never place Unicode em dashes (<code>U+2014</code>) or en dashes (<code>U+2013</code>) inside fenced code blocks or inline code spans; use ASCII <code>--</code> or <code>-</code>.</li>
+<li>  <strong>Mandatory <code>## Contributions</code> Section</strong>:</li>
+<li>  End <code>SKILL.md</code> with a <code>## Contributions</code> section linking to <code><a href="references/contributing.md">contribution guidelines</a></code>.</li>
+</ul>
+<h2>Step 3: Validate &amp; Wrap Each Skill (<code>scripts/validate_and_wrap.py</code>)</h2>
+<p>Run <a href="scripts/validate_and_wrap.py">validate_and_wrap.py</a> on a single skill directory or across all skills in a workspace:</p>
+<pre data-lang="bash"><code># Validate, sanitize, generate Google3 wrappers, build HTML docs, and pack .skill/.zip archives:
+python3 {skill_dir}/scripts/validate_and_wrap.py \
+  --skills-root=/usr/local/google/home/jfesta/skills \
+  --fix</code></pre>
+<p>For every skill directory <code>{skills_root}/{skill_id}/</code>, <code>validate_and_wrap.py</code>:</p>
+<ol>
+<li><strong>Sanitizes &amp; Validates <code>SKILL.md</code></strong>: Strips forbidden <code>file:///</code> prefixes in markdown links, removes angle brackets from frontmatter <code>description</code>, replaces em dashes inside code spans, appends <code>## Contributions</code> if missing, and runs the full <code>validate_skill.py</code> rule suite.</li>
+<li><strong>Generates Missing Google3 Deployment Files</strong>:</li>
+</ol>
+<ul>
+<li>  <code>BUILD</code>: Declares <code>exports_files</code>, <code>eval_suite</code>, <code>validate_skill_test(check_locked_links = True)</code>, and <code>agent_skill</code> with all <code>SKILL.md</code>, <code>references/*.md</code>, and <code>scripts</code> targets.</li>
+<li>  <code>scripts/BUILD</code>: Declares <code>pytype_strict_binary</code> targets for <code>.py</code> scripts and <code>exports_files</code> for <code>.mjs</code> scripts.</li>
+<li>  <code>EVAL.txtpb</code>: Generates a structured <code>EvalSuite</code> textproto with 3 task-based evaluation cases and concrete expectations when not already present.</li>
+<li>  <code>TEST.md</code>: Generates an end-to-end human and automated smoke verification plan.</li>
+<li>  <code>references/contributing.md</code>: Generates skill-specific invariants and validation commands.</li>
+<li>  <code>skill.json</code> &amp; <code>evals/smoke.json</code>: Generates structured skill metadata and smoke test definitions.</li>
+</ul>
+<ol>
+<li><strong>Builds Standalone HTML Documentation &amp; Dist Archives</strong>:</li>
+</ol>
+<ul>
+<li>  Generates <code>{skill_id}/index.html</code> (responsive dark/light documentation viewer with embedded <code>SKILL.md</code>, file manifest, evaluation gates, and download links).</li>
+<li>  Packages <code>{skills_root}/{skill_id}.skill</code> and <code>{skills_root}/{skill_id}.zip</code> (plus <code>{skills_root}/_google3_packages/{snake_name}/</code> for zero-hyphen Blaze presubmit compatibility).</li>
+</ul>
+<h2>Step 4: Build the Unified Catalog &amp; Publish to <code>x20</code> (<code>scripts/build_catalog.py</code>)</h2>
+<p>Run <a href="scripts/build_catalog.py">build_catalog.py</a> to assemble the root skills workspace and optionally mirror the static catalog and downloadable <code>.skill</code> / <code>.zip</code> bundles to <code>x20</code>:</p>
+<pre data-lang="bash"><code># Build root README.md, catalog.json, _agents/skills.json, and root index.html portal:
+python3 {skill_dir}/scripts/build_catalog.py \
+  --skills-root=/usr/local/google/home/jfesta/skills \
+  --x20-dir=/google/data/rw/users/jf/jfesta/www/skills</code></pre>
+<h3>Input -&gt; Output Example</h3>
+<p><strong>Input</strong>:</p>
+<pre data-lang="text"><code>Directory: /usr/local/google/home/jfesta/skills/golden-template/
+Contains: SKILL.md, scripts/lint-golden-template.mjs, references/nomenclature-and-polish-rules.md, assets/dating/</code></pre>
+<p><strong>Output after <code>validate_and_wrap.py</code> + <code>build_catalog.py</code></strong>:</p>
+<pre data-lang="text"><code>/usr/local/google/home/jfesta/skills/
+├── index.html                           # Interactive dark/light Skills Catalog Portal (x20 ready)
+├── README.md                            # Complete table &amp; architecture documentation of all skills
+├── catalog.json                         # Machine-readable registry of all wrapped skills
+├── _agents/skills.json                  # Workspace auto-discovery manifest
+├── golden-template.skill                # Distributable Google Skill bundle
+├── golden-template.zip                  # Distributable ZIP archive
+└── golden-template/
+    ├── BUILD                            # agent_skill + validate_skill_test + eval_suite
+    ├── SKILL.md                         # Validated (&lt;500 lines, 0 broken links, 0 angle brackets in desc)
+    ├── EVAL.txtpb                       # 3 Evalin task test cases
+    ├── TEST.md                          # End-to-end verification test plan
+    ├── skill.json                       # Structured metadata manifest
+    ├── index.html                       # Standalone skill documentation viewer
+    ├── evals/smoke.json                 # Automated smoke verification payload
+    ├── assets/dating/                   # Canonical dating Golden Template reference folder
+    ├── references/
+    │   ├── contributing.md              # Invariants &amp; validation commands
+    │   └── ...
+    └── scripts/
+        ├── BUILD                        # Blaze exports &amp; binary rules
+        └── ...</code></pre>
+<h2>References</h2>
+<ul>
+<li>  <a href="references/google-skill-spec.md">Google skill specification and validate_skill rules</a></li>
+<li>  <a href="references/deduplication-and-naming.md">Skill deduplication, independence tests, and naming conventions</a></li>
+<li>  <a href="references/x20-and-bundle-packaging.md">Packaging .skill archives, HTML portals, and x20 deployment</a></li>
+</ul>
+<h2>Credits &amp; Lineage</h2>
+<p>Built by Jason Festa (<code>jfesta</code>), implementing Google&#x27;s official <code>validate_skill</code> and <code>agent_config</code> / <code>agent_skill</code> specifications maintained by <strong>Romain Beaumont (<code>romainbeaumont</code>)</strong> and <strong><code>mountanos</code></strong> (<code>//depot/google3/learning/gemini/agents/skills/skill_creator/</code>, <code>//depot/google3/learning/gemini/agents/customization_rules/</code>) and static <code>x20</code> opaque-origin packaging patterns from <strong><code>fofr</code></strong> (<code>go/fofr-agent-skills</code>).</p>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>accessibility</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>accessibility</h1>
+      <p>enforces accessible standards when sizing type and controls: body &gt;= 16px at 1.5 line height (12px floor), 4.5:1 / 3:1 contrast, targets &gt;= 24x24 (44x44 recommended), visible focus, accessible names, alt text, and lang, verified in the live dom by eval-accessibility.py.</p>
+      <div class="actions">
+        <a href="../accessibility.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>accessibility</h1>
+<pre data-lang="text"><code>jason-dev-agent / accessibility
+────────────────────────────────────────────────────────────────────
+scope      type sizes, line height, contrast, target sizes, focus, names, alt, lang
+standard   wcag 2.2 aa (hard) · aaa / apple hig / material (recommended, reported)
+eval       scripts/eval-accessibility.py  (live dom in headless webkit, exit 0/1)
+when       stage 1a gate, re-run after stage 2 / 3 / 4, before every design talk-back</code></pre>
+<p><code>accessibility</code> is the standards gate <code>jason-dev-agent</code> applies whenever it turns a plate into type and controls. Design plates set the look; this skill guarantees the shipped <strong>font sizes, line heights, contrast, and button/target sizes</strong> meet accessible standards — and when a plate&#x27;s value cannot meet them, <code>jason-dev-agent</code> raises it to <code>jason-design-agent</code> as a developer with the number that must move (never silently restyles).</p>
+<h2>1. the standards jason-dev-agent builds to</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>area</th><th>hard gate (fails the build)</th><th>recommended (reported, raise in talk-back)</th><th>source</th></tr></thead>
+<tbody>
+<tr><td>text size</td><td>no visible text <code>&lt; 12px</code>; body paragraphs <code>&gt;= 14px</code></td><td>body <code>&gt;= 16px</code>; captions/eyebrows <code>&gt;= 12px</code> with <code>&gt;= 0.02em</code> tracking</td><td>WCAG 1.4.4 (200% zoom), platform guidance</td></tr>
+<tr><td>line height</td><td>body <code>&gt;= 1.4</code>; headings <code>&gt;= 1.0</code></td><td>body <code>&gt;= 1.5</code>, headings <code>&gt;= 1.1</code>, paragraph spacing <code>&gt;= 2x</code> font size, letter-spacing <code>&gt;= 0.12em</code> possible without clipping</td><td>WCAG 1.4.12</td></tr>
+<tr><td>contrast</td><td>text <code>&gt;= 4.5:1</code>; large text (<code>&gt;= 24px</code>, or <code>&gt;= 18.66px</code> bold) <code>&gt;= 3:1</code></td><td><code>&gt;= 7:1</code> body for AAA; control borders/fills <code>&gt;= 3:1</code> vs. surround</td><td>WCAG 1.4.3, 1.4.6, 1.4.11</td></tr>
+<tr><td>target size</td><td>every control <code>&gt;= 24x24</code> css px (inline text links exempt)</td><td><code>&gt;= 44x44</code> (mobile / AAA); <code>&gt;= 8px</code> gap between adjacent targets</td><td>WCAG 2.5.8, 2.5.5, Apple HIG, Material</td></tr>
+<tr><td>focus</td><td>a <code>:focus-visible</code> (or <code>:focus</code>) style ships; <code>outline: none</code> only with a replacement ring <code>&gt;= 2px</code>, <code>&gt;= 3:1</code></td><td>ring offset <code>2px</code>, never clipped by <code>overflow: hidden</code> parents</td><td>WCAG 2.4.7, 2.4.11, 2.4.13</td></tr>
+<tr><td>names</td><td>every <code>button</code> / <code>a[href]</code> / input has an accessible name</td><td>icon-only buttons use <code>aria-label</code> matching the visible tooltip</td><td>WCAG 4.1.2, 2.5.3</td></tr>
+<tr><td>images</td><td>every <code>&lt;img&gt;</code> has <code>alt</code> (empty for decorative)</td><td>meaningful alt describes the subject, not &quot;image of&quot;</td><td>WCAG 1.1.1</td></tr>
+<tr><td>document</td><td><code>&lt;html lang&gt;</code> set</td><td>heading levels never skip; one <code>h1</code></td><td>WCAG 3.1.1, 1.3.1</td></tr>
+</tbody>
+</table></div>
+<p>Button craft stays as the Golden Template rule (<code>px-3.5</code>–<code>px-5</code>, <code>gap-1.5</code>–<code>gap-2</code>, <code>tabular-nums</code>): the accessible minimums above are floors, not a style.</p>
+<h2>2. how jason-dev-agent applies it</h2>
+<ol>
+<li><strong>translate plate sizes to accessible css at Stage 1a</strong>: when a <code>2k</code> plate&#x27;s measured body text is under <code>16px</code> at the mounted CSS width, ship <code>16px</code> (or <code>15px</code> with <code>1.6</code> line height as a floor of <code>14px</code>) and keep the plate&#x27;s <em>ratios</em> via the type scale; when a pill or icon button measures under <code>24px</code> tall, grow the hit area with padding or a pseudo-element, not the glyph; keep the visible footprint when the designer wants it tight by adding <code>min-h-11 min-w-11</code> tap area via <code>::after</code> on mobile.</li>
+<li><strong>fix contrast at the token, not the element</strong>: adjust <code>--muted</code> / <code>--on-accent</code> tokens until <code>eval-accessibility.py</code> reports <code>0</code> contrast failures; report the before/after hex pair to <code>jason-design-agent</code>.</li>
+<li><strong>keep focus visible</strong>: Tailwind resets outlines — ship <code>focus-visible:ring-2 focus-visible:ring-offset-2</code> (or a <code>:focus-visible</code> rule in <code>index.css</code>) on every control.</li>
+<li><strong>run the eval, then talk back</strong>: every stage talk-back includes the accessibility receipt (<code>contrast_fail_count: 0</code>, <code>targets_under_24px: 0</code>, <code>body_under_16px_count</code>, <code>targets_under_44px_count</code>). If a design value had to move, say exactly which (<code>&quot;muted ink #858481 on #0c0c0b was 4.1:1 -&gt; #9a9994 = 4.6:1&quot;</code>).</li>
+</ol>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/accessibility/scripts/eval-accessibility.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; [--require-44] [--min-body-px 16]
+# gates: text_size_ok · line_height_ok · contrast_ok · target_size_ok · focus_visible_ok · accessible_names_ok · img_alt_ok · lang_ok</code></pre>
+<p><code>--require-44</code> makes the 44x44 target size a hard gate (use for mobile-app and touch-first builds). Re-run at <code>--viewport-width 390</code> for the mobile pass — sizes and targets are judged at the width they ship.</p>
+<h2>references</h2>
+<ul>
+<li><a href="references/wcag-type-contrast-and-targets.md">WCAG 2.2 type, contrast &amp; target rules with css recipes</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

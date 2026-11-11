@@ -1,0 +1,8 @@
+{
+  "name": "kit-meta",
+  "displayName": "Kit Meta",
+  "description": "Design-kit housekeeping: skill-maker validation and packaging, the design-kit router index, and Swift writing guidance.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["What do I have in my design kit for charts?", "Validate and package this skill", "Audit my skills for duplicates"]
+}

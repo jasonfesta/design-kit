@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-grotesk: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono-tech: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    background-color: #e7e4de;
+    color: #17161b;
+    font-family: var(--font-grotesk);
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+.font-serif-display {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-grotesk {
+  font-family: var(--font-grotesk);
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono-tech);
+}
+
+input,
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/*
+ * Range sliders. Two of these are stacked on one track to build the dual-thumb
+ * age range, so the input itself must ignore pointer events while each thumb
+ * accepts them — otherwise the upper input would swallow every drag.
+ */
+.range-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  height: 20px;
+  margin: 0;
+}
+
+.range-input:focus {
+  outline: none;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #ff4d6d;
+  box-shadow: 0 1px 4px rgba(23, 22, 27, 0.25);
+  cursor: grab;
+}
+
+.range-input::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.range-input::-moz-range-thumb {
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #ff4d6d;
+  box-shadow: 0 1px 4px rgba(23, 22, 27, 0.25);
+  cursor: grab;
+}
+

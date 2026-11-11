@@ -1,0 +1,34 @@
+<article aria-labelledby="sy-comp-actions" class="sy-spec-row">
+<div class="sy-spec-meta">
+<h3 id="sy-comp-actions">Deploy actions</h3>
+<p class="sy-spec-rule">Arrow keys switch target environment; <kbd class="sy-kbd">⌘Enter</kbd> deploys to the selected pool.</p>
+</div>
+<div class="sy-spec-cell">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px;">
+<span class="sy-label" id="sy-env-lbl">Target environment</span>
+<div aria-labelledby="sy-env-lbl" class="sy-seg" role="radiogroup">
+<button aria-checked="false" class="sy-seg-btn" data-env="Staging" role="radio" type="button">Staging</button>
+<button aria-checked="true" class="sy-seg-btn" data-env="Canary" role="radio" type="button">Canary</button>
+<button aria-checked="false" class="sy-seg-btn" data-env="Prod" role="radio" type="button">Prod</button>
+</div>
+</div>
+<div class="sy-action-row">
+<button class="sy-btn sy-btn-primary" data-trigger-toast="Deployment queued for Canary" id="sy-deploy-btn" type="button">
+<span>Deploy</span>
+<kbd aria-label="Command Enter" class="sy-kbd">⌘<svg aria-hidden="true" fill="none" height="10" stroke="currentColor" stroke-width="1.5" style="margin-left: 1px;" viewbox="0 0 12 12" width="10"><path d="M9.5 2.5v4.5H3M5.2 4.8L2.8 7l2.4 2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></kbd>
+</button>
+<button class="sy-btn" id="sy-busy-btn" type="button">
+<span class="sy-btn-stack">
+<span class="sy-btn-label">Preview</span>
+<svg aria-hidden="true" class="sy-spinner" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 16 16">
+<path d="M8 2a6 6 0 1 1-4.24 1.76" stroke-linecap="round"></path>
+</svg>
+</span>
+</button>
+<button class="sy-btn sy-btn-ghost" data-trigger-toast="Worker log stream attached" type="button">Logs</button>
+<button class="sy-btn sy-btn-danger" data-trigger-toast="Revert branch staged for API-418" type="button">Revert</button>
+<button class="sy-btn" disabled="" title="No maintenance freeze active" type="button">Freeze window</button>
+</div>
+<p class="sy-hint num" id="sy-env-meta">Routing 25% of API traffic to Canary · on-call alerts notify deploys@switchyard.dev.</p>
+</div>
+</article>

@@ -1,0 +1,37 @@
+{
+  "id": "research",
+  "display_name": "research",
+  "google3_package": "research",
+  "title": "research",
+  "icon": "\ud83d\udd0e",
+  "category": "sub-skill of concept-art \u00b7 5 standout benchmarks",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "research",
+  "agent_md": "research/agent.md",
+  "skill_md": "research/SKILL.md",
+  "html_page": "research/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/research",
+  "bundle_skill": "research.skill",
+  "bundle_zip": "research.zip",
+  "short_summary": "researches, screenshots, and documents 5 standout non-beige benchmarks across full-length desktop and mobile pages using pure inspiration and live web captures, logging avoid_fonts and avoid_palettes.",
+  "when_to_use": "use at stage 1 of jason-design-agent to gather 5 standout benchmark markdown dossiers, full-page DevTools screengrabs, and named style range.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=research",
+  "summary": "Conducts dual-track taste research\u2014yielding 5 standout real-world benchmark examples specifically chosen because they produce 5 visibly different, non-beige structural, chromatic, and material results (supported by inner design research and 19 specialist directories) from a natural-language user prompt before style direction or image generation. Extracts direct layout grids, color polarities, surface physics, and hero UI mechanisms while logging avoid_fonts. Use at Stage 1 of jason-design-agent or when gathering benchmark evidence for designer critiques. Don't use for writing Nano Banana prompts (use image-gen) or building React code (use jason-dev-agent).",
+  "references": [
+    "./references/benchmark-capture-and-evidence-rules.md",
+    "./references/contributing.md",
+    "./references/design-directory-sources.md",
+    "./references/url-intake-and-multi-agent-analysis.md",
+    "./scripts/analyze_inspiration_workflow.py",
+    "./scripts/capture_fullpage_devtools.mjs"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=research"
+  }
+}

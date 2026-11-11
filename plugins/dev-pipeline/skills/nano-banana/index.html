@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nano banana</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>nano banana</h1>
+      <p>upgrades only upscale-queue image slots to 2x retina with zero drift and enforces non-blur readiness via eval-image-readiness.py.</p>
+      <div class="actions">
+        <a href="../nano-banana.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>nano banana</h1>
+<pre data-lang="text"><code>jason-dev-agent / nano banana
+────────────────────────────────────────────────────────────────────
+stage         1b in image-to-react (targeted upscale-queue upgrade)
+input         ONLY mounted &lt;img&gt; buckets failing eval-image-readiness.py
+dev eval      eval-image-readiness.py (ready + &gt;=2x dpr + sharp_ok)
+paired gate   material &amp; visual fidelity critique in jason-design-agent</code></pre>
+<p><code>nano-banana</code> is <code>jason-dev-agent</code>&#x27;s targeted low-res to high-res image restoration skill. Rather than blindly upscaling everything up front, <code>jason-dev-agent</code> builds the Stage 1a React DOM first (<code>image-to-react</code> + <code>replicate-mock</code>), keeps <code>native-code</code> (<code>html/css/svg</code>) and <code>crisp-media</code> (<code>&gt;= 2x</code>) untouched, and passes <strong>only <code>upscale-queue</code> <code>&lt;img&gt;</code> slots</strong> (those failing <a href="scripts/eval-image-readiness.py"><code>scripts/eval-image-readiness.py</code></a> at their actual rendered <code>clientWidth x clientHeight</code>, showing blur/dithering, or carrying baked-in raster text behind live HTML) through Nano Banana.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>testing prompt (<code>design_agent_turns</code>)</strong>: if not already set for this run, ask the user <strong>&quot;how many turns do you want out of the design agent?&quot;</strong> before starting the critique loop.</span></li>
+<li><span class="check-box"></span><span><strong>turn 0 — audit resolution &amp; separate vector UI from raster plates</strong>: check every input screenshot and extracted crop (<code>crop_w x crop_h</code> vs. target CSS box <code>css_w x css_h</code>). Keep buttons, icons, borders, and UI text as native React + CSS + SVG; route only low-res photographic/illustration plates (or a blurry master mockup prior to cropping) into <code>nano-banana</code>.</span></li>
+<li><span class="check-box"></span><span>*<em>pre-flight user confirmation gate </em>(mandatory before running Nano Banana)<em><strong>: before invoking Nano Banana (<code>gempix</code>, <code>image-generator</code>, or API), present the exact request summary—total call count, target resolution (<code>2k</code> / <code>4k</code>), crop list, and prompt preview—and </strong>ask the user to confirm</em>* (via <code>ask_question</code> or direct prompt: <code>Confirm &amp; run Nano Banana (&lt;N&gt; calls)</code> / <code>Edit prompts or selection first</code> / <code>Skip Nano Banana</code>). Never fire Nano Banana calls without confirmation unless the user explicitly selected <code>Auto-confirm all Nano Banana calls for this run</code>.</span></li>
+<li><span class="check-box"></span><span><strong>turn 1..n — run <code>nano-banana</code> high-res restoration</strong>: upscale to <code>2k</code> / <code>4k</code> and resize to exact <code>2 <em> css_w x 2 </em> css_h</code> using strict zero-drift prompts, applying the ultra-wide <code>3:1</code> pad-and-crop guard whenever <code>W / H &gt; 3.8</code> and clean-plate text removal whenever live HTML text sits over the image.</span></li>
+<li><span class="check-box"></span><span><strong>stop &amp; judge (<code>nano-banana</code> dev eval)</strong>: verify <code>&gt;= 2x</code> pixel dimensions, <code>&lt;= 0.5%</code> aspect drift, <code>8x8</code> color/structure lock to the low-res source, sharpness gain, and <code>0</code> edge seams before embedding into React.</span></li>
+<li><span class="check-box"></span><span><strong>paired designer critique (<code>jason-design-agent</code>)</strong>: send side-by-side <code>low_res -&gt; high_res_2x</code> plates into <code>jason-design-agent</code> (<code>stage: nano-banana</code>, up to <code>design_agent_turns</code> turns) to verify authentic grain, skin/fabric/leather/stoneware realism, and zero plastic AI sheen against the original inspiration.</span></li>
+</ul>
+<h2>1. when <code>jason-dev-agent</code> triggers <code>nano-banana</code></h2>
+<p>&gt; Whole-plate refreshes of imported folders (start-from-folder) are <strong>not</strong> this skill: <code>jason-design-agent</code> does that upstream with <code>nanofy</code> (<code>../nanofy/SKILL.md</code>). <code>nano-banana</code> only upgrades <code>upscale-queue</code> buckets inside a build.</p>
+<p>Run <code>nano-banana</code> automatically in two situations:</p>
+<ol>
+<li>*<em>low-res cropped photographic assets (<code>crop_w &lt; 2 </em> css_w</code> or dithered)**:</li>
+</ol>
+<ul>
+<li>Crops extracted by <code>replicate-mock</code> from <code>1x</code> screenshots or 5-column 4K layout sheets (<code>800px-1000px</code> wide columns) frequently measure <code>0.7x-1.2x</code> of their desktop CSS box and show diffusion stippling or JPEG softness.</li>
+<li><code>nano-banana</code> restores every photographic plate to crisp *<em><code>2x</code> Retina (<code>2 </em> css_w x 2 <em> css_h</code>)</em>* so <code>&lt;img&gt;</code> elements stay razor-sharp on HiDPI displays.</li>
+</ul>
+<ol>
+<li><strong>low-res master reference mockup (<code>width &lt; 1000px</code> desktop or <code>&lt; 640px</code> mobile)</strong>:</li>
+</ol>
+<ul>
+<li>When the user supplies a small, compressed thumbnail or low-res screenshot as the reference itself, run <code>nano-banana</code> in <strong>1-to-1 faithful master upscale mode (<code>2k</code> / <code>4k</code>)</strong> first to recover crisp edges before <code>replicate-mock</code> measures coordinates and slices photographic crops.</li>
+</ul>
+<p>&gt; <strong>Widget &amp; Typography Purity Rule</strong>: Never pass UI buttons, pills, navbars, standard line icons, or plain text cards through raster upscaling to embed as <code>&lt;img&gt;</code> tags. Always rebuild UI chrome and typography natively in React + Tailwind CSS + inline SVG; use <code>nano-banana</code> strictly for photographs, portraits, product silhouettes, macro textures, and complex artwork.</p>
+<h2>2. how <code>jason-dev-agent</code> invokes <code>nano-banana</code></h2>
+<p>Full copy-pasteable prompts and aspect math live in <a href="references/upscale-prompts-and-aspect-rules.md">upscale prompts and aspect rules</a>. <code>jason-dev-agent</code> supports three execution routes (pick the first available in the active environment):</p>
+<h3>route a — google internal nano banana cli (<code>gempix-1</code>)</h3>
+<p>Run outside the sandbox (<code>BypassSandbox: true</code>) and <strong>never pass <code>-no-thoughts</code></strong> (thinking mode preserves subject geometry and micro-texture):</p>
+<pre data-lang="bash"><code>/google/bin/releases/gempix/gempix-1/gempix \
+  --input_image=&quot;/tmp/crops/hero_lowres.png&quot; \
+  --output_image=&quot;/tmp/crops/hero_nanobanana_raw.png&quot; \
+  --image_size=2k \
+  --prompt=&quot;Upscale and restore this low-resolution photograph to crisp 2K Retina high resolution with zero semantic drift. Preserve 100% of the exact subject, pose, silhouette geometry, camera angle, lighting direction, cast shadows, and hex color palette. Remove compression blocks and diffusion dithering, recovering natural authentic surface texture without plastic smoothing or invented objects.&quot;</code></pre>
+<p>Then lock the output in sandboxed mode (<code>BypassSandbox: false</code>) to exact <code>2x</code> CSS pixel dimensions (<code>2<em>W x 2</em>H</code>):</p>
+<pre data-lang="bash"><code>/usr/bin/magick &quot;/tmp/crops/hero_nanobanana_raw.png&quot; \
+  -colorspace sRGB -strip -filter Lanczos \
+  -resize &quot;1920x1200!&quot; &quot;/tmp/crops/hero_2x.png&quot;</code></pre>
+<h3>route b — built-in <code>image-generator</code> subagent</h3>
+<p>When running inside Jetski without direct CLI flags, invoke <code>image-generator</code> (<code>invoke_subagent</code> with <code>TypeName: &quot;image-generator&quot;</code>), passing the absolute path to the low-res source crop, the exact target <code>2x</code> pixel dimensions, and the zero-drift restoration prompt from <a href="references/upscale-prompts-and-aspect-rules.md">upscale prompts and aspect rules</a>.</p>
+<h3>route c — portable gemini nano banana api</h3>
+<p>In standalone scripts (<code>GEMINI_API_KEY</code>), call <code>gemini-3-pro-image-preview</code> or <code>gemini-2.5-flash-image</code> with the low-res PNG inline part + the zero-drift restoration prompt (<code>imageSize: &quot;2K&quot;</code> or <code>&quot;4K&quot;</code>), then Lanczos-resize to <code>2 <em> css_w x 2 </em> css_h</code>.</p>
+<h2>3. mandatory geometric &amp; clean-plate guards</h2>
+<ol>
+<li><strong>ultra-wide banner padding rule (<code>W / H &gt; 3.8</code>)</strong>:</li>
+</ol>
+<ul>
+<li>Nano Banana / <code>gempix-1</code> rejects crops wider than <code>4:1</code> (<code>Cannot articulate aspect ratio</code>).</li>
+<li>Whenever <code>W / H &gt; 3.8</code>, pad the low-res crop vertically with sampled border/parchment hex (<code>#F5F0E8</code> or median edge color) to <code>W / H = 3.0</code>, run <code>nano-banana</code>, and crop the center band back to exact <code>2 <em> css_w x 2 </em> css_h</code>.</li>
+</ul>
+<ol>
+<li><strong>baked-in raster text removal (hero &amp; banner clean plates)</strong>:</li>
+</ol>
+<ul>
+<li>Whenever live React HTML headlines or CTA buttons sit on top of a photograph, prompt <code>nano-banana</code> to <strong>cleanly remove only the baked-in raster lettering/buttons</strong> while preserving 100% of the underlying subject, architecture, lighting, and product silhouette—preventing ghosted double text.</li>
+</ul>
+<ol>
+<li><strong>unboxed silhouette studio ground lock</strong>:</li>
+</ol>
+<ul>
+<li>For freestanding product silhouettes on solid studio backgrounds (<code>#FBF6EE</code>, <code>#F6F2EC</code>, <code>#FFFFFF</code>), sample the <code>2px</code> outer border ring after upscaling and match it cleanly to <code>--surface</code> so the <code>2x</code> image sits on the page with zero rectangular box seam.</li>
+</ul>
+<h2>4. stopping to judge: the <code>nano-banana</code> image readiness &amp; anti-blur dev eval</h2>
+<p>Before placing any cropped or upscaled asset into <code>src/</code> or <code>public/</code>—and again once mounted in <code>dist/index.html</code>—<code>jason-dev-agent</code> stops and runs <a href="scripts/eval-image-readiness.py"><code>scripts/eval-image-readiness.py</code></a> alongside the five deterministic gates (detailed in <a href="references/dev-eval-and-zero-drift-checks.md">dev eval and zero-drift checks</a>):</p>
+<pre data-lang="bash"><code># Audit an assets directory and/or a built React project for readiness, 2x DPR, and non-blur sharpness
+python3 /usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py \
+  --assets-dir=&quot;/tmp/crops_2x&quot; \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th>gate</th><th>requirement to pass on the dev side</th></tr></thead>
+<tbody>
+<tr><td><strong>1. ready &amp; decodable (<code>ready_ok</code>)</strong></td><td><code>100%</code> of images exist, decode cleanly in sRGB, and report <code>img.complete === true &amp;&amp; naturalWidth &gt; 0</code> in the live DOM (<code>0</code> broken or unloaded images).</td></tr>
+<tr><td><strong>2. <code>2x</code> retina density (<code>density_ok</code>)</strong></td><td>Output pixel width and height are at least <code>2 <em> css_w</code> by <code>2 </em> css_h</code> (<code>effective_dpr &gt;= 1.95x</code>) with <code>&lt;= 0.5%</code> aspect-ratio drift (<code>0</code> squashing).</td></tr>
+<tr><td><strong>3. non-blur sharpness (<code>sharp_ok</code>)</strong></td><td>Passes multi-scale high-frequency vs. mid-frequency acutance (<code>sharpness_ratio &gt;= 0.28</code>, <code>hf_detail_std &gt;= 0.8</code>) and <code>&gt; 1.15x</code> sharpness gain over bicubic upscale—automatically catching blurry crops or stretched <code>1x -&gt; 2x</code> upscales.</td></tr>
+<tr><td><strong>4. color &amp; structure lock</strong></td><td>Downsampled <code>8x8</code> mean RGB delta vs. the low-res crop stays <code>&lt;= 12 / 255</code> (or <code>&lt;= 18 / 255</code> on text-cleaned banners) with <code>0</code> ghosted raster lettering behind live HTML text.</td></tr>
+<tr><td><strong>5. seam-free React mount</strong></td><td>Mounted with explicit <code>width</code>, <code>height</code>, and <code>w-full h-full object-cover max-w-none</code> (<code>0.00</code> CLS; <code>&lt;= 2</code> RGB border delta on unboxed studio grounds).</td></tr>
+</tbody>
+</table></div>
+<p>If any gate fails (for example, shifted palette warmth, hallucinated background object, or leftover ghost letters), <code>jason-dev-agent</code> tightens the prompt or re-runs crop/mask alignment until all five gates pass.</p>
+<h2>5. paired designer critique (<code>jason-dev-agent</code> -&gt; <code>jason-design-agent</code>)</h2>
+<p>Immediately after the <code>nano-banana</code> dev eval passes, <code>jason-dev-agent</code> hands the side-by-side <code>low_res</code> vs. <code>high_res_2x</code> contact sheet back into <strong><code>jason-design-agent</code></strong> via <code>design-critique</code> (<code>stage: nano-banana</code>, respecting the user&#x27;s <code>design_agent_turns</code> budget):</p>
+<ul>
+<li><code>jason-design-agent</code> critiques the restored plates as a designer against the <strong>original inspiration</strong>:</li>
+<li><em>Do materials read honestly—real pebbled calfskin, raw linen weave, wheel-thrown stoneware, natural skin pores, crisp architectural shadow—or did upscaling make surfaces look waxy, airbrushed, or overly sharpened?</em></li>
+<li><em>Did lighting temperature and mood stay faithful to the inspiration&#x27;s tonal world?</em></li>
+<li>On <code>changes_requested</code>, <code>jason-dev-agent</code> adjusts the <code>nano-banana</code> texture/lighting prompt, re-verifies all five dev eval gates, and iterates back and forth until <code>approved</code> (or <code>design_agent_turns</code> completes).</li>
+</ul>
+<h2>references, scripts &amp; examples</h2>
+<ul>
+<li><a href="scripts/eval-image-readiness.py"><code>scripts/eval-image-readiness.py</code></a> — deterministic image readiness, <code>2x</code> Retina DPR, and non-blur sharpness evaluator across asset folders and live built React DOMs.</li>
+<li><a href="references/upscale-prompts-and-aspect-rules.md">copy-pasteable <code>nano-banana</code> prompts, clean-plate text removal &amp; ultra-wide <code>3:1</code> aspect padding</a></li>
+<li><a href="references/dev-eval-and-zero-drift-checks.md">deterministic <code>2x</code> density, <code>8x8</code> drift, sharpness &amp; edge-seam dev eval checks</a></li>
+<li><a href="examples/low-res-to-high-res-turn-loop.md">multi-turn low-res to <code>2x</code> Retina walkthrough with <code>jason-design-agent</code> material critique</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

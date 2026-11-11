@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>image gen</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>image gen</h1>
+      <p>locks 01-anchor first, then authors and renders drift-free 2k nano banana 2 plates (4x3=12 matrix or multi-direction) within a strict 3-round ceiling.</p>
+      <div class="actions">
+        <a href="../image-gen.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>image gen</h1>
+<pre data-lang="text"><code>jason-design-agent / image gen (stage 3 · direct benchmark prompts &amp; head-to-head 2k rounds)
+────────────────────────────────────────────────────────────────────
+input         5 distinct researched examples + style-direction + iter-10 critique
+anti-beige    ZERO warm-beige defaults · preserve each benchmark&#x27;s chromatic world
+prompt craft  1. textural/material  2. designer (live Google Font anatomy)
+              3. frontend developer (optical padding, grid, complete footer)
+modes         a) unified single-brand 4x3 = 12 pack (01-anchor hub-and-spoke)
+              b) 5-example direct-inspiration &amp; head-to-head round 1 vs round 2
+leak guard    NEVER print hex strings or font family names as literal UI text</code></pre>
+<p><code>image-gen</code> is Stage 3 of <strong><code>jason-design-agent</code></strong>. Every prompt channels <strong>direct structural, chromatic, and material inspiration from the 5 standout researched examples</strong> (never defaulting to safe warm beige) and unites <strong>tactile art-director</strong>, <strong>brand/product designer</strong>, and <strong>frontend design-engineer</strong> detail.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 0 — pass <code>design-critique</code> Moment 0 (<code>critique/pre-nano-10-iterations.md</code>)</strong>: complete all 10 pre-Nano critique iterations (<code>0</code> image calls spent) verifying zero-beige contrast, direct benchmark layout DNA, live <code>google-font-selection</code> letterform anatomy, <code>&gt;= 38%-45%</code> negative space, and <code>2:1</code> pill optical padding (<code>&gt;= 9.5/10</code>).</span></li>
+<li><span class="check-box"></span><span><strong>step 1 — enforce base-screenshot-first image-to-image (<code>ImagePaths</code>), art-direction callout transfer, quota-safe <code>&lt;= 2</code> concurrency &amp; anti-leakage framing</strong>:</span></li>
+<li><strong>Start from Pixel-Perfect Full-Webpage Reference Screenshots (<code>ref-base</code>), Not Empty Wireframe Seeds</strong>: NEVER invoke Nano Banana without a reference image, and whenever researched benchmark screenshots exist, <strong>NEVER start from a blank 3-box wireframe <code>seed</code> canvas</strong> (which strips real-world micro-detail and produces junior layouts). Slice <code>2K</code> base transfer plates (<code>../jason-design-agent/scripts/lock_and_verify_plates.py ref-base</code> or <code>desktop-base-hero-2k.png</code> + <code>desktop-base-mid-2k.png</code> from Chrome DevTools / Playwright full-webpage captures) and pass them in <code>ImagePaths</code> so the initial generation transfers the reference&#x27;s real architectural density, section callouts, lighting physics, and interactive micro-chrome into our <code>canon.md</code> brand.</li>
+<li><strong>Art-Direction-Driven Prompts Carrying Full-Webpage Callouts</strong>: tighten every prompt around senior art direction—explicitly carrying over observed callout modules, coordinate rails, multi-tab sandboxes, volumetric/isometric/editorial artifacts, and typographic contrast discovered across the <strong>entire full webpage</strong> (<code>fullpage-callouts.json</code>).</li>
+<li><strong>Quota-safe pacing (<code>&lt;= 2</code> workers max)</strong>: reuse <code>1-2</code> persistent <code>image-generator</code> subagents sequentially via <code>send_message</code> (never spawn <code>&gt; 2</code> concurrent image subagents, preventing <code>429 RESOURCE_EXHAUSTED</code> quota burn).</li>
+<li><strong>Zero meta-leakage</strong>: render <strong>ONLY the live full-bleed viewport UI</strong> (or centered component on clean system ground)—<strong>zero split-screen brand boards, zero color-swatch strips, and never print hex codes (<code>#0B3D26</code>) or font names as literal UI badges</strong>.</li>
+<li><span class="check-box"></span><span><strong>step 2 — generate &amp; lock crystal-clear <code>&gt;= 1K</code> / <code>2K</code> lossless PNG plates (<code>min(w, h) &gt;= 1024</code>)</strong>:</span></li>
+<li>Immediately lock every generated plate via <code>python3 ../jason-design-agent/scripts/lock_and_verify_plates.py lock --raw=&lt;raw&gt; --out=&lt;concepts/.../*.png&gt; --ref-image=&lt;ref&gt;</code> (<code>2752x1536</code> <code>16:9</code>, <code>1536x2752</code> <code>9:16</code>, <code>2400x1792</code> <code>4:3</code>, <code>1536x3072</code> <code>1:2</code>; <code>min(w, h) &gt;= 1024</code>, <code>sharpness_ratio &gt;= 0.28</code>, <code>hf_detail_std &gt;= 0.8</code>, zero aspect-squash ghosting).</li>
+<li>In <strong>multi-example direct-inspiration mode</strong>, each concept channels its researched benchmark&#x27;s exact color polarity, material physics, and grid architecture (<code>web -- home landing page · &lt;direction&gt;</code>, plus companion <code>mobile app</code> / <code>component</code> / <code>experience</code> slots).</li>
+<li>In <strong>single-brand <code>4 x 3</code> mode</strong>, lock <code>01-anchor</code> (<code>web -- home landing page</code>) first, then expand interior routes (<code>02..03</code>), unified mobile app tabs (<code>04..06</code>), components (<code>07..09</code>), and experiences (<code>10..12</code>).</li>
+<li><span class="check-box"></span><span><strong>step 3 — progressive base-to-original multi-round evolution (<code>round 1</code> -&gt; <code>round 2</code> -&gt; <code>round 3</code>), dramatic improvement gate &amp; pre-moodboard checkpoint (<code>&lt;= 3</code> cap)</strong>:</span></li>
+<li><strong>Dramatic Improvement Mandatory Between Every Round</strong>: consecutive rounds MUST NEVER look virtually identical (<code>2%</code> copy/border tweaks are banned). After each round, inspect every plate via <code>read_file</code> alongside <strong>both</strong> the prior round <strong>and</strong> the full-webpage Chrome DevTools reference (<code>desktop-fullpage-contact.jpg</code>), identify what works, extract richer callouts/materiality/composition cues from the full-webpage reference, and rewrite the prompt to drive a <strong>dramatic visual and originality leap</strong> (<code>Base Screenshot -&gt; Improvement Pass 1 -&gt; Improvement Pass 2 -&gt; Original Category-Leading Plate</code>).</li>
+<li>Run <code>python3 ../jason-design-agent/scripts/lock_and_verify_plates.py verify --study-dir=&lt;study-dir&gt;</code> and <strong>show all verified images to the designer at the Pre-Moodboard Designer Image Checkpoint BEFORE <code>build_moodboard.py</code> runs</strong> (with <code>round 1</code>, <code>round 2</code>, and <code>round 3</code> placed side-by-side in the 3-column grid when 3 rounds are present).</li>
+</ul>
+<h2>1. the tri-voice prompt architecture</h2>
+<ol>
+<li><strong>textural &amp; material description</strong>: exact non-beige substrate micro-texture (brushed 304 steel, deep forest/mint enamel, matte <code>#0A0B0E</code> obsidian, cool <code>#E3E6EA</code> concrete, <code>#0C0C0E</code> pitch black), studio lighting, and photographic honesty.</li>
+<li><strong>designer description</strong>: benchmark-inspired layout tension, <code>&gt;= 38%-45%</code> negative space, <strong>live <code>google-font-selection</code> physical letterform anatomy</strong> (describing stroke contrast, terminals, x-height, and aperture without printing font names as UI text), and <code>90/10</code> chromatic discipline.</li>
+<li><strong>frontend developer description</strong>: CSS Grid tracks, <code>1px</code> crisp borders, exact radii, <code>40px-48px</code> buttons/pills with <code>20px-28px</code> L/R optical padding (<code>8px-10px</code> icon gap), <code>tabular-nums</code> prices/telemetry, and complete footers.</li>
+<li><strong>4-surface web-safe accessible CSS-to-<code>2K</code> font scale (<code>font_scale_and_pairing.py</code>) &amp; de-AI product realism</strong>:</li>
+</ol>
+<ul>
+<li><strong>Never Pass Bare <code>&quot;16px&quot;</code> or Sub-<code>12px</code> (<code>&quot;10-12px&quot;</code>) Tokens Without Viewport + <code>% Canvas Height</code> + Copy Measure</strong>: AI image models lack a CSS layout engine—bare pixel numbers drift wildly between a <code>1440px</code> desktop page (<code>16px</code> = <code>1.1%</code> width) and a <code>390pt</code> mobile screen (<code>16pt</code> = <code>4.1%</code> width). Always generate the surface&#x27;s exact typography block via <code>python3 ../jason-design-agent/scripts/font_scale_and_pairing.py prompt-block --surface=&lt;desktop-web|mobile|desktop-app|component&gt; --primary=&quot;&lt;Primary&gt;&quot; --secondary=&quot;&lt;Secondary&gt;&quot;</code> and run <code>font_scale_and_pairing.py audit --prompt-md=&lt;prompts/&gt;</code> before Round 1 (<code>0</code> image rounds wasted fixing fonts):</li>
+<li><strong><code>desktop-web</code> (<code>1440x810</code> CSS <code>@1.91x</code> -&gt; <code>2752x1536</code>)</strong>: <code>H1</code> <code>48-60px</code> (<code>6.0%-7.4%</code> canvas H, <code>&lt;= 9</code> words, <code>2-3</code> lines max); <code>Body</code> <code>16-18px</code> (<code>2.0%-2.2%</code> H, <code>55-70</code> chars/line, <code>2-3</code> lines); <code>Buttons/Nav</code> <code>14-16px</code> inside <code>42-48px</code> controls; <code>Floor</code> <code>12-13px</code> (<code>1.5%-1.6%</code> H, NEVER <code>&lt; 12px</code>).</li>
+<li><strong><code>mobile</code> (<code>390x844</code> pt <code>@3.94x</code> -&gt; <code>1536x2752</code>)</strong>: <code>H1</code> <code>28-34pt</code> (<code>3.3%-4.0%</code> H, <code>&lt;= 7</code> words, <code>2</code> lines max); <code>Body</code> <code>16pt</code> min (<code>1.9%-2.1%</code> H, <strong><code>4.1%</code> canvas W</strong>, <code>34-42</code> chars/line across full card width); <code>Touch Controls</code> <code>15-16pt</code> inside <strong><code>&gt;= 44-52pt</code></strong> targets (<code>5.2%-6.2%</code> H); <code>4-Tab iOS Bar &amp; Pills</code> <code>12-13pt</code> floor. Never pass only a <code>1440px</code> <code>16:9</code> desktop plate into a <code>9:16</code> mobile render—use a <code>@3x</code> mobile capture or <code>font_scale_and_pairing.py scale-seed --surface=mobile</code>.</li>
+<li><strong><code>desktop-app</code> (<code>1440x900</code> CSS <code>@1.82x</code> -&gt; <code>2752x1536</code>)</strong>: <strong>ban <code>56-72px</code> marketing-hero headlines</strong>; <code>1</code>-line <code>24-30px</code> view title (<code>2.7%-3.3%</code> H), <code>28-36px</code> <code>tabular-nums</code> KPI numerals, <code>16px</code> prose drawers, <code>14-15px</code> (<code>1.6%</code> H) inside <code>38-44px</code> data rows (<code>10-14</code> visible rows) and <code>220-240px</code> sidebar, <code>12-13px</code> floor headers/badges.</li>
+<li><strong><code>component</code> (<code>720x540</code> CSS stage <code>@3.33x</code> -&gt; <code>2400x1792</code>, card <code>380-520px</code> w/ <code>18%-22%</code> margin)</strong>: <code>20-24px</code> card title (<code>3.7%-4.4%</code> H, <code>1</code> line), <code>15-16px</code> body/inputs (<code>2.8%-3.0%</code> H, <code>32-46</code> chars/line), <code>14-15px</code> inside <code>40-44px</code> controls (<code>7.4%-8.1%</code> H), <code>12-13px</code> floor chips (<code>0</code> full-page nav/footer; use cropped widget ref or <code>scale-seed --surface=component</code>).</li>
+<li><strong>Zero Middle Dots (<code>·</code> / <code>•</code>) Between Links or Fonts</strong>: NEVER separate navigation items, breadcrumbs, metrics, or footer links with middle dots (<code>Fleet · Playground · Docs</code>); use clean open CSS spacing (<code>24px-32px</code> gap).</li>
+<li><strong>Zero <code>FIG 0.1</code> / <code>Figure 1, Figure 2, Figure 3</code> Labels</strong>: Ban artificial <code>FIG 0.1</code>, <code>Figure 1-3</code>, and <code>01 / ...</code> ALL-CAPS numbered eyebrows across all layouts.</li>
+<li><strong>Pure <code>#FFFFFF</code> White (Never Fading into Off-White Beige) &amp; Continuous Top-to-Bottom Grids</strong>: Never let white backgrounds warm/yellow into off-white beige down the scroll, and keep structural <code>1px</code> grids continuous and consistent from top hero to bottom footer.</li>
+<li><strong>Real Web-Based SaaS UI Components &amp; True <code>2K</code> Acutance</strong>: Render genuine web UI tables, inputs, status pills, and charts inside touts (never oversized plain text blocks), and generate full-scroll pages from high-density <code>16:9</code> (<code>1376px+</code> -&gt; <code>2048px+</code> <code>2K</code>) viewport slices so every tout down the page is crystal clear at <code>2K</code>.</li>
+</ul>
+<h2>references</h2>
+<ul>
+<li><a href="references/anchor-prompt-and-12-slot-matrix.md">complete <code>4 x 3 = 12</code> <code>2k</code> matrix, hub-and-spoke graph &amp; tri-voice prompt template</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

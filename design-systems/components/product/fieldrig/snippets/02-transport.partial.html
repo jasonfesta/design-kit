@@ -1,0 +1,59 @@
+<article aria-labelledby="mod-transport" class="deck-module">
+<div class="module-head">
+<h3 id="mod-transport">Transport</h3>
+<span class="module-meta">Bar 34 · 96.0 BPM</span>
+</div>
+<div class="key-row key-row--stack">
+<button class="hw-key hw-key--rec" data-trigger-toast="Input bus armed for Take 5." type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">
+<svg aria-hidden="true" class="rec-glyph" viewbox="0 0 10 10">
+<circle cx="5" cy="5" fill="currentColor" r="4"></circle>
+</svg>
+<span>Arm bus</span>
+</span>
+</button>
+<button class="hw-key hw-key--dark" data-trigger-toast="Cue M1 dropped at 01:24.8." type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Drop cue</span>
+</button>
+<button class="hw-key" data-loading="false" id="btn-verify-peaks" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">
+<span class="btn-load">
+<span class="btn-label">Scan peaks</span>
+<span aria-hidden="true" class="btn-spin"></span>
+</span>
+</span>
+</button>
+<button class="hw-key" disabled="" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Punch out</span>
+</button>
+</div>
+<div class="mode-block">
+<div aria-label="Signal path modes" class="tab-rail" role="tablist">
+<button aria-controls="panel-mix" aria-selected="true" class="tab-btn" id="tab-mix" role="tab" tabindex="0" type="button">Mixer</button>
+<button aria-controls="panel-tape" aria-selected="false" class="tab-btn" id="tab-tape" role="tab" tabindex="-1" type="button">Tape loop</button>
+<button aria-controls="panel-out" aria-selected="false" class="tab-btn" id="tab-out" role="tab" tabindex="-1" type="button">Line out</button>
+</div>
+<div aria-labelledby="tab-mix" class="tab-panel" id="panel-mix" role="tabpanel">
+              Four discrete stems sum with 12 dB of analog-modeled headroom ahead of the −1.0 dBTP stereo ceiling.
+            </div>
+<div aria-labelledby="tab-tape" class="tab-panel" hidden="" id="panel-tape" role="tabpanel">
+              Bar-locked punch braces bars 33 to 41 with 10 ms crossfades so upright bass transients never click on loop return.
+            </div>
+<div aria-labelledby="tab-out" class="tab-panel" hidden="" id="panel-out" role="tabpanel">
+              Balanced line and 3.5 mm headphone stages recall separate attenuation offsets with each saved reel.
+            </div>
+</div>
+<div class="rocker-row">
+<div>
+<div class="field-label" id="click-lbl">Two-bar count-in</div>
+<div class="field-hint">Routed to headphones only before record punch</div>
+</div>
+<button aria-checked="true" aria-labelledby="click-lbl" class="hw-switch" role="switch" type="button">
+<span aria-hidden="true" class="hw-pip"></span>
+</button>
+</div>
+</article>

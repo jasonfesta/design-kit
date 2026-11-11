@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Switchyard — Marketing and Imagery Components</title>
+  <link rel="stylesheet" href="../fonts/switchyard-fonts.css">
+  <style>
+    @layer reset, tokens, base, components, layout, utilities;
+
+    /* ==========================================================================
+       1. TOKENS — Shared Switchyard two-layer OKLCH pipeline (Dark & Light)
+       ========================================================================== */
+    @layer tokens {
+      :root {
+        --sy-hue-neutral: 265;
+        --sy-hue-light: 260;
+        --sy-hue-accent: 258;
+        --sy-hue-danger: 22;
+        --sy-hue-sage: 156;
+        --sy-hue-amber: 78;
+
+        --font-display: 'Space Grotesk', 'IBM Plex Sans', 'Liberation Sans', system-ui, -apple-system, sans-serif;
+        --font-ui: 'IBM Plex Sans', 'Liberation Sans', system-ui, -apple-system, sans-serif;
+        --font-mono: 'JetBrains Mono', 'Liberation Mono', ui-monospace, monospace;
+
+        --radius-ctrl: 6px;
+        --radius-panel: 10px;
+        --radius-stage: 12px;
+
+        --ctrl-h: 38px;
+        --ctrl-px: 15px;
+        --font-body: 0.9375rem;
+
+        --ease-out: cubic-bezier(0.18, 0.89, 0.32, 1.04);
+        --ease-press: cubic-bezier(0.2, 0, 0, 1);
+
+        /* Theme-invariant photographic stage tokens (>= 8:1 WCAG over scrims & solid fallback) */
+        --photo-stage-bg: oklch(0.118 0.008 265);
+        --photo-card-bg: oklch(0.152 0.008 265);
+        --photo-ink-primary: oklch(0.968 0.004 260);
+        --photo-ink-secondary: oklch(0.858 0.007 265);
+        --photo-ink-muted: oklch(0.768 0.008 265);
+        --photo-btn-bg: oklch(0.968 0.003 260);
+        --photo-btn-hover: oklch(0.992 0.002 260);
+        --photo-btn-ink: oklch(0.136 0.008 265);
+        --photo-rim: oklch(1 0 0 / 0.22);
+        --photo-input-bg: oklch(0.112 0.007 265);
+        --photo-error-ink: oklch(0.795 0.125 22);
+      }
+
+      :root,
+      html[data-theme="dark"],
+      html[data-theme="obsidian"] {
+        color-scheme: dark;
+        --surface-canvas: oklch(0.145 0.006 var(--sy-hue-neutral));
+        --surface-sunken: oklch(0.118 0.006 var(--sy-hue-neutral));
+        --surface-panel: oklch(0.178 0.007 var(--sy-hue-neutral));
+        --surface-elevated: oklch(0.214 0.008 var(--sy-hue-neutral));
+        --surface-hover: oklch(0.204 0.008 var(--sy-hue-neutral));
+        --surface-skeleton: oklch(0.228 0.009 var(--sy-hue-neutral));
+
+        --ink-primary: oklch(0.954 0.004 var(--sy-hue-light));
+        --ink-secondary: oklch(0.808 0.007 var(--sy-hue-neutral));
+        --ink-muted: oklch(0.706 0.008 var(--sy-hue-neutral));
+
+        --hairline: oklch(1 0 0 / 0.08);
+        --rim-subtle: oklch(1 0 0 / 0.10);
+        --rim-control: oklch(1 0 0 / 0.18);
+        --border-control: oklch(0.56 0.010 var(--sy-hue-neutral));
+        --rim-strong: oklch(0.76 0.012 var(--sy-hue-light));
+        --photo-edge: oklch(1 0 0 / 0.10);
+
+        --pri-bg: oklch(0.955 0.004 var(--sy-hue-light));
+        --pri-bg-hover: oklch(0.985 0.002 var(--sy-hue-light));
+        --pri-ink: oklch(0.140 0.008 var(--sy-hue-neutral));
+        --pri-shadow: inset 0 1px 0 oklch(1 0 0 / 0.96), 0 1px 2px oklch(0.04 0.006 265 / 0.55), 0 8px 20px -6px oklch(0.04 0.006 265 / 0.48);
+
+        --sec-bg: oklch(0.214 0.008 var(--sy-hue-neutral));
+        --sec-bg-hover: oklch(0.248 0.009 var(--sy-hue-neutral));
+        --sec-rim: oklch(1 0 0 / 0.15);
+        --sec-shadow: inset 0 1px 0 oklch(1 0 0 / 0.07), 0 1px 2px oklch(0.04 0.006 265 / 0.32);
+
+        --danger-text: oklch(0.768 0.128 var(--sy-hue-danger));
+        --danger-border: oklch(0.720 0.135 var(--sy-hue-danger));
+        --focus-ring: oklch(0.720 0.120 var(--sy-hue-accent));
+        --accent-text: oklch(0.778 0.104 var(--sy-hue-accent));
+        --status-ready: oklch(0.785 0.102 var(--sy-hue-sage));
+        --status-review: oklch(0.800 0.102 var(--sy-hue-amber));
+
+        --shadow-panel: 0 1px 2px oklch(0.03 0.006 265 / 0.40), 0 18px 40px -14px oklch(0.03 0.006 265 / 0.52);
+        --shadow-dialog: 0 28px 72px -12px oklch(0.02 0.006 265 / 0.80);
+        --backdrop-bg: oklch(0.08 0.006 265 / 0.68);
+      }
+
+      html[data-theme="light"],
+      html[data-theme="porcelain"] {
+        color-scheme: light;
+        --surface-canvas: oklch(0.985 0.003 var(--sy-hue-light));
+        --surface-sunken: oklch(0.948 0.005 var(--sy-hue-light));
+        --surface-panel: oklch(0.998 0.001 var(--sy-hue-light));
+        --surface-elevated: oklch(0.962 0.004 var(--sy-hue-light));
+        --surface-hover: oklch(0.944 0.005 var(--sy-hue-light));
+        --surface-skeleton: oklch(0.902 0.007 var(--sy-hue-light));
+
+        --ink-primary: oklch(0.155 0.008 var(--sy-hue-neutral));
+        --ink-secondary: oklch(0.330 0.010 var(--sy-hue-neutral));
+        --ink-muted: oklch(0.422 0.010 var(--sy-hue-neutral));
+
+        --hairline: oklch(0.16 0.008 265 / 0.09);
+        --rim-subtle: oklch(0.16 0.008 265 / 0.11);
+        --rim-control: oklch(0.16 0.008 265 / 0.20);
+        --border-control: oklch(0.46 0.012 var(--sy-hue-neutral));
+        --rim-strong: oklch(0.24 0.012 var(--sy-hue-neutral));
+        --photo-edge: oklch(0.12 0.008 265 / 0.09);
+
+        --pri-bg: oklch(0.172 0.009 var(--sy-hue-neutral));
+        --pri-bg-hover: oklch(0.235 0.010 var(--sy-hue-neutral));
+        --pri-ink: oklch(0.988 0.002 var(--sy-hue-light));
+        --pri-shadow: inset 0 1px 0 oklch(1 0 0 / 0.18), 0 1px 2px oklch(0.14 0.01 265 / 0.12), 0 8px 20px -6px oklch(0.14 0.01 265 / 0.18);
+
+        --sec-bg: oklch(0.998 0.001 var(--sy-hue-light));
+        --sec-bg-hover: oklch(0.958 0.004 var(--sy-hue-light));
+        --sec-rim: oklch(0.16 0.008 265 / 0.18);
+        --sec-shadow: inset 0 1px 0 oklch(1 0 0 / 0.9), 0 1px 2px oklch(0.14 0.01 265 / 0.05);
+
+        --danger-text: oklch(0.440 0.145 var(--sy-hue-danger));
+        --danger-border: oklch(0.460 0.150 var(--sy-hue-danger));
+        --focus-ring: oklch(0.485 0.145 var(--sy-hue-accent));
+        --accent-text: oklch(0.425 0.135 var(--sy-hue-accent));
+        --status-ready: oklch(0.405 0.102 var(--sy-hue-sage));
+        --status-review: oklch(0.420 0.102 70);
+
+        --shadow-panel: 0 1px 3px oklch(0.16 0.01 265 / 0.06), 0 16px 38px -12px oklch(0.16 0.01 265 / 0.10);
+        --shadow-dialog: 0 28px 64px -12px oklch(0.16 0.01 265 / 0.18);
+        --backdrop-bg: oklch(0.16 0.01 265 / 0.36);
+      }
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE TYPOGRAPHY
+       ========================================================================== */
+    @layer reset {
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      body, h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote, pre {
+        margin: 0;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    @layer base {
+      html {
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 16px;
+        line-height: 1.56;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      html:has(dialog[open]) {
+        overflow: hidden;
+      }
+
+      html, body, button, input, select, textarea, output {
+        font-kerning: normal;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: normal;
+      }
+
+      body {
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: var(--font-body);
+        overflow-x: clip;
+        transition: background-color 160ms ease, color 160ms ease;
+      }
+
+      button, input, select, textarea {
+        font: inherit;
+        color: inherit;
+      }
+
+      h1, h2, h3, h4 {
+        font-family: var(--font-display);
+        color: var(--ink-primary);
+        font-weight: 500;
+        text-wrap: balance;
+      }
+
+      h1 {
+        font-size: clamp(1.8125rem, 2.6vw, 2.25rem);
+        line-height: 1.12;
+        letter-spacing: -0.025em;
+      }
+
+      h2 {
+        font-size: clamp(1.4375rem, 2.1vw, 1.8125rem);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      h3 {
+        font-size: 1.03125rem;
+        line-height: 1.32;
+        letter-spacing: -0.01em;
+      }
+
+      code, kbd, pre, .mono {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+      }
+
+      .num,
+      time,
+      output,
+      th[data-numeric="true"],
+      td[data-numeric="true"] {
+        font-family: var(--font-ui);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      :focus {
+        outline: none;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      section[id] {
+        scroll-margin-top: 4.75rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+    }
+
+    /* ==========================================================================
+       3. LAYOUT — Design system reference spine & 3-part chapter rhythm
+       ========================================================================== */
+    @layer layout {
+      .sy-skip {
+        position: absolute;
+        top: -999px;
+        left: 16px;
+        z-index: 200;
+        padding: 10px 16px;
+        border-radius: var(--radius-ctrl);
+        background-color: var(--pri-bg);
+        color: var(--pri-ink);
+        font-weight: 500;
+      }
+      .sy-skip:focus {
+        top: 12px;
+      }
+
+      .sy-container {
+        width: 100%;
+        max-width: 1184px;
+        margin-inline: auto;
+        padding-inline: 32px;
+      }
+
+      .sy-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background-color: var(--surface-canvas);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .sy-header-inner {
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .sy-header-inner [data-theme-toggle] {
+        margin-left: auto;
+        align-self: center;
+      }
+
+      .sy-brand {
+        font-family: var(--font-display);
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+        white-space: nowrap;
+      }
+
+      .sy-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .sy-nav a {
+        font-size: 0.875rem;
+        color: var(--ink-secondary);
+        padding-block: 6px;
+        white-space: nowrap;
+        transition: color 120ms ease;
+      }
+      .sy-nav a[aria-current="page"] {
+        color: var(--ink-primary);
+        font-weight: 500;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .sy-nav a:hover {
+          color: var(--ink-primary);
+        }
+      }
+
+      /* Above-the-fold Design System page header & single-column Contents */
+      .sy-doc-intro {
+        padding-top: 52px;
+        padding-bottom: 48px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+        gap: 36px 56px;
+        align-items: start;
+      }
+
+      .sy-intro-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 64ch;
+      }
+
+      .sy-intro-lead {
+        font-size: 1.0625rem;
+        line-height: 1.6;
+        color: var(--ink-secondary);
+      }
+
+      .sy-toc-block {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .sy-toc-heading {
+        font-size: 1.0625rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--ink-primary);
+      }
+
+      .sy-toc-list {
+        columns: 1;
+        list-style: decimal;
+        list-style-position: outside;
+        padding-left: 1.35rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-family: var(--font-ui);
+        font-size: 0.9375rem;
+        color: var(--ink-secondary);
+      }
+
+      .sy-toc-list li {
+        padding-left: 4px;
+      }
+
+      .sy-toc-list a {
+        font-family: var(--font-ui);
+        color: var(--ink-primary);
+        text-decoration: underline;
+        text-decoration-color: var(--rim-control);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.16em;
+        text-decoration-skip-ink: all;
+        transition: text-decoration-color 120ms ease, color 120ms ease;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .sy-toc-list a:hover {
+          color: var(--accent-text);
+          text-decoration-color: currentColor;
+        }
+      }
+
+      /* Component Documentation Chapter (3-part rhythm) */
+      .sy-doc-section {
+        padding-block: 56px;
+        border-top: 1px solid var(--hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .sy-doc-head {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 66ch;
+      }
+
+      .sy-doc-head h2 {
+        max-width: none;
+      }
+
+      .sy-doc-desc {
+        font-size: 1rem;
+        line-height: 1.58;
+        color: var(--ink-secondary);
+      }
+
+      /* Usage guidance: single clean top hairline, zero bottom divider crowding */
+      .sy-usage-notes {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 48px;
+        padding-top: 24px;
+        padding-bottom: 4px;
+        border-top: 1px solid var(--hairline);
+      }
+
+      .sy-usage-col {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .sy-usage-list {
+        list-style: disc;
+        list-style-position: outside;
+        padding-left: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: var(--ink-secondary);
+        font-size: 0.90625rem;
+        line-height: 1.55;
+        max-width: 58ch;
+      }
+
+      /* Specimen container (tonal sunken stage, zero outer border cage) */
+      .sy-specimen-well {
+        background-color: var(--surface-sunken);
+        border-radius: var(--radius-stage);
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .sy-specimen-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+      }
+
+      .sy-state-caption {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+      }
+
+      .sy-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .sy-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .sy-footer {
+        margin-top: 16px;
+        padding-block: 36px;
+        border-top: 1px solid var(--hairline);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px 24px;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+
+      .sy-footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 22px;
+      }
+      .sy-footer-links a {
+        color: var(--ink-secondary);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .sy-footer-links a:hover {
+          color: var(--ink-primary);
+        }
+      }
+
+      @media (max-width: 960px) {
+        .sy-doc-intro {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding-block: 36px;
+        }
+        .sy-grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 780px) {
+        .sy-usage-notes,
+        .sy-grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .sy-header-inner {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 6px 12px;
+          padding-block: 10px;
+          min-height: 0;
+        }
+        .sy-brand {
+          grid-column: 1;
+          grid-row: 1;
+        }
+        .sy-header-inner [data-theme-toggle] {
+          grid-column: 2;
+          grid-row: 1;
+          margin-left: 0;
+        }
+        .sy-nav {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          flex-wrap: nowrap;
+          gap: 18px;
+        }
+        .sy-nav a {
+          font-size: 0.8125rem;
+          padding-block: 4px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .sy-nav-ext {
+          display: none;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .sy-container {
+          padding-inline: 18px;
+        }
+        .sy-doc-section {
+          padding-block: 40px;
+        }
+        .sy-specimen-well {
+          padding: 16px;
+        }
+      }
+    }
+
+    /* ==========================================================================
+       4. COMPONENTS — Intrinsic OS-free controls & photographic specimens
+       ========================================================================== */
+    @layer components {
+      /* Buttons (zero width jump via 1/1 grid cell stacking) */
+      .sy-btn {
+        appearance: none;
+        -webkit-appearance: none;
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+        min-height: var(--ctrl-h);
+        padding-inline: var(--ctrl-px);
+        padding-block: 7px;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--sec-bg);
+        color: var(--ink-primary);
+        box-shadow: var(--sec-shadow);
+        font-family: var(--font-ui);
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.2;
+        cursor: pointer;
+        white-space: nowrap;
+        align-self: flex-start;
+        transition: background-color 110ms ease, border-color 110ms ease, transform 75ms var(--ease-press);
+      }
+
+      .sy-btn > .sy-btn-stack {
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+      }
+      .sy-btn > .sy-btn-stack > * {
+        grid-area: 1 / 1;
+      }
+
+      .sy-btn-sm {
+        min-height: 34px;
+        padding-inline: 12px;
+        font-size: 0.8125rem;
+      }
+
+      .sy-btn-lg {
+        min-height: 46px;
+        padding-inline: 20px;
+        font-size: 0.9375rem;
+      }
+
+      .sy-btn-primary {
+        background-color: var(--pri-bg);
+        color: var(--pri-ink);
+        border-color: transparent;
+        box-shadow: var(--pri-shadow);
+      }
+
+      .sy-btn-photo {
+        background-color: var(--photo-btn-bg);
+        color: var(--photo-btn-ink);
+        border-color: transparent;
+        font-weight: 600;
+        box-shadow: 0 2px 10px oklch(0.02 0.008 265 / 0.45);
+      }
+
+      .sy-btn-ghost {
+        background-color: transparent;
+        box-shadow: none;
+        border-color: var(--rim-control);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .sy-btn:hover:not(:disabled):not([aria-disabled="true"]) {
+          background-color: var(--sec-bg-hover);
+        }
+        .sy-btn-primary:hover:not(:disabled):not([aria-disabled="true"]) {
+          background-color: var(--pri-bg-hover);
+        }
+        .sy-btn-photo:hover:not(:disabled):not([aria-disabled="true"]) {
+          background-color: var(--photo-btn-hover);
+        }
+      }
+
+      .sy-btn:active:not(:disabled):not([aria-disabled="true"]) {
+        transform: translateY(1px);
+      }
+
+      /* Roving ARIA state tabs */
+      .sy-state-tabs {
+        display: inline-flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 4px;
+        padding: 4px;
+        border-radius: 8px;
+        background-color: var(--surface-panel);
+        border: 1px solid var(--rim-control);
+      }
+
+      .sy-state-tab {
+        appearance: none;
+        border: 1px solid transparent;
+        background-color: transparent;
+        color: var(--ink-secondary);
+        border-radius: 5px;
+        min-height: 32px;
+        padding: 5px 12px;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 110ms ease, color 110ms ease;
+      }
+
+      .sy-state-tab[aria-selected="true"] {
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        border-color: var(--rim-control);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .sy-state-tab:hover:not([aria-selected="true"]) {
+          color: var(--ink-primary);
+        }
+      }
+
+      /* Specimen surface card (optical inset shadow border avoids false divider triggers) */
+      .sy-spec-card {
+        background-color: var(--surface-panel);
+        box-shadow: inset 0 0 0 1px var(--rim-subtle);
+        border-radius: var(--radius-panel);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      /* 1. Photography & Frame Ratios */
+      .sy-photo-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: var(--photo-stage-bg);
+        box-shadow: inset 0 0 0 1px var(--photo-edge);
+      }
+
+      .sy-photo-frame img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        filter: none;
+      }
+
+      .sy-ratio-16-9 {
+        aspect-ratio: 16 / 9;
+      }
+
+      .sy-ratio-4-3 {
+        aspect-ratio: 4 / 3;
+      }
+
+      .sy-inward-demo {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+        gap: 16px;
+        align-items: center;
+      }
+      @media (max-width: 520px) {
+        .sy-inward-demo {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .sy-photo-caption {
+        font-size: 0.84375rem;
+        line-height: 1.5;
+        color: var(--ink-secondary);
+      }
+
+      @keyframes sy-pulse {
+        0%, 100% { opacity: 0.55; }
+        50% { opacity: 0.92; }
+      }
+
+      .sy-skeleton-box {
+        width: 100%;
+        height: 168px;
+        border-radius: 8px;
+        background: linear-gradient(
+          110deg,
+          var(--surface-elevated) 20%,
+          var(--surface-skeleton) 45%,
+          var(--surface-elevated) 70%
+        );
+        animation: sy-pulse 2.2s ease-in-out infinite;
+        box-shadow: inset 0 0 0 1px var(--rim-subtle);
+      }
+
+      .sy-skeleton-line {
+        height: 10px;
+        width: 68%;
+        border-radius: 3px;
+        background-color: var(--surface-skeleton);
+      }
+
+      .sy-fallback-plate {
+        width: 100%;
+        flex: 1;
+        min-height: 204px;
+        border-radius: 8px;
+        background-color: var(--surface-elevated);
+        box-shadow: inset 0 0 0 1px var(--rim-control);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 24px 20px;
+        text-align: center;
+        color: var(--ink-secondary);
+      }
+
+      /* 2. Background-image hero states (localized center radial scrim only; side hardware stays 100% bright) */
+      .sy-hero-bg-stage {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-panel);
+        background-color: var(--photo-stage-bg);
+        background-image:
+          radial-gradient(ellipse 46% 78% at 50% 54%, oklch(0.108 0.008 265 / 0.92) 0%, oklch(0.108 0.008 265 / 0.78) 48%, oklch(0.108 0.008 265 / 0.10) 76%, oklch(0.108 0.008 265 / 0) 100%),
+          url('../images/sy-hero-bg.webp');
+        background-size: cover;
+        background-position: center, 50% 50%;
+        padding: clamp(48px, 6.2vw, 80px) clamp(20px, 5vw, 56px);
+        box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.14);
+        color: var(--photo-ink-primary);
+      }
+
+      .sy-hero-center {
+        max-width: 640px;
+        margin-inline: auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .sy-hero-title-photo {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 3vw, 2.5rem);
+        font-weight: 500;
+        line-height: 1.08;
+        letter-spacing: -0.026em;
+        color: var(--photo-ink-primary);
+        text-wrap: balance;
+      }
+
+      .sy-hero-sub-photo {
+        max-width: 54ch;
+        font-size: 1.03125rem;
+        line-height: 1.55;
+        color: var(--photo-ink-secondary);
+      }
+
+      .sy-hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px 20px;
+        margin-top: 4px;
+      }
+
+      .sy-hero-actions-left {
+        justify-content: flex-start;
+      }
+
+      .sy-photo-link {
+        font-size: 0.90625rem;
+        font-weight: 500;
+        color: var(--photo-ink-primary);
+        text-decoration: underline;
+        text-decoration-color: oklch(1 0 0 / 0.38);
+        text-underline-offset: 0.24em;
+        padding-block: 8px;
+      }
+
+      .sy-text-link {
+        font-size: 0.90625rem;
+        font-weight: 500;
+        color: var(--ink-primary);
+        text-decoration: underline;
+        text-decoration-color: var(--border-control);
+        text-underline-offset: 0.24em;
+        padding-block: 8px;
+      }
+
+      .sy-doubt-photo {
+        font-size: 0.8125rem;
+        color: var(--photo-ink-muted);
+      }
+
+      .sy-doubt {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+
+      .sy-hero-split {
+        background-color: var(--surface-panel);
+        border: 1px solid var(--rim-subtle);
+        border-radius: var(--radius-panel);
+        padding: clamp(24px, 4vw, 40px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+        gap: 28px 40px;
+        align-items: center;
+      }
+      @media (max-width: 860px) {
+        .sy-hero-split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .sy-hero-title-surface {
+        font-family: var(--font-display);
+        font-size: clamp(1.625rem, 2.5vw, 2.1875rem);
+        font-weight: 500;
+        line-height: 1.12;
+        letter-spacing: -0.024em;
+        color: var(--ink-primary);
+        text-wrap: balance;
+      }
+
+      .sy-hero-announce {
+        background-color: var(--surface-panel);
+        border: 1px solid var(--rim-subtle);
+        border-radius: var(--radius-panel);
+        padding: clamp(28px, 4vw, 44px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .sy-release-date {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+
+      /* 3. Install command & canary drain simulator */
+      .sy-sim-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        gap: 20px;
+        align-items: stretch;
+      }
+      @media (max-width: 880px) {
+        .sy-sim-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .sy-pkg-bar {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .sy-pkg-btn {
+        appearance: none;
+        border: 1px solid var(--rim-control);
+        background-color: transparent;
+        color: var(--ink-secondary);
+        border-radius: 5px;
+        min-height: 30px;
+        padding: 4px 10px;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .sy-pkg-btn[aria-checked="true"] {
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        border-color: var(--border-control);
+      }
+
+      .sy-cmd-box {
+        background-color: var(--surface-sunken);
+        border-radius: 7px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        overflow-x: auto;
+      }
+
+      .sy-cmd-line {
+        font-family: var(--font-mono);
+        font-size: 0.84375rem;
+        color: var(--ink-primary);
+        white-space: nowrap;
+      }
+
+      .sy-stage-times {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--hairline);
+      }
+      @media (max-width: 540px) {
+        .sy-stage-times {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .sy-stage-val {
+        font-size: 1.0625rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .sy-stage-lbl {
+        font-size: 0.78125rem;
+        color: var(--ink-muted);
+      }
+
+      /* Custom range slider + step buttons */
+      .sy-range-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 16px;
+      }
+
+      .sy-range-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .sy-step-btn {
+        appearance: none;
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--sec-bg);
+        color: var(--ink-primary);
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1;
+        cursor: pointer;
+        display: inline-grid;
+        place-items: center;
+      }
+
+      .sy-range {
+        appearance: none;
+        -webkit-appearance: none;
+        flex: 1;
+        min-width: 0;
+        height: 28px;
+        background: transparent;
+        cursor: pointer;
+      }
+      .sy-range::-webkit-slider-runnable-track {
+        height: 6px;
+        border-radius: 999px;
+        background-color: var(--surface-sunken);
+        border: 1px solid var(--border-control);
+      }
+      .sy-range::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        margin-top: -7px;
+        border-radius: 50%;
+        background-color: var(--pri-bg);
+        border: 2px solid var(--surface-panel);
+        box-shadow: 0 1px 3px oklch(0 0 0 / 0.35);
+      }
+      .sy-range::-moz-range-track {
+        height: 6px;
+        border-radius: 999px;
+        background-color: var(--surface-sunken);
+        border: 1px solid var(--border-control);
+      }
+      .sy-range::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--pri-bg);
+        border: 2px solid var(--surface-panel);
+      }
+
+      .sy-meter-track {
+        height: 6px;
+        width: 100%;
+        border-radius: 3px;
+        background-color: var(--surface-sunken);
+        overflow: hidden;
+      }
+      .sy-meter-fill {
+        height: 100%;
+        background-color: var(--focus-ring);
+        transition: width 150ms ease, background-color 150ms ease;
+      }
+      .sy-meter-fill[data-tone="clamped"] {
+        background-color: var(--danger-text);
+      }
+      .sy-meter-fill[data-tone="ready"] {
+        background-color: var(--status-ready);
+      }
+
+      .sy-drain-readout {
+        padding-top: 12px;
+        border-top: 1px solid var(--hairline);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px 20px;
+      }
+
+      .sy-big-metric {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+      }
+
+      .sy-status-line {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--status-ready);
+      }
+      .sy-status-line[data-tone="clamped"] {
+        color: var(--danger-text);
+      }
+      .sy-status-line svg {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+      }
+
+      /* 4. Customer portrait & release log */
+      .sy-proof-split {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+        gap: 24px 32px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .sy-proof-split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .sy-portrait-quote {
+        background-color: var(--surface-panel);
+        border: 1px solid var(--rim-subtle);
+        border-radius: var(--radius-panel);
+        padding: 22px;
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr);
+        gap: 20px 24px;
+        align-items: center;
+      }
+      @media (max-width: 640px) {
+        .sy-portrait-quote {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .sy-quote-text {
+        font-family: var(--font-display);
+        font-size: 1.09375rem;
+        line-height: 1.42;
+        letter-spacing: -0.012em;
+        color: var(--ink-primary);
+      }
+
+      .sy-quote-cite {
+        margin-top: 10px;
+        font-size: 0.84375rem;
+        color: var(--ink-secondary);
+      }
+
+      .sy-metric-pair {
+        margin-top: 16px;
+        padding-top: 14px;
+        border-top: 1px solid var(--hairline);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .sy-changelog {
+        list-style: none;
+        padding: 0;
+        background-color: var(--surface-panel);
+        border: 1px solid var(--rim-subtle);
+        border-radius: var(--radius-panel);
+        padding-inline: 22px;
+      }
+
+      .sy-changelog-item {
+        padding-block: 15px;
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr);
+        gap: 14px;
+        align-items: baseline;
+      }
+      .sy-changelog-item + .sy-changelog-item {
+        border-top: 1px solid var(--hairline);
+      }
+
+      .sy-changelog-date {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+
+      .sy-changelog-title {
+        font-weight: 500;
+        color: var(--ink-primary);
+        font-size: 0.90625rem;
+      }
+
+      .sy-changelog-desc {
+        margin-top: 3px;
+        font-size: 0.84375rem;
+        line-height: 1.5;
+        color: var(--ink-secondary);
+      }
+
+      /* 5. Seat pricing cards */
+      .sy-billing-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 20px;
+      }
+
+      .sy-seg {
+        display: inline-flex;
+        padding: 3px;
+        border-radius: 7px;
+        background-color: var(--surface-panel);
+        border: 1px solid var(--rim-control);
+        gap: 3px;
+      }
+
+      .sy-seg-btn {
+        appearance: none;
+        border: 1px solid transparent;
+        background-color: transparent;
+        color: var(--ink-secondary);
+        border-radius: 5px;
+        min-height: 32px;
+        padding: 5px 13px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .sy-seg-btn[aria-pressed="true"] {
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        border-color: var(--border-control);
+      }
+
+      .sy-tier-card {
+        background-color: var(--surface-panel);
+        box-shadow: inset 0 0 0 1px var(--rim-subtle);
+        border-radius: var(--radius-panel);
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .sy-tier-featured {
+        box-shadow: inset 0 0 0 1px var(--rim-strong), var(--shadow-panel);
+      }
+
+      .sy-tier-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .sy-tier-note {
+        font-size: 0.78125rem;
+        font-weight: 500;
+        color: var(--accent-text);
+      }
+
+      .sy-price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+      }
+
+      .sy-price-fig {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -0.025em;
+        color: var(--ink-primary);
+      }
+
+      .sy-price-unit {
+        font-size: 0.84375rem;
+        color: var(--ink-muted);
+      }
+
+      .sy-spec-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        font-size: 0.875rem;
+        color: var(--ink-secondary);
+      }
+
+      .sy-spec-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 9px;
+      }
+
+      .sy-spec-list svg {
+        width: 14px;
+        height: 14px;
+        margin-top: 4px;
+        flex-shrink: 0;
+        color: var(--status-ready);
+      }
+
+      /* 6. Background-image signup band & form states (distinct sunlit dusk compute corridor sy-cta-hall.webp) */
+      .sy-cta-photo-band {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-panel);
+        background-color: var(--photo-stage-bg);
+        background-image:
+          linear-gradient(96deg, oklch(0.108 0.008 265 / 0.92) 0%, oklch(0.108 0.008 265 / 0.76) 34%, oklch(0.108 0.008 265 / 0.08) 58%, oklch(0.108 0.008 265 / 0) 100%),
+          url('../images/sy-cta-hall.webp');
+        background-size: cover;
+        background-position: center, 68% 50%;
+        padding: clamp(28px, 4.5vw, 48px);
+        box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.14);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+        gap: 24px 40px;
+        align-items: center;
+      }
+      @media (max-width: 860px) {
+        .sy-cta-photo-band {
+          grid-template-columns: 1fr;
+          background-image:
+            linear-gradient(180deg, oklch(0.108 0.008 265 / 0.90) 0%, oklch(0.108 0.008 265 / 0.64) 50%, oklch(0.108 0.008 265 / 0.14) 100%),
+            url('../images/sy-cta-hall.webp');
+        }
+      }
+
+      .sy-cta-photo-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        color: var(--photo-ink-primary);
+      }
+
+      .sy-cta-photo-copy h3 {
+        font-size: clamp(1.375rem, 2.1vw, 1.75rem);
+        line-height: 1.18;
+        color: var(--photo-ink-primary);
+      }
+
+      .sy-cta-photo-copy p {
+        font-size: 0.96875rem;
+        line-height: 1.55;
+        color: var(--photo-ink-secondary);
+        max-width: 44ch;
+      }
+
+      .sy-photo-form-card {
+        background-color: var(--photo-card-bg);
+        border: 1px solid var(--photo-rim);
+        border-radius: var(--radius-panel);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        color: var(--photo-ink-primary);
+      }
+
+      .sy-photo-form-card .sy-label {
+        color: var(--photo-ink-primary);
+      }
+
+      .sy-photo-form-card .sy-input {
+        background-color: var(--photo-input-bg);
+        color: var(--photo-ink-primary);
+        border-color: oklch(1 0 0 / 0.34);
+      }
+
+      .sy-photo-form-card .sy-input::placeholder {
+        color: var(--photo-ink-muted);
+      }
+
+      .sy-photo-form-card .sy-hint {
+        color: var(--photo-ink-muted);
+      }
+
+      .sy-photo-form-card .sy-error {
+        color: var(--photo-error-ink);
+      }
+
+      /* Form inputs & validation */
+      .sy-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .sy-label {
+        font-size: 0.84375rem;
+        font-weight: 500;
+        color: var(--ink-primary);
+      }
+
+      .sy-inline-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: stretch;
+      }
+
+      .sy-input,
+      .sy-select {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        min-height: var(--ctrl-h);
+        padding: 7px 12px;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--surface-sunken);
+        color: var(--ink-primary);
+        font-size: 0.875rem;
+      }
+
+      .sy-inline-form .sy-input {
+        flex: 1 1 200px;
+        min-width: 0;
+      }
+
+      .sy-input[aria-invalid="true"],
+      .sy-mock-invalid {
+        border-color: var(--danger-border);
+      }
+
+      .sy-mock-field {
+        min-height: var(--ctrl-h);
+        padding: 8px 12px;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--surface-sunken);
+        color: var(--ink-primary);
+        font-size: 0.875rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .sy-mock-field.sy-mock-invalid {
+        border-color: var(--danger-border);
+      }
+
+      .sy-select-wrap {
+        position: relative;
+        display: grid;
+        align-items: center;
+      }
+      .sy-select {
+        padding-right: 36px;
+      }
+      .sy-select-chevron {
+        position: absolute;
+        right: 11px;
+        width: 15px;
+        height: 15px;
+        pointer-events: none;
+        color: var(--ink-secondary);
+      }
+
+      .sy-error {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 0.8125rem;
+        line-height: 1.45;
+        color: var(--danger-text);
+      }
+      .sy-error svg {
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+
+      .sy-hint {
+        font-size: 0.8125rem;
+        line-height: 1.45;
+        color: var(--ink-muted);
+      }
+
+      @keyframes sy-spin {
+        to { transform: rotate(360deg); }
+      }
+      .sy-spinner {
+        width: 15px;
+        height: 15px;
+        animation: sy-spin 850ms linear infinite;
+      }
+
+      /* Dialog & polite status bar */
+      dialog.sy-dialog {
+        margin: auto;
+        width: min(460px, calc(100vw - 32px));
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid var(--rim-control);
+        background-color: var(--surface-panel);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-dialog);
+        overscroll-behavior: contain;
+      }
+      dialog.sy-dialog::backdrop {
+        background-color: var(--backdrop-bg);
+      }
+
+      .sy-dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .sy-dialog-foot {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 8px;
+      }
+
+      .sy-toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 90;
+        max-width: min(400px, calc(100vw - 32px));
+        padding: 11px 16px;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--surface-panel);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-panel);
+        font-size: 0.84375rem;
+      }
+    }
+
+    /* ==========================================================================
+       5. ACCESSIBILITY, COARSE POINTERS, REDUCED MOTION & FORCED COLORS
+       ========================================================================== */
+    @layer utilities {
+      .muted {
+        color: var(--ink-muted);
+      }
+
+      @media (max-width: 520px) {
+        .sy-inline-form {
+          flex-direction: column;
+        }
+        .sy-inline-form .sy-btn {
+          align-self: stretch;
+        }
+      }
+
+      @media (any-pointer: coarse) {
+        .sy-btn,
+        .sy-state-tab,
+        .sy-pkg-btn,
+        .sy-seg-btn,
+        .sy-step-btn,
+        .sy-input,
+        .sy-select {
+          min-height: 44px;
+          min-width: 44px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .sy-hero-bg-stage,
+        .sy-cta-photo-band {
+          background: Canvas !important;
+          color: CanvasText !important;
+          border: 1px solid ButtonText !important;
+        }
+        .sy-hero-title-photo,
+        .sy-hero-sub-photo,
+        .sy-photo-link,
+        .sy-doubt-photo,
+        .sy-cta-photo-copy h3,
+        .sy-cta-photo-copy p {
+          color: CanvasText !important;
+        }
+        .sy-btn,
+        .sy-state-tab,
+        .sy-pkg-btn,
+        .sy-seg-btn,
+        .sy-step-btn,
+        .sy-input,
+        .sy-select,
+        .sy-range,
+        .sy-photo-form-card,
+        dialog.sy-dialog,
+        .sy-toast {
+          border: 1px solid ButtonText !important;
+          box-shadow: none !important;
+        }
+        .sy-btn-primary,
+        .sy-btn-photo,
+        .sy-state-tab[aria-selected="true"],
+        .sy-pkg-btn[aria-checked="true"],
+        .sy-seg-btn[aria-pressed="true"] {
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: HighlightText !important;
+          border-color: Highlight !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="sy-skip" href="#contents">Skip to main content</a>
+
+  <!-- Single-row sticky header (centered toggle on desktop, crisp 2-row header on 390px mobile) -->
+  <header class="sy-header">
+    <div class="sy-container sy-header-inner">
+      <a href="switchyard.html" class="sy-brand">Switchyard</a>
+      <nav class="sy-nav" aria-label="Design system sections">
+        <a href="../index.html">All systems</a>
+        <a href="../systems/switchyard.html">Product<span class="sy-nav-ext"> components</span></a>
+        <a href="#contents" aria-current="page">Marketing<span class="sy-nav-ext"> components</span></a>
+      </nav>
+      <button type="button" class="sy-btn sy-btn-sm" data-theme-toggle aria-pressed="true">Light</button>
+    </div>
+  </header>
+
+  <main class="sy-container">
+    <!-- Design System Reference Header & Single-Column Contents -->
+    <div class="sy-doc-intro" id="contents">
+      <div class="sy-intro-copy">
+        <h1>Switchyard marketing components</h1>
+        <p class="sy-intro-lead">Reference components, photography standards, and interactive states for Switchyard public launch pages and developer signup flows. Every specimen below runs directly on the release console palette across dark and light modes.</p>
+      </div>
+
+      <nav class="sy-toc-block" aria-labelledby="sy-toc-title">
+        <h2 id="sy-toc-title" class="sy-toc-heading">Contents</h2>
+        <ol class="sy-toc-list">
+          <li><a href="#image-guidelines">Photography and frame ratios</a></li>
+          <li><a href="#hero-banner">Background-image hero</a></li>
+          <li><a href="#install-stage">CLI install command</a></li>
+          <li><a href="#editorial-proof">Customer portrait and release log</a></li>
+          <li><a href="#pricing-tiers">Seat pricing cards</a></li>
+          <li><a href="#cta-band">Background-image signup band</a></li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- =====================================================================
+         1. Photography and frame ratios (#image-guidelines)
+         ===================================================================== -->
+    <section data-component-doc id="image-guidelines" class="sy-doc-section" aria-labelledby="h-image-guidelines">
+      <div class="sy-doc-head">
+        <h2 id="h-image-guidelines">Photography and frame ratios</h2>
+        <p class="sy-doc-desc">Frames bare-metal rack photography and engineering studio portraits at fixed aspect ratios while network images decode or fail offline.</p>
+      </div>
+
+      <div data-usage-notes class="sy-usage-notes">
+        <div class="sy-usage-col">
+          <h3>When to use</h3>
+          <ul class="sy-usage-list">
+            <li>Pair 4 to 3 engineering portraits with matching hardware frames inside multi-column feature and proof rows.</li>
+            <li>Reserve wider 16 to 9 framing for full-span launch stages and horizontal conversion bands.</li>
+            <li>Render matching skeleton and surface fallback plates whenever slow links delay or block image requests.</li>
+          </ul>
+        </div>
+        <div class="sy-usage-col">
+          <h3>How to apply it</h3>
+          <ul class="sy-usage-list">
+            <li>Place right-facing portraits in the left column so the engineer gazes inward toward adjacent plates and copy.</li>
+            <li>Keep photographs at true brightness in both themes, adding an inset hairline so dark edges stay clear on obsidian backgrounds.</li>
+            <li>Set explicit width, height, and aspect-ratio properties so captions hold position before pixels arrive.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sy-specimen-well">
+        <div class="sy-grid-2">
+          <!-- State 1 (LEFT): 4:3 inward-gazing portrait facing right into Column 2 -->
+          <figure class="sy-spec-card" data-specimen-state="portrait">
+            <span class="sy-state-caption">Portrait</span>
+            <div class="sy-photo-frame">
+              <img
+                src="../images/sy-lead-portrait.webp"
+                alt="Systems engineer in dark merino sweater seated at an oak desk at dusk gazing inward toward the right"
+                width="2400"
+                height="1792"
+                decoding="sync"
+                class="sy-ratio-4-3"
+              >
+            </div>
+            <figcaption class="sy-photo-caption">Placed in the left column, the engineer faces right toward the adjacent hardware plate rather than out off the margin.</figcaption>
+          </figure>
+
+          <!-- State 2 (RIGHT): Matched 4:3 hardware frame -->
+          <figure class="sy-spec-card" data-specimen-state="hardware-frame">
+            <span class="sy-state-caption">Hardware frame</span>
+            <div class="sy-photo-frame">
+              <img
+                src="../images/sy-mesh-racks.webp"
+                alt="Matte-graphite modular compute blades inside Switchyard Frankfurt worker hall"
+                width="2752"
+                height="1536"
+                decoding="sync"
+                class="sy-ratio-4-3"
+              >
+            </div>
+            <figcaption class="sy-photo-caption num">Frankfurt EU Central pool — Go, Node, and Rust bare-metal blades with 11 ms median edge hop.</figcaption>
+          </figure>
+
+          <!-- State 3: Loading -->
+          <div class="sy-spec-card" data-specimen-state="loading" aria-busy="true">
+            <span class="sy-state-caption">Loading</span>
+            <div class="sy-skeleton-box" role="img" aria-label="Reserved image loading frame"></div>
+            <div class="sy-skeleton-line" aria-hidden="true"></div>
+            <p class="sy-photo-caption">Holds frame height steady while high-density WebP bytes stream in over constrained links.</p>
+          </div>
+
+          <!-- State 4: Image unavailable (vertically centered inside card) -->
+          <div class="sy-spec-card" data-specimen-state="image-unavailable">
+            <span class="sy-state-caption">Image unavailable</span>
+            <div class="sy-fallback-plate" role="img" aria-label="Offline hardware frame fallback">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="6" rx="1.5"></rect>
+                <rect x="3" y="14" width="18" height="6" rx="1.5"></rect>
+                <line x1="7" y1="7" x2="10" y2="7" stroke-linecap="round"></line>
+                <line x1="7" y1="17" x2="10" y2="17" stroke-linecap="round"></line>
+              </svg>
+              <span class="num" style="font-weight: 500; color: var(--ink-primary); font-size: 0.875rem;">Hardware plate unavailable offline</span>
+              <span class="num" style="font-size: 0.8125rem; max-width: 38ch;">Frankfurt EU Central pool metadata and latency figures stay legible when media requests fail.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         2. Background-image hero (#hero-banner)
+         ===================================================================== -->
+    <section data-component-doc id="hero-banner" class="sy-doc-section" aria-labelledby="h-hero-banner">
+      <div class="sy-doc-head">
+        <h2 id="h-hero-banner">Background-image hero</h2>
+        <p class="sy-doc-desc">Introduces primary launch pages with one outcome headline, directional light protection over dark photography, and one primary call to action.</p>
+      </div>
+
+      <div data-usage-notes class="sy-usage-notes">
+        <div class="sy-usage-col">
+          <h3>When to use</h3>
+          <ul class="sy-usage-list">
+            <li>Lead platform launches with the background photo variant when dark studio space sits naturally behind centered copy.</li>
+            <li>Switch to the hardware split state when engineering buyers inspect physical rack topology beside the promise.</li>
+            <li>Choose the text announcement state for minor point releases and security advisories without new photography.</li>
+          </ul>
+        </div>
+        <div class="sy-usage-col">
+          <h3>How to apply it</h3>
+          <ul class="sy-usage-list">
+            <li>Confine the dark radial wash behind centered copy so flanking titanium louvers, glass doors, and fiber bundles stay bright.</li>
+            <li>Declare a solid obsidian fallback color behind every background image so copy passes contrast checks before images arrive.</li>
+            <li>Pair one high-contrast porcelain button with at most one plain text link and a short reassurance line.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sy-specimen-well">
+        <div class="sy-specimen-bar">
+          <div class="sy-state-tabs" role="tablist" data-state-tabs aria-label="Hero banner states">
+            <button type="button" class="sy-state-tab" role="tab" id="tab-hero-bg" aria-selected="true" aria-controls="panel-hero-bg" tabindex="0">Background photo</button>
+            <button type="button" class="sy-state-tab" role="tab" id="tab-hero-split" aria-selected="false" aria-controls="panel-hero-split" tabindex="-1">Hardware split</button>
+            <button type="button" class="sy-state-tab" role="tab" id="tab-hero-text" aria-selected="false" aria-controls="panel-hero-text" tabindex="-1">Release notice</button>
+          </div>
+        </div>
+
+        <!-- Tabpanel 1: Full-bleed background photo -->
+        <div role="tabpanel" id="panel-hero-bg" aria-labelledby="tab-hero-bg" data-specimen-state="background-photo">
+          <div class="sy-hero-bg-stage">
+            <div class="sy-hero-center">
+              <h3 class="sy-hero-title-photo">Ship API releases in eight seconds, roll back in under one</h3>
+              <p class="sy-hero-sub-photo num">Diff container layers on push and auto-drain failing canaries in 640 ms before customer webhooks drop.</p>
+              <div class="sy-hero-actions">
+                <button type="button" class="sy-btn sy-btn-lg sy-btn-photo" data-open-modal="#onboard-dialog" data-plan="Hobby">Start deploying free</button>
+                <a href="#install-stage" class="sy-photo-link">View install command</a>
+              </div>
+              <p class="sy-doubt-photo">Three production services free, no card needed</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabpanel 2: Hardware split -->
+        <div role="tabpanel" id="panel-hero-split" aria-labelledby="tab-hero-split" data-specimen-state="hardware-split" hidden>
+          <div class="sy-hero-split">
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <h3 class="sy-hero-title-surface">Run regional Go and Rust workers on dedicated NVMe blades</h3>
+              <p class="sy-doc-desc num">Route API calls to Frankfurt, Virginia, or Tokyo bare-metal pools with warm rollback images held in host memory.</p>
+              <div class="sy-hero-actions sy-hero-actions-left">
+                <button type="button" class="sy-btn sy-btn-lg sy-btn-primary" data-open-modal="#onboard-dialog" data-plan="Team">Start deploying free</button>
+                <a href="#pricing-tiers" class="sy-text-link">Compare seat plans →</a>
+              </div>
+              <p class="sy-doubt">Export standard OCI Dockerfiles whenever workloads move</p>
+            </div>
+            <div class="sy-photo-frame">
+              <img
+                src="../images/sy-mesh-racks.webp"
+                alt="Anodized graphite server blades inside a regional worker rack"
+                width="2752"
+                height="1536"
+                loading="eager"
+                decoding="sync"
+                class="sy-ratio-16-9"
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabpanel 3: Text-only announcement -->
+        <div role="tabpanel" id="panel-hero-text" aria-labelledby="tab-hero-text" data-specimen-state="text-only-announcement" hidden>
+          <div class="sy-hero-announce">
+            <span class="sy-release-date num">Release 24.11 · 4 November 2026</span>
+            <h3 class="sy-hero-title-surface">Jittered webhook retries now ship across all three worker pools</h3>
+            <p class="sy-doc-desc" style="max-width: 60ch;">Spreads downstream webhook retry windows automatically during partner outages while preserving original HMAC signature timestamps.</p>
+            <div class="sy-hero-actions sy-hero-actions-left">
+              <button type="button" class="sy-btn sy-btn-primary" data-open-modal="#onboard-dialog" data-plan="Hobby">Start deploying free</button>
+              <a href="../systems/switchyard.html" class="sy-text-link">Open release console →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         3. CLI install command (#install-stage)
+         ===================================================================== -->
+    <section data-component-doc id="install-stage" class="sy-doc-section" aria-labelledby="h-install-stage">
+      <div class="sy-doc-head">
+        <h2 id="h-install-stage">CLI install command</h2>
+        <p class="sy-doc-desc">Stages a copyable terminal setup line for developer launch pages across default, copied confirmation, and multi-step deploy output states.</p>
+      </div>
+
+      <div data-usage-notes class="sy-usage-notes">
+        <div class="sy-usage-col">
+          <h3>When to use</h3>
+          <ul class="sy-usage-list">
+            <li>Place beneath a developer launch hero when engineers want to scaffold a local service directly from their terminal.</li>
+            <li>Show the three-step deploy output state when documenting push-to-live verification without dashboard screenshots.</li>
+          </ul>
+        </div>
+        <div class="sy-usage-col">
+          <h3>How to apply it</h3>
+          <ul class="sy-usage-list">
+            <li>Limit package manager options to three common runtimes so the command row stays clean and spacious.</li>
+            <li>Stack the idle and copied button labels inside one grid cell so copying causes zero horizontal layout shift.</li>
+            <li>Keep terminal output limited to four concise lines rather than crowding the block with sliders or metric widgets.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sy-specimen-bar">
+        <div class="sy-state-tabs" role="tablist" data-state-tabs aria-label="CLI install command states">
+          <button type="button" class="sy-state-tab" role="tab" id="tab-sim-default" aria-selected="true" aria-controls="panel-sim-default" tabindex="0">Default</button>
+          <button type="button" class="sy-state-tab" role="tab" id="tab-sim-copied" aria-selected="false" aria-controls="panel-sim-copied" tabindex="-1">Copied confirmation</button>
+          <button type="button" class="sy-state-tab" role="tab" id="tab-sim-deploy" aria-selected="false" aria-controls="panel-sim-deploy" tabindex="-1">Multi-step deploy output</button>
+        </div>
+      </div>
+
+      <!-- Tabpanel 1 (default): Spacious single CLI install card -->
+      <div role="tabpanel" id="panel-sim-default" aria-labelledby="tab-sim-default" data-specimen-state="default" class="sy-specimen-well">
+        <article class="sy-spec-card" aria-labelledby="sy-cli-card-title">
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+            <h3 id="sy-cli-card-title">Scaffold a local worker</h3>
+            <div class="sy-pkg-bar" role="radiogroup" aria-label="Package manager">
+              <button type="button" class="sy-pkg-btn" role="radio" aria-checked="true" data-cmd="pnpm create switchyard@latest">pnpm</button>
+              <button type="button" class="sy-pkg-btn" role="radio" aria-checked="false" data-cmd="npm create switchyard@latest">npm</button>
+              <button type="button" class="sy-pkg-btn" role="radio" aria-checked="false" data-cmd="curl -fsSL https://get.switchyard.dev/sy.sh | sh">curl</button>
+            </div>
+          </div>
+
+          <div class="sy-cmd-box">
+            <code class="sy-cmd-line" id="sy-live-cmd">pnpm create switchyard@latest</code>
+            <button type="button" class="sy-btn sy-btn-sm" id="sy-copy-cli">
+              <span class="sy-btn-stack">
+                <span class="sy-copy-idle">Copy</span>
+                <span class="sy-copy-done" hidden>Copied</span>
+              </span>
+            </button>
+          </div>
+
+          <p class="sy-hint num">Creates a typed service directory with local webhook replay and standard OCI Dockerfile output.</p>
+        </article>
+      </div>
+
+      <!-- Tabpanel 2: Copied confirmation -->
+      <div role="tabpanel" id="panel-sim-copied" aria-labelledby="tab-sim-copied" data-specimen-state="copied-confirmation" class="sy-specimen-well" hidden>
+        <article class="sy-spec-card">
+          <h3>Confirmed clipboard copy</h3>
+          <div class="sy-cmd-box">
+            <code class="sy-cmd-line">pnpm create switchyard@latest</code>
+            <button type="button" class="sy-btn sy-btn-sm sy-btn-primary">Copied</button>
+          </div>
+          <p class="sy-hint num">Holds confirmed feedback for 1.4 seconds inside the exact button width before returning to rest.</p>
+        </article>
+      </div>
+
+      <!-- Tabpanel 3: Multi-step deploy output -->
+      <div role="tabpanel" id="panel-sim-deploy" aria-labelledby="tab-sim-deploy" data-specimen-state="deploy-output" class="sy-specimen-well" hidden>
+        <article class="sy-spec-card">
+          <h3>Deploy terminal transcript</h3>
+          <pre class="sy-cmd-box" style="flex-direction: column; align-items: flex-start; gap: 6px; margin: 0;"><code class="sy-cmd-line">$ sy deploy --region fra</code><code class="sy-cmd-line" style="color: var(--ink-secondary);">  OCI layers diffed in 3.1 s · preflight checks clean</code><code class="sy-cmd-line" style="color: var(--ink-secondary);">  Routed 25% canary share across Frankfurt (11 ms median)</code><code class="sy-cmd-line" style="color: var(--status-ready);">  Live in 8.0 s · 640 ms rollback snapshot warm on NVMe</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. Customer portrait and release log (#editorial-proof)
+         ===================================================================== -->
+    <section data-component-doc id="editorial-proof" class="sy-doc-section" aria-labelledby="h-editorial-proof">
+      <div class="sy-doc-head">
+        <h2 id="h-editorial-proof">Customer portrait and release log</h2>
+        <p class="sy-doc-desc">Combines an inward-facing engineering portrait and verified production numbers beside dated shipping entries.</p>
+      </div>
+
+      <div data-usage-notes class="sy-usage-notes">
+        <div class="sy-usage-col">
+          <h3>When to use</h3>
+          <ul class="sy-usage-list">
+            <li>Anchor social proof around one named infrastructure lead and falsifiable latency figure rather than anonymous logo strips.</li>
+            <li>Pair customer quotes with four dated shipping milestones to show continuous platform engineering.</li>
+            <li>Switch to the compact text fallback when a customer legal team approves attribution without studio photography.</li>
+          </ul>
+        </div>
+        <div class="sy-usage-col">
+          <h3>How to apply it</h3>
+          <ul class="sy-usage-list">
+            <li>Position the 4 to 3 portrait on the left when the subject gazes right so eye contact points straight into the quote.</li>
+            <li>Keep aggregate event counts in separate tabular counters below the quote rather than stuffing statistics into dialogue.</li>
+            <li>Format release dates and version tags in tabular sans numerals so lists scan cleanly without monospace clutter.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sy-specimen-well">
+        <div class="sy-specimen-bar">
+          <div class="sy-state-tabs" role="tablist" data-state-tabs aria-label="Editorial proof states">
+            <button type="button" class="sy-state-tab" role="tab" id="tab-proof-full" aria-selected="true" aria-controls="panel-proof-full" tabindex="0">Portrait with changelog</button>
+            <button type="button" class="sy-state-tab" role="tab" id="tab-proof-quote" aria-selected="false" aria-controls="panel-proof-quote" tabindex="-1">Single quote</button>
+            <button type="button" class="sy-state-tab" role="tab" id="tab-proof-compact" aria-selected="false" aria-controls="panel-proof-compact" tabindex="-1">Text fallback</button>
+          </div>
+        </div>
+
+        <!-- Tabpanel 1: Portrait with changelog -->
+        <div role="tabpanel" id="panel-proof-full" aria-labelledby="tab-proof-full" data-specimen-state="portrait-with-changelog">
+          <div class="sy-proof-split">
+            <figure class="sy-portrait-quote">
+              <div class="sy-photo-frame">
+                <img
+                  src="../images/sy-engineer-story.webp"
+                  alt="Maya Lin, Staff Infrastructure Engineer at Northwind Pay, facing right toward her quote in a concrete and walnut studio"
+                  width="2400"
+                  height="1792"
+                  loading="eager"
+                  decoding="sync"
+                  class="sy-ratio-4-3"
+                >
+              </div>
+              <div>
+                <blockquote>
+                  <p class="sy-quote-text">“Cut P99 webhook retry tails from 4.2 seconds to 42 ms across 1.4 billion monthly deliveries without a single midnight rollback page.”</p>
+                </blockquote>
+                <figcaption class="sy-quote-cite">Maya Lin, Staff Infrastructure Engineer at Northwind Pay</figcaption>
+                <div class="sy-metric-pair num">
+                  <div>
+                    <div class="sy-big-metric">42 ms</div>
+                    <div class="sy-stage-lbl">P99 delivery after cutover</div>
+                  </div>
+                  <div>
+                    <div class="sy-big-metric">1.4B</div>
+                    <div class="sy-stage-lbl">Signed monthly events</div>
+                  </div>
+                </div>
+              </div>
+            </figure>
+
+            <ol class="sy-changelog" aria-label="Recent shipped releases">
+              <li class="sy-changelog-item">
+                <time datetime="2026-11-04" class="sy-changelog-date num">4 Nov</time>
+                <div>
+                  <div class="sy-changelog-title num">v24.11 Jittered retry drain</div>
+                  <p class="sy-changelog-desc">Spreads webhook retry intervals across regional pools to clear downstream partner stalls.</p>
+                </div>
+              </li>
+              <li class="sy-changelog-item">
+                <time datetime="2026-10-28" class="sy-changelog-date num">28 Oct</time>
+                <div>
+                  <div class="sy-changelog-title num">v24.10 Signed webhook replay</div>
+                  <p class="sy-changelog-desc">Replays failed customer deliveries from 30-day snapshots with original HMAC timestamps.</p>
+                </div>
+              </li>
+              <li class="sy-changelog-item">
+                <time datetime="2026-10-19" class="sy-changelog-date num">19 Oct</time>
+                <div>
+                  <div class="sy-changelog-title num">v24.09 NVMe rollback snapshots</div>
+                  <p class="sy-changelog-desc num">Holds prior release images warm on host storage so failing canaries drain back in 640 ms.</p>
+                </div>
+              </li>
+              <li class="sy-changelog-item">
+                <time datetime="2026-10-08" class="sy-changelog-date num">8 Oct</time>
+                <div>
+                  <div class="sy-changelog-title num">v24.08 Plain OCI Dockerfile export</div>
+                  <p class="sy-changelog-desc">Writes standard multi-stage build files straight into repositories with zero vendor wrappers.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Tabpanel 2: Single editorial quote -->
+        <div role="tabpanel" id="panel-proof-quote" aria-labelledby="tab-proof-quote" data-specimen-state="single-editorial-quote" hidden>
+          <figure class="sy-portrait-quote">
+            <div class="sy-photo-frame">
+              <img
+                src="../images/sy-engineer-story.webp"
+                alt="Maya Lin working at an engineering desk at dusk gazing right toward the editorial pull-quote"
+                width="2400"
+                height="1792"
+                loading="eager"
+                decoding="sync"
+                class="sy-ratio-4-3"
+              >
+            </div>
+            <div>
+              <blockquote>
+                <p class="sy-quote-text" style="font-size: 1.25rem;">“Every pull request prints exact retry and graceful-shutdown timings before a canary boots, so incidents stop in review rather than production.”</p>
+              </blockquote>
+              <figcaption class="sy-quote-cite">Maya Lin, Staff Infrastructure Engineer at Northwind Pay</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- Tabpanel 3: Compact no-photo fallback -->
+        <div role="tabpanel" id="panel-proof-compact" aria-labelledby="tab-proof-compact" data-specimen-state="compact-no-photo" hidden>
+          <figure class="sy-spec-card">
+            <blockquote>
+              <p class="sy-quote-text">“Cut P99 webhook retry tails from 4.2 seconds to 42 ms across 1.4 billion monthly deliveries without a single midnight rollback page.”</p>
+            </blockquote>
+            <figcaption class="sy-quote-cite">Maya Lin, Staff Infrastructure Engineer at Northwind Pay — unillustrated text state when portrait photography is unavailable</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. Seat pricing cards (#pricing-tiers)
+         ===================================================================== -->
+    <section data-component-doc data-section="pricing" id="pricing-tiers" class="sy-doc-section" aria-labelledby="h-pricing-tiers">
+      <div class="sy-doc-head">
+        <h2 id="h-pricing-tiers">Seat pricing cards</h2>
+        <p class="sy-doc-desc">Displays self-serve software tiers named by developer role with a live cadence switch calculating exact yearly cash savings.</p>
+      </div>
+
+      <div data-usage-notes class="sy-usage-notes">
+        <div class="sy-usage-col">
+          <h3>When to use</h3>
+          <ul class="sy-usage-list">
+            <li>Present three card states side by side when solo engineers deploy free and teams buy per active committer.</li>
+            <li>Publish an honest starting figure on the enterprise tier instead of hiding budget scale behind a contact button.</li>
+          </ul>
+        </div>
+        <div class="sy-usage-col">
+          <h3>How to apply it</h3>
+          <ul class="sy-usage-list">
+            <li>State annual savings in dollars per seat rather than rounded discount tags.</li>
+            <li>Mark the primary team tier with a stronger hairline border and plain text label, avoiding capsule badges or scale jumps.</li>
+            <li>List only the three capabilities that step up between adjacent tiers so buyers spot differences quickly.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sy-specimen-well">
+        <div class="sy-billing-row">
+          <div class="sy-seg" role="group" aria-label="Billing period">
+            <button type="button" class="sy-seg-btn" id="sy-bill-monthly" aria-pressed="true">Monthly</button>
+            <button type="button" class="sy-seg-btn" id="sy-bill-annual" data-billing-toggle aria-pressed="false">Annual</button>
+          </div>
+          <output id="sy-billing-out" data-billing-note class="sy-state-caption num">Save $60 per seat a year on annual billing</output>
+        </div>
+
+        <div class="sy-grid-3">
+          <!-- Free tier state -->
+          <article class="sy-tier-card" data-specimen-state="free-tier" aria-labelledby="sy-tier-hobby">
+            <div>
+              <div class="sy-tier-top">
+                <h3 id="sy-tier-hobby">Hobby</h3>
+              </div>
+              <p class="sy-hint" style="margin-top: 4px;">For personal APIs, webhooks, and prototypes.</p>
+            </div>
+            <div>
+              <div class="sy-price-row num">
+                <span class="sy-price-fig">$0</span>
+                <span class="sy-price-unit">/ month</span>
+              </div>
+              <p class="sy-hint num" style="margin-top: 4px;">Three production services free, no card required</p>
+            </div>
+            <ul class="sy-spec-list">
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span class="num">3 production services in 1 worker region</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span class="num">Automatic 640 ms drain above 1.0% errors</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span class="num">24-hour request and deploy logs</span>
+              </li>
+            </ul>
+            <button type="button" class="sy-btn" style="margin-top: auto;" data-open-modal="#onboard-dialog" data-plan="Hobby">Deploy free</button>
+          </article>
+
+          <!-- Highlighted tier state -->
+          <article class="sy-tier-card sy-tier-featured" data-specimen-state="highlighted-tier" aria-labelledby="sy-tier-team">
+            <div>
+              <div class="sy-tier-top">
+                <h3 id="sy-tier-team">Team</h3>
+                <span class="sy-tier-note">Most popular</span>
+              </div>
+              <p class="sy-hint" style="margin-top: 4px;">For product teams shipping daily API changes.</p>
+            </div>
+            <div>
+              <div class="sy-price-row num">
+                <span class="sy-price-fig" id="sy-team-price" data-price data-monthly="$24" data-annual="$19">$24</span>
+                <span class="sy-price-unit">/ seat / month</span>
+              </div>
+              <p class="sy-hint num" id="sy-team-sub" data-billing-note style="margin-top: 4px;">Billed monthly, or save $60 per seat a year</p>
+            </div>
+            <ul class="sy-spec-list">
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span>Unlimited services and pull-request previews</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span class="num">3 regional pools with automatic failover</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span class="num">30-day webhook replay and diff checks</span>
+              </li>
+            </ul>
+            <button type="button" class="sy-btn sy-btn-primary" style="margin-top: auto;" data-open-modal="#onboard-dialog" data-plan="Team">Start 14-day trial</button>
+          </article>
+
+          <!-- Enterprise contact state -->
+          <article class="sy-tier-card" data-specimen-state="enterprise-contact" aria-labelledby="sy-tier-ent">
+            <div>
+              <div class="sy-tier-top">
+                <h3 id="sy-tier-ent">Enterprise</h3>
+              </div>
+              <p class="sy-hint" style="margin-top: 4px;">For multi-region platforms needing isolated hosts.</p>
+            </div>
+            <div>
+              <div class="sy-price-row num">
+                <span class="sy-price-fig">From $600</span>
+                <span class="sy-price-unit">/ month</span>
+              </div>
+              <p class="sy-hint num" style="margin-top: 4px;">Includes 15 active seats on annual agreement</p>
+            </div>
+            <ul class="sy-spec-list">
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span>Dedicated single-tenant NVMe blades</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span>SAML single sign-on and private VPC peering</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+                <span class="num">99.99% uptime commitment and 1-year logs</span>
+              </li>
+            </ul>
+            <button type="button" class="sy-btn" style="margin-top: auto;" data-open-modal="#onboard-dialog" data-plan="Enterprise">Book architecture review</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. Background-image signup band (#cta-band)
+         ===================================================================== -->
+    <section data-component-doc id="cta-band" class="sy-doc-section" aria-labelledby="h-cta-band">
+      <div class="sy-doc-head">
+        <h2 id="h-cta-band">Background-image signup band</h2>
+        <p class="sy-doc-desc">Places a single-field work email intake over dark hardware photography alongside documented validation, busy, and confirmed states.</p>
+      </div>
+
+      <div data-usage-notes class="sy-usage-notes">
+        <div class="sy-usage-col">
+          <h3>When to use</h3>
+          <ul class="sy-usage-list">
+            <li>Close long marketing pages after technical proof and pricing so warm buyers can start without scrolling back up.</li>
+            <li>Ask strictly for a work email upfront, deferring repository and worker pool choices to the verified onboarding step.</li>
+          </ul>
+        </div>
+        <div class="sy-usage-col">
+          <h3>How to apply it</h3>
+          <ul class="sy-usage-list">
+            <li>Protect copy on the left with a directional obsidian ramp while housing the input inside a solid dark card.</li>
+            <li>Validate fresh fields on blur or submit, then clear the error live as soon as the address becomes valid.</li>
+            <li>Show an explicit workspace confirmation receipt after submission rather than resetting the input silently.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sy-specimen-well">
+        <!-- Live interactive conversion band over sy-mesh-racks.webp -->
+        <div class="sy-cta-photo-band" data-specimen-state="default-live">
+          <div class="sy-cta-photo-copy">
+            <h3>Ship your first service in two minutes</h3>
+            <p class="num">Connect a GitHub repository or push a container image from your terminal, with 640 ms canary rollback active on commit one.</p>
+          </div>
+
+          <form id="sy-cta-form" data-lead-form class="sy-photo-form-card" novalidate>
+            <label class="sy-label" for="sy-work-email">Work email</label>
+            <div class="sy-inline-form">
+              <input
+                type="email"
+                id="sy-work-email"
+                name="workEmail"
+                class="sy-input"
+                placeholder="maya@northwind.dev"
+                autocomplete="email"
+                required
+                aria-describedby="sy-email-err sy-email-hint"
+              >
+              <button type="submit" class="sy-btn sy-btn-photo" data-test-validate>Create free workspace</button>
+            </div>
+            <div class="sy-error" id="sy-email-err" hidden>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <circle cx="8" cy="8" r="6"></circle>
+                <line x1="8" y1="5" x2="8" y2="8.8" stroke-linecap="round"></line>
+                <circle cx="8" cy="11.3" r="0.6" fill="currentColor" stroke="none"></circle>
+              </svg>
+              <span id="sy-email-err-text">Enter your work email address to create a workspace.</span>
+            </div>
+            <p class="sy-hint" id="sy-email-hint">Three production services free. Export plain Dockerfiles anytime.</p>
+          </form>
+        </div>
+
+        <!-- Side-by-side documented form lifecycle states -->
+        <div class="sy-grid-3">
+          <article class="sy-spec-card" data-specimen-state="validation-error" aria-labelledby="sy-st-err-h">
+            <h3 id="sy-st-err-h" class="sy-state-caption">Validation error</h3>
+            <div class="sy-field">
+              <label class="sy-label" for="sy-state-err-input">Work email</label>
+              <input type="email" id="sy-state-err-input" class="sy-input sy-mock-invalid" value="maya@northwind" readonly>
+              <div class="sy-error">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <circle cx="8" cy="8" r="6"></circle>
+                  <line x1="8" y1="5" x2="8" y2="8.8" stroke-linecap="round"></line>
+                  <circle cx="8" cy="11.3" r="0.6" fill="currentColor" stroke="none"></circle>
+                </svg>
+                <span>We could not recognize that email address. Check for typos and try again.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="sy-spec-card" data-specimen-state="submitting" aria-labelledby="sy-st-busy-h">
+            <h3 id="sy-st-busy-h" class="sy-state-caption">Submitting</h3>
+            <div class="sy-field">
+              <label class="sy-label" for="sy-state-busy-input">Work email</label>
+              <input type="email" id="sy-state-busy-input" class="sy-input muted" value="maya@northwind.dev" readonly>
+            </div>
+            <p class="sy-hint">Allocating isolated Frankfurt build runner.</p>
+            <button type="button" class="sy-btn sy-btn-primary" style="margin-top: auto;" aria-disabled="true">
+              <span style="display: inline-flex; align-items: center; gap: 8px;">
+                <svg class="sy-spinner" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                  <path d="M8 2a6 6 0 1 1-4.24 1.76" stroke-linecap="round"></path>
+                </svg>
+                <span>Provisioning sandbox</span>
+              </span>
+            </button>
+          </article>
+
+          <article class="sy-spec-card" data-specimen-state="approved" aria-labelledby="sy-st-ready-h">
+            <h3 id="sy-st-ready-h" class="sy-state-caption">Approved</h3>
+            <div class="sy-status-line">
+              <span>Verification link sent</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline>
+              </svg>
+            </div>
+            <p class="sy-photo-caption num">Sent one-click sign-in link to maya@northwind.dev. Link stays valid for 30 minutes.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sy-container sy-footer">
+    <span>Switchyard Design System — Marketing and imagery components</span>
+    <div class="sy-footer-links">
+      <a href="../index.html">All systems</a>
+      <a href="../systems/switchyard.html">Product components</a>
+      <a href="#contents">Back to contents</a>
+    </div>
+  </footer>
+
+  <!-- Accessible Repo-Connect Onboarding Modal (<dialog>) -->
+  <dialog class="sy-dialog" id="onboard-dialog" aria-labelledby="onboard-title">
+    <div class="sy-dialog-head">
+      <div>
+        <h2 id="onboard-title" style="font-size: 1.25rem;">Connect a Git repository</h2>
+        <p class="sy-hint num" id="onboard-plan-label" style="margin-top: 4px;">Hobby plan, three production services included free</p>
+      </div>
+      <button type="button" class="sy-btn sy-btn-ghost sy-btn-sm" data-close-dialog aria-label="Close onboarding dialog">Close</button>
+    </div>
+
+    <form id="sy-modal-form" novalidate style="display: flex; flex-direction: column; gap: 16px; margin-top: 18px;">
+      <div class="sy-field">
+        <label class="sy-label" for="sy-repo-input">Repository path</label>
+        <input
+          type="text"
+          id="sy-repo-input"
+          class="sy-input mono"
+          value="github.com/northwind/core-api"
+          required
+          aria-describedby="sy-repo-err"
+        >
+        <div class="sy-error" id="sy-repo-err" hidden>
+          <span>Enter a repository in owner/repo or github.com/owner/repo format.</span>
+        </div>
+      </div>
+
+      <div class="sy-field">
+        <label class="sy-label" for="sy-modal-region">Primary worker pool</label>
+        <div class="sy-select-wrap">
+          <select id="sy-modal-region" class="sy-select num">
+            <option value="fra">Frankfurt, EU Central (11 ms)</option>
+            <option value="iad">Virginia, US East (14 ms)</option>
+            <option value="hnd">Tokyo, Asia Pacific (19 ms)</option>
+          </select>
+          <svg class="sy-select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <div class="sy-dialog-foot">
+        <button type="button" class="sy-btn" data-close-dialog>Cancel</button>
+        <button type="submit" class="sy-btn sy-btn-primary">Connect repository</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="sy-toast" id="sy-toast" role="status" aria-live="polite" hidden></div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var memPrefs = {};
+      function savePref(k, v) {
+        memPrefs[k] = v;
+        try { window.localStorage.setItem(k, v); } catch (_e) {}
+      }
+
+      /* 1. Theme toggle: data-theme="dark" <-> "light", label flips "Light" <-> "Dark" */
+      var htmlEl = document.documentElement;
+      var themeBtn = document.querySelector('[data-theme-toggle]');
+      function isDarkMode() {
+        var cur = htmlEl.getAttribute('data-theme');
+        return cur !== 'light' && cur !== 'porcelain';
+      }
+      function syncThemeBtn() {
+        var dark = isDarkMode();
+        themeBtn.setAttribute('aria-pressed', String(dark));
+        themeBtn.textContent = dark ? 'Light' : 'Dark';
+      }
+      syncThemeBtn();
+      themeBtn.addEventListener('click', function () {
+        var next = isDarkMode() ? 'light' : 'dark';
+        htmlEl.setAttribute('data-theme', next);
+        syncThemeBtn();
+        savePref('sy-mkt-theme', next);
+      });
+
+      /* Polite single status toast */
+      var toastEl = document.getElementById('sy-toast');
+      var toastTimer = null;
+      function showToast(msg) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastEl.textContent = msg;
+        toastEl.hidden = false;
+        toastTimer = setTimeout(function () {
+          toastEl.hidden = true;
+        }, 3400);
+      }
+
+      /* 2. Roving ARIA state tabs across all [role="tablist"][data-state-tabs] bars */
+      document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        function activateTab(idx, moveFocus) {
+          tabs.forEach(function (t, i) {
+            var sel = i === idx;
+            t.setAttribute('aria-selected', String(sel));
+            t.tabIndex = sel ? 0 : -1;
+            var pid = t.getAttribute('aria-controls');
+            var panel = pid ? document.getElementById(pid) : null;
+            if (panel) panel.hidden = !sel;
+            if (sel && moveFocus) t.focus();
+          });
+        }
+        tabs.forEach(function (t, i) {
+          t.addEventListener('click', function () { activateTab(i, false); });
+          t.addEventListener('keydown', function (e) {
+            var next = -1;
+            if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') next = 0;
+            else if (e.key === 'End') next = tabs.length - 1;
+            if (next !== -1) {
+              e.preventDefault();
+              activateTab(next, true);
+            }
+          });
+        });
+      });
+
+      /* 3. CLI Package Manager radiogroup + zero-jump copy */
+      var pkgBtns = Array.prototype.slice.call(document.querySelectorAll('.sy-pkg-btn'));
+      var cmdEl = document.getElementById('sy-live-cmd');
+      var activeCmd = 'pnpm create switchyard@latest';
+
+      function selectPkg(idx, moveFocus) {
+        pkgBtns.forEach(function (b, i) {
+          var sel = i === idx;
+          b.setAttribute('aria-checked', String(sel));
+          if (sel) {
+            activeCmd = b.getAttribute('data-cmd') || activeCmd;
+            cmdEl.textContent = activeCmd;
+            if (moveFocus) b.focus();
+          }
+        });
+      }
+      pkgBtns.forEach(function (b, i) {
+        b.addEventListener('click', function () { selectPkg(i, false); });
+        b.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+            e.preventDefault();
+            selectPkg((i + 1) % pkgBtns.length, true);
+          } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            selectPkg((i - 1 + pkgBtns.length) % pkgBtns.length, true);
+          }
+        });
+      });
+
+      var copyBtn = document.getElementById('sy-copy-cli');
+      var copyIdle = copyBtn.querySelector('.sy-copy-idle');
+      var copyDone = copyBtn.querySelector('.sy-copy-done');
+      var copyTimer = null;
+      copyBtn.addEventListener('click', function () {
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(activeCmd).catch(function () {});
+          }
+        } catch (_e) {}
+        copyIdle.style.visibility = 'hidden';
+        copyDone.hidden = false;
+        if (copyTimer) clearTimeout(copyTimer);
+        copyTimer = setTimeout(function () {
+          copyIdle.style.visibility = '';
+          copyDone.hidden = true;
+        }, 1400);
+        showToast('Copied: ' + activeCmd);
+      });
+
+      /* 4. Seat pricing Monthly / Annual toggle ($24 -> $19, Save $60 per seat a year) */
+      var billMonthly = document.getElementById('sy-bill-monthly');
+      var billAnnual = document.getElementById('sy-bill-annual');
+      var teamPrice = document.getElementById('sy-team-price');
+      var teamSub = document.getElementById('sy-team-sub');
+      var billOut = document.getElementById('sy-billing-out');
+      var annualOn = false;
+
+      function setBilling(isAnn) {
+        annualOn = isAnn;
+        billMonthly.setAttribute('aria-pressed', String(!annualOn));
+        billAnnual.setAttribute('aria-pressed', String(annualOn));
+        if (annualOn) {
+          teamPrice.textContent = teamPrice.getAttribute('data-annual');
+          teamSub.textContent = 'Billed $228 yearly, saving $60 per seat a year';
+          billOut.textContent = 'Saving $60 per seat a year ($228 billed annually)';
+        } else {
+          teamPrice.textContent = teamPrice.getAttribute('data-monthly');
+          teamSub.textContent = 'Billed monthly, or save $60 per seat a year';
+          billOut.textContent = 'Save $60 per seat a year on annual billing';
+        }
+      }
+      billMonthly.addEventListener('click', function () { setBilling(false); });
+      billAnnual.addEventListener('click', function () { setBilling(!annualOn); });
+
+      /* 6. Live background-image signup form validation (blur-late, live clear) */
+      var ctaForm = document.getElementById('sy-cta-form');
+      var emailInput = document.getElementById('sy-work-email');
+      var emailErr = document.getElementById('sy-email-err');
+      var emailErrText = document.getElementById('sy-email-err-text');
+
+      function validateEmail() {
+        var val = emailInput.value.trim();
+        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val);
+        if (!ok) {
+          emailInput.setAttribute('aria-invalid', 'true');
+          emailErrText.textContent = val.length === 0
+            ? 'Enter your work email address to create a workspace.'
+            : 'We could not recognize that email address. Check for typos and try again.';
+          emailErr.hidden = false;
+          return false;
+        }
+        emailInput.setAttribute('aria-invalid', 'false');
+        emailErr.hidden = true;
+        return true;
+      }
+      emailInput.addEventListener('blur', function () {
+        if (emailInput.value.trim().length > 0) validateEmail();
+      });
+      emailInput.addEventListener('input', function () {
+        if (emailInput.getAttribute('aria-invalid') === 'true') validateEmail();
+      });
+      ctaForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (validateEmail()) {
+          showToast('Verification link sent to ' + emailInput.value.trim());
+          emailInput.value = '';
+          emailInput.setAttribute('aria-invalid', 'false');
+        } else {
+          emailInput.focus();
+        }
+      });
+
+      /* 7. Modal <dialog> with Escape close & focus restoration */
+      var activeOpener = null;
+      var onboardDialog = document.getElementById('onboard-dialog');
+      var planLabel = document.getElementById('onboard-plan-label');
+      var repoInput = document.getElementById('sy-repo-input');
+      var repoErr = document.getElementById('sy-repo-err');
+      var PLAN_COPY = {
+        Hobby: 'Hobby plan, three production services included free',
+        Team: 'Team plan, 14-day free trial across all 3 regional pools',
+        Enterprise: 'Enterprise plan, dedicated single-tenant architecture review'
+      };
+
+      document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var sel = btn.getAttribute('data-open-modal');
+          var dlg = document.querySelector(sel);
+          if (!dlg || dlg.open) return;
+          var plan = btn.getAttribute('data-plan') || 'Hobby';
+          if (planLabel && PLAN_COPY[plan]) planLabel.textContent = PLAN_COPY[plan];
+          toastEl.hidden = true;
+          activeOpener = btn;
+          dlg.showModal();
+        });
+      });
+
+      document.querySelectorAll('dialog').forEach(function (dlg) {
+        dlg.addEventListener('close', function () {
+          if (activeOpener && typeof activeOpener.focus === 'function') {
+            activeOpener.focus({ preventScroll: true });
+          }
+        });
+        dlg.addEventListener('click', function (e) {
+          if (e.target === dlg) dlg.close();
+        });
+      });
+
+      document.querySelectorAll('[data-close-dialog]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var dlg = btn.closest('dialog');
+          if (dlg) dlg.close();
+        });
+      });
+
+      document.getElementById('sy-modal-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var repo = repoInput.value.trim();
+        var ok = /^(?:https?:\/\/)?(?:github\.com\/|gitlab\.com\/)?[a-z0-9_.-]+\/[a-z0-9_.-]+\/?$/i.test(repo);
+        if (!ok) {
+          repoInput.setAttribute('aria-invalid', 'true');
+          repoErr.hidden = false;
+          repoInput.focus();
+          return;
+        }
+        repoInput.setAttribute('aria-invalid', 'false');
+        repoErr.hidden = true;
+        onboardDialog.close();
+        showToast('Repository connected, build queued for ' + repo);
+      });
+
+      repoInput.addEventListener('input', function () {
+        if (repoInput.getAttribute('aria-invalid') === 'true') {
+          repoInput.setAttribute('aria-invalid', 'false');
+          repoErr.hidden = true;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

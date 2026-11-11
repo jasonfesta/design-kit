@@ -1,0 +1,8 @@
+{
+  "name": "games",
+  "displayName": "Games",
+  "description": "Browser game craft: toy-first concepts, deterministic sim cores, fun and balance ratchets, procedural 3D and cutaways, multiplayer and quests, audio and juice.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Turn this observation into a 10-second playable toy", "Make my game sim deterministic and replayable", "Add juice and procedural audio to my game"]
+}

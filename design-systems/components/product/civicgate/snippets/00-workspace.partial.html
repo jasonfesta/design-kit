@@ -1,0 +1,186 @@
+<section aria-labelledby="permit-heading" class="workspace-band" data-section="workspace" id="workspace">
+<nav aria-label="Breadcrumb" class="breadcrumb">
+<ol>
+<li><a href="#workspace">Home</a></li>
+<li><a href="#workspace">Parking and streets</a></li>
+<li aria-current="page">Resident permits</li>
+</ol>
+</nav>
+<div class="permit-layout">
+<div>
+<form id="permit-step-form" novalidate="">
+<h1 class="question-title" id="permit-heading">Tell us about your vehicle</h1>
+<p class="question-hint">Your annual permit fee depends on how your vehicle is powered.</p>
+<fieldset class="choice-fieldset">
+<legend class="sr-only">How is your vehicle powered?</legend>
+<div class="choice-stack">
+<div>
+<div class="choice-item" data-radio-row="fuel-electric">
+<input aria-describedby="desc-electric" id="fuel-electric" name="vehicle-fuel" type="radio" value="electric"/>
+<div class="choice-text">
+<label class="choice-title" for="fuel-electric">Electric</label>
+<p class="choice-desc" id="desc-electric">Battery electric only, with zero exhaust emissions</p>
+</div>
+</div>
+<div class="conditional-reveal" hidden="" id="kerb-reveal">
+<div class="check-label">
+<input aria-describedby="desc-kerb" id="kerb-channel" name="kerb-channel" type="checkbox"/>
+<div class="choice-text">
+<label class="choice-title" for="kerb-channel">Request a charging-cable kerb channel</label>
+<p class="choice-desc" id="desc-kerb">Free pavement check outside your home so your lead lies safely below foot level.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="choice-item" data-radio-row="fuel-hybrid">
+<input aria-describedby="desc-hybrid" checked="" id="fuel-hybrid" name="vehicle-fuel" type="radio" value="hybrid"/>
+<div class="choice-text">
+<label class="choice-title" for="fuel-hybrid">Hybrid</label>
+<p class="choice-desc" id="desc-hybrid">Petrol or diesel combined with a rechargeable electric motor</p>
+</div>
+</div>
+<div class="choice-item" data-radio-row="fuel-petrol">
+<input aria-describedby="desc-petrol" id="fuel-petrol" name="vehicle-fuel" type="radio" value="petrol"/>
+<div class="choice-text">
+<label class="choice-title" for="fuel-petrol">Petrol or diesel</label>
+<p class="choice-desc" id="desc-petrol">Standard combustion vehicles and non-plug mild hybrids</p>
+</div>
+</div>
+</div>
+</fieldset>
+<div class="action-row action-row--stack" style="margin-top: 32px;">
+<button class="civic-btn" id="save-permit-btn" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Save and continue</span>
+</button>
+<button class="civic-btn civic-btn--secondary" id="save-draft-btn" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Save for later</span>
+</button>
+</div>
+<div class="answers-block">
+<h2 style="font-size: 1.3125rem; margin-bottom: 16px;">Check your answers</h2>
+<table class="summary-table">
+<tbody>
+<tr>
+<th scope="row">Address</th>
+<td id="ans-address">14 Kelvin Terrace, Zone B</td>
+<td class="summary-action">
+<button class="link-btn" data-focus-field="modal-address" data-open-modal="permit-modal" type="button">
+                        Change<span class="sr-only"> address</span>
+</button>
+</td>
+</tr>
+<tr>
+<th scope="row">Registration</th>
+<td class="mono-code" id="ans-reg">LV19 MRO</td>
+<td class="summary-action">
+<button class="link-btn" data-focus-field="modal-reg" data-open-modal="permit-modal" type="button">
+                        Change<span class="sr-only"> vehicle registration</span>
+</button>
+</td>
+</tr>
+<tr>
+<th scope="row">Start date</th>
+<td class="tabular" id="ans-start">1 December 2026</td>
+<td class="summary-action">
+<button class="link-btn" data-focus-field="modal-start" data-open-modal="permit-modal" type="button">
+                        Change<span class="sr-only"> permit start date</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</form>
+</div>
+<aside aria-label="Permit fee summary" class="fee-card">
+<h2 style="font-size: 1.0625rem; font-weight: 600; color: var(--ink-secondary); letter-spacing: -0.01em;">Your permit fee</h2>
+<p class="fee-hero">
+<span class="fee-figure tabular" id="fee-total">£65</span>
+<span class="fee-unit">/ year</span>
+</p>
+<dl class="fee-lines">
+<div class="fee-line">
+<dt>Standard permit</dt>
+<dd class="tabular">£120</dd>
+</div>
+<div class="fee-line" id="fee-discount-row">
+<dt>Low-emission discount</dt>
+<dd class="tabular" id="fee-discount">−£55</dd>
+</div>
+<div class="fee-line" hidden="" id="fee-kerb-row">
+<dt>Kerb channel check</dt>
+<dd class="tabular">£0</dd>
+</div>
+</dl>
+<p class="fee-note tabular">Covers 12 months of resident bays in Zone B. Cancel anytime for a pro-rata monthly refund.</p>
+<button class="link-btn" data-open-drawer="fee-drawer" type="button">How Zone B fees work</button>
+</aside>
+</div>
+<div class="permits-section">
+<div class="section-head">
+<h2 style="font-size: 1.375rem;">Household permits</h2>
+<p class="section-sub tabular">Registered to 14 Kelvin Terrace</p>
+</div>
+<div class="table-scroll">
+<table class="civic-table" id="permits-table">
+<thead>
+<tr>
+<th aria-sort="none" data-col="0" data-type="text" scope="col">
+<button class="sort-btn" type="button">
+<span>Registration</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" viewbox="0 0 14 14">
+<path d="M7 2.5v9M3.8 5.7L7 2.5l3.2 3.2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</button>
+</th>
+<th scope="col">Vehicle</th>
+<th aria-sort="none" data-col="2" data-type="text" scope="col">
+<button class="sort-btn" type="button">
+<span>Status</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" viewbox="0 0 14 14">
+<path d="M7 2.5v9M3.8 5.7L7 2.5l3.2 3.2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</button>
+</th>
+<th aria-sort="ascending" class="num-col" data-col="3" data-type="num" scope="col">
+<button class="sort-btn" type="button">
+<span>Annual fee</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" viewbox="0 0 14 14">
+<path d="M7 2.5v9M3.8 5.7L7 2.5l3.2 3.2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</button>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="mono-code">ZN24 VPB</td>
+<td>Visitor scratchcards</td>
+<td class="tabular">6 stays remaining</td>
+<td class="num-col" data-sort-val="20">£20</td>
+</tr>
+<tr>
+<td class="mono-code">AB72 KLP</td>
+<td>Nissan Ariya · Electric</td>
+<td class="tabular">Active until May 2027</td>
+<td class="num-col" data-sort-val="45">£45</td>
+</tr>
+<tr>
+<td class="mono-code">LV19 MRO</td>
+<td>Toyota Corolla · Hybrid</td>
+<td class="tabular">Expires in 12 days</td>
+<td class="num-col" data-sort-val="65">£65</td>
+</tr>
+<tr>
+<td class="mono-code">WK68 TPF</td>
+<td>Ford Fiesta · Petrol</td>
+<td class="tabular">Ended October 2026</td>
+<td class="num-col" data-sort-val="120">£120</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>

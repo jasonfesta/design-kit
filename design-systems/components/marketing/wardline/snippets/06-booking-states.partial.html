@@ -1,0 +1,131 @@
+<section aria-labelledby="h-booking-states" class="doc-chapter" data-component-doc="" id="booking-states">
+<div class="chapter-head">
+<h2 id="h-booking-states">Slot lookup and validation states</h2>
+<p>Show rest, validation error, room-availability check, and 15-minute held-slot confirmation states together so clinical booking copy stays reassuring and clear across every edge case.</p>
+</div>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul class="usage-list">
+<li>Use across clinic lookup cards and modal intake sheets that hold provisional morning phlebotomy times.</li>
+<li>Reserve morning rooms for fifteen minutes by email before requesting insurance or HSA card details.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Composition and copy rules</h3>
+<ul class="usage-list">
+<li>Validate strictly on blur or submit, explaining why the email is needed in one plain coral sentence.</li>
+<li>Lock inputs and overlap the spinner inside the submit button cell while querying phlebotomy rooms.</li>
+<li>Include clinic street address and water-fasting guidance inside the held-slot confirmation state.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div class="booking-states-grid">
+<!-- State 1: Rest (live) -->
+<div class="specimen-card" data-specimen-state="rest">
+<div class="specimen-label">Default</div>
+<form class="wl-card booking-state-card" data-lead-form="" novalidate="">
+<div class="booking-fields-row">
+<div class="wl-field">
+<label class="wl-label" for="wl-rest-clinic">Clinic</label>
+<div class="wl-select-wrap">
+<select class="wl-select" id="wl-rest-clinic" name="clinic">
+<option value="Hayes Valley">Hayes Valley · Gough St</option>
+<option value="Marina">Marina · Chestnut St</option>
+<option value="Temescal">Temescal · Telegraph Ave</option>
+</select>
+<svg aria-hidden="true" class="wl-select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-rest-email">Email for slot hold</label>
+<input aria-describedby="wl-rest-err wl-rest-hint" autocomplete="email" class="wl-input" id="wl-rest-email" name="email" placeholder="you@domain.com" required="" type="email"/>
+</div>
+</div>
+<p class="wl-error" hidden="" id="wl-rest-err" role="alert"></p>
+<p class="wl-hint" id="wl-rest-hint">Holds the earliest open morning draw for 15 minutes with no card required.</p>
+<button class="wl-btn-pri" type="submit">
+<span class="btn-label">Hold morning slot</span>
+<span aria-hidden="true" class="btn-spinner">
+<svg class="spin-svg" fill="none" viewbox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"></circle><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2"></path></svg>
+                    Checking rooms
+                  </span>
+</button>
+</form>
+</div>
+<!-- State 2: Validation error -->
+<div class="specimen-card" data-specimen-state="missing-email-error">
+<div class="specimen-label">Missing email</div>
+<div class="wl-card booking-state-card">
+<div class="booking-fields-row">
+<div class="wl-field">
+<label class="wl-label" for="wl-err-clinic">Clinic</label>
+<div class="wl-select-wrap">
+<select class="wl-select" id="wl-err-clinic">
+<option value="Hayes Valley">Hayes Valley · Gough St</option>
+<option value="Marina">Marina · Chestnut St</option>
+<option value="Temescal">Temescal · Telegraph Ave</option>
+</select>
+<svg aria-hidden="true" class="wl-select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-err-email">Email for slot hold</label>
+<input aria-describedby="wl-err-demo-msg" aria-invalid="true" class="wl-input" id="wl-err-email" placeholder="you@domain.com" readonly="" type="email" value=""/>
+</div>
+</div>
+<p class="wl-error" id="wl-err-demo-msg">Enter an email address so we can send your 15-minute phlebotomy hold link.</p>
+<button aria-disabled="true" class="wl-btn-pri" type="button">
+<span class="btn-label">Hold morning slot</span>
+<span aria-hidden="true" class="btn-spinner"></span>
+</button>
+</div>
+</div>
+<!-- State 3: Checking phlebotomy rooms (busy) -->
+<div class="specimen-card" data-specimen-state="checking-rooms">
+<div class="specimen-label">Checking rooms</div>
+<div aria-busy="true" class="wl-card booking-state-card">
+<div class="booking-fields-row">
+<div class="wl-field">
+<label class="wl-label" for="wl-busy-clinic">Clinic</label>
+<div class="wl-select-wrap">
+<select class="wl-select" disabled="" id="wl-busy-clinic">
+<option>Hayes Valley · Gough St</option>
+</select>
+<svg aria-hidden="true" class="wl-select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-busy-email">Email for slot hold</label>
+<input class="wl-input" disabled="" id="wl-busy-email" type="email" value="claire.lindqvist@post.io"/>
+</div>
+</div>
+<p class="wl-hint">Checking open fasting draw chairs for Thursday morning…</p>
+<button aria-disabled="true" class="wl-btn-pri" data-loading="true" type="button">
+<span class="btn-label">Hold morning slot</span>
+<span class="btn-spinner">
+<svg aria-hidden="true" class="spin-svg" fill="none" viewbox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"></circle><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2"></path></svg>
+                    Checking rooms
+                  </span>
+</button>
+</div>
+</div>
+<!-- State 4: Thursday 08:10 slot held -->
+<div class="specimen-card" data-specimen-state="slot-held">
+<div class="specimen-label">Slot held</div>
+<div class="wl-card booking-state-card">
+<p class="held-slot-title tnum">Thursday 08:10 fasting draw held for 15 minutes</p>
+<p class="held-slot-detail">Hayes Valley Clinic, 420 Gough St, Room 2 · Hold link sent to claire.lindqvist@post.io. Plain water and unsweetened black tea or coffee are welcome before an 8-hour fasting draw.</p>
+<button class="wl-btn" data-open-modal="#intake-dialog" type="button">Change morning time</button>
+</div>
+</div>
+</div>
+</div>
+</section>

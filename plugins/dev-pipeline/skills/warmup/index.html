@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>warmup</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>warmup</h1>
+      <p>runs a locked pre-bench image-to-react translation or post-bench head-to-head build comparison across frontier models and generates a 100-point tear-apart design evaluation report.</p>
+      <div class="actions">
+        <a href="../warmup.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Warmup: Image-to-React Pre-Bench, Post-Bench Build Comparator &amp; Tear-Apart Design Eval</h1>
+<p>Warmup (<code>warmup</code>) is a Google-wide shareable design evaluation skill that tests and compares how accurately frontier models (<strong>Grok</strong>, <strong>Claude</strong>, <strong>Astra</strong>, <strong>GPT</strong>, and <strong>Argon</strong>) or existing React builds translate a source image—either a single UI screenshot/mockup or a 4K multi-layout grid sheet—into a complete, runnable React application.</p>
+<p>Warmup operates in two modes:</p>
+<ol>
+<li><strong>Pre-Bench Mode (<code>--mode pre-bench</code>)</strong>: Runs <em>before</em> full product building using a single, locked, zero-drift prompt across <strong>Grok</strong>, <strong>Claude</strong>, <strong>Astra</strong>, <strong>GPT</strong>, and <strong>Argon</strong> to see which model best moonshots hidden visual instructions, preserves optical button padding and typography, and produces a working React folder.</li>
+<li><strong>Post-Bench Build Comparison Mode (<code>--mode post-bench</code> / <code>compare_builds.py</code>)</strong>: Takes 1 to $N$ existing or newly generated React builds (<code>project/</code> folders or <code>dist/index.html</code> bundles), renders them in headless WebKit2GTK (<code>xvfb-run -a</code>), and compares every build against the reference image and head-to-head against each other.</li>
+</ol>
+<h2>Workflow Checklist</h2>
+<p>Copy this checklist to track progress across a Warmup run:</p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 1</strong>: Check API keys &amp; offer available host assistant models (<code>scripts/check_models.py</code>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 2</strong>: Preprocess the source image, extract semantic tokens &amp; slice 4K grid panels (<code>scripts/prepare_and_extract.py</code>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 3</strong>: Execute Pass 1 (Locked Simple Zero-Drift Prompt) or stage Post-Bench builds (<code>scripts/run_warmup.py</code>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 4</strong>: Execute Pass 2 (Post-Translation Difference &amp; Hidden-Instruction Self-Analysis)</span></li>
+<li><span class="check-box"></span><span><strong>Step 5</strong>: Run Headless WebKit2GTK DOM &amp; <code>AutoRaterV1</code> Visual Comparison across all builds (<code>scripts/compare_builds.py</code>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 6</strong>: Run Pass 3 (Tear-Apart Design Eval) and generate <code>WARMUP-REPORT.md</code>, <code>index.html</code>, and <code>scores.json</code> (<code>scripts/eval_warmup.py</code>)</span></li>
+</ul>
+<h2>Step 1: Check API Keys &amp; Offer Available Host Assistant Models</h2>
+<p>Warmup evaluates five default frontier model slots: <strong>Grok</strong> (<code>grok</code>), <strong>Claude</strong> (<code>claude</code>), <strong>Astra</strong> (<code>astra</code>), <strong>GPT</strong> (<code>gpt</code>), and <strong>Argon</strong> (<code>argon</code>).</p>
+<p>Before running trials, check which model slots have external API keys configured and which host assistant models are available as fallbacks:</p>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/check_models.py --env-file=.env --format=all</code></pre>
+<p>Each model slot resolves its execution route in three tiers so a Warmup run never blocks when an external API key is absent:</p>
+<ol>
+<li><strong>Direct Provider API Key</strong>: Uses <code>XAI_API_KEY</code> (Grok), <code>ANTHROPIC_API_KEY</code> (Claude), <code>ASTRA_API_KEY</code> or <code>GEMINI_API_KEY</code> (Astra), <code>OPENAI_API_KEY</code> (GPT), and <code>ARGON_API_KEY</code> (Argon) from the environment or <code>.env</code>.</li>
+<li><strong>Unified Gateway Key</strong>: Routes through <code>PORTKEY_API_KEY</code> or <code>OPENROUTER_API_KEY</code> when configured.</li>
+<li><strong>Interactive Host Assistant Model Offer &amp; Fallback</strong>: When any slot lacks an API key, query live host models via <code>swarm(action=&quot;models&quot;, all=True)</code>, pass the catalog to <code>check_models.py</code>, and present the interactive <code>ask_question</code> payload to the user so they can accept the recommended host model mapping (with live remaining quota percentages) or provide a <code>.env</code> path.</li>
+</ol>
+<p>Never ask for raw API keys in chat or write credentials into generated React folders or reports. See the <a href="references/model-routing.md">model routing and fallback configuration guide</a>.</p>
+<h2>Step 2: Preprocess the Input Image (Single Screen vs. 4K Multi-Layout Grid)</h2>
+<p>Run <code>prepare_and_extract.py</code> (automatically invoked by <code>run_warmup.py</code> or runnable standalone) to establish the ground-truth visual baseline:</p>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/prepare_and_extract.py --image={image_path} --output={output_dir}/preprocessing</code></pre>
+<p>This step bakes in <code>prepare-and-extract-image.py</code>, <code>ingest-nano-banana.py</code>, and <code>measure_px.py</code> from <code>image-to-react</code>:</p>
+<ol>
+<li><strong>Topology &amp; 4K Grid Panel Slicing</strong>: Detects whether the input is a <strong>Single UI Layout</strong> or a <strong>4K Multi-Layout Grid Sheet</strong> (such as a <code>5504x3072</code> 5-page website sheet or <code>4544x3748</code> 10-screen mobile sheet) and slices individual panels into <code>preprocessing/panels/panel_01.png</code>..<code>panel_K.png</code>.</li>
+<li><strong>8-Token Semantic CSS Palette Extraction</strong>: Extracts <code>--surface</code>, <code>--surface-raised</code>, <code>--ink</code>, <code>--muted</code>, <code>--accent</code>, <code>--accent-alt</code>, <code>--on-accent</code>, and <code>--border</code> directly from pixel histogram clusters.</li>
+<li><strong>3-Zone Vertical Profile</strong>: Measures luminance and contrast across <strong>Zone A (Top <code>0-25%</code>)</strong>, <strong>Zone B (Middle <code>25-75%</code>)</strong>, and <strong>Zone C (Bottom <code>75-100%</code>)</strong>.</li>
+</ol>
+<h2>Step 3: Pass 1 — Run the Locked Simple Prompt (Pre-Bench) or Stage Existing Builds (Post-Bench)</h2>
+<p>In <strong>Pre-Bench Mode</strong>, every model receives the <strong>exact same minimal prompt</strong>. Keeping the prompt simple and invariant tests which model naturally respects visual boundaries and uncovers implicit design instructions without drifting:</p>
+<pre data-lang="text"><code>Take this image as is. Do not drift and do not invent anything new. Translate the image exactly as you see it into a complete, working React screen, application, or website (if the image is a grid containing multiple layouts, translate every layout in the grid accurately). Do not invent any new items, sections, copy, or images. Make sure all images and visual assets are high resolution; if you need to recreate an image or graphic asset so it renders crisply at high resolution, recreate it faithfully without changing its subject, palette, or composition. Produce a complete, workable project folder with all necessary files to build and run the HTML.</code></pre>
+<p>Run <code>run_warmup.py</code> in <strong>Pre-Bench Mode</strong>:</p>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/run_warmup.py --mode=pre-bench --image={image_path} --output={output_dir} --models=grok,claude,astra,gpt,argon</code></pre>
+<p>Or run <code>run_warmup.py</code> in <strong>Post-Bench Mode</strong> to compare existing React project directories or built HTML bundles against the reference image:</p>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/run_warmup.py --mode=post-bench --image={image_path} --output={output_dir} --builds=build_a={path_to_build_a},build_b={path_to_build_b}</code></pre>
+<p>Each trial materializes a complete, runnable Golden Template React project in <code>{output_dir}/trials/{model_slug}/project/</code> (with <code>index.html</code>, <code>package.json</code>, <code>tsconfig.json</code>, <code>vite.config.ts</code>, <code>src/App.tsx</code>, <code>src/components/<em>.tsx</code>, <code>src/data/</em>.ts</code>, and a self-contained <code>dist/index.html</code> bundle).</p>
+<h2>Step 4: Pass 2 — Post-Translation Difference &amp; Hidden-Instruction Self-Analysis</h2>
+<p>Immediately after a model produces its Pass 1 React translation, prompt that <strong>same model context</strong> to audit its own work against the source image using the locked Pass 2 probe (see <a href="references/prompt-protocol.md">references/prompt-protocol.md</a>):</p>
+<pre data-lang="text"><code>Compare your generated React application against the original source image and provide a structured self-analysis covering:
+1. Visual &amp; Layout Differences: List every difference between the source image and your React translation (layout proportions, spacing, colors, typography, missing or approximated elements, and recreated high-res imagery).
+2. Hidden or Implicit Instructions Detected: Identify any hidden instructions, subtle UI cues, micro-copy directives, grid relationships, or implied interactive behaviors present in the source image, and explain whether and how your React code implemented them.
+3. Self-Identified Drift: Note anywhere you drifted from the exact image or had to infer details not explicitly visible.</code></pre>
+<p>Each model&#x27;s self-analysis is saved to <code>{output_dir}/trials/{model_slug}/self-analysis.md</code>.</p>
+<h2>Step 5: Headless WebKit2GTK DOM &amp; <code>AutoRaterV1</code> Multi-Build Visual Comparison</h2>
+<p>Run <code>compare_builds.py</code> (automatically invoked by <code>eval_warmup.py</code> or runnable standalone) to render every build in headless WebKit2GTK and compute pixel + DOM geometry comparisons:</p>
+<pre data-lang="bash"><code>xvfb-run -a python3 {skill_dir}/scripts/compare_builds.py --run-dir={output_dir}</code></pre>
+<p>For every build, <code>compare_builds.py</code> produces:</p>
+<ul>
+<li>  <strong>Rendered Screenshot &amp; 64x64 Cell Loss Map (<code>AutoRaterV1</code>)</strong>: Computes <code>s_total</code>, <code>s_block</code> (luminance structure), <code>s_edge</code> (Sobel edge structure), <code>s_chroma</code> (RGB color fidelity), <code>s_dom</code> (live DOM geometry health), and per-zone scores (<code>Zone A Top 0-25%</code>, <code>Zone B Middle 25-75%</code>, <code>Zone C Bottom 75-100%</code>).</li>
+<li>  <strong>Visual Diff Artifacts</strong>: Writes <code>rendered.png</code>, <code>rendered_overlay.png</code> (50/50 semi-transparent blend), <code>diff_mask.png</code> (64x64 cell error heatmap), and <code>side_by_side.png</code> (labeled 3-panel strip: Target Reference | Rendered Build | Diff Heatmap) into <code>{output_dir}/trials/{model_slug}/comparison/</code>.</li>
+<li>  <strong>Live DOM Optical Padding &amp; Glyph-Geometry Audit</strong>: Measures every button, pill, card, and grid row via <code>getBoundingClientRect()</code> and <code>getComputedStyle()</code> for horizontal padding symmetry (<code>|padLeft - padRight| &lt;= 3px</code>), border crowding (<code>&lt; 12px</code>), bottom card clearance (<code>&gt;= 14px</code>), equal-height sibling cards (<code>&lt;= 2px</code> delta), plumbline alignment, and <code>DejaVu Sans</code> font fallback detection.</li>
+<li>  <strong>Pairwise Build-vs-Build Matrix</strong>: Writes <code>{output_dir}/comparison/pairwise_build_matrix.json</code> and <code>{output_dir}/comparison/all_builds_comparison.png</code> comparing every pair of builds $(M_i, M_j)$ against each other and against the reference image.</li>
+</ul>
+<h2>Step 6: Pass 3 — Tear-Apart Design Eval &amp; Comparative Reports</h2>
+<p>Run <code>eval_warmup.py</code> to grade every trial across the 100-point rubric and generate the comparative reports:</p>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/eval_warmup.py --run-dir={output_dir} --verify</code></pre>
+<h3>Scoring Rubric (100 Points Total)</h3>
+<p>Dimension | Max Points | What to Tear Apart</p>
+<p>:--- | :--- | :---</p>
+<p><strong>1. Image-to-React Visual Fidelity &amp; Zero Drift</strong> | <strong>25</strong> | <code>AutoRaterV1</code> <code>s_total</code> (<code>s_block</code>, <code>s_edge</code>, <code>s_chroma</code>), 3-zone fidelity (Top/Middle/Bottom), 4K grid panel completeness, zero hallucinated items/copy, high-res asset preservation or crisp vector SVG recreation.</p>
+<p><strong>2. Hidden Instructions &amp; Self-Analysis Honesty</strong> | <strong>15</strong> | Detection and execution of implicit/hidden visual instructions in the source image, plus accuracy and honesty of the Pass 2 difference self-analysis.</p>
+<p><strong>3. Typography &amp; Font Translation</strong> | <strong>15</strong> | Font family matching (<code>.font-serif-display</code>, <code>.font-grotesk</code>, <code>.font-mono-tech</code>), Google Fonts loaded in <code>index.html</code>, zero <code>DejaVu Sans</code> fallback, letter-spacing, descender clearance, and <code>tabular-nums</code> on numbers.</p>
+<p><strong>4. Optical Padding, Button Craft &amp; CSS Integrity</strong> | <strong>20</strong> | Symmetrical horizontal (<code>&gt;= 12px</code>) and vertical (<code>&gt;= 6px</code>) padding on all buttons/pills (<code>px-3.5</code> to <code>px-5</code>, <code>py-1.5</code> to <code>py-2.5</code>), card bottom clearance (<code>&gt;= 14px</code>), icon-to-label gaps (<code>gap-1.5</code> to <code>gap-2</code>), equal-height sibling grid cards (<code>&lt;= 2px</code>), and zero collisions/overflow.</p>
+<p><strong>5. Interactive Completeness &amp; Stateful Behavior</strong> | <strong>15</strong> | Working React state (<code>useState</code>, <code>useMemo</code>) on tabs, filters, modals, drawers, toggles, and multi-screen navigation (<code>?screen=&lt;i&gt;</code> / <code>window.__setGoldenEvalScreen</code>); tactile <code>:active</code> states.</p>
+<p><strong>6. Code Quality &amp; Runnable Folder Integrity</strong> | <strong>10</strong> | Canonical Golden Template folder structure, named <code>export function App()</code>, bespoke <code>&lt;Brand&gt;BrandLogo.tsx</code> SVG component, modular <code>src/components/</code> + <code>src/data/</code>, and runnable <code>dist/index.html</code>.</p>
+<h3>Mandatory Determinations in Every Report</h3>
+<p>Every generated report (<code>{output_dir}/WARMUP-REPORT.md</code>, <code>{output_dir}/index.html</code>, <code>{output_dir}/scores.json</code>, and <code>{output_dir}/trials/{model_slug}/MODEL-EVAL-REPORT.md</code>) explicitly determines:</p>
+<ol>
+<li><strong>What Each Model Did Right</strong> (exact visual, structural, typographic, padding, and interactive matches vs. the actual image).</li>
+<li><strong>What Each Model Did Wrong</strong> (<code>[P0] / [P1] / [P2]</code> defects, drift, cramped buttons, or omissions vs. the actual image).</li>
+<li><strong>Differences Compared to the Actual Image</strong> (Zone A Top <code>0-25%</code>, Zone B Middle <code>25-75%</code>, Zone C Bottom <code>75-100%</code>, plus localized DOM <code>container_deviations</code>).</li>
+<li><strong>Differences Between Models Relative to Each Other and the Actual Image</strong> (cross-model delta table + pairwise build divergence matrix showing which build won each zone and why).</li>
+</ol>
+<h2>Baked-In Sub-Skills &amp; Lineage Credits</h2>
+<p>Warmup bakes in and explicitly credits the following Google and <code>moodboards-borg-space</code> sub-skills (see <a href="references/sub-skills-and-credits.md">references/sub-skills-and-credits.md</a> for full details):</p>
+<ul>
+<li>  <strong><code>image-to-react</code></strong> (Jason Festa, <code>moodboards-borg-space</code>): High-res screenshot &amp; 4K Nano Banana grid preprocessing (<code>prepare-and-extract-image.py</code>, <code>ingest-nano-banana.py</code>), closed-loop WebKit2GTK evaluation (<code>eval-image-to-react</code>), and pixel ruler (<code>measure_px.py</code>).</li>
+<li>  <strong><code>golden-template</code></strong> (Jason Festa, <code>moodboards-borg-space</code>): Canonical <code>golden-template/dating</code> (<code>Nocturne</code>) React 19 + Vite 7 + Tailwind v4 architecture, 8-token semantic CSS palette, and Golden Template linter.</li>
+<li>  <strong><code>replicate-mock</code></strong> (Manasa Babu &amp; Jason Festa): 8 Core Pixel-Perfection Directives (Zero Hallucination, Zero Omission, Exact Visual Match, No Generic Placeholders, High-Res Asset Recreation, Bit-for-Bit Asset Extraction, Perfect Text Reconstruction, Vector-to-Vector SVG Match).</li>
+<li>  <strong><code>screenshot-to-html</code> &amp; <code>visual-matcher</code> (<code>AutoRaterV1</code>)</strong> (Google Agentic Design Loop): 64x64 cell loss map (<code>s_total</code>, <code>s_block</code>, <code>s_edge</code>, <code>s_chroma</code>, <code>s_dom</code>), <code>rendered_overlay.png</code>, <code>diff_mask.png</code>, and localized DOM <code>container_deviations</code>.</li>
+<li>  <strong><code>sds-measurement-verifier</code></strong> (Google Search DevAI SDS): Universal Interactive Element &amp; Button Padding Rule and Horizontal Multi-Tile Grid Equality Verification (<code>&lt;= 2px</code> delta).</li>
+<li>  <strong><code>html-to-search-vibes</code> &amp; <code>screenshot-to-search-vibes</code></strong> (Google Cruxy): Full-Canvas 3-Zone Scan Protocol (<code>Zone A Top 0-25%</code>, <code>Zone B Middle 25-75%</code>, <code>Zone C Bottom 75-100%</code>) and Equal-Height Card Row Architecture (<code>items-stretch</code> + <code>h-full flex-col justify-between</code> + <code>mt-auto</code>).</li>
+<li>  <strong><code>web-design-check</code> &amp; <code>web-design-review</code></strong> (<code>fofr</code>, <code>go/fofr-agent-skills</code>): 7 Generic Glyph-Geometry Gates (<code>BORDER_AND_DIVIDER_CROWDING &lt; 12px</code>, <code>ROW_WRAP_AND_ORPHAN_ITEM</code>, <code>PLUMBLINE_AXIS_DRIFT</code>, <code>LIST_AND_CARD_CONSISTENCY</code>, <code>TYPOGRAPHY_MEASURE_AND_ORPHAN_WORDS</code>, <code>OVERFLOW_CLIPPING_AND_COLLISION</code>, <code>FONT_AND_ASSET_HEALTH</code>) and x20 opaque-origin static HTML report safety.</li>
+<li>  <strong><code>screenshot-compare</code></strong> (Google Search DevAI Aegis): Labeled 3-panel composite (<code>side_by_side.png</code>) and multi-build comparison board (<code>all_builds_comparison.png</code>).</li>
+</ul>
+<h2>References</h2>
+<ul>
+<li>  <a href="references/sub-skills-and-credits.md">Baked-in sub-skills and lineage credits</a></li>
+<li>  <a href="references/prompt-protocol.md">Locked prompt protocol and self-audit probe</a></li>
+<li>  <a href="references/model-routing.md">Model routing, API keys, and assistant fallback configuration</a></li>
+<li>  <a href="references/design-eval-rubric.md">Tear-apart design evaluation rubric and scorecard template</a></li>
+<li>  <a href="examples/avela-post-bench-comparison-walkthrough.md">Example: Post-bench comparison across AVELA homepage builds</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

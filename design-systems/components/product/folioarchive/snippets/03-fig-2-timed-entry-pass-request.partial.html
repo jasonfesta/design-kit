@@ -1,0 +1,32 @@
+<figure class="fig-plate">
+<form class="fig-mount" id="preview-form" novalidate="">
+<div class="pass-form-grid">
+<div class="fa-field fa-field--full">
+<label class="fa-label" for="fa-visitor-email">Visitor email</label>
+<input aria-describedby="fa-email-err fa-email-hint" aria-invalid="false" class="fa-input" id="fa-visitor-email" name="email" placeholder="claire@kunsthaus.ch" required="" type="email"/>
+<span class="fa-error" hidden="" id="fa-email-err">Enter a valid email address, such as name@kunsthaus.ch.</span>
+<span class="fa-hint" id="fa-email-hint">Timed entry pass delivered immediately as PDF.</span>
+</div>
+<div class="fa-field">
+<label class="fa-label" for="fa-visit-slot">Entry window</label>
+<div class="select-wrap">
+<select class="fa-select" id="fa-visit-slot">
+<option value="10:00">10:00 — Members opening</option>
+<option value="11:30">11:30 — Curatorial walk</option>
+<option value="14:00">14:00 — North skylight hour</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="fa-field">
+<label class="fa-label" for="fa-cat-ref">Catalogue code</label>
+<input class="fa-input" id="fa-cat-ref" readonly="" type="text" value="KZ-1954-78"/>
+</div>
+</div>
+<div class="inline-controls">
+<button class="fa-btn-pri" type="submit">Request pass</button>
+<span class="fa-hint" hidden="" id="fa-form-ok" style="color:var(--ink-primary);font-weight:500">Timed pass sent.</span>
+</div>
+</form>
+<figcaption class="fig-caption">Fig. 2 — Timed-entry pass request</figcaption>
+</figure>

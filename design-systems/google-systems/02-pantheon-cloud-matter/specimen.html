@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Cloud Console / Pantheon (Cloud Matter CM4) — Hero Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/switchyard-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .console-shell { min-height: 100vh; display: flex; flex-direction: column; }
+    .console-bar {
+      height: var(--cm-console-bar-height);
+      background: var(--cm-sys-color-surface);
+      border-bottom: 1px solid var(--cm-sys-color-hairline);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 16px; gap: 12px;
+    }
+    .project-pill {
+      height: 30px; padding: 0 10px; border-radius: 6px;
+      border: 1px solid var(--cm-sys-color-outline);
+      background: var(--cm-sys-color-backdrop);
+      font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .omnibox {
+      flex: 1; max-width: 480px; height: 32px; border-radius: 6px;
+      background: var(--cm-sys-color-container);
+      border: 1px solid var(--cm-sys-color-hairline);
+      display: flex; align-items: center; padding: 0 12px;
+      color: var(--cm-sys-color-on-surface-variant); font-size: 12.5px;
+    }
+    .console-body {
+      flex: 1; display: grid; grid-template-columns: 224px 1fr 320px; min-height: 0;
+    }
+    .section-nav {
+      background: var(--cm-sys-color-backdrop);
+      border-right: 1px solid var(--cm-sys-color-hairline);
+      padding: 12px 8px; display: flex; flex-direction: column; gap: 2px;
+    }
+    .sec-title {
+      padding: 6px 12px 8px; font-family: var(--cm-font-heading);
+      font-weight: 600; font-size: 13.5px; border-bottom: 1px solid var(--cm-sys-color-hairline);
+      margin-bottom: 6px;
+    }
+    .nav-row {
+      height: 32px; padding: 0 12px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 12.5px; color: var(--cm-sys-color-on-surface); cursor: pointer;
+    }
+    .nav-row.active {
+      background: var(--cm-sys-color-backdrop-active);
+      color: var(--cm-sys-color-primary-on-container); font-weight: 600;
+    }
+    .center-work {
+      background: var(--cm-sys-color-surface);
+      display: flex; flex-direction: column; min-width: 0;
+    }
+    .action-bar {
+      min-height: var(--cm-action-bar-height);
+      padding: 8px 18px; border-bottom: 1px solid var(--cm-sys-color-hairline);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .cm-btn {
+      height: 30px; padding: 0 12px; border-radius: var(--cm-radius-sm);
+      border: 1px solid var(--cm-sys-color-outline);
+      background: var(--cm-sys-color-surface); color: var(--cm-sys-color-primary-on-container);
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .cm-btn-primary {
+      background: var(--cm-sys-color-primary); color: #ffffff; border-color: transparent;
+    }
+    html[data-theme="dark"] .cm-btn-primary { color: #0f0f0f; }
+    .summary-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--cm-sys-color-hairline);
+    }
+    .sum-cell {
+      padding: 12px 18px; border-right: 1px solid var(--cm-sys-color-hairline);
+    }
+    .sum-cell:last-child { border-right: none; }
+    .sum-val {
+      font-family: var(--cm-font-heading); font-size: 20px; font-weight: 600;
+      font-variant-numeric: tabular-nums; margin-top: 2px;
+    }
+    .filter-bar {
+      padding: 8px 18px; border-bottom: 1px solid var(--cm-sys-color-hairline);
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      background: var(--cm-sys-color-backdrop);
+    }
+    .filter-chip {
+      height: 24px; padding: 0 10px; border-radius: 999px;
+      background: var(--cm-sys-color-container-primary);
+      color: var(--cm-sys-color-primary-on-container);
+      font-size: 11.5px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px;
+    }
+    .table-wrap { overflow-x: auto; }
+    table.pcc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .pcc-table th {
+      height: 32px; padding: 0 14px; text-align: left;
+      background: var(--cm-sys-color-container);
+      color: var(--cm-sys-color-on-surface-variant); font-weight: 600; font-size: 11.5px;
+      border-bottom: 1px solid var(--cm-sys-color-hairline); white-space: nowrap;
+    }
+    .pcc-table td {
+      height: 36px; padding: 0 14px;
+      border-bottom: 1px solid var(--cm-sys-color-hairline); white-space: nowrap;
+    }
+    .pcc-table tr.selected td { background: var(--cm-sys-color-selection-container); }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;
+    }
+    .st-ok { background: var(--cm-sys-color-status-success-container); color: var(--cm-sys-color-status-success); }
+    .st-warn { background: var(--cm-sys-color-status-warning-container); color: var(--cm-sys-color-status-warning); }
+    .st-err { background: var(--cm-sys-color-status-error-container); color: var(--cm-sys-color-status-error); }
+    .inspector {
+      background: var(--cm-sys-color-surface);
+      border-left: 1px solid var(--cm-sys-color-hairline);
+      padding: 14px 16px; display: flex; flex-direction: column; gap: 14px;
+    }
+    .kv-row {
+      display: flex; justify-content: space-between; gap: 8px;
+      padding: 6px 0; border-bottom: 1px solid var(--cm-sys-color-hairline); font-size: 12px;
+    }
+    .meter { height: 6px; border-radius: 3px; background: var(--cm-sys-color-container); overflow: hidden; margin-top: 4px; }
+    .meter > span { display: block; height: 100%; background: var(--cm-chart-blue); }
+
+    @media (max-width: 960px) {
+      .omnibox { display: none; }
+      .console-body { grid-template-columns: 1fr; }
+      .section-nav { display: none; }
+      .summary-strip { grid-template-columns: 1fr 1fr; }
+      .sum-cell:nth-child(2) { border-right: none; }
+      .sum-cell:nth-child(1), .sum-cell:nth-child(2) { border-bottom: 1px solid var(--cm-sys-color-hairline); }
+      .pcc-table th:nth-child(4), .pcc-table td:nth-child(4),
+      .pcc-table th:nth-child(5), .pcc-table td:nth-child(5) { display: none; }
+      .inspector { border-left: none; border-top: 1px solid var(--cm-sys-color-hairline); }
+    }
+  </style>
+</head>
+<body>
+  <div class="console-shell">
+    <header class="console-bar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <strong style="font-family:var(--cm-font-heading);font-size:15px;">Google Cloud</strong>
+        <span class="project-pill cm-mono">▾ us-grid-infra-04</span>
+      </div>
+      <div class="omnibox">⌕ Search resources, substations, clusters, IAM policies (/)</div>
+      <div style="display:flex;gap:8px;">
+        <button class="cm-btn" id="theme-btn" type="button">◑ Theme</button>
+      </div>
+    </header>
+
+    <div class="console-body">
+      <aside class="section-nav">
+        <div class="sec-title">Capacity &amp; Grid Ops</div>
+        <div class="nav-row active"><span>Regional Clusters</span><span class="cm-mono">14</span></div>
+        <div class="nav-row"><span>Interconnection Queue</span><span class="cm-mono">38</span></div>
+        <div class="nav-row"><span>Substation Telemetry</span></div>
+        <div class="nav-row"><span>Quotas &amp; Reservations</span></div>
+        <div class="nav-row"><span>IAM &amp; Audit Logs</span></div>
+        <div class="nav-row"><span>Active Assist</span><span class="cm-mono" style="color:var(--cm-sys-color-status-neutral);">3</span></div>
+      </aside>
+
+      <main class="center-work">
+        <div class="action-bar">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <strong style="font-family:var(--cm-font-heading);font-size:15px;">Compute &amp; Power Clusters</strong>
+            <span class="cm-mono" style="font-size:11.5px;color:var(--cm-sys-color-on-surface-variant);">/ clusters</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="cm-btn cm-btn-primary" type="button">+ PROVISION CLUSTER</button>
+            <button class="cm-btn" type="button">↻ REFRESH</button>
+            <button class="cm-btn" type="button">⇩ EXPORT CSV</button>
+          </div>
+        </div>
+
+        <div class="summary-strip">
+          <div class="sum-cell">
+            <div style="font-size:11.5px;color:var(--cm-sys-color-on-surface-variant);">Committed MW Headroom</div>
+            <div class="sum-val">412.5 MW</div>
+          </div>
+          <div class="sum-cell">
+            <div style="font-size:11.5px;color:var(--cm-sys-color-on-surface-variant);">Healthy Zones</div>
+            <div class="sum-val" style="color:var(--cm-sys-color-status-success);">12 / 14</div>
+          </div>
+          <div class="sum-cell">
+            <div style="font-size:11.5px;color:var(--cm-sys-color-on-surface-variant);">P99 RPC Latency</div>
+            <div class="sum-val">18.4 ms</div>
+          </div>
+          <div class="sum-cell">
+            <div style="font-size:11.5px;color:var(--cm-sys-color-on-surface-variant);">Active Queue Alerts</div>
+            <div class="sum-val" style="color:var(--cm-sys-color-status-error);">2</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <span style="font-size:12px;color:var(--cm-sys-color-on-surface-variant);">Filter:</span>
+          <span class="filter-chip">Market: PJM + ERCOT ×</span>
+          <span class="filter-chip">Tier: Production ×</span>
+          <span style="font-size:12px;color:var(--cm-sys-color-on-surface-variant);">Showing 5 of 14 resources</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="pcc-table">
+            <thead>
+              <tr>
+                <th>Resource Name</th>
+                <th>Status</th>
+                <th>Region / ISO</th>
+                <th>Load (MW)</th>
+                <th>Utilization</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="selected">
+                <td><span class="cm-mono" style="color:var(--cm-sys-color-link-default);font-weight:600;">ashburn-pjm-east-01</span></td>
+                <td><span class="status-pill st-ok">● Running</span></td>
+                <td class="cm-mono">us-east4 · PJM</td>
+                <td class="cm-mono">96.0 MW</td>
+                <td class="cm-mono">78.4%</td>
+                <td class="cm-mono"><strong>94.2</strong></td>
+              </tr>
+              <tr>
+                <td><span class="cm-mono" style="color:var(--cm-sys-color-link-default);font-weight:600;">dallas-ercot-west-03</span></td>
+                <td><span class="status-pill st-ok">● Running</span></td>
+                <td class="cm-mono">us-south1 · ERCOT</td>
+                <td class="cm-mono">120.0 MW</td>
+                <td class="cm-mono">81.2%</td>
+                <td class="cm-mono"><strong>91.8</strong></td>
+              </tr>
+              <tr>
+                <td><span class="cm-mono" style="color:var(--cm-sys-color-link-default);font-weight:600;">columbus-pjm-core-02</span></td>
+                <td><span class="status-pill st-warn">▲ Queue Hold</span></td>
+                <td class="cm-mono">us-east5 · PJM</td>
+                <td class="cm-mono">64.5 MW</td>
+                <td class="cm-mono">69.0%</td>
+                <td class="cm-mono"><strong>82.5</strong></td>
+              </tr>
+              <tr>
+                <td><span class="cm-mono" style="color:var(--cm-sys-color-link-default);font-weight:600;">tenerife-microgrid-01</span></td>
+                <td><span class="status-pill st-ok">● Islanded OK</span></td>
+                <td class="cm-mono">eu-west-cn · REE</td>
+                <td class="cm-mono">28.0 MW</td>
+                <td class="cm-mono">62.1%</td>
+                <td class="cm-mono"><strong>88.9</strong></td>
+              </tr>
+              <tr>
+                <td><span class="cm-mono" style="color:var(--cm-sys-color-link-default);font-weight:600;">nova-wetland-buf-07</span></td>
+                <td><span class="status-pill st-err">✕ Setback Breach</span></td>
+                <td class="cm-mono">us-east4 · PJM</td>
+                <td class="cm-mono">104.0 MW</td>
+                <td class="cm-mono">94.7%</td>
+                <td class="cm-mono"><strong>58.4</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+
+      <aside class="inspector">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong style="font-family:var(--cm-font-heading);font-size:14px;">ashburn-pjm-east-01</strong>
+          <span class="status-pill st-ok">Healthy</span>
+        </div>
+        <div style="font-size:12px;color:var(--cm-sys-color-on-surface-variant);">
+          Pantheon Common Components (`cm4`) right-hand resource inspector with live telemetry &amp; IAM bindings.
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;">
+            <span>Substation Deliverability</span><strong class="cm-mono">96 / 120 MW</strong>
+          </div>
+          <div class="meter"><span style="width:80%;"></span></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;">
+            <span>Cooling WUE Efficiency</span><strong class="cm-mono">0.24 L/kWh</strong>
+          </div>
+          <div class="meter"><span style="width:91%;background:var(--cm-chart-green);"></span></div>
+        </div>
+        <div>
+          <div class="kv-row"><span style="color:var(--cm-sys-color-on-surface-variant);">Substation Bus</span><span class="cm-mono">230kV-LOUDOUN-N</span></div>
+          <div class="kv-row"><span style="color:var(--cm-sys-color-on-surface-variant);">FEMA Flood Zone</span><span class="cm-mono">Zone X (0.0%)</span></div>
+          <div class="kv-row"><span style="color:var(--cm-sys-color-on-surface-variant);">Fiber Diversity</span><span class="cm-mono">4 Carriers · 1.8 ms</span></div>
+          <div class="kv-row"><span style="color:var(--cm-sys-color-on-surface-variant);">CM4 Token Prefix</span><span class="cm-mono">--cm-sys-color-*</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

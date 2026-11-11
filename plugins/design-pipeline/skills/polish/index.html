@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>polish</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>polish</h1>
+      <p>runs surgical nano banana 2 image-to-image edits on failing 2k plates in rounds 2 and 3 only while freezing passing slots at round 1.</p>
+      <div class="actions">
+        <a href="../polish.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>polish</h1>
+<pre data-lang="text"><code>jason-design-agent / polish (stage 4 · micro-research + progressive enrichment)
+────────────────────────────────────────────────────────────────────
+input         failing / weak-design 2k plate + eval critique
+              + targeted micro-research (2-3 fresh steering examples)
+method        bad design -&gt; add targeted research examples -&gt; enrich
+              textural + designer + frontend-developer prompt steering
+hard cap      rounds 2 and 3 ONLY (total nano banana rounds &lt;= 3;
+              passing slots freeze at round 1 with 0 polish calls)</code></pre>
+<p><code>polish</code> is Stage 4 of <strong><code>jason-design-agent</code></strong>. When <code>eval</code> inspects the <code>4 x 3 = 12</code> <code>2k</code> plates from Round 1, two kinds of failures can occur:</p>
+<ol>
+<li><strong>localized technical defects</strong> (e.g., an off-palette pill, a typo, or a clipped footer on an otherwise tasteful screen) -&gt; fixed via surgical in-place image-to-image edit.</li>
+<li><strong>bad or uninspired design</strong> (flat materiality, generic SaaS layout, weak hierarchy, lifeless component/experience mechanic) -&gt; <strong>re-prompting on the same thin context repeats the mistake</strong>. Instead, <strong>every <code>polish</code> run for bad design first injects a targeted slice of fresh <code>research</code></strong> (2–3 specific competitor or inner-design examples that solve <em>that exact element</em> tastefully) and translates their <strong>textural, designer, and frontend-developer</strong> lessons into the Round 2 / Round 3 prompt to steer the model in the right direction.</li>
+</ol>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 1 — enforce the hard 3-round ceiling</strong>: check the slot&#x27;s round counter in <code>eval/concept-eval.md</code>. Passing slots stay <strong><code>FROZEN</code> (<code>1</code> call)</strong>. If <code>rounds_used == 3</code> or <code>== design_agent_turns</code>, <strong>stop immediately</strong> and log remaining notes for <code>jason-dev-agent</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — run targeted micro-research when design is weak (<code>research/polish-notes/</code>)</strong>: whenever <code>eval</code> flags weak composition, flat taste, or generic UX on a slot, pull <strong>2–3 fresh, ultra-specific references</strong> (from curated inner-design MDs, the 19 specialist directories in <code>../research/references/design-directory-sources.md</code> such as <code>footer.design</code>, <code>godly.website</code>, <code>landdding.com</code>, <code>mobbin.com</code>, <code>60fps.design</code>, <code>beui.dev</code>, <code>backgrounds.supply</code>, and <code>paperanimation.ai</code>, or live <code>search_web</code> + screenshots) showing category-bar execution of <em>that exact screen/component/experience</em>, logging their fonts/colors into <code>avoid_fonts</code> / <code>avoid_palettes</code> so we steer without copying.</span></li>
+<li><span class="check-box"></span><span><strong>step 3 — enrich prompt in all 3 voices (<code>prompts/polish/&lt;NN&gt;-&lt;slug&gt;-round-&lt;2|3&gt;.md</code>)</strong>: translate the new research examples into concrete <strong>textural</strong> (grain, surface depth, lighting), <strong>designer</strong> (hierarchy, negative space, proportion), and <strong>frontend-developer</strong> (grid tracks, <code>1px</code> borders, optical padding, <code>tabular-nums</code>, control states) steering anchored to <code>01-anchor</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 4 — confirm Nano Banana request with user, execute strict image-to-image <code>&gt;= 1K</code> / <code>2K</code> PNG pass &amp; re-verify in <code>eval</code></strong>: unless the user already selected auto-confirm for the run, present the planned <code>polish</code> Nano Banana call count, failing slot list, micro-research steering summary, and prompt diff via <code>ask_question</code> for user confirmation before running; always pass the failing Round 1/2 plate + <code>01-anchor.png</code> in <code>ImagePaths</code> / <code>--input_image</code> (reusing <code>1-2</code> sequential <code>image-generator</code> subagents), lock the output to crystal-clear <code>2K</code> lossless PNG via <code>../jason-design-agent/scripts/lock_and_verify_plates.py lock</code> (<code>min(w, h) &gt;= 1024</code>, <code>sharpness_ratio &gt;= 0.28</code>), increment the slot&#x27;s round counter (<code>2/3</code> or <code>3/3</code>), and re-check all 6 gates in <code>eval</code> before the Pre-Moodboard Designer Image Checkpoint.</span></li>
+</ul>
+<h2>1. the two <code>polish</code> modes (surgical fix vs. research-steered redesign)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>failure type from <code>eval</code></th><th>micro-research added?</th><th>how <code>polish</code> steers Nano Banana 2 (<code>&lt;= 3</code> rounds total)</th></tr></thead>
+<tbody>
+<tr><td><strong>mode a — localized defect on strong design</strong> <em>(typo, rogue hue, missing footer, <code>canon.md</code> mismatch)</em></td><td>Optional (<code>0</code> if layout &amp; taste already sing)</td><td>Passes current <code>2k</code> plate as <code>Image 1 (edit target)</code> + preserves <code>95%</code> of geometry while fixing only the exact defect.</td></tr>
+<tr><td><strong>mode b — bad / uninspired / rudimentary design</strong> <em>(junior 2-3 box wireframe, flat texture, missing full-page callout depth, or negligible delta vs. prior round)</em></td><td><strong>Mandatory (re-extract from full-webpage <code>desktop-fullpage.png</code> + <code>2-3</code> targeted examples)</strong></td><td>Slices pixel-perfect <code>2K</code> callout crops (<code>lock_and_verify_plates.py ref-base</code>) from the full-webpage Chrome DevTools / Playwright reference, rewrites the prompt around senior art direction (carrying over real multi-section callouts, coordinate rails, lighting physics, and interactive micro-chrome), and runs a 1-2 hop base-to-original image-to-image progression so the next round shows a <strong>dramatic leap</strong> over the prior round.</td></tr>
+</tbody>
+</table></div>
+<h2>references</h2>
+<ul>
+<li><a href="references/surgical-edit-patterns.md">research-steered &amp; surgical edit prompt templates</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

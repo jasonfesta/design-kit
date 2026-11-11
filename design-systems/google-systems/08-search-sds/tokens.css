@@ -1,0 +1,105 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   08. GOOGLE SEARCH DESIGN SYSTEM (sds v9.33.4 | Silk)
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/sds/SdsTheme.kt
+     - //depot/google3/ux/tokens/design_systems/sds/versions/v9_33_4/
+     - //depot/google3/search/design_systems/ & ux/tokens/design_systems/aimode/
+     - Docs: go/sds | go/search-design-system
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* Verbatim SdsSysColor Roles (SdsSysColor.kt v9.33.4) */
+    --sds-sys-color-canvas: #ffffff;
+    --sds-sys-color-surface: #ffffff;
+    --sds-sys-color-surface-container: #f1f3f4;
+    --sds-sys-color-surface-container-high: #e8eaed;
+    --sds-sys-color-brand-surface-container: #f0f4f9;
+    --sds-sys-color-brand-surface-container-high: #e2ecf9;
+
+    --sds-sys-color-on-surface-emphasis: #1f1f1f;
+    --sds-sys-color-on-surface-default: #202124;
+    --sds-sys-color-on-surface-de-emphasis: #4d5156;
+    --sds-sys-color-on-surface-link-default: #0b57d0;
+
+    --sds-sys-color-divider-default: #dadce0;
+    --sds-sys-color-outline-default: #d2d2d7;
+    --sds-sys-color-brand-outline: #c2d7f8;
+
+    /* Sentiment & Highlight Roles (0% Purple) */
+    --sds-sys-color-primary: #0b57d0;
+    --sds-sys-color-highlight: #d3e3fd;
+    --sds-sys-color-on-highlight: #041e49;
+    --sds-sys-color-sentiment-positive: #146c2e;
+    --sds-sys-color-sentiment-positive-container: #e6f4ea;
+    --sds-sys-color-sentiment-neutral-saturated: #b06000;
+    --sds-sys-color-sentiment-neutral-container: #fef7e0;
+    --sds-sys-color-sentiment-negative: #b3261e;
+    --sds-sys-color-sentiment-negative-container: #fce8e6;
+
+    --sds-elevation-searchbar: 0 2px 8px 1px rgba(64, 60, 67, 0.16);
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --sds-sys-color-canvas: #1f1f1f;
+    --sds-sys-color-surface: #28292a;
+    --sds-sys-color-surface-container: #303134;
+    --sds-sys-color-surface-container-high: #3c4043;
+    --sds-sys-color-brand-surface-container: #1e2837;
+    --sds-sys-color-brand-surface-container-high: #263549;
+
+    --sds-sys-color-on-surface-emphasis: #f1f3f4;
+    --sds-sys-color-on-surface-default: #e8eaed;
+    --sds-sys-color-on-surface-de-emphasis: #9aa0a6;
+    --sds-sys-color-on-surface-link-default: #8ab4f8;
+
+    --sds-sys-color-divider-default: #3c4043;
+    --sds-sys-color-outline-default: #444746;
+    --sds-sys-color-brand-outline: #354c6e;
+
+    --sds-sys-color-primary: #8ab4f8;
+    --sds-sys-color-highlight: #0842a0;
+    --sds-sys-color-on-highlight: #d3e3fd;
+    --sds-sys-color-sentiment-positive: #81c995;
+    --sds-sys-color-sentiment-positive-container: #173a21;
+    --sds-sys-color-sentiment-neutral-saturated: #fdd663;
+    --sds-sys-color-sentiment-neutral-container: #4d3808;
+    --sds-sys-color-sentiment-negative: #f28b82;
+    --sds-sys-color-sentiment-negative-container: #521c19;
+
+    --sds-elevation-searchbar: 0 2px 10px rgba(0, 0, 0, 0.45);
+  }
+
+  :root {
+    --sds-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --sds-font-body: 'Google Sans Text', 'Roboto', Arial, sans-serif;
+    --sds-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    --sds-radius-card: 16px;
+    --sds-radius-pill: 9999px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--sds-sys-color-canvas);
+    color: var(--sds-sys-color-on-surface-default);
+    font-family: var(--sds-font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .sds-mono { font-family: var(--sds-font-mono); font-variant-numeric: tabular-nums; }
+}

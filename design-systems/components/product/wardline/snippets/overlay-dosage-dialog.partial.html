@@ -1,0 +1,48 @@
+<dialog aria-labelledby="dosage-dialog-title" class="wl-modal" id="dosage-dialog">
+<div class="dialog-pad">
+<div class="dialog-head">
+<div>
+<h2 id="dosage-dialog-title">Update dosage</h2>
+<p style="margin-top:4px;font-size:0.875rem;color:var(--ink-muted)">Claire Lindqvist · Preventive cardiology</p>
+</div>
+<button aria-label="Close prescription dialog" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14" width="14"><path d="M2 2l10 10M12 2L2 12"></path></svg>
+</button>
+</div>
+<div class="dose-summary">
+<div style="font-size:0.8125rem;color:var(--ink-muted)">Evening tablet adjustment</div>
+<div class="dose-step">
+<span>Atorvastatin</span>
+<span>10 mg → 20 mg</span>
+<span style="font-size:0.875rem;font-weight:400;color:var(--ink-secondary)">once daily</span>
+</div>
+<p style="font-size:0.85rem;margin-top:4px">Pharmacist check passed · Compatible with morning Vitamin D3 supplement.</p>
+</div>
+<form id="dosage-form" style="display:flex;flex-direction:column;gap:16px">
+<div class="wl-field">
+<label class="wl-label" for="rx-pharmacy">Dispensing pharmacy</label>
+<div class="select-wrap">
+<select class="wl-select" id="rx-pharmacy">
+<option value="Linden Street Pharmacy">Linden Street Pharmacy (Ready today)</option>
+<option value="Home mail delivery">Wardline Home Delivery (2 days)</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="rx-recheck">Follow-up lipid panel</label>
+<div class="select-wrap">
+<select class="wl-select" id="rx-recheck">
+<option value="8 weeks">In 8 weeks (Recommended)</option>
+<option value="12 weeks">In 12 weeks</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="inline-actions" style="padding-top:4px">
+<button class="wl-btn wl-btn--pri" type="submit">Confirm 20 mg dosage</button>
+<button class="wl-btn" data-close-dialog="" type="button">Cancel</button>
+</div>
+</form>
+</div>
+</dialog>

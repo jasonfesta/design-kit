@@ -1,0 +1,50 @@
+<article aria-labelledby="sy-comp-webhook" class="sy-spec-row">
+<div class="sy-spec-meta">
+<h3 id="sy-comp-webhook">Webhook endpoint</h3>
+<p class="sy-spec-rule">Validates <span class="mono">https://</span> URLs on blur or submit and clears errors on edit.</p>
+</div>
+<form class="sy-spec-cell" id="sy-settings-form" novalidate="">
+<div class="sy-spec-two">
+<div class="sy-field">
+<label class="sy-label" for="sy-endpoint-url">Endpoint URL</label>
+<input aria-describedby="sy-endpoint-err sy-endpoint-hint" class="sy-input" id="sy-endpoint-url" name="endpointUrl" required="" type="url" value="https://hooks.switchyard.dev/deploys"/>
+<div class="sy-error" hidden="" id="sy-endpoint-err">
+<svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="13">
+<circle cx="8" cy="8" r="6"></circle>
+<line stroke-linecap="round" x1="8" x2="8" y1="5" y2="8.8"></line>
+<circle cx="8" cy="11.3" fill="currentColor" r="0.6" stroke="none"></circle>
+</svg>
+<span id="sy-endpoint-err-text">Use an https:// endpoint URL for production webhook delivery.</span>
+</div>
+<p class="sy-hint" id="sy-endpoint-hint">HTTPS required; failure notices go to deploys@switchyard.dev.</p>
+</div>
+<div class="sy-field">
+<label class="sy-label" for="sy-region-select">Delivery region</label>
+<div class="sy-select-wrap">
+<select class="sy-select" id="sy-region-select">
+<option value="us-east">US East · Virginia</option>
+<option value="eu-central">EU Central · Frankfurt</option>
+<option value="ap-northeast">Asia Pacific · Tokyo</option>
+</select>
+<svg aria-hidden="true" class="sy-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+<p class="sy-hint">Originates signed POST calls from static egress IPs.</p>
+</div>
+</div>
+<div class="sy-spec-two" style="align-items: end;">
+<div class="sy-field">
+<label class="sy-label" for="sy-webhook-url">Signing secret</label>
+<div style="display: flex; gap: 8px; min-width: 0;">
+<input class="sy-input" id="sy-webhook-url" readonly="" style="min-width: 0; flex: 1;" type="text" value="whsec_9f2a8c41e09d"/>
+<button class="sy-btn" id="sy-copy-url" type="button">Copy</button>
+</div>
+</div>
+<div class="sy-action-row">
+<button class="sy-btn sy-btn-primary" type="submit">Save endpoint</button>
+<button class="sy-btn sy-btn-ghost" data-trigger-toast="Webhook ping returned 200 OK in 38 ms" type="button">Send ping</button>
+</div>
+</div>
+</form>
+</article>

@@ -1,0 +1,74 @@
+<article aria-labelledby="lm-card-statements" class="lm-specimen">
+<div class="lm-card-head">
+<h3 id="lm-card-statements">Statements and alerts</h3>
+<p class="lm-hint">Account compartments, rail fee schedule, and statement delivery notices.</p>
+</div>
+<div>
+<div aria-label="Account compartments" class="lm-tablist" role="tablist">
+<button aria-controls="lm-panel-checking" aria-selected="true" class="lm-tab" id="lm-tab-checking" role="tab" tabindex="0" type="button">Checking</button>
+<button aria-controls="lm-panel-treasury" aria-selected="false" class="lm-tab" id="lm-tab-treasury" role="tab" tabindex="-1" type="button">Treasury</button>
+<button aria-controls="lm-panel-cards" aria-selected="false" class="lm-tab" id="lm-tab-cards" role="tab" tabindex="-1" type="button">Cards</button>
+</div>
+<div aria-labelledby="lm-tab-checking" class="lm-tabpanel num" id="lm-panel-checking" role="tabpanel">
+              Checking •••• 4819 holds $482,910.40 with $12,500.00 pending vendor authorization.
+            </div>
+<div aria-labelledby="lm-tab-treasury" class="lm-tabpanel num" hidden="" id="lm-panel-treasury" role="tabpanel">
+              Treasury •••• 9024 holds $1,240,000.00 in T-bill sweep earning 4.65% annualized yield.
+            </div>
+<div aria-labelledby="lm-tab-cards" class="lm-tabpanel num" hidden="" id="lm-panel-cards" role="tabpanel">
+              Cards •••• 1108 has $7,080.00 posted across four active employee cards this cycle.
+            </div>
+</div>
+<div class="lm-table-scroll">
+<table aria-label="Transfer fee schedule" class="lm-table" id="lm-fee-table">
+<thead>
+<tr>
+<th aria-sort="none" data-fee-col="0" data-fee-type="text" scope="col">
+<button class="lm-sort-btn" type="button">
+<span>Rail</span>
+<svg aria-hidden="true" class="lm-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+<th scope="col">Settlement</th>
+<th aria-sort="ascending" data-fee-col="2" data-fee-type="num" data-numeric="true" scope="col">
+<button class="lm-sort-btn" type="button">
+<span>Fee</span>
+<svg aria-hidden="true" class="lm-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="lm-payee-name">Same-day ACH</td>
+<td class="muted num">By 4:30 PM ET</td>
+<td class="num" data-numeric="true" data-sort-val="0">$0.00</td>
+</tr>
+<tr>
+<td class="lm-payee-name">Domestic Fedwire</td>
+<td class="muted num">Under 2 hours</td>
+<td class="num" data-numeric="true" data-sort-val="15">$15.00</td>
+</tr>
+<tr>
+<td class="lm-payee-name">International SWIFT</td>
+<td class="muted num">1–2 business days</td>
+<td class="num" data-numeric="true" data-sort-val="25">$25.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="lm-sub-rule" style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+<div class="lm-action-row">
+<button class="lm-btn lm-btn-sm" data-trigger-toast="October statement sent to finance@northstar.design" type="button">Send October statement</button>
+<button class="lm-btn lm-btn-ghost lm-btn-sm" id="lm-toggle-skel" type="button">Ledger loading preview</button>
+</div>
+<div aria-label="Loading transactions" class="lm-skeleton-stack" hidden="" id="lm-skel-demo">
+<div class="lm-skel-line" style="width: 72%;"></div>
+<div class="lm-skel-line" style="width: 90%;"></div>
+</div>
+</div>
+</article>

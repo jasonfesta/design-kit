@@ -1,0 +1,34 @@
+{
+  "id": "font-pairing",
+  "display_name": "font pairing",
+  "google3_package": "font_pairing",
+  "title": "font pairing",
+  "icon": "\ud83d\udd20",
+  "category": "sub-skill of image-to-react \u00b7 primary / secondary / tertiary type system",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "font-pairing",
+  "agent_md": "font-pairing/agent.md",
+  "skill_md": "font-pairing/SKILL.md",
+  "html_page": "font-pairing/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/font-pairing",
+  "bundle_skill": "font-pairing.skill",
+  "bundle_zip": "font-pairing.zip",
+  "short_summary": "locks every build to one role-based type system: primary for headlines and subheadlines, secondary for body and ui, at most one tertiary accent (<= 15% of text), a monotonic modular scale, and zero fallback leaks, verified in the live dom by eval-font-pairing.py.",
+  "when_to_use": "use in stage 1a of jason-dev-agent when wiring the fonts chosen by jason-design-agent or auditing typography consistency.",
+  "quick_cmd": "python3 font-pairing/scripts/eval-font-pairing.py --project=./projects/01-website-app --expect-primary=\"<family>\" --expect-secondary=\"<family>\"",
+  "summary": "Locks every Golden Template React build to one strong, role-based type system inside jason-dev-agent: a primary family for headlines and subheadlines, a secondary family for body and UI, and at most one optional tertiary accent family (eyebrows, h4-h6 subheads, tabular numerals, mono labels) capped at 15 percent of text, with a monotonic modular type scale and zero fallback-font leaks. Takes the live Google Fonts chosen by jason-design-agent via google-font-selection, maps them to roles and Tailwind tokens, and verifies the shipped DOM with eval-font-pairing.py. Use whenever wiring fonts, defining the type scale, or auditing typography consistency in a build. Don't use for ranking fonts from a mood or keyword (use google-font-selection).",
+  "references": [
+    "./references/contributing.md",
+    "./references/roles-scale-and-pairing-rules.md",
+    "./scripts/eval-font-pairing.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=font-pairing"
+  }
+}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>concept art</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>concept art</h1>
+      <p>transforms a natural-language user prompt into 5 standout benchmark dossiers, named style range, and prompt-01-anchored 2k nano banana 2 concept plates within a hard 3-round cap.</p>
+      <div class="actions">
+        <a href="../concept-art.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>concept art</h1>
+<pre data-lang="text"><code>jason-design-agent / concept art (5 distinct examples · zero beige · &lt;=3 rounds)
+────────────────────────────────────────────────────────────────────
+input         single natural-language prompt (or external folder via nanofy)
+step 0        ask: &quot;how many turns do you want out of the design agent?&quot;
+research      5 standout real-world examples -&gt; 5 visibly different results
+anti-beige    HARD BAN on warm beige/cream/oat defaults (#F4EFE6, #F6F2EA...)
+rounds        &lt;= 3 Nano Banana rounds (supports head-to-head round 1 vs round 2)
+moodboard     build_moodboard.py -&gt; #0c0c0b, quoted prompt top-left, 0 defaults</code></pre>
+<p><code>concept-art</code> is the upfront design-planning pipeline owned by <strong><code>jason-design-agent</code></strong>. Starting from a prompt—for example, <em>&quot;make me a modern coffee shop&quot;</em>—it researches <strong>5 standout real-world examples</strong> chosen specifically because they <strong>produce 5 visibly different, non-beige results</strong>, runs live <code>google-font-selection</code>, executes the <strong>10-iteration Pre-Nano Design Critique Loop</strong>, generates <code>2k</code> Nano Banana 2 concept plates <strong>directly inspired by those 5 researched examples</strong> (including <strong>head-to-head Round 1 vs. Round 2 competition</strong> when running 2 design turns against each other), and builds the <code>#0c0c0b</code> lowercase moodboard via <code>../jason-design-agent/scripts/build_moodboard.py</code>.</p>
+<h2>sub-skills coordinated by <code>concept-art</code></h2>
+<ol>
+<li><strong><code>↳ research</code></strong> (<code>../research/SKILL.md</code>): yields <strong>5 standout real-world examples</strong> across contrasting non-beige chromatic polarities, grids, and material worlds (<code>research/examples/01..05.md</code>) + <code>avoid_fonts</code>.</li>
+<li><strong><code>↳ style-direction</code></strong> (<code>../style-direction/SKILL.md</code>): channels <strong>direct inspiration</strong> from the 5 researched examples (never averaging into warm beige), runs live <code>google-font-selection</code>, and records explicit website/app architecture notes in <code>coverage.md</code>.</li>
+<li><strong><code>↳ image-gen</code></strong> (<code>../image-gen/SKILL.md</code>): writes 10th-iteration tri-voice prompts and generates Round 1 <code>2k</code> plates (and competing Round 2 challenger plates in head-to-head multi-round runs), strictly capped at <code>&lt;= 3</code> Nano Banana rounds.</li>
+<li><strong><code>↳ polish</code></strong> (<code>../polish/SKILL.md</code>): runs targeted micro-research + surgical tri-voice refinement on weak slots within the 3-round ceiling.</li>
+<li><strong><code>↳ eval</code></strong> (<code>../eval/SKILL.md</code>): audits <code>2k</code> plates for zero-beige chromatic clarity, direct benchmark craft, zero meta-prompt text leakage, optical padding, and complete footers.</li>
+<li><strong><code>↳ design-critique</code></strong> (<code>../design-critique/SKILL.md</code>): runs Moment 0 (10 pre-Nano iterations), mid-round 10–15 agent hyper-critique swarm (<code>critique/run_critique_swarm.py audit</code>), tri-perspective brutal audit (designer, research, self-audit), anti-inching 10-dimension auto-correction, Moment 1 upfront sign-off, Moment 2 dev talk-backs, and Moment 3 final sign-off (<code>critique/final-design-signoff.md</code>).</li>
+<li><strong><code>↳ nanofy</code></strong> (<code>../nanofy/SKILL.md</code>): start-from-folder intake (<code>variation 0.5</code>), counted as design turn <code>1</code>.</li>
+</ol>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 0 — prompt for <code>jason-design-agent</code> turns</strong>: lock <code>design_agent_turns</code> and <code>max_nano_rounds = min(design_agent_turns, 3)</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 1 — run <code>research</code> (<code>5</code> distinct non-beige examples)</strong>: document 5 real-world examples that produce 5 visibly different structural and chromatic results. <strong>When the user supplies a list of urls</strong>, run the url-list intake instead of open-web discovery: <code>node ../research/scripts/capture_fullpage_devtools.mjs --study-dir=&lt;study&gt; --urls=&quot;...&quot;</code> (entire long desktop page of every url first → <code>inspiration/manifest.json</code>), then <code>run_workflow(ScriptPath=&quot;../research/scripts/analyze_inspiration_workflow.py&quot;, Args={&quot;study_dir&quot;: ..., &quot;user_prompt&quot;: ...})</code> for one analyzer agent per url + synthesizer + verifier (<code>../research/references/url-intake-and-multi-agent-analysis.md</code>).</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — run <code>style-direction</code> + live <code>google-font-selection</code></strong>: map direct inspiration from the 5 examples, ban AI-cliché fonts and warm beige, and document architecture notes in <code>coverage.md</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 2.5 — run <code>design-critique</code> moment 0 (<code>critique/pre-nano-10-iterations.md</code>)</strong>: complete all 10 pre-Nano critique iterations (<code>&gt;= 9.5/10</code>).</span></li>
+<li><span class="check-box"></span><span><strong>step 3 — generate Round 1 <code>&gt;= 1K</code> / <code>2K</code> crystal-clear PNG plates strictly via image-to-image (<code>ImagePaths</code>)</strong>: reuse <code>1-2</code> sequential <code>image-generator</code> subagents (<code>0</code> parallel bursts), lock every plate via <code>../jason-design-agent/scripts/lock_and_verify_plates.py lock</code> (<code>min(w, h) &gt;= 1024</code>, <code>sharpness_ratio &gt;= 0.28</code>), and inspect via <code>read_file</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 4 — run Round 2 head-to-head competition (when <code>turns &gt;= 2</code>) or surgical <code>polish</code> with hyper-critique swarm</strong>: audit Round 1 across the tri-perspective model (designer, research benchmarks, ruthless self-audit) via the 10–15 critic swarm (<code>python3 ../design-critique/scripts/run_critique_swarm.py audit</code>), auto-correct across all 10 dimensions simultaneously (anti-inching rule: never 1 small tweak at a time), and generate competing Round 2 challenger <code>2K</code> PNG plates conditioned on Round 1 (<code>ImagePaths=[r1_plate]</code>).</span></li>
+<li><span class="check-box"></span><span><strong>step 4.5 — mandatory pre-moodboard designer image checkpoint (BEFORE <code>build_moodboard.py</code>)</strong>: run <code>../jason-design-agent/scripts/lock_and_verify_plates.py verify --study-dir=&lt;study-dir&gt;</code> and <strong>show all verified images to the designer for review and quick changes before building the moodboard</strong>.</span></li>
+<li><span class="check-box"></span><span><strong>step 5 — publish <code>#0c0c0b</code> moodboard via <code>../jason-design-agent/scripts/build_moodboard.py</code> (after designer checkpoint approval)</strong>: <code>0</code> default approvals, <code>0</code> preview adjustments, always-visible quoted prompt top-left, clean rollover (<code>view</code>, <code>rounds</code>, <code>filter</code>, <code>system</code>, <code>typefaces</code>, <code>palette</code>), zero card descriptions, and <code>open</code> links.</span></li>
+</ul>
+<h2>references</h2>
+<ul>
+<li><a href="references/end-to-end-handoff-contract.md">end-to-end output folder schema &amp; <code>Design | Development</code> moodboard contract</a></li>
+<li><code>hyper-critique swarm (15 personas), tri-perspective judgment &amp; 10-dimension auto-correction matrix</code></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

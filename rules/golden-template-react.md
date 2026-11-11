@@ -1,0 +1,1 @@
+/usr/local/google/home/jfesta/.gemini/config/rules/golden-template-react.md

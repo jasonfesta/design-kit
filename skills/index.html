@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>skills</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --faint: #b8b7b2;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --faint: #494946;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    main {
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--muted);
+      margin-bottom: clamp(48px, 8vh, 72px);
+    }
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(40px, 6vh, 52px);
+    }
+    .skill h2 {
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--fg);
+      margin-bottom: 5px;
+    }
+    .skill h2 a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .skill p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 12px;
+      max-width: 56ch;
+      text-wrap: pretty;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+      transition: border-color 0.15s ease, color 0.15s ease;
+    }
+    .actions a:hover {
+      border-color: var(--fg);
+    }
+    .sub-stack {
+      margin-top: 28px;
+      padding-left: 20px;
+      border-left: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>skills &amp; agents</h1>
+
+    <div class="stack">
+        <div class="skill" id="jason-design-agent">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/jason-design-agent/index.html" target="_blank" rel="noopener noreferrer">jason design agent</a></h2>
+          <p>runs dialed taste research, live google-font-selection, 10x pre-nano critique, 4x3 2k plates, and the #0c0c0b moodboard.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/jason-design-agent.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/jason-design-agent/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/_agents/agents/jason-design-agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/AGENTS.md" target="_blank" rel="noopener noreferrer">agents.md</a>
+          </div>
+        </div>
+
+        <div class="skill" id="jason-dev-agent">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/jason-dev-agent/index.html" target="_blank" rel="noopener noreferrer">jason dev agent</a></h2>
+          <p>coordinates the lowercase image-to-react agent chain across dev evals, loop a self-eval against comps, and paired jason-design-agent critiques.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/jason-dev-agent.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/jason-dev-agent/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/_agents/agents/jason-dev-agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/AGENTS.md" target="_blank" rel="noopener noreferrer">agents.md</a>
+          </div>
+        </div>
+
+        <div class="skill" id="skill-maker">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker/index.html" target="_blank" rel="noopener noreferrer">skill maker</a></h2>
+          <p>audits, validates, and packages agent skills for deployment.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+
+        <div class="skill" id="google-font-selection">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/index.html" target="_blank" rel="noopener noreferrer">font selector</a></h2>
+          <p>ranks the top five google fonts for any keyword, brief, or image.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/specimen.html" target="_blank" rel="noopener noreferrer">specimen</a>
+          </div>
+        </div>
+
+        <div class="skill" id="golden-template">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/index.html" target="_blank" rel="noopener noreferrer">golden template</a></h2>
+          <p>standardizes react projects and links folders to the dating template.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/golden-template.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+
+      <div class="skill-group">
+        <div class="skill" id="concept-art">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/index.html" target="_blank" rel="noopener noreferrer">concept art</a></h2>
+          <p>turns a prompt into 5 standout benchmarks, named style range, and 2K concept plates.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/concept-art.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="sub-stack">
+        <div class="skill sub-skill" id="research">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/research/index.html" target="_blank" rel="noopener noreferrer">research</a></h2>
+          <p>screenshots and documents 5 standout non-beige benchmarks across full-length desktop and mobile pages.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/research.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/research/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/research/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="style-direction">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/index.html" target="_blank" rel="noopener noreferrer">style direction</a></h2>
+          <p>synthesizes web-safe and companion google fonts, 8-token palettes, canon.md, and copy tables.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/style-direction.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="image-gen">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/index.html" target="_blank" rel="noopener noreferrer">image gen</a></h2>
+          <p>locks prompt 01 first and renders drift-free 2K nano banana 2 plates within 3 rounds.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-gen.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="polish">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/polish/index.html" target="_blank" rel="noopener noreferrer">polish</a></h2>
+          <p>runs surgical nano banana 2 edits on failing 2k plates in rounds 2 and 3 only.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/polish.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/polish/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/polish/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="eval">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/eval/index.html" target="_blank" rel="noopener noreferrer">eval</a></h2>
+          <p>audits 2K plates across 6 style, originality, canon, framing, and round gates.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/eval.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/eval/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/eval/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="design-critique">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/index.html" target="_blank" rel="noopener noreferrer">design critique</a></h2>
+          <p>runs jason-design-agent critiques upfront, during jason-dev-agent talk-backs, and as the final output.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="nanofy">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/index.html" target="_blank" rel="noopener noreferrer">nanofy</a></h2>
+          <p>intakes a folder of plates + prompt MDs, nanofies them (anchored 0.1-0.5 take), and curates the moodboard for jason-dev-agent.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/nanofy.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill" id="image-to-react">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react/index.html" target="_blank" rel="noopener noreferrer">image to react</a></h2>
+          <p>builds bucket-first react apps in jason-dev-agent with turn tracking and jason-design-agent talk-backs.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="sub-stack">
+        <div class="skill sub-skill" id="replicate-mock">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/index.html" target="_blank" rel="noopener noreferrer">replicate mock</a></h2>
+          <p>extracts hex tokens, pixel measurements, and 3-bucket dom vs. image crops (credited to manasababu).</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="nano-banana">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/index.html" target="_blank" rel="noopener noreferrer">nano banana</a></h2>
+          <p>upgrades only upscale-queue image buckets to 2x retina and verifies non-blur readiness.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="responsiveness">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/index.html" target="_blank" rel="noopener noreferrer">responsiveness</a></h2>
+          <p>evaluates desktop, mobile, and six fluid viewports in one shared dom.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="interaction">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/interaction/index.html" target="_blank" rel="noopener noreferrer">interaction</a></h2>
+          <p>wires every control plus sliders, pagination, scroll points, and animation triggers.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/interaction.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/interaction/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/interaction/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="feel">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/feel/index.html" target="_blank" rel="noopener noreferrer">feel</a></h2>
+          <p>verifies 60fps scrolling, tactile press response, gpu motion curves, and zero layout shift.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/feel.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/feel/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/feel/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="font-pairing">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/index.html" target="_blank" rel="noopener noreferrer">font pairing</a></h2>
+          <p>locks primary (headlines), secondary (body + ui), and one optional tertiary accent family with a modular scale.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="accessibility">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/index.html" target="_blank" rel="noopener noreferrer">accessibility</a></h2>
+          <p>enforces wcag 2.2 type sizes, line height, contrast, 24/44px targets, focus, names, alt, and lang in the built dom.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/accessibility.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        <div class="skill sub-skill" id="design-critique">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/index.html" target="_blank" rel="noopener noreferrer">design critique</a></h2>
+          <p>runs jason-design-agent critiques upfront, during jason-dev-agent talk-backs, and as the final output.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+        </div>
+      </div>
+
+        <div class="skill" id="warmup">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/warmup/index.html" target="_blank" rel="noopener noreferrer">warmup</a></h2>
+          <p>benchmarks image-to-react builds across models on a 100-point rubric.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/warmup.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/warmup/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/warmup/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+
+        <div class="skill" id="taxonomy">
+          <h2><a href="https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/index.html" target="_blank" rel="noopener noreferrer">taxonomy</a></h2>
+          <p>classifies prompts, screens, and builds into the locked 3-category, 15-subcategory wda taxonomy.</p>
+          <div class="actions">
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy.skill" target="_blank" rel="noopener noreferrer" download>download</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/agent.md" target="_blank" rel="noopener noreferrer">agent.md</a>
+            <a href="https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/SKILL.md" target="_blank" rel="noopener noreferrer">skill.md</a>
+          </div>
+        </div>
+    </div>
+  </main>
+</body>
+</html>

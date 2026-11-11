@@ -1,0 +1,448 @@
+{
+  "version": "1.0.0",
+  "catalog": "Google Internal Design Systems — Top 10 High-Usage Documented Systems",
+  "provenance": "Verified directly from //depot/google3/ HEAD (srcfs) & Carbon Design System Compiler (go/carbon-service-code-gen-mwtc)",
+  "purple_guardrail": "<9.5% purple pixel coverage (0.0% purple across all 10 baseline palettes & hero specimens)",
+  "hero_viewports": {
+    "desktop": {
+      "css_viewport": "1440x900",
+      "device_scale_factor": 2,
+      "physical_px": "2880x1800"
+    },
+    "mobile": {
+      "css_viewport": "390x844",
+      "device_scale_factor": 2,
+      "physical_px": "780x1688"
+    }
+  },
+  "systems": [
+    {
+      "id": "gm3-expressive",
+      "order": 1,
+      "slug": "01-gm3-expressive",
+      "name": "Google Material 3 Expressive (gm3 / @material/web)",
+      "carbon_design_system_id": "designSystems/20543ce18892f7d9",
+      "carbon_version": "40.2.1",
+      "google3_paths": [
+        "//depot/google3/javascript/material/gm3/tokens/v40_2/",
+        "//depot/google3/javascript/materialdesign/gm3/wiz/",
+        "//depot/google3/third_party/javascript/material/web/gm3/",
+        "//depot/google3/ux/tokens/design_systems/md/"
+      ],
+      "doc_links": ["go/gm3", "go/gm3-web-docs", "go/carbon-service-docs"],
+      "frameworks": ["Wiz", "Lit (@material/web)", "Closure/Soy", "Jetpack Compose", "Flutter"],
+      "polarity": "Dual (Light default + Dark)",
+      "density": "Comfortable (0) to Compact (-2)",
+      "font_families": ["Google Sans", "Google Sans Text", "Google Sans Mono"],
+      "token_prefix": "--gm3-sys-*",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "surface_container_light": "#F0F4F9",
+        "surface_dark": "#131314",
+        "primary": "#0B57D0",
+        "secondary_container": "#C2E7FF",
+        "tertiary": "#146C2E",
+        "error": "#B3261E"
+      },
+      "signature_components": [
+        "80px Adaptive Pill Navigation Rail -> Mobile NavigationBar",
+        "5-Tier Tonal Surface Containers (#FFFFFF to #DDE3EA)",
+        "Connected Split Button Groups (_md-comp-button-group-connected)",
+        "AI Prompt Field & Suggestions (_md-comp-ai-prompt-field)"
+      ],
+      "files": {
+        "readme": "01-gm3-expressive/README.md",
+        "tokens_css": "01-gm3-expressive/tokens.css",
+        "specimen_html": "01-gm3-expressive/specimen.html",
+        "desktop_hero_png": "01-gm3-expressive/desktop.png",
+        "mobile_hero_png": "01-gm3-expressive/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#17", "#19", "#22", "#28", "#32", "#36"]
+    },
+    {
+      "id": "pantheon-cloud-matter",
+      "order": 2,
+      "slug": "02-pantheon-cloud-matter",
+      "name": "Google Cloud Console / Pantheon & Cloud Matter (cm4 / cfc)",
+      "carbon_design_system_id": "https://carbon.googleplex.com/cloud-platform/",
+      "carbon_version": "cm3_1 / cm4",
+      "google3_paths": [
+        "//depot/google3/cloud/console/web/common/cloud_matter/themes/cm4/",
+        "//depot/google3/cloud/console/web/common/cloud_matter/themes/cm3_1/_color.scss",
+        "//depot/google3/cloud/console/web/common/styles/",
+        "//depot/google3/cloud/console/web/common/resource_table/",
+        "//depot/google3/cloud/console/web/common/components/"
+      ],
+      "doc_links": ["go/pantheon-new-application", "go/pan-use-tokens", "go/pcc-scorecard"],
+      "frameworks": ["Angular (ng2+ / Panini)", "Pantheon Common Components (PCC)", "Cloud Matter MDC"],
+      "polarity": "Dual light-dark() (Light default + Dark)",
+      "density": "High-Density Enterprise (34px table rows, 48px console bar)",
+      "font_families": ["Google Sans", "Roboto", "Roboto Mono"],
+      "token_prefix": "--cm-sys-color-*",
+      "core_palette": {
+        "backdrop_light": "#FAF9F9",
+        "surface_light": "#FFFFFF",
+        "backdrop_dark": "#0F0F0F",
+        "surface_dark": "#1C1C1C",
+        "primary_on_container": "#2051DA",
+        "container_primary": "#DCF1FF",
+        "status_success": "#2A9C00",
+        "status_error": "#DE2D29"
+      },
+      "signature_components": [
+        "48px Universal Console Bar & Project Switcher",
+        "Universal Breadcrumbs & Action Bar (+ PROVISION / REFRESH)",
+        "Filter-Chip Pantheon Resource Table (34px compact rows)",
+        "Non-Blocking Right-Hand Resource Inspector Drawer"
+      ],
+      "files": {
+        "readme": "02-pantheon-cloud-matter/README.md",
+        "tokens_css": "02-pantheon-cloud-matter/tokens.css",
+        "specimen_html": "02-pantheon-cloud-matter/specimen.html",
+        "desktop_hero_png": "02-pantheon-cloud-matter/desktop.png",
+        "mobile_hero_png": "02-pantheon-cloud-matter/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#02", "#03", "#13", "#14", "#21", "#27"]
+    },
+    {
+      "id": "acx-ads",
+      "order": 3,
+      "slug": "03-acx-ads",
+      "name": "Google Ads & Play Console ACX Design System (acx2 / gm)",
+      "carbon_design_system_id": "//depot/google3/ux/tokens/design_systems/xgads/",
+      "carbon_version": "acx2 / xgads v0.1",
+      "google3_paths": [
+        "//depot/google3/ads/acx2/",
+        "//depot/google3/ads/acx2/g3doc/",
+        "//depot/google3/third_party/dart_src/acx/css/gm/",
+        "//depot/google3/ads/acx/components/"
+      ],
+      "doc_links": ["go/acx", "go/acx-gallery", "go/acx-css", "go/acx-gm-gallery"],
+      "frameworks": ["Dart / AngularDart (Boq ACX)", "ACX Sass GM"],
+      "polarity": "Dual (High-Contrast Tabular Light default + Dark)",
+      "density": "Ultra-High Financial Density (28px-36px _density.scss grid)",
+      "font_families": ["Google Sans", "Roboto", "Roboto Mono"],
+      "token_prefix": "--acx-sys-*",
+      "core_palette": {
+        "canvas_light": "#F8F9FA",
+        "surface_light": "#FFFFFF",
+        "surface_dark": "#202124",
+        "primary": "#1A73E8",
+        "series_teal": "#007B83",
+        "positive": "#1E8E3E",
+        "warning_ochre": "#A85D00",
+        "negative": "#D93025"
+      },
+      "signature_components": [
+        "Color-Keyed Multi-Metric Scorecard Strip with Period Comparison",
+        "Dual-Series Period-over-Period Trend Line Stage",
+        "Frozen-Totals Material Table with tabular-nums Currency Columns",
+        "Bulk Bid/Budget Edit Toolbar & GAR-Passing Ochre Callouts"
+      ],
+      "files": {
+        "readme": "03-acx-ads/README.md",
+        "tokens_css": "03-acx-ads/tokens.css",
+        "specimen_html": "03-acx-ads/specimen.html",
+        "desktop_hero_png": "03-acx-ads/desktop.png",
+        "mobile_hero_png": "03-acx-ads/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#04", "#07", "#09", "#11", "#12", "#24"]
+    },
+    {
+      "id": "angular-xap",
+      "order": 4,
+      "slug": "04-angular-xap",
+      "name": "Google Angular Material, CDK & XAP Enterprise (mat-sys)",
+      "carbon_design_system_id": "mat.gm3-theme() (1P Google Blue)",
+      "carbon_version": "2026-01",
+      "google3_paths": [
+        "//depot/google3/javascript/angular2/components/",
+        "//depot/google3/javascript/angular2/components/enterprise/",
+        "//depot/google3/third_party/javascript/angular_components/"
+      ],
+      "doc_links": ["go/angular-components", "go/angular-components/theming", "go/xap-gallery-autopush"],
+      "frameworks": ["Angular TypeScript", "Angular CDK", "Angular Aria", "XAP / ACE Enterprise"],
+      "polarity": "Dual light-dark() (Light default + Dark)",
+      "density": "Enterprise Compact (density: -1 to -4, 38px rows/inputs)",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto Mono"],
+      "token_prefix": "--mat-sys-*",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "surface_container_low": "#F8FAFD",
+        "surface_dark": "#131314",
+        "primary": "#0B57D0",
+        "info": "#1157CE",
+        "success": "#006C35",
+        "warning": "#8F4E06",
+        "error": "#B3261E"
+      },
+      "signature_components": [
+        "Horizontal Workflow MatStepper Ribbon",
+        "Virtual-Scrolled Hierarchical CdkTreeTable",
+        "Tabbed Outlined MatFormField Property Inspector",
+        "GAR 4 Certified Info/Success/Warning/Error Banner Containers"
+      ],
+      "files": {
+        "readme": "04-angular-xap/README.md",
+        "tokens_css": "04-angular-xap/tokens.css",
+        "specimen_html": "04-angular-xap/specimen.html",
+        "desktop_hero_png": "04-angular-xap/desktop.png",
+        "mobile_hero_png": "04-angular-xap/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#06", "#10", "#16", "#18", "#23", "#29"]
+    },
+    {
+      "id": "glue-marketing",
+      "order": 5,
+      "slug": "05-glue-marketing",
+      "name": "Google Glue Marketing Web Standards (glue)",
+      "carbon_design_system_id": "Marketing Web Standards (standards.google)",
+      "carbon_version": "Glue v28+",
+      "google3_paths": [
+        "//depot/google3/marketing/glue/",
+        "//depot/google3/marketing/glue/lib/",
+        "//depot/google3/marketing/glue/g3doc/"
+      ],
+      "doc_links": ["go/glue", "https://standards.google/guidelines/marketing-web-standards/"],
+      "frameworks": ["TypeScript", "Modular SCSS (glue-grid, glue-card, mwc3)"],
+      "polarity": "Editorial Daylight (#FFFFFF / #F8F9FA) + Dark Stage (#202124)",
+      "density": "Spacious Editorial (12-col grid, spacers 24px-72px)",
+      "font_families": ["Google Sans Display", "Google Sans Text", "Google Sans Arabic / Noto CJK"],
+      "token_prefix": "--glue-*",
+      "core_palette": {
+        "surface": "#FFFFFF",
+        "surface_tonal": "#F8F9FA",
+        "ink_primary": "#202124",
+        "ink_secondary": "#5F6368",
+        "border": "#DADCE0",
+        "accent_blue": "#1A73E8",
+        "accent_green": "#1E8E3E"
+      },
+      "signature_components": [
+        "12-Column Responsive Editorial Hero (glue-grid)",
+        "Sticky Chapter Progress Bar (glue-jumplinks)",
+        "Hairline Tonal Feature Lockups & Proof Stat Tiles",
+        "Multi-Locale Global Font Stacks (AR / CJK / EU)"
+      ],
+      "files": {
+        "readme": "05-glue-marketing/README.md",
+        "tokens_css": "05-glue-marketing/tokens.css",
+        "specimen_html": "05-glue-marketing/specimen.html",
+        "desktop_hero_png": "05-glue-marketing/desktop.png",
+        "mobile_hero_png": "05-glue-marketing/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#10", "#20", "#31", "#33", "#35"]
+    },
+    {
+      "id": "secops-uno",
+      "order": 6,
+      "slug": "06-secops-uno",
+      "name": "Google SecOps (Chronicle) UNO Design System (uno / Malachite)",
+      "carbon_design_system_id": "designSystems/61ce7d9a26ad5429",
+      "carbon_version": "0.5.27",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/uno/versions/v0_5/sass_css_vars/",
+        "//depot/google3/googlex/security/malachite/g3doc/uno/tokens.md",
+        "//depot/google3/googlex/security/malachite/ui/components/"
+      ],
+      "doc_links": ["go/secops-ui-design-tokens", "https://carbon.googleplex.com/uno/"],
+      "frameworks": ["Angular", "Carbon MWTC CSS Custom Properties"],
+      "polarity": "Dark-Native Mission Control (#12171F) + Cool-Grey Light (#F5F8FC)",
+      "density": "High-Density SIEM / SOC Telemetry",
+      "font_families": ["Google Sans", "Roboto", "Roboto Mono"],
+      "token_prefix": "--uno-sys-color--*",
+      "core_palette": {
+        "surface_dark": "#12171F",
+        "card_dark": "#1C242E",
+        "divider_dark": "#3B4757",
+        "primary_sky": "#8AB4F8",
+        "malachite_ok": "#01D667",
+        "ocean_cyan": "#5DCEDE",
+        "honey_high": "#FA903E",
+        "critical_red": "#FD7570"
+      },
+      "signature_components": [
+        "UDM / YARA-L Telemetry Query Bar with Execute Trigger",
+        "4-Tier Threat Severity KPI Cards & 24h Detection Velocity Histogram",
+        "Structured JSON Event Inspector (_uno-comp-json-viewer) & IDE Diff",
+        "High-Density SIEM Detection Stream Table"
+      ],
+      "files": {
+        "readme": "06-secops-uno/README.md",
+        "tokens_css": "06-secops-uno/tokens.css",
+        "specimen_html": "06-secops-uno/specimen.html",
+        "desktop_hero_png": "06-secops-uno/desktop.png",
+        "mobile_hero_png": "06-secops-uno/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#01", "#05", "#08", "#26", "#36", "#37"]
+    },
+    {
+      "id": "youtube-yt-spec",
+      "order": 7,
+      "slug": "07-youtube-yt-spec",
+      "name": "YouTube & YouTube Studio Design System (yt-spec)",
+      "carbon_design_system_id": "designSystems/6a965cee65b87233",
+      "carbon_version": "2.0.279",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/youtube/versions/v2_0/",
+        "//depot/google3/video/youtube/src/web/",
+        "//depot/google3/video/youtube/creator/"
+      ],
+      "doc_links": ["go/yt-tokens", "go/youtube-web"],
+      "frameworks": ["Polymer / Lit / Wiz Web", "YouTube Elements"],
+      "polarity": "Cinema Dark (#0F0F0F default) + Daylight (#FFFFFF)",
+      "density": "Compact Creator Studio & Immersive Media",
+      "font_families": ["YouTube Sans", "Roboto", "Roboto Mono"],
+      "token_prefix": "--yt-spec-*",
+      "core_palette": {
+        "base_dark": "#0F0F0F",
+        "raised_dark": "#212121",
+        "additive_chip": "rgba(255,255,255,0.10)",
+        "brand_red": "#FF0033",
+        "call_to_action": "#3EA6FF",
+        "badge_green": "#2BA640",
+        "genai_teal": "#007A65"
+      },
+      "signature_components": [
+        "16:9 4K Timecode Monitor with Frosted Glass HUD",
+        "Multi-Track Video, Caption & Audio Waveform NLE Timeline",
+        "Additive Translucent Filter Chips & Playhead Scrubber",
+        "Creator Retention & Engagement Curve Inspector"
+      ],
+      "files": {
+        "readme": "07-youtube-yt-spec/README.md",
+        "tokens_css": "07-youtube-yt-spec/tokens.css",
+        "specimen_html": "07-youtube-yt-spec/specimen.html",
+        "desktop_hero_png": "07-youtube-yt-spec/desktop.png",
+        "mobile_hero_png": "07-youtube-yt-spec/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#31", "#33", "#34", "#36"]
+    },
+    {
+      "id": "search-sds",
+      "order": 8,
+      "slug": "08-search-sds",
+      "name": "Google Search Design System (sds / Silk)",
+      "carbon_design_system_id": "ux.tokens.design_systems.sds",
+      "carbon_version": "9.33.4",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/sds/",
+        "//depot/google3/search/design_systems/",
+        "//depot/google3/ux/tokens/design_systems/aimode/"
+      ],
+      "doc_links": ["go/sds", "go/search-design-system"],
+      "frameworks": ["Search Web / Silk", "Jetpack Compose (SdsTheme)", "UIKit / SwiftUI"],
+      "polarity": "Ultra-Legible Light (#FFFFFF default) + Dark (#1F1F1F)",
+      "density": "Scannable Knowledge Cards & Zero-Clutter Oneboxes",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto"],
+      "token_prefix": "--sds-sys-*",
+      "core_palette": {
+        "canvas_light": "#FFFFFF",
+        "brand_container_light": "#F0F4F9",
+        "canvas_dark": "#1F1F1F",
+        "link_blue": "#0B57D0",
+        "highlight": "#D3E3FD",
+        "sentiment_positive": "#146C2E",
+        "sentiment_negative": "#B3261E"
+      },
+      "signature_components": [
+        "Elevated Pill Search Omnibox + Zero-Latency Facet Carousel",
+        "Grounded RAG / AI Synthesis Card with Inline Citation Chips",
+        "SdsCompDataViz Interactive Metric Onebox",
+        "Structured Right-Hand Knowledge Graph Entity Dossier"
+      ],
+      "files": {
+        "readme": "08-search-sds/README.md",
+        "tokens_css": "08-search-sds/tokens.css",
+        "specimen_html": "08-search-sds/specimen.html",
+        "desktop_hero_png": "08-search-sds/desktop.png",
+        "mobile_hero_png": "08-search-sds/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#06", "#20", "#25", "#35"]
+    },
+    {
+      "id": "geo-terra",
+      "order": 9,
+      "slug": "09-geo-terra",
+      "name": "Google Maps & Geo Terra Design System (geo / Terra)",
+      "carbon_design_system_id": "designSystems/78d941903d3ad98a",
+      "carbon_version": "27.7.1",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/geo/versions/v27_7_1/sass_css_vars/",
+        "//depot/google3/maps/"
+      ],
+      "doc_links": ["go/geo-design-system", "go/maps-ux"],
+      "frameworks": ["Maps Web / Wiz", "Android / iOS (curvular, xuikit)"],
+      "polarity": "Daylight Cartographic + Night-Nav Dark + Aqua Theme",
+      "density": "Full-Bleed 100vh Spatial Canvas + Compact Floating Overlays",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto Mono"],
+      "token_prefix": "--geo-sys-color--*",
+      "core_palette": {
+        "floating_surface_light": "#FFFFFF",
+        "floating_surface_dark": "#1E1F20",
+        "bold_container": "#D7E4EF",
+        "route_primary": "#0B57D0",
+        "aqua_theme": "#006876",
+        "positive_parcel": "#146C2E",
+        "caution_amber": "#B26C00",
+        "negative_exclusion": "#DC362E"
+      },
+      "signature_components": [
+        "100vw x 100vh Vector GIS Parcel, Corridor & Polygon Canvas",
+        "Floating Omnibox (_geo-comp-search-box) & Layer Chips (_geo-comp-filter-chip)",
+        "Desktop Left Floating Parcel Dossier -> Mobile Snap Bottom Sheet (_geo-comp-bottom-sheet)",
+        "Semantic Corridor Pins & Scale HUD"
+      ],
+      "files": {
+        "readme": "09-geo-terra/README.md",
+        "tokens_css": "09-geo-terra/tokens.css",
+        "specimen_html": "09-geo-terra/specimen.html",
+        "desktop_hero_png": "09-geo-terra/desktop.png",
+        "mobile_hero_png": "09-geo-terra/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#01", "#02", "#15", "#35", "#37"]
+    },
+    {
+      "id": "devsite-codelabs",
+      "order": 10,
+      "slug": "10-devsite-codelabs",
+      "name": "Google DevSite & Codelabs Technical Workbench (devsite)",
+      "carbon_design_system_id": "designSystems/3b5a4b48a2d95565",
+      "carbon_version": "0.0.63",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/devsite/versions/v0_0/sass_css_vars/",
+        "//depot/google3/devtools/codereview/webclient/",
+        "//depot/google3/devtools/cider/webclient/"
+      ],
+      "doc_links": ["go/devsite", "go/codelabs"],
+      "frameworks": ["DevSite Web Components", "Lit / TypeScript"],
+      "polarity": "Hybrid Split (Light Spec #FFFFFF + Dark #263238 Code Terminal) + Full Dark",
+      "density": "Technical Reference & Step-Debugger Split Workbench",
+      "font_families": ["Google Sans", "Roboto", "JetBrains Mono / Roboto Mono"],
+      "token_prefix": "--devsite-*",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "rail_light": "#F8F9FA",
+        "code_terminal": "#263238",
+        "primary_blue": "#1A73E8",
+        "ai_blue": "#076EFF",
+        "teal": "#00897B",
+        "pass_green": "#1E8E3E"
+      },
+      "signature_components": [
+        "Numbered Codelab Curriculum / Procedure Stepper Rail",
+        "Technical Parameter Table & AI Callout Note",
+        "Dark Blue-Grey (#263238) Multi-Tab Code Editor (0% purple syntax)",
+        "Live Execution / Test Assertion Output Console"
+      ],
+      "files": {
+        "readme": "10-devsite-codelabs/README.md",
+        "tokens_css": "10-devsite-codelabs/tokens.css",
+        "specimen_html": "10-devsite-codelabs/specimen.html",
+        "desktop_hero_png": "10-devsite-codelabs/desktop.png",
+        "mobile_hero_png": "10-devsite-codelabs/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#06", "#25", "#27", "#30"]
+    }
+  ]
+}

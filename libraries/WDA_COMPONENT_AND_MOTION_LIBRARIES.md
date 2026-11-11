@@ -1,0 +1,373 @@
+# WDA Component Libraries, NPM Ecosystem & Motion / Graph-Accentuation Reference
+
+> **Purpose**: Exhaustive, read-only engineering inventory of every NPM package, local component registry, UI primitive kit, charting module, 3D/GIS engine, and motion physics library installed or configured across `/usr/local/google/home/jfesta/wda/` — paired with our **3-Layer Prompt Decision Rubric** (**Design System + Component Stack + Motion / Graph Accentuation**) for executing the 37 WDA prompts in blocks of 5.
+
+---
+
+## Executive Snapshot
+
+| Dimension | Verified Count on Disk | Primary Workspace Locations | Offline / Single-File Readiness |
+| :--- | :---: | :--- | :--- |
+| **`package.json` Manifests Scanned** | **176** | Root [`package.json`](./package.json) + 175 subproject manifests (excluding `node_modules`) | ✅ Canonical Golden Template stack (`react@19.2.3`, `vite@7.2.4`, `@tailwindcss/vite@4.1.17`, `vite-plugin-singlefile@2.3.0`) |
+| **Top-Level `node_modules` Trees** | **53** | Root [`node_modules/`](./node_modules/) (`417` pkgs), [`fluid-functionalism/node_modules/`](./fluid-functionalism/) (`821` pkgs), [`fluid-functionalism-starter/node_modules/`](./fluid-functionalism-starter/) (`506` pkgs), [`horizon-hero-section/node_modules/`](./horizon-hero-section/) (`190` pkgs), + 49 Golden builds | ✅ **914 unique NPM packages** cached locally on disk (`90` directly declared across `package.json` files) |
+| **Fluid Functionalism (`@fluid`)** | **83 items** | [`fluid-functionalism/registry/`](./fluid-functionalism/registry/) · [`registry.json`](./fluid-functionalism/registry.json) | ✅ **100% local source** (`49` UI in Radix & Base UI flavors, `17` libs, `7` blocks, `5` hooks, `3` items, `2` themes) |
+| **EaseUI (`@easeui`)** | **54 items** (`56` `.tsx`/`.ts` files) | [`easeui-registry/components/ui/`](./easeui-registry/components/ui/) · [`easeui-registry/r/`](./easeui-registry/r/) · [`easeui-variants/`](./easeui-variants/) | ✅ **100% local source + registry JSONs** (`42` Motion components + `12` AI Agent components + [`ease.ts`](./easeui-registry/components/ui/ease.ts)) |
+| **Motion AI Kit (`motion.dev`)** | **`motion@14.9.0`** + **`motion-ai@14.2.0`** | [`motion-ai-kit/`](./motion-ai-kit/) · [`.agents/skills/motion/SKILL.md`](./.agents/skills/motion/SKILL.md) · [`skills/motion/`](./skills/motion/) | ✅ `motion/react` installed in 46 `node_modules` trees + self-contained Best Practices, CSS `linear()` springs & MotionScore (`S–F`) rules |
+| **Zero-Dep Animated Chart & Spatial Suites** | **10 chart types** + **GIS / 3D Globe** | [`analytics-bento-showcase/src/components/ui/mui-x-charts.tsx`](./analytics-bento-showcase/src/components/ui/mui-x-charts.tsx) (`2,947` LOC) · [`analytics-bento.tsx`](./analytics-bento-showcase/src/components/ui/analytics-bento.tsx) (`3,845` LOC) · [`wireframe-globe.tsx`](./saint-urbain-agency/src/components/ui/wireframe-globe.tsx) | ✅ Pure React 19 + `motion/react` SVG/Canvas — compiles into single-file `dist/index.html` with **zero chart-library bloat** |
+| **Materialized `components/ui/` Folders** | **43 directories** | Root [`src/components/ui/`](./src/components/ui/) (`34` files), [`full-stack-enterprise-golden/src/components/ui/`](./full-stack-enterprise-golden/src/components/ui/) (`37` files), [`fluid-functionalism-starter/components/ui/`](./fluid-functionalism-starter/components/ui/) (`39` files), etc. | ✅ Copy-ready `.tsx` primitives across shadcn, `@fluid`, `@easeui`, `21st`, and bespoke showcases |
+| **MCP & Configured Registries** | **6 registries + 4 active MCPs** | [`components.json`](./components.json) (`@shadcn`, `@fluid`, `@easeui`, `@kokonutui`, `@spectrumui`, `@react-bits`) + `21st` & `originkit` MCPs | ✅ Verified via [`SKILLS_AND_MCPS.md`](./SKILLS_AND_MCPS.md); local `file://` registry pattern proven in [`alto-storybook-coffee/components.json`](./alto-storybook-coffee/components.json) |
+
+> [!IMPORTANT]
+> **Folder Boundary & Golden Template Dependency Discipline**
+> 1. **`No Code` Folders (`frontend-*` & `fullstack-*`)**: Per [`AGENTS.md`](./AGENTS.md), never generate React/HTML/CSS code inside `frontend-*` or `fullstack-*` Nano Banana plate folders — use the libraries below strictly as visual/motion steering references logged in `STEERING.md`.
+> 2. **Golden Template Builds**: Keep `package.json` lean and deterministic (`react@19.2.3`, `lucide-react`, `clsx`, `tailwind-merge`, plus `motion` / `three` / `@radix-ui/*` only when required by the chosen stack, or strip to pure React via `clean-up` when producing single-snippet deliverables).
+
+---
+
+## 1. Complete Installed NPM Package Matrix Across `wda/`
+
+A read-only crawl of all **176 `package.json` files** and **53 top-level `node_modules` directories** across `/usr/local/google/home/jfesta/wda/` identified **90 explicitly declared packages** and **914 unique installed packages** on disk.
+
+### 1.1 Motion, Physics & Choreography Packages
+
+| Package | Declared Specs | Exact Installed Version(s) on Disk | Local Presence (`node_modules` & Projects) | WDA Usage & Import Rule |
+| :--- | :--- | :--- | :--- | :--- |
+| **`motion`** | `^12.0.0`, `^13.4.0`, `^14.1.0`, `^14.9.0` | **`14.9.0`** (44 dirs incl. root), **`14.1.0`** (`fluid-functionalism`), **`13.5.1`** (`horizon-hero-section`) | Root [`node_modules/motion`](./node_modules/motion), `analytics-bento-showcase*`, `easeui-personal-portfolio`, `fluid-functionalism*`, + 40 Golden builds | **Primary React & JS spring/layout engine.** Always import from **`"motion/react"`** (client components), **`"motion/react-client"`** (RSC), or **`"motion"`** (vanilla TS/JS). |
+| **`motion-dom` / `motion-utils`** | *(transitive via `motion`)* | **`14.9.0` / `14.7.0`** (44 dirs), **`14.1.0`** (1 dir) | Root [`node_modules/motion-dom`](./node_modules/motion-dom) + 45 subprojects | Low-level WAAPI hardware-acceleration driver, spring solver, and `linear()` curve sampler backing `motion`. |
+| **`framer-motion`** | `^14.9.0` | **`14.9.0`** (44 dirs), **`14.1.0`** (1 dir), **`13.5.1`** (1 dir) | Declared only in legacy `hero-section-6` & `twin-galaxy-rings` (aliased in shared `node_modules`) | **Legacy alias — DO NOT IMPORT.** Motion AI Kit rule: swap all `framer-motion` imports to `"motion/react"` and never declare both. |
+| **`gsap`** | `^3.12.7` | **`3.12.7`** (42 dirs incl. root) | Root [`node_modules/gsap`](./node_modules/gsap), `tumble-deck-showcase`, + 40 subprojects | Imperative timeline sequencing, complex SVG morph/scrubbing, ScrollTrigger choreography, and `@react-bits` GSAP variants. |
+| **`@tweenjs/tween.js`** | *(via 3D hero build)* | **`23.1.3`** | [`horizon-hero-section/node_modules/@tweenjs/tween.js`](./horizon-hero-section/) | Lightweight scalar/camera keyframe tweening inside `requestAnimationFrame` Three.js loops. |
+| **`tw-animate-css`** | `^1.0.0`, `^1.4.0` | **`1.0.0`** (42 dirs), **`1.4.0`** (2 Fluid starters) | [`fluid-functionalism-starter/node_modules/tw-animate-css`](./fluid-functionalism-starter/), `hero-02`, `hero-section-6` | Tailwind v4 CSS `@keyframes` enter/exit utilities (`animate-in`, `fade-in`, `zoom-in-95`) replacing Tailwind v3 `tailwindcss-animate`. |
+| **`dialkit`** | `^1.1.0` | **`1.1.0`** | [`fluid-functionalism/node_modules/dialkit`](./fluid-functionalism/) | Interactive live parameter/spring tuning HUD used in Fluid Functionalism component playgrounds. |
+| **CSS `linear()` Springs** | *(Zero-dep native CSS)* | Generated via `@fluid/reveal` ([`presets.ts`](./fluid-functionalism/lib/reveal/presets.ts)) & Motion MCP `generate-css-easing` | [`fluid-functionalism/`](./fluid-functionalism/), [`design-systems/external-systems/`](./design-systems/external-systems/) | Sampled physics springs in pure CSS (`transition: transform 0.35s linear(...)`) — zero JS bundle cost, S-tier compositor execution. |
+
+---
+
+### 1.2 Charts, Graphs, Telemetry & Data Visualization
+
+> [!TIP]
+> **Key Architecture Finding — Zero External Chart NPM Bloat by Design**
+> Heavy third-party chart packages (`recharts`, `d3-*`, `echarts`, `visx`, `nivo`, `uplot`, `@mui/x-charts`) are **not** installed in `wda/node_modules`. Instead, WDA maintains **production-grade, zero-external-dependency SVG + `motion/react` charting engines directly in workspace source** that compile cleanly with `vite-plugin-singlefile` at 60fps and obey strict `tabular-nums` + `<9.5%` purple token rules.
+
+| Capability / Module | Version / Source | Where It Lives Locally | Exact Primitives & Graph Coverage |
+| :--- | :--- | :--- | :--- |
+| **WDA Animated MUI-X-Style SVG Chart Suite** | Local TS/React (`motion@14.9.0` + ResizeObserver SVG) | [`analytics-bento-showcase/src/components/ui/mui-x-charts.tsx`](./analytics-bento-showcase/src/components/ui/mui-x-charts.tsx) (`2,947` lines) + [`src/lib/ease.ts`](./analytics-bento-showcase/src/lib/ease.ts) | **10 Complete Interactive Chart Components**:<br>1. `MuiLineChart` (multi-series area/line, reference bands/lines, hover crosshair & click-to-pin)<br>2. `MuiBiaxialChart` (composed Bar + Line with dual Left/Right Y-axes)<br>3. `MuiBarChart` (grouped & stacked vertical bars with `highlightScope` dimming)<br>4. `MuiDivergingBarChart` (`+/-` cashflow, PnL waterfall deltas, solar PR balance)<br>5. `MuiHorizontalBarChart` (ranked horizontal bars)<br>6. `MuiPieChart` & `MuiTwoLevelPieChart` (single & concentric 2-level donuts)<br>7. `MuiScatterBubbleChart` (2D scatter/bubble with quadrant reference lines)<br>8. `MuiHeatmapChart` (2D matrix heatmap with cell intensity & pinning — ideal for `5×5` risk matrices & cohort grids)<br>9. `MuiMultiRadarChart` (comparative multi-polygon radar — ideal for 100-pt site scorecards)<br>10. `MuiGauge` (radial arc gauge + zone telemetry) |
+| **Unified 12-Col Analytics Bento Grid** | Local TS/React (`LayoutGroup` FLIP) | [`analytics-bento-showcase/src/components/ui/analytics-bento.tsx`](./analytics-bento-showcase/src/components/ui/analytics-bento.tsx) (`3,845` lines) & [`src/components/ui/analytics-bento.tsx`](./src/components/ui/analytics-bento.tsx) | 4-version interactive Bento (`v1`–`v4`) with `SPRING_LAYOUT` (`stiffness: 235, damping: 28, mass: 0.85`), live period switchers, sparklines, and synchronized tables. |
+| **EaseUI KPI & Telemetry Primitives** | Local `@easeui` (`motion/react`) | [`easeui-registry/components/ui/number-ticker.tsx`](./easeui-registry/components/ui/number-ticker.tsx), [`insight-card.tsx`](./easeui-registry/components/ui/insight-card.tsx), [`progress.tsx`](./easeui-registry/components/ui/progress.tsx), [`range-slider.tsx`](./easeui-registry/components/ui/range-slider.tsx) | Right-anchored odometer `NumberTicker` (`tabular-nums` + `sr-only`), `InsightCard` (`up`/`down` semantic trend pills), spring `Progress` bars, and `SPRING_GLIDE` `RangeSlider`. |
+| **Spectrum UI Animated Charts (`@spectrumui`)** | Registry + `@spectrumui/mcp@0.1.1` | Configured in [`components.json`](./components.json) (`https://ui.spectrumhq.in/r/{name}.json`) | **19 animated chart blocks** + **15 data table blocks** built on Tailwind + Motion + shadcn tokens. |
+| **Kokonut UI Telemetry Cards (`@kokonutui`)** | Registry via `shadcn` MCP | Configured in [`components.json`](./components.json) (`https://kokonutui.com/r/{name}.json`) | `Liquid Gauge`, `Activity Terrain`, `Apple Activity` concentric rings, `Metric`, `Uptime` status strips, `Detent Dial`, and `AI Context Meter`. |
+
+---
+
+### 1.3 3D, Spatial, GIS, Physics & Canvas Engines
+
+| Package / Local Engine | Declared Specs | Exact Installed Version(s) | Local Presence | Spatial / 3D Capability |
+| :--- | :--- | :--- | :--- | :--- |
+| **`three`** + **`@types/three`** | `^0.170.0`, `^0.185.0` | **`0.185.1`** (`three`), **`0.185.4`** (`@types/three`) | Root [`node_modules/three`](./node_modules/three) + **43 subproject `node_modules`** (`full-stack-*-golden`, `everswap-story-scroll`, `horizon-hero-section`, etc.) | Full WebGL2 3D rendering engine: procedural globes (`#05`), 2D/3D kitchen/CAD viewports (`#28`, `#29`), robot simulation (`#30`), PBR materials, and instanced meshes. |
+| **`@dimforge/rapier3d-compat`** | *(3D physics)* | **`0.12.0`** | [`horizon-hero-section/node_modules/@dimforge/rapier3d-compat`](./horizon-hero-section/) | Deterministic WASM 3D rigid-body & collider physics engine compatible with `three@0.185.1`. |
+| **`meshoptimizer`** | *(3D geometry)* | **`1.1.1`** | [`horizon-hero-section/node_modules/meshoptimizer`](./horizon-hero-section/) | Fast mesh simplification, vertex cache optimization, and buffer decompression. |
+| **`@napi-rs/canvas`** | *(Node canvas)* | **`0.1.100`**, **`1.1.0`** | `fluid-functionalism/node_modules`, `fluid-functionalism-starter/node_modules` | Hardware-backed Node 2D Canvas API for build-time/offline rasterization and image metrics. |
+| **`pdfjs-dist`** | `^5.7.284`, `^6.5.438` | **`5.7.284`**, **`6.5.438`** | `fluid-functionalism`, `fluid-functionalism-starter`, `fluid-chatgpt-clone` | Client-side PDF page canvas rendering (powers `@fluid/file-thumbnail` and archival PDF viewers like `#20`, `#21`, `#29`). |
+| **Local 3D Wireframe & Pin Globe** | Zero-dep Canvas + React | **On disk** | [`saint-urbain-agency/src/components/ui/wireframe-globe.tsx`](./saint-urbain-agency/src/components/ui/wireframe-globe.tsx) (`408` LOC, adapted from `21st.dev` `#10073`) | True spherical `[lat, lng]` unit-sphere projection, stippled continent polygons, front/back hemisphere meridians, pointer-capture drag spin, and clickable hub pins. |
+| **Local Vector GIS & Corridor Engine** | Zero-dep SVG/Canvas + React | **On disk** | [`interactive-maps-consumer-app/src/`](./interactive-maps-consumer-app/src/) & [`archetype-runs/01-water-vvard-gis/`](./archetype-runs/01-water-vvard-gis/) | Multi-layer vector GIS projection, transmission/conveyor polylines, cursor-anchored zoom/pan, draggable radial buffer handles, and floating facility sparkline popups (`#01`, `#02`, `#15`). |
+| **Not Pre-Installed (`cobe`, `ogl`, `@react-three/*`, `leaflet`, `maplibre-gl`)** | — | *Not in `node_modules`* | Installable only if network + custom `package.json` permitted | Prefer native **`three@0.185.1`**, **`WireframeGlobe`**, or **interactive SVG/Canvas GIS** so single-file Vite bundles stay 100% offline-self-contained with zero tile-server failures. |
+
+---
+
+### 1.4 UI Primitives, Icons, Tables, Forms, Rich Text & Syntax Highlighters
+
+| Sub-Category | Package | Declared Specs | Exact Installed Version(s) | Where It Lives Locally & Notes |
+| :--- | :--- | :--- | :--- | :--- |
+| **Headless UI (Radix)** | **`radix-ui`** (unified) | `^1.8.1` | **`1.8.1`** (42 dirs incl. root) | Root [`node_modules/radix-ui`](./node_modules/radix-ui) + 41 subprojects. Re-exports the complete Radix React primitive suite from one package. |
+| **Headless UI (Scoped Radix)** | **`@radix-ui/react-*`** (35 packages) | `^1.1.2` – `^2.2.6` | **`accordion@1.3.1`**, **`alert-dialog@1.2.1`**, **`aspect-ratio@1.2.0`**, **`avatar@1.3.1`**, **`checkbox@1.4.1`**, **`collapsible@1.2.1`**, **`context-menu@2.4.1`**, **`dialog@1.3.1`**, **`direction@1.2.0`** *(RTL!)*, **`dropdown-menu@2.2.1`**, **`form@0.3.0`**, **`hover-card@1.2.1`**, **`label@2.1.17`**, **`menubar@1.2.1`**, **`navigation-menu@1.4.1`**, **`one-time-password-field@0.2.1`**, **`popover@1.3.1`**, **`progress@1.2.1`**, **`radio-group@1.5.1`**, **`scroll-area@1.4.0`**, **`select@2.4.1`**, **`separator@1.2.0`**, **`slider@1.6.1`**, **`slot@1.5.0`**, **`switch@1.4.1`**, **`tabs@1.2.1`**, **`toast@1.3.1`**, **`toggle@1.2.1`**, **`toggle-group@1.2.1`**, **`toolbar@1.2.1`**, **`tooltip@1.4.1`**, **`visually-hidden@1.2.13`** | Installed across **42 `node_modules` directories** (including root `wda/node_modules`) + `fluid-functionalism/node_modules`. Note `@radix-ui/react-direction@1.2.0` for Arabic RTL prompts (`#20`, `#28`)! Also `@radix-ui/colors@3.0.0` in `horizon-hero-section`. |
+| **Headless UI (Base UI)** | **`@base-ui/react`** + `@base-ui/utils` | `^1.9.0` | **`1.9.0`** (`0.5.0` utils) | `fluid-functionalism`, `fluid-functionalism-starter`, `fluid-chatgpt-clone`. Powers all `@fluid/base/*` components (`render={<motion.div />}` + `Portal keepMounted`). |
+| **Positioning** | **`@floating-ui/react-dom`** / `dom` / `core` | *(via Radix/Base UI)* | **`2.1.9`** / **`1.8.0`** / **`1.8.0`** | Installed in **45 `node_modules` trees** (including root) — zero-jitter viewport collision-aware popovers, tooltips, and GIS pin callouts. |
+| **Icons (5 Libraries)** | **`lucide-react`** | `^1.43.0` (Golden), `^0.564.0`, `^1.67.0` | **`1.66.0`** (42 dirs incl. root), **`1.67.0`** (Fluid starters), **`1.62.0`** (6 dirs), **`0.564.0`** (`fluid-functionalism`) | Canonical Golden Template icon library across 170 `package.json` files. |
+| **Icons (Alt Sets)** | **`@phosphor-icons/react`**, **`@tabler/icons-react`**, **`@hugeicons/react`**, **`@untitledui/icons`** | `^2.1.10`, `^3.41.1`, `^1.1.6`, `^0.0.23` | **`2.1.10`** (Phosphor), **`3.41.1`** (Tabler), **`1.1.6` + `4.1.1`** (HugeIcons), **`0.0.23`** (Untitled UI) | Installed in `fluid-functionalism/node_modules` (Untitled UI also in `fluid-functionalism-starter` & `fluid-chatgpt-clone`). Wired via `@fluid/icons-*` adapters. |
+| **Calendars & Dates** | **`date-fns`**, **`@date-fns/tz`**, **`@daypicker/react`** (`react-day-picker`) | `^4.4.0`, `~10.0.2` | **`4.4.0`** (`date-fns` in 45 dirs incl. root), **`1.5.0`** (`@date-fns/tz`), **`10.0.2`** (`@daypicker/react` in 3 Fluid dirs) | Powers `@fluid/calendar`, `@fluid/date-picker`, multi-timezone schedulers, and APS Gantt timelines (`#13`, `#16`). |
+| **Toasts & Notifications** | **`sonner`** | `^2.0.8` | **`2.0.8`** | Installed in `fluid-functionalism/node_modules`; zero-dep alternatives on disk at `@easeui/toast` & `@easeui/notification-stack`. |
+| **Syntax & Rich Editors** | **`shiki`** (`@shikijs/*`), **`@tiptap/react`** (`starter-kit`, `extension-table`, `extension-list`), **`mdast-util-from-markdown`** | `^3.22.0`, `^3.31.3`, `^2.1.0` | **`3.22.0`** (Shiki), **`3.31.3`** (26 TipTap packages), **`2.1.0`** (MDAST) | Installed in `fluid-functionalism/node_modules`; zero-dep token-highlighted code block also on disk at [`easeui-registry/components/ui/code-block.tsx`](./easeui-registry/components/ui/code-block.tsx) & [`diff-view.tsx`](./easeui-registry/components/ui/diff-view.tsx). |
+| **Validation & Data** | **`zod`**, **`lodash`**, **`next-themes`** | `^3.25.76` / `^4.6.7`, `^4.18.1`, `^0.4.6` | **`3.25.76`** (42 dirs) & **`4.6.7`** (3 dirs), **`4.18.1`** (root + 2 dirs), **`0.4.6`** (3 Fluid dirs) | Schema validation, grouping/aggregation helpers, and polarity theme switching. |
+| **Class & Variable Fonts** | **`clsx`**, **`tailwind-merge`**, **`class-variance-authority`**, **`cn`**, **`@fontsource-variable/inter`** | `2.1.1`, `3.4.0`, `^0.7.1`, `^0.5.2`, `^5.3.0` | **`2.1.1`** (52 dirs), **`3.4.0`** (50 dirs), **`0.7.1`** (45 dirs), **`0.5.2`** (44 dirs), **`5.3.0`** (2 Fluid starters) | Canonical Golden Template styling stack + Inter Variable (`wght` + `opsz` optical sizing). |
+| **Zero-Dep Replacements for `cmdk` / `vaul` / `@tanstack/react-table`** | *(Replaced by local source)* | — | [`fluid-functionalism/registry/`](./fluid-functionalism/registry/) & [`easeui-registry/components/ui/`](./easeui-registry/components/ui/) | `cmdk`, `vaul`, and `@tanstack/react-table` are **not** in `node_modules`; use `@fluid/command-menu` or `@easeui/command-palette` (`⌘K`), `@fluid/mobile-drawer` or `@easeui/drawer`, and `@fluid/table` or `@easeui/table` (`tabular-nums`, sorting, fluid hover, selection bars) with zero extra NPM dependencies! |
+
+---
+
+### 1.5 Build, Bundling, CLI & Quality-Gate Tooling
+
+| Package | Golden Template Spec | Installed Version(s) Across `wda/` | Role in WDA Pipeline |
+| :--- | :--- | :--- | :--- |
+| **`react`** & **`react-dom`** | **`19.2.3`** | **`19.2.3`** (48 dirs incl. root), `19.2.4` (`fluid-functionalism`), `19.3.1` (4 dirs) | React 19 StrictMode runtime (`@types/react@19.2.7` / `19.2.3`, `@types/react-dom@19.2.3`). |
+| **`vite`** & **`@vitejs/plugin-react`** | **`7.2.4`** & **`5.0.2`** | **`7.2.4`** (50 dirs incl. root) & **`5.0.2` / `5.1.1`** (50 dirs) | Sub-second dev server & Rollup (`4.65.1`) production bundler. |
+| **`tailwindcss`** & **`@tailwindcss/vite`** | **`4.1.17`** | **`4.1.17`** (49 dirs incl. root), `4.1.18` / `4.3.4` (`@tailwindcss/postcss` in Fluid Next.js apps) | Tailwind CSS v4 Oxide engine (`@import "tailwindcss";` in `src/index.css`). |
+| **`vite-plugin-singlefile`** | **`2.3.0`** | **`2.3.0`** (51 dirs incl. root) | Inlines all JS, CSS, and SVG into one standalone `dist/index.html` for Jetski's right-hand Artifact Pane (`No x20` default). |
+| **`esbuild`** | *(via Vite & `clean-up`)* | **`0.25.12`** (`@esbuild/linux-x64@0.25.12` in 52 dirs) | Powers 80ms `clean-up` pure-React compilation checks and Vite pre-bundling. |
+| **`typescript`** | **`5.9.3`** | **`5.9.3`** (51 dirs incl. root) | Strict bundler-mode typechecking (`strict: true`, `noUnusedLocals: true`, `noUnusedParameters: true`). |
+| **`shadcn`** (CLI) | `^2.5.0` | **`2.10.0`** (42 dirs incl. root), **`3.8.5`** (`fluid-functionalism`), **`4.23.0`** (Fluid starters) | Multi-registry component installer & `npx shadcn@latest mcp` stdio server. |
+| **`playwright-core`**, **`axe-core`**, **`sharp`**, **`vitest`** | *(QA & capture)* | **`1.63.0`** (Playwright), **`4.11.1`** (Axe), **`0.34.5` / `0.35.5`** (Sharp), **`4.1.10`** (Vitest) | Headless Desktop (`1440×900` @2x) & Mobile (`390×844` @2x) hero screenshot capture, WCAG 2.2 accessibility auditing, and motion audit (`fluid-functionalism/skills/.../audit.mjs`). |
+
+---
+
+## 2. Deep Crawl of WDA's Local Component Libraries & Registries
+
+### 2.1 Fluid Functionalism (`fluid-functionalism/` — `@fluid`)
+
+- **Local Paths**: Full repository clone at [`fluid-functionalism/`](./fluid-functionalism/), starter builds at [`fluid-functionalism-starter/`](./fluid-functionalism-starter/) and [`fluid-chatgpt-clone/`](./fluid-chatgpt-clone/), agent skill at [`fluid-functionalism/skills/fluid-functionalism/SKILL.md`](./fluid-functionalism/skills/fluid-functionalism/SKILL.md), motion spec at [`fluid-functionalism/motion-guidelines.md`](./fluid-functionalism/motion-guidelines.md), and preset codec spec at [`fluid-functionalism/preset-guidelines.md`](./fluid-functionalism/preset-guidelines.md).
+- **Registry Wiring**: Configured in [`components.json`](./components.json) as `"@fluid": "https://www.fluidfunctionalism.com/r/{name}.json"` (and offline-capable via local files in `fluid-functionalism/registry/`).
+- **Dual Primitive Flavors (Never Mix in One App)**:
+  - **Radix flavor** (bare name: `@fluid/dialog`, `registry/radix/*.tsx`) — use when `package.json` uses `@radix-ui/react-*` (canonical for Golden Template + shadcn projects).
+  - **Base UI flavor** (`base/` prefix: `@fluid/base/dialog`, internal build name `<name>-base`, `registry/base/*.tsx`) — use when `package.json` uses `@base-ui/react@^1.9.0`.
+
+#### A. The 3 Tokenized Spring-Speed Physics Presets ([`registry/default/lib/springs.ts`](./fluid-functionalism/registry/default/lib/springs.ts))
+
+**Core Law**: *"The bigger the thing that moves, the slower the spring. Enters are springs; exits are plain tweens (no bounce, one tier quicker) so dismissals read crisp and final instead of replaying the entrance in reverse."* Never hand-write a `{ duration }`.
+
+| Tier Token | Enter Transition (`type: "spring"`) | Paired Exit Token (Plain Tween) | Deferred Unmount Buffer (`exitFallbackMs`) | Canonical Component Assignments |
+| :--- | :--- | :--- | :---: | :--- |
+| **`spring.fast`** | `{ type: "spring", duration: 0.08, bounce: 0 }` *(80ms, critically damped)* | **`spring.fast.exit`** → `{ duration: 0.06 }` *(60ms)* | `160ms` | Fluid hover highlight, focus rings, Checkbox, Radio, Table rows, Card 2D grid hover, Tooltip, InputCopy, Slider thumb snap, Select / Combobox / ColorPicker / DatePicker popup open, CommandMenu, Accordion (`isOpen ? spring.fast : spring.fast.exit`) |
+| **`spring.moderate`** | `{ type: "spring", duration: 0.16, bounce: 0 }` *(160ms, critically damped, zero overshoot)* | **`spring.moderate.exit`** → `{ duration: 0.12 }` *(120ms)* | `220ms` | Dropdown / Select active highlight, Tabs pill indicator, CarouselDots, Calendar month slide, Banner dismiss, Switch thumb, Chat & Message bubbles, MobileDrawer, Sidebar collapse, Selection merge/split (`useMergeSplitBlocks`), Product page reveal (`reveal-product`) |
+| **`spring.slow`** | `{ type: "spring", duration: 0.24, bounce: 0.12 }` *(240ms, subtle 12% settle)* | **`spring.slow.exit`** → `{ duration: 0.16 }` *(160ms)* | `260ms` | Dialog modal canvas, AskUserQuestions stepped flow, ThinkingSteps chain-of-thought, Landing page reveal (`reveal-landing`) |
+
+#### B. Signature Fluid Functionalism Craft Mechanisms
+
+1. **Gliding Fluid Hover (`useFluidHover` + `<FluidHoverHighlight />`)**:
+   - Single `bg-hover` overlay per list/strip/grid pinned to container padding corner and animated via GPU `transform` (`x`/`y`) on `spring.fast` (`0` layout writes while traveling).
+   - Supports `axis: "y"` (vertical menus/tables), `"x"` (horizontal strips), `"xy"` (2D card grids), `nearest: true` (never goes dark across row gaps), and `gapClick` (routes clicks in gaps to the lit item's activator).
+2. **Weight Without Reflow — Ghost-Span + `opsz` Compensation ([`font-weight.ts`](./fluid-functionalism/registry/default/lib/font-weight.ts))**:
+   - Invisible ghost `<span>` reserves width at `semibold` while the visible label animates `fontVariationSettings`:
+     - `fontWeights.normal`: `"'wght' 400, 'opsz' 14"` (resting text)
+     - `fontWeights.semibold`: `"'wght' 550, 'opsz' 18"` (headings & selected/active items — holds advance width within **±0.4px** across 4–40 char strings!)
+     - `fontWeights.bold`: `"'wght' 700, 'opsz' 25"` (display titles only — within **±0.7px**)
+3. **Two-Glyph Single-Cell Icon Swaps (`copy → check`, `play → pause`)**:
+   - Both icons stay mounted in one fixed `grid` cell (`col-start-1 row-start-1`): leaving glyph tweens `opacity: 1→0, scale: 1→0.6, filter: blur(0→4px)` in `0.06s easeIn`; arriving glyph tweens `0→1, 0.6→1, blur(4→0px)` in `0.08s easeOut` with `aria-live="polite"` screen-reader announcement.
+4. **Two-Step Size Ladder (`36px` Default / `28px` Compact) & 6-Role Type Scale ([`type-scale.ts`](./fluid-functionalism/registry/default/lib/type-scale.ts))**:
+   - `display` (`28/34` default · `24/30` compact), `title` (`16/22` · `15/20`), `subtitle` (`14/20` · `13/18`), `body` (`13/20` · `12/18`), `caption` (`12/16` · `11/14`), `micro` (`11/14` · `10/12`), plus `pointer-coarse:text-[16px]` on editable fields so iOS Safari never auto-zooms.
+5. **Pure-CSS `linear()` Page & Skeleton Reveals ([`lib/reveal/presets.ts`](./fluid-functionalism/lib/reveal/presets.ts))**:
+   - `reveal-landing` (`spring.slow`, `12px` rise, `0.94` scale, `0.1s` step + CSS view-timeline scroll) & `reveal-landing-subtle` (`8px`, `0.98`, `0.06s`).
+   - `reveal-product` (`spring.moderate`, fade-only `0.06s` step, **zero scroll animation** so dashboards feel instant on repeat visits) & `reveal-product-subtle` (`0.04s` step).
+   - `reveal-swap` + `reveal-items`: stacks Skeleton (`160ms` delay before `250ms` fade-in) and live data in one grid cell for zero-blink, zero-layout-shift handover.
+6. **Never Stack Two Measured-Height Collapses**:
+   - Parent `ResizeObserver` height wrappers (`SidebarGroup`, `AccordionContent`) spring *only* when their own `open` toggles, and snap (`{ duration: 0 }`) when a child collapses underneath them (eliminating ~108ms nested lag).
+7. **Stateless Base62 Preset Codec ([`preset-guidelines.md`](./fluid-functionalism/preset-guidelines.md))**:
+   - Bit-packs playground configurations (`<53 bits`) into permanent `<tag><version><base62>` codes (`s` sidebar, `c` card, `m` input-message, `q` ask-user-questions, `d` dropdown, `b` combobox, `k` command-menu, `n` calendar, `p` date-picker) installable via `/r/preset/<code>.json`.
+
+#### C. Complete Catalog of All 83 `@fluid` Registry Items (`fluid-functionalism/registry.json`)
+
+| Registry Type | Count | Exact Registry Item Names (`registry.json`) |
+| :--- | :---: | :--- |
+| **`registry:ui`** *(Radix & Single-Source)* | **31** | `accordion`, `ask-user-questions`, `badge`, `banner`, `button`, `calendar`, `card`, `carousel-dots`, `chat-message`, `checkbox-group`, `color-picker`, `combobox`, `command-menu`, `date-picker`, `dialog`, `dropdown`, `file-thumbnail`, `input-copy`, `input-group`, `input-message`, `mobile-drawer`, `radio-group`, `scroll-area`, `select`, `sidebar`, `slider`, `switch`, `table`, `tabs`, `thinking-indicator`, `thinking-steps`, `tooltip` *(note: `calendar` + `date-picker` + 29 others = 31 base UI surfaces; see exact 49 entries incl. `-base` variants below)* |
+| **`registry:ui`** *(Base UI `-base` / `base/*` Variants)* | **18** | `accordion-base` (`base/accordion`), `button-base` (`base/button`), `checkbox-group-base` (`base/checkbox-group`), `combobox-base` (`base/combobox`), `date-picker-base` (`base/date-picker`), `dialog-base` (`base/dialog`), `dropdown-base` (`base/dropdown`), `mobile-drawer-base` (`base/mobile-drawer`), `radio-group-base` (`base/radio-group`), `scroll-area-base` (`base/scroll-area`), `select-base` (`base/select`), `sidebar-base` (`base/sidebar`), `slider-base` (`base/slider`), `switch-base` (`base/switch`), `tabs-base` (`base/tabs`), `thinking-steps-base` (`base/thinking-steps`), `tooltip-base` (`base/tooltip`) *(31 single/Radix + 18 `-base` = **49 `registry:ui` items** total: `accordion`, `accordion-base`, `ask-user-questions`, `badge`, `banner`, `button`, `button-base`, `dropdown`, `dropdown-base`, `checkbox-group`, `checkbox-group-base`, `radio-group`, `radio-group-base`, `dialog`, `dialog-base`, `mobile-drawer`, `mobile-drawer-base`, `input-copy`, `input-group`, `input-message`, `file-thumbnail`, `chat-message`, `tabs`, `tabs-base`, `switch`, `switch-base`, `carousel-dots`, `table`, `card`, `sidebar`, `sidebar-base`, `slider`, `slider-base`, `thinking-indicator`, `scroll-area`, `scroll-area-base`, `select`, `select-base`, `combobox`, `combobox-base`, `command-menu`, `calendar`, `date-picker`, `date-picker-base`, `tooltip`, `tooltip-base`, `thinking-steps`, `thinking-steps-base`, `color-picker`)* |
+| **`registry:lib`** | **17** | `utils`, `springs`, `font-weight`, `surface-context`, `surface-classes`, `elevated`, `popup`, `omit`, `shape-context`, `size-context`, `icon-context`, `icons-tabler`, `icons-phosphor`, `icons-hugeicons`, `icons-untitledui`, `fluid-provider`, `sidebar-menu-grid` |
+| **`registry:block`** | **7** | `sidebar-app` *(complete app shell)*, `sidebar-workspace-header`, `sidebar-user-footer`, `sidebar-search-field`, `sidebar-inset-topbar`, `dialog-sidebar` *(xl settings dialog with left section sidebar)*, `queued-stack` *(Sonner-style hover-fanning draggable composer queue)* |
+| **`registry:hook`** | **5** | `use-fluid-hover`, `use-fluid-hover-standard`, `use-touch-primary`, `use-keyboard-nav-gate`, `use-merge-split` *(contiguous selection background merge/split)* |
+| **`registry:item`** | **3** | `type-scale`, `typography` *(brings `.typeset` markdown prose sheet)*, `reveal` *(brings CSS `linear()` page & skeleton swap classes)* |
+| **`registry:theme`** | **2** | `surfaces` *(8 light/dark elevation levels)*, `tokens` *(`bg-hover`, `bg-active` interaction tokens)* |
+
+---
+
+### 2.2 Motion AI Kit (`motion-ai-kit/` & `.agents/skills/motion/`)
+
+- **Local Paths**: Official `motiondivision/ai-kit` (`motion-ai@14.2.0`) repository at [`motion-ai-kit/`](./motion-ai-kit/), pre-loaded Jetski skill at [`.agents/skills/motion/SKILL.md`](./.agents/skills/motion/SKILL.md) (mirrored in [`skills/motion/`](./skills/motion/), `.cursor/`, `.claude/`, `.gemini/`), Cursor rule [`motion-ai-kit/plugins/motion/rules/motion.mdc`](./motion-ai-kit/plugins/motion/rules/motion.mdc), and directory-scale auditor [`motion-ai-kit/plugins/motion/agents/motion-reviewer.md`](./motion-ai-kit/plugins/motion/agents/motion-reviewer.md).
+- **MCP Endpoints ([`motion-ai-kit/plugins/motion/mcp.json`](./motion-ai-kit/plugins/motion/mcp.json))**:
+  - **`Motion` (`https://mcp.motion.dev` — Free, no account needed)**: `search-motion-docs`, `insert-motion-component`, `generate-css-easing`.
+  - **`Motion+` (`https://mcp.motion.dev/plus` — Authenticated Motion+ tier)**: `search-motion-source` (450+ examples & Motion UI multi-file paste-ready source), `insert-motion-plus-component`, `open-transition-editor`, `save-transition`, and live `motion://skills/performance-audit` MotionScore methodology.
+  - **Motion+ Private NPM Guardrail**: Never import `Carousel`, `Ticker`, `AnimateNumber`, `Typewriter`, `ScrambleText`, `Cursor` (`motion-plus/react`), or `splitText` (`motion-plus`) unless `motion-plus` is already installed in the target project. Use free `motion/react` + `@easeui/number-ticker` / `@fluid` equivalents instead!
+
+#### A. MotionScore (`S–F`) Render-Pipeline Cost & GPU Compositing Rules
+
+MotionScore grades every animation by the **worst render-pipeline stage** any animated property triggers per frame (`npx motionscore <url> --agent` for runtime audits):
+
+| Tier | Pipeline Cost | Properties & Patterns | WDA Engineering Rule & Upgrade Path |
+| :---: | :--- | :--- | :--- |
+| **`S`** | **Compositor-Only (60/120fps, ~0ms main-thread)** | `transform` (`x`, `y`, `scale`, `scaleX`, `scaleY`, `rotate`), `opacity`, `clipPath`, `filter` (WAAPI / CSS / hardware-accelerated `motion.*`) | **Target tier for 95%+ of dashboard & UI animations.** Browser auto-promotes compositor layers; no manual `will-change` needed unless de-opted. |
+| **`A–B`** | **Main-Thread Transform / FLIP Layout Projection** | Motion `layout` / `layoutId` (FLIP transform projection), SVG element transforms, `useMotionValue` streams (`useSpring` / `drag`), `onUpdate`, `transformTemplate` | **Approved for shared-element pills (`layoutId`), Bento FLIP reflows (`layout`), SVG path draws (`pathLength`), and pointer scrubbers.** Add scoped `willChange` if de-opted; zero allocations (`new`, `.map()`, `Object.entries()`) inside per-frame callbacks! |
+| **`C`** | **Paint-Only Every Frame** | `background-color`, `color`, `border-color`, `box-shadow`, SVG `fill`/`stroke` color | Keep short (`120–200ms` CSS `transition-colors`). **Upgrade glowing alerts** (`box-shadow` pulse) to **`S`-tier** by rendering the static `box-shadow` once on a `::after` overlay and animating only its **`opacity`**! |
+| **`D–F`** | **Layout Thrash / Forced Reflow Every Frame** | Animating `height`, `width`, `top`, `left`, `padding`, `margin`, `font-size`, or reading `getBoundingClientRect()` after DOM writes in rAF | **Banned on large containers & charts.** Upgrade `top`/`left` → `x`/`y` (`S`), bar `height`/`width` → `scaleY`/`scaleX` with `transformOrigin` (`S`), sheet/card resize → Motion `layout` (`B`). Keep `height: 0 → "auto"` strictly for small leaf disclosures (`overflow: hidden`). |
+
+#### B. CSS vs. `motion/react` Selection Matrix & React 19 API Rules ([`best-practices/`](./.agents/skills/motion/best-practices/index.md))
+
+- **Use Plain CSS (`transition` / `@keyframes` / `linear()`)** for: simple hover/focus color or opacity shifts, infinite skeleton shimmers/spinners, and one-shot mount reveals (`@fluid/reveal`) that never get interrupted mid-flight.
+  - *CSS Spring Caveat ([`css-spring/index.md`](./.agents/skills/motion/css-spring/index.md))*: `generate-css-easing({ kind: "spring", duration: 0.2, bounce: 0.3 })` returns a total settle duration longer than perceptual `duration` (e.g., `0.35s linear(...)`). Time sibling `opacity` fades off the **perceptual** duration (`0.2s`), and use `bounce: 0` on trading, SCADA, and fiduciary interfaces!
+- **Use `motion/react`** for:
+  - Interruptible gestures & rapid toggles (real physics springs preserve velocity mid-flight; CSS `linear()` cannot).
+  - Exit animations before React unmount (`<AnimatePresence mode="wait" | "popLayout">` kept mounted outside conditional children).
+  - Shared-element active indicators (`layoutId={`${instanceId}-tab`}` scoped via React `useId()` so multiple widget instances never collide!).
+  - MotionValue reactive chains (`useMotionValue` → `useSpring` → `useTransform(mv, [0, 1], [0, 100])` or `useTransform(() => mv.get() * 2)` — **never** read `mv.get()` during render, **never** use deprecated `useTransform(mv, v => ...)` callback syntax, and **always** use `mv.on("change", fn)` instead of deprecated `mv.onChange(fn)`).
+  - **Radix Integration**: Hoist `open`/`onOpenChange` to `useState`, wrap conditional child in `<AnimatePresence>`, pass `forceMount` **only** to the Radix `Content`/`Portal` component, and attach `<motion.div>` via `asChild`.
+  - **Base UI Integration ([`base-ui.md`](./.agents/skills/motion/best-practices/base-ui.md))**: Hoist `open`/`onOpenChange`, set `<Popup.Portal keepMounted>` inside `<AnimatePresence>`, and pass `<motion.div>` via the **`render={<motion.div ... />}`** prop (never function-spread).
+  - **Root Accessibility Gate**: Wrap `<App />` in `<MotionConfig reducedMotion="user">` so OS reduced-motion automatically disables `transform`/`layout` movement while keeping `opacity`/color transitions intact.
+
+---
+
+### 2.3 EaseUI (`easeui-registry/`, `easeui-variants/`, `easeui-personal-portfolio/`, `easeui-ai-chat/`)
+
+- **100% Offline Local Cache**: Every single EaseUI source file (`54` components + `ease.ts` + `utils.ts` = **`56` files**) is already materialized on disk in [`easeui-registry/components/ui/`](./easeui-registry/components/ui/), alongside all **54 shadcn-compatible JSON manifests** in [`easeui-registry/r/`](./easeui-registry/r/)!
+- **Pre-Cleaned Variant Studies on Disk**:
+  - [`easeui-variants/react/easeui-fluid/`](./easeui-variants/react/easeui-fluid/) — Pure-React (`imports only react`) Relay workspace audited via `clean-up` (`80ms` esbuild PASS).
+  - [`easeui-variants/react/easeui-21st-dev/`](./easeui-variants/react/easeui-21st-dev/) & [`easeui-variants/react/easeui-shadcn/`](./easeui-variants/react/easeui-shadcn/) — Comparative variant builds.
+  - [`easeui-personal-portfolio/`](./easeui-personal-portfolio/) & [`easeui-ai-chat/`](./easeui-ai-chat/) — Full Golden/HTML builds combining `@easeui` + `@fluid`.
+
+#### A. EaseUI Shared Motion & Chart Physics Tokens ([`ease.ts`](./easeui-registry/components/ui/ease.ts) & [`analytics-bento-showcase/src/lib/ease.ts`](./analytics-bento-showcase/src/lib/ease.ts))
+
+| Token | Exact Value | Target Surface / Graph Role |
+| :--- | :--- | :--- |
+| `EASE_OUT` / `EASE_OUT_CSS` | `[0.23, 1, 0.32, 1]` (`ease-out-quint`) | Fast-start crisp settle (`100–250ms`) for odometer digits (`NumberTicker`), popovers, and chip dropdowns |
+| `EASE_FLUID` / `EASE_FLUID_CSS` | `[0.16, 1, 0.3, 1]` (`expo-out`) | Silky `0 → 1` SVG line/area sweeps (`useFluidSweep`, `0.92s`), radial arc gauges, and scalar count-ups (`0.88s`) |
+| `EASE_IN_OUT` | `[0.645, 0.045, 0.355, 1]` | On-screen elements gliding to a new slot |
+| `EASE_DRAWER` | `[0.32, 0.72, 0, 1]` | iOS/sheet-grade bottom & side drawer glide |
+| `SPRING_PRESS` | `{ type: "spring", duration: 0.15, bounce: 0 }` | Tactile `:active` button & card press response |
+| `SPRING_SWAP` | `{ type: "spring", duration: 0.20, bounce: 0 }` | Content/label/icon slot swaps inside a control |
+| `SPRING_LAYOUT` | `{ type: "spring", duration: 0.22, bounce: 0 }` *(or `stiffness: 235, damping: 28, mass: 0.85` in Bento)* | Shared-layout active tab pills & 12-column Bento FLIP rearrangements |
+| `SPRING_PANEL` | `{ type: "spring", duration: 0.25, bounce: 0 }` | Modal & slide-over inspector entrances |
+| `SPRING_CHART_BAR` | `{ type: "spring", duration: 0.74, bounce: 0.14 }` | Vertical, horizontal, stacked, and diverging bar growth |
+| `SPRING_CHART_MORPH` | `{ type: "spring", stiffness: 230, damping: 26, mass: 0.8 }` | Interactive series/period polygon & path morphing |
+| `SPRING_GLIDE` | `{ stiffness: 700, damping: 50, mass: 0.5 }` | Critically damped `useSpring` for dragged range-slider thumbs & scrubbers (zero end-rebound) |
+| `SPRING_MOUSE` | `{ stiffness: 320, damping: 26, mass: 0.3 }` | Magnetic hover & 3D perspective card tilt |
+
+#### B. Complete Catalog of All 54 EaseUI Components on Disk (`easeui-registry/components/ui/*.tsx`)
+
+| Group | Count | Exact Local Component Files (`easeui-registry/components/ui/<name>.tsx`) & High-Value Highlights |
+| :--- | :---: | :--- |
+| **Motion Components** | **42** | `accordion`, `alert`, `avatar`, `badge`, `button`, `card`, `checkbox`, **`command-palette`** *(`⌘K` modal)*, **`copy-button`**, **`diff-view`** *(red/green line diff inspector — `#07`, `#21`, `#26`)*, **`drawer`**, `dropdown-menu`, **`dynamic-island`** *(compact live status capsule)*, **`expandable-tabs`**, `file-upload`, `gradient-text`, **`hold-to-confirm`** *(safety-gated destructive/kill-switch press — `#01`, `#08`, `#15`)*, `input`, **`insight-card`** *(KPI tile + trend badge)*, `modal`, **`morphing-search`**, **`notification-stack`**, **`number-ticker`** *(right-keyed odometer `tabular-nums`)*, `otp-input`, `popover`, `progress`, `pull-to-refresh`, **`range-slider`** *(dual-thumb weighted scorer — `#02`, `#09`)*, `rating`, `select`, **`selection-actions`** *(floating bulk-action bar on table check)*, `skeleton`, **`stepper`**, `switch`, **`table`**, `tabs`, `tag-input`, `text-animation`, `textarea`, `theme-toggle`, `toast`, `tooltip` |
+| **AI Agent Components** | **12** | **`agent-loading-states`**, **`code-block`** *(copyable syntax/Mermaid viewer — `#01`, `#27`, `#30`)*, **`flowchart`** *(416-LOC draggable node/condition canvas with live `if/and` `ChipSelect` clauses & SVG connectors — `#01` Bowtie, `#03` VSM, `#25` RAG, `#26` HITL)*, **`message-bubble`**, `pixel-loader`, **`prompt-input`**, **`reasoning-disclosure`** *(collapsible chain-of-thought)*, **`streaming-response`**, **`streaming-text`**, **`todo-list`**, **`tool-approval`** *(Maker-Checker / HITL sign-off gate — `#07`, `#10`, `#26`)*, **`tool-chip`** |
+
+---
+
+### 2.4 `shadcn/ui` & All Configured MCP / External Component Registries
+
+Root [`components.json`](./components.json) (`style: "new-york"`, `iconLibrary: "lucide"`, `cssVariables: true`) and **37 subproject `components.json` files** wire WDA into a unified multi-registry ecosystem. Notably, [`alto-storybook-coffee/components.json`](./alto-storybook-coffee/components.json) demonstrates **100% offline `file://` registry resolution** (`"@fluid": "file://../fluid-functionalism/registry/default/{name}.json"`, `"@easeui": "file://../easeui-registry/components/ui/{name}.tsx"`, `"@shadcn": "file://../src/components/ui/{name}.tsx"`).
+
+| Library / Source | Access Mode & Endpoint | Size | Standout Components for WDA Prompts (`#01`–`#37`) |
+| :--- | :--- | :---: | :--- |
+| **`shadcn/ui` (`@shadcn`)** | Built-in CLI (`shadcn@2.10.0` / `4.23.0`) + **`shadcn` MCP** (`npx -y shadcn@latest mcp`) + **43 local `components/ui/` dirs** | Core ~55 + local custom | Base accessible Radix + Tailwind v4 layer (`accordion`, `dialog`, `dropdown-menu`, `popover`, `scroll-area`, `select`, `separator`, `sheet`, `skeleton`, `slider`, `switch`, `table`, `tabs`, `tooltip`) already materialized in [`full-stack-enterprise-golden/src/components/ui/`](./full-stack-enterprise-golden/src/components/ui/) and [`src/components/ui/`](./src/components/ui/). |
+| **Kokonut UI (`@kokonutui`)** | `"@kokonutui": "https://kokonutui.com/r/{name}.json"` via `shadcn` MCP | **~120 items** (8 groups) | **Cards (19)**: `Liquid Gauge`, `Activity Terrain`, `Metric`, `Uptime`, `Widget Grid`, `Receipt Printer` (`#07`, `#12`, `#17`).<br>**Inputs (19)**: `Detent Dial`, `Liquid Slider`, `Signature Pad` (`#15` POD, `#21`), `Time Zone Planner`, `Amount Pad`, `Price Range`.<br>**AI (21)**: `AI Agent Lanes`, `AI Inline Citations` (`#25` RAG), `AI Diff Review`, `AI Tool Approval`, `AI Context Meter`.<br>**Media (7)**: `Clip Trimmer` & `Synced Transcript` (`#31` Audio SAT, `#34` PULSE NLE), `Focal Point Picker` (`#06`).<br>**Buttons (18)**: `Hold`, `Slide to Confirm`, `Morph Popover`. |
+| **Spectrum UI (`@spectrumui`)** | `"@spectrumui": "https://ui.spectrumhq.in/r/{name}.json"` + **`spectrumui` MCP** (`@spectrumui/mcp@0.1.1`) | **315 items** (Apache-2.0) | **19 Animated Charts**, **15 Data Tables**, **Kanban Board** (`@spectrumui/kanbanboard` — `#10` 11-Stage Deal OS, `#23` SWISSPI CRM), **27 AI-Assistant Blocks** (agent plan/steps, citation sources, diff view), **25 Empty States**, **50 Card Blocks**, **53 Button Variants**. |
+| **React Bits (`@react-bits`)** | `"@react-bits": "https://reactbits.dev/r/{name}.json"` via `shadcn` MCP | **1,274 items** (~217 × 4) | **Always install `-TS-TW` suffix** (`@react-bits/<Name>-TS-TW`). 33 Text Animations (`SplitText`, `CountUp`, `DecryptedText`), 38 Animations, 48 Components, 35 Micro controls, 63 WebGL/Canvas Backgrounds. *Audit per-item `gsap`/`motion`/`three`/`ogl` deps before adding.* |
+| **21st.dev (`21st` MCP)** | Active HTTP MCP (`https://21st.dev/api/mcp`, **52 tools**) + local extracts | Marketplace | Live search (`get_component`, themes, logos, inspiration). Already extracted locally on disk: [`wireframe-globe.tsx`](./saint-urbain-agency/src/components/ui/wireframe-globe.tsx), [`BorderBeam.tsx`](./chatgpt-21st-dev-app/src/components/BorderBeam.tsx), [`orb-bloop.tsx`](./ai-chatgpt-codex-consumer-app/src/components/ui/orb-bloop.tsx), [`liquid-glass.tsx`](./src/components/ui/liquid-glass.tsx), [`airbnb-range-calendar.tsx`](./interactive-maps-consumer-app/src/components/ui/airbnb-range-calendar.tsx). |
+| **OriginKit (`originkit` MCP)** | Configured HTTP MCP (`https://mcp.originkit.dev/mcp`) | Curated kit | Drop-in React + Vite + Tailwind animated text effects, particle fields, and interactive carousels. |
+| **Bencho (`bencho.dev`)** | Reference / copy-source (`https://bencho.dev/llms.txt`) | **158 blocks** (MIT) | Live-tunable React + Motion micro-interaction blocks (odds/quant cards, progress trackers, tactile scrubbers), **Sounds** (Web Audio API UI synthesis — ideal for `#01` chime & `#31` audio cues), and **Bench** side-by-side tuner. |
+| **Kinetics by Colorion** | Reference / copy-source (`https://kinetics.colorion.co`) | **162 CSS + 99 Spring + 153 Prompts** | CSS keyframe snippets, physics generator curves, and 153 AI motion/visual prompts useful for both code polish and Nano Banana plate steering. |
+| **Libraries.dev** | Individual MIT npm packages (`https://libraries.dev/llms/<pkg>.md`) | **7 AI FX packages** | `border-beam`, `thinking-orbs`, `liquid-gooey`, `voice-glow` (`#31`), `bot-avatars`, `metal-fx` (WebGL), `img-fx` (WebGL reveal). **Placement UX Rule**: *0 effects for waits `< 2s`; use `thinking-orbs` / `@fluid/thinking-indicator` only for waits `>= 2s`.* |
+| **ReactDrops (`reactdrops.dev`)** | Browser reference + AI integration briefs | Curated | Bespoke interactive canvas/DOM drops with structured AI integration specs. |
+
+---
+
+## 3. The 3-Layer Prompt Pairing Rubric (Design System + Component Stack + Motion / Graph Accentuation)
+
+When executing each prompt in our 5-prompt blocks (producing a **Desktop hero screenshot**, **Mobile hero screenshot**, and **clean Code Deliverable**), every architectural decision resolves cleanly across **three orthogonal layers**:
+
+```
+┌──────────────────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 1 · HERO DESIGN SYSTEM (Tokens, Surface Polarity, Typography & Layout Shell)       │
+│ Sources: SaaS/ (commit 77f5dc6: 24 Desktop+Mobile hero pairs) + 6 Core WDA Systems       │
+│          (Switchyard, Ledgermark, Civicgate, Fieldrig, Folio Archive, Wardline)          │
+│          + 6 External Systems (Twenty, Midday, Plane, Shadcnblocks, Geist, Liveblocks)   │
+│          + 10 Google Internal Design Systems (design-systems/google-systems/)            │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ LAYER 2 · COMPONENT & PRIMITIVE LIBRARY (Interactive Controls, Tables, Drawers & Nodes)  │
+│ Sources: @shadcn (Radix 1.8.1) · @fluid (83 spring items) · @easeui (54 local items)     │
+│          · mui-x-charts.tsx (10 SVG charts) · @spectrumui (315) · @kokonutui (120)       │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ LAYER 3 · MOTION & GRAPH ACCENTUATION (60fps S-Tier Physics, Scrubbers & Live Telemetry) │
+│ Sources: motion/react (14.9.0) · @fluid/springs (0.08/0.16/0.24s) · @easeui/ease.ts      │
+│          · CSS linear() springs · three@0.185.1 WebGL · gsap@3.12.7 timelines            │
+└──────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 3.1 Motion Temperament Calibration Rule (By Domain Gravity)
+
+Per **Motion AI Kit** and **Fluid Functionalism** guidelines, spring bounce and duration **must match domain gravity**:
+
+| Domain Gravity Tier | Bounce / Overshoot | Enter / Settle Timing | Target Prompts |
+| :--- | :---: | :--- | :--- |
+| **Tier A — Mission-Critical Telemetry, SCADA, Quant Trading & Fiduciary Ledgers** | **`bounce: 0`** *(strictly critically damped — zero wobble)* | `80ms` hover (`spring.fast`), `160ms` tabs/drawers (`spring.moderate`), `0.65–0.90s` `EASE_FLUID` initial chart sweep | `#01`–`#12`, `#13`–`#14`, `#17`, `#20`–`#24`, `#26`–`#27` |
+| **Tier B — Executive Bento Scorecards, CRM Pipelines, CAD & AI Workbenches** | **`bounce: 0` to `0.12`** *(crisp settle; subtle `0.12–0.14` only on bar growth or modal canvas)* | `160–240ms` (`spring.moderate` / `spring.slow`), `SPRING_LAYOUT` (`stiffness: 235, damping: 28`) | `#05`, `#10`, `#15`–`#16`, `#18`–`#19`, `#25`, `#28`–`#29`, `#34`–`#35` |
+| **Tier C — EdTech Simulators, Editorial Scrollytelling, Consumer & Creative Apps** | **`bounce: 0.12` to `0.20`** *(tactile, expressive, playful where earned)* | `200–350ms` springs + scroll-linked CSS view timelines (`reveal-landing-subtle`) or `gsap` / `three` | `#30`–`#33`, `#36`–`#37` |
+
+---
+
+### 3.2 Eight 60fps Graph & Interactive Dashboard Accentuation Recipes (`S`/`B`-Tier MotionScore)
+
+Whenever a prompt calls for **live telemetry traces, SCADA timelines, sparklines, waterfall/equity curves, 3D globes, WIP gauges, or KPI scorecards**, accentuate the data using these **compositor-safe (`transform` / `opacity` + SVG stroke)** patterns:
+
+1. **Live Telemetry Traces, SCADA Step-Charts & Area Sparklines (`MuiLineChart` / Custom SVG)**:
+   - **Line Reveal**: Animate `<motion.path initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }} />` paired with a vertical `<linearGradient>` area fill fading `opacity: 0 → 0.22`.
+   - **60fps Hover Crosshair Scrubber**: Track pointer X with `useMotionValue(0)` (not `useState` on every pixel!) to translate a `1px` vertical crosshair hairline via `style={{ x: cursorX }}` (`S`-tier) and snap a `tabular-nums` readout tooltip to the nearest timestamped sample.
+2. **KPI Scorecards, Basis-Point Deltas & Financial Counters (`@easeui/number-ticker` + `useSpring`)**:
+   - **Discrete User Filter / Scenario Jumps**: Use [`NumberTicker`](./easeui-registry/components/ui/number-ticker.tsx) (`key={characters.length - index}`, `tabular-nums`, `EASE_OUT = [0.23, 1, 0.32, 1]`, `sr-only` live text) inside [`InsightCard`](./easeui-registry/components/ui/insight-card.tsx) so commas and leading digits never jitter neighboring slots.
+   - **Continuous Slider / Digital-Twin Scrubbing (`#02`, `#09`)**: Drive readouts via `useMotionValue` + `SPRING_GLIDE` (`stiffness: 700, damping: 50, mass: 0.5`) formatted in a `mv.on("change", ...)` ref write for zero React render lag while dragging sliders.
+3. **Waterfall Bridges, Diverging `+/-` Cashflow Bars & `5×5` Heatmaps (`MuiDivergingBarChart` / `MuiHeatmapChart`)**:
+   - **Bar Accentuation**: Render bars at final layout geometry and animate `scaleY` (vertical) or `scaleX` (horizontal/orderbook depth) from `0 → 1` with `transformOrigin: "bottom"` (or `"center"` / zero-axis for diverging `+/-` bars), staggered at `Math.min(i * 0.025, 0.20)`s.
+   - **Interactive `highlightScope` Focus**: Hovering a bar, waterfall step, or `5×5` risk matrix cell (`#01`) dims non-related series to `opacity: 0.32` (`120ms` CSS/Motion opacity fade — `S`-tier) and pins the exact variance breakdown on click.
+4. **Quant Candlesticks, Orderbook Depth Ladders & Regime Strips (`#08`)**:
+   - **Zero-Overshoot Discipline**: `bounce: 0` everywhere. Render bid (`#10B981`) and ask (`#EF4444`) cumulative depth bars behind `tabular-nums` `JetBrains Mono` price rows using `style={{ scaleX: ratio, transformOrigin: "right" }}` (`S`-tier). Flash price-tick updates via a background overlay fading `opacity: 0.28 → 0` over `180ms`.
+5. **3D Estate Globes, GIS Conveyors & Draggable Hazard Contours (`#01`, `#02`, `#05`, `#15`)**:
+   - **3D Cyan Globe (`#05`)**: Pair `three@0.185.1` (or [`WireframeGlobe`](./saint-urbain-agency/src/components/ui/wireframe-globe.tsx)) with great-circle quadratic/cubic arc splines (`LON-01 ↔ IAD-02 ↔ SIN-01`) animated via shader dash-phase or SVG `strokeDashoffset`, pointer-capture inertia rotation, and `mapPalette: "cyan"` (`#06B6D4`) radial under-glow (`0%` purple!).
+   - **GIS Conveyors & Contours (`#01`, `#02`)**: Animate trunk pipeline flow (`Disi → Amman`) via subtle CSS `@keyframes` `stroke-dashoffset` on a secondary highlight stroke; implement watershed/setback buffer rings with `<circle>` / `<path>` pointer-capture drag handles (`r = 12..48 km`) updating area/facility exposure live.
+6. **Lean VSM WIP Triangles, Radial Gauges & Multi-Polygon Radars (`#02`, `#03`, `#04`, `#05`)**:
+   - **Radial Gauges (`MuiGauge` / `@kokonutui/liquid-gauge`)**: Animate SVG `strokeDashoffset` along circumference `C` using `EASE_FLUID` (`0.9s`), pairing semantic threshold zones (`#10B981` pass, `#F59E0B` warning, `#EF4444` breach) with explicit text labels (`Nominal`, `WIP Breach`, `—` no data vs `0` measured zero).
+   - **Radar Scorecards (`MuiMultiRadarChart`)**: Morph polygon vertex points across site candidates (`PJM` vs `ERCOT` vs `Canary Islands` in `#02`) using `SPRING_CHART_MORPH` (`stiffness: 230, damping: 26, mass: 0.8`).
+7. **Gliding List Highlights, Shared-Layout Filter Pills & Bento Expansion**:
+   - Use `@fluid/use-fluid-hover` (`<FluidHoverHighlight />`) on dense tables, command menus, and layer switchers; use `<motion.span layoutId={`${id}-pill`} transition={spring.moderate} />` on segmented timeframe/view tabs (`GIS | SCADA | 5×5 Bowtie | 6-Artifact` on Mobile!).
+8. **Compositor-Safe Alert Glows & Mandatory Reduced-Motion Guard**:
+   - **S-Tier Glow Trick (`#01` Value-Chain Cards)**: Never animate `box-shadow` directly on 4 large cards every frame (`C`-tier paint storm). Instead, place the green (`#10B981`) and crimson (`#EF4444`) `box-shadow` styles on two absolute `inset-0 pointer-events-none rounded-[inherit]` layers and crossfade their **`opacity`** (`0 ↔ 1`) + subtle ring `scale` (`1 → 1.03`)!
+   - **Accessibility**: Wrap the app root in `<MotionConfig reducedMotion="user">` and gate custom rAF/CSS loops on `useReducedMotion()` / `@media (prefers-reduced-motion: reduce)` so reduced-motion users get instant crisp crossfades with zero spatial motion sickness.
+
+---
+
+### 3.3 Recommended 3-Layer Pairings Across the 6 Design Families (`#01`–`#37`)
+
+> [!NOTE]
+> Final **Layer 1 Hero Design System** selection per prompt will incorporate the **24 Desktop+Mobile hero pairs in `SaaS/` (commit `77f5dc6`)** + **10 Google Internal Design Systems** + **12 Local WDA/External Design Systems** once `@coordinator` kicks off each 5-prompt block. The tables below lock the optimal **Component Stack (Layer 2)** and **Motion / Graph Accentuation Engine (Layer 3)** ready to pair with those hero systems.
+
+#### Family 1: Data, GIS & Telemetry Dashboards (`Prompts #01–#06` — Spotlight on Block 1 `#01`–`#05`)
+
+| Prompt | Archetype & Polarity (`<9.5%` Purple) | Layer 1: Compatible Hero Design System DNA | Layer 2: Component & Chart Stack | Layer 3: Motion & Graph Accentuation Plan |
+| :--- | :--- | :--- | :--- | :--- |
+| **#01 · Water VVARD** (`30UuyID6vHMX7LAb4wxiqn`) *Block 1 · `slot-1`* | National Water ORM, Disi-Amman GIS, `5×5` Bowtie & TV Kiosk · **Dark Graphite + Cyan** (`#0B0F14`, `#06B6D4`, `#10B981` / `#EF4444` glow) | `Switchyard` + `Vercel Geist` (`--ds-*`) + `Liveblocks` pins + dark observability `SaaS/` / Google Cloud hero refs | Vector GIS canvas (`interactive-maps-consumer-app` pattern) + `MuiLineChart` (flow/turbidity sparklines & elevation profile) + `MuiHeatmapChart` (`5×5` risk matrix) + `@easeui/flowchart` & `code-block` (5-col Bowtie + Mermaid export) + `@fluid/tabs` & `mobile-drawer` | **`motion/react` (`bounce: 0`)**: S-tier dual-layer opacity crossfade for Green → Red 3D Value-Chain incident glow (`Perspective` tilt via `SPRING_MOUSE`), draggable SVG watershed contour handles, Kiosk rail FLIP collapse (`spring.moderate`), pause-on-hover CSS `translateX` bottom news ticker, Web Audio API chime (`bencho` pattern). |
+| **#02 · Data Center GIS Screener** (`IbwVQJJ3hk4FEh35a2XLDM`) *Block 1 · `slot-2`* | Locked-100vh Parcel GIS + 100-Pt Weighted Scorecard (`PJM`, `ERCOT`, `Canary`) · **Light Crisp Slate + Cobalt** (`#F8FAFC`, `#0284C7`) | `Civicgate` + `Plane` (`--pl-*` split-pane) + `Shadcnblocks` (`--sb-*` scorecard) + daylight geospatial `SaaS/` / Google Geo hero refs | `@easeui/range-slider` (`SPRING_GLIDE` 100-pt weight tuners) + `MuiMultiRadarChart` & `MuiDivergingBarChart` (site underwriting radar/waterfall) + `@fluid/table` (`tabular-nums` ISO queue) + `@fluid/checkbox-group` (RFI due diligence) | **`motion/react` + `@easeui/ease`**: Real-time `useSpring` (`SPRING_GLIDE`) re-ranking parcel scores & radar vertices (`SPRING_CHART_MORPH`) with zero jitter as weight sliders move; `layoutId` segmented sheet (`Scorecard \| ISO Queue \| Setbacks \| RFI`) on Mobile (`390px`). |
+| **#03 · Quartz Lean VSM Studio** (`38YUfUDWNCA6mWqpyARqx2`) *Block 1 · `slot-3`* | Industrial Value Stream Mapping (`Lines 1–7`), WIP Triangles & VA/NVA Sawtooth · **Cool Zinc + Quartz Green/Teal** (`#F4F4F5`, `#3DCD58`, `#0D9488`) | `Fieldrig` + `Plane` (`--pl-*`) + Schneider Quartz CI + industrial node/workflow `SaaS/` hero refs | `@easeui/flowchart` / custom SVG Lean VSM nodes + `@easeui/number-ticker` & `insight-card` (Lead Time, VA Ratio %, Takt Time) + `@fluid/sidebar` (`Lines 1–7` SKU tree) + `@easeui/drawer` (Line-Manager parameter input) + `@easeui/file-upload` (CSV batch) | **`motion/react` (`spring.fast` / `spring.moderate`)**: Animated SVG VA/NVA stepped sawtooth timeline (`pathLength` + height scale on Takt/C/T edits), pulsing `#DC2626` WIP breach badge ring (`S`-tier opacity/scale), smooth slide-over parameter drawer (`SPRING_PANEL`). |
+| **#04 · Solarig PV Commissioning** (`7GIcIZjV9raU2VB7vBLHZF`) *Block 1 · `slot-4`* | IEC 61724-1 PR/PAC Audit + Mixed A4 Portrait/Landscape Report (`Moratalla 1 & 2`) · **Architectural Stone + Navy/Orange** (`#F7F7F5`, `#1D4ED8`, `#EA580C`) | `Midday` (`--md-*` A4 sheet) + `Civicgate` / `Ledgermark` + fiduciary report `SaaS/` hero refs | `MuiBiaxialChart` (irradiance vs power SCADA) + `MuiDivergingBarChart` (`Δ --PP` & `€ LDES` penalty variance) + `@fluid/table` (12-sensor pyranometer matrix, 12-mo PVSyst, 14-col Landscape Daily Log) + SVG dashed `PS1–PS7 → PPC → SCADA` single-line schematic | **`@fluid/springs` (`bounce: 0`)**: Crisp A4 Portrait ↔ Landscape sheet orientation transition (`layout` on `spring.moderate`), inline-editable cell commit highlight (`opacity` flash), `EASE_FLUID` dual-axis SCADA curve sweep, zero-reflow `tabular-nums` decimal alignment. |
+| **#05 · Horizon CEO Telemetry** (`edd6d26fb45d`) *Block 1 · `slot-5`* | Executive Estate 3D Cyan Globe (`LON-01`..`SYD-01`) + Active Alarms + Tier Scorecards · **Dark Graphite + Cyan** (`#0B0F14`, `#06B6D4`, `0%` purple) | `Switchyard` + `Vercel Geist` (`--ds-*`) + `Shadcnblocks` (`span-8`/`span-4` Bento) + dark executive `SaaS/` / Google Cloud hero refs | **`three@0.185.1`** (or upgraded `WireframeGlobe` WebGL/Canvas 3D Cyan Estate Globe + 5 RPM arcs) + `MuiGauge` (Availability `99.0%`, Apdex `0–1`, Throughput rpm) + `@easeui/number-ticker` + `@fluid/table` / `badge` (Active Alarms `limit:12` & Tier Scorecards honoring `—` vs `0`) | **`three@0.185.1` + `motion/react`**: 60fps drag-rotatable 3D Cyan Globe with animated great-circle RPM arc pulses & degraded `BOM-01` / maintenance `TYO-03` callout pins; `LayoutGroup` Bento `span-8`/`span-4` transitions; `EASE_FLUID` tier progress bars. |
+| **#06 · Biometric Resemblance Inspector** (`10a3e7a5d0c0`) *Block 2 · `slot-1`* | 68-Pt Facial Landmark Canvas, Blinded Rater `κ` Agreement & Artifact Hash Audit · **Light Clinical Slate + Teal** (`#F8FAFC`, `#0F766E`, `#0284C7`) | `Wardline` + `Liveblocks` (`--lb-*` canvas pins & rater rings) + `Vercel Geist` hash pills | SVG 68-landmark overlay + `@kokonutui` `Focal Point Picker` / split comparison Loupe + `MuiScatterBubbleChart` / distribution curve + `@fluid/slider` & `tabs` + `@easeui/copy-button` (SHA-256 artifact hashes) | **`@fluid/springs` (`bounce: 0`)**: Precision spring-snapped zoom/pan landmark loupe, `useMotionValue` split-wipe curtain (`clipPath` — `S`-tier!), rater agreement `κ` meter glide. |
+
+---
+
+#### Family 2: FinTech, Quant Trading, Accounting & Institutional Deal Desk (`Prompts #07–#12`)
+
+| Prompt | Archetype & Polarity (`<9.5%` Purple) | Layer 1: Compatible Hero Design System DNA | Layer 2: Component & Chart Stack | Layer 3: Motion & Graph Accentuation Plan |
+| :--- | :--- | :--- | :--- | :--- |
+| **#07 · Cross-Border AI Bookkeeping** (`579P1hMwcrtGBFdbfiaE7C`) | Multi-Currency Four-Flow Voucher Matcher, Double-Entry Ledger & Maker-Checker Tax Gate · **Light Fiduciary Slate** (`#F8FAFC`, `#059669`, `#DC2626`) | `Ledgermark` + `Midday` (`--md-*` voucher inbox) + `Liveblocks` (`--lb-*` threads) + accounting `SaaS/` hero refs | `@easeui/tool-approval` (Maker-Checker sign-off) + `@easeui/diff-view` (journal audit diff) + `MuiBarChart` / FX cashflow strip + `@fluid/table` (`useFluidHover` + `@easeui/selection-actions` bulk reconcile) | **`@easeui/ease` (`bounce: 0`)**: Zero-overshoot voucher match snap (`SPRING_SWAP` `0.20s`), hard red-line tax interception banner (`@fluid/banner`), odometer `NumberTicker` reconciled totals. |
+| **#08 · Binance Futures Quant Terminal** (`5VaQZLBWPnG4vNHTsvFfXz`) | Live Perp Execution, Orderbook Depth, HMM/MSGARCH Regime & `H1–H7` Trial Ledger · **Deep Obsidian + Emerald/Crimson** (`#090D16`, `#10B981`, `#EF4444`, `#06B6D4`) | `Switchyard` + `Vercel Geist` (`Geist Mono` / `JetBrains Mono`) + dark trading/VisActor `SaaS/` hero refs | Custom SVG Candlestick + Equity Drawdown `MuiLineChart` + `MuiDivergingBarChart` (`H1–H7` PnL attribution) + `@easeui/hold-to-confirm` (**Kill-Switch button!**) + `@fluid/tabs` & dense `28px` compact controls | **`motion/react` (`bounce: 0` strict)**: `S`-tier `scaleX` orderbook bid/ask depth bars, `180ms` tick flash opacity decay, HMM regime ribbon crossfade, `HoldToConfirm` radial progress ring on Emergency Kill-Switch, WebSocket TTL pulse dot. |
+| **#09 · FP&A Business Digital Twin** (`g5XwVTXJI1DOkAJ08QbbRD`) | Driver-Based Payroll/P&L/Cash Matrix, Dual-Bottleneck Flow & Formula Lineage · **Architectural Stone + Navy** (`#F7F7F5`, `#1D4ED8`, `#059669`, `#DC2626`) | `Ledgermark` + `Midday` (`--md-*`) + `Plane` (`--pl-*` bottleneck nodes) + `Liveblocks` lineage | `@easeui/range-slider` (driver sliders) + `MuiDivergingBarChart` (EBITDA/Cash bridge waterfall) + `MuiBiaxialChart` (runway vs headcount) + `@easeui/flowchart` (formula/bottleneck DAG) + `@easeui/number-ticker` | **`SPRING_GLIDE` + `EASE_FLUID`**: Scrubbing headcount/pricing sliders drives instant 60fps waterfall bar `scaleY` updates and shifts the `#DC2626` Primary / `#D97706` Secondary bottleneck highlight across the capacity graph. |
+| **#10 · Crystal Capital Deal OS** (`fFqMaonroihCmGZ8w0fAu0`) | 11-Stage Institutional Deal Pipeline, Investor Rolodex & Rule-5 Mandate Matcher · **Warm Editorial Paper + Forest** (`#FAF9F6`, `#0D7A5F`, `#1D4ED8`) | `Folio Archive` + `Ledgermark` + `Twenty CRM` (`--t-*` `36px` rows & Kanban) + CRM `SaaS/` hero refs | `@spectrumui/kanbanboard` (11-stage deal machine) + `@fluid/command-menu` (`⌘K` investor/mandate jump) + `MuiMultiRadarChart` (mandate fit score) + `@easeui/tool-approval` (Rule 5 gate) + `@fluid/dialog-sidebar` | **`@fluid/springs` (`spring.moderate` / `spring.slow`)**: Drag-and-drop Kanban stage cards (`Motion` `layout` FLIP), Ghost-Span zero-reflow active stage tabs, slide-over investor dossier (`SPRING_PANEL`). |
+| **#11 · Multi-Entity Reinsurance Broker ERP** (`Y82i63B53oYbNMaV5hUakT`) *Block 3 · `slot-1`* | Reinsurance Layer Tower, Slip Placement, Actuarial Underwriting & `DIFC`/`SAMA` Residency Split · **Light Crisp Slate + Cobalt** (`#F8FAFC`, `#0284C7`, `#059669`, `#D97706`) | `Ledgermark` + `Civicgate` + `Shadcnblocks` / `Midday` + actuarial/fiduciary `SaaS/` hero refs | Stacked Layer-Tower `MuiBarChart` (% signed vs open capacity) + `MuiHeatmapChart` (attachment/exhaustion exposure grid) + `@easeui/insight-card` & `number-ticker` + `@fluid/table` & `tabs` | **`motion/react` (`bounce: 0`)**: Stacked excess-of-loss layer bars (`scaleY` / `scaleX` fill as slip lines sign), zero-wobble `DIFC (DFSA)` ⇄ `KSA (SAMA)` entity switcher (`layoutId`), `tabular-nums` brokerage &ROL tickers. |
+| **#12 · ConexTravel Brazilian Corporate T&E** (`w1QEFX9LPP3w7VyXj8Yu82`) *Block 3 · `slot-2`* | Multi-`CNPJ` Expense, Per-Diem, `Pix` / `OFX` Reconcile & Audit Compliance Ledger · **Cool Industrial Zinc + Teal** (`#F4F4F5`, `#0D9488`, `#D97706`, `#DC2626`) | `Midday` (`--md-*`) + `Civicgate` + `Twenty CRM` + expense/ledger `SaaS/` hero refs | `@kokonutui` `Receipt Printer` / OCR voucher drawer + `MuiBarChart` & `MuiTwoLevelPieChart` (cost-center & policy cap split) + `@fluid/table` (`CNPJ`/`CPF`/`CEP` masks) + `@easeui/selection-actions` & `tool-approval` | **`@easeui/ease` (`bounce: 0`)**: Smooth slide-over `OFX`/`Pix` receipt matcher (`EASE_DRAWER`), policy-cap breach badge transitions, `useFluidHover` across dense multi-entity `R$` / `KM` rows. |
+
+---
+
+#### Families 3–6: Exact Prompt-Slice Pairings (`Prompts #13–#37`, Aligned 1:1 with `WDA_37_PROMPTS_MASTER.md`)
+
+| Design Family & Prompt Range | Exact Prompts in Family (`ID` & Brand) | Recommended Component Library Stack (Layer 2) | Recommended Motion & Graph Accentuation (Layer 3) |
+| :--- | :--- | :--- | :--- |
+| **3. ERP, Manufacturing, Logistics & POS (`7` prompts · `#13`–`#19` · `46` unlocks)** | **`#13`** Garment APS & Kitting (`JSOXEwbXTpuhyI7NPT4qx8`, `13u`) · **`#14`** Multi-Store Inventory Sync (`TGATY5IpZjFAwubFV0YVjD`) · **`#15`** Rota do Kunta 5-Modal Dispatch/POD (`3aurbNCLuSQv7ho1KuBn9v`, `#F7F9FC` + `#146EF5` + `#B8F23A`) · **`#16`** Civil Construction Field Ops & SWMS (`31MvMevsaVErUPfTVOoYv0`) · **`#17`** MARCONDES POS + `NFC-e`/`DANFE` (`Dqe5mc1FPg5un9Y2D4pZoc`) · **`#18`** Pickleball Venue ERP & Floor Plan (`1tOPb7vAnroG9SvDIzItQg`) · **`#19`** SolaXs `390px` Offline Solar Survey (`9kgj02pOgZgx8AU6LSjNyo`) | `MuiHeatmapChart` & `MuiHorizontalBarChart` (`#13` APS line-load heatmap & kitting traffic lights) + `@easeui/hold-to-confirm` (`#14` Emergency Zero-Out) + Vector GIS + `@kokonutui` `Signature Pad` (`#15` `#B8F23A` POD) + `@kokonutui` `Receipt Printer` (`#17` 58/80mm thermal `DANFE`) + SVG Court Floor-Plan & `@fluid/calendar` (`#18`) + `@fluid/queued-stack` (`#19` offline sync queue) | **`motion/react` (`bounce: 0`–`0.10`)**: Drag-snap APS schedule bars (`Motion` `drag="x"` + `SPRING_GLIDE` in `#13`), live `#B8F23A` courier route dash-flow & 1km Smart Locker pin rings (`#15`), kitchen prep-timer radial arcs (`#17`), court availability slot transitions (`#18`), and `390px` thumb-zone drawer physics (`#19`). |
+| **4. Legal, GRC, Clinical EHR & B2B Revenue (`5` prompts · `#20`–`#24` · `29` unlocks)** | **`#20`** Kuwaiti Archival OCR (`bC1PSolrYmxfH2wUPpTYsR`, Arabic `RTL`/`LTR` + `٠-٩` + Hijri/Gregorian) · **`#21`** BidReady GovCon `FAR/DFARS` & TPRM (`3IXx67vTBYB6Nkwdc1hNpp`) · **`#22`** 100% Spanish Encrypted Clinical CRF PWA (`8Br8hhwLrjddEaffWqvLgc`) · **`#23`** 100% German `SWISSPI` Creator CRM (`WcdbNYqLxWhNI1YcfGMV7y`) · **`#24`** Switch Solar CRM & CPQ (`YUpjkiei8CCxdhO4PCFrb1`, Turnover Blue / GP Green) | **`@radix-ui/react-direction@1.2.0`** (native `RTL` primitives for `#20`) + `pdfjs-dist` / SVG OCR bounding-box canvas (`#20`) + `@easeui/flowchart` & `MuiHeatmapChart` (`#21` TPRM blast-radius & risk matrix) + `@fluid/combobox` & `@easeui/hold-to-confirm` (`#22` movable CRF windows & double-confirm delete) + `@spectrumui/kanbanboard` (`#23` `de-CH` casting, `#24` CPQ) + `MuiBarChart` (`#24` dual Turnover/GP bars) | **`@fluid/springs` (`bounce: 0`) + RTL-safe transforms**: Logical `dir="rtl"` drawer/tab motion & synchronized PDF-to-OCR snippet bounding-box highlight (`#20`), interactive vendor blast-radius node focus (`#21`), draggable `Motion` `drag` clinical sub-windows (`#22`), and live CPQ margin/payback bar growth (`SPRING_CHART_BAR` in `#24`). |
+| **5. AI Platforms, Dev Tools & 2D/3D CAD (`5` prompts · `#25`–`#29` · `17` unlocks)** | **`#25`** Enterprise Multi-Tenant RAG (`0dDhByZ8iY0zJvnlhxUENC`) · **`#26`** Credit Bureau Dispute + Browser-Agent HITL (`wtnMQd1jCrvUe69GCdDgbj`) · **`#27`** PyHost Cloud Python IDE (`eqMJBR64PPwfeq5LyRqmNA`, `<4%` `#8B5CF6` accent) · **`#28`** Al-Hinnawi Arabic `RTL` 2D/3D Kitchen CAD (`2edTHaoW19q2qR2zZyyL35`, `JOD`/`cm`) · **`#29`** Quanta CAD Quantity Takeoff & BOQ (`cFIAnbeVzQgLT0GCpSnQQB`) | `@kokonutui` `AI Inline Citations` + `@easeui/reasoning-disclosure` (`#25`) + `@easeui/flowchart` & `tool-approval` (`#26` DAG + OTP HITL checkpoint) + `shiki@3.22.0` / `@easeui/code-block` + `MuiLineChart` (`#27` container CPU/RAM telemetry) + **`three@0.185.1`** (`#28` parametric 3D cabinets & Wood/Marble swatches) + SVG CAD polygon measurement canvas + `@fluid/table` (`#29` BOQ) | **`three@0.185.1` + `motion/react`**: `<2s` instant / `>=2s` `@fluid/thinking-steps` (`#25`), live cyan agent-step node pulse & amber `#F59E0B` HITL pause gate (`#26`), real-time container sparklines (`#27`), smooth 2D die-line ⇄ 3D WebGL kitchen orbit (`#28`), and SVG polygon area-takeoff stroke draw (`#29`). |
+| **6. Education, Health, Media, Commerce, Social & Travel (`8` prompts · `#30`–`#37` · `21` unlocks)** | **`#30`** Kids Robot Sim IDE (`6O6nchA6lgqiQfVy4mWGi4`) · **`#31`** Audio-Conditioned SAT Lab (`OazFzvOPAv3YI2jeS5Gt5H`) · **`#32`** Certivela HIPAA Telehealth (`04YMLOQJgKnA79JUAV16As`) · **`#33`** Four Rivers Dark Oceanic Publishing (`SAeQYv87RmmiSqknmUwdL9`) · **`#34`** PULSE AI Video NLE (`sq1ucVE10KevUcFSz30LVs`, `10/10`) · **`#35`** Flagit `EN`/`ES` PropTech (`3nmCwYtku7l8alp4xH259Y`) · **`#36`** SycaPost Multilingual Social + WAF (`t61frvunXbsJhcsVOLuaoI`) · **`#37`** Live RF Radar & Triangulation Map (`281mHFcJypW8U9cqZxQM8a`) | `@easeui/code-block` + 2D/3D step grid (`#30`) + `@kokonutui` `Synced Transcript` / `Clip Trimmer` (`#31` acoustic wave, `#34` multi-track NLE) + `@easeui/stepper` (`#32` 8-state HIPAA gate) + `@fluid/typography` (`.typeset` in `#33`) + Vector GIS + `MuiBiaxialChart` (`#35` UK/ES LTV & yield) + `MuiLineChart` (`#36` Bloomberg-grade Edge WAF terminal) + Polar/GIS RF triangulation canvas (`#37`) | **`motion/react` + `rAF` MotionValues**: Step-by-step `#06B6D4` robot path spring & `#F59E0B` 3-star celebration (`#30`), `useMotionValue` 60fps audio/video playhead & `scaleY` waveform bars (`#31`, `#34`), subtle oceanic wave gradient drift (`#33`), `EN` ⇄ `ES` instant locale swap + yield curve morph (`#35`), live WAF `#DC2626` threat trace (`#36`), and `#06B6D4`/`#F59E0B` rotating sweep & triangulation azimuth vectors (`#37`). |
+
+---
+
+## 4. Pre-Flight Checklist Before Building Any Prompt (`Blocks 1–8`)
+
+1. **Lock All 3 Layers Upfront**: Record **(1) Hero Design System** (with paired Desktop + Mobile reference screenshots), **(2) Component Registry Stack**, and **(3) Motion / Graph Accentuation Tier** (`bounce: 0` vs `0.12`).
+2. **Verify Import Hygiene**:
+   - Import Motion strictly from **`"motion/react"`** (never `framer-motion`, never `motion-plus` unless installed).
+   - Wrap root `<App />` in **`<MotionConfig reducedMotion="user">`**.
+   - Scope every `layoutId` with React `useId()` (`layoutId={`${uid}-active-pill`}`).
+3. **Verify Numeric & Color Discipline**:
+   - Apply `tabular-nums` (`font-variant-numeric: tabular-nums lining-nums`) on every KPI, ticker, axis label, table cell, and hover tooltip.
+   - Enforce **`< 9.5%` purple** across surfaces, chart series, and ambient glows (override purple defaults with domain cyan `#06B6D4`, cobalt `#0284C7`, emerald `#10B981`, Quartz `#3DCD58`, or forest `#0D7A5F`).
+4. **Verify S-Tier 60fps Graph Performance**:
+   - Animate only `transform` (`x`, `y`, `scaleX`, `scaleY`), `opacity`, `clipPath`, and SVG `pathLength` / `strokeDashoffset`.
+   - Drive pointer crosshairs and timeline playheads via `useMotionValue` / refs — never `setState` on raw `pointermove` without throttling or MotionValues.
+   - Single unified responsive DOM from `1440×900` Desktop down to `390×844` Mobile (`6-viewport continuum`, zero horizontal overflow, touch targets `>= 24×24px` / `pointer-coarse:text-[16px]` inputs).

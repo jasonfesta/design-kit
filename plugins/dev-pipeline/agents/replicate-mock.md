@@ -1,0 +1,1 @@
+../skills/replicate-mock/agent.md

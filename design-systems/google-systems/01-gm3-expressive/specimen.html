@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Material 3 Expressive (gm3 v40.2) — Hero Workspace Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/switchyard-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .app-frame {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      background: var(--gm3-sys-color-surface-container);
+    }
+    .nav-rail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 8px 20px;
+      gap: 14px;
+    }
+    .brand-mark {
+      width: 40px; height: 40px; border-radius: 14px;
+      background: var(--gm3-sys-color-primary);
+      color: var(--gm3-sys-color-on-primary);
+      display: grid; place-items: center;
+      font-family: var(--gm3-font-brand); font-weight: 700; font-size: 16px;
+    }
+    .fab-tonal {
+      width: 56px; height: 56px; border-radius: 16px; border: none;
+      background: var(--gm3-sys-color-primary-container);
+      color: var(--gm3-sys-color-on-primary-container);
+      font-size: 22px; font-weight: 600; cursor: pointer;
+      box-shadow: var(--gm3-sys-elevation-level1);
+    }
+    .rail-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      font-size: 11px; font-weight: 500; color: var(--gm3-sys-color-on-surface-variant);
+      background: none; border: none; cursor: pointer; padding: 0; width: 68px;
+    }
+    .rail-pill {
+      width: 52px; height: 32px; border-radius: 999px;
+      display: grid; place-items: center; font-size: 14px;
+    }
+    .rail-item.active { color: var(--gm3-sys-color-on-surface); font-weight: 600; }
+    .rail-item.active .rail-pill {
+      background: var(--gm3-sys-color-secondary-container);
+      color: var(--gm3-sys-color-on-secondary-container);
+    }
+    .main-column {
+      display: flex; flex-direction: column; padding: 12px 16px 16px 4px; gap: 12px; min-width: 0;
+    }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 8px;
+    }
+    .search-pill {
+      flex: 1; max-width: 560px; height: 46px; border-radius: 999px;
+      background: var(--gm3-sys-color-surface-container-high);
+      display: flex; align-items: center; padding: 0 18px; gap: 10px;
+      color: var(--gm3-sys-color-on-surface-variant); font-size: 14px;
+    }
+    .btn-pill {
+      height: 38px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--gm3-sys-color-outline-variant);
+      background: var(--gm3-sys-color-surface); color: var(--gm3-sys-color-on-surface);
+      font-family: var(--gm3-font-plain); font-size: 13px; font-weight: 500; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--gm3-sys-color-primary); color: var(--gm3-sys-color-on-primary); border-color: transparent;
+    }
+    .btn-tonal {
+      background: var(--gm3-sys-color-secondary-container);
+      color: var(--gm3-sys-color-on-secondary-container); border-color: transparent;
+    }
+    .workspace-grid {
+      flex: 1; display: grid; grid-template-columns: 1.55fr 1fr; gap: 14px; min-height: 0;
+    }
+    .pane {
+      background: var(--gm3-sys-color-surface);
+      border-radius: var(--gm3-shape-corner-xl);
+      padding: 22px 24px;
+      display: flex; flex-direction: column; gap: 16px; min-width: 0;
+    }
+    .pane-tonal {
+      background: var(--gm3-sys-color-surface-container-low);
+      border: 1px solid var(--gm3-sys-color-outline-variant);
+    }
+    .connected-group { display: inline-flex; gap: 2px; }
+    .connected-group button {
+      height: 36px; padding: 0 14px; border: none; cursor: pointer;
+      background: var(--gm3-sys-color-surface-container-high);
+      color: var(--gm3-sys-color-on-surface); font-size: 12.5px; font-weight: 500;
+      border-radius: 6px;
+    }
+    .connected-group button:first-child { border-radius: 18px 6px 6px 18px; }
+    .connected-group button:last-child { border-radius: 6px 18px 18px 6px; }
+    .connected-group button.active {
+      background: var(--gm3-sys-color-secondary-container);
+      color: var(--gm3-sys-color-on-secondary-container); font-weight: 600;
+    }
+    .kpi-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .kpi-card {
+      background: var(--gm3-sys-color-surface-container-low);
+      border-radius: var(--gm3-shape-corner-lg); padding: 16px;
+      border: 1px solid var(--gm3-sys-color-outline-variant);
+    }
+    .kpi-val {
+      font-family: var(--gm3-font-brand); font-size: 26px; font-weight: 600;
+      margin: 4px 0; font-variant-numeric: tabular-nums;
+    }
+    .badge-ok {
+      display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px;
+      background: var(--gm3-sys-color-tertiary-container);
+      color: var(--gm3-sys-color-on-tertiary-container); font-size: 11.5px; font-weight: 600;
+    }
+    .badge-warn {
+      display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px;
+      background: var(--gm3-sys-color-warning-container);
+      color: var(--gm3-sys-color-on-warning-container); font-size: 11.5px; font-weight: 600;
+    }
+    .chip-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip {
+      height: 32px; padding: 0 14px; border-radius: 8px;
+      border: 1px solid var(--gm3-sys-color-outline-variant);
+      background: transparent; color: var(--gm3-sys-color-on-surface-variant);
+      font-size: 12.5px; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .chip.selected {
+      background: var(--gm3-sys-color-secondary-container);
+      color: var(--gm3-sys-color-on-secondary-container); border-color: transparent;
+    }
+    .list-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 13px 16px; border-radius: 14px;
+      background: var(--gm3-sys-color-surface-container-low);
+    }
+    .ai-prompt-box {
+      margin-top: auto;
+      background: var(--gm3-sys-color-surface);
+      border: 1.5px solid var(--goog-sys-brand-blue);
+      border-radius: 22px; padding: 14px 16px;
+      box-shadow: var(--gm3-sys-elevation-level1);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .mobile-bottom-bar { display: none; }
+
+    @media (max-width: 860px) {
+      .app-frame { grid-template-columns: 1fr; padding-bottom: 72px; }
+      .nav-rail { display: none; }
+      .main-column { padding: 10px 12px 16px; }
+      .top-bar { flex-wrap: wrap; padding: 2px 0; }
+      .search-pill { max-width: none; width: 100%; order: 2; height: 42px; }
+      .workspace-grid { grid-template-columns: 1fr; }
+      .pane { padding: 16px; border-radius: 20px; }
+      .kpi-row { grid-template-columns: 1fr 1fr; }
+      .kpi-row .kpi-card:last-child { grid-column: 1 / -1; }
+      .mobile-bottom-bar {
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        position: fixed; left: 0; right: 0; bottom: 0; height: 68px;
+        background: var(--gm3-sys-color-surface-container-high);
+        border-top: 1px solid var(--gm3-sys-color-outline-variant);
+        align-items: center; padding: 0 8px; z-index: 20;
+      }
+      .mobile-bottom-bar .rail-item { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-frame">
+    <nav class="nav-rail" aria-label="Primary">
+      <div class="brand-mark">M3</div>
+      <button class="fab-tonal" type="button" aria-label="Compose">+</button>
+      <button class="rail-item active" type="button"><span class="rail-pill">❖</span><span>Workspace</span></button>
+      <button class="rail-item" type="button"><span class="rail-pill">▤</span><span>Queue</span></button>
+      <button class="rail-item" type="button"><span class="rail-pill">✦</span><span>Assist</span></button>
+      <button class="rail-item" type="button"><span class="rail-pill">⚙</span><span>Tokens</span></button>
+    </nav>
+
+    <div class="main-column">
+      <header class="top-bar">
+        <div class="search-pill">
+          <span>⌕</span>
+          <span>Search studies, field dispatches, or GM3 v40.2 tokens…</span>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="btn-pill" id="theme-toggle" type="button">◑ Light / Dark</button>
+          <button class="btn-pill btn-primary" type="button">+ New Study</button>
+        </div>
+      </header>
+
+      <div class="workspace-grid">
+        <section class="pane">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;">
+            <div>
+              <div class="gm3-mono" style="font-size:11px;color:var(--gm3-sys-color-primary);font-weight:600;">GM3 EXPRESSIVE · v40.2.1 · 1P GOOGLE BLUE</div>
+              <h1 style="font-family:var(--gm3-font-brand);font-size:24px;margin:4px 0 0;font-weight:600;">Field &amp; Clinical Operations Hub</h1>
+            </div>
+            <div class="connected-group" role="group" aria-label="View density">
+              <button class="active" type="button">Overview</button>
+              <button type="button">Schedule</button>
+              <button type="button">Audit</button>
+            </div>
+          </div>
+
+          <div class="chip-row">
+            <span class="chip selected">✓ Active Cohort (48)</span>
+            <span class="chip">Offline Synced</span>
+            <span class="chip">RTL / Multi-Script Ready</span>
+            <span class="chip">GAR 4 Contrast</span>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi-card">
+              <div style="font-size:12px;color:var(--gm3-sys-color-on-surface-variant);">Completed Visits</div>
+              <div class="kpi-val">1,284</div>
+              <span class="badge-ok">▲ +14.2% on-time</span>
+            </div>
+            <div class="kpi-card">
+              <div style="font-size:12px;color:var(--gm3-sys-color-on-surface-variant);">Offline Queue Sync</div>
+              <div class="kpi-val">99.8%</div>
+              <span class="badge-ok">0 conflicts</span>
+            </div>
+            <div class="kpi-card">
+              <div style="font-size:12px;color:var(--gm3-sys-color-on-surface-variant);">Pending Sign-Offs</div>
+              <div class="kpi-val">07</div>
+              <span class="badge-warn">2 due in 4h</span>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <strong style="font-size:14px;">Priority Dispatch &amp; Intake Queue</strong>
+              <span class="gm3-mono" style="font-size:11.5px;color:var(--gm3-sys-color-on-surface-variant);">Updated 12s ago</span>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong style="font-size:14px;display:block;">CRF-204 · Madrid Cardiology Protocol</strong>
+                <span style="font-size:12.5px;color:var(--gm3-sys-color-on-surface-variant);">AES-256 E2EE Verified · 18/18 Form Sections</span>
+              </div>
+              <span class="badge-ok">Verified</span>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong style="font-size:14px;display:block;">SOL-891 · Rooftop PV Site Survey (6.6 kW)</strong>
+                <span style="font-size:12.5px;color:var(--gm3-sys-color-on-surface-variant);">NMI 41029384712 · 12 Photos Cached Offline</span>
+              </div>
+              <button class="btn-pill btn-tonal" type="button" style="height:32px;padding:0 14px;">Review</button>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong style="font-size:14px;display:block;">POS-112 · Counter &amp; Delivery Drawer Reconcile</strong>
+                <span style="font-size:12.5px;color:var(--gm3-sys-color-on-surface-variant);">Ticket Avg $34.80 · NFC-e Batch #49 Ready</span>
+              </div>
+              <span class="badge-ok">Balanced</span>
+            </div>
+          </div>
+        </section>
+
+        <aside class="pane pane-tonal">
+          <div>
+            <div class="gm3-mono" style="font-size:11px;color:var(--goog-sys-brand-teal);font-weight:600;">_MD-COMP-AI-WORKSPACE</div>
+            <h2 style="font-family:var(--gm3-font-brand);font-size:18px;margin:4px 0 6px;">Tonal Inspector &amp; Smart Synthesis</h2>
+            <p style="margin:0;font-size:13px;color:var(--gm3-sys-color-on-surface-variant);">
+              5-level tonal surface containment (`#FFFFFF` → `#DDE3EA`) replaces heavy card borders while keeping 4.5:1+ WCAG 2.2 AA contrast.
+            </p>
+          </div>
+
+          <div style="background:var(--gm3-sys-color-surface);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--gm3-sys-color-on-surface-variant);">Primary (`primary40`)</span>
+              <span class="gm3-mono">#0B57D0</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--gm3-sys-color-on-surface-variant);">Secondary Container (`secondary90`)</span>
+              <span class="gm3-mono">#C2E7FF</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--gm3-sys-color-on-surface-variant);">Tertiary (`tertiary40`)</span>
+              <span class="gm3-mono">#146C2E</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12.5px;">
+              <span style="color:var(--gm3-sys-color-on-surface-variant);">Surface Container (`neutral`)</span>
+              <span class="gm3-mono">#F0F4F9</span>
+            </div>
+          </div>
+
+          <div class="ai-prompt-box">
+            <div style="font-size:12.5px;color:var(--gm3-sys-color-on-surface);">
+              ✦ Summarize 7 pending field sign-offs and flag missing NMI or consent attachments…
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="display:flex;gap:6px;">
+                <span class="chip" style="height:28px;font-size:11.5px;">+ Attach</span>
+                <span class="chip" style="height:28px;font-size:11.5px;">Translate (AR / ES)</span>
+              </div>
+              <button class="btn-pill btn-primary" type="button" style="height:32px;padding:0 14px;">Run</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <nav class="mobile-bottom-bar" aria-label="Mobile Navigation">
+      <button class="rail-item active" type="button"><span class="rail-pill">❖</span><span>Workspace</span></button>
+      <button class="rail-item" type="button"><span class="rail-pill">▤</span><span>Queue</span></button>
+      <button class="rail-item" type="button"><span class="rail-pill">✦</span><span>Assist</span></button>
+      <button class="rail-item" type="button"><span class="rail-pill">⚙</span><span>Tokens</span></button>
+    </nav>
+  </div>
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const root = document.documentElement;
+      root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

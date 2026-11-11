@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>daily studio chair reconstruction &amp; memory synthesis</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>daily studio chair reconstruction &amp; memory synthesis</h1>
+      <p>harvests one high-resolution single-chair photograph on a solid white background from up to 5 curated design rss feeds within a strict 5-call budget over the last 24 hours, reconstructs it 1-to-1 in pure procedural photorealistic three.js against a seamless white cyclorama with a soft floor shadow bottom using tilt-shift camera matching and 4x rgss cinema optics, and synthesizes a brand-new original chair side-by-side from cumulative daily memory and designer notes. use when running the daily chair design agent, reconstructing a studio furniture photograph 1-to-1 in three.js, or generating memory-informed procedural chair designs side-by-side. don&#x27;t use for multi-building landscape scenes (use arch-turing-test-loop) or static 2d html marketing pages (use jason-dev-agent).</p>
+      <div class="actions">
+        <a href="../chair-studio-threejs.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Daily Studio Chair Reconstruction &amp; Memory Synthesis (<code>chair-studio-threejs</code>)</h1>
+<p>Every daily run executes a disciplined 4-stage industrial-design loop:</p>
+<ol>
+<li><strong>Stage 0 -- 5-Site 24-Hour RSS Studio Chair Harvest</strong> (<a href="scripts/harvest_rss_chair.py">scripts/harvest_rss_chair.py</a> + <a href="scripts/probe_white_studio_chair.py">scripts/probe_white_studio_chair.py</a>): Scans up to 5 curated furniture/industrial-design RSS feeds (<code>Dezeen</code>, <code>Yanko Design</code>, <code>Designboom</code>, <code>Core77</code>, <code>Wallpaper*</code>) within a hard cap of at most 5 websites and minimal image fetches, filtering the last 24 hours for one unseen, high-resolution photograph of a <strong>single chair against a solid white background</strong>.</li>
+<li><strong>Stage 1 -- Optical Camera Matching &amp; White Cyclorama Lock</strong> (<a href="references/white-cyclorama-and-camera-lock.md">references/white-cyclorama-and-camera-lock.md</a>): Digests <code>arch-camera-matching-and-perspective</code> and <code>arch-daylight-and-interior-glow</code> for studio product photography -- locking native canvas aspect (<code>W x H</code>), solving <code>2-point_shift_plumb</code> (<code>camera.setViewOffset</code>) vs. <code>3-point_pitched</code> portrait perspective, enforcing <code>OrbitControls</code> target-before-projection order, locking all chair glides/legs to <code>y = 0.0</code>, and calibrating a pure white seamless cyclorama + dual-scale soft floor shadow bottom under <code>PBR Neutral</code> tone mapping.</li>
+<li><strong>Stage 2 -- 1-to-1 Pure Procedural Three.js Twin (<code>Chair A</code>)</strong> (<a href="references/procedural-chair-tectonics.md">references/procedural-chair-tectonics.md</a>): Reconstructs the reference chair 1-to-1 with zero projected reference photos -- combining centripetal Catmull-Rom shell lofts, parallel-transport tubular steel/bentwood splines, Hermite cushion lofts with welded normals, and linear-sRGB procedural timber/boucle/leather/metal shaders, verified via <a href="scripts/render_and_compare_chair.mjs">scripts/render_and_compare_chair.mjs</a>.</li>
+<li><strong>Stage 3 -- Cumulative Memory -&gt; Today&#x27;s Original Chair (<code>Chair B</code>) Side-by-Side</strong> (<a href="references/memory-and-original-synthesis.md">references/memory-and-original-synthesis.md</a>): Distills today&#x27;s tectonic DNA into the persistent memory ledger alongside all prior days and user-supplied notes, synthesizes a genuinely new procedural Three.js chair on the identical white cyclorama + soft shadow rig, and compiles the local Golden Template Side-by-Side Studio viewer.</li>
+</ol>
+<h2>Workflow Checklist</h2>
+<p>Copy this checklist on each daily or on-demand run:</p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 1</strong>: Run <a href="scripts/harvest_rss_chair.py">harvest_rss_chair.py</a> (<code>--max-site-calls 5 --lookback-hours 24</code>) to select and download one high-res white-background chair reference and emit <code>probe.json</code> via <a href="scripts/probe_white_studio_chair.py">probe_white_studio_chair.py</a></span></li>
+<li><span class="check-box"></span><span><strong>Step 2</strong>: Read <code>MEMORY.md</code>, <code>user_notes.md</code>, and <code>chair_ledger.json</code> in the project <code>memory/</code> folder to load prior days&#x27; structural vocabulary, material recipes, and designer seeds</span></li>
+<li><span class="check-box"></span><span><strong>Step 3</strong>: Author <code>Chair A</code> (1-to-1 procedural Three.js reconstruction) locked to <code>probe.json</code> camera optics, <code>y = 0.0</code> glide contact, white cyclorama, and soft bottom shadow; iterate with <a href="scripts/render_and_compare_chair.mjs">render_and_compare_chair.mjs</a> until silhouette, proportion, material, and floor shadow match the reference plate</span></li>
+<li><span class="check-box"></span><span><strong>Step 4</strong>: Author <code>Chair B</code> (Today&#x27;s Original Chair) on the identical camera/cyclorama/shadow stage, recombining tectonic lessons from today&#x27;s study, prior days&#x27; memory, and <code>user_notes.md</code></span></li>
+<li><span class="check-box"></span><span><strong>Step 5</strong>: Update <code>memory/chair_ledger.json</code> + <code>memory/MEMORY.md</code>, compile the local Golden Template Side-by-Side viewer (<code>viewer/dist/index.html</code>), and stage the right-hand Artifact Pane preview (<code>No x20</code> unless requested)</span></li>
+</ul>
+<h2>1. Hard Guardrails &amp; Digested First-Principles Axioms</h2>
+<ol>
+<li><strong>Strict 5-Website / Low-Call RSS Budget:</strong></li>
+</ol>
+<ul>
+<li>Never make more than <code>5</code> RSS feed calls across <code>5</code> distinct websites (<code>dezeen.com</code>, <code>yankodesign.com</code>, <code>designboom.com</code>, <code>feeds.feedburner.com/core77</code>, <code>wallpaper.com</code>).</li>
+<li>Never crawl or spider HTML article pages; parse <code>&lt;item&gt;</code> / <code>&lt;entry&gt;</code> titles, <code>&lt;pubDate&gt;</code>, <code>&lt;category&gt;</code>, <code>&lt;media:content&gt;</code>, <code>&lt;enclosure&gt;</code>, and <code>&lt;content:encoded&gt;</code> image URLs directly from the RSS XML payload, and download only the top candidate high-res image (<code>--max-image-downloads 2</code>, stopping immediately when <code>studio_white_passed === true</code>).</li>
+</ul>
+<ol>
+<li><strong>Pure-3D Anti-Cheat (<code>0%</code> Photo Projection):</strong></li>
+</ol>
+<ul>
+<li>Never load, project, draw, or sample <code>&lt;reference.jpg&gt;</code> onto any Three.js mesh, canvas texture, or environment map (<code>Chair A</code> and <code>Chair B</code> must be 100% procedural 3D geometry and procedural shaders that hold up from every 360-degree orbit angle).</li>
+</ul>
+<ol>
+<li><strong>Exact Camera &amp; <code>OrbitControls</code> Target-Order Invariant (Digested from <code>arch-camera-matching-and-perspective</code>):</strong></li>
+</ol>
+<ul>
+<li>Lock render dimensions strictly to <code>probe.json</code>&#x27;s <code>recommended_canvas_size</code> (<code>[1200, H]</code>).</li>
+<li>Because <code>new OrbitControls(camera, domElement)</code> calls <code>controls.update()</code> toward <code>(0, 0, 0)</code> and pitches elevated shift cameras by <code>3-6 deg</code>, <strong>always</strong> set <code>controls.target.set(...)</code> and call <code>controls.update()</code> <strong>before</strong> applying <code>camera.lookAt(...)</code>, <code>camera.setViewOffset(...)</code>, and <code>camera.updateProjectionMatrix()</code>.</li>
+<li>When <code>perspective_regime_hint == &quot;2-point_shift_plumb&quot;</code>, keep verticals plumb (<code>0 deg</code> pitch) and frame via <code>camera.setViewOffset(...)</code>. When <code>&quot;3-point_pitched&quot;</code>, solve portrait telephoto FOV (<code>24-38 deg</code> typical for studio furniture) and camera elevation/azimuth from the seat-plane and leg-foot vanishing geometry.</li>
+</ul>
+<ol>
+<li><strong>Seamless White Cyclorama + Soft Shadow Bottom under <code>PBR Neutral</code>:</strong></li>
+</ol>
+<ul>
+<li>Under Khronos <code>pbrNeutralToneMapping</code> (<code>1:1</code> linear identity below <code>0.76</code>, soft shoulder above <code>0.76</code>), keep studio backdrop radiance calibrated so the background resolves to exact reference white (<code>sRGB 248-255</code>, matching <code>border_mean_srgb</code>) while chair highlights (<code>pale ash</code>, <code>white boucle</code>, <code>chrome</code>) stay cleanly differentiated (<code>0.72-0.84</code> linear diffuse peak) with crisp edge definition.</li>
+<li>Lock all chair feet/glides/sleds strictly to <code>y = 0.0</code> (<code>minWorldVertexY === 0.0 m</code> within <code>+-0.5 mm</code>). Render a <strong>two-layer soft bottom shadow</strong> at <code>y = 0.0005 m</code>:</li>
+</ul>
+<ol>
+<li><em>Tight Foot-Pad Contact Umbra</em> (<code>sigma = 10-24 mm</code> around each leg glide / sled runner) so the chair never floats.</li>
+<li><em>Broad Under-Seat Ambient Penumbra</em> (<code>sigma = 160-380 mm</code> elliptical soft shadow pool beneath the seat pan, weighted by seat height <code>h_seat</code> and key-light azimuth/elevation).</li>
+<li><strong>Single-Tint Linear Colorimetry &amp; Welded Smooth Loft Normals:</strong></li>
+</ol>
+<ul>
+<li>Keep <code>material.color.setHex(0xffffff)</code> whenever a procedural <code>DataTexture</code> or <code>CanvasTexture</code> (<code>SRGBColorSpace</code>) already encodes wood/textile pigment so linear multiplication never darkens midtones.</li>
+<li>Build curved shells, cushions, and bentwood/tubular frames with centripetal Catmull-Rom lofts, cubic Hermite profiles, parallel-transport spline tubes, and spatial-hashed normal welding (<code>weldSmoothNormals</code>) so grazing studio softbox highlights roll smoothly without polygon facets or UV-seam creases.</li>
+</ul>
+<h2>2. Command Reference</h2>
+<pre data-lang="bash"><code># 1. Harvest 1 unseen high-res chair on solid white from the last 24h (&lt;= 5 site calls):
+python3 scripts/harvest_rss_chair.py \
+  --project-dir /usr/local/google/home/jfesta/chairs \
+  --max-site-calls 5 \
+  --max-image-downloads 2 \
+  --lookback-hours 24
+
+# 2. Probe any studio chair image directly for white-cyclorama purity &amp; camera optics:
+python3 scripts/probe_white_studio_chair.py &lt;reference.jpg&gt;
+
+# 3. Headless WebGL2 render + 1:1 parity &amp; triptych comparison (zero npm deps via Chrome CDP):
+node scripts/render_and_compare_chair.mjs \
+  --viewer-dir /usr/local/google/home/jfesta/chairs/viewer \
+  --day-dir /usr/local/google/home/jfesta/chairs/days/&lt;YYYY-MM-DD-slug&gt; \
+  --day-id &lt;YYYY-MM-DD-slug&gt; \
+  --iter 1</code></pre>
+<h2>3. Companion Skills Linked (Zero Script Duplication)</h2>
+<ul>
+<li><strong>Camera &amp; Vanishing-Point Calibration</strong>: <code>arch-camera-matching-and-perspective</code> (<code>probe_reference_plate.py</code> invoked directly by <a href="scripts/probe_white_studio_chair.py">probe_white_studio_chair.py</a>)</li>
+<li><strong>Cinema 4x RGSS, Shift-Lens HBAO &amp; Parity Metrics</strong>: <code>arch-turing-test-loop</code> (<code>arch_hyperreal_optics.js</code> and <code>compare_arch_core.mjs</code> linked directly by <a href="scripts/render_and_compare_chair.mjs">render_and_compare_chair.mjs</a>)</li>
+<li><strong>PBR Neutral Shoulder &amp; Role-Split Studio IBL</strong>: <code>arch-daylight-and-interior-glow</code> and <code>arch-materials-and-weathering</code></li>
+<li><strong>Catmull-Rom Lofts, Hermite Profiles &amp; Normal Welding</strong>: <code>image-to-working-model</code></li>
+<li><strong>Golden Template React 19 + Vite 7 + Tailwind v4 Viewer</strong>: <code>golden-template</code></li>
+</ul>
+<h2>References</h2>
+<ul>
+<li><a href="references/white-cyclorama-and-camera-lock.md">Studio white cyclorama, soft shadow bottom, and camera perspective lock</a></li>
+<li><a href="references/procedural-chair-tectonics.md">Pure procedural Three.js chair geometry and material tectonics</a></li>
+<li><a href="references/memory-and-original-synthesis.md">Cumulative memory ledger and original daily chair synthesis</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

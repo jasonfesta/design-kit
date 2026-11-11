@@ -1,0 +1,79 @@
+<article aria-labelledby="sy-comp-history" class="sy-spec-row">
+<div class="sy-spec-meta">
+<h3 id="sy-comp-history">Commit inspection</h3>
+<p class="sy-spec-rule">Left and right arrows move across inspection tabs; column headers sort deploys.</p>
+</div>
+<div class="sy-spec-cell">
+<nav aria-label="Breadcrumb">
+<ol class="sy-crumbs">
+<li><a href="../index.html">All systems</a></li>
+<li aria-hidden="true">/</li>
+<li><a href="#workspace">Core API</a></li>
+<li aria-hidden="true">/</li>
+<li><span aria-current="page">Release 24.11</span></li>
+</ol>
+</nav>
+<div>
+<div aria-label="Inspection view" class="sy-tablist" role="tablist">
+<button aria-controls="sy-panel-diff" aria-selected="true" class="sy-tab" id="sy-tab-diff" role="tab" tabindex="0" type="button">Diff</button>
+<button aria-controls="sy-panel-checks" aria-selected="false" class="sy-tab" id="sy-tab-checks" role="tab" tabindex="-1" type="button">Checks</button>
+<button aria-controls="sy-panel-logs" aria-selected="false" class="sy-tab" id="sy-tab-logs" role="tab" tabindex="-1" type="button">Logs</button>
+</div>
+<div aria-labelledby="sy-tab-diff" class="sy-tabpanel num" id="sy-panel-diff" role="tabpanel">
+                2 files changed (+18, −6 lines) across <span class="mono">retry_worker.go</span> and <span class="mono">webhooks.yaml</span> at head <span class="mono">a8f3d2</span>.
+              </div>
+<div aria-labelledby="sy-tab-checks" class="sy-tabpanel num" hidden="" id="sy-panel-checks" role="tabpanel">
+                All 18 integration suites, schema migration dry-runs, and webhook replay benchmarks passed in 2m 14s.
+              </div>
+<div aria-labelledby="sy-tab-logs" class="sy-tabpanel num" hidden="" id="sy-panel-logs" role="tabpanel">
+                11:04:18 worker-iad-02 drained 0 open streams; canary pool steady at 42 ms median p50.
+              </div>
+</div>
+<div class="sy-table-scroll">
+<table aria-label="Recent deployments" class="sy-table" id="sy-deploy-table">
+<thead>
+<tr>
+<th scope="col">Commit</th>
+<th aria-sort="none" data-deploy-col="1" data-deploy-type="text" scope="col">
+<button class="sy-sort-btn" type="button">
+<span>Environment</span>
+<svg aria-hidden="true" class="sy-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+<th scope="col">Deployed</th>
+<th aria-sort="ascending" data-deploy-col="3" data-deploy-type="num" data-numeric="true" scope="col">
+<button class="sy-sort-btn" type="button">
+<span>p50</span>
+<svg aria-hidden="true" class="sy-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="mono muted">a8f3d2</td>
+<td>Staging · 24.11</td>
+<td class="muted num">2m ago</td>
+<td class="num" data-numeric="true" data-sort-val="42">42 ms</td>
+</tr>
+<tr>
+<td class="mono muted">4d18ea</td>
+<td>Canary · us-east</td>
+<td class="muted num">18m ago</td>
+<td class="num" data-numeric="true" data-sort-val="45">45 ms</td>
+</tr>
+<tr>
+<td class="mono muted">f29c10</td>
+<td>Production · 24.10</td>
+<td class="muted num">Nov 2</td>
+<td class="num" data-numeric="true" data-sort-val="56">56 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</article>

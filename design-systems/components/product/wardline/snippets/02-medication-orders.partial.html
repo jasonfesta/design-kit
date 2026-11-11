@@ -1,0 +1,31 @@
+<article aria-labelledby="card-rx-title" class="care-card">
+<div class="care-card-head">
+<h3 id="card-rx-title">Medication orders</h3>
+<p class="care-card-sub">Pharmacy check passed at 08:40 · Linden Street Clinic</p>
+</div>
+<div class="rx-banner">
+<span class="rx-drug">Atorvastatin · 10 mg → 20 mg evening</span>
+<span class="rx-meta">Recheck lipid panel in 8 weeks</span>
+</div>
+<div class="inline-actions">
+<button class="wl-btn wl-btn--pri" data-open-modal="#dosage-dialog" type="button">Confirm dosage</button>
+<button class="wl-btn" data-trigger-toast="Fasting lipid draw scheduled for 3 January" type="button">Schedule lab draw</button>
+<button class="wl-btn wl-btn--ghost" data-loading="false" id="wl-demo-load" type="button">
+<span class="btn-load-stack">
+<span class="btn-label">Send visit note</span>
+<span aria-hidden="true" class="btn-spin"></span>
+</span>
+</button>
+</div>
+<div class="inline-actions">
+<button class="wl-btn wl-btn--hold" data-trigger-toast="Medication hold recorded for pharmacist review" type="button">Hold prescription</button>
+<button class="wl-btn" disabled="" type="button">Dispensed</button>
+</div>
+<fieldset class="care-divider choice-stack">
+<legend class="wl-label" style="margin-bottom:6px">Eight-week follow-up format</legend>
+<div class="choice-row-inline">
+<label class="choice-row"><input checked="" class="wl-radio" name="wl-visit-kind" type="radio"/><span>In-clinic morning check</span></label>
+<label class="choice-row"><input class="wl-radio" name="wl-visit-kind" type="radio"/><span>Video review with Dr. Patel</span></label>
+</div>
+</fieldset>
+</article>

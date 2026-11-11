@@ -1,0 +1,94 @@
+<section aria-labelledby="h-dispatch-signup" class="doc-chapter" data-component-doc="" id="dispatch-signup">
+<div class="chapter-head">
+<h2 id="h-dispatch-signup">Seasonal dispatch signup states</h2>
+<p>Offer quarterly exhibition announcements through one clearly labelled email field. Document every interactive state side by side so validation, busy spinner lock, and inline confirmation stay consistent.</p>
+</div>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul class="usage-list">
+<li>Place near the end of exhibition and monograph pages for visitors following upcoming seasonal openings.</li>
+<li>Ask only for an email address so readers subscribe without abandoning the exhibition catalogue.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Composition and copy rules</h3>
+<ul class="usage-list">
+<li>Defer validation until blur or submit, explaining how to correct the address in plain words.</li>
+<li>Overlap the submit label and loading indicator inside one grid cell so button width never jumps.</li>
+<li>State annual email frequency directly below the field to answer inbox hesitation upfront.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div class="signup-states-grid">
+<!-- State 1: Live Default -->
+<div class="specimen-card" data-specimen-state="default">
+<div class="specimen-label">Default</div>
+<form class="signup-box" data-lead-form="" novalidate="">
+<div class="fa-field" style="width:100%">
+<label class="fa-label" for="fa-lead-email">Email address</label>
+<div class="signup-form-row">
+<input aria-describedby="fa-lead-err fa-lead-hint" autocomplete="email" class="fa-input" id="fa-lead-email" name="email" placeholder="name@domain.ch" required="" type="email"/>
+<button class="fa-btn-pri" type="submit">
+<span class="btn-label">Receive seasonal notes</span>
+<span aria-hidden="true" class="btn-spinner">
+<svg class="spin-svg" fill="none" viewbox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"></circle><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2"></path></svg>
+                        Sending
+                      </span>
+</button>
+</div>
+<p class="fa-error" hidden="" id="fa-lead-err" role="alert"></p>
+<p class="fa-hint" id="fa-lead-hint">Four dispatches a year, one per exhibition season. Unsubscribe in one click.</p>
+</div>
+</form>
+</div>
+<!-- State 2: Invalid address error -->
+<div class="specimen-card" data-specimen-state="validation-error">
+<div class="specimen-label">Invalid address</div>
+<div class="signup-box">
+<div class="fa-field" style="width:100%">
+<label class="fa-label" for="fa-err-demo">Email address</label>
+<div class="signup-form-row">
+<input aria-describedby="fa-err-demo-msg fa-err-demo-hint" aria-invalid="true" class="fa-input" id="fa-err-demo" readonly="" type="email" value="sabine.keller@kunsthalle"/>
+<button aria-disabled="true" class="fa-btn-pri" type="button">
+<span class="btn-label">Receive seasonal notes</span>
+<span aria-hidden="true" class="btn-spinner"></span>
+</button>
+</div>
+<p class="fa-error" id="fa-err-demo-msg">Enter a complete email address with a domain suffix, such as name@domain.ch.</p>
+<p class="fa-hint" id="fa-err-demo-hint">Four dispatches a year, one per exhibition season.</p>
+</div>
+</div>
+</div>
+<!-- State 3: Sending -->
+<div class="specimen-card" data-specimen-state="sending">
+<div class="specimen-label">Sending</div>
+<div aria-busy="true" class="signup-box">
+<div class="fa-field" style="width:100%">
+<label class="fa-label" for="fa-busy-demo">Email address</label>
+<div class="signup-form-row">
+<input class="fa-input" disabled="" id="fa-busy-demo" type="email" value="clara.senn@eth.ch"/>
+<button aria-disabled="true" class="fa-btn-pri" data-loading="true" type="button">
+<span class="btn-label">Receive seasonal notes</span>
+<span class="btn-spinner">
+<svg aria-hidden="true" class="spin-svg" fill="none" viewbox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"></circle><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2"></path></svg>
+                        Sending
+                      </span>
+</button>
+</div>
+<p class="fa-hint">Saving subscription for seasonal curatorial letters…</p>
+</div>
+</div>
+</div>
+<!-- State 4: Subscribed confirmation -->
+<div class="specimen-card" data-specimen-state="confirmed">
+<div class="specimen-label">Subscribed</div>
+<div class="signup-box">
+<p class="confirmed-note-title">Seasonal dispatch active for clara.senn@eth.ch</p>
+<p class="confirmed-note-body">Our next curatorial letter mails on 12 March ahead of the spring works-on-paper retrospective, including Thursday preview invitations.</p>
+</div>
+</div>
+</div>
+</div>
+</section>

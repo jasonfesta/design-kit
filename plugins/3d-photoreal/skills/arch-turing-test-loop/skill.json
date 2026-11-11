@@ -1,0 +1,37 @@
+{
+  "id": "arch-turing-test-loop",
+  "display_name": "Adversarial Architectural Turing-Test & Cumulative Skill Evolution",
+  "google3_package": "arch_turing_test_loop",
+  "title": "Adversarial Architectural Turing-Test & Cumulative Skill Evolution",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "arch-turing-test-loop",
+  "agent_md": "arch-turing-test-loop/agent.md",
+  "skill_md": "arch-turing-test-loop/SKILL.md",
+  "html_page": "arch-turing-test-loop/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/arch-turing-test-loop",
+  "bundle_skill": "arch-turing-test-loop.skill",
+  "bundle_zip": "arch-turing-test-loop.zip",
+  "short_summary": "Adversarial Reference-vs-Three.js Turing Test iteration protocol, aspect-locked evaluation, finite-difference double-edge sign checks, peak-checkpoint locking, and cumulative cross-batch skill evolution with anchor regression gates.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Adversarial Reference-vs-Three.js Turing Test iteration protocol, aspect-locked evaluation, finite-difference double-edge sign checks, peak-checkpoint locking, and cumulative cross-batch skill evolution with anchor regression gates.",
+  "references": [
+    "./references/contributing.md",
+    "./scripts/arch_hyperreal_optics.js",
+    "./scripts/arch_nav_rig.js",
+    "./scripts/build_and_render_plate.mjs",
+    "./scripts/compare_arch_core.mjs",
+    "./scripts/compare_arch_render.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=arch-turing-test-loop"
+  }
+}

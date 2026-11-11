@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>style direction</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>style direction</h1>
+      <p>synthesizes 5 benchmarks into named 5-10 style directions with web-safe and companion google fonts, 8-token colors, canon.md, coverage.md, and copy tables.</p>
+      <div class="actions">
+        <a href="../style-direction.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>style direction</h1>
+<pre data-lang="text"><code>jason-design-agent / style direction (stage 2 · direct research inspiration &amp; zero beige)
+────────────────────────────────────────────────────────────────────
+input         user_prompt + 5 distinct researched examples (research/)
+core rule     TAKE DIRECT INSPIRATION from the 5 researched examples--NEVER
+              average 5 vivid benchmarks into one safe warm-beige compromise
+anti-beige    HARD BAN on warm beige/cream/oat defaults (#F4EFE6, #F6F2EA...)
+fonts         live google-font-selection ONLY (~1,950 families, 0 AI cliches)
+tri-voice     1. textural/material · 2. designer · 3. frontend developer</code></pre>
+<p><code>style-direction</code> is Stage 2 of <strong><code>jason-design-agent</code></strong>. Rather than averaging researched benchmarks into one safe, warm-beige middle ground, <code>style-direction</code> <strong>preserves the direct structural, chromatic, and material inspiration of the 5 standout researched examples</strong> so Nano Banana produces genuinely distinct, category-worthy results—paired with live-ranked Google Fonts (<code>recommend_google_fonts.py</code>) and original <code>canon.md</code> brand copy.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 1 — define &amp; name the <code>5-10</code> Style Range (<code>direction.md</code>) &amp; enforce the zero-beige ban</strong>: synthesize all researched sites and their 5-part anatomical breakdowns (<code>header</code>, <code>navigation</code>, <code>touts</code>, <code>interactions</code>, <code>footer</code>) into <strong><code>5-10</code> explicitly named non-beige style directions</strong> that break down the first moodboard—carrying forward each style&#x27;s authentic chromatic polarity, material physics, layout grid, and interactive mechanics directly (banning <code>#F4EFE6</code> / <code>#F6F2EA</code> / <code>#FAF6F0</code> warm-beige defaults unless explicitly requested by the user).</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — execute live <code>google-font-selection</code> + web-safe accessible companion body pairing (<code>&lt;= 2</code> fonts per direction, WCAG 2.2 AA pre-flight)</strong>:</span></li>
+<li>Run <code>../google-font-selection/scripts/recommend_google_fonts.py</code> against the live ~1,950-family catalog for the <strong>Primary (<code>H1-H3</code> Headline)</strong> voice, strictly excluding <code>avoid_fonts</code> <strong>AND</strong> overused AI defaults (<code>Instrument Serif</code>, <code>Playfair Display</code>, <code>Cormorant Garamond</code>, <code>DM Serif Display</code>, <code>Cinzel</code>, <code>Inter</code>, <code>Roboto</code>, <code>Plus Jakarta Sans</code>, <code>DM Sans</code>).</li>
+<li>Run <code>python3 ../jason-design-agent/scripts/font_scale_and_pairing.py pair --primary=&quot;&lt;Primary&gt;&quot; --surface=desktop-web --avoid=&quot;&lt;csv&gt;&quot;</code> to lock a <strong>live-scored, web-safe accessible Companion Body &amp; UI Google Font</strong> (<code>Latn</code> script, <code>400</code> + <code>500/600</code> or variable <code>wght</code>, high Google <code>/Purpose/Easy Reading</code> + <code>/Quality/*</code> scores, <code>tabular-nums</code>, open apertures) and verify WCAG 2.2 AA token contrast (<code>&gt;= 4.5:1</code> body/muted/button labels, <code>&gt;= 3.0:1</code> large headings &amp; borders) via <code>font_scale_and_pairing.py audit</code> before <code>image-gen</code> writes a single prompt.</li>
+<li>Document physical letterform anatomy + per-surface (<code>desktop-web</code>, <code>mobile</code>, <code>desktop-app</code>, <code>component</code>) CSS-to-<code>2K</code> canvas ratios and character/line-count copy budgets in <code>typography-and-color.md</code> (<code>&gt;= 16px</code> body, <code>&gt;= 12px</code> floor; NEVER <code>&lt; 12px</code>).</li>
+<li><span class="check-box"></span><span><strong>step 3 — lock optical padding &amp; negative-space geometry (<code>typography-and-color.md</code>)</strong>: enforce <code>&gt;= 38%-45%</code> calm negative space, <code>64px-96px</code> outer desktop margins, <code>80px-128px</code> vertical pauses, <code>28px-36px</code> internal card padding, <code>40px-48px</code> pills/buttons with <code>2:1</code> L/R optical padding (<code>20px-28px</code>), <code>&gt;= 18%-22%</code> margin around isolated components, and <code>75%</code> open stage on experiences.</span></li>
+<li><span class="check-box"></span><span><strong>step 4 — author <code>canon.md</code> &amp; <code>coverage.md</code> with explicit website/app architecture notes &amp; <code>&lt;surface&gt; -- &lt;role&gt;</code> naming</strong>:</span></li>
+<li><strong>Single-brand product mode</strong>: all <code>web</code> plates form <strong>one cohesive website</strong> (only slot <code>01</code> is <code>web -- home landing page</code>; interior routes share identical header/footer) and all <code>mobile app</code> plates form <strong>one app</strong> across 3 tabs.</li>
+<li><strong>5-example multi-direction mode</strong>: each separate benchmark-inspired website uses <code>web -- home landing page · &lt;direction&gt;</code>, documented explicitly in <code>coverage.md</code> and the moodboard <code>system</code> row.</li>
+<li><span class="check-box"></span><span><strong>step 5 — hand off tri-voice blueprints to Pre-Nano 10-Iteration Critique (<code>critique/pre-nano-10-iterations.md</code>)</strong>: verify every prompt unites <strong>textural</strong>, <strong>designer</strong>, and <strong>frontend-developer</strong> precision before firing Nano Banana.</span></li>
+</ul>
+<h2>1. the tri-voice specification rule (non-beige example)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>voice</th><th>what <code>style-direction</code> locks in detail</th><th>concrete example (<em>brushed stainless &amp; optic white espresso lab</em>)</th></tr></thead>
+<tbody>
+<tr><td><strong>1. textural &amp; material</strong></td><td>Physical substrate, metal/stone/glass grain, studio light direction, shadow falloff, zero plastic AI sheen, zero beige tint.</td><td><em>Pure <code>#FFFFFF</code> gallery wall plane meeting <code>#D4D8DD</code> linearly brushed 304 stainless steel counter surfaces, <code>#0A0A0A</code> anodized carbon hardware, crisp overhead daylight diffused through frosted glass.</em></td></tr>
+<tr><td><strong>2. designer</strong></td><td>Optical hierarchy, benchmark-faithful column tension, negative-space cadence, live Google Font pairing &amp; tracking.</td><td><em>Architectural Kyoto laboratory restraint (<code>Afacad Flux</code> <code>-0.03em</code> geometric headlines + <code>Google Sans Code</code> <code>+0.06em</code> brewing coordinates), <code>44%</code> pure white breathing room, single focal espresso bar vista.</em></td></tr>
+<tr><td><strong>3. frontend developer</strong></td><td>CSS Grid track geometry, <code>1px</code> seams, exact <code>px</code> radii, <code>2:1</code> pill padding, <code>tabular-nums</code>, complete footer.</td><td><em><code>12-column</code> grid (<code>24px</code> gap, <code>1px solid #E5E7EB</code> crisp rules, <code>8px</code> radius); <code>42px</code> pill CTA (<code>24px</code> L/R padding, <code>8px</code> gap); right-aligned <code>tabular-nums</code> extraction specs (<code>93.5°C · 1:2.1 · 28s</code>).</em></td></tr>
+</tbody>
+</table></div>
+<h2>references</h2>
+<ul>
+<li><a href="references/originality-and-canon-tables.md">palette polarity rules, <code>canon.md</code> schema &amp; tri-voice planning tables</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

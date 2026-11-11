@@ -1,0 +1,33 @@
+{
+  "id": "arch-camera-matching-and-perspective",
+  "display_name": "Architectural Camera Matching & Perspective Calibration",
+  "google3_package": "arch_camera_matching_and_perspective",
+  "title": "Architectural Camera Matching & Perspective Calibration",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "arch-camera-matching-and-perspective",
+  "agent_md": "arch-camera-matching-and-perspective/agent.md",
+  "skill_md": "arch-camera-matching-and-perspective/SKILL.md",
+  "html_page": "arch-camera-matching-and-perspective/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/arch-camera-matching-and-perspective",
+  "bundle_skill": "arch-camera-matching-and-perspective.skill",
+  "bundle_zip": "arch-camera-matching-and-perspective.zip",
+  "short_summary": "Match exact architectural photography perspective, tilt-shift lens shift (camera.setViewOffset) vs. pitched 3-point elevation, OrbitControls target order, sloped site grades, and return-wall geometry when reconstructing a real architectural photograph in Three.js.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Match exact architectural photography perspective, tilt-shift lens shift (camera.setViewOffset) vs. pitched 3-point elevation, OrbitControls target order, sloped site grades, and return-wall geometry when reconstructing a real architectural photograph in Three.js.",
+  "references": [
+    "./references/contributing.md",
+    "./scripts/probe_reference_plate.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=arch-camera-matching-and-perspective"
+  }
+}

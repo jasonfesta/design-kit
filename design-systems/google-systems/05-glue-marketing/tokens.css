@@ -1,0 +1,101 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   05. GOOGLE GLUE MARKETING WEB STANDARDS (glue)
+   Google3 Provenance:
+     - //depot/google3/marketing/glue/lib/colors/_variables.scss
+     - //depot/google3/marketing/glue/lib/typography/_variables.scss
+     - //depot/google3/marketing/glue/lib/grids/ & spacers/
+     - Docs: go/glue | https://standards.google/guidelines/marketing-web-standards/
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* Verbatim Glue SCSS Palette (marketing/glue/lib/colors/_variables.scss) */
+    --glue-grey-0: #ffffff;
+    --glue-grey-50: #f8f9fa;
+    --glue-grey-100: #f1f3f4;
+    --glue-grey-200: #e8eaed;
+    --glue-grey-300: #dadce0;
+    --glue-grey-500: #9aa0a6;
+    --glue-grey-700: #5f6368;
+    --glue-grey-800: #3c4043;
+    --glue-grey-900: #202124;
+
+    --glue-blue-50: #e8f0fe;
+    --glue-blue-600: #1a73e8;
+    --glue-blue-700: #1967d2;
+    --glue-blue-900: #174ea6;
+
+    --glue-green-50: #e6f4ea;
+    --glue-green-600: #1e8e3e;
+    --glue-red-50: #fce8e6;
+    --glue-red-600: #d93025;
+    --glue-yellow-50: #fef7e0;
+    --glue-yellow-600: #f9ab00;
+
+    /* Semantic Marketing Surface Roles */
+    --glue-surface: var(--glue-grey-0);
+    --glue-surface-tonal: var(--glue-grey-50);
+    --glue-surface-subtle: var(--glue-grey-100);
+    --glue-ink-primary: var(--glue-grey-900);
+    --glue-ink-secondary: var(--glue-grey-700);
+    --glue-border: var(--glue-grey-300);
+    --glue-accent: var(--glue-blue-600);
+    --glue-accent-hover: var(--glue-blue-700);
+    --glue-accent-soft: var(--glue-blue-50);
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --glue-surface: #202124;
+    --glue-surface-tonal: #292a2d;
+    --glue-surface-subtle: #303134;
+    --glue-ink-primary: #ffffff;
+    --glue-ink-secondary: #bdc1c6;
+    --glue-border: #3c4043;
+    --glue-accent: #8ab4f8;
+    --glue-accent-hover: #aecbfa;
+    --glue-accent-soft: rgba(138, 180, 248, 0.16);
+  }
+
+  :root {
+    --glue-font-display: 'Google Sans Display', 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --glue-font-text: 'Google Sans Text', 'Plus Jakarta Sans', Arial, sans-serif;
+    --glue-font-mono: 'JetBrains Mono', Consolas, monospace;
+
+    /* Glue 12-Column Editorial Grid & Spacer Scale */
+    --glue-grid-max-width: 1280px;
+    --glue-grid-gap-desktop: 28px;
+    --glue-spacer-3: 24px;
+    --glue-spacer-5: 48px;
+    --glue-spacer-7: 72px;
+    --glue-radius-card: 16px;
+    --glue-radius-pill: 9999px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--glue-surface);
+    color: var(--glue-ink-primary);
+    font-family: var(--glue-font-text);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .glue-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--glue-accent);
+  }
+}

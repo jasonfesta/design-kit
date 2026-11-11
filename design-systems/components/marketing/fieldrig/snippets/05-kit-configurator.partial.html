@@ -1,0 +1,161 @@
+<section aria-labelledby="h-kit-configurator" class="doc-section" data-component-doc="" data-section="pricing" id="kit-configurator">
+<div class="shell">
+<h2 class="doc-h2" id="h-kit-configurator">Modular hardware configurator</h2>
+<p class="doc-desc">Replaces software seat tiers with a two-column build-to-order kit selector, live USD and EUR currency switch, and clean ledger order summary.</p>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul>
+<li>Use whenever engineers configure one calibrated instrument with anodized finishes, leather field protection, or multi-unit sync accessories.</li>
+<li>Keep base unit, active bundle savings, and temporarily out-of-stock accessory rows distinct without resorting to Most popular ribbons.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Usage and image rules</h3>
+<ul>
+<li>Place bundle savings as a subtle note beneath the accessory line so item prices add cleanly down to the configured total.</li>
+<li>Sync the selected chassis finish name into the order summary header, and state the restock month clearly on disabled accessories.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div class="specimen-surface" style="border: 0;">
+<div class="config-toolbar">
+<p style="font-size: 0.90625rem; color: var(--ink-secondary);">Every serialized unit is bench-swept in Kronberg and backed by a two-year hardware warranty.</p>
+<button aria-label="Switch store currency between USD and EUR" aria-pressed="false" class="currency-toggle" data-billing-toggle="" id="currency-toggle" type="button">
+<span class="cur-usd">USD $</span>
+<span class="cur-eur">EUR €</span>
+</button>
+</div>
+<form class="config-grid" id="config-form" novalidate="">
+<div class="config-steps">
+<fieldset style="border: 0;">
+<legend class="step-legend">1. Anodized chassis finish</legend>
+<div class="finish-bar">
+<button aria-pressed="true" class="finish-choice" data-finish-btn="silver" type="button">
+<svg aria-hidden="true" class="finish-swatch" viewbox="0 0 16 16">
+<rect fill="#dedcd4" height="14" rx="2" stroke="#76756f" stroke-width="1.2" width="14" x="1" y="1"></rect>
+</svg>
+<span>Natural Silver</span>
+<svg aria-hidden="true" class="finish-check" fill="none" viewbox="0 0 14 14">
+<path d="M2.5 7.3L5.6 10.4L11.5 3.8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button aria-pressed="false" class="finish-choice" data-finish-btn="black" type="button">
+<svg aria-hidden="true" class="finish-swatch" viewbox="0 0 16 16">
+<rect fill="#23252a" height="14" rx="2" stroke="#686c75" stroke-width="1.2" width="14" x="1" y="1"></rect>
+</svg>
+<span>Black Anodized</span>
+<svg aria-hidden="true" class="finish-check" fill="none" viewbox="0 0 14 14">
+<path d="M2.5 7.3L5.6 10.4L11.5 3.8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+</div>
+</fieldset>
+<fieldset style="border: 0;">
+<legend class="step-legend">2. Studio bundles and modular accessories</legend>
+<div class="addon-stack">
+<div class="addon-card addon-card--base">
+<div class="addon-body">
+<div class="addon-head">
+<span class="addon-title">TP-4 Recorder base unit</span>
+<span class="addon-price tnum" data-eur="€619" data-price="" data-usd="$649">$649</span>
+</div>
+<p class="addon-desc">Serialized 4-track deck, braided USB-C cable, 64 GB V30 card, and cotton dust pouch.</p>
+</div>
+</div>
+<label class="addon-card" for="addon-case">
+<input checked="" class="hw-check" data-calc-input="" data-kit-addon="" id="addon-case" type="checkbox"/>
+<span class="addon-body">
+<span class="addon-head">
+<span class="addon-title">Stitched saddle-leather case and CM-2 mic</span>
+<span class="addon-price tnum" data-eur="+€96" data-price="" data-usd="+$100">+$100</span>
+</span>
+<span class="addon-desc">Cognac fitted leather sleeve, matched stereo condenser capsule, and fur windshield.</span>
+<span class="addon-save tnum" data-eur="Saves €45 compared with individual accessories" data-price="" data-usd="Saves $48 compared with individual accessories">Saves $48 compared with individual accessories</span>
+</span>
+</label>
+<label class="addon-card" for="addon-duo">
+<input class="hw-check" data-kit-addon="" id="addon-duo" type="checkbox"/>
+<span class="addon-body">
+<span class="addon-head">
+<span class="addon-title">Matched second TP-4 and TRS clock link</span>
+<span class="addon-price tnum" data-eur="+€561" data-price="" data-usd="+$591">+$591</span>
+</span>
+<span class="addon-desc">Gain-matched companion unit, shielded word-clock cable for 8-track lock, and twin travel case.</span>
+<span class="addon-save tnum" data-eur="Saves €58 compared with two single units" data-price="" data-usd="Saves $58 compared with two single units">Saves $58 compared with two single units</span>
+</span>
+</label>
+<label class="addon-card addon-card--disabled" for="addon-stand">
+<input class="hw-check" disabled="" id="addon-stand" type="checkbox"/>
+<span class="addon-body">
+<span class="addon-head">
+<span class="addon-title">Milled 18-degree desk stand</span>
+<span class="addon-price tnum" data-eur="+€55" data-price="" data-usd="+$59">+$59</span>
+</span>
+<span class="addon-desc">Temporarily out of stock · Next Kronberg milling batch ships December.</span>
+</span>
+</label>
+</div>
+</fieldset>
+</div>
+<aside aria-label="Configured TP-4 order summary" class="buybox">
+<div class="buybox-head">
+<h3 style="font-size: 1.03125rem;">Order summary</h3>
+<span class="hw-code" id="buybox-finish" style="color: var(--ink-muted);">Natural Silver</span>
+</div>
+<ul class="buybox-lines tnum">
+<li class="buybox-line">
+<span class="buybox-item-col">
+<span style="color: var(--ink-primary); font-weight: 500;">TP-4 Recorder</span>
+<span style="font-size: 0.78125rem; color: var(--ink-muted);">Batch 04 · 64 GB card + braided USB-C</span>
+</span>
+<span data-eur="€619" data-price="" data-usd="$649">$649</span>
+</li>
+<li class="buybox-line" id="line-case">
+<span class="buybox-item-col">
+<span style="color: var(--ink-primary); font-weight: 500;">Leather case + CM-2 mic</span>
+<span class="buybox-item-save" data-eur="Saves €45 vs separate items" data-price="" data-usd="Saves $48 vs separate items">Saves $48 vs separate items</span>
+</span>
+<span data-eur="+€96" data-price="" data-usd="+$100">+$100</span>
+</li>
+<li class="buybox-line" hidden="" id="line-duo">
+<span class="buybox-item-col">
+<span style="color: var(--ink-primary); font-weight: 500;">Matched 2nd TP-4 + clock cable</span>
+<span class="buybox-item-save" data-eur="Saves €58 vs separate items" data-price="" data-usd="Saves $58 vs separate items">Saves $58 vs separate items</span>
+</span>
+<span data-eur="+€561" data-price="" data-usd="+$591">+$591</span>
+</li>
+</ul>
+<div class="buybox-total-row">
+<span style="font-size: 0.90625rem; font-weight: 600;">Configured total</span>
+<output class="buybox-total tnum" data-calc-output="" data-price="" id="kit-total">$749</output>
+</div>
+<p class="field-hint">Signed APx555 bench sheet included · Ships in 2 business days · 30-day returns.</p>
+<button aria-haspopup="dialog" class="hw-key hw-key--rec" data-open-modal="order-modal" data-preset="configured" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Order configured kit</span>
+</button>
+</aside>
+</form>
+</div>
+<div class="specimen-grid-3">
+<div class="specimen-card tnum" data-specimen-state="base-unit">
+<p class="specimen-label">Base unit state</p>
+<p class="buy-price" data-eur="€619" data-price="" data-usd="$649">$649</p>
+<p class="addon-desc">TP-4 deck, braided USB-C cable, and 64 GB card with zero bundle rows shown.</p>
+</div>
+<div class="specimen-card tnum" data-specimen-state="bundle-selected">
+<p class="specimen-label">Bundle selected state</p>
+<p class="buy-price" data-eur="€715" data-price="" data-usd="$749">$749</p>
+<p class="addon-save" data-eur="Saves €45 with leather case + CM-2" data-price="" data-usd="Saves $48 with leather case + CM-2">Saves $48 with leather case + CM-2</p>
+</div>
+<div class="specimen-card" data-specimen-state="accessory-out-of-stock">
+<p class="specimen-label">Out-of-stock accessory state</p>
+<p class="addon-title">18-degree milled stand</p>
+<p class="addon-desc">Checkbox disabled natively so Tab skips it while restock month stays legible.</p>
+</div>
+</div>
+</div>
+</div>
+</section>

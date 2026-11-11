@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Ads &amp; Play Console ACX (acx2 / gm) — Hero Financial Workbench</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/ledgermark-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .acx-app { min-height: 100vh; display: flex; flex-direction: column; }
+    .acx-topbar {
+      height: 52px; background: var(--acx-sys-color-surface);
+      border-bottom: 1px solid var(--acx-sys-color-border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 20px; gap: 12px;
+    }
+    .date-pill {
+      height: 32px; padding: 0 12px; border-radius: var(--acx-radius-control);
+      border: 1px solid var(--acx-sys-color-border);
+      background: var(--acx-sys-color-surface); font-size: 12px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .acx-btn {
+      height: 32px; padding: 0 14px; border-radius: var(--acx-radius-control);
+      border: 1px solid var(--acx-sys-color-border);
+      background: var(--acx-sys-color-surface); color: var(--acx-sys-color-primary);
+      font-size: 12.5px; font-weight: 600; cursor: pointer;
+    }
+    .acx-btn-primary {
+      background: var(--acx-sys-color-primary); color: #ffffff; border-color: transparent;
+    }
+    html[data-theme="dark"] .acx-btn-primary { color: #17181b; }
+    .acx-body {
+      flex: 1; display: grid; grid-template-columns: 208px 1fr;
+    }
+    .acx-rail {
+      background: var(--acx-sys-color-surface);
+      border-right: 1px solid var(--acx-sys-color-border);
+      padding: 12px 0; display: flex; flex-direction: column; gap: 2px;
+    }
+    .acx-nav-item {
+      height: 36px; padding: 0 18px; display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; color: var(--acx-sys-color-ink-secondary);
+      border-left: 3px solid transparent;
+    }
+    .acx-nav-item.active {
+      background: var(--acx-sys-color-primary-tint);
+      color: var(--acx-sys-color-primary); font-weight: 600;
+      border-left-color: var(--acx-sys-color-primary);
+    }
+    .acx-main { padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .card-stage {
+      background: var(--acx-sys-color-surface);
+      border: 1px solid var(--acx-sys-color-border);
+      border-radius: var(--acx-radius-card);
+      overflow: hidden;
+    }
+    .scorecard-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--acx-sys-color-border);
+    }
+    .scorecard {
+      padding: 14px 16px; border-right: 1px solid var(--acx-sys-color-border);
+      border-top: 3px solid transparent;
+    }
+    .scorecard:last-child { border-right: none; }
+    .scorecard.s-blue { border-top-color: var(--acx-sys-color-primary); background: var(--acx-sys-color-canvas); }
+    .scorecard.s-teal { border-top-color: var(--acx-sys-color-series-teal); background: var(--acx-sys-color-canvas); }
+    .sc-val {
+      font-family: var(--acx-font-display); font-size: 24px; font-weight: 600;
+      font-variant-numeric: tabular-nums; margin: 4px 0;
+    }
+    .delta-pos {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--acx-sys-color-positive-bg); color: var(--acx-sys-color-positive);
+      font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums;
+    }
+    .delta-neg {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--acx-sys-color-negative-bg); color: var(--acx-sys-color-negative);
+      font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums;
+    }
+    .delta-warn {
+      display: inline-block; padding: 1px 6px; border-radius: 4px;
+      background: var(--acx-sys-color-warning-bg); color: var(--acx-sys-color-warning);
+      font-size: 11.5px; font-weight: 600; font-variant-numeric: tabular-nums;
+    }
+    .chart-box { padding: 14px 18px; }
+    .toolbar-row {
+      padding: 10px 16px; border-bottom: 1px solid var(--acx-sys-color-border);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    }
+    .chip-filter {
+      height: 26px; padding: 0 10px; border-radius: 999px;
+      background: var(--acx-sys-color-primary-tint); color: var(--acx-sys-color-primary);
+      font-size: 11.5px; font-weight: 600; display: inline-flex; align-items: center;
+    }
+    .table-scroll { overflow-x: auto; }
+    table.acx-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .acx-table th {
+      height: var(--acx-density-height-two); padding: 0 12px;
+      background: var(--acx-sys-color-surface-header);
+      color: var(--acx-sys-color-ink-secondary); font-weight: 600; font-size: 11.5px;
+      border-bottom: 1px solid var(--acx-sys-color-border); text-align: left; white-space: nowrap;
+    }
+    .acx-table th.num, .acx-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .acx-table td {
+      height: var(--acx-density-height-two); padding: 0 12px;
+      border-bottom: 1px solid var(--acx-sys-color-border-subtle); white-space: nowrap;
+    }
+    .acx-table tr.totals-row td {
+      background: var(--acx-sys-color-surface-totals); font-weight: 700;
+      border-top: 1.5px solid var(--acx-sys-color-border);
+    }
+
+    @media (max-width: 860px) {
+      .acx-topbar { height: auto; padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+      .date-pill { display: none; }
+      .acx-body { grid-template-columns: 1fr; }
+      .acx-rail { display: none; }
+      .acx-main { padding: 12px; }
+      .scorecard-strip { grid-template-columns: 1fr 1fr; }
+      .scorecard:nth-child(2) { border-right: none; }
+      .scorecard:nth-child(1), .scorecard:nth-child(2) { border-bottom: 1px solid var(--acx-sys-color-border); }
+      .acx-table th:nth-child(3), .acx-table td:nth-child(3),
+      .acx-table th:nth-child(4), .acx-table td:nth-child(4),
+      .acx-table th:nth-child(6), .acx-table td:nth-child(6),
+      .acx-table th:nth-child(7), .acx-table td:nth-child(7) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="acx-app">
+    <header class="acx-topbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <strong style="font-family:var(--acx-font-display);font-size:15px;">ACX Ledger &amp; Performance</strong>
+        <span class="acx-mono" style="font-size:11.5px;color:var(--acx-sys-color-ink-secondary);">MCC 840-192-4410</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="date-pill tabular-nums">📅 Nov 1–10, 2026 <span class="hide-sm">· Compare: Prior 10d</span></div>
+        <button class="acx-btn" id="theme-toggle" type="button">◑ Theme</button>
+        <button class="acx-btn acx-btn-primary" type="button">+ Reconcile Batch</button>
+      </div>
+    </header>
+
+    <div class="acx-body">
+      <aside class="acx-rail">
+        <div class="acx-nav-item active"><span>Overview &amp; Scorecards</span></div>
+        <div class="acx-nav-item"><span>Entity Ledgers</span><span class="acx-mono">12</span></div>
+        <div class="acx-nav-item"><span>Four-Flow Vouchers</span></div>
+        <div class="acx-nav-item"><span>Budget Simulator</span></div>
+        <div class="acx-nav-item"><span>Red-Line Exceptions</span><span class="delta-neg">3</span></div>
+        <div class="acx-nav-item"><span>Scheduled Exports</span></div>
+      </aside>
+
+      <main class="acx-main">
+        <section class="card-stage">
+          <div class="scorecard-strip">
+            <div class="scorecard s-blue">
+              <div style="font-size:12px;color:var(--acx-sys-color-ink-secondary);font-weight:600;">● Gross Settled Volume</div>
+              <div class="sc-val">$2,841,920</div>
+              <span class="delta-pos">▲ +18.4% vs prior</span>
+            </div>
+            <div class="scorecard s-teal">
+              <div style="font-size:12px;color:var(--acx-sys-color-ink-secondary);font-weight:600;">● Net ROAS / Margin</div>
+              <div class="sc-val">4.86x</div>
+              <span class="delta-pos">▲ +0.42x (+9.4%)</span>
+            </div>
+            <div class="scorecard">
+              <div style="font-size:12px;color:var(--acx-sys-color-ink-secondary);font-weight:600;">Voucher Match Rate</div>
+              <div class="sc-val">98.72%</div>
+              <span class="delta-warn">14 pending review</span>
+            </div>
+            <div class="scorecard">
+              <div style="font-size:12px;color:var(--acx-sys-color-ink-secondary);font-weight:600;">Red-Line Variance</div>
+              <div class="sc-val">-$14,280</div>
+              <span class="delta-neg">▼ 3 hard intercepts</span>
+            </div>
+          </div>
+
+          <div class="chart-box">
+            <svg viewBox="0 0 920 120" width="100%" height="115" role="img" aria-label="Dual-series period comparison trend">
+              <line x1="0" y1="25" x2="920" y2="25" stroke="var(--acx-sys-color-border-subtle)" stroke-width="1"/>
+              <line x1="0" y1="62" x2="920" y2="62" stroke="var(--acx-sys-color-border-subtle)" stroke-width="1"/>
+              <line x1="0" y1="98" x2="920" y2="98" stroke="var(--acx-sys-color-border-subtle)" stroke-width="1"/>
+              <polyline fill="none" stroke="var(--acx-sys-color-series-teal)" stroke-width="2.2" stroke-dasharray="5 4"
+                points="10,92 110,84 210,78 310,80 410,66 510,60 610,55 710,48 810,42 910,36"/>
+              <polyline fill="none" stroke="var(--acx-sys-color-primary)" stroke-width="2.8"
+                points="10,86 110,72 210,68 310,54 410,58 510,40 610,34 710,28 810,22 910,16"/>
+              <circle cx="910" cy="16" r="4.5" fill="var(--acx-sys-color-primary)"/>
+              <circle cx="910" cy="36" r="4" fill="var(--acx-sys-color-series-teal)"/>
+            </svg>
+          </div>
+        </section>
+
+        <section class="card-stage">
+          <div class="toolbar-row">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <strong style="font-size:13.5px;">Multi-Entity Portfolio Material Table (`density: -2`)</strong>
+              <span class="chip-filter">Status: Active + Intercepted</span>
+              <span class="chip-filter">Currency: USD / EUR</span>
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button class="acx-btn" type="button">✎ Bulk Edit Bids</button>
+              <button class="acx-btn" type="button">Columns (8)</button>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="acx-table">
+              <thead>
+                <tr>
+                  <th>Entity / Portfolio</th>
+                  <th>Audit State</th>
+                  <th>Jurisdiction</th>
+                  <th class="num">Allocated Budget</th>
+                  <th class="num">Settled Spend</th>
+                  <th class="num">ROAS / PR</th>
+                  <th class="num">Δ vs Target</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="totals-row">
+                  <td>Total · All Filtered Portfolios (4)</td>
+                  <td><span class="delta-pos">98.7% Matched</span></td>
+                  <td>Multi-Region</td>
+                  <td class="num acx-mono">$3,100,000.00</td>
+                  <td class="num acx-mono">$2,841,920.40</td>
+                  <td class="num acx-mono">4.86x</td>
+                  <td class="num"><span class="delta-pos">+8.42%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>EU Cross-Border VAT Direct</strong></td>
+                  <td><span class="delta-pos">Reconciled</span></td>
+                  <td>DE · ES · NL</td>
+                  <td class="num acx-mono">$1,200,000.00</td>
+                  <td class="num acx-mono">$1,148,310.00</td>
+                  <td class="num acx-mono">5.42x</td>
+                  <td class="num"><span class="delta-pos">+12.10%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>NA Enterprise Search &amp; Shopping</strong></td>
+                  <td><span class="delta-pos">Reconciled</span></td>
+                  <td>US · CA</td>
+                  <td class="num acx-mono">$950,000.00</td>
+                  <td class="num acx-mono">$892,400.25</td>
+                  <td class="num acx-mono">4.91x</td>
+                  <td class="num"><span class="delta-pos">+6.85%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>LATAM Pix &amp; Multi-CNPJ T&amp;E</strong></td>
+                  <td><span class="delta-warn">FX Variance</span></td>
+                  <td>BR (`CNPJ 04`)</td>
+                  <td class="num acx-mono">$550,000.00</td>
+                  <td class="num acx-mono">$489,110.15</td>
+                  <td class="num acx-mono">4.18x</td>
+                  <td class="num"><span class="delta-warn">-1.15%</span></td>
+                </tr>
+                <tr>
+                  <td><strong>CN Export Customs 18-Digit Batch</strong></td>
+                  <td><span class="delta-neg">Hard Intercept</span></td>
+                  <td>CN-SZ · HK</td>
+                  <td class="num acx-mono">$400,000.00</td>
+                  <td class="num acx-mono">$312,100.00</td>
+                  <td class="num acx-mono">3.64x</td>
+                  <td class="num"><span class="delta-neg">-4.80%</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

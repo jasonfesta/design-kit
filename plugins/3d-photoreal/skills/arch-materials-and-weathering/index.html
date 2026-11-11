@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>architectural materials, tectonics &amp; weathering</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>architectural materials, tectonics &amp; weathering</h1>
+      <p>author hyperrealistic architectural materials in three.js with zero external textures: profiled courses, nyquist-filtered standing seams, perforated corten steel, glazed roof tiles, non-double-multiplied linear srgb albedos, and fast cpu hashes.</p>
+      <div class="actions">
+        <a href="../arch-materials-and-weathering.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Architectural Materials, Tectonics &amp; Weathering (<code>architecture-threejs</code>)</h1>
+<p>Every architectural surface must communicate <strong>tectonic unit scale, joint shadow depth, accurate linear colorimetry, and Nyquist-clean micro-relief</strong> without external textures.</p>
+<h2>[LOCKED] First-Principles Axioms</h2>
+<ol>
+<li><strong>Single-Tint Linear Colorimetry &amp; Color-Space Contract:</strong> When a procedural <code>CanvasTexture</code> (<code>SRGBColorSpace</code>) already encodes pigment, keep <code>material.color.setHex(0xffffff)</code> so linear multiplication never squares darkness. Custom <code>ShaderMaterial</code>s <strong>with</strong> <code>#include &lt;colorspace_fragment&gt;</code> must output linear RGB (<code>NoColorSpace</code> on pre-linearized <code>DataTexture</code>s); shaders <strong>without</strong> it output sRGB <code>[0..1]</code> directly.</li>
+<li><strong><code>InstancedMesh</code> World-Space Derivative Invariant:</strong> In <code>onBeforeCompile</code>, <code>modelMatrix <em> vec4(transformed, 1.0)</code> omits <code>instanceMatrix</code>, breaking <code>fwidth(vWorldPos)</code> across scaled/rotated instances. Always pre-apply <code>#ifdef USE_INSTANCING\n  mgwp = instanceMatrix </em> mgwp;\n#endif</code> before <code>modelMatrix * mgwp</code>.</li>
+<li><strong>Concave Tone-Mapping Contrast Compensation:</strong> Because <code>sRGB + PBR Neutral</code> is strictly concave (<code>f&#x27;&#x27;(L) &lt; 0</code>), adding linear bounce fill <code>L_old -&gt; L_new</code> compresses sRGB Sobel contrast by <code>~(L_old / L_new)^1.15</code>; simultaneously scale multiplicative albedo micro-contrast by <code>(L_new / L_old)^1.1</code>, and soften harsh grating/soffit sun stripes via energy-conserving sky-bounce split (<code>diffuseColor <em>= (1 - k</em>w); totalEmissiveRadiance += baseAlbedo <em> c </em> w;</code>).</li>
+<li><strong>Geometry, Bevel &amp; WebGL2 Shader Hygiene:</strong> Build asymmetric punched walls via <code>ExtrudeGeometry</code> (never <code>rotation.y = Math.PI</code> mirrored back-shells); evaluate box chamfers across only the <strong>two axes tangential to <code>vNormal</code></strong>; avoid GLSL ES 3.00 reserved identifiers (<code>patch</code>, <code>sample</code>, <code>centroid</code>, <code>smooth</code>, <code>flat</code>, <code>active</code>, <code>filter</code>); and generate CPU textures exclusively via <code>Uint8Array</code> / <code>createImageData</code> + <code>Math.imul</code> hashes (<code>&lt; 5 ms</code>).</li>
+</ol>
+<h2>[REGIME PLAYBOOK] Conditional Rules</h2>
+<ul>
+<li><strong>WHEN tectonic unit projected width <code>&gt;= 3.0 px</code>:</strong> Model true 3D beveled/cylindrical courses (logs, clapboards, louvers, brick piers, cornices), assign dark matte expansion-joint returns (<code>albedo ~ 0.02-0.04, roughness: 0.95</code>), and hash-jitter per-unit lightness (<code>±6-12%</code>) and roughness (<code>±0.08</code>).</li>
+<li><strong>WHEN standing-seam or rib pitch drops <code>&lt; 2.5 px</code>:</strong> Pre-integrate ribs into smooth analytical normal/AO strips on a single coplanar mesh instead of sharp <code>90°</code> <code>BoxGeometry</code> fins (eliminating <code>±90</code> sRGB sawtooth Moiré).</li>
+<li><strong>WHEN shading wide anisotropic facades (<code>3.5:1+</code>) or grazing (<code>&lt; 20°</code>) floors, carpets, and roads:</strong> Prevent hardware mipmap collapse (<code>LOD = log2(max(|duv/dx|, |duv/dy|))</code>) by setting <code>generateMipmaps = false, minFilter = THREE.LinearFilter</code> on screen-matched atlases or evaluating 3D world/building tectonics (<code>vBldPos</code>) with Nyquist rolloff <code>1.0 / (1.0 + pow(fw / nyquistM, 2.0))</code> and a <code>~2.2-2.9 px</code> micro-grain window under <code>RGSS-4</code>. Project <code>2-4 mm</code> 3D aggregate micro-facets on grazing asphalt/concrete (<code>0.28×</code> pore depth under road paint) and march <code>3-4</code> parallax steps (<code>V.xz / max(V.y, 0.14)</code>) through <code>+Y</code> carpet/turf tufts.</li>
+<li><strong>WHEN modeling perforated Corten steel, hit-and-miss screens, or slatted pergolas:</strong> Place <code>alphaTest: 0.5, DoubleSide</code> (<code>shadowSide: DoubleSide</code>) perforated panels in front of true recessed dark structural framing; keep timber/bamboo pergola slats at physical <code>~5-7 cm</code> gaps and tune soffit brightness via albedo/irradiance rather than over-packing slats.</li>
+<li><strong>WHEN calibrating UV-weathered timber, dark roofs, vehicles, or curtain walls:</strong> Give sun-bleached outdoor wood sky-Fresnel blue balance (<code>B ≈ 0.58-0.72 × R</code>), give glazed clay/slate roofs and car clearcoats real sky reflection (<code>roughness: 0.30-0.38, envMapIntensity: 1.4</code>), and apply <code>±0.35°-0.5°</code> per-pane bow across curtain-wall bays.</li>
+<li><strong>WHEN reusable onBeforeCompile material factories branch on JavaScript closure parameters:</strong> Assign a deterministic mat.customProgramCacheKey = () =&gt; ... encoding every closure branch parameter (or pass shader uniforms), because Three.js WebGLPrograms hashes onBeforeCompile.toString() and otherwise aliases distinct materials onto the first compiled shader.</li>
+<li><strong>WHEN detailing multi-elevation buildings and full interior rooms across <code>VIEW 1..N</code>:</strong> Pull exact wall thicknesses, window/door reveal depths, slab edges, and mullion profiles directly from visual cues in the photographs rather than prescribing generic dimensions. Author consistent tectonic materials, fenestration, roof geometry, and room furnishings/millwork across every facade and interior space evidenced in <code>VIEW 1..N</code>, batching repeated mullions, louvers, courses, and props via <code>InstancedMesh</code> or <code>mergeGeometries</code> so all camera angles retain full micro-detail (<code>90-110%</code> Weber sharpness) within <code>&lt; 250</code> draw calls.</li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

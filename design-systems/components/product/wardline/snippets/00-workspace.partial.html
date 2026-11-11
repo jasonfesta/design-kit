@@ -1,0 +1,102 @@
+<section aria-labelledby="visit-title" class="wl-section" data-section="workspace" id="workspace">
+<div class="wl-shell">
+<div class="visit-header">
+<div>
+<h1 id="visit-title">Claire Lindqvist</h1>
+<p class="visit-subtitle" id="visit-summary-line">Preventive cardiology visit with Dr. Maya Patel · 5 November 2026 · Atorvastatin <span id="current-dose-txt" style="color:var(--ink-primary);font-weight:600">10 mg</span> evening</p>
+</div>
+<div class="inline-actions">
+<button class="wl-btn" data-marker="ldl" data-open-drawer="#history-drawer" type="button">History</button>
+<button class="wl-btn wl-btn--pri" data-open-modal="#dosage-dialog" type="button">Update dosage</button>
+</div>
+</div>
+<!-- Centerpiece: Surgical 30-Day Resting Heart Rate & Blood Pressure Trend Card -->
+<div class="wl-card">
+<div class="trend-top">
+<div>
+<h2 id="trend-heading">Resting heart rate</h2>
+<div class="vital-reading-row">
+<div class="vital-figure" id="trend-figure">58<span class="vital-unit">bpm</span></div>
+<p class="vital-summary" id="trend-summary">Steady · −4 bpm vs last month · Healthy target 52–68 bpm</p>
+</div>
+</div>
+<div aria-label="30-day trend view" class="seg-switch" role="group">
+<button aria-pressed="true" data-trend-mode="hr" type="button">Heart rate</button>
+<button aria-pressed="false" data-trend-mode="bp" type="button">Blood pressure</button>
+</div>
+</div>
+<div class="chart-stage">
+<!-- Pure sage reference band + crisp 2.2px juniper-teal curve (zero gradient bleed below target band) -->
+<svg aria-label="30-day resting heart rate curve gliding from 63 bpm on Oct 6 to 58 bpm on Nov 5 inside the 52 to 68 bpm healthy target band" id="trend-svg" role="img" viewbox="0 0 820 220">
+<!-- Reference grid lines (72, 60, 48 bpm) -->
+<line stroke="var(--chart-grid)" stroke-width="1" x1="42" x2="796" y1="30" y2="30"></line>
+<line stroke="var(--chart-grid)" stroke-width="1" x1="42" x2="796" y1="104" y2="104"></line>
+<line stroke="var(--chart-grid)" stroke-width="1" x1="42" x2="796" y1="178" y2="178"></line>
+<!-- Left axis labels in tabular Source Sans 3 -->
+<g fill="var(--ink-muted)" font-family="Source Sans 3, sans-serif" font-size="12.5" style="font-variant-numeric: tabular-nums lining-nums;">
+<text id="y-lbl-top" x="0" y="34">72</text>
+<text id="y-lbl-mid" x="0" y="108">60</text>
+<text id="y-lbl-bot" x="0" y="182">48</text>
+</g>
+<!-- Crisp translucent 52–68 bpm sage reference band (y=55..153) -->
+<rect fill="var(--wl-sage-band)" height="98" id="trend-band" rx="6" stroke="var(--wl-sage-stroke)" stroke-width="1" width="754" x="42" y="55"></rect>
+<text fill="var(--ink-muted)" font-family="Source Sans 3, sans-serif" font-size="12.5" font-weight="500" id="trend-band-lbl" style="font-variant-numeric: tabular-nums lining-nums;" text-anchor="end" x="782" y="73">Healthy target (52–68 bpm)</text>
+<!-- Optional diastolic companion curve (visible in Blood Pressure mode) -->
+<path d="M0,0" fill="none" id="trend-secondary" opacity="0" stroke="var(--chart-secondary)" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="1.8"></path>
+<!-- Smooth anti-aliased 2.2px juniper-teal trend curve -->
+<path d="M 42,86 C 110,83 158,98 230,94 C 302,90 356,106 419,103 C 482,100 546,113 608,110 C 670,107 734,118 796,116" fill="none" id="trend-curve" stroke="var(--chart-line)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+<!-- Start ring & today endpoint dot -->
+<circle cx="42" cy="86" fill="var(--surface-card)" id="trend-pt-start" r="3.8" stroke="var(--chart-line)" stroke-width="2"></circle>
+<circle cx="796" cy="116" fill="var(--chart-line)" id="trend-pt-end" r="4.6" stroke="var(--surface-card)" stroke-width="2.2"></circle>
+<!-- Date labels -->
+<g fill="var(--ink-muted)" font-family="Source Sans 3, sans-serif" font-size="13" style="font-variant-numeric: tabular-nums lining-nums;">
+<text text-anchor="start" x="42" y="210">Oct 6</text>
+<text text-anchor="middle" x="230" y="210">Oct 13</text>
+<text text-anchor="middle" x="419" y="210">Oct 20</text>
+<text text-anchor="middle" x="608" y="210">Oct 27</text>
+<text fill="var(--ink-primary)" font-weight="600" text-anchor="end" x="796" y="210">Nov 5</text>
+</g>
+</svg>
+</div>
+</div>
+<!-- Metabolic & Lipid Panel Card -->
+<article aria-labelledby="lipid-panel-heading" class="wl-card">
+<div class="panel-header">
+<div>
+<h2 id="lipid-panel-heading">Metabolic and lipid panel</h2>
+<p class="tnum" style="margin-top:4px;font-size:0.9rem">Fasting morning draw and seated vitals · Reviewed today at 08:40</p>
+</div>
+</div>
+<figure class="table-scroll">
+<table class="wl-table" id="panel-table">
+<thead>
+<tr>
+<th aria-sort="none" data-panel-sort="name" scope="col">
+<button class="sort-btn" type="button">
+<span>Biomarker</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewbox="0 0 10 10"><path d="M2.5 3.8L5 1.3l2.5 2.5M2.5 6.2L5 8.7l2.5-2.5"></path></svg>
+</button>
+</th>
+<th scope="col">Reference range</th>
+<th aria-sort="none" data-numeric="true" data-panel-sort="num" scope="col">
+<button class="sort-btn" type="button">
+<span>Result</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewbox="0 0 10 10"><path d="M2.5 3.8L5 1.3l2.5 2.5M2.5 6.2L5 8.7l2.5-2.5"></path></svg>
+</button>
+</th>
+<th scope="col">Status</th>
+</tr>
+</thead>
+<tbody id="panel-tbody">
+<tr>
+<td><button class="marker-btn" data-open-marker="hr" type="button">Resting heart rate</button></td>
+<td><span class="range-caption">52–68 bpm</span></td>
+<td data-numeric="true">58 bpm</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+</tbody>
+</table>
+</figure>
+</article>
+</div>
+</section>

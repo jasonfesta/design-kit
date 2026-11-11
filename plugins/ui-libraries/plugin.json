@@ -1,0 +1,8 @@
+{
+  "name": "ui-libraries",
+  "displayName": "UI Libraries",
+  "description": "Pick and use the right frontend library and component registries (21st, shadcn, Spectrum UI, Originkit), faux product UI with Stageshow, prototype variants, break-ui stress tests, mobile-native polish, and clone-to-prompt reskins.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Which library should I use for a command menu?", "Build a faux product UI hero with a cursor walkthrough", "Stress-test this component with worst-case data"]
+}

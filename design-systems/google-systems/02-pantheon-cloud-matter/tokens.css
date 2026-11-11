@@ -1,0 +1,127 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   02. GOOGLE CLOUD CONSOLE / PANTHEON & CLOUD MATTER (cm4 | cfc)
+   Google3 Provenance:
+     - //depot/google3/cloud/console/web/common/cloud_matter/themes/cm4/
+     - //depot/google3/cloud/console/web/common/cloud_matter/themes/cm3_1/_color.scss
+     - //depot/google3/cloud/console/web/common/styles/_colors.scss
+     - Carbon Site: https://carbon.googleplex.com/cloud-platform/
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* CM4 Backdrop & Surface Hierarchy */
+    --cm-sys-color-backdrop: #faf9f9;
+    --cm-sys-color-backdrop-inset: #f2f0f0;
+    --cm-sys-color-backdrop-active: #dcf1ff;
+    --cm-sys-color-surface: #ffffff;
+    --cm-sys-color-surface-variant: #f2f0f0;
+    --cm-sys-color-surface-modal: #ffffff;
+    --cm-sys-color-container: #f2f0f0;
+    --cm-sys-color-container-primary: #dcf1ff;
+
+    /* Ink & Content Roles */
+    --cm-sys-color-on-surface: #202124;
+    --cm-sys-color-on-surface-strong: #000000;
+    --cm-sys-color-on-surface-variant: #5f6368;
+    --cm-sys-color-primary: #1a73e8;
+    --cm-sys-color-primary-on-container: #2051da;
+    --cm-sys-color-link-default: #2051da;
+    --cm-sys-color-selection-container: #dcf1ff;
+
+    /* Hairline & Outline Rules (1px Subpixel Alpha) */
+    --cm-sys-color-hairline: rgba(0, 0, 0, 0.09);
+    --cm-sys-color-outline: rgba(0, 0, 0, 0.14);
+    --cm-sys-color-outline-active: rgba(0, 0, 0, 0.55);
+    --cm-sys-color-row-hover: rgba(0, 0, 0, 0.04);
+
+    /* Semantic Cloud Status Roles */
+    --cm-sys-color-status-success: #2a9c00;
+    --cm-sys-color-status-success-container: #daf9d4;
+    --cm-sys-color-status-warning: #9e3d02;
+    --cm-sys-color-status-warning-container: #fef7e0;
+    --cm-sys-color-status-error: #de2d29;
+    --cm-sys-color-status-error-container: #fce8e6;
+    --cm-sys-color-status-neutral: #3186ff;
+
+    /* Chart Category Palette (cm3_1/_palette.scss, 0% purple) */
+    --cm-chart-blue: #0c67df;
+    --cm-chart-cyan: #12b5cb;
+    --cm-chart-green: #1e8e3e;
+    --cm-chart-orange: #e8710a;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --cm-sys-color-backdrop: #0f0f0f;
+    --cm-sys-color-backdrop-inset: #171717;
+    --cm-sys-color-backdrop-active: #192967;
+    --cm-sys-color-surface: #1c1c1c;
+    --cm-sys-color-surface-variant: #171717;
+    --cm-sys-color-surface-modal: #1c1c1c;
+    --cm-sys-color-container: #171717;
+    --cm-sys-color-container-primary: #192967;
+
+    --cm-sys-color-on-surface: #e6e6e6;
+    --cm-sys-color-on-surface-strong: #ffffff;
+    --cm-sys-color-on-surface-variant: rgba(255, 255, 255, 0.62);
+    --cm-sys-color-primary: #8ab4f8;
+    --cm-sys-color-primary-on-container: #bbe2ff;
+    --cm-sys-color-link-default: #bbe2ff;
+    --cm-sys-color-selection-container: #192967;
+
+    --cm-sys-color-hairline: rgba(255, 255, 255, 0.12);
+    --cm-sys-color-outline: rgba(255, 255, 255, 0.18);
+    --cm-sys-color-outline-active: rgba(255, 255, 255, 0.55);
+    --cm-sys-color-row-hover: rgba(255, 255, 255, 0.06);
+
+    --cm-sys-color-status-success: #64c800;
+    --cm-sys-color-status-success-container: #002220;
+    --cm-sys-color-status-warning: #fdd663;
+    --cm-sys-color-status-warning-container: #5d440e;
+    --cm-sys-color-status-error: #ff4c45;
+    --cm-sys-color-status-error-container: #3c0202;
+    --cm-sys-color-status-neutral: #669df6;
+
+    --cm-chart-blue: #8ab4f8;
+    --cm-chart-cyan: #4ecde6;
+    --cm-chart-green: #81c995;
+    --cm-chart-orange: #fcad70;
+  }
+
+  :root {
+    --cm-font-heading: 'Google Sans', 'Plus Jakarta Sans', system-ui, sans-serif;
+    --cm-font-body: 'Roboto', 'IBM Plex Sans', 'Public Sans', system-ui, sans-serif;
+    --cm-font-mono: 'Roboto Mono', 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Pantheon High-Density Console Metrics */
+    --cm-console-bar-height: 48px;
+    --cm-action-bar-height: 44px;
+    --cm-table-row-height: 34px;
+    --cm-radius-sm: 4px;
+    --cm-radius-md: 8px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cm-sys-color-backdrop);
+    color: var(--cm-sys-color-on-surface);
+    font-family: var(--cm-font-body);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .cm-mono { font-family: var(--cm-font-mono); font-variant-numeric: tabular-nums; }
+}

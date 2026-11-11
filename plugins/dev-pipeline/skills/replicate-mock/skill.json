@@ -1,0 +1,36 @@
+{
+  "id": "replicate-mock",
+  "display_name": "replicate mock",
+  "google3_package": "replicate_mock",
+  "title": "replicate mock",
+  "icon": "\ud83d\udd0d",
+  "category": "sub-skill of image-to-react \u00b7 pixel, hex & 3-bucket classifier",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "replicate-mock",
+  "agent_md": "replicate-mock/agent.md",
+  "skill_md": "replicate-mock/SKILL.md",
+  "html_page": "replicate-mock/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/replicate-mock",
+  "bundle_skill": "replicate-mock.skill",
+  "bundle_zip": "replicate-mock.zip",
+  "short_summary": "extracts exact hex tokens, pixel measurements, and classifies dom native-code vs. crisp-media vs. upscale-queue crops (adapted with credit from manasababu).",
+  "when_to_use": "use in stage 1a of jason-dev-agent to sample exact hex palettes, build native html/css/svg ui, and isolate true photographic crops.",
+  "quick_cmd": "python3 replicate-mock/scripts/prepare-and-extract-image.py --input_image=./mock.png --workspace_dir=./extracted",
+  "summary": "Converts UI screenshots and design mockups into pixel-perfect, functioning prototypes using native HTML/CSS and interactive frontend rendering. Enforces bit-for-bit asset extraction for photographs/complex images, perfect text reconstruction, exact typography/hex colors, and vector-to-vector matching with zero hallucination and zero omission. Use when asked to implement a UI mockup, convert a screenshot to code, replicate a design, or build a functioning frontend prototype from an image. Don't use for general web scraping without a design mockup or for backend logic implementation.",
+  "references": [
+    "./references/avela_pixel_purity_and_token_rules.md",
+    "./references/contributing.md",
+    "./scripts/crop_regions.py",
+    "./scripts/measure_px.py",
+    "./scripts/prepare-and-extract-image.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=replicate-mock"
+  }
+}

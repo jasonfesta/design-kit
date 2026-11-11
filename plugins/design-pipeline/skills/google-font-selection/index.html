@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>font selector</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>font selector</h1>
+      <p>selects and ranks the top 5 google fonts for any keyword, phrase, or reference image using live google fonts catalog tag scores, complete with specimen urls, css2 embed tags, and an interactive specimen viewer.</p>
+      <div class="actions">
+        <a href="../google-font-selection.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Google Font Selection — Live Catalog + LLM Association</h1>
+<pre data-lang="text"><code>skill / google-font-selection
+────────────────────────────────────────────────────────────────────
+input    any word, phrase, brief, or image   (&quot;mobster&quot;, &quot;wacky&quot;, &quot;luxury editorial&quot;, poster.png)
+data     LIVE from Google at run time: tags/all/families.csv (official 0-100 tag scores) + fonts.google.com/metadata
+assoc    an LLM (you, Gemini, or Claude) maps the request → Google&#x27;s official tags   ← the only &quot;knowledge&quot; step
+rank     every family in the live catalog scored on those tags → honest Top 5 + fonts.google.com filter URL</code></pre>
+<p>&gt; [!IMPORTANT]</p>
+<p>&gt; Nothing is memorised in this skill: no font snapshot, no synonym list. The catalog comes from Google live (<a href="scripts/gf_live.py"><code>gf_live.py</code></a>, 6-hour temp cache only), and the association from a model. If there is no model key, <strong>you are the model</strong> — answer the prompt the CLI prints and feed it back as <code>--brief</code>.</p>
+<h2>Inputs</h2>
+<ul>
+<li><strong>Text</strong>: keyword (<code>mobster</code>), mood (<code>calm wellness spa</code>), brand brief (<code>sunlit leather atelier homepage</code>).</li>
+<li><strong>Image</strong> (<code>.png</code>, <code>.jpg</code>, <code>.webp</code>): UI, poster, moodboard, photo, type sample — read it yourself or let Gemini/Claude read it.</li>
+<li><strong>Code / doc file</strong>: the voice, density, and domain of its content.</li>
+</ul>
+<h2>Work</h2>
+<h3>Pass 0 — Associate the request with Google&#x27;s official tags (LLM)</h3>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/recommend_google_fonts.py --artifact &quot;mobster&quot;</code></pre>
+<ul>
+<li>With <code>GEMINI_API_KEY</code>/<code>GOOGLE_API_KEY</code> or <code>ANTHROPIC_API_KEY</code> set, the model is called automatically (images too) and you get results directly.</li>
+<li>Without a key the command exits <code>2</code> with <code>&quot;status&quot;: &quot;needs_model&quot;</code> and <code>model_prompt</code> — the full prompt containing the live 74-tag vocabulary. <strong>Answer it yourself</strong>: write <code>brief.json</code> with 2–6 <code>tags</code> (defining quality = 1.0), 0–4 <code>avoid_tags</code>, optional <code>category</code> gate, and <code>confidence</code> (0.0 only for meaningless input). Hallucinated tags are dropped and reported in <code>dropped_tags</code>.</li>
+</ul>
+<pre data-lang="json"><code>{&quot;query&quot;: &quot;mobster&quot;, &quot;tags&quot;: {&quot;/Expressive/Vintage&quot;: 1.0, &quot;/Theme/Art Deco&quot;: 0.9, &quot;/Serif/Fat Face&quot;: 0.7, &quot;/Expressive/Loud&quot;: 0.5},
+ &quot;avoid_tags&quot;: {&quot;/Expressive/Cute&quot;: 0.9}, &quot;category&quot;: [], &quot;rationale&quot;: &quot;prohibition-era gangster lettering&quot;, &quot;confidence&quot;: 0.85}</code></pre>
+<h3>Pass 1 — Rank the live catalog</h3>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/recommend_google_fonts.py --brief brief.json --format markdown \
+  --out-md font-recommendations.md --out-json font-recommendations.json \
+  --specimen-html &lt;artifactDir&gt;/&lt;slug&gt;-fonts.html --embed-fonts</code></pre>
+<p><code>--embed-fonts</code> inlines the five real <code>.woff2</code> files so the specimen renders inside Jetski&#x27;s sandboxed right-hand Artifact Pane (which blocks all outbound requests). <strong>Every run produces two artifacts</strong>: the HTML specimen (<code>&lt;slug&gt;-fonts.html</code>) and the markdown report (<code>&lt;slug&gt;-font-report.md</code>, from <code>--out-md</code>) — register each with <code>write_file</code> (stub + <code>ArtifactMetadata</code>), copy the generated file over it, then make a 1-line <code>edit_file</code> so the pane snapshots it. Present the Top 5 table in chat as well — chat, specimen, and report all come from the same run.</p>
+<p>&gt; [!TIP]</p>
+<p>&gt; <strong>No permission prompts.</strong> The scripts need network (Google&#x27;s live data + <code>.woff2</code> downloads), so they run unsandboxed. <a href="scripts/jetski_hook_allow.py"><code>scripts/jetski_hook_allow.py</code></a> is a <code>PreToolUse</code> hook that auto-allows <em>only</em> these skill scripts (any chained command still prompts). It is registered in this workspace&#x27;s <code>_agents/hooks.json</code>; to apply it everywhere, add the same block to <code>~/.gemini/config/hooks.json</code>. Alternatives: click <strong>Always allow</strong> once on the <code>python3 …/recommend_google_fonts.py</code> prompt (prefix-matched), or in Agent Settings allow <code>read_url(raw.githubusercontent.com)</code>, <code>read_url(fonts.google.com)</code>, <code>read_url(fonts.gstatic.com)</code>, <code>read_url(fonts.googleapis.com)</code> so the scripts can run inside the sandbox.</p>
+<p>Scoring per family: <code>0.50·tag fit + 0.30·primary-tag score − 0.25·avoid clash + quality/axes/popularity nudges</code>, hard tier for families ≥ 70 on the primary tag, category gate, non-Latin/Noto/color families excluded, one entry per family root (no <code>X SC</code> / <code>X Condensed</code> duplicates). <code>--fresh</code> bypasses the 6 h cache.</p>
+<h3>Pass 2 — Verify, pair web-safe companion body, and present</h3>
+<p>Report <code>confidence</code> (<code>high</code>/<code>medium</code>/<code>low</code>) and <code>interpretation_hint</code> verbatim; never present a <code>low_confidence</code> list as a recommendation — re-translate or say the input has no typographic meaning. For each Top-5 family give: official tag evidence (<code>/Theme/Art Deco 100</code>), category, variable axes, <code>web_safe_body_ready</code> status, live-scored <code>recommended_pairing</code> (web-safe <code>/Purpose/Easy Reading</code> + multi-weight <code>400/500/600</code> companion body/UI/mono families with AI clichés excluded), specimen URL, CSS2 <code>&lt;link&gt;</code>, and the 4 download methods. Always include <code>google_fonts_url</code> (the same filter, live on fonts.google.com). <em>(When handing a Headline + Companion pair to Nano Banana inside <code>jason-design-agent</code>, run <code>../jason-design-agent/scripts/font_scale_and_pairing.py pair</code> &amp; <code>prompt-block</code> to emit physical letterform anatomy and 4-surface CSS-to-<code>2K</code> scale locks.)</em></p>
+<h2>Input → Output Example</h2>
+<p><strong>Sample Input</strong>: <code>Artifact: &quot;mobster&quot;</code> (brief above)</p>
+<p><strong>Expected Output</strong> (<code>font-recommendations.md</code> excerpt):</p>
+<pre data-lang="markdown"><code>- **Official tags requested**: `/Expressive/Vintage` ×1.0, `/Theme/Art Deco` ×0.9, `/Serif/Fat Face` ×0.7
+- **Catalog**: all `1,950` Google Fonts families (live) scored on Google&#x27;s official tag taxonomy
+- **Live filtered catalog**: https://fonts.google.com/?categoryFilters=Feeling:%2FExpressive%2FVintage;Appearance:%2FTheme%2FArt%20Deco;Appearance:%2FSerif%2FFat%20Face
+
+| Rank | Google Font Family | Category | Match Score | Official Tags | Google Fonts Specimen URL |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **#1** | **Limelight** | `DISPLAY` | `92.4%` (PASS) | `/Theme/Art Deco 100`, `/Expressive/Vintage 90` | https://fonts.google.com/specimen/Limelight |
+| **#2** | **Notable** | `SANSSERIF` | `90.1%` (PASS) | `/Theme/Art Deco 100`, `/Theme/Woodtype 90` | https://fonts.google.com/specimen/Notable |
+| **#3** | **Gravitas One** | `DISPLAY` | `88.7%` (PASS) | `/Serif/Fat Face 100`, `/Expressive/Vintage 84` | https://fonts.google.com/specimen/Gravitas+One |</code></pre>
+<h2>Result</h2>
+<p><code>font-recommendations.md</code>, <code>font-recommendations.json</code> (<code>status</code>, <code>confidence</code>, <code>catalog_families_indexed</code>, <code>catalog_generated</code>, <code>artifact_analysis.official_tags</code>, <code>google_fonts_url</code>, <code>top_5_recommendations</code>), <code>font-specimen.html</code>. The standalone <a href="specimen.html"><code>specimen.html</code></a> (x20) does the same in the browser: fetches Google&#x27;s live tag file, asks Gemini (key stored only in the user&#x27;s browser) for the association, ranks client-side; also accepts a pasted agent brief.</p>
+<h3>Verification</h3>
+<ul class="checklist">
+<li><span class="check-box"></span><span><code>python3 {skill_dir}/scripts/test_google_font_skill.py</code> → <code>ALL TESTS PASSED</code> (live catalog integrity, brief validation, 10 agent-brief archetypes incl. <code>mobster</code>/<code>wacky</code>/<code>y2k</code>, CSS2 axis order across the live catalog, <code>needs_model</code> CLI contract, specimen embeds no data). With a model key it also runs the 33-case golden suite (<code>--run-eval-suite</code>).</span></li>
+<li><span class="check-box"></span><span>Every Top-5 entry carries <code>specimen_url</code>, <code>css2_url</code>, <code>html_link_tag</code>, 4 <code>download_methods</code>; <code>#1</code> scores ≥ 70 on the primary requested tag whenever <code>confidence</code> is <code>high</code>.</span></li>
+</ul>
+<p>References: <a href="references/google-fonts-taxonomy.md"><code>google-fonts-taxonomy.md</code></a> (the 74 official tags, URL grammar, brief schema, ranking formula), <a href="references/contributing.md"><code>contributing.md</code></a>.</p>
+<h2>Credits &amp; Lineage</h2>
+<p>Built by Jason Festa (<code>jfesta</code>) on top of the live official tag-score taxonomy and metadata maintained by the <strong>Google Fonts Team</strong> (<code>github.com/google/fonts</code> <code>tags/all/families.csv</code> and <code>fonts.google.com/metadata/fonts</code>).</p>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

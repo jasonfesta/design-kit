@@ -1,0 +1,38 @@
+<form aria-labelledby="card-rules-title" class="care-card" novalidate="">
+<div class="care-card-head">
+<h3 id="card-rules-title">Home cuff alerts</h3>
+<p class="care-card-sub">Resting pulse alert ceiling and visit reminders</p>
+</div>
+<div class="range-box">
+<label class="wl-label" for="wl-hr-range">Resting heart rate alert ceiling</label>
+<div class="stepper-row">
+<div aria-label="Adjust heart rate alert ceiling" class="wl-stepper" role="group">
+<button aria-label="Lower resting heart rate threshold" class="wl-step-btn" data-wl-step="-2" type="button">−</button>
+<output class="wl-stepper-val" for="wl-hr-range" id="wl-range-out">68 bpm</output>
+<button aria-label="Raise resting heart rate threshold" class="wl-step-btn" data-wl-step="2" type="button">+</button>
+</div>
+<span class="wl-hint" id="wl-range-note">Target ceiling</span>
+</div>
+<input aria-describedby="wl-range-note" class="wl-range" id="wl-hr-range" max="80" min="56" step="2" type="range" value="68"/>
+</div>
+<fieldset class="care-divider choice-stack">
+<legend class="wl-label" style="margin-bottom:6px">Care notifications</legend>
+<label class="choice-row">
+<input class="wl-check" id="wl-check-all" type="checkbox"/>
+<span>All visit reminders</span>
+</label>
+<div class="choice-children">
+<label class="choice-row"><input checked="" class="wl-check wl-child-check" type="checkbox"/><span>Evening dosage check-in</span></label>
+<label class="choice-row"><input checked="" class="wl-check wl-child-check" type="checkbox"/><span>Fasting morning lab reminder</span></label>
+<label class="choice-row"><input class="wl-check wl-child-check" type="checkbox"/><span>Monthly blood pressure summary</span></label>
+</div>
+</fieldset>
+<div class="care-divider">
+<div class="switch-row">
+<span id="wl-share-lbl">Share home blood pressure cuff readings</span>
+<button aria-checked="true" aria-labelledby="wl-share-lbl" class="wl-switch" role="switch" type="button">
+<span aria-hidden="true" class="wl-switch-thumb"></span>
+</button>
+</div>
+</div>
+</form>

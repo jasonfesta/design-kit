@@ -1,0 +1,81 @@
+<article aria-labelledby="mod-takes" class="deck-module">
+<div class="module-head">
+<h3 id="mod-takes">Session takes</h3>
+<button aria-pressed="false" class="text-trigger" id="toggle-empty-takes" type="button">Empty state</button>
+</div>
+<div class="table-scroll" id="takes-wrap">
+<table class="studio-table" id="takes-table">
+<thead>
+<tr>
+<th aria-sort="descending" data-col="0" data-type="text" scope="col">
+<button class="sort-btn" type="button">
+<span>Take</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" viewbox="0 0 12 12">
+<path d="M6 2v8M3.2 4.8L6 2l2.8 2.8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</button>
+</th>
+<th aria-sort="none" class="num-col" data-col="1" data-numeric="true" data-type="num" scope="col">
+<button class="sort-btn" type="button">
+<span>Length</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" viewbox="0 0 12 12">
+<path d="M6 2v8M3.2 4.8L6 2l2.8 2.8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</button>
+</th>
+<th aria-sort="none" class="num-col" data-col="2" data-numeric="true" data-type="num" scope="col">
+<button class="sort-btn" type="button">
+<span>Loudness</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" viewbox="0 0 12 12">
+<path d="M6 2v8M3.2 4.8L6 2l2.8 2.8" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</button>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Take 4 · Final mix</td>
+<td class="num-col" data-numeric="true" data-sort-val="192">03:12</td>
+<td class="num-col" data-numeric="true" data-sort-val="-11.2">−11.2 LUFS</td>
+</tr>
+<tr>
+<td>Take 3 · Bass solo</td>
+<td class="num-col" data-numeric="true" data-sort-val="191">03:11</td>
+<td class="num-col" data-numeric="true" data-sort-val="-10.4">−10.4 LUFS</td>
+</tr>
+<tr>
+<td>Take 2 · Close mics</td>
+<td class="num-col" data-numeric="true" data-sort-val="194">03:14</td>
+<td class="num-col" data-numeric="true" data-sort-val="-13.6">−13.6 LUFS</td>
+</tr>
+<tr>
+<td>Take 1 · Level check</td>
+<td class="num-col" data-numeric="true" data-sort-val="108">01:48</td>
+<td class="num-col" data-numeric="true" data-sort-val="-15.1">−15.1 LUFS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="empty-takes" hidden="" id="takes-empty">
+<p>No printed takes on this reel yet. Arm the stereo bus to record Take 1.</p>
+<button class="hw-key" id="restore-takes" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Show recorded takes</span>
+</button>
+</div>
+<div class="key-row key-row--stack" style="margin-top: auto;">
+<button class="hw-key hw-key--dark" data-open-modal="bounce-modal" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Bounce mix</span>
+</button>
+<button class="hw-key" data-open-drawer="notes-drawer" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Mic notes</span>
+</button>
+<button class="hw-key" data-trigger-toast="Reel 04 saved to internal flash." type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Save reel</span>
+</button>
+</div>
+</article>

@@ -1,0 +1,24 @@
+<dialog aria-labelledby="drawer-title" class="sy-drawer" id="issue-drawer">
+<div class="sy-dialog-head">
+<h2 id="drawer-title" style="font-size: 1.25rem;">Release activity</h2>
+<button aria-label="Close drawer" class="sy-btn sy-btn-ghost sy-btn-sm" data-close-dialog="" type="button">Close</button>
+</div>
+<p class="muted" id="drawer-sub"><span class="mono">API-418</span> · Streamline webhook retry backoff</p>
+<dl class="sy-kv-list" style="margin-top: 24px;">
+<dt>Author</dt>
+<dd id="drawer-owner">Maya Lin</dd>
+<dt>Reviewer</dt>
+<dd class="num">Jonas Berg · Approved 14m ago</dd>
+<dt>Benchmark</dt>
+<dd class="num" id="drawer-delta">−14 ms median</dd>
+<dt>Staging soak</dt>
+<dd class="num">40 minutes · 0 errors</dd>
+</dl>
+<div class="sy-diff" style="margin-top: 28px;">
+<span class="sy-diff-del">- retry_interval_ms: 5000</span>
+<span class="sy-diff-add">+ retry_backoff_ms: [400, 1200, 3600]</span>
+</div>
+<div class="sy-action-row" style="margin-top: 24px;">
+<button class="sy-btn" data-close-dialog="" type="button">Done</button>
+</div>
+</dialog>

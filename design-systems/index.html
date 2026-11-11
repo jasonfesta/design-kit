@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Six interactive design systems</title>
+  <link rel="stylesheet" href="./fonts/directory-fonts.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper-canvas: oklch(0.984 0.005 84);
+      --paper-card: oklch(0.997 0.002 84);
+      --paper-tint: oklch(0.958 0.007 82);
+
+      --ink-primary: oklch(0.180 0.014 252);
+      --ink-secondary: oklch(0.335 0.014 252);
+      --ink-muted: oklch(0.420 0.012 252);
+
+      --rule-subtle: oklch(0.868 0.008 82);
+      --rule-strong: oklch(0.715 0.012 82);
+
+      --link-ink: oklch(0.335 0.095 252);
+      --link-hover: oklch(0.235 0.090 252);
+      --focus-ring: oklch(0.385 0.125 252);
+
+      --font-editorial: 'Newsreader', Georgia, 'Liberation Serif', serif;
+      --font-sans: 'Plus Jakarta Sans', 'Liberation Sans', sans-serif;
+
+      --card-shadow-rest: 0 1px 3px oklch(0.18 0.02 252 / 0.04), 0 10px 26px -12px oklch(0.18 0.02 252 / 0.07);
+      --card-shadow-hover: 0 4px 10px oklch(0.18 0.02 252 / 0.06), 0 18px 38px -12px oklch(0.18 0.02 252 / 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background-color: var(--paper-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-editorial);
+      font-size: 16px;
+      line-height: 1.58;
+      -webkit-text-size-adjust: 100%;
+      font-kerning: normal;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--paper-canvas);
+      color: var(--ink-primary);
+      overflow-x: hidden;
+      font-kerning: normal;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: var(--link-ink);
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+      transition: color 140ms ease, text-decoration-color 140ms ease;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration-thickness: 1.5px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 12px;
+      z-index: 100;
+      padding: 10px 16px;
+      background-color: var(--ink-primary);
+      color: var(--paper-card);
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1260px;
+      margin-inline: auto;
+      padding-inline: clamp(20px, 4vw, 44px);
+    }
+
+    /* Single-row header */
+    .site-header {
+      width: 100%;
+      border-bottom: 1px solid var(--rule-subtle);
+      background-color: var(--paper-canvas);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 18px;
+    }
+
+    .site-brand {
+      font-family: var(--font-editorial);
+      font-size: 1.1875rem;
+      font-weight: 500;
+      font-optical-sizing: auto;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-brand:hover {
+      color: var(--link-ink);
+      text-decoration: none;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 24px;
+    }
+
+    .site-nav a {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover {
+      color: var(--ink-primary);
+      text-decoration: underline;
+      text-underline-offset: 0.24em;
+    }
+
+    .site-nav a[aria-current="page"] {
+      color: var(--ink-primary);
+      text-decoration-line: underline;
+      text-decoration-color: var(--rule-strong);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 0.28em;
+    }
+
+    @media (max-width: 680px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-block: 16px;
+      }
+
+      .site-nav {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+      }
+
+      .site-nav a {
+        font-size: 0.8125rem;
+      }
+    }
+
+    /* Above-the-fold two-column editorial intro */
+    .hero {
+      padding-top: clamp(32px, 3.6vw, 44px);
+      padding-bottom: clamp(30px, 3.4vw, 40px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.88fr);
+      gap: 32px 56px;
+      align-items: start;
+    }
+
+    .hero-lead h1 {
+      margin: 0 0 16px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: clamp(2.05rem, 3.4vw, 2.8125rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.016em;
+      color: var(--ink-primary);
+      max-width: none;
+      text-wrap: balance;
+    }
+
+    .hero-lead p {
+      margin: 0 0 13px 0;
+      max-width: 60ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.125rem;
+      line-height: 1.58;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    .hero-lead p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-toc {
+      padding-left: 30px;
+      border-left: 1px solid var(--rule-subtle);
+    }
+
+    .hero-toc h2 {
+      margin: 0 0 10px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.1875rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: normal;
+      color: var(--ink-primary);
+      max-width: none;
+    }
+
+    /* Single-column Contents list in uniform Newsreader */
+    .contents-list {
+      margin: 0;
+      padding: 0 0 0 1.2em;
+      list-style-position: outside;
+      columns: 1;
+      font-family: var(--font-editorial);
+      font-size: 1.03125rem;
+      line-height: 1.48;
+      color: var(--ink-secondary);
+    }
+
+    .contents-list li {
+      padding-block: 3px;
+      padding-left: 0.15em;
+      font-family: var(--font-editorial);
+    }
+
+    .contents-list a {
+      font-family: var(--font-editorial);
+      font-weight: 400;
+      color: var(--link-ink);
+    }
+
+    .contents-list a:hover {
+      color: var(--link-hover);
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .hero-toc {
+        padding-left: 0;
+        padding-top: 26px;
+        border-left: 0;
+        border-top: 1px solid var(--rule-subtle);
+      }
+    }
+
+    /* Balanced section framing with generous surrounding air */
+    .page-section {
+      border-top: 1px solid var(--rule-subtle);
+      padding-top: 38px;
+      padding-bottom: 58px;
+    }
+
+    .page-section h2 {
+      margin: 0 0 10px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: clamp(1.5rem, 2.2vw, 1.8125rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      max-width: none;
+      text-wrap: balance;
+    }
+
+    .section-intro {
+      margin: 0 0 30px 0;
+      max-width: 62ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.0625rem;
+      line-height: 1.58;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    /* Spacious 2-column gallery grid of 2x lossless 16:10 plates */
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px 40px;
+    }
+
+    @media (max-width: 767px) {
+      .systems-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 38px;
+      }
+    }
+
+    .system-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-media-link {
+      display: block;
+      line-height: 0;
+      border: 1px solid var(--rule-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: var(--paper-card);
+      box-shadow: var(--card-shadow-rest);
+      text-decoration: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .system-card:hover .card-media-link,
+    .card-media-link:focus-visible {
+      border-color: var(--rule-strong);
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-shot {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card-body {
+      padding: 18px 0 0;
+    }
+
+    .card-body h3 {
+      margin: 0 0 8px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.34375rem;
+      font-weight: 500;
+      line-height: 1.24;
+      letter-spacing: -0.008em;
+      max-width: none;
+      text-wrap: balance;
+    }
+
+    .card-title-link {
+      color: var(--ink-primary);
+      text-decoration-line: underline;
+      text-decoration-color: var(--rule-strong);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    .card-title-link:hover,
+    .system-card:hover .card-title-link {
+      color: var(--link-ink);
+      text-decoration-color: currentColor;
+      text-decoration-thickness: 1.5px;
+    }
+
+    .card-desc {
+      margin: 0;
+      max-width: 56ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.03125rem;
+      line-height: 1.56;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    .card-links {
+      margin: 12px 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 18px;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+
+    .card-links a {
+      color: var(--link-ink);
+      font-weight: 500;
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+    }
+
+    .card-links a:hover {
+      color: var(--link-hover);
+      text-decoration-thickness: 1.5px;
+    }
+
+    /* Four-column summary table */
+    .table-scroll {
+      width: 100%;
+      overflow-x: auto;
+      margin: 0 0 28px 0;
+      border: 1px solid var(--rule-subtle);
+      border-radius: 6px;
+      background-color: var(--paper-card);
+    }
+
+    .arch-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      line-height: 1.48;
+      text-align: left;
+    }
+
+    .arch-table thead th {
+      padding: 16px 20px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      background-color: var(--paper-tint);
+      border-bottom: 1px solid var(--rule-subtle);
+      white-space: nowrap;
+    }
+
+    .arch-table tbody td {
+      padding: 17px 20px;
+      color: var(--ink-secondary);
+      border-bottom: 1px solid var(--rule-subtle);
+      vertical-align: top;
+    }
+
+    .arch-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .arch-table tbody td:first-child {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .arch-closing {
+      margin: 0;
+      max-width: 62ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.0625rem;
+      line-height: 1.58;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--rule-subtle);
+      padding-block: 36px;
+      background-color: var(--paper-canvas);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px 28px;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    .footer-links a {
+      color: var(--ink-secondary);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+      .system-card:hover .card-media-link,
+      .card-media-link:focus-visible {
+        transform: none;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .table-scroll,
+      .card-media-link {
+        border-color: CanvasText;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="site-brand" href="./index.html">Design systems</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="./index.html" aria-current="page">Product components</a>
+        <a href="./marketing.html">Marketing components</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation">Git repository</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="shell hero-grid">
+        <div class="hero-lead">
+          <h1 id="page-title">Six interactive design systems</h1>
+          <p>We designed and built six design systems to show how layout, typography, and colour restraint serve very different jobs.</p>
+          <p>Each system pairs a working product screen with a matching <a href="./marketing.html">marketing and media component guide</a> across light and dark modes.</p>
+        </div>
+
+        <aside id="contents" class="hero-toc" aria-labelledby="contents-heading">
+          <h2 id="contents-heading">Contents</h2>
+          <ol class="contents-list">
+            <li><a href="./systems/switchyard.html">Switchyard release notes and deploys</a></li>
+            <li><a href="./systems/ledgermark.html">Ledgermark operating cash and transfers</a></li>
+            <li><a href="./systems/civicgate.html">Civicgate resident parking permits</a></li>
+            <li><a href="./systems/fieldrig.html">Fieldrig four-track stem mixer</a></li>
+            <li><a href="./systems/folioarchive.html">Folio Archive exhibition catalogue</a></li>
+            <li><a href="./systems/wardline.html">Wardline preventive cardiology portal</a></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section id="systems" class="page-section" aria-labelledby="systems-heading">
+      <div class="shell">
+        <h2 id="systems-heading">Interactive exemplars</h2>
+        <p class="section-intro">We built six working screens covering API deploys, operating cash, parking permits, four-track mixing, art exhibitions, and cardiology visits.</p>
+
+        <div class="systems-grid">
+          <article class="system-card">
+            <a class="card-media-link" href="./systems/switchyard.html">
+              <img class="card-shot" src="./images/switchyard.png" alt="Switchyard Core API release 24.11 workspace with latency sparklines, rollout issue queue, and retry-backoff configuration diff" width="2880" height="1800" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./systems/switchyard.html">Switchyard</a></h3>
+              <p class="card-desc">Engineers stage API releases alongside latency sparklines, filtering rollout issues on the left while reviewing retry-backoff diffs beside them.</p>
+              <p class="card-links">
+                <a href="./systems/switchyard.html">Product components</a>
+                <a href="./marketing/switchyard.html">Marketing components</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="system-card">
+            <a class="card-media-link" href="./systems/ledgermark.html">
+              <img class="card-shot" src="./images/ledgermark.png" alt="Ledgermark operating cash workspace showing a stepped balance chart, transfer actions, and recent account transactions" width="2880" height="1800" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./systems/ledgermark.html">Ledgermark</a></h3>
+              <p class="card-desc">Finance teams track daily operating cash steps, queue wire transfers, and split expenses above a sortable multi-account ledger.</p>
+              <p class="card-links">
+                <a href="./systems/ledgermark.html">Product components</a>
+                <a href="./marketing/ledgermark.html">Marketing components</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="system-card">
+            <a class="card-media-link" href="./systems/civicgate.html">
+              <img class="card-shot" src="./images/civicgate.png" alt="Civicgate resident parking permit form with electric, hybrid, and petrol radio choices beside an annual fee summary" width="2880" height="1800" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./systems/civicgate.html">Civicgate</a></h3>
+              <p class="card-desc">Residents renew low-emission parking permits in one clear question column paired with a live Zone B annual fee summary.</p>
+              <p class="card-links">
+                <a href="./systems/civicgate.html">Product components</a>
+                <a href="./marketing/civicgate.html">Marketing components</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="system-card">
+            <a class="card-media-link" href="./systems/fieldrig.html">
+              <img class="card-shot" src="./images/fieldrig.png" alt="Fieldrig TP-4 four-track mixer with digital playhead readout, transport buttons, and four vertical stem faders" width="2880" height="1800" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./systems/fieldrig.html">Fieldrig</a></h3>
+              <p class="card-desc">Musicians mix four vertical studio stems with solo and mute latches beneath a timecode bar and armed record trigger.</p>
+              <p class="card-links">
+                <a href="./systems/fieldrig.html">Product components</a>
+                <a href="./marketing/fieldrig.html">Marketing components</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="system-card">
+            <a class="card-media-link" href="./systems/folioarchive.html">
+              <img class="card-shot" src="./images/folioarchive.png" alt="Folio Archive exhibition page for Colour as Structure pairing Helene Vonderlan colour-field squares with timed pass booking and curatorial essay" width="2880" height="1800" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./systems/folioarchive.html">Folio Archive</a></h3>
+              <p class="card-desc">Visitors read a Kunsthaus Zürich essay for Colour as Structure beside colour-field paintings, footnote notes, and room checklists.</p>
+              <p class="card-links">
+                <a href="./systems/folioarchive.html">Product components</a>
+                <a href="./marketing/folioarchive.html">Marketing components</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="system-card">
+            <a class="card-media-link" href="./systems/wardline.html">
+              <img class="card-shot" src="./images/wardline.png" alt="Wardline preventive cardiology portal showing a 30-day resting heart rate chart inside a healthy target band above a fasting lipid panel" width="2880" height="1800" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./systems/wardline.html">Wardline</a></h3>
+              <p class="card-desc">Patients and clinicians review 30-day resting heart rates inside target bands above fasting lipid reference ranges and dosage controls.</p>
+              <p class="card-links">
+                <a href="./systems/wardline.html">Product components</a>
+                <a href="./marketing/wardline.html">Marketing components</a>
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="page-section" aria-labelledby="overview-heading">
+      <div class="shell">
+        <h2 id="overview-heading">System overview</h2>
+        <p class="section-intro">Each system pairs an open-licence typeface stack with its own colour palette and control reference.</p>
+
+        <div class="table-scroll">
+          <table class="arch-table">
+            <thead>
+              <tr>
+                <th scope="col">System</th>
+                <th scope="col">Palette</th>
+                <th scope="col">Typefaces</th>
+                <th scope="col">Reference view</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="./systems/switchyard.html">Switchyard</a></td>
+                <td>Dark slate, white primary, periwinkle</td>
+                <td>Space Grotesk, IBM Plex Sans, JetBrains Mono</td>
+                <td>Horizontal release spec sheet</td>
+              </tr>
+              <tr>
+                <td><a href="./systems/ledgermark.html">Ledgermark</a></td>
+                <td>Warm off-white and forest green</td>
+                <td>Source Serif 4, Instrument Sans, IBM Plex Mono</td>
+                <td>Treasury workflow reference</td>
+              </tr>
+              <tr>
+                <td><a href="./systems/civicgate.html">Civicgate</a></td>
+                <td>White paper, green confirm, cobalt</td>
+                <td>Public Sans and Source Code Pro</td>
+                <td>Service rules and validation</td>
+              </tr>
+              <tr>
+                <td><a href="./systems/fieldrig.html">Fieldrig</a></td>
+                <td>Neutral warm grey and vermilion</td>
+                <td>Archivo and Azeret Mono</td>
+                <td>Four studio hardware modules</td>
+              </tr>
+              <tr>
+                <td><a href="./systems/folioarchive.html">Folio Archive</a></td>
+                <td>White ground, black ink, cobalt</td>
+                <td>Fraunces, Newsreader, Work Sans</td>
+                <td>Numbered catalogue figures</td>
+              </tr>
+              <tr>
+                <td><a href="./systems/wardline.html">Wardline</a></td>
+                <td>Cool off-white and dark teal</td>
+                <td>Source Sans 3 and Fira Code</td>
+                <td>Cardiology clinic workflows</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="arch-closing">Every system pairs its product workspace with a matching <a href="./marketing.html">marketing component guide</a> using self-hosted open-licence fonts. Read the reusable <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/SKILL.md">design system skill</a>, the <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/research/synthesis.md">research synthesis</a>, and the <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation">source repository on Google Depot</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>Six interactive design systems</span>
+      <div class="footer-links">
+        <a href="./marketing.html">Marketing components</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/SKILL.md">Skill specification</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/research/synthesis.md">Research synthesis</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation">Git repository</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

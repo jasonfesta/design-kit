@@ -1,0 +1,2528 @@
+<!doctype html>
+<html lang="en" data-theme="light" data-density="standard">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Folio Archive — Workspace: Colour as Structure , 1954–1978</title>
+<link href="../../../fonts/folioarchive-fonts.css" rel="stylesheet"/>
+<style>
+    @layer reset, tokens, base, layout, components, utilities;
+
+    @layer reset {
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      html, body, h1, h2, h3, h4, p, figure, figcaption, blockquote, dl, dd, ul, ol, fieldset {
+        margin: 0;
+        padding: 0;
+      }
+      ul[role="list"], ol[role="list"] {
+        list-style: none;
+      }
+    }
+
+    @layer tokens {
+      :root {
+        color-scheme: light;
+
+        /* Architectural gallery planes */
+        --fa-wall: oklch(0.993 0.002 95);
+        --fa-plaster: oklch(0.968 0.003 250);
+        --fa-plaster-deep: oklch(0.942 0.004 250);
+        --fa-sheet: oklch(1 0 0);
+
+        /* Sumi print ink hierarchy */
+        --fa-sumi: oklch(0.148 0.008 255);
+        --fa-sumi-lift: oklch(0.245 0.010 255);
+        --fa-graphite: oklch(0.335 0.010 255);
+        --fa-slate: oklch(0.422 0.010 255);
+
+        /* Mineral ultramarine cobalt — reserved strictly for links, citations, active tab, focus */
+        --fa-cobalt: oklch(0.445 0.175 262);
+        --fa-cobalt-hover: oklch(0.360 0.165 262);
+        --fa-cobalt-wash: oklch(0.956 0.018 260);
+
+        /* Restrained carmine for validation and cancellation hover */
+        --fa-carmine: oklch(0.420 0.155 24);
+        --fa-carmine-hover: oklch(0.360 0.145 24);
+        --fa-carmine-wash: oklch(0.964 0.014 24);
+
+        /* Semantic mappings */
+        --surface-wall: var(--fa-wall);
+        --surface-recess: var(--fa-plaster);
+        --surface-recess-strong: var(--fa-plaster-deep);
+        --surface-overlay: var(--fa-sheet);
+
+        --ink-primary: var(--fa-sumi);
+        --ink-secondary: var(--fa-graphite);
+        --ink-muted: var(--fa-slate);
+
+        --link-ink: var(--fa-cobalt);
+        --link-hover: var(--fa-cobalt-hover);
+        --focus-ring: var(--fa-cobalt);
+
+        /* Flat architectural letterpress primary */
+        --btn-pri-bg: var(--fa-sumi);
+        --btn-pri-hover: var(--fa-sumi-lift);
+        --btn-pri-fg: oklch(0.993 0.002 95);
+
+        --btn-sec-bg: var(--fa-wall);
+        --btn-sec-hover: var(--fa-plaster-deep);
+        --btn-sec-fg: var(--fa-sumi);
+
+        --rule-subtle: oklch(0.888 0.004 250);
+        --rule-strong: oklch(0.148 0.008 255);
+        --border-field: oklch(0.505 0.010 255);
+        --disabled-bg: oklch(0.946 0.003 250);
+        --disabled-fg: oklch(0.525 0.008 250);
+
+        --backdrop-scrim: oklch(0.120 0.008 255 / 0.54);
+        --shadow-canvas: 0 2px 5px oklch(0.16 0.01 255 / 0.07), 0 22px 48px -16px oklch(0.16 0.01 255 / 0.16);
+        --shadow-plate-hover: 0 4px 10px oklch(0.16 0.01 255 / 0.10), 0 28px 56px -16px oklch(0.16 0.01 255 / 0.22);
+        --shadow-float: 0 2px 6px oklch(0.15 0.01 255 / 0.08), 0 20px 44px -12px oklch(0.15 0.01 255 / 0.16);
+
+        --font-display: 'Fraunces', 'Newsreader', Georgia, serif;
+        --font-prose: 'Newsreader', Georgia, serif;
+        --font-ui: 'Work Sans', 'Liberation Sans', system-ui, sans-serif;
+
+        --radius-none: 0px;
+        --essay-size: 1.125rem;
+        --row-pad-y: 16px;
+        --ctrl-h: 42px;
+        --section-pad: clamp(50px, 5.8vw, 80px);
+      }
+
+      /* Dark gallery lighting — spot-lit pigments and crisp bone-white letterpress */
+      html[data-theme="dark"] {
+        color-scheme: dark;
+
+        --surface-wall: oklch(0.145 0.008 255);
+        --surface-recess: oklch(0.188 0.009 255);
+        --surface-recess-strong: oklch(0.228 0.011 255);
+        --surface-overlay: oklch(0.208 0.010 255);
+
+        --ink-primary: oklch(0.958 0.005 90);
+        --ink-secondary: oklch(0.825 0.007 250);
+        --ink-muted: oklch(0.735 0.009 250);
+
+        --link-ink: oklch(0.775 0.120 258);
+        --link-hover: oklch(0.845 0.105 258);
+        --fa-cobalt-wash: oklch(0.235 0.032 258);
+        --focus-ring: oklch(0.775 0.120 258);
+
+        --fa-carmine: oklch(0.785 0.118 24);
+        --fa-carmine-hover: oklch(0.835 0.105 24);
+        --fa-carmine-wash: oklch(0.235 0.034 24);
+
+        /* Solid crisp bone-white primary in dark mode */
+        --btn-pri-bg: oklch(0.952 0.005 90);
+        --btn-pri-hover: oklch(0.988 0.003 90);
+        --btn-pri-fg: oklch(0.142 0.008 255);
+
+        --btn-sec-bg: oklch(0.155 0.008 255);
+        --btn-sec-hover: oklch(0.232 0.011 255);
+        --btn-sec-fg: oklch(0.948 0.005 90);
+
+        --rule-subtle: oklch(0.275 0.010 255);
+        --rule-strong: oklch(0.920 0.006 90);
+        --border-field: oklch(0.585 0.012 252);
+        --disabled-bg: oklch(0.212 0.008 255);
+        --disabled-fg: oklch(0.525 0.009 252);
+
+        --backdrop-scrim: oklch(0.06 0.006 255 / 0.74);
+        --shadow-canvas: none;
+        --shadow-plate-hover: 0 12px 24px -14px oklch(0 0 0 / 0.55);
+        --shadow-float: 0 16px 44px oklch(0.04 0.005 255 / 0.68);
+      }
+
+      html[data-density="compact"] {
+        --row-pad-y: 9px;
+        --ctrl-h: 36px;
+      }
+    }
+
+    @layer base {
+      html {
+        background-color: var(--surface-wall);
+        color: var(--ink-primary);
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      html, body, button, input, select, textarea, output {
+        font-kerning: normal;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: normal;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--surface-wall);
+        color: var(--ink-primary);
+        font-family: var(--font-prose);
+        font-variant-numeric: lining-nums tabular-nums;
+        line-height: 1.6;
+        overflow-x: clip;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      h1, h2, h3, h4 {
+        color: var(--ink-primary);
+        font-family: var(--font-display);
+        font-weight: 400;
+        font-variant-numeric: lining-nums tabular-nums;
+        text-wrap: balance;
+        max-width: none;
+      }
+
+      h1 {
+        font-size: clamp(3.05rem, 4.6vw, 4.15rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        font-variation-settings: "opsz" 144;
+      }
+
+      h1 em, h2 em {
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      h2 {
+        font-size: clamp(1.6rem, 2.25vw, 2.1rem);
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        font-variation-settings: "opsz" 72;
+      }
+
+      h3 {
+        font-size: 1.1875rem;
+        line-height: 1.28;
+        font-variation-settings: "opsz" 36;
+      }
+
+      p {
+        max-width: 62ch;
+        color: var(--ink-secondary);
+      }
+
+      a {
+        color: var(--link-ink);
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.22em;
+        transition: color 130ms ease;
+      }
+
+      a:hover {
+        color: var(--link-hover);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      section[id] {
+        scroll-margin-top: 4.5rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      .tnum,
+      th[data-numeric="true"],
+      td[data-numeric="true"],
+      output {
+        font-family: var(--font-ui);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+    }
+
+    @layer layout {
+      .fa-shell {
+        width: 100%;
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: clamp(20px, 4vw, 48px);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 12px;
+        z-index: 200;
+        padding: 10px 16px;
+        background: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        left: 20px;
+      }
+
+      /* Edge-to-edge single-row gallery header */
+      .site-header {
+        border-bottom: 1px solid var(--rule-subtle);
+        background-color: var(--surface-wall);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-block: 19px;
+      }
+
+      .brand-mark {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        font-weight: 400;
+        font-variation-settings: "opsz" 48;
+        color: var(--ink-primary);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .brand-mark:hover {
+        color: var(--ink-primary);
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 400;
+      }
+
+      .site-nav a {
+        color: var(--ink-secondary);
+        text-decoration: none;
+        padding-block: 4px;
+        border-bottom: 1px solid transparent;
+        white-space: nowrap;
+      }
+      .site-nav a:hover {
+        color: var(--ink-primary);
+        border-bottom-color: var(--link-ink);
+      }
+
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .fa-section {
+        padding-block: var(--section-pad);
+        border-bottom: 1px solid var(--rule-subtle);
+      }
+
+      .fa-band {
+        padding-block: clamp(46px, 5vw, 68px);
+        border-top: 1px solid var(--rule-subtle);
+      }
+
+      /* Exhibition Hero Wall */
+      .exhibit-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        gap: clamp(40px, 6vw, 88px);
+        align-items: center;
+        padding-bottom: clamp(48px, 5.2vw, 72px);
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-lead {
+        margin-top: 24px;
+        font-size: 1.1875rem;
+        line-height: 1.62;
+        color: var(--ink-secondary);
+        max-width: 48ch;
+      }
+
+      .hero-details {
+        margin-top: 20px;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-muted);
+      }
+
+      .action-row {
+        margin-top: 32px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .hero-artwork-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      /* Curatorial Essay Spread */
+      .essay-spread {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 32px clamp(40px, 6vw, 88px);
+        align-items: start;
+      }
+
+      .essay-aside {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .essay-column {
+        position: relative;
+        max-width: 62ch;
+      }
+
+      .essay-prose {
+        font-family: var(--font-prose);
+        font-size: var(--essay-size);
+        line-height: 1.68;
+        color: var(--ink-primary);
+      }
+
+      .essay-prose p {
+        color: var(--ink-primary);
+        max-width: 62ch;
+      }
+
+      .essay-prose p + p {
+        margin-top: 1.25em;
+      }
+
+      /* Selected Works 3-up Gallery Wall */
+      .gallery-grid {
+        margin-top: 38px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 36px clamp(28px, 4vw, 52px);
+        align-items: start;
+      }
+
+      .section-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 26px;
+      }
+
+      .filter-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* Foundations Grid */
+      .swatch-strip {
+        margin-top: 34px;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 24px 20px;
+      }
+
+      .type-specimens {
+        margin-top: 52px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .type-row {
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        gap: 16px 48px;
+        align-items: baseline;
+        padding-block: 26px;
+        border-top: 1px solid var(--rule-subtle);
+      }
+
+      /* Editorial 2-Column Numbered Exhibition Figure Plates (#components — Subgrid aligned captions) */
+      .plate-grid {
+        margin-top: 38px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: clamp(32px, 4.2vw, 56px);
+        row-gap: 13px;
+      }
+
+      .fig-plate {
+        display: grid;
+        grid-row: span 2;
+        grid-template-rows: subgrid;
+        min-width: 0;
+      }
+
+      .fig-plate:nth-child(n + 3) {
+        margin-top: 31px;
+      }
+
+      .fig-plate--wide {
+        grid-column: 1 / -1;
+      }
+
+      .fig-mount {
+        background-color: var(--surface-recess);
+        border-top: 1px solid var(--rule-strong);
+        padding: clamp(24px, 3vw, 34px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        height: 100%;
+        min-width: 0;
+      }
+
+      .fig-mount--split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 24px 40px;
+        align-items: center;
+      }
+
+      .fig-rule {
+        width: 100%;
+        padding-top: 18px;
+        border-top: 1px solid var(--rule-subtle);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .fig-caption {
+        margin-top: 0;
+        font-family: var(--font-display);
+        font-style: italic;
+        font-weight: 400;
+        font-size: 0.96875rem;
+        line-height: 1.45;
+        font-variation-settings: "opsz" 24;
+        color: var(--ink-secondary);
+      }
+
+      .site-footer {
+        padding-block: 44px;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+
+      @media (max-width: 980px) {
+        .exhibit-hero {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .hero-artwork-wrap {
+          max-width: 480px;
+        }
+        .essay-spread,
+        .type-row,
+        .plate-grid,
+        .fig-mount--split {
+          grid-template-columns: 1fr;
+        }
+        .plate-grid {
+          row-gap: 38px;
+        }
+        .fig-plate,
+        .fig-plate:nth-child(n + 3) {
+          grid-row: auto;
+          grid-template-rows: auto auto;
+          row-gap: 13px;
+          margin-top: 0;
+        }
+        .swatch-strip {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 900px) {
+        .header-inner {
+          gap: 14px;
+        }
+        .site-nav {
+          gap: 14px;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .header-inner {
+          flex-wrap: wrap;
+          gap: 12px 16px;
+          padding-block: 16px;
+        }
+        .site-nav {
+          order: 3;
+          width: 100%;
+          flex-wrap: wrap;
+          gap: 8px 14px;
+          font-size: 0.78125rem;
+        }
+        .gallery-grid {
+          grid-template-columns: 1fr;
+          max-width: 420px;
+        }
+        .swatch-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 520px) {
+        .swatch-strip {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+
+    @layer components {
+      /* Flat architectural letterpress buttons — zero 3D drop plinth */
+      .fa-btn-pri,
+      .fa-btn {
+        appearance: none;
+        display: inline-flex;
+        width: auto;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: var(--ctrl-h);
+        margin: 0;
+        padding: 0.68em 1.35em;
+        border: 1px solid var(--border-field);
+        border-radius: var(--radius-none);
+        font-family: var(--font-ui);
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.1;
+        text-decoration: none;
+        cursor: pointer;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, transform 90ms ease;
+      }
+
+      .fa-btn-pri {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+      }
+
+      .fa-btn {
+        background-color: var(--btn-sec-bg);
+        color: var(--btn-sec-fg);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .fa-btn-pri:not(:disabled):not([aria-disabled="true"]):hover {
+          background-color: var(--btn-pri-hover);
+          border-color: var(--btn-pri-hover);
+        }
+        .fa-btn:not(:disabled):not([aria-disabled="true"]):not([aria-pressed="true"]):hover {
+          background-color: var(--btn-sec-hover);
+          border-color: var(--ink-primary);
+        }
+      }
+
+      .fa-btn-pri:not(:disabled):not([aria-disabled="true"]):active,
+      .fa-btn:not(:disabled):not([aria-disabled="true"]):active {
+        transform: translateY(1px);
+        transition-duration: 45ms;
+      }
+
+      .fa-btn--ghost {
+        border-color: transparent;
+        background-color: transparent;
+        padding-inline: 0.85em;
+        color: var(--ink-secondary);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .fa-btn--ghost:not(:disabled):hover {
+          background-color: var(--surface-recess-strong);
+          border-color: transparent;
+          color: var(--ink-primary);
+        }
+      }
+
+      .fa-btn--toolbar {
+        min-height: 34px;
+        padding: 0.42em 0.85em;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        border-color: var(--rule-subtle);
+        background-color: var(--surface-wall);
+        color: var(--ink-secondary);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .fa-btn--toolbar:not([aria-pressed="true"]):hover {
+          border-color: var(--border-field);
+          color: var(--ink-primary);
+        }
+      }
+      .fa-btn--toolbar[aria-pressed="true"] {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+        font-weight: 500;
+      }
+
+      /* Neutral destructive posture at rest; carmine enters only on hover/focus */
+      .fa-btn--danger {
+        border-color: var(--border-field);
+        color: var(--ink-secondary);
+        background-color: transparent;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .fa-btn--danger:not(:disabled):hover {
+          background-color: var(--fa-carmine-wash);
+          border-color: var(--fa-carmine);
+          color: var(--fa-carmine);
+        }
+      }
+      .fa-btn--danger:focus-visible {
+        border-color: var(--fa-carmine);
+        color: var(--fa-carmine);
+      }
+
+      .fa-btn:disabled,
+      .fa-btn[aria-disabled="true"],
+      .fa-btn-pri:disabled {
+        background-color: var(--disabled-bg);
+        color: var(--disabled-fg);
+        border-color: var(--rule-subtle);
+        cursor: not-allowed;
+      }
+
+      /* Zero-shift loading stack */
+      .fa-btn-load {
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+      }
+      .fa-btn-load > .btn-label,
+      .fa-btn-load > .btn-spin {
+        grid-area: 1 / 1;
+      }
+      .btn-spin {
+        display: none;
+        width: 15px;
+        height: 15px;
+        border: 1.75px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: fa-spin 680ms linear infinite;
+      }
+      [data-loading="true"] .btn-label {
+        visibility: hidden;
+      }
+      [data-loading="true"] .btn-spin {
+        display: inline-block;
+      }
+      @keyframes fa-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Unframed Gallery Oil & Graphite Plates (pure pigment, zero mesh overlay) */
+      .hero-canvas-btn,
+      .artwork-plate {
+        appearance: none;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        text-align: left;
+        cursor: pointer;
+        color: inherit;
+      }
+      .canvas-mount {
+        display: block;
+        width: 100%;
+        box-shadow: var(--shadow-canvas);
+        transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 220ms ease;
+      }
+      .canvas-mount svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .wall-label {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .wall-artist {
+        color: var(--ink-primary);
+        font-weight: 500;
+      }
+      .wall-title {
+        font-family: var(--font-prose);
+        font-size: 0.9375rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-secondary);
+        transition: color 130ms ease;
+      }
+      .wall-meta {
+        color: var(--ink-muted);
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .artwork-plate:hover .canvas-mount,
+        .hero-canvas-btn:hover .canvas-mount {
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-plate-hover);
+        }
+        .artwork-plate:hover .wall-title,
+        .hero-canvas-btn:hover .wall-title {
+          color: var(--link-ink);
+          text-decoration: underline;
+          text-decoration-thickness: 1px;
+          text-underline-offset: 0.2em;
+        }
+      }
+
+      /* Reading size segmented switch */
+      .size-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .size-switch button {
+        appearance: none;
+        border: 0;
+        border-bottom: 1.5px solid transparent;
+        background: transparent;
+        color: var(--ink-muted);
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 400;
+        padding: 4px 0;
+        min-height: 30px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .size-switch button:hover {
+        color: var(--ink-primary);
+      }
+      .size-switch button[aria-pressed="true"] {
+        color: var(--ink-primary);
+        font-weight: 500;
+        border-bottom-color: var(--link-ink);
+      }
+
+      /* Superscript Cobalt Footnote Triggers & Popover */
+      .cite-ref {
+        appearance: none;
+        display: inline;
+        padding: 0 2px;
+        margin: 0 1px;
+        border: 0;
+        background: transparent;
+        color: var(--link-ink);
+        font-family: var(--font-ui);
+        font-size: 0.75em;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums lining-nums;
+        vertical-align: super;
+        line-height: 0;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .cite-ref:hover,
+      .cite-ref[aria-expanded="true"] {
+        color: var(--link-hover);
+        background: var(--fa-cobalt-wash);
+      }
+
+      .cite-popover {
+        margin-top: 20px;
+        padding: 18px 22px;
+        background: var(--surface-recess);
+        border: 1px solid var(--rule-subtle);
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.55;
+        color: var(--ink-secondary);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .cite-num {
+        color: var(--link-ink);
+        font-weight: 600;
+        margin-right: 6px;
+      }
+      .cite-close {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: var(--ink-muted);
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        padding: 2px 6px;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .cite-close:hover {
+        color: var(--ink-primary);
+      }
+
+      /* Custom Form Controls */
+      .pass-form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        width: 100%;
+      }
+      @media (max-width: 560px) {
+        .pass-form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .fa-field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 100%;
+        min-width: 0;
+      }
+      .fa-field--full {
+        grid-column: 1 / -1;
+      }
+      .fa-label {
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--ink-primary);
+      }
+      .fa-hint {
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-muted);
+      }
+      .fa-error {
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--fa-carmine);
+      }
+
+      .fa-input,
+      .fa-select {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        min-height: var(--ctrl-h);
+        margin: 0;
+        padding: 0.55em 0.85em;
+        border: 1px solid var(--border-field);
+        border-radius: var(--radius-none);
+        background-color: var(--surface-wall);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 0.875rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.4;
+        transition: border-color 130ms ease, background-color 130ms ease;
+      }
+      .fa-input::placeholder {
+        color: var(--ink-muted);
+        opacity: 1;
+      }
+      .fa-input:hover:not(:disabled):not([readonly]),
+      .fa-select:hover:not(:disabled) {
+        border-color: var(--ink-primary);
+      }
+      .fa-input[aria-invalid="true"],
+      .fa-select[aria-invalid="true"] {
+        border-color: var(--fa-carmine);
+        background-color: var(--fa-carmine-wash);
+      }
+      .fa-input[readonly] {
+        background-color: var(--surface-recess-strong);
+        border-color: var(--rule-subtle);
+        color: var(--ink-secondary);
+      }
+
+      .select-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+      }
+      .select-wrap--compact {
+        width: auto;
+        min-width: 172px;
+      }
+      .select-wrap .fa-select {
+        padding-right: 2.35em;
+        cursor: pointer;
+      }
+      .select-chevron {
+        position: absolute;
+        right: 12px;
+        width: 12px;
+        height: 12px;
+        color: var(--ink-secondary);
+        pointer-events: none;
+      }
+
+      /* First-line-aligned Checkboxes, Radios, Switch & Range */
+      .selection-columns {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        gap: 20px 24px;
+        width: 100%;
+      }
+      @media (max-width: 560px) {
+        .selection-columns {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .choice-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 0;
+      }
+      .choice-children {
+        padding-left: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .choice-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-family: var(--font-ui);
+        font-size: 0.84375rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        line-height: 1.4;
+        color: var(--ink-primary);
+        cursor: pointer;
+        user-select: none;
+      }
+
+      input[type="checkbox"].fa-check {
+        appearance: none;
+        -webkit-appearance: none;
+        position: relative;
+        width: 17px;
+        height: 17px;
+        margin: 2px 0 0;
+        flex-shrink: 0;
+        border: 1px solid var(--border-field);
+        border-radius: var(--radius-none);
+        background-color: var(--surface-wall);
+        cursor: pointer;
+        display: inline-grid;
+        place-content: center;
+      }
+      input[type="checkbox"].fa-check:checked,
+      input[type="checkbox"].fa-check:indeterminate {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+      }
+      input[type="checkbox"].fa-check:checked::after {
+        content: "";
+        width: 9px;
+        height: 5px;
+        border-left: 1.8px solid var(--btn-pri-fg);
+        border-bottom: 1.8px solid var(--btn-pri-fg);
+        transform: translateY(-1px) rotate(-45deg);
+      }
+      input[type="checkbox"].fa-check:indeterminate::after {
+        content: "";
+        width: 9px;
+        height: 1.8px;
+        background-color: var(--btn-pri-fg);
+      }
+
+      input[type="radio"].fa-radio {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 17px;
+        height: 17px;
+        margin: 2px 0 0;
+        flex-shrink: 0;
+        border: 1px solid var(--border-field);
+        border-radius: 50%;
+        background-color: var(--surface-wall);
+        cursor: pointer;
+        display: inline-grid;
+        place-content: center;
+      }
+      input[type="radio"].fa-radio:checked {
+        border-color: var(--btn-pri-bg);
+      }
+      input[type="radio"].fa-radio:checked::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--btn-pri-bg);
+      }
+
+      .switch-line {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        font-family: var(--font-ui);
+        font-size: 0.84375rem;
+        color: var(--ink-primary);
+      }
+      .fa-switch {
+        appearance: none;
+        position: relative;
+        width: 42px;
+        height: 22px;
+        padding: 2px;
+        margin: 0;
+        flex-shrink: 0;
+        border: 1px solid var(--border-field);
+        border-radius: var(--radius-none);
+        background: var(--surface-wall);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        transition: background-color 140ms ease, border-color 140ms ease;
+      }
+      .fa-switch-thumb {
+        width: 16px;
+        height: 16px;
+        background: var(--ink-primary);
+        pointer-events: none;
+        transition: transform 140ms cubic-bezier(0.2, 0, 0, 1), background-color 140ms ease;
+      }
+      .fa-switch[aria-checked="true"] {
+        background: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+      }
+      .fa-switch[aria-checked="true"] .fa-switch-thumb {
+        transform: translateX(20px);
+        background: var(--btn-pri-fg);
+      }
+
+      .range-group {
+        width: 100%;
+        padding-top: 14px;
+        border-top: 1px solid var(--rule-subtle);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .range-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+      }
+      .range-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .fa-step-btn {
+        appearance: none;
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border-field);
+        background: var(--surface-wall);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 0.95rem;
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .fa-step-btn:hover {
+        background: var(--surface-recess-strong);
+      }
+      input[type="range"].fa-range {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 28px;
+        margin: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      input[type="range"].fa-range::-webkit-slider-runnable-track {
+        height: 2px;
+        background: var(--border-field);
+        border: 0;
+      }
+      input[type="range"].fa-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 20px;
+        margin-top: -9px;
+        background: var(--btn-pri-bg);
+        border: 1px solid var(--surface-wall);
+        border-radius: 0;
+      }
+      input[type="range"].fa-range::-moz-range-track {
+        height: 2px;
+        background: var(--border-field);
+        border: 0;
+      }
+      input[type="range"].fa-range::-moz-range-thumb {
+        width: 14px;
+        height: 20px;
+        background: var(--btn-pri-bg);
+        border: 1px solid var(--surface-wall);
+        border-radius: 0;
+      }
+
+      /* Breadcrumbs & Roving Tabs */
+      .fa-crumbs ol {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+      .fa-crumbs li + li::before {
+        content: "/";
+        margin-right: 8px;
+        color: var(--ink-muted);
+      }
+      .fa-crumbs a {
+        color: var(--ink-secondary);
+        text-decoration: none;
+      }
+      .fa-crumbs a:hover {
+        color: var(--link-ink);
+        text-decoration: underline;
+      }
+      .fa-crumbs [aria-current="page"] {
+        color: var(--ink-primary);
+        font-weight: 500;
+      }
+
+      .fa-tabs {
+        width: 100%;
+      }
+      .fa-tablist {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        border-bottom: 1px solid var(--rule-subtle);
+      }
+      .fa-tab {
+        appearance: none;
+        margin: 0 0 -1px 0;
+        padding: 6px 0 15px 0;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: var(--ink-muted);
+        font-family: var(--font-ui);
+        font-size: 0.84375rem;
+        font-weight: 400;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .fa-tab:hover {
+        color: var(--ink-primary);
+      }
+      .fa-tab[aria-selected="true"] {
+        color: var(--ink-primary);
+        font-weight: 500;
+        border-bottom-color: var(--link-ink);
+      }
+      .fa-tabpanel {
+        padding-top: 18px;
+        font-family: var(--font-prose);
+        font-size: 0.96875rem;
+        line-height: 1.58;
+        color: var(--ink-secondary);
+      }
+
+      /* Frameless Museum Checklist & Catalogue Tables */
+      .table-scroll {
+        width: 100%;
+        overflow-x: auto;
+      }
+      .fa-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-ui);
+        font-size: 0.84375rem;
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+      .fa-table th {
+        padding: 12px 14px;
+        text-align: left;
+        font-weight: 500;
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+        border-bottom: 1px solid var(--rule-strong);
+        white-space: nowrap;
+      }
+      .fa-table td {
+        padding: var(--row-pad-y) 14px;
+        border-bottom: 1px solid var(--rule-subtle);
+        color: var(--ink-secondary);
+        vertical-align: middle;
+      }
+      .fa-table tbody tr:last-child td {
+        border-bottom: 0;
+      }
+      .fa-table th:first-child,
+      .fa-table td:first-child {
+        padding-left: 0;
+      }
+      .fa-table th:last-child,
+      .fa-table td:last-child {
+        padding-right: 0;
+      }
+      .fa-table th[data-numeric="true"],
+      .fa-table td[data-numeric="true"] {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .sort-btn {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+      }
+      .sort-btn:hover,
+      th[aria-sort="ascending"] .sort-btn,
+      th[aria-sort="descending"] .sort-btn {
+        color: var(--ink-primary);
+      }
+      .sort-icon {
+        width: 10px;
+        height: 10px;
+        flex-shrink: 0;
+      }
+
+      .work-row-btn {
+        appearance: none;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--ink-primary);
+        font-family: var(--font-prose);
+        font-style: italic;
+        font-size: 0.96875rem;
+        text-align: left;
+        cursor: pointer;
+        text-decoration-line: underline;
+        text-decoration-color: transparent;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+        transition: color 120ms ease, text-decoration-color 120ms ease;
+      }
+      .work-row-btn:hover {
+        color: var(--link-ink);
+        text-decoration-color: var(--link-ink);
+      }
+
+      .artist-cell {
+        color: var(--ink-primary);
+        font-weight: 500;
+      }
+
+      /* Empty & Skeleton States */
+      .empty-state {
+        padding: 16px 0 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .skeleton-stack {
+        width: 100%;
+        padding-block: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .skel-line {
+        height: 14px;
+        background: linear-gradient(90deg, var(--surface-wall) 20%, var(--surface-recess-strong) 50%, var(--surface-wall) 80%);
+        background-size: 200% 100%;
+        animation: fa-shimmer 1.6s ease-in-out infinite;
+      }
+      @keyframes fa-shimmer {
+        0% { background-position: 100% 0; }
+        100% { background-position: -100% 0; }
+      }
+
+      /* Foundations Swatch Tiles */
+      .swatch-tile {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .swatch-block {
+        height: 78px;
+        width: 100%;
+        box-shadow: inset 0 0 0 1px var(--rule-subtle);
+      }
+      .swatch-name {
+        font-family: var(--font-ui);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-primary);
+      }
+      .swatch-role {
+        font-family: var(--font-ui);
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-muted);
+      }
+
+      /* Modal & Slide-Over Curatorial Drawer */
+      dialog.fa-modal,
+      dialog.fa-drawer {
+        padding: 0;
+        border: 1px solid var(--rule-subtle);
+        border-radius: var(--radius-none);
+        background: var(--surface-overlay);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-float);
+      }
+      dialog::backdrop {
+        background: var(--backdrop-scrim);
+      }
+
+      dialog.fa-modal {
+        width: min(480px, calc(100vw - 32px));
+        margin: auto;
+      }
+
+      dialog.fa-drawer {
+        position: fixed;
+        inset: 0 0 0 auto;
+        width: min(460px, 100vw);
+        height: 100dvh;
+        max-height: 100dvh;
+        margin: 0;
+        border-top: 0;
+        border-right: 0;
+        border-bottom: 0;
+        overflow-y: auto;
+      }
+
+      .dialog-body {
+        padding: 34px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+      .dialog-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .dialog-close {
+        appearance: none;
+        width: 36px;
+        height: 36px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--ink-secondary);
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      .dialog-close:hover {
+        background: var(--surface-recess);
+        color: var(--ink-primary);
+      }
+      .dialog-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding-top: 6px;
+      }
+
+      .drawer-art {
+        width: 100%;
+        max-width: 250px;
+        box-shadow: var(--shadow-canvas);
+      }
+      .drawer-art svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .provenance-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        list-style: none;
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-secondary);
+        padding-top: 14px;
+        border-top: 1px solid var(--rule-subtle);
+      }
+
+      .fa-toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 150;
+        max-width: min(380px, calc(100vw - 32px));
+        padding: 14px 20px;
+        background: var(--ink-primary);
+        color: var(--surface-wall);
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        box-shadow: var(--shadow-float);
+      }
+
+      .inline-controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .slip-meta {
+        font-family: var(--font-ui);
+        font-size: 0.8125rem;
+        font-variant-numeric: tabular-nums lining-nums;
+        color: var(--ink-muted);
+      }
+      .slip-lead {
+        margin-top: 6px;
+        font-family: var(--font-prose);
+        font-size: 1.03125rem;
+        color: var(--ink-primary);
+        max-width: 54ch;
+      }
+    }
+
+    @layer utilities {
+      @media (any-pointer: coarse) {
+        .fa-btn, .fa-btn-pri, .fa-input, .fa-select, .fa-step-btn, .dialog-close {
+          min-height: 44px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+        .canvas-mount {
+          transform: none !important;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .fa-btn-pri,
+        .fa-btn--toolbar[aria-pressed="true"],
+        .fa-switch[aria-checked="true"],
+        .size-switch button[aria-pressed="true"],
+        input.fa-check:checked,
+        input.fa-check:indeterminate,
+        input.fa-radio:checked {
+          forced-color-adjust: none;
+          background: Highlight !important;
+          color: HighlightText !important;
+          border: 1.5px solid Highlight !important;
+        }
+        .fa-btn,
+        .fa-input,
+        .fa-select,
+        .fa-switch,
+        .fa-step-btn,
+        .dialog-close,
+        input.fa-check,
+        input.fa-radio,
+        input.fa-range,
+        dialog.fa-modal,
+        dialog.fa-drawer {
+          border: 1.5px solid ButtonText !important;
+        }
+        .fa-tab[aria-selected="true"] {
+          border-bottom: 3px solid Highlight !important;
+          color: Highlight !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+<div class="fa-shell header-inner">
+<a class="brand-mark" href="#workspace">Folio Archive</a>
+<nav aria-label="Primary" class="site-nav">
+<a href="../../../index.html">All systems</a>
+<a href="#workspace">Exhibition</a>
+<a href="#tokens">Foundations</a>
+<a href="#components">Components</a>
+<a href="../../../marketing/folioarchive.html">Visit &amp; tickets</a>
+</nav>
+<div class="header-controls">
+<button aria-pressed="false" class="fa-btn fa-btn--toolbar" data-density-toggle="" type="button">Compact</button>
+<button aria-pressed="false" class="fa-btn fa-btn--toolbar" data-theme-toggle="" type="button">Dark</button>
+</div>
+</div>
+</header>
+  <main id="main-content">
+    <section aria-labelledby="exhibit-title" class="fa-section" data-section="workspace" id="workspace">
+<div class="fa-shell">
+<div class="exhibit-hero">
+<div class="hero-copy">
+<h1 id="exhibit-title">Colour as <em>Structure</em>, 1954–1978</h1>
+<p class="hero-lead">32 postwar paintings and works on linen tracing how unmixed pigment, edge tension, and ruled graphite intervals came to define architectural space on their own.</p>
+<p class="hero-details">Galleries 3 to 5, Chipperfield Wing · Kunsthaus Zürich · Through 14 February</p>
+<div class="action-row">
+<button class="fa-btn-pri" data-open-modal="#pass-dialog" type="button">Reserve pass</button>
+<button class="fa-btn" data-open-drawer="#work-drawer" data-work-id="vonderlan" type="button">Provenance note</button>
+</div>
+</div>
+<div class="hero-artwork-wrap">
+<button aria-label="Inspect Study for Warm Meridian by Helene Vonderlan, 1962" class="hero-canvas-btn" data-open-work="vonderlan" type="button">
+<span class="canvas-mount">
+<!-- Plate 1: Smooth museum oil pigment on gessoed masonite — zero mesh overlay -->
+<svg aria-label="Painting of four nested chromatic squares in raw ochre, burnt terracotta, saffron gold, and warm vermilion" role="img" viewbox="0 0 520 520">
+<defs>
+<lineargradient id="p1-ochre" x1="0" x2="0.15" y1="0" y2="1">
+<stop offset="0%" stop-color="#BC7420"></stop>
+<stop offset="100%" stop-color="#AE6819"></stop>
+</lineargradient>
+<lineargradient id="p1-sienna" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#C95224"></stop>
+<stop offset="100%" stop-color="#BE481D"></stop>
+</lineargradient>
+<lineargradient id="p1-gold" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#E79E22"></stop>
+<stop offset="100%" stop-color="#DC9217"></stop>
+</lineargradient>
+<lineargradient id="p1-vermilion" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#DA3D24"></stop>
+<stop offset="100%" stop-color="#CD331B"></stop>
+</lineargradient>
+</defs>
+<rect fill="url(#p1-ochre)" height="520" width="520"></rect>
+<rect fill="url(#p1-sienna)" height="416" width="416" x="52" y="78"></rect>
+<rect fill="url(#p1-gold)" height="296" width="296" x="112" y="168"></rect>
+<rect fill="url(#p1-vermilion)" height="168" width="168" x="176" y="264"></rect>
+<rect fill="none" height="519" stroke="#000000" stroke-opacity="0.11" stroke-width="1" width="519" x="0.5" y="0.5"></rect>
+</svg>
+</span>
+<span class="wall-label">
+<span class="wall-artist">Helene Vonderlan</span>
+<span class="wall-title"><em>Study for Warm Meridian</em>, 1962</span>
+<span class="wall-meta">Oil on masonite, 102 × 102 cm · Gallery 3</span>
+</span>
+</button>
+</div>
+</div>
+<!-- Curatorial Essay Excerpt -->
+<div class="fa-band essay-spread">
+<div class="essay-aside">
+<h2>Curatorial essay</h2>
+<div aria-label="Reading text size" class="size-switch" role="group">
+<button aria-pressed="false" data-read-size="1rem" type="button">Small</button>
+<button aria-pressed="true" data-read-size="1.125rem" type="button">Standard</button>
+<button aria-pressed="false" data-read-size="1.28rem" type="button">Large</button>
+</div>
+</div>
+<div class="essay-column">
+<div class="essay-prose">
+<p>When Helene Vonderlan hung her first masonite panels in Zürich in the autumn of 1958, visitors noticed the complete absence of frames.<button aria-expanded="false" aria-label="Note 1" class="cite-ref" data-cite="1" type="button">[1]</button> Working straight from unmixed tubes of cadmium yellow, Venetian red, and raw ochre, she demonstrated that two neighbouring hues alter each other's apparent warmth long before the eye registers a drawn contour.</p>
+<p>In Paris, Mateo Salvat cut matte mineral ultramarine diagonally across unprimed chalk ground so the plaster gallery wall became half of the composition,<button aria-expanded="false" aria-label="Note 2" class="cite-ref" data-cite="2" type="button">[2]</button> while Clara Vermeer ruled fine pencil horizons across pale gessoed linen until pigment gave way almost entirely to north skylight.<button aria-expanded="false" aria-label="Note 3" class="cite-ref" data-cite="3" type="button">[3]</button></p>
+</div>
+<div aria-label="Curatorial note" aria-live="polite" class="cite-popover" hidden="" id="cite-box" role="region">
+<div><span class="cite-num" id="cite-num">[1]</span><span id="cite-text"></span></div>
+<button aria-label="Close note" class="cite-close" id="cite-close-btn" type="button">Close</button>
+</div>
+</div>
+</div>
+<!-- 3-up Clickable Gallery Works Strip -->
+<div class="fa-band">
+<h2>Selected works</h2>
+<div class="gallery-grid">
+<!-- Plate 2 -->
+<button class="artwork-plate" data-open-work="salvat" type="button">
+<span class="canvas-mount">
+<svg aria-label="Hard-edge geometric canvas dividing mineral ultramarine cobalt diagonally against warm bone chalk" role="img" viewbox="0 0 400 500">
+<defs>
+<lineargradient id="p2-bone" x1="0" x2="0.2" y1="0" y2="1">
+<stop offset="0%" stop-color="#F5F2EA"></stop>
+<stop offset="100%" stop-color="#EDE8DD"></stop>
+</lineargradient>
+<lineargradient id="p2-cobalt" x1="0" x2="0.4" y1="0" y2="1">
+<stop offset="0%" stop-color="#1E45A8"></stop>
+<stop offset="100%" stop-color="#17368A"></stop>
+</lineargradient>
+</defs>
+<rect fill="url(#p2-bone)" height="500" width="400"></rect>
+<polygon fill="url(#p2-cobalt)" points="0,0 400,0 400,356 0,94"></polygon>
+<polygon fill="#181B22" points="0,428 196,428 242,500 0,500"></polygon>
+<rect fill="none" height="499" stroke="#000000" stroke-opacity="0.11" stroke-width="1" width="399" x="0.5" y="0.5"></rect>
+</svg>
+</span>
+<span class="wall-label">
+<span class="wall-artist">Mateo Salvat</span>
+<span class="wall-title"><em>Diagonal in Ultramarine and Chalk</em>, 1966</span>
+<span class="wall-meta">Acrylic on linen, 160 × 128 cm · Gallery 3</span>
+</span>
+</button>
+<!-- Plate 3 -->
+<button class="artwork-plate" data-open-work="lindholm" type="button">
+<span class="canvas-mount">
+<svg aria-label="Horizon diptych pairing pale celadon wax-oil above deep Baltic slate separated by raw linen" role="img" viewbox="0 0 400 500">
+<defs>
+<lineargradient id="p3-celadon" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#9CB3A6"></stop>
+<stop offset="100%" stop-color="#8AA396"></stop>
+</lineargradient>
+<lineargradient id="p3-slate" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#2B3844"></stop>
+<stop offset="100%" stop-color="#212C36"></stop>
+</lineargradient>
+</defs>
+<rect fill="#DDD7C9" height="500" width="400"></rect>
+<rect fill="url(#p3-celadon)" height="292" width="400" x="0" y="0"></rect>
+<rect fill="#D8D2C3" height="10" width="400" x="0" y="292"></rect>
+<rect fill="url(#p3-slate)" height="198" width="400" x="0" y="302"></rect>
+<line stroke="#182026" stroke-opacity="0.28" stroke-width="1.2" x1="0" x2="400" y1="297" y2="297"></line>
+<rect fill="none" height="499" stroke="#000000" stroke-opacity="0.11" stroke-width="1" width="399" x="0.5" y="0.5"></rect>
+</svg>
+</span>
+<span class="wall-label">
+<span class="wall-artist">Astrid Lindholm</span>
+<span class="wall-title"><em>Two-Part Horizon (North Sea)</em>, 1971</span>
+<span class="wall-meta">Oil and wax on linen, 150 × 120 cm · Gallery 4</span>
+</span>
+</button>
+<!-- Plate 4 -->
+<button class="artwork-plate" data-open-work="vermeer" type="button">
+<span class="canvas-mount">
+<svg aria-label="Pale chalk gesso field on raw linen ruled with paired horizontal graphite intervals" role="img" viewbox="0 0 400 500">
+<rect fill="#E4DED1" height="500" width="400"></rect>
+<rect fill="#F8F6F1" height="448" width="352" x="24" y="26"></rect>
+<g stroke="#5D5A54" stroke-opacity="0.42" stroke-width="0.75">
+<line x1="40" x2="360" y1="68" y2="68"></line>
+<line x1="40" x2="360" y1="82" y2="82"></line>
+<line x1="40" x2="360" y1="142" y2="142"></line>
+<line x1="40" x2="360" y1="156" y2="156"></line>
+<line x1="40" x2="360" y1="216" y2="216"></line>
+<line x1="40" x2="360" y1="230" y2="230"></line>
+<line x1="40" x2="360" y1="290" y2="290"></line>
+<line x1="40" x2="360" y1="304" y2="304"></line>
+<line x1="40" x2="360" y1="364" y2="364"></line>
+<line x1="40" x2="360" y1="378" y2="378"></line>
+<line x1="40" x2="360" y1="432" y2="432"></line>
+</g>
+<rect fill="none" height="499" stroke="#000000" stroke-opacity="0.11" stroke-width="1" width="399" x="0.5" y="0.5"></rect>
+</svg>
+</span>
+<span class="wall-label">
+<span class="wall-artist">Clara Vermeer</span>
+<span class="wall-title"><em>White Interval No. 7</em>, 1976</span>
+<span class="wall-meta">Graphite and gesso on linen, 182 × 182 cm · Gallery 5</span>
+</span>
+</button>
+</div>
+</div>
+<!-- Exhibition Checklist Table -->
+<article aria-labelledby="checklist-heading" class="fa-band">
+<div class="section-bar">
+<h2 id="checklist-heading">Exhibition checklist</h2>
+<div class="filter-row">
+<div class="select-wrap select-wrap--compact">
+<label class="fa-label" for="checklist-room" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Gallery room</label>
+<select aria-label="Filter by gallery room" class="fa-select" id="checklist-room">
+<option value="all">All galleries</option>
+<option value="Gallery 3">Gallery 3</option>
+<option value="Gallery 4">Gallery 4</option>
+<option value="Gallery 5">Gallery 5</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+</div>
+<figure class="table-scroll">
+<table class="fa-table" id="checklist-table">
+<thead>
+<tr>
+<th aria-sort="none" data-sort-col="artist" scope="col">
+<button class="sort-btn" type="button">
+<span>Artist</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" stroke="currentColor" stroke-width="1.3" viewbox="0 0 10 10"><path d="M2.5 3.8L5 1.3l2.5 2.5M2.5 6.2L5 8.7l2.5-2.5"></path></svg>
+</button>
+</th>
+<th scope="col">Work</th>
+<th aria-sort="ascending" data-numeric="true" data-sort-col="year" scope="col">
+<button class="sort-btn" type="button">
+<span>Year</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" stroke="currentColor" stroke-width="1.3" viewbox="0 0 10 10"><path d="M2.5 6.5L5 3.5l2.5 3"></path></svg>
+</button>
+</th>
+<th scope="col">Dimensions &amp; room</th>
+</tr>
+</thead>
+<tbody id="checklist-tbody">
+<tr data-work-row="meier">
+<td class="artist-cell">Kaspar Meier</td>
+<td><button class="work-row-btn" data-open-work="meier" type="button">Four Equal Progressions</button></td>
+<td data-numeric="true">1954</td>
+<td>88 × 88 cm · Gallery 3</td>
+</tr>
+</tbody>
+</table>
+</figure>
+<div class="empty-state" hidden="" id="checklist-empty">
+<p>No works in the checklist match your selected gallery room.</p>
+<button class="fa-btn" id="checklist-reset" type="button">Show all works</button>
+</div>
+</article>
+</div>
+</section>
+  </main>
+  <dialog aria-labelledby="pass-dialog-title" class="fa-modal" id="pass-dialog">
+<div class="dialog-body">
+<div class="dialog-top">
+<div>
+<h2 id="pass-dialog-title" style="font-size:1.55rem">Reserve timed pass</h2>
+<p style="margin-top:6px;font-family:var(--font-ui);font-size:0.8125rem;color:var(--ink-muted)">Colour as Structure, 1954–1978 · Galleries 3 to 5</p>
+</div>
+<button aria-label="Close reservation dialog" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 14 14" width="14"><path d="M2 2l10 10M12 2L2 12"></path></svg>
+</button>
+</div>
+<form id="pass-modal-form" style="display:flex;flex-direction:column;gap:16px">
+<div class="fa-field">
+<label class="fa-label" for="pass-day">Date and entry window</label>
+<div class="select-wrap">
+<select class="fa-select" id="pass-day">
+<option value="Saturday, 10:30">Saturday, 7 November · 10:30</option>
+<option value="Saturday, 14:00">Saturday, 7 November · 14:00</option>
+<option value="Sunday, 11:00">Sunday, 8 November · 11:00</option>
+<option value="Thursday, 18:30">Thursday evening, 12 November · 18:30</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="fa-field">
+<label class="fa-label" for="pass-guests">Visitors</label>
+<div class="select-wrap">
+<select class="fa-select" id="pass-guests">
+<option value="1 visitor">1 visitor (Free with museum card)</option>
+<option selected="" value="2 visitors">2 visitors</option>
+<option value="3 visitors">3 visitors</option>
+<option value="4 visitors">4 visitors</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="dialog-actions">
+<button class="fa-btn-pri" type="submit">Confirm pass</button>
+<button class="fa-btn" data-close-dialog="" type="button">Cancel</button>
+</div>
+</form>
+</div>
+</dialog>
+<dialog aria-labelledby="drawer-work-title" class="fa-drawer" id="work-drawer">
+<div class="dialog-body">
+<div class="dialog-top">
+<div>
+<div class="wall-artist" id="drawer-work-artist" style="font-family:var(--font-ui);font-size:0.875rem">Helene Vonderlan</div>
+<h2 id="drawer-work-title" style="font-size:1.5rem;margin-top:4px"><em>Study for Warm Meridian</em></h2>
+</div>
+<button aria-label="Close provenance drawer" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 14 14" width="14"><path d="M2 2l10 10M12 2L2 12"></path></svg>
+</button>
+</div>
+<div aria-hidden="true" class="drawer-art" id="drawer-work-art"></div>
+<p class="tnum" id="drawer-work-meta" style="font-family:var(--font-ui);font-size:0.8125rem;color:var(--ink-muted)">1962 · Oil on masonite, 102 × 102 cm · Gallery 3</p>
+<p id="drawer-work-note" style="font-size:1.05rem;line-height:1.65;color:var(--ink-primary)">Applied directly with a broad palette knife onto smooth gessoed masonite, the four nested warm fields shift optical weight toward the lower edge while brightening the raw ochre perimeter.</p>
+<div>
+<h3 style="font-family:var(--font-ui);font-size:0.75rem;font-weight:500;color:var(--ink-muted);margin-bottom:4px">Provenance</h3>
+<ul class="provenance-list" id="drawer-work-prov"></ul>
+</div>
+<div class="dialog-actions">
+<button class="fa-btn" data-close-dialog="" type="button">Done</button>
+</div>
+</div>
+</dialog>
+<div aria-live="polite" class="fa-toast" hidden="" id="fa-toast" role="status"></div>
+  <script>
+    (function () {
+      "use strict";
+
+      var memStore = {};
+      function savePref(k, v) {
+        memStore[k] = v;
+        try { window.localStorage.setItem("fa_" + k, v); } catch (_e) {}
+      }
+
+      var WORKS = [
+        {
+          id: "meier",
+          artist: "Kaspar Meier",
+          title: "Four Equal Progressions",
+          year: 1954,
+          room: "Gallery 3",
+          status: "88 × 88 cm · Gallery 3",
+          spec: "1954 · Oil on cotton canvas, 88 × 88 cm · Gallery 3",
+          note: "One of the earliest Zürich concrete paintings built from four modular vertical columns whose intervals step across cobalt, warm bone, ochre, and deep slate without a dominant centre.",
+          prov: ["Studio of the artist, Zürich, 1954", "Kunsthalle Basel Winter Exhibition, 1959", "Gift of the Meier Foundation, 1981"],
+          svg: '<svg viewBox="0 0 240 240"><rect width="240" height="240" fill="#F2EFE7"/><rect x="0" y="0" width="60" height="180" fill="#2146A6"/><rect x="60" y="60" width="60" height="180" fill="#1B1E24"/><rect x="120" y="0" width="60" height="120" fill="#D58E20"/><rect x="180" y="120" width="60" height="120" fill="#8FA69A"/><rect x="0.5" y="0.5" width="239" height="239" fill="none" stroke="#000" stroke-opacity="0.12"/></svg>'
+        },
+        {
+          id: "vonderlan",
+          artist: "Helene Vonderlan",
+          title: "Study for Warm Meridian",
+          year: 1962,
+          room: "Gallery 3",
+          status: "102 × 102 cm · Gallery 3",
+          spec: "1962 · Oil on masonite, 102 × 102 cm · Gallery 3",
+          note: "Applied directly with a broad palette knife onto smooth masonite, the four nested warm fields settle toward the lower edge while lifting the surrounding ochre into luminous contrast.",
+          prov: ["Atelier of the artist, Zürich, 1962", "Galerie Suzanne Bollag, Zürich, 1965", "Folio Archive Collection, acquired 1978"],
+          svg: '<svg viewBox="0 0 240 240"><rect width="240" height="240" fill="#B66E1E"/><rect x="24" y="36" width="192" height="192" fill="#C65023"/><rect x="52" y="78" width="136" height="136" fill="#E3991E"/><rect x="82" y="122" width="76" height="76" fill="#D63B22"/><rect x="0.5" y="0.5" width="239" height="239" fill="none" stroke="#000" stroke-opacity="0.12"/></svg>'
+        },
+        {
+          id: "salvat",
+          artist: "Mateo Salvat",
+          title: "Diagonal in Ultramarine and Chalk",
+          year: 1966,
+          room: "Gallery 3",
+          status: "160 × 128 cm · Gallery 3",
+          spec: "1966 · Acrylic on linen, 160 × 128 cm · Gallery 3",
+          note: "Salvat mixed dry French ultramarine pigment into matte acrylic binder so the diagonal edge meets unvarnished chalk ground without surface glare, anchored below by a low sumi plinth.",
+          prov: ["Galerie Denise René, Paris, 1967", "Collection Bosshard, Geneva, 1973", "Folio Archive bequest, 1992"],
+          svg: '<svg viewBox="0 0 200 250"><rect width="200" height="250" fill="#F2EFE6"/><polygon points="0,0 200,0 200,178 0,47" fill="#1B3F9E"/><polygon points="0,214 98,214 121,250 0,250" fill="#181B22"/><rect x="0.5" y="0.5" width="199" height="249" fill="none" stroke="#000" stroke-opacity="0.12"/></svg>'
+        },
+        {
+          id: "nemours",
+          artist: "Claire Delacroix",
+          title: "Vertical Cadence in Ochre",
+          year: 1969,
+          room: "Gallery 4",
+          status: "145 × 110 cm · Gallery 4",
+          spec: "1969 · Oil on Belgian linen, 145 × 110 cm · Gallery 4",
+          note: "Three tall vertical bands of mineral ochre, raw linen, and deep charcoal hold an architectural doorway proportion scaled to mirror standing human posture.",
+          prov: ["Studio of the artist, Paris, 1969", "Louisiana Museum loan exhibition, 1974", "Folio Archive purchase, 1986"],
+          svg: '<svg viewBox="0 0 200 250"><rect width="200" height="250" fill="#EAE4D7"/><rect x="0" y="0" width="76" height="250" fill="#C97F24"/><rect x="132" y="0" width="68" height="250" fill="#20242B"/><rect x="0.5" y="0.5" width="199" height="249" fill="none" stroke="#000" stroke-opacity="0.12"/></svg>'
+        },
+        {
+          id: "lindholm",
+          artist: "Astrid Lindholm",
+          title: "Two-Part Horizon (North Sea)",
+          year: 1971,
+          room: "Gallery 4",
+          status: "150 × 120 cm · Gallery 4",
+          spec: "1971 · Oil and beeswax on joined canvases, 150 × 120 cm · Gallery 4",
+          note: "Beeswax folded into pale celadon and Baltic slate oil gives these two joined stretchers the diffuse luminance of coastal winter air just before dusk.",
+          prov: ["Galleri Blanche, Stockholm, 1971", "Nordic Concrete Collection, Oslo", "Folio Archive gift, 1996"],
+          svg: '<svg viewBox="0 0 200 250"><rect width="200" height="146" fill="#92AA9D"/><rect y="146" width="200" height="5" fill="#D9D3C4"/><rect y="151" width="200" height="99" fill="#26333E"/><rect x="0.5" y="0.5" width="199" height="249" fill="none" stroke="#000" stroke-opacity="0.12"/></svg>'
+        },
+        {
+          id: "vermeer",
+          artist: "Clara Vermeer",
+          title: "White Interval No. 7",
+          year: 1976,
+          room: "Gallery 5",
+          status: "182 × 182 cm · Gallery 5",
+          spec: "1976 · Graphite and chalk gesso on linen, 182 × 182 cm · Gallery 5",
+          note: "From six paces away the linen reads as pure morning mist; stepping closer reveals steady horizontal graphite lines ruled along an ash straightedge across warm gesso.",
+          prov: ["Pace Exhibition, New York, 1976", "Kunsthaus Zürich loan, 1980", "Folio Archive Collection, 1989"],
+          svg: '<svg viewBox="0 0 220 220"><rect width="220" height="220" fill="#E3DDD0"/><rect x="14" y="14" width="192" height="192" fill="#F8F6F1"/><g stroke="#5D5A54" stroke-width="0.6" stroke-opacity="0.45"><line x1="22" y1="38" x2="198" y2="38"/><line x1="22" y1="48" x2="198" y2="48"/><line x1="22" y1="74" x2="198" y2="74"/><line x1="22" y1="84" x2="198" y2="84"/><line x1="22" y1="110" x2="198" y2="110"/><line x1="22" y1="120" x2="198" y2="120"/><line x1="22" y1="146" x2="198" y2="146"/><line x1="22" y1="156" x2="198" y2="156"/><line x1="22" y1="182" x2="198" y2="182"/></g><rect x="0.5" y="0.5" width="219" height="219" fill="none" stroke="#000" stroke-opacity="0.12"/></svg>'
+        }
+      ];
+
+      var CITATIONS = {
+        "1": "Kunsthalle Zürich, Konkrete Farbe (Zürich, 1958), exhibition pamphlet, pp. 14–16.",
+        "2": "Mateo Salvat, conversation with Denise René, Cahiers d'Art Moderne 12 (Paris, 1967), p. 43.",
+        "3": "Clara Vermeer, Notes on Proportional Light, Folio Archive Monograph Series, 1977, pp. 28–31."
+      };
+
+      var EDITIONS = [
+        { title: "Colour as Structure, Catalogue (Cloth)", delta: 18, price: "CHF 58" },
+        { title: "Clara Vermeer, Works on Linen (Sewn)", delta: -4, price: "CHF 42" },
+        { title: "Helene Vonderlan, Zürich Notebooks", delta: -9, price: "CHF 64" }
+      ];
+
+      function formatSignedPct(n) {
+        if (n > 0) return "+" + n + "%";
+        if (n < 0) return "\u2212" + Math.abs(n) + "%";
+        return "0%";
+      }
+
+      /* Polite single toast */
+      var toastEl = document.getElementById("fa-toast");
+      var toastTimer = null;
+      function showToast(msg) {
+        if (!toastEl) return;
+        toastEl.textContent = msg;
+        toastEl.hidden = false;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toastEl.hidden = true;
+        }, 3800);
+      }
+
+      document.querySelectorAll("[data-trigger-toast]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var msg = btn.getAttribute("data-trigger-toast") || "Saved";
+          if (msg.toLowerCase().indexOf("copied") !== -1) {
+            try { navigator.clipboard.writeText(window.location.href); } catch (_e) {}
+          }
+          showToast(msg);
+        });
+      });
+
+      /* Theme & Density toggles (static labels, aria-pressed state) */
+      var htmlEl = document.documentElement;
+      var themeBtn = document.querySelector("[data-theme-toggle]");
+      var densityBtn = document.querySelector("[data-density-toggle]");
+
+      var colorCvs = document.createElement("canvas");
+      colorCvs.width = 1;
+      colorCvs.height = 1;
+      var colorCtx = colorCvs.getContext("2d", { willReadFrequently: true });
+      function lumFromVar(varName) {
+        var val = getComputedStyle(htmlEl).getPropertyValue(varName).trim();
+        if (!colorCtx || !val) return 0;
+        colorCtx.clearRect(0, 0, 1, 1);
+        colorCtx.fillStyle = val;
+        colorCtx.fillRect(0, 0, 1, 1);
+        var d = colorCtx.getImageData(0, 0, 1, 1).data;
+        var lin = [d[0], d[1], d[2]].map(function (v) {
+          var s = v / 255;
+          return s <= 0.04045 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+        });
+        return 0.2126 * lin[0] + 0.7152 * lin[1] + 0.0722 * lin[2];
+      }
+      function refreshContrastLabels() {
+        var bgL = lumFromVar("--surface-wall");
+        var pairs = { sumi: "--ink-primary", graphite: "--ink-secondary", cobalt: "--link-ink" };
+        Object.keys(pairs).forEach(function (k) {
+          var el = document.querySelector('[data-contrast-pair="' + k + '"]');
+          if (!el) return;
+          var fgL = lumFromVar(pairs[k]);
+          var ratio = (Math.max(bgL, fgL) + 0.05) / (Math.min(bgL, fgL) + 0.05);
+          el.textContent = ratio.toFixed(1) + ":1";
+        });
+      }
+
+      if (themeBtn) {
+        themeBtn.addEventListener("click", function () {
+          var next = htmlEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+          htmlEl.setAttribute("data-theme", next);
+          themeBtn.setAttribute("aria-pressed", String(next === "dark"));
+          savePref("theme", next);
+          refreshContrastLabels();
+        });
+      }
+
+      if (densityBtn) {
+        densityBtn.addEventListener("click", function () {
+          var next = htmlEl.getAttribute("data-density") === "compact" ? "standard" : "compact";
+          htmlEl.setAttribute("data-density", next);
+          densityBtn.setAttribute("aria-pressed", String(next === "compact"));
+          savePref("density", next);
+        });
+      }
+      refreshContrastLabels();
+
+      /* Reading size segmented control */
+      var readBtns = document.querySelectorAll("[data-read-size]");
+      readBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var sz = btn.getAttribute("data-read-size");
+          htmlEl.style.setProperty("--essay-size", sz);
+          readBtns.forEach(function (b) { b.setAttribute("aria-pressed", String(b === btn)); });
+        });
+      });
+
+      /* Superscript Footnote Citation Popover */
+      var citeBtns = document.querySelectorAll(".cite-ref");
+      var citeBox = document.getElementById("cite-box");
+      var citeNum = document.getElementById("cite-num");
+      var citeText = document.getElementById("cite-text");
+      var citeClose = document.getElementById("cite-close-btn");
+      var activeCiteBtn = null;
+
+      function closeCite(returnFocus) {
+        if (!citeBox) return;
+        citeBox.hidden = true;
+        citeBtns.forEach(function (b) { b.setAttribute("aria-expanded", "false"); });
+        if (returnFocus && activeCiteBtn) activeCiteBtn.focus();
+        activeCiteBtn = null;
+      }
+
+      citeBtns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var id = btn.getAttribute("data-cite");
+          var already = btn.getAttribute("aria-expanded") === "true";
+          if (already) {
+            closeCite(false);
+            return;
+          }
+          citeBtns.forEach(function (b) { b.setAttribute("aria-expanded", String(b === btn)); });
+          citeNum.textContent = "[" + id + "]";
+          citeText.textContent = CITATIONS[id] || "";
+          citeBox.hidden = false;
+          activeCiteBtn = btn;
+        });
+      });
+      if (citeClose) {
+        citeClose.addEventListener("click", function () { closeCite(true); });
+      }
+
+      /* Exhibition Checklist Sort & Filter */
+      var checkState = { col: "year", dir: "ascending", room: "all" };
+      var checkTbody = document.getElementById("checklist-tbody");
+      var checkEmpty = document.getElementById("checklist-empty");
+      var checkTable = document.getElementById("checklist-table");
+      var roomSelect = document.getElementById("checklist-room");
+
+      function renderChecklist() {
+        var rows = WORKS.filter(function (w) {
+          return checkState.room === "all" || w.room === checkState.room;
+        }).slice();
+
+        rows.sort(function (a, b) {
+          var vA = a[checkState.col];
+          var vB = b[checkState.col];
+          var cmp = typeof vA === "number" ? (vA - vB) : String(vA).localeCompare(String(vB));
+          return checkState.dir === "ascending" ? cmp : -cmp;
+        });
+
+        checkTbody.innerHTML = "";
+        if (rows.length === 0) {
+          checkTable.hidden = true;
+          checkEmpty.hidden = false;
+          return;
+        }
+        checkTable.hidden = false;
+        checkEmpty.hidden = true;
+
+        rows.forEach(function (w) {
+          var tr = document.createElement("tr");
+          var tdArtist = document.createElement("td");
+          tdArtist.className = "artist-cell";
+          tdArtist.textContent = w.artist;
+
+          var tdWork = document.createElement("td");
+          var wBtn = document.createElement("button");
+          wBtn.type = "button";
+          wBtn.className = "work-row-btn";
+          wBtn.setAttribute("data-open-work", w.id);
+          wBtn.textContent = w.title;
+          wBtn.addEventListener("click", function () { openWorkDrawer(w.id, wBtn); });
+          tdWork.appendChild(wBtn);
+
+          var tdYear = document.createElement("td");
+          tdYear.setAttribute("data-numeric", "true");
+          tdYear.textContent = String(w.year);
+
+          var tdRoom = document.createElement("td");
+          tdRoom.textContent = w.status;
+
+          tr.appendChild(tdArtist);
+          tr.appendChild(tdWork);
+          tr.appendChild(tdYear);
+          tr.appendChild(tdRoom);
+          checkTbody.appendChild(tr);
+        });
+      }
+
+      document.querySelectorAll("#checklist-table th[data-sort-col]").forEach(function (th) {
+        var btn = th.querySelector("button");
+        var col = th.getAttribute("data-sort-col");
+        btn.addEventListener("click", function () {
+          if (checkState.col === col) {
+            checkState.dir = checkState.dir === "ascending" ? "descending" : "ascending";
+          } else {
+            checkState.col = col;
+            checkState.dir = "ascending";
+          }
+          document.querySelectorAll("#checklist-table th[data-sort-col]").forEach(function (other) {
+            var isThis = other === th;
+            other.setAttribute("aria-sort", isThis ? checkState.dir : "none");
+            var path = other.querySelector("svg path");
+            if (path) {
+              if (!isThis) path.setAttribute("d", "M2.5 3.8L5 1.3l2.5 2.5M2.5 6.2L5 8.7l2.5-2.5");
+              else if (checkState.dir === "ascending") path.setAttribute("d", "M2.5 6.5L5 3.5l2.5 3");
+              else path.setAttribute("d", "M2.5 3.5L5 6.5l2.5-3");
+            }
+          });
+          renderChecklist();
+        });
+      });
+
+      if (roomSelect) {
+        roomSelect.addEventListener("change", function () {
+          checkState.room = roomSelect.value;
+          renderChecklist();
+        });
+      }
+      var resetBtn = document.getElementById("checklist-reset");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", function () {
+          checkState.room = "all";
+          if (roomSelect) roomSelect.value = "all";
+          renderChecklist();
+        });
+      }
+      renderChecklist();
+
+      /* Bookshop Editions Sort & View Toggle */
+      var edDir = "descending";
+      var edTh = document.querySelector("#editions-table th[data-ed-sort]");
+      var edTbody = document.getElementById("editions-tbody");
+      function renderEditions() {
+        if (!edTbody) return;
+        var sorted = EDITIONS.slice().sort(function (a, b) {
+          return edDir === "ascending" ? a.delta - b.delta : b.delta - a.delta;
+        });
+        edTbody.innerHTML = "";
+        sorted.forEach(function (ed) {
+          var tr = document.createElement("tr");
+          var td1 = document.createElement("td");
+          td1.className = "artist-cell";
+          td1.textContent = ed.title;
+          var td2 = document.createElement("td");
+          td2.setAttribute("data-numeric", "true");
+          td2.textContent = formatSignedPct(ed.delta);
+          var td3 = document.createElement("td");
+          td3.setAttribute("data-numeric", "true");
+          td3.textContent = ed.price;
+          tr.appendChild(td1);
+          tr.appendChild(td2);
+          tr.appendChild(td3);
+          edTbody.appendChild(tr);
+        });
+      }
+      if (edTh) {
+        edTh.querySelector("button").addEventListener("click", function () {
+          edDir = edDir === "ascending" ? "descending" : "ascending";
+          edTh.setAttribute("aria-sort", edDir);
+          var p = edTh.querySelector("svg path");
+          if (p) p.setAttribute("d", edDir === "ascending" ? "M2.5 6.5L5 3.5l2.5 3" : "M2.5 3.5L5 6.5l2.5-3");
+          renderEditions();
+        });
+      }
+      renderEditions();
+
+      document.querySelectorAll("[data-table-view]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var mode = btn.getAttribute("data-table-view");
+          document.getElementById("editions-live").hidden = mode !== "live";
+          document.getElementById("editions-skeleton").hidden = mode !== "skeleton";
+          document.getElementById("editions-empty").hidden = mode !== "empty";
+          document.querySelectorAll(".inline-controls [data-table-view]").forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b.getAttribute("data-table-view") === mode));
+          });
+        });
+      });
+
+      /* Modal & Provenance Drawer Lifecycle + Focus Return */
+      var lastTrigger = null;
+      var passDialog = document.getElementById("pass-dialog");
+      var workDrawer = document.getElementById("work-drawer");
+
+      function populateWorkDrawer(workId) {
+        var w = WORKS.find(function (x) { return x.id === workId; }) || WORKS[1];
+        document.getElementById("drawer-work-artist").textContent = w.artist;
+        var titleH2 = document.getElementById("drawer-work-title");
+        titleH2.innerHTML = "";
+        var em = document.createElement("em");
+        em.textContent = w.title;
+        titleH2.appendChild(em);
+        document.getElementById("drawer-work-art").innerHTML = w.svg;
+        document.getElementById("drawer-work-meta").textContent = w.spec;
+        document.getElementById("drawer-work-note").textContent = w.note;
+        var provList = document.getElementById("drawer-work-prov");
+        provList.innerHTML = "";
+        w.prov.forEach(function (line) {
+          var li = document.createElement("li");
+          li.textContent = line;
+          provList.appendChild(li);
+        });
+      }
+
+      function openDialogSafe(dlg, trigger) {
+        if (!dlg) return;
+        lastTrigger = trigger || document.activeElement;
+        if (typeof dlg.showModal === "function" && !dlg.open) {
+          dlg.showModal();
+        } else {
+          dlg.setAttribute("open", "");
+        }
+      }
+
+      function closeDialogSafe(dlg) {
+        if (!dlg) return;
+        if (typeof dlg.close === "function" && dlg.open) {
+          dlg.close();
+        } else {
+          dlg.removeAttribute("open");
+        }
+        if (lastTrigger && typeof lastTrigger.focus === "function") {
+          lastTrigger.focus();
+        }
+      }
+
+      function openWorkDrawer(workId, trigger) {
+        populateWorkDrawer(workId);
+        openDialogSafe(workDrawer, trigger);
+      }
+
+      document.querySelectorAll("[data-open-modal]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var target = document.querySelector(btn.getAttribute("data-open-modal")) || passDialog;
+          openDialogSafe(target, btn);
+        });
+      });
+
+      document.querySelectorAll("[data-open-drawer]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var wId = btn.getAttribute("data-work-id") || "vonderlan";
+          openWorkDrawer(wId, btn);
+        });
+      });
+
+      document.querySelectorAll("[data-open-work]").forEach(function (btn) {
+        if (btn.closest("#checklist-tbody")) return;
+        btn.addEventListener("click", function () {
+          openWorkDrawer(btn.getAttribute("data-open-work"), btn);
+        });
+      });
+
+      [passDialog, workDrawer].forEach(function (dlg) {
+        if (!dlg) return;
+        dlg.addEventListener("close", function () {
+          if (lastTrigger && typeof lastTrigger.focus === "function") {
+            lastTrigger.focus();
+          }
+        });
+        dlg.addEventListener("click", function (e) {
+          if (e.target === dlg) closeDialogSafe(dlg);
+        });
+        dlg.querySelectorAll("[data-close-dialog]").forEach(function (cbtn) {
+          cbtn.addEventListener("click", function () { closeDialogSafe(dlg); });
+        });
+      });
+
+      var passForm = document.getElementById("pass-modal-form");
+      if (passForm) {
+        passForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var slot = document.getElementById("pass-day").value;
+          var guests = document.getElementById("pass-guests").value;
+          closeDialogSafe(passDialog);
+          showToast("Pass reserved for " + guests + " on " + slot);
+        });
+      }
+
+      /* Form Validation (Blur + Real Submit + Live Clear) */
+      var previewForm = document.getElementById("preview-form");
+      var emailInp = document.getElementById("fa-visitor-email");
+      var emailErr = document.getElementById("fa-email-err");
+      var formOk = document.getElementById("fa-form-ok");
+
+      function validateEmailField() {
+        if (!emailInp || !emailErr) return true;
+        var v = emailInp.value.trim();
+        var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+        emailInp.setAttribute("aria-invalid", valid ? "false" : "true");
+        emailErr.hidden = valid;
+        if (!valid && formOk) formOk.hidden = true;
+        return valid;
+      }
+
+      if (emailInp) {
+        emailInp.addEventListener("blur", function () {
+          if (emailInp.value.trim().length > 0 || emailInp.getAttribute("aria-invalid") === "true") {
+            validateEmailField();
+          }
+        });
+        emailInp.addEventListener("input", function () {
+          if (emailInp.getAttribute("aria-invalid") === "true") validateEmailField();
+        });
+      }
+      if (previewForm) {
+        previewForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (validateEmailField()) {
+            if (formOk) formOk.hidden = false;
+            showToast("Timed entry pass sent to " + emailInp.value.trim());
+          } else if (emailInp) {
+            emailInp.focus();
+          }
+        });
+      }
+
+      /* Loading Button Specimen */
+      var loadBtn = document.getElementById("fa-demo-load");
+      if (loadBtn) {
+        loadBtn.addEventListener("click", function () {
+          if (loadBtn.getAttribute("data-loading") === "true") return;
+          loadBtn.setAttribute("data-loading", "true");
+          loadBtn.setAttribute("aria-busy", "true");
+          setTimeout(function () {
+            loadBtn.setAttribute("data-loading", "false");
+            loadBtn.removeAttribute("aria-busy");
+            showToast("Exhibition handlist PDF ready");
+          }, 800);
+        });
+      }
+
+      /* Indeterminate Checkbox Tree */
+      var parentCheck = document.getElementById("fa-check-all");
+      var childChecks = Array.prototype.slice.call(document.querySelectorAll(".fa-child-check"));
+      function syncParentCheck() {
+        if (!parentCheck) return;
+        var checkedCount = childChecks.filter(function (c) { return c.checked; }).length;
+        parentCheck.checked = checkedCount === childChecks.length;
+        parentCheck.indeterminate = checkedCount > 0 && checkedCount < childChecks.length;
+      }
+      if (parentCheck) {
+        syncParentCheck();
+        parentCheck.addEventListener("change", function () {
+          parentCheck.indeterminate = false;
+          childChecks.forEach(function (c) { c.checked = parentCheck.checked; });
+        });
+        childChecks.forEach(function (c) { c.addEventListener("change", syncParentCheck); });
+      }
+
+      /* ARIA Switch */
+      document.querySelectorAll('[role="switch"]').forEach(function (sw) {
+        sw.addEventListener("click", function () {
+          var on = sw.getAttribute("aria-checked") === "true";
+          sw.setAttribute("aria-checked", String(!on));
+        });
+      });
+
+      /* Stepped Range Slider */
+      var rangeInp = document.getElementById("fa-margin-range");
+      var rangeOut = document.getElementById("fa-range-out");
+      function syncRange() {
+        if (!rangeInp || !rangeOut) return;
+        var val = Number(rangeInp.value);
+        var diff = val - 100;
+        var label = val + "%";
+        if (diff < 0) label += " (\u2212" + Math.abs(diff) + "%)";
+        else if (diff > 0) label += " (+" + diff + "%)";
+        rangeOut.textContent = label;
+      }
+      if (rangeInp) {
+        rangeInp.addEventListener("input", syncRange);
+        document.querySelectorAll("[data-range-step]").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var step = Number(b.getAttribute("data-range-step"));
+            var next = Math.min(Number(rangeInp.max), Math.max(Number(rangeInp.min), Number(rangeInp.value) + step));
+            rangeInp.value = String(next);
+            syncRange();
+          });
+        });
+        syncRange();
+      }
+
+      /* Roving Tabindex ARIA Tabs */
+      document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
+        var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
+        function activateTab(nextTab, moveFocus) {
+          tabs.forEach(function (t) {
+            var active = t === nextTab;
+            t.setAttribute("aria-selected", String(active));
+            t.tabIndex = active ? 0 : -1;
+            var panel = document.getElementById(t.getAttribute("aria-controls"));
+            if (panel) panel.hidden = !active;
+          });
+          if (moveFocus) nextTab.focus();
+        }
+        tabs.forEach(function (tab, idx) {
+          tab.addEventListener("click", function () { activateTab(tab, false); });
+          tab.addEventListener("keydown", function (e) {
+            var targetIdx = null;
+            if (e.key === "ArrowRight") targetIdx = (idx + 1) % tabs.length;
+            else if (e.key === "ArrowLeft") targetIdx = (idx - 1 + tabs.length) % tabs.length;
+            else if (e.key === "Home") targetIdx = 0;
+            else if (e.key === "End") targetIdx = tabs.length - 1;
+            if (targetIdx !== null) {
+              e.preventDefault();
+              activateTab(tabs[targetIdx], true);
+            }
+          });
+        });
+      });
+
+      /* Escape closes open footnote popover */
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && citeBox && !citeBox.hidden && !document.querySelector("dialog[open]")) {
+          closeCite(true);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

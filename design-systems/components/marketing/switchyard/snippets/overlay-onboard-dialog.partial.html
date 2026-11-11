@@ -1,0 +1,35 @@
+<dialog aria-labelledby="onboard-title" class="sy-dialog" id="onboard-dialog">
+<div class="sy-dialog-head">
+<div>
+<h2 id="onboard-title" style="font-size: 1.25rem;">Connect a Git repository</h2>
+<p class="sy-hint num" id="onboard-plan-label" style="margin-top: 4px;">Hobby plan, three production services included free</p>
+</div>
+<button aria-label="Close onboarding dialog" class="sy-btn sy-btn-ghost sy-btn-sm" data-close-dialog="" type="button">Close</button>
+</div>
+<form id="sy-modal-form" novalidate="" style="display: flex; flex-direction: column; gap: 16px; margin-top: 18px;">
+<div class="sy-field">
+<label class="sy-label" for="sy-repo-input">Repository path</label>
+<input aria-describedby="sy-repo-err" class="sy-input mono" id="sy-repo-input" required="" type="text" value="github.com/northwind/core-api"/>
+<div class="sy-error" hidden="" id="sy-repo-err">
+<span>Enter a repository in owner/repo or github.com/owner/repo format.</span>
+</div>
+</div>
+<div class="sy-field">
+<label class="sy-label" for="sy-modal-region">Primary worker pool</label>
+<div class="sy-select-wrap">
+<select class="sy-select num" id="sy-modal-region">
+<option value="fra">Frankfurt, EU Central (11 ms)</option>
+<option value="iad">Virginia, US East (14 ms)</option>
+<option value="hnd">Tokyo, Asia Pacific (19 ms)</option>
+</select>
+<svg aria-hidden="true" class="sy-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+</div>
+<div class="sy-dialog-foot">
+<button class="sy-btn" data-close-dialog="" type="button">Cancel</button>
+<button class="sy-btn sy-btn-primary" type="submit">Connect repository</button>
+</div>
+</form>
+</dialog>

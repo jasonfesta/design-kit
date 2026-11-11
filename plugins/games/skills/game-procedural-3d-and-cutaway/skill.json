@@ -1,0 +1,33 @@
+{
+  "id": "game-procedural-3d-and-cutaway",
+  "display_name": "Game procedural worlds, sightlines, and bundles",
+  "google3_package": "game_procedural_3d_and_cutaway",
+  "title": "Game procedural worlds, sightlines, and bundles",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "game-procedural-3d-and-cutaway",
+  "agent_md": "game-procedural-3d-and-cutaway/agent.md",
+  "skill_md": "game-procedural-3d-and-cutaway/SKILL.md",
+  "html_page": "game-procedural-3d-and-cutaway/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/game-procedural-3d-and-cutaway",
+  "bundle_skill": "game-procedural-3d-and-cutaway.skill",
+  "bundle_zip": "game-procedural-3d-and-cutaway.zip",
+  "short_summary": "Build legible procedural 3D, WebGL2, and layered 2.5D game worlds with isolated asset inspection views, unobstructed camera sightlines and interior cutaways, minimal HUD clutter, and esbuild classic-IIFE static web bundles.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Build legible procedural 3D, WebGL2, and layered 2.5D game worlds with isolated asset inspection views, unobstructed camera sightlines and interior cutaways, minimal HUD clutter, and esbuild classic-IIFE static web bundles.",
+  "references": [
+    "./references/contributing.md",
+    "./scripts/audit_web_game_bundle.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=game-procedural-3d-and-cutaway"
+  }
+}

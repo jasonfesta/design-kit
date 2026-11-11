@@ -1,0 +1,1984 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>Wardline — Marketing: Flagship membership and partner selector</title>
+<link href="../../../fonts/wardline-fonts.css" rel="stylesheet"/>
+<style>
+    @layer reset, tokens, base, components, layout, utilities;
+
+    @layer reset {
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      html, body, h1, h2, h3, h4, p, figure, figcaption, ul, ol, dl, dt, dd, fieldset {
+        margin: 0;
+        padding: 0;
+      }
+      ul[role="list"] {
+        list-style: none;
+      }
+    }
+
+    @layer tokens {
+      :root {
+        color-scheme: light;
+
+        /* Daylight sage-porcelain & crisp clinical white surfaces */
+        --wl-porcelain: oklch(0.978 0.006 185);
+        --wl-white: oklch(0.998 0.001 185);
+        --wl-inset: oklch(0.950 0.009 185);
+        --wl-inset-deep: oklch(0.918 0.012 185);
+
+        /* Slate clinical ink hierarchy */
+        --wl-slate-900: oklch(0.200 0.015 210);
+        --wl-slate-700: oklch(0.352 0.016 205);
+        --wl-slate-500: oklch(0.415 0.015 205);
+
+        /* Deep juniper-teal primary care action */
+        --wl-juniper: oklch(0.350 0.062 196);
+        --wl-juniper-hover: oklch(0.302 0.058 196);
+        --wl-juniper-soft: oklch(0.944 0.018 190);
+        --wl-sage-zone: oklch(0.540 0.072 182 / 0.24);
+
+        /* Clinical exception inks — strictly for range notices & validation errors */
+        --wl-ochre: oklch(0.405 0.105 68);
+        --wl-coral: oklch(0.415 0.142 25);
+        --wl-coral-wash: oklch(0.964 0.018 25);
+
+        /* Photo-surface overlay tokens (WCAG AA >= 10:1 in both themes) */
+        --photo-ground: oklch(0.155 0.016 196);
+        --photo-ink: oklch(0.988 0.004 95);
+        --photo-sub: oklch(0.925 0.008 180);
+        --photo-muted: oklch(0.862 0.010 185);
+        --photo-btn-bg: oklch(0.988 0.003 95);
+        --photo-btn-hover: oklch(1 0 0);
+        --photo-btn-fg: oklch(0.162 0.022 198);
+        --photo-link: oklch(0.948 0.030 178);
+
+        /* Semantic mappings */
+        --surface-canvas: var(--wl-porcelain);
+        --surface-card: var(--wl-white);
+        --surface-subtle: var(--wl-inset);
+        --surface-track: var(--wl-inset-deep);
+        --surface-overlay: oklch(1 0 0);
+
+        --ink-primary: var(--wl-slate-900);
+        --ink-secondary: var(--wl-slate-700);
+        --ink-muted: var(--wl-slate-500);
+
+        --link-ink: var(--wl-juniper);
+        --link-hover: var(--wl-juniper-hover);
+        --focus-ring: oklch(0.395 0.088 198);
+
+        --btn-pri-bg: var(--wl-juniper);
+        --btn-pri-hover: var(--wl-juniper-hover);
+        --btn-pri-fg: oklch(0.998 0.001 185);
+        --btn-pri-shadow: 0 1px 2px oklch(0.24 0.04 196 / 0.16), 0 6px 14px -4px oklch(0.28 0.05 196 / 0.20);
+
+        --btn-sec-bg: var(--wl-white);
+        --btn-sec-hover: var(--wl-inset);
+        --btn-sec-fg: var(--wl-slate-900);
+
+        --border-card: oklch(0.902 0.008 185);
+        --border-divider: oklch(0.888 0.008 185);
+        --border-field: oklch(0.515 0.016 200);
+        --ring-featured: oklch(0.350 0.062 196);
+        --disabled-bg: oklch(0.946 0.005 185);
+        --disabled-fg: oklch(0.525 0.010 200);
+
+        --photo-ring: oklch(0.18 0.02 200 / 0.08);
+        --shadow-card: 0 1px 3px oklch(0.25 0.02 195 / 0.05), 0 14px 32px -12px oklch(0.25 0.02 195 / 0.08);
+        --shadow-featured: 0 2px 6px oklch(0.24 0.03 195 / 0.07), 0 20px 42px -14px oklch(0.24 0.03 195 / 0.12);
+        --shadow-overlay: 0 4px 12px oklch(0.20 0.02 200 / 0.10), 0 24px 48px -12px oklch(0.20 0.02 200 / 0.22);
+        --backdrop-scrim: oklch(0.16 0.015 205 / 0.48);
+
+        --font-ui: 'Source Sans 3', 'Liberation Sans', system-ui, sans-serif;
+
+        --radius-surface: 12px;
+        --radius-control: 8px;
+        --radius-check: 5px;
+        --ctrl-h: 42px;
+        --section-pad: clamp(48px, 5.4vw, 76px);
+      }
+
+      /* Dark slate clinical mode — luminous sea-sage primary CTA */
+      html[data-theme="dark"] {
+        color-scheme: dark;
+
+        --surface-canvas: oklch(0.165 0.012 205);
+        --surface-card: oklch(0.208 0.013 205);
+        --surface-subtle: oklch(0.246 0.014 205);
+        --surface-track: oklch(0.286 0.015 205);
+        --surface-overlay: oklch(0.225 0.014 205);
+
+        --ink-primary: oklch(0.952 0.006 190);
+        --ink-secondary: oklch(0.838 0.010 195);
+        --ink-muted: oklch(0.768 0.012 195);
+
+        --link-ink: oklch(0.802 0.082 188);
+        --link-hover: oklch(0.862 0.072 188);
+        --focus-ring: oklch(0.802 0.085 188);
+
+        --btn-pri-bg: oklch(0.808 0.076 188);
+        --btn-pri-hover: oklch(0.858 0.068 188);
+        --btn-pri-fg: oklch(0.148 0.018 202);
+        --btn-pri-shadow: 0 2px 6px oklch(0.05 0.01 205 / 0.55), 0 10px 24px -6px oklch(0.05 0.01 205 / 0.65);
+
+        --btn-sec-bg: oklch(0.232 0.014 205);
+        --btn-sec-hover: oklch(0.274 0.015 205);
+        --btn-sec-fg: oklch(0.946 0.006 190);
+
+        --wl-ochre: oklch(0.828 0.110 75);
+        --wl-coral: oklch(0.805 0.110 25);
+        --wl-coral-wash: oklch(0.256 0.036 25);
+        --wl-juniper-soft: oklch(0.254 0.026 192);
+        --wl-sage-zone: oklch(0.760 0.085 186 / 0.28);
+
+        --border-card: oklch(0.296 0.014 205);
+        --border-divider: oklch(0.286 0.014 205);
+        --border-field: oklch(0.585 0.014 200);
+        --ring-featured: oklch(0.802 0.082 188);
+        --disabled-bg: oklch(0.222 0.010 205);
+        --disabled-fg: oklch(0.540 0.010 200);
+
+        --photo-ring: oklch(1 0 0 / 0.10);
+        --shadow-card: 0 2px 6px oklch(0.05 0.01 205 / 0.36), 0 16px 36px -12px oklch(0.05 0.01 205 / 0.50);
+        --shadow-featured: 0 4px 12px oklch(0.04 0.01 205 / 0.48), 0 22px 44px -14px oklch(0.04 0.01 205 / 0.62);
+        --shadow-overlay: 0 20px 48px oklch(0.04 0.01 205 / 0.72);
+        --backdrop-scrim: oklch(0.06 0.01 205 / 0.72);
+      }
+    }
+
+    @layer base {
+      html {
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      html:has(dialog[open]) {
+        overflow: hidden;
+      }
+
+      html, body, button, input, select, textarea, output {
+        font-kerning: normal;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        letter-spacing: normal;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-variant-numeric: lining-nums tabular-nums;
+        line-height: 1.56;
+        overflow-x: clip;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        filter: none;
+      }
+
+      h1, h2, h3, h4 {
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-weight: 600;
+        font-variant-numeric: lining-nums tabular-nums;
+        text-wrap: balance;
+        max-width: none;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 3.8vw, 3.15rem);
+        line-height: 1.07;
+        letter-spacing: -0.022em;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 2.2vw, 1.95rem);
+        line-height: 1.16;
+        letter-spacing: -0.015em;
+      }
+
+      h3 {
+        font-size: 1.15625rem;
+        line-height: 1.28;
+      }
+
+      p {
+        max-width: 64ch;
+        color: var(--ink-secondary);
+      }
+
+      a {
+        color: var(--link-ink);
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+        transition: color 130ms ease;
+      }
+      a:hover {
+        color: var(--link-hover);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      section[id] {
+        scroll-margin-top: 4.5rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      .tnum,
+      th[data-numeric="true"],
+      td[data-numeric="true"],
+      output {
+        font-family: var(--font-ui);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+    }
+
+    @layer components {
+      /* Tactile soft-clinical buttons with cell-stacked loading spinner */
+      .wl-btn,
+      .wl-btn-pri,
+      .wl-btn-photo {
+        appearance: none;
+        -webkit-appearance: none;
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+        min-height: var(--ctrl-h);
+        padding: 9px 18px;
+        border-radius: var(--radius-control);
+        border: 1px solid var(--border-field);
+        background-color: var(--btn-sec-bg);
+        color: var(--btn-sec-fg);
+        font-family: var(--font-ui);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        line-height: 1.2;
+        text-decoration: none;
+        white-space: nowrap;
+        cursor: pointer;
+        align-self: flex-start;
+        transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease, transform 75ms ease;
+      }
+
+      .wl-btn > *,
+      .wl-btn-pri > *,
+      .wl-btn-photo > * {
+        grid-area: 1 / 1;
+      }
+
+      .wl-btn-pri {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+        box-shadow: var(--btn-pri-shadow);
+      }
+
+      .wl-btn-photo {
+        min-height: 46px;
+        padding-inline: 22px;
+        background-color: var(--photo-btn-bg);
+        border-color: var(--photo-btn-bg);
+        color: var(--photo-btn-fg);
+        box-shadow: 0 2px 8px oklch(0.10 0.02 200 / 0.26);
+      }
+
+      .wl-btn--toolbar {
+        min-height: 36px;
+        padding: 6px 14px;
+        font-size: 0.84375rem;
+      }
+
+      .wl-step-btn {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 0;
+        font-size: 1.125rem;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .wl-btn:hover:not(:disabled):not([aria-disabled="true"]) {
+          background-color: var(--btn-sec-hover);
+          color: var(--btn-sec-fg);
+        }
+        .wl-btn-pri:hover:not(:disabled):not([aria-disabled="true"]) {
+          background-color: var(--btn-pri-hover);
+          border-color: var(--btn-pri-hover);
+          color: var(--btn-pri-fg);
+        }
+        .wl-btn-photo:hover:not(:disabled):not([aria-disabled="true"]) {
+          background-color: var(--photo-btn-hover);
+          border-color: var(--photo-btn-hover);
+          color: var(--photo-btn-fg);
+        }
+      }
+
+      .wl-btn:active:not(:disabled):not([aria-disabled="true"]),
+      .wl-btn-pri:active:not(:disabled):not([aria-disabled="true"]),
+      .wl-btn-photo:active:not(:disabled):not([aria-disabled="true"]) {
+        transform: translateY(1px);
+      }
+
+      .wl-btn[data-loading="true"],
+      .wl-btn-pri[data-loading="true"] {
+        cursor: progress;
+      }
+      .wl-btn[data-loading="true"] .btn-label,
+      .wl-btn-pri[data-loading="true"] .btn-label {
+        visibility: hidden;
+      }
+      .btn-spinner {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .wl-btn:not([data-loading="true"]) .btn-spinner,
+      .wl-btn-pri:not([data-loading="true"]) .btn-spinner {
+        display: none;
+      }
+
+      @keyframes wl-spin {
+        to { transform: rotate(360deg); }
+      }
+      .spin-svg {
+        width: 15px;
+        height: 15px;
+        animation: wl-spin 820ms linear infinite;
+      }
+
+      /* Accessible underline specimen state tabs */
+      .wl-tablist {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 4px 24px;
+        border-bottom: 1px solid var(--border-divider);
+      }
+
+      .wl-tab {
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+        padding: 10px 2px 12px;
+        font-family: var(--font-ui);
+        font-size: 0.90625rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+        cursor: pointer;
+        white-space: nowrap;
+        transition: color 130ms ease, border-color 130ms ease;
+      }
+      .wl-tab:hover {
+        color: var(--ink-primary);
+      }
+      .wl-tab[aria-selected="true"] {
+        color: var(--ink-primary);
+        font-weight: 600;
+        border-bottom-color: var(--link-ink);
+      }
+
+      /* Segmented billing switch (concentric inset radius: 8px - 3px = 5px) */
+      .wl-seg-group {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 3px;
+        padding: 3px;
+        border-radius: var(--radius-control);
+        border: 1px solid var(--border-field);
+        background-color: var(--surface-card);
+      }
+
+      .wl-seg-btn {
+        appearance: none;
+        -webkit-appearance: none;
+        min-height: 36px;
+        padding: 6px 14px;
+        border: 0;
+        border-radius: 5px;
+        background: transparent;
+        color: var(--ink-secondary);
+        font-family: var(--font-ui);
+        font-size: 0.875rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums lining-nums;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background-color 120ms ease, color 120ms ease;
+      }
+      .wl-seg-btn[aria-pressed="true"] {
+        background-color: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+      }
+
+      /* Custom form inputs, selects, checkboxes & range sliders */
+      .wl-field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .wl-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .wl-input,
+      .wl-select {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        min-height: var(--ctrl-h);
+        padding: 9px 13px;
+        border-radius: var(--radius-control);
+        border: 1px solid var(--border-field);
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 0.9375rem;
+        line-height: 1.35;
+      }
+      .wl-input::placeholder {
+        color: var(--ink-muted);
+      }
+      .wl-input:disabled,
+      .wl-select:disabled {
+        background-color: var(--disabled-bg);
+        color: var(--disabled-fg);
+        border-color: var(--border-card);
+        cursor: not-allowed;
+      }
+      .wl-input[aria-invalid="true"] {
+        border-color: var(--wl-coral);
+        background-color: var(--wl-coral-wash);
+      }
+
+      .wl-select-wrap {
+        position: relative;
+        display: grid;
+        align-items: center;
+      }
+      .wl-select {
+        padding-right: 38px;
+      }
+      .wl-select-chevron {
+        position: absolute;
+        right: 12px;
+        width: 15px;
+        height: 15px;
+        color: var(--ink-secondary);
+        pointer-events: none;
+      }
+
+      .wl-check-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        cursor: pointer;
+      }
+
+      .wl-check {
+        appearance: none;
+        -webkit-appearance: none;
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        border-radius: var(--radius-check);
+        border: 1.5px solid var(--border-field);
+        background-color: var(--surface-card);
+        display: grid;
+        place-content: center;
+        cursor: pointer;
+      }
+      .wl-check::before {
+        content: "";
+        width: 10px;
+        height: 6px;
+        border-left: 2px solid var(--btn-pri-fg);
+        border-bottom: 2px solid var(--btn-pri-fg);
+        transform: rotate(-45deg) translate(1px, -1px) scale(0);
+        transition: transform 90ms ease;
+      }
+      .wl-check:checked {
+        background-color: var(--btn-pri-bg);
+        border-color: var(--btn-pri-bg);
+      }
+      .wl-check:checked::before {
+        transform: rotate(-45deg) translate(1px, -1px) scale(1);
+      }
+
+      .wl-hint {
+        font-size: 0.8125rem;
+        line-height: 1.45;
+        color: var(--ink-muted);
+        max-width: 58ch;
+      }
+
+      .wl-error {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        line-height: 1.45;
+        color: var(--wl-coral);
+        max-width: 58ch;
+      }
+
+      .wl-range {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 28px;
+        background: transparent;
+        cursor: pointer;
+      }
+      .wl-range::-webkit-slider-runnable-track {
+        height: 6px;
+        border-radius: 999px;
+        background-color: var(--surface-card);
+        border: 1px solid var(--border-field);
+      }
+      .wl-range::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        margin-top: -7px;
+        border-radius: 50%;
+        background-color: var(--btn-pri-bg);
+        border: 2px solid var(--surface-card);
+      }
+      .wl-range::-moz-range-track {
+        height: 6px;
+        border-radius: 999px;
+        background-color: var(--surface-card);
+        border: 1px solid var(--border-field);
+      }
+      .wl-range::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--btn-pri-bg);
+        border: 2px solid var(--surface-card);
+      }
+
+      /* Airy 12px porcelain surface */
+      .wl-card {
+        background-color: var(--surface-card);
+        border-radius: var(--radius-surface);
+        box-shadow: 0 0 0 1px var(--border-card), var(--shadow-card);
+        padding: clamp(22px, 2.8vw, 28px);
+        min-width: 0;
+      }
+
+      /* Usage guidance 2-column reference block */
+      .usage-notes {
+        padding: clamp(20px, 2.5vw, 26px) clamp(22px, 2.8vw, 30px);
+        border-radius: var(--radius-surface);
+        background-color: var(--surface-subtle);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px clamp(28px, 4vw, 48px);
+      }
+
+      .usage-col {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+      .usage-col h3 {
+        font-size: 0.90625rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+      .usage-list {
+        padding-left: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        font-size: 0.90625rem;
+        line-height: 1.5;
+        color: var(--ink-secondary);
+      }
+      .usage-list li {
+        max-width: 56ch;
+      }
+
+      /* Specimen wrappers & photo mounts */
+      .specimen-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        min-width: 0;
+      }
+      .specimen-label {
+        font-size: 0.84375rem;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      .wl-photo-frame {
+        position: relative;
+        border-radius: var(--radius-surface);
+        overflow: hidden;
+        background-color: var(--surface-subtle);
+        box-shadow: inset 0 0 0 1px var(--photo-ring), var(--shadow-card);
+      }
+      .wl-photo-frame img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+      .wl-photo-frame--inward img {
+        object-position: 86% 32%;
+      }
+
+      .photo-caption {
+        font-size: 0.84375rem;
+        line-height: 1.45;
+        color: var(--ink-muted);
+      }
+
+      @keyframes wl-pulse {
+        0%, 100% { opacity: 0.45; }
+        50% { opacity: 0.92; }
+      }
+
+      .wl-loading-slot {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        border-radius: var(--radius-surface);
+        background-color: var(--surface-subtle);
+        box-shadow: inset 0 0 0 1px var(--border-card);
+        padding: 28px;
+        display: grid;
+        place-items: center;
+      }
+      .wl-loading-mat {
+        width: 62%;
+        height: 58%;
+        border-radius: var(--radius-control);
+        background-color: var(--surface-track);
+        animation: wl-pulse 1.9s ease-in-out infinite;
+      }
+      .wl-skel-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-top: 4px;
+      }
+      .wl-skel-line {
+        height: 10px;
+        border-radius: 4px;
+        background-color: var(--surface-subtle);
+      }
+      .wl-skel-line--wide { width: 68%; }
+      .wl-skel-line--short { width: 44%; }
+
+      .wl-privacy-slot {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        border-radius: var(--radius-surface);
+        background-color: var(--surface-card);
+        box-shadow: inset 0 0 0 1px var(--border-card), var(--shadow-card);
+        padding: clamp(24px, 3.2vw, 36px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 10px;
+      }
+      .wl-privacy-name {
+        font-size: 1.1875rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+      .wl-privacy-meta {
+        font-size: 0.90625rem;
+        line-height: 1.52;
+        color: var(--ink-secondary);
+        max-width: 38ch;
+      }
+
+      /* Linear biomarker range meter (zero SVG curves, rectangular calipers) */
+      .range-meter {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .range-meter-head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 6px 12px;
+        font-size: 0.8125rem;
+      }
+      .range-target-lbl {
+        font-weight: 600;
+        color: var(--link-ink);
+      }
+      .range-track-bar {
+        position: relative;
+        height: 16px;
+        border-radius: 4px;
+        background-color: var(--surface-subtle);
+      }
+      .range-opt-band {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: 4px;
+        background-color: var(--wl-sage-zone);
+      }
+      .range-caliper {
+        position: absolute;
+        top: -4px;
+        width: 3px;
+        height: 24px;
+        border-radius: 0;
+        background-color: var(--btn-pri-bg);
+      }
+      .range-caliper--warn {
+        background-color: var(--wl-ochre);
+      }
+      .range-caliper--high {
+        background-color: var(--wl-coral);
+      }
+      .range-scale-row {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+      }
+      .range-scale-target {
+        position: absolute;
+        top: 0;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+
+      /* Modal dialog */
+      .wl-dialog {
+        margin: auto;
+        width: min(510px, calc(100vw - 32px));
+        padding: clamp(24px, 3.2vw, 32px);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-surface);
+        background-color: var(--surface-overlay);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-overlay);
+        overscroll-behavior: contain;
+      }
+      .wl-dialog::backdrop {
+        background-color: var(--backdrop-scrim);
+      }
+      .dialog-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .dialog-actions {
+        padding-top: 6px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .polite-bar {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 90;
+        max-width: min(400px, calc(100vw - 40px));
+        padding: 12px 18px;
+        border-radius: var(--radius-control);
+        background-color: var(--surface-overlay);
+        color: var(--ink-primary);
+        border: 1px solid var(--border-field);
+        box-shadow: var(--shadow-overlay);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+    }
+
+    @layer layout {
+      .wl-shell {
+        width: 100%;
+        max-width: 1180px;
+        margin-inline: auto;
+        padding-inline: clamp(20px, 4vw, 44px);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 12px;
+        z-index: 200;
+        padding: 10px 16px;
+        border-radius: var(--radius-control);
+        background: var(--btn-pri-bg);
+        color: var(--btn-pri-fg);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        left: 20px;
+      }
+
+      /* Single-row clinical header */
+      .site-header {
+        background-color: var(--surface-canvas);
+        border-bottom: 1px solid var(--border-divider);
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px 24px;
+        padding-block: 17px;
+      }
+      .brand-mark {
+        font-size: 1.1875rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .brand-mark:hover {
+        color: var(--ink-primary);
+      }
+      .header-end {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 0.90625rem;
+        font-weight: 500;
+      }
+      .site-nav a {
+        color: var(--ink-secondary);
+        text-decoration: none;
+        padding-block: 4px;
+        border-bottom: 2px solid transparent;
+        white-space: nowrap;
+      }
+      .site-nav a:hover {
+        color: var(--ink-primary);
+      }
+      .site-nav a[aria-current="page"] {
+        color: var(--ink-primary);
+        font-weight: 600;
+        border-bottom-color: var(--link-ink);
+      }
+
+      /* Documentation masthead & single-column Contents */
+      .doc-intro {
+        padding-block: clamp(44px, 5vw, 66px);
+        border-bottom: 1px solid var(--border-divider);
+        display: grid;
+        grid-template-columns: minmax(0, 1.32fr) minmax(0, 0.88fr);
+        gap: 32px clamp(36px, 4.8vw, 68px);
+        align-items: start;
+      }
+      .doc-intro-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .doc-intro-copy p {
+        font-size: 1.09375rem;
+        line-height: 1.56;
+        max-width: 58ch;
+      }
+
+      .contents-nav {
+        padding-top: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .contents-heading {
+        font-size: 0.90625rem;
+        font-weight: 600;
+        letter-spacing: 0;
+        color: var(--ink-primary);
+      }
+      .contents-list {
+        columns: 1;
+        padding-left: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.9375rem;
+        line-height: 1.44;
+        color: var(--ink-muted);
+      }
+      .contents-list a {
+        color: var(--link-ink);
+        font-weight: 500;
+      }
+
+      /* Six 3-part component documentation chapters */
+      .doc-chapter {
+        padding-block: var(--section-pad);
+        border-bottom: 1px solid var(--border-divider);
+        display: flex;
+        flex-direction: column;
+        gap: 26px;
+      }
+      .chapter-head {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 64ch;
+      }
+      .chapter-head p {
+        font-size: 1.0625rem;
+      }
+      .specimen-stage {
+        padding-top: 4px;
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      /* Chapter 1: Portrait direction 2x2 states */
+      .portrait-states-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px clamp(24px, 3.4vw, 40px);
+      }
+
+      /* Chapter 2: Background-image hero states */
+      .hero-photo-stage {
+        position: relative;
+        width: 100%;
+        min-height: clamp(460px, 56vh, 550px);
+        border-radius: var(--radius-surface);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        background-color: var(--photo-ground);
+        background-image:
+          linear-gradient(
+            96deg,
+            oklch(0.15 0.022 194 / 0.88) 0%,
+            oklch(0.16 0.020 194 / 0.72) 32%,
+            oklch(0.16 0.016 194 / 0.16) 47%,
+            oklch(0.16 0.010 194 / 0.0) 58%
+          ),
+          url("../../../images/wl-hero-morning.webp");
+        background-size: cover;
+        background-position: center, 78% 30%;
+        background-repeat: no-repeat;
+        box-shadow: inset 0 0 0 1px var(--photo-ring), var(--shadow-card);
+      }
+
+      .hero-photo-inner {
+        width: 100%;
+        padding: clamp(36px, 5vw, 60px) clamp(24px, 4vw, 46px);
+      }
+      .hero-copy-col {
+        max-width: 465px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-display-title {
+        font-size: clamp(1.95rem, 3.2vw, 2.75rem);
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: var(--photo-ink);
+      }
+      .hero-subhead {
+        margin-top: 14px;
+        font-size: 1.09375rem;
+        line-height: 1.5;
+        color: var(--photo-sub);
+        max-width: 48ch;
+      }
+      .hero-cta-block {
+        margin-top: 26px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .hero-cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 14px 20px;
+      }
+      .photo-link {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--photo-link);
+        text-decoration: underline;
+        text-underline-offset: 0.22em;
+        white-space: nowrap;
+      }
+      .photo-link:hover {
+        color: var(--photo-ink);
+      }
+      .photo-doubt {
+        font-size: 0.84375rem;
+        color: var(--photo-muted);
+        max-width: none;
+      }
+      .hero-photo-stage :focus-visible {
+        outline-color: var(--photo-ink);
+      }
+
+      .hero-split-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+        gap: 28px clamp(28px, 4vw, 48px);
+        align-items: center;
+      }
+      .hero-split-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .hero-split-title {
+        font-size: clamp(1.75rem, 2.7vw, 2.3rem);
+        line-height: 1.1;
+        letter-spacing: -0.018em;
+      }
+
+      .hero-porcelain-banner {
+        padding: clamp(28px, 4vw, 44px);
+        border-radius: var(--radius-surface);
+        background-color: var(--surface-subtle);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      /* Chapter 3: 3-state biomarker range cards */
+      .range-cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 22px;
+        align-items: stretch;
+      }
+      .bm-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 18px;
+      }
+      .bm-top {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .bm-reading-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 12px;
+      }
+      .bm-value {
+        font-size: 1.75rem;
+        font-weight: 600;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+      }
+      .bm-unit {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+      }
+      .bm-status-ok {
+        font-size: 0.84375rem;
+        font-weight: 600;
+        color: var(--link-ink);
+      }
+      .bm-status-warn {
+        font-size: 0.84375rem;
+        font-weight: 600;
+        color: var(--wl-ochre);
+      }
+      .bm-status-high {
+        font-size: 0.84375rem;
+        font-weight: 600;
+        color: var(--wl-coral);
+      }
+      .bm-note {
+        font-size: 0.90625rem;
+        line-height: 1.52;
+        color: var(--ink-secondary);
+      }
+
+      /* Chapter 4: Flagship membership, partner selector & panel savings slider */
+      .membership-bar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px 24px;
+      }
+      .membership-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr);
+        gap: 24px clamp(24px, 3vw, 34px);
+        align-items: start;
+      }
+      .flagship-card {
+        background-color: var(--surface-card);
+        border-radius: var(--radius-surface);
+        box-shadow: 0 0 0 2px var(--ring-featured), var(--shadow-featured);
+        padding: clamp(24px, 3vw, 34px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+        min-width: 0;
+      }
+      .price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+      }
+      .price-amount {
+        font-size: clamp(2.25rem, 3.2vw, 2.8rem);
+        font-weight: 600;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+      }
+      .price-period {
+        font-size: 0.96875rem;
+        color: var(--ink-muted);
+      }
+      .price-save-note {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--link-ink);
+      }
+      .scope-list {
+        width: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        font-size: 0.9375rem;
+        line-height: 1.48;
+        color: var(--ink-secondary);
+      }
+      .scope-list li {
+        padding-block: 12px;
+        border-top: 1px solid var(--border-card);
+      }
+      .scope-list li:last-child {
+        padding-bottom: 2px;
+      }
+
+      .secondary-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        min-width: 0;
+      }
+      .partner-card[data-active="true"] {
+        background-color: var(--wl-juniper-soft);
+        box-shadow: 0 0 0 1.5px var(--ring-featured);
+      }
+      .partner-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .partner-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+      .partner-desc {
+        font-size: 0.875rem;
+        line-height: 1.48;
+        color: var(--ink-secondary);
+      }
+
+      .single-draw-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .single-draw-head {
+        width: 100%;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .single-draw-price {
+        font-size: 1.375rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+        white-space: nowrap;
+      }
+
+      .calc-strip {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+        gap: 18px clamp(24px, 4vw, 44px);
+        align-items: center;
+      }
+      .calc-ctrl {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .calc-head {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px 14px;
+        font-size: 0.875rem;
+        font-weight: 600;
+      }
+      .calc-slider-row {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+      }
+      .calc-output-line {
+        font-size: 0.9375rem;
+        line-height: 1.52;
+        color: var(--ink-primary);
+        max-width: none;
+      }
+
+      /* Chapter 5: Background-image clinic lookup stage */
+      .park-photo-stage {
+        position: relative;
+        width: 100%;
+        min-height: 380px;
+        border-radius: var(--radius-surface);
+        overflow: hidden;
+        padding: clamp(24px, 4vw, 44px);
+        display: flex;
+        align-items: center;
+        background-color: var(--photo-ground);
+        background-image:
+          linear-gradient(
+            95deg,
+            oklch(0.14 0.016 196 / 0.62) 0%,
+            oklch(0.14 0.014 196 / 0.24) 44%,
+            oklch(0.14 0.010 196 / 0.0) 68%
+          ),
+          url("../../../images/wl-park-cta-bg.webp");
+        background-size: cover;
+        background-position: center, 62% 48%;
+        background-repeat: no-repeat;
+        box-shadow: inset 0 0 0 1px var(--photo-ring), var(--shadow-card);
+      }
+
+      .park-photo-stage--bar {
+        min-height: 330px;
+        align-items: flex-end;
+      }
+
+      .park-float-card {
+        width: min(560px, 100%);
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        border-radius: var(--radius-surface);
+        padding: clamp(22px, 3vw, 28px);
+        box-shadow: var(--shadow-overlay);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .park-inline-bar {
+        width: 100%;
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        border-radius: var(--radius-surface);
+        padding: 20px 24px;
+        box-shadow: var(--shadow-overlay);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px 24px;
+      }
+
+      .zip-email-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr) auto;
+        gap: 10px;
+        align-items: end;
+      }
+      .zip-email-grid .wl-btn-pri {
+        align-self: end;
+      }
+
+      .booking-fields-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 12px;
+        align-items: start;
+      }
+
+      /* Chapter 6: Slot lookup and validation states 2x2 */
+      .booking-states-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 26px clamp(22px, 3.2vw, 36px);
+        align-items: start;
+      }
+      .booking-state-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .held-slot-title {
+        font-size: 1.15625rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+      .held-slot-detail {
+        font-size: 0.90625rem;
+        line-height: 1.52;
+        color: var(--ink-secondary);
+      }
+
+      /* Footer */
+      .site-footer {
+        padding-block: 34px 46px;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+      }
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px 28px;
+      }
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+      }
+    }
+
+    @layer utilities {
+      @media (max-width: 1040px) {
+        .range-cards-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .doc-intro,
+        .usage-notes,
+        .portrait-states-grid,
+        .hero-split-card,
+        .membership-grid,
+        .calc-strip,
+        .booking-states-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .wl-shell {
+          padding-inline: 16px;
+        }
+        .header-inner {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px 16px;
+          padding-block: 14px;
+        }
+        .header-end {
+          display: contents;
+        }
+        .site-nav {
+          order: 3;
+          width: 100%;
+          flex-wrap: nowrap;
+          justify-content: flex-start;
+          gap: 14px;
+          font-size: 0.795rem;
+        }
+
+        /* On narrow screens keep portrait face clear in upper half, copy clean over lower sweater ramp */
+        .hero-photo-stage {
+          align-items: flex-end;
+          min-height: 590px;
+          background-image:
+            linear-gradient(
+              0deg,
+              oklch(0.13 0.020 194 / 0.94) 0%,
+              oklch(0.14 0.018 194 / 0.84) 43%,
+              oklch(0.14 0.012 194 / 0.08) 60%,
+              oklch(0.14 0.010 194 / 0.0) 100%
+            ),
+            url("../../../images/wl-hero-morning.webp");
+          background-position: center, 86% 12%;
+        }
+        .hero-photo-inner {
+          padding-top: 292px;
+        }
+      }
+
+      @media (max-width: 359px) {
+        .site-nav {
+          flex-wrap: wrap;
+          gap: 6px 12px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .zip-email-grid,
+        .booking-fields-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .hero-cta-row .wl-btn-photo,
+        .park-float-card .wl-btn-pri,
+        .park-inline-bar .wl-btn-pri,
+        .booking-state-card .wl-btn-pri,
+        .flagship-card .wl-btn-pri,
+        .single-draw-card .wl-btn,
+        .dialog-actions .wl-btn-pri,
+        .dialog-actions .wl-btn {
+          align-self: stretch;
+          width: 100%;
+        }
+      }
+
+      @media (any-pointer: coarse) {
+        .wl-btn,
+        .wl-btn-pri,
+        .wl-btn-photo,
+        .wl-input,
+        .wl-select,
+        .wl-tab,
+        .wl-seg-btn {
+          min-height: 44px;
+        }
+        .wl-step-btn {
+          min-width: 44px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 80ms !important;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .hero-photo-stage,
+        .park-photo-stage {
+          background: Canvas !important;
+          color: CanvasText !important;
+          border: 1px solid ButtonText;
+        }
+        .hero-display-title,
+        .hero-subhead,
+        .photo-doubt,
+        .photo-link {
+          color: CanvasText !important;
+        }
+        .wl-btn-pri,
+        .wl-btn-photo,
+        .wl-seg-btn[aria-pressed="true"],
+        .wl-check:checked {
+          background: Highlight !important;
+          color: HighlightText !important;
+          border: 1px solid Highlight !important;
+        }
+        .wl-tab[aria-selected="true"] {
+          border-bottom: 3px solid Highlight !important;
+        }
+        .wl-btn,
+        .wl-input,
+        .wl-select,
+        .wl-range,
+        .wl-check,
+        .wl-seg-group,
+        .wl-card,
+        .flagship-card,
+        .park-float-card,
+        .park-inline-bar,
+        .wl-dialog {
+          border: 1px solid ButtonText !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+<div class="wl-shell header-inner">
+<a class="brand-mark" href="#main-content">Wardline</a>
+<div class="header-end">
+<nav aria-label="Primary" class="site-nav">
+<a href="../../../index.html">All systems</a>
+<a href="../../../systems/wardline.html">Product components</a>
+<a aria-current="page" href="#main-content">Marketing components</a>
+</nav>
+<button aria-pressed="false" class="wl-btn wl-btn--toolbar" data-theme-toggle="" type="button">Dark</button>
+</div>
+</div>
+</header>
+  <main id="main-content">
+    <section aria-labelledby="h-membership-card" class="doc-chapter" data-component-doc="" data-section="pricing" id="membership-card">
+<div class="chapter-head">
+<h2 id="h-membership-card">Flagship membership and partner selector</h2>
+<p>Anchor clinical pricing in one complete annual plan rather than three artificial software seat tiers. Pair annual and monthly billing with a household partner add-on and a single baseline draw alternative.</p>
+</div>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul class="usage-list">
+<li>Use one flagship membership card when every enrolled adult receives the full biomarker panel and physician visit.</li>
+<li>Provide a single baseline blood draw card alongside membership for visitors testing one panel before joining.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Composition and copy rules</h3>
+<ul class="usage-list">
+<li>Show annual cadence and household partner savings in plain dollars rather than percentage sale badges.</li>
+<li>Keep membership buttons sized to their label on desktop, expanding full-width only on compact phones.</li>
+<li>State PPO lab processing and HSA card acceptance directly inside the clinical scope list.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div class="membership-bar">
+<h3>Preventive care membership</h3>
+<div aria-label="Membership billing cadence" class="wl-seg-group" role="group">
+<button aria-pressed="true" class="wl-seg-btn" data-billing-toggle="" data-cadence="annual" type="button">Annual — save $65</button>
+<button aria-pressed="false" class="wl-seg-btn" data-billing-toggle="" data-cadence="monthly" type="button">Monthly</button>
+</div>
+</div>
+<div class="membership-grid">
+<article aria-label="Flagship preventive membership" class="flagship-card" data-specimen-state="flagship-membership">
+<div>
+<h3 id="wl-plan-heading">Individual annual care</h3>
+<p class="wl-hint" style="margin-top:4px">All San Francisco and East Bay neighborhood clinics</p>
+</div>
+<div>
+<div class="price-row">
+<span class="price-amount tnum" data-price="" id="wl-plan-price">$199</span>
+<span class="price-period" id="wl-plan-period">/ yr</span>
+</div>
+<p class="price-save-note" data-billing-note="" id="wl-plan-note">Save $65 a year compared with $22/mo monthly billing · HSA and FSA cards accepted.</p>
+</div>
+<ul class="scope-list">
+<li>Annual 64-marker cardiac, ApoB, Lp(a), metabolic, thyroid, and nutrient draw</li>
+<li>45-minute preventive physician visit in clinic or by video</li>
+<li>90-day repeat check on any out-of-range marker plus direct clinician messaging</li>
+<li>Lab processing billed to PPO insurance; transparent cash lab schedule if uninsured</li>
+</ul>
+<button class="wl-btn-pri" data-open-modal="#intake-dialog" type="button">Start annual care</button>
+</article>
+<div class="secondary-stack">
+<div class="wl-card partner-card" data-active="false" data-specimen-state="partner-addon" id="wl-partner-card">
+<label class="wl-check-row" for="wl-partner-check">
+<input class="wl-check" id="wl-partner-check" type="checkbox"/>
+<span class="partner-copy">
+<span class="partner-title">Add household partner (+$150/yr)</span>
+<span class="partner-desc">Enrolls a second adult at your address with separate lab records, 45-minute consult, and $49 household savings over two solo plans.</span>
+</span>
+</label>
+</div>
+<article class="wl-card single-draw-card" data-specimen-state="single-draw-alternative">
+<div class="single-draw-head">
+<h3>Single baseline draw</h3>
+<span class="single-draw-price tnum">$149</span>
+</div>
+<p class="partner-desc">One-time 64-marker morning blood panel with written physician range summary. Credit $100 toward annual membership within 60 days.</p>
+<div class="hero-cta-block" style="margin-top:4px">
+<button class="wl-btn" data-open-modal="#intake-dialog" type="button">Book single draw</button>
+<p class="wl-hint">HSA and FSA cards accepted · Free 24-hour cancellation</p>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+  </main>
+  <dialog aria-labelledby="intake-dialog-title" class="wl-dialog" id="intake-dialog">
+<form class="dialog-stack" id="intake-modal-form" method="dialog" novalidate="">
+<div class="dialog-head">
+<div>
+<h2 id="intake-dialog-title">Reserve morning blood draw</h2>
+<p class="wl-hint" style="margin-top:4px">Annual preventive care ($199/yr) · HSA/FSA eligible · PPO lab billing</p>
+</div>
+<button aria-label="Close intake dialog" class="wl-btn wl-btn--toolbar" data-close-modal="" type="button">Close</button>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-modal-slot">Clinic and morning slot</label>
+<div class="wl-select-wrap">
+<select class="wl-select" id="wl-modal-slot" name="slot">
+<option value="Thu 08:10 at Hayes Valley">Thursday 08:10 · Hayes Valley (420 Gough St)</option>
+<option value="Thu 09:20 at Marina">Thursday 09:20 · Marina (2140 Chestnut St)</option>
+<option value="Fri 08:20 at Castro">Friday 08:20 · Castro (545 Castro St)</option>
+</select>
+<svg aria-hidden="true" class="wl-select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-modal-email">Email for confirmation and fasting prep</label>
+<input aria-describedby="wl-modal-err wl-modal-hint" autocomplete="email" class="wl-input" id="wl-modal-email" placeholder="you@domain.com" required="" type="email"/>
+<p class="wl-error" hidden="" id="wl-modal-err" role="alert"></p>
+<p class="wl-hint" id="wl-modal-hint">Free cancellation or clinic change up to 24 hours before your draw.</p>
+</div>
+<div class="dialog-actions">
+<button class="wl-btn-pri" type="submit">Confirm morning slot</button>
+<button class="wl-btn" data-close-modal="" type="button">Cancel</button>
+</div>
+</form>
+</dialog>
+<div aria-live="polite" class="polite-bar" hidden="" id="wl-polite-status" role="status"></div>
+  <script>
+    (function () {
+      const memPrefs = new Map();
+      function savePref(k, v) {
+        memPrefs.set(k, v);
+        try { window.localStorage.setItem(k, v); } catch (_e) {}
+      }
+
+      /* Canonical clinical pricing ledger — single source of truth */
+      const PRICING = Object.freeze({
+        annualSolo: 199,
+        monthlySolo: 22,
+        annualSave: 65,
+        partnerAnnualAdd: 150,
+        partnerMonthlyAdd: 16,
+        partnerAnnualSave: 49,
+        cashPanelMedian: 115
+      });
+
+      const state = {
+        cadence: 'annual',
+        partner: false,
+        panels: 3,
+        lastModalTrigger: null,
+        politeTimer: 0
+      };
+
+      function showPoliteNotice(msg) {
+        const bar = document.getElementById('wl-polite-status');
+        if (!bar) return;
+        window.clearTimeout(state.politeTimer);
+        bar.textContent = msg;
+        bar.hidden = false;
+        state.politeTimer = window.setTimeout(function () {
+          bar.hidden = true;
+        }, 4200);
+      }
+
+      /* 1. Theme toggle */
+      const root = document.documentElement;
+      const themeBtns = document.querySelectorAll('[data-theme-toggle]');
+      function applyTheme(theme) {
+        const isDark = theme === 'dark';
+        root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+        themeBtns.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', String(isDark));
+          btn.textContent = isDark ? 'Light' : 'Dark';
+        });
+        savePref('wl-theme', isDark ? 'dark' : 'light');
+      }
+      themeBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+        });
+      });
+
+      /* 2. Accessible roving tablists ([data-state-tabs]) */
+      document.querySelectorAll('[role="tablist"]').forEach(function (tablist) {
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        function activateTab(target, moveFocus) {
+          tabs.forEach(function (tab) {
+            const active = tab === target;
+            tab.setAttribute('aria-selected', String(active));
+            tab.tabIndex = active ? 0 : -1;
+            const panelId = tab.getAttribute('aria-controls');
+            const panel = panelId ? document.getElementById(panelId) : null;
+            if (panel) panel.hidden = !active;
+          });
+          if (moveFocus) target.focus();
+        }
+        tabs.forEach(function (tab, idx) {
+          tab.addEventListener('click', function () {
+            activateTab(tab, false);
+          });
+          tab.addEventListener('keydown', function (e) {
+            let nextIdx = -1;
+            if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') nextIdx = 0;
+            else if (e.key === 'End') nextIdx = tabs.length - 1;
+            if (nextIdx >= 0) {
+              e.preventDefault();
+              activateTab(tabs[nextIdx], true);
+            }
+          });
+        });
+      });
+
+      /* 3. Membership cadence switch & partner add-on */
+      const planHeading = document.getElementById('wl-plan-heading');
+      const planPrice = document.getElementById('wl-plan-price');
+      const planPeriod = document.getElementById('wl-plan-period');
+      const planNote = document.getElementById('wl-plan-note');
+      const partnerCheck = document.getElementById('wl-partner-check');
+      const partnerCard = document.getElementById('wl-partner-card');
+      const cadenceBtns = document.querySelectorAll('[data-billing-toggle]');
+
+      function renderMembership() {
+        const isAnnual = state.cadence === 'annual';
+        cadenceBtns.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', String(btn.getAttribute('data-cadence') === state.cadence));
+        });
+        if (partnerCard) {
+          partnerCard.setAttribute('data-active', String(state.partner));
+        }
+
+        if (state.partner) {
+          planHeading.textContent = isAnnual ? 'Household annual care (2 adults)' : 'Household monthly care (2 adults)';
+          if (isAnnual) {
+            const totalYr = PRICING.annualSolo + PRICING.partnerAnnualAdd;
+            planPrice.textContent = '$' + totalYr;
+            planPeriod.textContent = '/ yr';
+            planNote.textContent = 'Includes two full 64-marker panels and two 45-minute consults · Save $' + PRICING.partnerAnnualSave + ' vs two individual annual plans.';
+          } else {
+            const totalMo = PRICING.monthlySolo + PRICING.partnerMonthlyAdd;
+            const annualSave = (totalMo * 12) - (PRICING.annualSolo + PRICING.partnerAnnualAdd);
+            planPrice.textContent = '$' + totalMo;
+            planPeriod.textContent = '/ mo';
+            planNote.textContent = 'Billed monthly for two adults ($' + (totalMo * 12) + '/yr) · Switch to annual to save $' + annualSave + ' a year.';
+          }
+        } else {
+          planHeading.textContent = isAnnual ? 'Individual annual care' : 'Individual monthly care';
+          if (isAnnual) {
+            planPrice.textContent = '$' + PRICING.annualSolo;
+            planPeriod.textContent = '/ yr';
+            planNote.textContent = 'Save $' + PRICING.annualSave + ' a year compared with $' + PRICING.monthlySolo + '/mo monthly billing · HSA and FSA cards accepted.';
+          } else {
+            planPrice.textContent = '$' + PRICING.monthlySolo;
+            planPeriod.textContent = '/ mo';
+            planNote.textContent = 'Billed monthly ($' + (PRICING.monthlySolo * 12) + '/yr) · Switch to annual care to save $' + PRICING.annualSave + ' a year.';
+          }
+        }
+      }
+
+      cadenceBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          state.cadence = btn.getAttribute('data-cadence') || 'annual';
+          renderMembership();
+        });
+      });
+
+      if (partnerCheck) {
+        partnerCheck.addEventListener('change', function () {
+          state.partner = partnerCheck.checked;
+          renderMembership();
+        });
+      }
+
+      /* 4. Blur-late + submit validation for [data-lead-form] instances */
+      function isValidEmail(val) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val.trim());
+      }
+
+      function setFieldError(input, errEl, message) {
+        if (message) {
+          input.setAttribute('aria-invalid', 'true');
+          errEl.textContent = message;
+          errEl.hidden = false;
+        } else {
+          input.removeAttribute('aria-invalid');
+          errEl.textContent = '';
+          errEl.hidden = true;
+        }
+      }
+
+      function validateEmail(input, errEl, allowEmptyBlur) {
+        const v = input.value.trim();
+        if (!v) {
+          if (allowEmptyBlur) {
+            setFieldError(input, errEl, '');
+            return false;
+          }
+          setFieldError(input, errEl, 'Enter an email address so we can send your 15-minute phlebotomy hold link.');
+          return false;
+        }
+        if (!isValidEmail(v)) {
+          setFieldError(input, errEl, 'Enter a complete email address with a domain, such as you@domain.com.');
+          return false;
+        }
+        setFieldError(input, errEl, '');
+        return true;
+      }
+
+      document.querySelectorAll('[data-lead-form]').forEach(function (form) {
+        const emailInput = form.querySelector('input[type="email"]');
+        const errEl = form.querySelector('.wl-error');
+        const btn = form.querySelector('button[type="submit"]');
+        if (!emailInput || !errEl || !btn) return;
+
+        emailInput.addEventListener('blur', function () {
+          if (emailInput.value.trim().length > 0) {
+            validateEmail(emailInput, errEl, true);
+          }
+        });
+
+        emailInput.addEventListener('input', function () {
+          if (emailInput.getAttribute('aria-invalid') === 'true') {
+            validateEmail(emailInput, errEl, false);
+          }
+        });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (btn.getAttribute('data-loading') === 'true') return;
+          if (!validateEmail(emailInput, errEl, false)) {
+            emailInput.focus();
+            return;
+          }
+          const addr = emailInput.value.trim();
+          const clinicSel = form.querySelector('select');
+          const zipInp = form.querySelector('input[name="zip"]');
+          const place = clinicSel ? clinicSel.value : ('ZIP ' + (zipInp && zipInp.value ? zipInp.value.trim() : '94102'));
+          btn.setAttribute('data-loading', 'true');
+          btn.setAttribute('aria-disabled', 'true');
+          emailInput.disabled = true;
+          window.setTimeout(function () {
+            btn.removeAttribute('data-loading');
+            btn.removeAttribute('aria-disabled');
+            emailInput.disabled = false;
+            emailInput.value = '';
+            showPoliteNotice('Thursday 08:10 draw availability for ' + place + ' sent to ' + addr + '.');
+          }, 320);
+        });
+      });
+
+      /* 5. Accessible <dialog> lifecycle with Escape & focus return */
+      const dialog = document.getElementById('intake-dialog');
+      const modalForm = document.getElementById('intake-modal-form');
+      const modalEmail = document.getElementById('wl-modal-email');
+      const modalErr = document.getElementById('wl-modal-err');
+      const modalSlot = document.getElementById('wl-modal-slot');
+
+      document.querySelectorAll('[data-open-modal]').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          if (!dialog || typeof dialog.showModal !== 'function') return;
+          state.lastModalTrigger = trigger;
+          if (modalEmail && modalErr) setFieldError(modalEmail, modalErr, '');
+          dialog.showModal();
+        });
+      });
+
+      if (dialog) {
+        dialog.querySelectorAll('[data-close-modal]').forEach(function (closeBtn) {
+          closeBtn.addEventListener('click', function () {
+            dialog.close();
+          });
+        });
+
+        dialog.addEventListener('click', function (e) {
+          if (e.target === dialog) dialog.close();
+        });
+
+        dialog.addEventListener('close', function () {
+          if (state.lastModalTrigger && typeof state.lastModalTrigger.focus === 'function') {
+            state.lastModalTrigger.focus();
+          }
+        });
+      }
+
+      if (modalForm && modalEmail && modalErr && dialog) {
+        modalEmail.addEventListener('input', function () {
+          if (modalEmail.getAttribute('aria-invalid') === 'true') {
+            validateEmail(modalEmail, modalErr, false);
+          }
+        });
+        modalForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!validateEmail(modalEmail, modalErr, false)) {
+            modalEmail.focus();
+            return;
+          }
+          const slot = modalSlot ? modalSlot.value : 'Thursday morning';
+          const addr = modalEmail.value.trim();
+          modalEmail.value = '';
+          dialog.close();
+          showPoliteNotice('Morning slot (' + slot + ') held for 15 minutes — confirmation sent to ' + addr + '.');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

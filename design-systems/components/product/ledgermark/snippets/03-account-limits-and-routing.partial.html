@@ -1,0 +1,49 @@
+<article aria-labelledby="lm-card-limits" class="lm-specimen">
+<div class="lm-card-head">
+<h3 id="lm-card-limits">Account limits and routing</h3>
+<p class="lm-hint">Daily ACH ceiling, default settlement speed, and copyable ABA wire routing.</p>
+</div>
+<form id="lm-settings-form" novalidate="" style="display: flex; flex-direction: column; gap: 18px; flex: 1;">
+<div class="lm-spec-two">
+<div class="lm-field">
+<label class="lm-label" for="lm-ach-limit">Daily ACH limit (USD)</label>
+<input aria-describedby="lm-limit-err lm-limit-hint" class="lm-input num" id="lm-ach-limit" name="achLimit" required="" type="text" value="$40,000"/>
+<div class="lm-error" hidden="" id="lm-limit-err">
+<svg aria-hidden="true" fill="none" height="13" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="13">
+<circle cx="8" cy="8" r="6"></circle>
+<line stroke-linecap="round" x1="8" x2="8" y1="5" y2="8.8"></line>
+<circle cx="8" cy="11.3" fill="currentColor" r="0.6" stroke="none"></circle>
+</svg>
+<span class="num" id="lm-limit-err-text">Enter a daily limit up to $50,000, or request CFO co-signing.</span>
+</div>
+<p class="lm-hint num" id="lm-limit-hint">Self-serve ceiling up to $50,000 per business day.</p>
+</div>
+<div class="lm-field">
+<label class="lm-label" for="lm-method-select">Default transfer rail</label>
+<div class="lm-select-wrap">
+<select class="lm-select num" id="lm-method-select">
+<option value="ach">Same-day ACH · $0.00</option>
+<option value="wire">Domestic Fedwire · $15.00</option>
+<option value="std">Standard 2-day ACH · $0.00</option>
+</select>
+<svg aria-hidden="true" class="lm-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+<p class="lm-hint">Applied automatically to domestic vendor bills.</p>
+</div>
+</div>
+<div class="lm-sub-rule lm-spec-two" style="margin-top: auto; align-items: end;">
+<div class="lm-field">
+<label class="lm-label" for="lm-routing-num">ABA routing number</label>
+<div style="display: flex; gap: 8px; min-width: 0;">
+<input class="lm-input" id="lm-routing-num" readonly="" style="min-width: 0; flex: 1;" type="text" value="021000021"/>
+<button class="lm-btn" id="lm-copy-routing" type="button">Copy</button>
+</div>
+</div>
+<div class="lm-action-row">
+<button class="lm-btn lm-btn-primary" type="submit">Save limit</button>
+</div>
+</div>
+</form>
+</article>

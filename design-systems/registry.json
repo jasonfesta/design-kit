@@ -1,0 +1,818 @@
+{
+  "version": "1.0.0",
+  "source_urls": [
+    "https://fofr.users.x20web.corp.google.com/design-systems/index.html",
+    "https://fofr.users.x20web.corp.google.com/design-systems/marketing.html",
+    "https://depot.code.corp.goog/fofr-agents-exp/design-system-creation"
+  ],
+  "systems": {
+    "switchyard": {
+      "name": "Switchyard",
+      "tagline": "Release and Issue Design System",
+      "archetype": "Precision Technical Studio",
+      "domain": "Developer Infrastructure, CI/CD & Observability",
+      "fonts": [
+        "Space Grotesk",
+        "IBM Plex Sans",
+        "JetBrains Mono"
+      ],
+      "font_css": "fonts/switchyard-fonts.css",
+      "product_page": "systems/switchyard.html",
+      "marketing_page": "marketing/switchyard.html",
+      "product_tokens_css": "tokens/switchyard-product.css",
+      "marketing_tokens_css": "tokens/switchyard-marketing.css",
+      "product_components": [
+        {
+          "id": "workspace",
+          "slug": "00-workspace",
+          "kind": "workspace",
+          "title": "Core API \u00b7 Release 24.11",
+          "standalone_path": "components/product/switchyard/00-workspace.html",
+          "snippet_path": "components/product/switchyard/snippets/00-workspace.partial.html"
+        },
+        {
+          "id": "tokens",
+          "slug": "01-foundations-tokens",
+          "kind": "foundations",
+          "title": "Foundations \u2014 Color Swatches & Typography Specimens",
+          "standalone_path": "components/product/switchyard/01-foundations-tokens.html",
+          "snippet_path": "components/product/switchyard/snippets/01-foundations-tokens.partial.html"
+        },
+        {
+          "id": "deploy-actions",
+          "slug": "02-deploy-actions",
+          "kind": "product-component",
+          "title": "Deploy actions",
+          "standalone_path": "components/product/switchyard/02-deploy-actions.html",
+          "snippet_path": "components/product/switchyard/snippets/02-deploy-actions.partial.html"
+        },
+        {
+          "id": "webhook-endpoint",
+          "slug": "03-webhook-endpoint",
+          "kind": "product-component",
+          "title": "Webhook endpoint",
+          "standalone_path": "components/product/switchyard/03-webhook-endpoint.html",
+          "snippet_path": "components/product/switchyard/snippets/03-webhook-endpoint.partial.html"
+        },
+        {
+          "id": "rollout-gates",
+          "slug": "04-rollout-gates",
+          "kind": "product-component",
+          "title": "Rollout gates",
+          "standalone_path": "components/product/switchyard/04-rollout-gates.html",
+          "snippet_path": "components/product/switchyard/snippets/04-rollout-gates.partial.html"
+        },
+        {
+          "id": "commit-inspection",
+          "slug": "05-commit-inspection",
+          "kind": "product-component",
+          "title": "Commit inspection",
+          "standalone_path": "components/product/switchyard/05-commit-inspection.html",
+          "snippet_path": "components/product/switchyard/snippets/05-commit-inspection.partial.html"
+        },
+        {
+          "id": "promotion-and-alerts",
+          "slug": "06-promotion-and-alerts",
+          "kind": "product-component",
+          "title": "Promotion and alerts",
+          "standalone_path": "components/product/switchyard/06-promotion-and-alerts.html",
+          "snippet_path": "components/product/switchyard/snippets/06-promotion-and-alerts.partial.html"
+        }
+      ],
+      "product_overlays": [
+        {
+          "id": "promote-dialog",
+          "slug": "overlay-promote-dialog",
+          "title": "Promote Release 24.11",
+          "snippet_path": "components/product/switchyard/snippets/overlay-promote-dialog.partial.html"
+        },
+        {
+          "id": "issue-drawer",
+          "slug": "overlay-issue-drawer",
+          "title": "Release activity",
+          "snippet_path": "components/product/switchyard/snippets/overlay-issue-drawer.partial.html"
+        },
+        {
+          "id": "cmdk-dialog",
+          "slug": "overlay-cmdk-dialog",
+          "title": "Jump to section",
+          "snippet_path": "components/product/switchyard/snippets/overlay-cmdk-dialog.partial.html"
+        }
+      ],
+      "marketing_components": [
+        {
+          "id": "image-guidelines",
+          "slug": "01-image-guidelines",
+          "kind": "marketing-component",
+          "title": "Photography and frame ratios",
+          "standalone_path": "components/marketing/switchyard/01-image-guidelines.html",
+          "snippet_path": "components/marketing/switchyard/snippets/01-image-guidelines.partial.html"
+        },
+        {
+          "id": "hero-banner",
+          "slug": "02-hero-banner",
+          "kind": "marketing-component",
+          "title": "Background-image hero",
+          "standalone_path": "components/marketing/switchyard/02-hero-banner.html",
+          "snippet_path": "components/marketing/switchyard/snippets/02-hero-banner.partial.html"
+        },
+        {
+          "id": "install-stage",
+          "slug": "03-install-stage",
+          "kind": "marketing-component",
+          "title": "CLI install command",
+          "standalone_path": "components/marketing/switchyard/03-install-stage.html",
+          "snippet_path": "components/marketing/switchyard/snippets/03-install-stage.partial.html"
+        },
+        {
+          "id": "editorial-proof",
+          "slug": "04-editorial-proof",
+          "kind": "marketing-component",
+          "title": "Customer portrait and release log",
+          "standalone_path": "components/marketing/switchyard/04-editorial-proof.html",
+          "snippet_path": "components/marketing/switchyard/snippets/04-editorial-proof.partial.html"
+        },
+        {
+          "id": "pricing-tiers",
+          "slug": "05-pricing-tiers",
+          "kind": "marketing-component",
+          "title": "Seat pricing cards",
+          "standalone_path": "components/marketing/switchyard/05-pricing-tiers.html",
+          "snippet_path": "components/marketing/switchyard/snippets/05-pricing-tiers.partial.html"
+        },
+        {
+          "id": "cta-band",
+          "slug": "06-cta-band",
+          "kind": "marketing-component",
+          "title": "Background-image signup band",
+          "standalone_path": "components/marketing/switchyard/06-cta-band.html",
+          "snippet_path": "components/marketing/switchyard/snippets/06-cta-band.partial.html"
+        }
+      ]
+    },
+    "ledgermark": {
+      "name": "Ledgermark",
+      "tagline": "Operating Treasury Design System",
+      "archetype": "Institutional Fiduciary",
+      "domain": "Operating Treasury, Cash Management & Settlement",
+      "fonts": [
+        "Source Serif 4",
+        "Instrument Sans",
+        "IBM Plex Mono"
+      ],
+      "font_css": "fonts/ledgermark-fonts.css",
+      "product_page": "systems/ledgermark.html",
+      "marketing_page": "marketing/ledgermark.html",
+      "product_tokens_css": "tokens/ledgermark-product.css",
+      "marketing_tokens_css": "tokens/ledgermark-marketing.css",
+      "product_components": [
+        {
+          "id": "workspace",
+          "slug": "00-workspace",
+          "kind": "workspace",
+          "title": "Operating cash",
+          "standalone_path": "components/product/ledgermark/00-workspace.html",
+          "snippet_path": "components/product/ledgermark/snippets/00-workspace.partial.html"
+        },
+        {
+          "id": "tokens",
+          "slug": "01-foundations-tokens",
+          "kind": "foundations",
+          "title": "Foundations \u2014 Color Swatches & Typography Specimens",
+          "standalone_path": "components/product/ledgermark/01-foundations-tokens.html",
+          "snippet_path": "components/product/ledgermark/snippets/01-foundations-tokens.partial.html"
+        },
+        {
+          "id": "move-money",
+          "slug": "02-move-money",
+          "kind": "product-component",
+          "title": "Move money",
+          "standalone_path": "components/product/ledgermark/02-move-money.html",
+          "snippet_path": "components/product/ledgermark/snippets/02-move-money.partial.html"
+        },
+        {
+          "id": "account-limits-and-routing",
+          "slug": "03-account-limits-and-routing",
+          "kind": "product-component",
+          "title": "Account limits and routing",
+          "standalone_path": "components/product/ledgermark/03-account-limits-and-routing.html",
+          "snippet_path": "components/product/ledgermark/snippets/03-account-limits-and-routing.partial.html"
+        },
+        {
+          "id": "approval-rules",
+          "slug": "04-approval-rules",
+          "kind": "product-component",
+          "title": "Approval rules",
+          "standalone_path": "components/product/ledgermark/04-approval-rules.html",
+          "snippet_path": "components/product/ledgermark/snippets/04-approval-rules.partial.html"
+        },
+        {
+          "id": "statements-and-alerts",
+          "slug": "05-statements-and-alerts",
+          "kind": "product-component",
+          "title": "Statements and alerts",
+          "standalone_path": "components/product/ledgermark/05-statements-and-alerts.html",
+          "snippet_path": "components/product/ledgermark/snippets/05-statements-and-alerts.partial.html"
+        }
+      ],
+      "product_overlays": [
+        {
+          "id": "transfer-dialog",
+          "slug": "overlay-transfer-dialog",
+          "title": "Send transfer",
+          "snippet_path": "components/product/ledgermark/snippets/overlay-transfer-dialog.partial.html"
+        },
+        {
+          "id": "receipt-drawer",
+          "slug": "overlay-receipt-drawer",
+          "title": "Northstar Design Studio",
+          "snippet_path": "components/product/ledgermark/snippets/overlay-receipt-drawer.partial.html"
+        }
+      ],
+      "marketing_components": [
+        {
+          "id": "image-guidelines",
+          "slug": "01-image-guidelines",
+          "kind": "marketing-component",
+          "title": "Editorial photography and portraits",
+          "standalone_path": "components/marketing/ledgermark/01-image-guidelines.html",
+          "snippet_path": "components/marketing/ledgermark/snippets/01-image-guidelines.partial.html"
+        },
+        {
+          "id": "editorial-hero",
+          "slug": "02-editorial-hero",
+          "kind": "marketing-component",
+          "title": "Editorial split hero",
+          "standalone_path": "components/marketing/ledgermark/02-editorial-hero.html",
+          "snippet_path": "components/marketing/ledgermark/snippets/02-editorial-hero.partial.html"
+        },
+        {
+          "id": "background-stage",
+          "slug": "03-background-stage",
+          "kind": "marketing-component",
+          "title": "Architectural background-image banner",
+          "standalone_path": "components/marketing/ledgermark/03-background-stage.html",
+          "snippet_path": "components/marketing/ledgermark/snippets/03-background-stage.partial.html"
+        },
+        {
+          "id": "customer-proof",
+          "slug": "04-customer-proof",
+          "kind": "marketing-component",
+          "title": "Executive quote and settlement table",
+          "standalone_path": "components/marketing/ledgermark/04-customer-proof.html",
+          "snippet_path": "components/marketing/ledgermark/snippets/04-customer-proof.partial.html"
+        },
+        {
+          "id": "fee-schedule",
+          "slug": "05-fee-schedule",
+          "kind": "marketing-component",
+          "title": "Treasury fee schedule",
+          "standalone_path": "components/marketing/ledgermark/05-fee-schedule.html",
+          "snippet_path": "components/marketing/ledgermark/snippets/05-fee-schedule.partial.html"
+        },
+        {
+          "id": "application-states",
+          "slug": "06-application-states",
+          "kind": "marketing-component",
+          "title": "Onboarding form states",
+          "standalone_path": "components/marketing/ledgermark/06-application-states.html",
+          "snippet_path": "components/marketing/ledgermark/snippets/06-application-states.partial.html"
+        }
+      ]
+    },
+    "civicgate": {
+      "name": "Civicgate",
+      "tagline": "Public Service Design System",
+      "archetype": "High-Legibility Civic Forms",
+      "domain": "Municipal Permits, Public Tariffs & Statutory Services",
+      "fonts": [
+        "Public Sans",
+        "Source Code Pro"
+      ],
+      "font_css": "fonts/civicgate-fonts.css",
+      "product_page": "systems/civicgate.html",
+      "marketing_page": "marketing/civicgate.html",
+      "product_tokens_css": "tokens/civicgate-product.css",
+      "marketing_tokens_css": "tokens/civicgate-marketing.css",
+      "product_components": [
+        {
+          "id": "workspace",
+          "slug": "00-workspace",
+          "kind": "workspace",
+          "title": "Tell us about your vehicle",
+          "standalone_path": "components/product/civicgate/00-workspace.html",
+          "snippet_path": "components/product/civicgate/snippets/00-workspace.partial.html"
+        },
+        {
+          "id": "tokens",
+          "slug": "01-foundations-tokens",
+          "kind": "foundations",
+          "title": "Foundations \u2014 Color Swatches & Typography Specimens",
+          "standalone_path": "components/product/civicgate/01-foundations-tokens.html",
+          "snippet_path": "components/product/civicgate/snippets/01-foundations-tokens.partial.html"
+        },
+        {
+          "id": "start-and-confirmation-actions",
+          "slug": "02-start-and-confirmation-actions",
+          "kind": "product-component",
+          "title": "Start and confirmation actions",
+          "standalone_path": "components/product/civicgate/02-start-and-confirmation-actions.html",
+          "snippet_path": "components/product/civicgate/snippets/02-start-and-confirmation-actions.partial.html"
+        },
+        {
+          "id": "registration-and-zone-questions",
+          "slug": "03-registration-and-zone-questions",
+          "kind": "product-component",
+          "title": "Registration and zone questions",
+          "standalone_path": "components/product/civicgate/03-registration-and-zone-questions.html",
+          "snippet_path": "components/product/civicgate/snippets/03-registration-and-zone-questions.partial.html"
+        },
+        {
+          "id": "eligibility-choices-and-permit-cap",
+          "slug": "04-eligibility-choices-and-permit-cap",
+          "kind": "product-component",
+          "title": "Eligibility choices and permit cap",
+          "standalone_path": "components/product/civicgate/04-eligibility-choices-and-permit-cap.html",
+          "snippet_path": "components/product/civicgate/snippets/04-eligibility-choices-and-permit-cap.partial.html"
+        },
+        {
+          "id": "application-review-table-and-notices",
+          "slug": "05-application-review-table-and-notices",
+          "kind": "product-component",
+          "title": "Application review table and notices",
+          "standalone_path": "components/product/civicgate/05-application-review-table-and-notices.html",
+          "snippet_path": "components/product/civicgate/snippets/05-application-review-table-and-notices.partial.html"
+        }
+      ],
+      "product_overlays": [
+        {
+          "id": "permit-modal",
+          "slug": "overlay-permit-modal",
+          "title": "Update permit details",
+          "snippet_path": "components/product/civicgate/snippets/overlay-permit-modal.partial.html"
+        },
+        {
+          "id": "fee-drawer",
+          "slug": "overlay-fee-drawer",
+          "title": "Zone B annual fees",
+          "snippet_path": "components/product/civicgate/snippets/overlay-fee-drawer.partial.html"
+        }
+      ],
+      "marketing_components": [
+        {
+          "id": "image-guidelines",
+          "slug": "01-image-guidelines",
+          "kind": "marketing-component",
+          "title": "Documentary photography and captions",
+          "standalone_path": "components/marketing/civicgate/01-image-guidelines.html",
+          "snippet_path": "components/marketing/civicgate/snippets/01-image-guidelines.partial.html"
+        },
+        {
+          "id": "service-start",
+          "slug": "02-service-start",
+          "kind": "marketing-component",
+          "title": "Service start hero",
+          "standalone_path": "components/marketing/civicgate/02-service-start.html",
+          "snippet_path": "components/marketing/civicgate/snippets/02-service-start.partial.html"
+        },
+        {
+          "id": "fee-estimator",
+          "slug": "03-fee-estimator",
+          "kind": "marketing-component",
+          "title": "Household tariff calculator",
+          "standalone_path": "components/marketing/civicgate/03-fee-estimator.html",
+          "snippet_path": "components/marketing/civicgate/snippets/03-fee-estimator.partial.html"
+        },
+        {
+          "id": "tariff-table",
+          "slug": "04-tariff-table",
+          "kind": "marketing-component",
+          "title": "Published tariff table and audit block",
+          "standalone_path": "components/marketing/civicgate/04-tariff-table.html",
+          "snippet_path": "components/marketing/civicgate/snippets/04-tariff-table.partial.html"
+        },
+        {
+          "id": "background-banner",
+          "slug": "05-background-banner",
+          "kind": "marketing-component",
+          "title": "Background-image reminder banner",
+          "standalone_path": "components/marketing/civicgate/05-background-banner.html",
+          "snippet_path": "components/marketing/civicgate/snippets/05-background-banner.partial.html"
+        },
+        {
+          "id": "form-states",
+          "slug": "06-form-states",
+          "kind": "marketing-component",
+          "title": "Registration input and alert states",
+          "standalone_path": "components/marketing/civicgate/06-form-states.html",
+          "snippet_path": "components/marketing/civicgate/snippets/06-form-states.partial.html"
+        }
+      ]
+    },
+    "fieldrig": {
+      "name": "Fieldrig",
+      "tagline": "Portable Studio Design System",
+      "archetype": "Tactile Industrial Instrument",
+      "domain": "Four-Track Audio Hardware, Field Recording & Modular Kits",
+      "fonts": [
+        "Archivo",
+        "Azeret Mono"
+      ],
+      "font_css": "fonts/fieldrig-fonts.css",
+      "product_page": "systems/fieldrig.html",
+      "marketing_page": "marketing/fieldrig.html",
+      "product_tokens_css": "tokens/fieldrig-product.css",
+      "marketing_tokens_css": "tokens/fieldrig-marketing.css",
+      "product_components": [
+        {
+          "id": "workspace",
+          "slug": "00-workspace",
+          "kind": "workspace",
+          "title": "TP-4 Four-Track Mixer",
+          "standalone_path": "components/product/fieldrig/00-workspace.html",
+          "snippet_path": "components/product/fieldrig/snippets/00-workspace.partial.html"
+        },
+        {
+          "id": "tokens",
+          "slug": "01-foundations-tokens",
+          "kind": "foundations",
+          "title": "Foundations \u2014 Color Swatches & Typography Specimens",
+          "standalone_path": "components/product/fieldrig/01-foundations-tokens.html",
+          "snippet_path": "components/product/fieldrig/snippets/01-foundations-tokens.partial.html"
+        },
+        {
+          "id": "transport",
+          "slug": "02-transport",
+          "kind": "product-component",
+          "title": "Transport",
+          "standalone_path": "components/product/fieldrig/02-transport.html",
+          "snippet_path": "components/product/fieldrig/snippets/02-transport.partial.html"
+        },
+        {
+          "id": "monitor-output",
+          "slug": "03-monitor-output",
+          "kind": "product-component",
+          "title": "Monitor output",
+          "standalone_path": "components/product/fieldrig/03-monitor-output.html",
+          "snippet_path": "components/product/fieldrig/snippets/03-monitor-output.partial.html"
+        },
+        {
+          "id": "reel-bounce",
+          "slug": "04-reel-bounce",
+          "kind": "product-component",
+          "title": "Reel bounce",
+          "standalone_path": "components/product/fieldrig/04-reel-bounce.html",
+          "snippet_path": "components/product/fieldrig/snippets/04-reel-bounce.partial.html"
+        },
+        {
+          "id": "session-takes",
+          "slug": "05-session-takes",
+          "kind": "product-component",
+          "title": "Session takes",
+          "standalone_path": "components/product/fieldrig/05-session-takes.html",
+          "snippet_path": "components/product/fieldrig/snippets/05-session-takes.partial.html"
+        }
+      ],
+      "product_overlays": [
+        {
+          "id": "bounce-modal",
+          "slug": "overlay-bounce-modal",
+          "title": "Bounce stereo mix",
+          "snippet_path": "components/product/fieldrig/snippets/overlay-bounce-modal.partial.html"
+        },
+        {
+          "id": "notes-drawer",
+          "slug": "overlay-notes-drawer",
+          "title": "Reel 04 microphone notes",
+          "snippet_path": "components/product/fieldrig/snippets/overlay-notes-drawer.partial.html"
+        }
+      ],
+      "marketing_components": [
+        {
+          "id": "product-photography",
+          "slug": "01-product-photography",
+          "kind": "marketing-component",
+          "title": "Studio and session photography",
+          "standalone_path": "components/marketing/fieldrig/01-product-photography.html",
+          "snippet_path": "components/marketing/fieldrig/snippets/01-product-photography.partial.html"
+        },
+        {
+          "id": "hardware-hero",
+          "slug": "02-hardware-hero",
+          "kind": "marketing-component",
+          "title": "Studio product showcase and buy bar",
+          "standalone_path": "components/marketing/fieldrig/02-hardware-hero.html",
+          "snippet_path": "components/marketing/fieldrig/snippets/02-hardware-hero.partial.html"
+        },
+        {
+          "id": "macro-banner",
+          "slug": "03-macro-banner",
+          "kind": "marketing-component",
+          "title": "Macro background-image feature stage",
+          "standalone_path": "components/marketing/fieldrig/03-macro-banner.html",
+          "snippet_path": "components/marketing/fieldrig/snippets/03-macro-banner.partial.html"
+        },
+        {
+          "id": "spec-bento",
+          "slug": "04-spec-bento",
+          "kind": "marketing-component",
+          "title": "Measured specification bento",
+          "standalone_path": "components/marketing/fieldrig/04-spec-bento.html",
+          "snippet_path": "components/marketing/fieldrig/snippets/04-spec-bento.partial.html"
+        },
+        {
+          "id": "kit-configurator",
+          "slug": "05-kit-configurator",
+          "kind": "marketing-component",
+          "title": "Modular hardware configurator",
+          "standalone_path": "components/marketing/fieldrig/05-kit-configurator.html",
+          "snippet_path": "components/marketing/fieldrig/snippets/05-kit-configurator.partial.html"
+        },
+        {
+          "id": "allocation-form",
+          "slug": "06-allocation-form",
+          "kind": "marketing-component",
+          "title": "Batch reservation and editorial proof states",
+          "standalone_path": "components/marketing/fieldrig/06-allocation-form.html",
+          "snippet_path": "components/marketing/fieldrig/snippets/06-allocation-form.partial.html"
+        }
+      ]
+    },
+    "folioarchive": {
+      "name": "Folio Archive",
+      "tagline": "Museum and Editorial Design System",
+      "archetype": "Gallery Monograph & Archival Catalogue",
+      "domain": "Exhibition Catalogues, Conservation Plates & Timed Entry",
+      "fonts": [
+        "Fraunces",
+        "Newsreader",
+        "Work Sans"
+      ],
+      "font_css": "fonts/folioarchive-fonts.css",
+      "product_page": "systems/folioarchive.html",
+      "marketing_page": "marketing/folioarchive.html",
+      "product_tokens_css": "tokens/folioarchive-product.css",
+      "marketing_tokens_css": "tokens/folioarchive-marketing.css",
+      "product_components": [
+        {
+          "id": "workspace",
+          "slug": "00-workspace",
+          "kind": "workspace",
+          "title": "Colour as Structure , 1954\u20131978",
+          "standalone_path": "components/product/folioarchive/00-workspace.html",
+          "snippet_path": "components/product/folioarchive/snippets/00-workspace.partial.html"
+        },
+        {
+          "id": "tokens",
+          "slug": "01-foundations-tokens",
+          "kind": "foundations",
+          "title": "Foundations \u2014 Color Swatches & Typography Specimens",
+          "standalone_path": "components/product/folioarchive/01-foundations-tokens.html",
+          "snippet_path": "components/product/folioarchive/snippets/01-foundations-tokens.partial.html"
+        },
+        {
+          "id": "fig-1-visitor-reservation-and-checklist-actions",
+          "slug": "02-fig-1-visitor-reservation-and-checklist-actions",
+          "kind": "product-component",
+          "title": "Fig. 1 \u2014 Visitor reservation and checklist actions",
+          "standalone_path": "components/product/folioarchive/02-fig-1-visitor-reservation-and-checklist-actions.html",
+          "snippet_path": "components/product/folioarchive/snippets/02-fig-1-visitor-reservation-and-checklist-actions.partial.html"
+        },
+        {
+          "id": "fig-2-timed-entry-pass-request",
+          "slug": "03-fig-2-timed-entry-pass-request",
+          "kind": "product-component",
+          "title": "Fig. 2 \u2014 Timed-entry pass request",
+          "standalone_path": "components/product/folioarchive/03-fig-2-timed-entry-pass-request.html",
+          "snippet_path": "components/product/folioarchive/snippets/03-fig-2-timed-entry-pass-request.partial.html"
+        },
+        {
+          "id": "fig-3-gallery-room-and-edition-selection",
+          "slug": "04-fig-3-gallery-room-and-edition-selection",
+          "kind": "product-component",
+          "title": "Fig. 3 \u2014 Gallery room and edition selection",
+          "standalone_path": "components/product/folioarchive/04-fig-3-gallery-room-and-edition-selection.html",
+          "snippet_path": "components/product/folioarchive/snippets/04-fig-3-gallery-room-and-edition-selection.partial.html"
+        },
+        {
+          "id": "fig-4-archive-room-navigation-and-catalogue-index",
+          "slug": "05-fig-4-archive-room-navigation-and-catalogue-index",
+          "kind": "product-component",
+          "title": "Fig. 4 \u2014 Archive room navigation and catalogue index",
+          "standalone_path": "components/product/folioarchive/05-fig-4-archive-room-navigation-and-catalogue-index.html",
+          "snippet_path": "components/product/folioarchive/snippets/05-fig-4-archive-room-navigation-and-catalogue-index.partial.html"
+        },
+        {
+          "id": "fig-5-timed-entry-booking-and-reading-room-provenance",
+          "slug": "06-fig-5-timed-entry-booking-and-reading-room-provenance",
+          "kind": "product-component",
+          "title": "Fig. 5 \u2014 Timed entry booking and reading-room provenance",
+          "standalone_path": "components/product/folioarchive/06-fig-5-timed-entry-booking-and-reading-room-provenance.html",
+          "snippet_path": "components/product/folioarchive/snippets/06-fig-5-timed-entry-booking-and-reading-room-provenance.partial.html"
+        }
+      ],
+      "product_overlays": [
+        {
+          "id": "pass-dialog",
+          "slug": "overlay-pass-dialog",
+          "title": "Reserve timed pass",
+          "snippet_path": "components/product/folioarchive/snippets/overlay-pass-dialog.partial.html"
+        },
+        {
+          "id": "work-drawer",
+          "slug": "overlay-work-drawer",
+          "title": "Study for Warm Meridian",
+          "snippet_path": "components/product/folioarchive/snippets/overlay-work-drawer.partial.html"
+        }
+      ],
+      "marketing_components": [
+        {
+          "id": "image-guidelines",
+          "slug": "01-image-guidelines",
+          "kind": "marketing-component",
+          "title": "Conservation plates and archive photography",
+          "standalone_path": "components/marketing/folioarchive/01-image-guidelines.html",
+          "snippet_path": "components/marketing/folioarchive/snippets/01-image-guidelines.partial.html"
+        },
+        {
+          "id": "poster-hero",
+          "slug": "02-poster-hero",
+          "kind": "marketing-component",
+          "title": "Exhibition background-image poster",
+          "standalone_path": "components/marketing/folioarchive/02-poster-hero.html",
+          "snippet_path": "components/marketing/folioarchive/snippets/02-poster-hero.partial.html"
+        },
+        {
+          "id": "gallery-tabs",
+          "slug": "03-gallery-tabs",
+          "kind": "marketing-component",
+          "title": "Room showcase switcher",
+          "standalone_path": "components/marketing/folioarchive/03-gallery-tabs.html",
+          "snippet_path": "components/marketing/folioarchive/snippets/03-gallery-tabs.partial.html"
+        },
+        {
+          "id": "press-hours",
+          "slug": "04-press-hours",
+          "kind": "marketing-component",
+          "title": "Critical excerpt and visitor hours",
+          "standalone_path": "components/marketing/folioarchive/04-press-hours.html",
+          "snippet_path": "components/marketing/folioarchive/snippets/04-press-hours.partial.html"
+        },
+        {
+          "id": "admission-ledger",
+          "slug": "05-admission-ledger",
+          "kind": "marketing-component",
+          "title": "Admission ledger and annual pass",
+          "standalone_path": "components/marketing/folioarchive/05-admission-ledger.html",
+          "snippet_path": "components/marketing/folioarchive/snippets/05-admission-ledger.partial.html"
+        },
+        {
+          "id": "dispatch-signup",
+          "slug": "06-dispatch-signup",
+          "kind": "marketing-component",
+          "title": "Seasonal dispatch signup states",
+          "standalone_path": "components/marketing/folioarchive/06-dispatch-signup.html",
+          "snippet_path": "components/marketing/folioarchive/snippets/06-dispatch-signup.partial.html"
+        }
+      ]
+    },
+    "wardline": {
+      "name": "Wardline",
+      "tagline": "Preventive Care and Clinical Design System",
+      "archetype": "Calm Clinical & Biometric Daylight",
+      "domain": "Preventive Medicine, Biomarker Translation & Lab Draws",
+      "fonts": [
+        "Source Sans 3",
+        "Fira Code"
+      ],
+      "font_css": "fonts/wardline-fonts.css",
+      "product_page": "systems/wardline.html",
+      "marketing_page": "marketing/wardline.html",
+      "product_tokens_css": "tokens/wardline-product.css",
+      "marketing_tokens_css": "tokens/wardline-marketing.css",
+      "product_components": [
+        {
+          "id": "workspace",
+          "slug": "00-workspace",
+          "kind": "workspace",
+          "title": "Claire Lindqvist",
+          "standalone_path": "components/product/wardline/00-workspace.html",
+          "snippet_path": "components/product/wardline/snippets/00-workspace.partial.html"
+        },
+        {
+          "id": "tokens",
+          "slug": "01-foundations-tokens",
+          "kind": "foundations",
+          "title": "Foundations \u2014 Color Swatches & Typography Specimens",
+          "standalone_path": "components/product/wardline/01-foundations-tokens.html",
+          "snippet_path": "components/product/wardline/snippets/01-foundations-tokens.partial.html"
+        },
+        {
+          "id": "medication-orders",
+          "slug": "02-medication-orders",
+          "kind": "product-component",
+          "title": "Medication orders",
+          "standalone_path": "components/product/wardline/02-medication-orders.html",
+          "snippet_path": "components/product/wardline/snippets/02-medication-orders.partial.html"
+        },
+        {
+          "id": "home-cuff-alerts",
+          "slug": "03-home-cuff-alerts",
+          "kind": "product-component",
+          "title": "Home cuff alerts",
+          "standalone_path": "components/product/wardline/03-home-cuff-alerts.html",
+          "snippet_path": "components/product/wardline/snippets/03-home-cuff-alerts.partial.html"
+        },
+        {
+          "id": "lab-check-in",
+          "slug": "04-lab-check-in",
+          "kind": "product-component",
+          "title": "Lab check-in",
+          "standalone_path": "components/product/wardline/04-lab-check-in.html",
+          "snippet_path": "components/product/wardline/snippets/04-lab-check-in.partial.html"
+        },
+        {
+          "id": "visit-record",
+          "slug": "05-visit-record",
+          "kind": "product-component",
+          "title": "Visit record",
+          "standalone_path": "components/product/wardline/05-visit-record.html",
+          "snippet_path": "components/product/wardline/snippets/05-visit-record.partial.html"
+        }
+      ],
+      "product_overlays": [
+        {
+          "id": "dosage-dialog",
+          "slug": "overlay-dosage-dialog",
+          "title": "Update dosage",
+          "snippet_path": "components/product/wardline/snippets/overlay-dosage-dialog.partial.html"
+        },
+        {
+          "id": "history-drawer",
+          "slug": "overlay-history-drawer",
+          "title": "LDL cholesterol",
+          "snippet_path": "components/product/wardline/snippets/overlay-history-drawer.partial.html"
+        }
+      ],
+      "marketing_components": [
+        {
+          "id": "image-guidelines",
+          "slug": "01-image-guidelines",
+          "kind": "marketing-component",
+          "title": "Portrait direction and clinical daylight",
+          "standalone_path": "components/marketing/wardline/01-image-guidelines.html",
+          "snippet_path": "components/marketing/wardline/snippets/01-image-guidelines.partial.html"
+        },
+        {
+          "id": "lifestyle-hero",
+          "slug": "02-lifestyle-hero",
+          "kind": "marketing-component",
+          "title": "Background-image hero",
+          "standalone_path": "components/marketing/wardline/02-lifestyle-hero.html",
+          "snippet_path": "components/marketing/wardline/snippets/02-lifestyle-hero.partial.html"
+        },
+        {
+          "id": "range-translator",
+          "slug": "03-range-translator",
+          "kind": "marketing-component",
+          "title": "Plain-English biomarker range cards",
+          "standalone_path": "components/marketing/wardline/03-range-translator.html",
+          "snippet_path": "components/marketing/wardline/snippets/03-range-translator.partial.html"
+        },
+        {
+          "id": "membership-card",
+          "slug": "04-membership-card",
+          "kind": "marketing-component",
+          "title": "Flagship membership and partner selector",
+          "standalone_path": "components/marketing/wardline/04-membership-card.html",
+          "snippet_path": "components/marketing/wardline/snippets/04-membership-card.partial.html"
+        },
+        {
+          "id": "park-banner",
+          "slug": "05-park-banner",
+          "kind": "marketing-component",
+          "title": "Background-image clinic lookup stage",
+          "standalone_path": "components/marketing/wardline/05-park-banner.html",
+          "snippet_path": "components/marketing/wardline/snippets/05-park-banner.partial.html"
+        },
+        {
+          "id": "booking-states",
+          "slug": "06-booking-states",
+          "kind": "marketing-component",
+          "title": "Slot lookup and validation states",
+          "standalone_path": "components/marketing/wardline/06-booking-states.html",
+          "snippet_path": "components/marketing/wardline/snippets/06-booking-states.partial.html"
+        }
+      ]
+    }
+  },
+  "totals": {
+    "systems": 6,
+    "product_workspaces": 6,
+    "product_foundations": 6,
+    "product_component_specimens": 26,
+    "product_dialogs_and_drawers": 13,
+    "marketing_component_chapters": 36,
+    "marketing_dialogs": 6
+  }
+}

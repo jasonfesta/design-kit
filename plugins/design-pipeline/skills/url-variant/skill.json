@@ -1,0 +1,39 @@
+{
+  "id": "url-variant",
+  "display_name": "url variant",
+  "google3_package": "url_variant",
+  "title": "url-variant",
+  "icon": "\ud83e\uddec",
+  "category": "sub-skill of concept-art \u00b7 chrome devtools fullpage + dom text -> nano banana 2.1 unique variant & dual-axis eval",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "url-variant",
+  "agent_md": "url-variant/agent.md",
+  "skill_md": "url-variant/SKILL.md",
+  "html_page": "url-variant/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/url-variant",
+  "bundle_skill": "url-variant.skill",
+  "bundle_zip": "url-variant.zip",
+  "short_summary": "captures full-length desktop and mobile screenshots plus complete desktop and mobile dom text from a url via chrome devtools, generates a true unique nano banana 2.1 variant (new text, new colors, new fonts, same vibe, zero flutter/artifacts), and scores uniqueness vs. aesthetic quality.",
+  "when_to_use": "use whenever taking a live url and producing a true unique variant of both its desktop and mobile full-length pages with completely new copy, colors, and fonts while purging flutter or original artifacts.",
+  "quick_cmd": "node url-variant/scripts/capture_url_devtools_and_dom.mjs --url=https://example.com --out-dir=./study",
+  "summary": "Captures full-length desktop and mobile screenshots plus complete desktop and mobile DOM text from any URL using Google Chrome DevTools Protocol, builds and locks the complete 10-section variation prompt architecture ahead of time (Stance Dial 0.10 to 1.00, 8 canonical Design Style Stances, live Google Fonts with 4-surface CSS-to-2K scale locks, and per-band widget/copy blueprints), executes a two-pass screenshot-conditioned Nano Banana 2.1 transfer (Pass 1 Desktop; Pass 2 Mobile conditioned on BOTH Mobile Capture and Desktop Variant), computes diagnostic Uniqueness, Quality, and Non-Regression scores, and presents the output at a Designer Review Checkpoint. Use when creating a unique design variation from a live URL. Don't use for 1-to-1 faithful plate refreshes that keep copy verbatim (use nanofy).",
+  "references": [
+    "./references/contributing.md",
+    "./references/deep-transfer-prompt-architecture.md",
+    "./references/flutter-and-artifact-remediation.md",
+    "./references/style-stances-and-variation-dial.md",
+    "./references/uniqueness-and-quality-metrics.md",
+    "./scripts/capture_url_devtools_and_dom.mjs",
+    "./scripts/eval_url_variant.py",
+    "./scripts/plan_and_run_variant.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=url-variant"
+  }
+}

@@ -1,0 +1,12 @@
+# secrets
+plugins/*/mcp_config.json
+# build outputs
+dist/
+*.skill
+*.zip
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+# large media (track with LFS if pushed)
+*.mp4

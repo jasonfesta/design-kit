@@ -1,0 +1,32 @@
+{
+  "id": "design-flywheel",
+  "display_name": "design-flywheel",
+  "google3_package": "design_flywheel",
+  "title": "design-flywheel",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "design-flywheel",
+  "agent_md": "design-flywheel/agent.md",
+  "skill_md": "design-flywheel/SKILL.md",
+  "html_page": "design-flywheel/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/design-flywheel",
+  "bundle_skill": "design-flywheel.skill",
+  "bundle_zip": "design-flywheel.zip",
+  "short_summary": "Iterative self-improving design flywheel skill for jason-design-agent. Runs an automated multi-turn loop (up to 5 iterations) targeting typography, color, and individual touts using targeted Nano Banana 1K re-renders and micro-research before presenting at the designer checkpoint.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Iterative self-improving design flywheel skill for jason-design-agent. Runs an automated multi-turn loop (up to 5 iterations) targeting typography, color, and individual touts using targeted Nano Banana 1K re-renders and micro-research before presenting at the designer checkpoint.",
+  "references": [
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=design-flywheel"
+  }
+}

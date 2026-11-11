@@ -1,0 +1,2620 @@
+{
+  "schema_version": "1.0",
+  "delivery_pattern": "Self-hosted <link rel='stylesheet' href='...'> containing @font-face data:font/woff2;base64,... with font-display: block (zero CORS errors in Content-Security-Policy: sandbox opaque origin 'null', zero DejaVu Sans fallback)",
+  "stylesheets": {
+    "directory": {
+      "css_file": "site/fonts/directory-fonts.css",
+      "target_page": "site/index.html",
+      "purpose": "Editorial landing directory pairing optical-size literary serif display/prose with crisp humanist geometric UI captions",
+      "css_bytes": 239124,
+      "css_kb": 233.5,
+      "total_woff2_bytes": 178472,
+      "total_woff2_kb": 174.3,
+      "recommended_stacks": {
+        "display": "'Newsreader', Georgia, serif",
+        "prose": "'Newsreader', Georgia, serif",
+        "ui": "'Plus Jakarta Sans', sans-serif"
+      },
+      "faces": [
+        {
+          "family": "Newsreader",
+          "style": "normal",
+          "css_weight": "400 600",
+          "css_stretch": "100%",
+          "role": "display & editorial prose (roman)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/newsreader",
+          "woff2_bytes": 94520,
+          "base64_bytes": 126028,
+          "glyph_count": 291,
+          "unicode_count": 233,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 600.0
+            },
+            "opsz": {
+              "min": 12.0,
+              "default": 18.0,
+              "max": 72.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "pnum",
+            "rvrn",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": true,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1100,
+            "1": 1100,
+            "8": 1100,
+            "+": 1000,
+            "U+2212_minus": 1000
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Newsreader",
+          "style": "italic",
+          "css_weight": "400",
+          "css_stretch": "100%",
+          "role": "display & editorial prose (italic)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/newsreader",
+          "woff2_bytes": 63940,
+          "base64_bytes": 85256,
+          "glyph_count": 291,
+          "unicode_count": 233,
+          "variable_axes": {
+            "opsz": {
+              "min": 12.0,
+              "default": 18.0,
+              "max": 72.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "pnum",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": true,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1100,
+            "1": 1100,
+            "8": 1100,
+            "+": 1000,
+            "U+2212_minus": 1000
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Plus Jakarta Sans",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "navigation, system metadata & card indices",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/plusjakartasans",
+          "woff2_bytes": 20012,
+          "base64_bytes": 26684,
+          "glyph_count": 336,
+          "unicode_count": 271,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "case",
+            "kern",
+            "liga",
+            "locl",
+            "pnum",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 732,
+            "1": 371,
+            "8": 628,
+            "+": 606,
+            "U+2212_minus": 606
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd"
+          ]
+        }
+      ]
+    },
+    "switchyard": {
+      "css_file": "site/fonts/switchyard-fonts.css",
+      "target_page": "site/systems/switchyard.html",
+      "purpose": "Precision developer deployment & issue workspace (zero Inter)",
+      "css_bytes": 112224,
+      "css_kb": 109.6,
+      "total_woff2_bytes": 83228,
+      "total_woff2_kb": 81.3,
+      "recommended_stacks": {
+        "display": "'Space Grotesk', 'IBM Plex Sans', sans-serif",
+        "ui": "'IBM Plex Sans', 'JetBrains Mono', sans-serif",
+        "mono": "'JetBrains Mono', monospace"
+      },
+      "faces": [
+        {
+          "family": "Space Grotesk",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "technical display & section headings",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/spacegrotesk",
+          "woff2_bytes": 24728,
+          "base64_bytes": 32972,
+          "glyph_count": 372,
+          "unicode_count": 255,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 641,
+            "1": 418,
+            "8": 623,
+            "+": 620,
+            "U+2212_minus": 620
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "IBM Plex Sans",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "high-density workspace UI with unambiguous 1/l/I",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/ibmplexsans",
+          "woff2_bytes": 27592,
+          "base64_bytes": 36792,
+          "glyph_count": 297,
+          "unicode_count": 268,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "kern",
+            "liga",
+            "lnum",
+            "onum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 600,
+            "1": 600,
+            "8": 600,
+            "+": 600,
+            "U+2212_minus": 600
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "JetBrains Mono",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "commit SHAs, keyboard shortcuts (⌘), logs & tabular metrics",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/jetbrainsmono",
+          "woff2_bytes": 30908,
+          "base64_bytes": 41212,
+          "glyph_count": 444,
+          "unicode_count": 274,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "case",
+            "locl",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 600,
+            "1": 600,
+            "8": 600,
+            "+": 600,
+            "U+2212_minus": 600
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": []
+        }
+      ]
+    },
+    "ledgermark": {
+      "css_file": "site/fonts/ledgermark-fonts.css",
+      "target_page": "site/systems/ledgermark.html",
+      "purpose": "Editorial treasury & institutional financial ledger system",
+      "css_bytes": 266556,
+      "css_kb": 260.3,
+      "total_woff2_bytes": 198340,
+      "total_woff2_kb": 193.7,
+      "recommended_stacks": {
+        "display": "'Source Serif 4', Georgia, serif",
+        "ui": "'Instrument Sans', 'IBM Plex Mono', sans-serif",
+        "mono": "'IBM Plex Mono', monospace"
+      },
+      "faces": [
+        {
+          "family": "Source Serif 4",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "treasury mastheads, editorial briefs & analytical headers (roman)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/sourceserif4",
+          "woff2_bytes": 87340,
+          "base64_bytes": 116456,
+          "glyph_count": 360,
+          "unicode_count": 270,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            },
+            "opsz": {
+              "min": 10.0,
+              "default": 20.0,
+              "max": 60.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": true,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 500,
+            "1": 500,
+            "8": 500,
+            "+": 530,
+            "U+2212_minus": 530
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd"
+          ]
+        },
+        {
+          "family": "Source Serif 4",
+          "style": "italic",
+          "css_weight": "400",
+          "css_stretch": "100%",
+          "role": "editorial emphasis & audit notes (italic)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/sourceserif4",
+          "woff2_bytes": 51368,
+          "base64_bytes": 68492,
+          "glyph_count": 367,
+          "unicode_count": 270,
+          "variable_axes": {
+            "opsz": {
+              "min": 10.0,
+              "default": 20.0,
+              "max": 48.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": true,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 511,
+            "1": 511,
+            "8": 511,
+            "+": 530,
+            "U+2212_minus": 530
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd"
+          ]
+        },
+        {
+          "family": "Instrument Sans",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "crisp neo-grotesque controls, form labels & table headers",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/instrumentsans",
+          "woff2_bytes": 31424,
+          "base64_bytes": 41900,
+          "glyph_count": 278,
+          "unicode_count": 220,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "locl",
+            "pnum",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 666,
+            "1": 391,
+            "8": 582,
+            "+": 531,
+            "U+2212_minus": 531
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+00B1_plusminus",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "IBM Plex Mono",
+          "style": "normal",
+          "css_weight": "400",
+          "css_stretch": "100%",
+          "role": "lining tabular accounting figures & ISO currency codes (400)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/ibmplexmono",
+          "woff2_bytes": 9392,
+          "base64_bytes": 12524,
+          "glyph_count": 265,
+          "unicode_count": 250,
+          "variable_axes": {},
+          "opentype_features": [
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 600,
+            "1": 600,
+            "8": 600,
+            "+": 600,
+            "U+2212_minus": 600
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "IBM Plex Mono",
+          "style": "normal",
+          "css_weight": "500",
+          "css_stretch": "100%",
+          "role": "lining tabular accounting figures & settlement amounts (500)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/ibmplexmono",
+          "woff2_bytes": 9400,
+          "base64_bytes": 12536,
+          "glyph_count": 265,
+          "unicode_count": 250,
+          "variable_axes": {},
+          "opentype_features": [
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 600,
+            "1": 600,
+            "8": 600,
+            "+": 600,
+            "U+2212_minus": 600
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "IBM Plex Mono",
+          "style": "normal",
+          "css_weight": "600",
+          "css_stretch": "100%",
+          "role": "ledger subtotals, net balances & variance deltas (600)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/ibmplexmono",
+          "woff2_bytes": 9416,
+          "base64_bytes": 12556,
+          "glyph_count": 265,
+          "unicode_count": 250,
+          "variable_axes": {},
+          "opentype_features": [
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 600,
+            "1": 600,
+            "8": 600,
+            "+": 600,
+            "U+2212_minus": 600
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        }
+      ]
+    },
+    "civicgate": {
+      "css_file": "site/fonts/civicgate-fonts.css",
+      "target_page": "site/systems/civicgate.html",
+      "purpose": "High-clarity accessible civic public service system",
+      "css_bytes": 91171,
+      "css_kb": 89.0,
+      "total_woff2_bytes": 67412,
+      "total_woff2_kb": 65.8,
+      "recommended_stacks": {
+        "display": "'Public Sans', 'Source Code Pro', sans-serif",
+        "ui": "'Public Sans', 'Source Code Pro', sans-serif",
+        "mono": "'Source Code Pro', monospace"
+      },
+      "faces": [
+        {
+          "family": "Public Sans",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "accessible civic headings, plain-language guidance & form labels (roman)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/publicsans",
+          "woff2_bytes": 22756,
+          "base64_bytes": 30344,
+          "glyph_count": 285,
+          "unicode_count": 234,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1224,
+            "1": 814,
+            "8": 1295,
+            "+": 1109,
+            "U+2212_minus": 1109
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Public Sans",
+          "style": "italic",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "statutory citations & inline guidance emphasis (italic)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/publicsans",
+          "woff2_bytes": 24268,
+          "base64_bytes": 32360,
+          "glyph_count": 285,
+          "unicode_count": 234,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1178,
+            "1": 793,
+            "8": 1245,
+            "+": 1068,
+            "U+2212_minus": 1068
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Source Code Pro",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "application reference codes, national IDs, dates & fee tables",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/sourcecodepro",
+          "woff2_bytes": 20388,
+          "base64_bytes": 27184,
+          "glyph_count": 332,
+          "unicode_count": 278,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "onum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 600,
+            "1": 600,
+            "8": 600,
+            "+": 600,
+            "U+2212_minus": 600
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd"
+          ]
+        }
+      ]
+    },
+    "fieldrig": {
+      "css_file": "site/fonts/fieldrig-fonts.css",
+      "target_page": "site/systems/fieldrig.html",
+      "purpose": "Tactile industrial audio & hardware instrument studio",
+      "css_bytes": 134316,
+      "css_kb": 131.2,
+      "total_woff2_bytes": 99984,
+      "total_woff2_kb": 97.6,
+      "recommended_stacks": {
+        "display": "'Archivo', 'Azeret Mono', sans-serif",
+        "ui": "'Archivo', 'Azeret Mono', sans-serif",
+        "mono": "'Azeret Mono', monospace"
+      },
+      "faces": [
+        {
+          "family": "Archivo",
+          "style": "normal",
+          "css_weight": "400 800",
+          "css_stretch": "75% 115%",
+          "role": "silkscreened chassis headers & condensed channel-strip legends",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/archivo",
+          "woff2_bytes": 82744,
+          "base64_bytes": 110328,
+          "glyph_count": 329,
+          "unicode_count": 249,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 600.0,
+              "max": 800.0
+            },
+            "wdth": {
+              "min": 75.0,
+              "default": 100.0,
+              "max": 115.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "rvrn",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 575,
+            "1": 576,
+            "8": 576,
+            "+": 636,
+            "U+2212_minus": 636
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Azeret Mono",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "recessed digital Hz / dB / ms readouts with zero-jitter tabular numerals & U+2212",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/azeretmono",
+          "woff2_bytes": 17240,
+          "base64_bytes": 22988,
+          "glyph_count": 293,
+          "unicode_count": 247,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "case",
+            "liga",
+            "locl",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 650,
+            "1": 650,
+            "8": 650,
+            "+": 650,
+            "U+2212_minus": 650
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        }
+      ]
+    },
+    "folioarchive": {
+      "css_file": "site/fonts/folioarchive-fonts.css",
+      "target_page": "site/systems/folioarchive.html",
+      "purpose": "Museum & scholarly research publishing design system",
+      "css_bytes": 281929,
+      "css_kb": 275.3,
+      "total_woff2_bytes": 210084,
+      "total_woff2_kb": 205.2,
+      "recommended_stacks": {
+        "display": "'Fraunces', 'Newsreader', Georgia, serif",
+        "prose": "'Newsreader', Georgia, serif",
+        "ui": "'Work Sans', sans-serif"
+      },
+      "faces": [
+        {
+          "family": "Fraunces",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "exhibition display titles, drop caps & sculpted pull-quotes (roman)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/fraunces",
+          "woff2_bytes": 65636,
+          "base64_bytes": 87516,
+          "glyph_count": 263,
+          "unicode_count": 233,
+          "variable_axes": {
+            "opsz": {
+              "min": 9.0,
+              "default": 9.0,
+              "max": 144.0
+            },
+            "wght": {
+              "min": 400.0,
+              "default": 700.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "rvrn"
+          ],
+          "has_tnum_or_default_tabular": false,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": true,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1407,
+            "1": 983,
+            "8": 1312,
+            "+": 1137,
+            "U+2212_minus": 1137
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Fraunces",
+          "style": "italic",
+          "css_weight": "400",
+          "css_stretch": "100%",
+          "role": "exhibition subtitles, pull-quotes & epigraphs (italic)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/fraunces",
+          "woff2_bytes": 40932,
+          "base64_bytes": 54576,
+          "glyph_count": 264,
+          "unicode_count": 232,
+          "variable_axes": {
+            "opsz": {
+              "min": 14.0,
+              "default": 14.0,
+              "max": 72.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "rvrn"
+          ],
+          "has_tnum_or_default_tabular": false,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": true,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1296,
+            "1": 867,
+            "8": 1128,
+            "+": 1100,
+            "U+2212_minus": 1100
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Newsreader",
+          "style": "normal",
+          "css_weight": "400 600",
+          "css_stretch": "100%",
+          "role": "sustained scholarly catalog essays & provenance apparatus (roman)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/newsreader",
+          "woff2_bytes": 41904,
+          "base64_bytes": 55872,
+          "glyph_count": 291,
+          "unicode_count": 233,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 600.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "pnum",
+            "rvrn",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1133,
+            "1": 1133,
+            "8": 1133,
+            "+": 1023,
+            "U+2212_minus": 1023
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Newsreader",
+          "style": "italic",
+          "css_weight": "400",
+          "css_stretch": "100%",
+          "role": "published work titles, Latin binomials & scholarly citations (italic)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/newsreader",
+          "woff2_bytes": 25924,
+          "base64_bytes": 34568,
+          "glyph_count": 291,
+          "unicode_count": 233,
+          "variable_axes": {},
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "pnum",
+            "tnum"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1133,
+            "1": 1133,
+            "8": 1133,
+            "+": 1033,
+            "U+2212_minus": 1033
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ]
+        },
+        {
+          "family": "Work Sans",
+          "style": "normal",
+          "css_weight": "400 600",
+          "css_stretch": "100%",
+          "role": "sharp museum accession numbers, faceted catalog filters & metadata tables",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/worksans",
+          "woff2_bytes": 35688,
+          "base64_bytes": 47584,
+          "glyph_count": 385,
+          "unicode_count": 274,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 600.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "case",
+            "kern",
+            "liga",
+            "lnum",
+            "locl",
+            "onum",
+            "pnum",
+            "rvrn",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 622,
+            "1": 390,
+            "8": 616,
+            "+": 604,
+            "U+2212_minus": 604
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": [
+            "U+2318_cmd"
+          ]
+        }
+      ]
+    },
+    "wardline": {
+      "css_file": "site/fonts/wardline-fonts.css",
+      "target_page": "site/systems/wardline.html",
+      "purpose": "Calm clinical & scientific observatory telemetry system",
+      "css_bytes": 122972,
+      "css_kb": 120.1,
+      "total_woff2_bytes": 91264,
+      "total_woff2_kb": 89.1,
+      "recommended_stacks": {
+        "display": "'Source Sans 3', 'Fira Code', sans-serif",
+        "ui": "'Source Sans 3', 'Fira Code', sans-serif",
+        "mono": "'Fira Code', monospace"
+      },
+      "faces": [
+        {
+          "family": "Source Sans 3",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "calm high-x-height clinical headings, patient/station labels & alerts (roman)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/sourcesans3",
+          "woff2_bytes": 30012,
+          "base64_bytes": 40016,
+          "glyph_count": 359,
+          "unicode_count": 290,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "locl",
+            "onum",
+            "pnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 497,
+            "1": 497,
+            "8": 497,
+            "+": 497,
+            "U+2212_minus": 497
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": []
+        },
+        {
+          "family": "Source Sans 3",
+          "style": "italic",
+          "css_weight": "400 600",
+          "css_stretch": "100%",
+          "role": "secondary clinical annotations & units context (italic)",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/sourcesans3",
+          "woff2_bytes": 25172,
+          "base64_bytes": 33564,
+          "glyph_count": 360,
+          "unicode_count": 290,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 600.0
+            }
+          },
+          "opentype_features": [
+            "case",
+            "kern",
+            "liga",
+            "locl",
+            "onum",
+            "pnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": false,
+          "default_digits_tabular": false,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 479,
+            "1": 480,
+            "8": 480,
+            "+": 480,
+            "U+2212_minus": 480
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": []
+        },
+        {
+          "family": "Fira Code",
+          "style": "normal",
+          "css_weight": "400 700",
+          "css_stretch": "100%",
+          "role": "tabular vital-sign / observatory sensor telemetry, timestamps & U+2212 deltas",
+          "license": "SIL Open Font License 1.1 (OFL-1.1)",
+          "source": "https://github.com/google/fonts/tree/main/ofl/firacode",
+          "woff2_bytes": 36080,
+          "base64_bytes": 48108,
+          "glyph_count": 508,
+          "unicode_count": 269,
+          "variable_axes": {
+            "wght": {
+              "min": 400.0,
+              "default": 400.0,
+              "max": 700.0
+            }
+          },
+          "opentype_features": [
+            "calt",
+            "case",
+            "locl",
+            "onum",
+            "tnum",
+            "zero"
+          ],
+          "has_tnum_or_default_tabular": true,
+          "default_digits_tabular": true,
+          "has_lnum_or_lining_default": true,
+          "has_opsz": false,
+          "has_u2212_minus": true,
+          "advance_widths_upm": {
+            "0": 1200,
+            "1": 1200,
+            "8": 1200,
+            "+": 1200,
+            "U+2212_minus": 1200
+          },
+          "verified_symbols_present": [
+            "U+2013_ndash",
+            "U+2014_mdash",
+            "U+2018_lsquo",
+            "U+2019_rsquo",
+            "U+201C_ldquo",
+            "U+201D_rdquo",
+            "U+2026_hellip",
+            "U+2190_larrow",
+            "U+2191_uarrow",
+            "U+2192_rarrow",
+            "U+2193_darrow",
+            "U+2212_minus",
+            "U+00A3_gbp",
+            "U+20AC_eur",
+            "U+00B1_plusminus",
+            "U+00D7_times",
+            "U+2318_cmd",
+            "U+25B2_tri_up",
+            "U+25BC_tri_down",
+            "U+25C6_diamond",
+            "U+25A0_square"
+          ],
+          "symbols_absent_use_paired_fallback": []
+        }
+      ]
+    }
+  },
+  "chromium_sandbox_verification": {
+    "all_passed": true,
+    "csp_header_tested": "Content-Security-Policy: sandbox allow-scripts allow-forms allow-popups",
+    "verified_window_origin": "null",
+    "external_network_blocked": true,
+    "external_requests_attempted": 0,
+    "method": "Playwright headless Chromium (2x DPR) + document.fonts.check() + tnum span width measurement + CDP CSS.getPlatformFontsForNode custom-font glyph audit",
+    "results_by_stylesheet": {
+      "directory": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Regular",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Regular",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 600 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Regular",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "italic 400 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Italic",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Plus Jakarta Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Plus Jakarta Sans",
+                "postScriptName": "PlusJakartaSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Plus Jakarta Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Plus Jakarta Sans",
+                "postScriptName": "PlusJakartaSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Plus Jakarta Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Plus Jakarta Sans",
+                "postScriptName": "PlusJakartaSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          }
+        ]
+      },
+      "switchyard": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Space Grotesk\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Space Grotesk Light",
+                "postScriptName": "SpaceGrotesk-Light",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Space Grotesk\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Space Grotesk Light",
+                "postScriptName": "SpaceGrotesk-Light",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Space Grotesk\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Space Grotesk Light",
+                "postScriptName": "SpaceGrotesk-Light",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"IBM Plex Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "IBM Plex Sans",
+                "postScriptName": "IBMPlexSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"IBM Plex Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "IBM Plex Sans",
+                "postScriptName": "IBMPlexSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"IBM Plex Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "IBM Plex Sans",
+                "postScriptName": "IBMPlexSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"JetBrains Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "JetBrains Mono",
+                "postScriptName": "JetBrainsMono-Regular",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"JetBrains Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "JetBrains Mono",
+                "postScriptName": "JetBrainsMono-Regular",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"JetBrains Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "JetBrains Mono",
+                "postScriptName": "JetBrainsMono-Regular",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          }
+        ]
+      },
+      "ledgermark": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Source Serif 4\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Serif 4",
+                "postScriptName": "SourceSerif4Roman-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Source Serif 4\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Serif 4",
+                "postScriptName": "SourceSerif4Roman-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Source Serif 4\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Serif 4",
+                "postScriptName": "SourceSerif4Roman-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "italic 400 20px \"Source Serif 4\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Serif 4",
+                "postScriptName": "SourceSerif4Italic-Italic",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Instrument Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Instrument Sans",
+                "postScriptName": "InstrumentSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 78
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Instrument Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Instrument Sans",
+                "postScriptName": "InstrumentSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 78
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Instrument Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Instrument Sans",
+                "postScriptName": "InstrumentSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 78
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"IBM Plex Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "IBM Plex Mono",
+                "postScriptName": "IBMPlexMono-Regular",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"IBM Plex Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "IBM Plex Mono Medium",
+                "postScriptName": "IBMPlexMono-Medium",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 600 20px \"IBM Plex Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "IBM Plex Mono SemiBold",
+                "postScriptName": "IBMPlexMono-SemiBold",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          }
+        ]
+      },
+      "civicgate": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Public Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Public Sans Thin",
+                "postScriptName": "PublicSans-Thin",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Public Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Public Sans Thin",
+                "postScriptName": "PublicSans-Thin",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Public Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Public Sans Thin",
+                "postScriptName": "PublicSans-Thin",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "italic 400 20px \"Public Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Public Sans Thin",
+                "postScriptName": "PublicSans-ThinItalic",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "italic 500 20px \"Public Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Public Sans Thin",
+                "postScriptName": "PublicSans-ThinItalic",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "italic 700 20px \"Public Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Public Sans Thin",
+                "postScriptName": "PublicSans-ThinItalic",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Source Code Pro\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Code Pro ExtraLight",
+                "postScriptName": "SourceCodePro-ExtraLight",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Source Code Pro\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Code Pro ExtraLight",
+                "postScriptName": "SourceCodePro-ExtraLight",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Source Code Pro\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Code Pro ExtraLight",
+                "postScriptName": "SourceCodePro-ExtraLight",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          }
+        ]
+      },
+      "fieldrig": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Archivo\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Archivo SemiBold",
+                "postScriptName": "Archivo-SemiBold",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Archivo\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Archivo SemiBold",
+                "postScriptName": "Archivo-SemiBold",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 800 20px \"Archivo\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Archivo SemiBold",
+                "postScriptName": "Archivo-SemiBold",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Azeret Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Azeret Mono Thin",
+                "postScriptName": "AzeretMono-Thin",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Azeret Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Azeret Mono Thin",
+                "postScriptName": "AzeretMono-Thin",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Azeret Mono\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Azeret Mono Thin",
+                "postScriptName": "AzeretMono-Thin",
+                "isCustomFont": true,
+                "glyphCount": 83
+              }
+            ]
+          }
+        ]
+      },
+      "folioarchive": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Fraunces\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Fraunces",
+                "postScriptName": "Fraunces-9ptBlack",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Fraunces\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Fraunces",
+                "postScriptName": "Fraunces-9ptBlack",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Fraunces\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Fraunces",
+                "postScriptName": "Fraunces-9ptBlack",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "italic 400 20px \"Fraunces\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Fraunces",
+                "postScriptName": "Fraunces-9ptBlackItalic",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Regular",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Regular",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 600 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Regular",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "italic 400 20px \"Newsreader\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Newsreader 16pt",
+                "postScriptName": "Newsreader16pt-Italic",
+                "isCustomFont": true,
+                "glyphCount": 75
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Work Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Work Sans",
+                "postScriptName": "WorkSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Work Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Work Sans",
+                "postScriptName": "WorkSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          },
+          {
+            "spec": "normal 600 20px \"Work Sans\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Work Sans",
+                "postScriptName": "WorkSans-Regular",
+                "isCustomFont": true,
+                "glyphCount": 88
+              }
+            ]
+          }
+        ]
+      },
+      "wardline": {
+        "pass": true,
+        "window_origin": "null",
+        "console_errors": 0,
+        "failed_requests": 0,
+        "all_document_fonts_check_true": true,
+        "dejavu_fallback_glyphs": 0,
+        "system_fallback_glyphs": 0,
+        "tnum_max_delta_px": 0,
+        "specimens_tested": [
+          {
+            "spec": "normal 400 20px \"Source Sans 3\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Sans 3 ExtraLight",
+                "postScriptName": "SourceSans3-Roman",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Source Sans 3\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Sans 3 ExtraLight",
+                "postScriptName": "SourceSans3-Roman",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Source Sans 3\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Source Sans 3 ExtraLight",
+                "postScriptName": "SourceSans3-Roman",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "italic 400 20px \"Source Sans 3\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Source Sans 3 ExtraLight",
+                "postScriptName": "SourceSans3-Italic",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "italic 500 20px \"Source Sans 3\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Source Sans 3 ExtraLight",
+                "postScriptName": "SourceSans3-Italic",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "italic 600 20px \"Source Sans 3\"",
+            "fonts_check": true,
+            "tnum_delta_px": null,
+            "platform_fonts": [
+              {
+                "familyName": "Source Sans 3 ExtraLight",
+                "postScriptName": "SourceSans3-Italic",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 400 20px \"Fira Code\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Fira Code Light",
+                "postScriptName": "FiraCode-Light",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 500 20px \"Fira Code\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Fira Code Light",
+                "postScriptName": "FiraCode-Light",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          },
+          {
+            "spec": "normal 700 20px \"Fira Code\"",
+            "fonts_check": true,
+            "tnum_delta_px": 0,
+            "platform_fonts": [
+              {
+                "familyName": "Fira Code Light",
+                "postScriptName": "FiraCode-Light",
+                "isCustomFont": true,
+                "glyphCount": 91
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

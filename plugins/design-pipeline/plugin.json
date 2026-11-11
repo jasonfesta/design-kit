@@ -1,0 +1,8 @@
+{
+  "name": "design-pipeline",
+  "displayName": "Design Pipeline",
+  "description": "Taste-first concept design: benchmark research, style direction, Google font selection, Nano Banana concept plates, polish, eval, hyper-critique, moodboards, design-system creation, and taxonomy.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Research 5 standout benchmarks and propose style directions for my prompt", "Pick Google Fonts for a warm editorial fintech brand", "Mint a tokens-first design system for a new product"]
+}

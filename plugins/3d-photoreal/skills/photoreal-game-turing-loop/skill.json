@@ -1,0 +1,35 @@
+{
+  "id": "photoreal-game-turing-loop",
+  "display_name": "Daily High-Fidelity Photoreal 3D Game Turing Loop",
+  "google3_package": "photoreal_game_turing_loop",
+  "title": "Daily High-Fidelity Photoreal 3D Game Turing Loop",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "photoreal-game-turing-loop",
+  "agent_md": "photoreal-game-turing-loop/agent.md",
+  "skill_md": "photoreal-game-turing-loop/SKILL.md",
+  "html_page": "photoreal-game-turing-loop/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/photoreal-game-turing-loop",
+  "bundle_skill": "photoreal-game-turing-loop.skill",
+  "bundle_zip": "photoreal-game-turing-loop.zip",
+  "short_summary": "End-to-end daily coordinator skill that fuses the ArchDaily Reference-Grounded 4x-RGSS Multi-View Three.js Turing Test Swarm, the 10-Second Toy-First Deterministic 3D Browser Game stack, and the Vamsi AAA Living Game Dossier Laws (Racing, FPS, RTS, and Universal Image-to-Working-Model) to build a high-fidelity photorealistic 3D game each day. Use when creating a daily photoreal 3D web game, racing simulator, tactical FPS, medieval RTS, or playable 3D diorama grounded in reference photography with multi-camera Turing parity, 400% macro-crop critics, CSPRNG double-blind A/B juries, and 60fps instanced WebGL rendering. Don't use for static 2D UI mockups (use jason-design-agent or jason-dev-agent).",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "End-to-end daily coordinator skill that fuses the ArchDaily Reference-Grounded 4x-RGSS Multi-View Three.js Turing Test Swarm, the 10-Second Toy-First Deterministic 3D Browser Game stack, and the Vamsi AAA Living Game Dossier Laws (Racing, FPS, RTS, and Universal Image-to-Working-Model) to build a high-fidelity photorealistic 3D game each day. Use when creating a daily photoreal 3D web game, racing simulator, tactical FPS, medieval RTS, or playable 3D diorama grounded in reference photography with multi-camera Turing parity, 400% macro-crop critics, CSPRNG double-blind A/B juries, and 60fps instanced WebGL rendering. Don't use for static 2D UI mockups (use jason-design-agent or jason-dev-agent).",
+  "references": [
+    "./references/contributing.md",
+    "./references/human-taste-and-antipatterns.md",
+    "./references/image-to-working-3d-model.md",
+    "./scripts/make_blind_ab.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=photoreal-game-turing-loop"
+  }
+}

@@ -1,0 +1,71 @@
+<section aria-labelledby="h-install-stage" class="sy-doc-section" data-component-doc="" id="install-stage">
+<div class="sy-doc-head">
+<h2 id="h-install-stage">CLI install command</h2>
+<p class="sy-doc-desc">Stages a copyable terminal setup line for developer launch pages across default, copied confirmation, and multi-step deploy output states.</p>
+</div>
+<div class="sy-usage-notes" data-usage-notes="">
+<div class="sy-usage-col">
+<h3>When to use</h3>
+<ul class="sy-usage-list">
+<li>Place beneath a developer launch hero when engineers want to scaffold a local service directly from their terminal.</li>
+<li>Show the three-step deploy output state when documenting push-to-live verification without dashboard screenshots.</li>
+</ul>
+</div>
+<div class="sy-usage-col">
+<h3>How to apply it</h3>
+<ul class="sy-usage-list">
+<li>Limit package manager options to three common runtimes so the command row stays clean and spacious.</li>
+<li>Stack the idle and copied button labels inside one grid cell so copying causes zero horizontal layout shift.</li>
+<li>Keep terminal output limited to four concise lines rather than crowding the block with sliders or metric widgets.</li>
+</ul>
+</div>
+</div>
+<div class="sy-specimen-bar">
+<div aria-label="CLI install command states" class="sy-state-tabs" data-state-tabs="" role="tablist">
+<button aria-controls="panel-sim-default" aria-selected="true" class="sy-state-tab" id="tab-sim-default" role="tab" tabindex="0" type="button">Default</button>
+<button aria-controls="panel-sim-copied" aria-selected="false" class="sy-state-tab" id="tab-sim-copied" role="tab" tabindex="-1" type="button">Copied confirmation</button>
+<button aria-controls="panel-sim-deploy" aria-selected="false" class="sy-state-tab" id="tab-sim-deploy" role="tab" tabindex="-1" type="button">Multi-step deploy output</button>
+</div>
+</div>
+<!-- Tabpanel 1 (default): Spacious single CLI install card -->
+<div aria-labelledby="tab-sim-default" class="sy-specimen-well" data-specimen-state="default" id="panel-sim-default" role="tabpanel">
+<article aria-labelledby="sy-cli-card-title" class="sy-spec-card">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+<h3 id="sy-cli-card-title">Scaffold a local worker</h3>
+<div aria-label="Package manager" class="sy-pkg-bar" role="radiogroup">
+<button aria-checked="true" class="sy-pkg-btn" data-cmd="pnpm create switchyard@latest" role="radio" type="button">pnpm</button>
+<button aria-checked="false" class="sy-pkg-btn" data-cmd="npm create switchyard@latest" role="radio" type="button">npm</button>
+<button aria-checked="false" class="sy-pkg-btn" data-cmd="curl -fsSL https://get.switchyard.dev/sy.sh | sh" role="radio" type="button">curl</button>
+</div>
+</div>
+<div class="sy-cmd-box">
+<code class="sy-cmd-line" id="sy-live-cmd">pnpm create switchyard@latest</code>
+<button class="sy-btn sy-btn-sm" id="sy-copy-cli" type="button">
+<span class="sy-btn-stack">
+<span class="sy-copy-idle">Copy</span>
+<span class="sy-copy-done" hidden="">Copied</span>
+</span>
+</button>
+</div>
+<p class="sy-hint num">Creates a typed service directory with local webhook replay and standard OCI Dockerfile output.</p>
+</article>
+</div>
+<!-- Tabpanel 2: Copied confirmation -->
+<div aria-labelledby="tab-sim-copied" class="sy-specimen-well" data-specimen-state="copied-confirmation" hidden="" id="panel-sim-copied" role="tabpanel">
+<article class="sy-spec-card">
+<h3>Confirmed clipboard copy</h3>
+<div class="sy-cmd-box">
+<code class="sy-cmd-line">pnpm create switchyard@latest</code>
+<button class="sy-btn sy-btn-sm sy-btn-primary" type="button">Copied</button>
+</div>
+<p class="sy-hint num">Holds confirmed feedback for 1.4 seconds inside the exact button width before returning to rest.</p>
+</article>
+</div>
+<!-- Tabpanel 3: Multi-step deploy output -->
+<div aria-labelledby="tab-sim-deploy" class="sy-specimen-well" data-specimen-state="deploy-output" hidden="" id="panel-sim-deploy" role="tabpanel">
+<article class="sy-spec-card">
+<h3>Deploy terminal transcript</h3>
+<pre class="sy-cmd-box" style="flex-direction: column; align-items: flex-start; gap: 6px; margin: 0;"><code class="sy-cmd-line">$ sy deploy --region fra</code><code class="sy-cmd-line" style="color: var(--ink-secondary);">  OCI layers diffed in 3.1 s · preflight checks clean</code><code class="sy-cmd-line" style="color: var(--ink-secondary);">  Routed 25% canary share across Frankfurt (11 ms median)</code><code class="sy-cmd-line" style="color: var(--status-ready);">  Live in 8.0 s · 640 ms rollback snapshot warm on NVMe</code></pre>
+</article>
+</div>
+</section>

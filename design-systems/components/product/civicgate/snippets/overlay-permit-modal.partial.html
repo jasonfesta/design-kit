@@ -1,0 +1,34 @@
+<dialog aria-labelledby="modal-title" class="civic-modal" id="permit-modal">
+<form class="dialog-inner" id="modal-form" method="dialog">
+<div class="dialog-head">
+<h2 id="modal-title">Update permit details</h2>
+<button aria-label="Close dialog" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="16" viewbox="0 0 16 16" width="16">
+<path d="M3.5 3.5l9 9m0-9l-9 9" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+</button>
+</div>
+<div class="field-group">
+<label class="field-label" for="modal-address">Address</label>
+<input class="text-input" id="modal-address" type="text" value="14 Kelvin Terrace, Zone B"/>
+</div>
+<div class="field-group">
+<label class="field-label" for="modal-reg">Vehicle registration</label>
+<input class="text-input text-input--short" id="modal-reg" type="text" value="LV19 MRO"/>
+</div>
+<div class="field-group">
+<label class="field-label" for="modal-start">Permit start date</label>
+<input class="text-input tabular" id="modal-start" type="text" value="1 December 2026"/>
+</div>
+<div class="action-row">
+<button class="civic-btn" id="modal-save" type="submit">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Save changes</span>
+</button>
+<button class="civic-btn civic-btn--secondary" data-close-dialog="" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Cancel</span>
+</button>
+</div>
+</form>
+</dialog>

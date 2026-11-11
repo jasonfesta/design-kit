@@ -1,0 +1,98 @@
+<section aria-labelledby="h-fee-estimator" class="doc-section" data-component-doc="" data-section="calculator" id="fee-estimator">
+<div class="shell">
+<h2 class="doc-h2" id="h-fee-estimator">Household tariff calculator</h2>
+<p class="doc-desc">Lets residents calculate an exact 12-month street permit fee from two simple dropdowns for postcode zone and vehicle type without starting an account.</p>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul>
+<li>Provide before checkout whenever council charges vary across ward zones, emissions bands, and zero-fee statutory exemptions.</li>
+<li>Limit the estimator to two plain dropdown inputs and tabular pound figures rather than sliders, steppers, or comparison charts.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Usage and image rules</h3>
+<ul>
+<li>Style select menus cleanly without raw browser chrome so touch targets stay generous and readable outdoors on phones.</li>
+<li>Pull every fee from one shared schedule so calculator totals, state examples, and tariff tables agree to the pound.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div class="calc-grid">
+<form class="specimen-card" id="calc-form" novalidate="" style="align-self: start;">
+<div class="calc-select-pair" style="margin-bottom: 0;">
+<div class="field-group">
+<label class="field-label" for="calc-zone">Postcode bay zone</label>
+<div class="select-wrap">
+<select class="custom-select tnum" data-calc-input="" id="calc-zone">
+<option value="A">Zone A — Town centre</option>
+<option selected="" value="B">Zone B — Kelvin ward</option>
+<option value="C">Zone C — Outer wards</option>
+<option value="D">Zone D — Market canal</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</div>
+</div>
+<div class="field-group">
+<label class="field-label" for="calc-fuel">Vehicle type</label>
+<div class="select-wrap">
+<select class="custom-select tnum" data-calc-input="" id="calc-fuel">
+<option selected="" value="electric">Electric (0 g/km)</option>
+<option value="hybrid">Plug-in hybrid (1–50 g/km)</option>
+<option value="petrol">Petrol or diesel</option>
+<option value="badge">Blue Badge exempt</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</div>
+</div>
+</div>
+<p class="field-hint tnum" style="margin-top: 14px;">First household permit shown. Second vehicles at the same address add £35 a year.</p>
+</form>
+<div aria-live="polite" class="calc-summary">
+<p class="calc-context" id="calc-context">Zone B, electric</p>
+<output class="calc-figure tnum" data-calc-output="" for="calc-zone calc-fuel" id="calc-total">£45 / year</output>
+<p class="calc-saving tnum" id="calc-saving">Saves £75 a year compared with standard petrol permits</p>
+<dl class="fee-lines tnum">
+<div class="fee-line">
+<dt id="calc-std-label">Standard Zone B petrol rate</dt>
+<dd id="calc-std-val">£120</dd>
+</div>
+<div class="fee-line" id="calc-disc-row">
+<dt id="calc-disc-label">Low-emission reduction</dt>
+<dd id="calc-disc-val">−£75</dd>
+</div>
+<div class="fee-line">
+<dt>Weekly equivalent</dt>
+<dd id="calc-weekly">£0.87 / week</dd>
+</div>
+</dl>
+</div>
+</div>
+<div class="specimen-grid-3">
+<div class="specimen-card tnum" data-specimen-state="discounted-electric">
+<p class="specimen-label">Discounted electric state</p>
+<p class="field-label" style="font-size: 1.5rem;">£45 / year</p>
+<p class="calc-saving">Saves £75 against Zone B petrol (£120)</p>
+<p class="field-hint">Zone B · 1st vehicle · £0.87 / week</p>
+</div>
+<div class="specimen-card tnum" data-specimen-state="standard-petrol">
+<p class="specimen-label">Standard petrol state</p>
+<p class="field-label" style="font-size: 1.5rem;">£120 / year</p>
+<p style="font-size: 0.90625rem; color: var(--ink-secondary);">Standard tariff with no emission discount</p>
+<p class="field-hint">Zone B · 1st vehicle · £2.31 / week</p>
+</div>
+<div class="specimen-card tnum" data-specimen-state="blue-badge-exempt">
+<p class="specimen-label">Blue Badge exempt state</p>
+<p class="field-label" style="font-size: 1.5rem;">£0 free</p>
+<p class="calc-saving">Full statutory fee waiver in Zones A to D</p>
+<p class="field-hint">Nominated resident or carer vehicle</p>
+</div>
+</div>
+</div>
+</div>
+</section>

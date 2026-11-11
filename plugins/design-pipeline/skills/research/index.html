@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>research</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>research</h1>
+      <p>researches, screenshots, and documents 5 standout non-beige benchmarks across full-length desktop and mobile pages using pure inspiration and live web captures, logging avoid_fonts and avoid_palettes.</p>
+      <div class="actions">
+        <a href="../research.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>research</h1>
+<pre data-lang="text"><code>jason-design-agent / research (stage 1 · 5 distinct non-beige examples + craft sweep)
+────────────────────────────────────────────────────────────────────
+input         user_prompt + curated design inspiration mds + live web
+              OR a list of urls (pasted / .txt / sites.json) -&gt; url-list intake
+core yield    5 standout real-world examples chosen because each produces a
+              VISIBLY DIFFERENT structural, chromatic &amp; material result
+url intake    entire long desktop page of EVERY url captured FIRST (cdp/playwright @2x)
+              -&gt; inspiration/manifest.json -&gt; 1 analyzer agent per url in parallel
+              -&gt; 1 synthesizer -&gt; 1 verifier (analyze_inspiration_workflow.py)
+anti-beige    explicitly reject warm-beige monoculture; require 5 contrasting
+              color/material polarities (optic white/steel, deep color-block,
+              nocturnal obsidian, brutalist concrete, stark monochrome, etc.)
+support       inner design craft references + cursory 19-directory sweep
+guardrails    preserve direct structural/chromatic DNA · log avoid_fonts</code></pre>
+<p><code>research</code> is Stage 1 of <strong><code>jason-design-agent</code></strong>. Weak concept runs fail because they gather interchangeable warm-beige sites and average them into mush. <code>research</code> solves this at the root by yielding <strong>5 standout real-world benchmark examples</strong> specifically selected so they <strong>produce 5 unmistakably different results</strong> when translated into Nano Banana concepts—backed by inner-design craft touchstones and a cursory sweep across <a href="references/design-directory-sources.md">19 specialist design directories</a>.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 0 — url-list intake (when the user supplies urls)</strong>: skip open-web discovery. Run <code>node scripts/capture_fullpage_devtools.mjs --study-dir=&lt;study&gt; --urls=&quot;&lt;pasted list&gt;&quot;</code> (or <code>--urls-file=</code>) <strong>outside the sandbox</strong>. It slugs every url into <code>research/sources.json</code>, captures the <strong>entire long desktop page of every url first</strong> (<code>@2x</code>, tiled CDP, up to the ImageMagick ceiling), writes <code>inspiration/manifest.json</code> + <code>inspiration/README.md</code> + <code>inspiration/&lt;slug&gt;-desktop-fullpage.png</code> immediately, then runs the mobile pass. Then fan out the analysis across agents with <code>run_workflow(ScriptPath=&quot;scripts/analyze_inspiration_workflow.py&quot;, Args={&quot;study_dir&quot;: ..., &quot;user_prompt&quot;: ...})</code> — <strong>one analyzer agent per url in parallel</strong> (<code>research/properties/&lt;slug&gt;.md</code> + <code>research/prompts/&lt;slug&gt;-inspiration-prompt.md</code>), one synthesizer (<code>research/benchmarks.md</code> + <code>research/style-range.md</code>), one adversarial verifier. Protocol: <a href="references/url-intake-and-multi-agent-analysis.md">url-intake-and-multi-agent-analysis.md</a>. Continue at step 4 with the synthesized style range.</span></li>
+<li><span class="check-box"></span><span><strong>step 1 — enforce chromatic &amp; structural separation across <code>5-10</code> named style-range directions</strong>: research all provided/category-leading properties and ensure the resulting <strong>Style Range (<code>5-10</code> distinct named styles)</strong> spans contrasting non-beige visual worlds (zero warm-beige/oat/cream monoculture)—for example, optic <code>#FFFFFF</code> &amp; brushed steel, crisp mineral alabaster &amp; <code>1px</code> Swiss telemetry ledger, nocturnal <code>#0A0B0E</code> chiaroscuro, cool raw <code>#E3E6EA</code> concrete &amp; architectural grid, stark <code>#0C0C0E</code> / <code>#F7F8FA</code> split monochrome, technical blueprint cobalt, and chromatic editorial studio.</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — capture pixel-perfect full-webpage screenshots (<code>capture_fullpage_devtools.mjs</code> via Chrome DevTools / Playwright) + cursory 19-directory sweep</strong>: run <a href="scripts/capture_fullpage_devtools.mjs">scripts/capture_fullpage_devtools.mjs</a> to capture the <strong>entire full-length webpage</strong> at <code>@2x</code> Desktop (<code>desktop-fullpage.png</code> <code>2880px</code> wide + 4-column <code>desktop-fullpage-contact.jpg</code> + <code>2K</code> hero/mid/lower/footer base slices) and <code>@3x</code> Mobile (<code>mobile-fullpage.png</code> <code>1170px</code> wide + <code>mobile-base-2k.png</code>), plus <code>fullpage-callouts.json</code> mapping <strong>every section and callout from top to bottom</strong>. Visually inspect every capture via <code>read_file</code> (falling back to viewport-scrolled slices on sticky-scroll or bot-gated pages), and run a fast scan across <code>godly.website</code>, <code>landdding.com</code>, <code>footer.design</code>, <code>mobbin.com</code>, <code>60fps.design</code>, <code>beui.dev</code>, <code>backgrounds.supply</code>, and <code>fontinlogo.com</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 3 — document the full-webpage 5-part anatomical &amp; section-callout breakdown per site (<code>research/properties/&lt;NN&gt;-&lt;slug&gt;.md</code>)</strong>: for every researched site, explicitly break down <strong>(1) header</strong>, <strong>(2) navigation</strong>, <strong>(3) every tout &amp; callout across the entire full webpage</strong> (hero + every mid/lower callout card, bento cell, code/diff block, metric strip, and proof rail), <strong>(4) each interaction</strong> (live sandboxes, tabs, code toggles, diff sliders, workflow graphs), and <strong>(5) footer</strong> (colophon, columns, status pill, closure), alongside <strong>textural/material</strong>, <strong>designer</strong>, and <strong>frontend-developer</strong> art-direction specs and <code>2K</code> base transfer plates for <code>image-gen</code>.</span></li>
+<li><span class="check-box"></span><span><strong>step 4 — compile <code>research/benchmarks.md</code> + named <code>5-10</code> Style Range + <code>avoid_fonts</code> blocklist</strong>: synthesize and <strong>name the <code>5-10</code> distinct style directions</strong> that break down the first moodboard, verify squint-test separation (zero default beige), and log proprietary/brand typefaces in <code>avoid_fonts</code> so <code>google-font-selection</code> pairs fresh live Google Fonts with each style&#x27;s authentic visual energy.</span></li>
+</ul>
+<h2>1. three layers of direct-inspiration evidence per example</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>lens</th><th>what <code>research</code> locks for direct downstream generation</th></tr></thead>
+<tbody>
+<tr><td><strong>textural &amp; material</strong></td><td>Exact physical substrate (brushed 304 steel, matte obsidian, raw cool concrete, color-blocked enamel), light temperature, shadow falloff, zero plastic AI sheen, zero warm-beige default.</td></tr>
+<tr><td><strong>designer eye</strong></td><td>Display-to-body scale jumps, asymmetric vs. Swiss-grid tension, negative-space cadence, color-blocking ratios, and focal eye-path taken directly from the benchmark.</td></tr>
+<tr><td><strong>frontend developer eye</strong></td><td>Exact column splits (<code>50/50</code>, <code>280px + 1fr</code>, exposed <code>1px</code> grid seams), corner radii (<code>0px</code>, <code>8px</code>, pill), <code>2:1</code> button optical padding, <code>tabular-nums</code> alignment, and complete footer closure.</td></tr>
+</tbody>
+</table></div>
+<h2>references</h2>
+<ul>
+<li><a href="references/url-intake-and-multi-agent-analysis.md">url-list intake, desktop-first inspiration capture &amp; multi-agent analysis</a></li>
+<li><a href="references/benchmark-capture-and-evidence-rules.md">headless screenshot capture, dossier template &amp; originality blocklists</a></li>
+<li><a href="references/design-directory-sources.md">19 curated design directories &amp; cursory sweep protocol</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

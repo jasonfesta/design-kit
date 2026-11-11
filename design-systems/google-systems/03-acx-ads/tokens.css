@@ -1,0 +1,116 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   03. GOOGLE ADS & PLAY CONSOLE ACX DESIGN SYSTEM (acx2 | acx/css/gm)
+   Google3 Provenance:
+     - //depot/google3/ads/acx2/g3doc/index.md (go/acx, go/acx-gallery)
+     - //depot/google3/ads/acx2/g3doc/dev/sass/styles.md (go/acx-css)
+     - //depot/google3/third_party/dart_src/acx/css/gm/_color.scss & _density.scss
+     - //depot/google3/ux/tokens/design_systems/xgads/
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* ACX GM Financial & Reporting Surfaces */
+    --acx-sys-color-canvas: #f8f9fa;
+    --acx-sys-color-surface: #ffffff;
+    --acx-sys-color-surface-header: #f1f3f4;
+    --acx-sys-color-surface-totals: #f8f9fa;
+    --acx-sys-color-row-hover: #f1f3f4;
+    --acx-sys-color-row-selected: #e8f0fe;
+    --acx-sys-color-inverse-surface: #202124;
+
+    /* Typography & Hairline Borders */
+    --acx-sys-color-ink-primary: #202124;
+    --acx-sys-color-ink-secondary: #5f6368;
+    --acx-sys-color-ink-muted: #80868b;
+    --acx-sys-color-border: #dadce0;
+    --acx-sys-color-border-subtle: #e8eaed;
+
+    /* Scorecard Series & Action Accents (0% Purple) */
+    --acx-sys-color-primary: #1a73e8;
+    --acx-sys-color-primary-strong: #174ea6;
+    --acx-sys-color-primary-tint: #e8f0fe;
+    --acx-sys-color-series-teal: #007b83;
+    --acx-sys-color-series-amber: #f29900;
+
+    /* GAR-Contrast Verified Callout & Delta Roles (_color.scss: $warning-icon-filled: #a85d00) */
+    --acx-sys-color-positive: #1e8e3e;
+    --acx-sys-color-positive-bg: #e6f4ea;
+    --acx-sys-color-warning: #a85d00;
+    --acx-sys-color-warning-bg: #fef7e0;
+    --acx-sys-color-negative: #d93025;
+    --acx-sys-color-negative-bg: #fce8e6;
+
+    --acx-elevation-card: 0 1px 2px 0 rgba(60, 64, 67, 0.16), 0 1px 3px 1px rgba(60, 64, 67, 0.08);
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --acx-sys-color-canvas: #17181b;
+    --acx-sys-color-surface: #202124;
+    --acx-sys-color-surface-header: #292a2d;
+    --acx-sys-color-surface-totals: #252629;
+    --acx-sys-color-row-hover: #292a2d;
+    --acx-sys-color-row-selected: #1e3a5f;
+    --acx-sys-color-inverse-surface: #f1f3f4;
+
+    --acx-sys-color-ink-primary: #e8eaed;
+    --acx-sys-color-ink-secondary: #9aa0a6;
+    --acx-sys-color-ink-muted: #80868b;
+    --acx-sys-color-border: #3c4043;
+    --acx-sys-color-border-subtle: #303134;
+
+    --acx-sys-color-primary: #8ab4f8;
+    --acx-sys-color-primary-strong: #aecbfa;
+    --acx-sys-color-primary-tint: #1e3a5f;
+    --acx-sys-color-series-teal: #4ecde6;
+    --acx-sys-color-series-amber: #fdd663;
+
+    --acx-sys-color-positive: #81c995;
+    --acx-sys-color-positive-bg: #173a21;
+    --acx-sys-color-warning: #fdd663;
+    --acx-sys-color-warning-bg: #4d3808;
+    --acx-sys-color-negative: #f28b82;
+    --acx-sys-color-negative-bg: #521c19;
+
+    --acx-elevation-card: 0 1px 3px rgba(0, 0, 0, 0.45);
+  }
+
+  :root {
+    --acx-font-display: 'Google Sans', 'Instrument Sans', 'Plus Jakarta Sans', sans-serif;
+    --acx-font-ui: 'Roboto', 'Instrument Sans', 'IBM Plex Sans', sans-serif;
+    --acx-font-mono: 'Roboto Mono', 'IBM Plex Mono', ui-monospace, monospace;
+
+    /* ACX _density.scss Grid Multipliers ($grid = 4px: 7=28px, 9=36px, 12=48px, 14=56px) */
+    --acx-density-height-three: 28px;
+    --acx-density-height-two: 36px;
+    --acx-density-height-one: 48px;
+    --acx-density-height-zero: 56px;
+    --acx-radius-card: 8px;
+    --acx-radius-control: 4px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--acx-sys-color-canvas);
+    color: var(--acx-sys-color-ink-primary);
+    font-family: var(--acx-font-ui);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .acx-num { font-variant-numeric: tabular-nums; text-align: right; }
+  .acx-mono { font-family: var(--acx-font-mono); font-variant-numeric: tabular-nums; }
+}

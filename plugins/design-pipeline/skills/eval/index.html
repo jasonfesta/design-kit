@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eval</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>eval</h1>
+      <p>audits 2k plates against 01-anchor coherence, anti-clone originality vs. 5 standout benchmarks, canon.md agreement, 2k footers, surface distinctness, and the 3-round cap.</p>
+      <div class="actions">
+        <a href="../eval.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>eval</h1>
+<pre data-lang="text"><code>jason-design-agent / eval (stage 5 · 6-gate concept &amp; originality rubric)
+────────────────────────────────────────────────────────────────────
+input         concepts/ (01..12 2k pngs across web/app/component/experience)
+              + prompts/01-anchor.md + style-direction/ + research/
+6 hard gates  1. prompt-01 style lock   4. 2k framing &amp; footers
+              2. anti-clone originality 5. 4x3 pillar &amp; experience distinctness
+              3. canon.md data match    6. &lt;= 3 nano banana rounds
+loop          pass -&gt; freeze slot &amp; advance to design-critique + moodboard
+              fail (round &lt; 3) -&gt; emit surgical directive to polish</code></pre>
+<p><code>eval</code> is Stage 5 of <strong><code>jason-design-agent</code></strong>—the objective quality and originality gate governing the <code>image-gen &lt;-&gt; polish</code> loop across all <strong>12 (<code>4 x 3</code>) <code>2k</code> plates</strong>. Slots that pass all 6 gates <strong>freeze immediately</strong> at Round 1; slots that fail receive bounded <code>[P0]</code> / <code>[P1]</code> surgical directives routed to <code>polish</code> (up to <code>min(design_agent_turns, 3)</code> rounds maximum).</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 1 — gate <code>01-anchor</code> before batch expansion</strong>: inspect <code>concepts/web/01-web-01-*.png</code> via <code>read_file</code> + dimension check first. Block <code>02..12</code> generation until <code>01-anchor</code> passes Gates 1–4 and Gate 6.</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — inspect every <code>2k</code> image individually (<code>01..12</code>)</strong>: inspect each PNG at readable resolution (<code>read_file</code>) plus deterministic width/height/sRGB checks.</span></li>
+<li><span class="check-box"></span><span><strong>step 3 — cross-check against <code>research/benchmarks.md</code> + 5 screenshot folders</strong>: verify category-bar craft with <strong>zero copied benchmark fonts (<code>avoid_fonts</code>), brand hexes (<code>avoid_palettes</code>), logos, or layouts</strong>.</span></li>
+<li><span class="check-box"></span><span><strong>step 3.5 — tri-perspective brutal audit &amp; anti-inching check</strong>: audit failing or candidate slots across the 3 perspectives (1. designer visual taste, 2. research benchmarks, 3. ruthless self-audit) and enforce the <strong>10-dimension auto-correction matrix</strong> (<code>python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py audit</code>) so polish never inches one minor change at a time.</span></li>
+<li><span class="check-box"></span><span><strong>step 4 — write <code>eval/concept-eval.md</code> scorecard &amp; route failing slots</strong>: mark every slot <code>FROZEN</code> or <code>NEEDS_POLISH (round R of max 3)</code> with 10-dimension auto-correction instructions.</span></li>
+</ul>
+<h2>1. the 6 concept evaluation gates</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>gate</th><th>what <code>eval</code> verifies</th><th>failure action</th></tr></thead>
+<tbody>
+<tr><td><strong>1. <code>01-anchor</code> style &amp; 2-font coherence</strong></td><td>Art direction, 8-token hex family, corner radii, <code>1px</code> hairlines, and <strong>strict <code>&lt;= 2</code> Google Font pairing</strong> (<code>primary</code> headline + <code>secondary</code> UI/body, or <code>primary == secondary</code>—zero scattered 3rd/4th fonts) match <code>01-anchor</code> across all 12 plates.</td><td><strong><code>[P0]</code></strong> -&gt; surgical <code>polish</code> referencing <code>01-anchor</code>.</td></tr>
+<tr><td><strong>2. anti-clone originality</strong></td><td>Cross-checked against <code>research/screenshots/01..05/</code>, <code>avoid_fonts</code>, and <code>avoid_palettes</code>: <code>0</code> copied fonts, <code>0</code> copied palettes, <code>0</code> cloned layouts.</td><td><strong><code>[P0]</code></strong> -&gt; immediate <code>polish</code> / token fix.</td></tr>
+<tr><td><strong>3. <code>canon.md</code> &amp; <code>coverage.md</code> agreement</strong></td><td>Brand wordmark, domain vocabulary, entities, prices/metrics, active web nav (<code>1/2/3</code>), and app tab order (<code>1/2/3</code>) match <code>canon.md</code>.</td><td><strong><code>[P1]</code></strong> -&gt; surgical <code>polish</code> on mismatched label/state.</td></tr>
+<tr><td><strong>4. <code>&gt;= 1K</code> / <code>2K</code> crystal-clear geometry, framing &amp; footers</strong></td><td>Every edge <code>&gt;= 1024px</code> (<code>min(w, h) &gt;= 1024</code>, canonical <code>2K</code> lossless sRGB <code>.png</code>), crystal-clear acutance (<code>sharpness_ratio &gt;= 0.28</code>, <code>hf_detail_std &gt;= 0.8</code> via <code>lock_and_verify_plates.py verify</code>), flat orthographic UI capture (<code>0</code> bezels or angled desks), legible lettering, and complete footers on web plates.</td><td><strong><code>[P0]</code></strong> -&gt; re-lock or re-frame via <code>polish</code> before Pre-Moodboard Checkpoint.</td></tr>
+<tr><td><strong>5. <code>4 x 3</code> distinctness (<code>web · app · component · experience</code>)</strong></td><td>Web covers 3 distinct pages; App covers 3 distinct screens of 1 app; Components (<code>07..09</code>) are <strong>3 separate components</strong>; Experiences (<code>10..12</code>) are <strong>3 unique interactive experiences</strong>.</td><td><strong><code>[P0]</code></strong> -&gt; rewrite slot prompt within round cap.</td></tr>
+<tr><td><strong>6. Nano Banana 3-round budget guard</strong></td><td><code>rounds_used &lt;= min(design_agent_turns, 3)</code> (<code>&lt;= 3</code> hard ceiling); passing slots freeze at <code>1</code> round; zero 4th calls ever.</td><td><strong>Hard Stop</strong> -&gt; log residual notes in <code>eval/concept-eval.md</code> for <code>jason-dev-agent</code>.</td></tr>
+</tbody>
+</table></div>
+<h2>references</h2>
+<ul>
+<li><a href="references/concept-eval-gates.md">deterministic dimension/palette checks &amp; <code>eval/concept-eval.md</code> scorecard template</a></li>
+<li><code>hyper-critique swarm (15 personas), tri-perspective judgment &amp; 10-dimension auto-correction matrix</code></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<section class="sy-container sy-workspace" data-section="workspace" id="workspace">
+<div class="sy-work-head">
+<div>
+<h1>Core API · Release 24.11</h1>
+<p class="sy-chapter-sub">Six changes staged for production rollout across three regional worker pools.</p>
+</div>
+<div class="sy-work-controls">
+<div class="sy-search-wrap">
+<svg aria-hidden="true" class="sy-search-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<circle cx="7" cy="7" r="4.75"></circle>
+<line stroke-linecap="round" x1="10.5" x2="14" y1="10.5" y2="14"></line>
+</svg>
+<input aria-label="Filter issues" class="sy-input" id="sy-issue-search" placeholder="Filter issues..." type="search"/>
+</div>
+<div class="sy-select-wrap" style="width: auto;">
+<select aria-label="Filter by status" class="sy-select" id="sy-state-filter">
+<option value="all">All statuses</option>
+<option value="Ready">Ready</option>
+<option value="In review">In review</option>
+<option value="Queued">Queued</option>
+</select>
+<svg aria-hidden="true" class="sy-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+</div>
+</div>
+<!-- Equal 3-column release metrics with identical label baselines and crisp micro-lines -->
+<div aria-label="Release summary" class="sy-metrics">
+<div class="sy-metric-item">
+<div class="sy-metric-copy">
+<div class="sy-metric-val num" id="sy-uptime-val">99.98%</div>
+<div class="sy-metric-label">Uptime · 30 days</div>
+</div>
+<svg aria-hidden="true" class="sy-spark-svg" viewbox="0 0 108 30">
+<path d="M2,8 L38,8 L43,13 L48,8 L84,8 L88,10 L92,8 L106,8" fill="none" stroke="var(--status-ready)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="sy-metric-item">
+<div class="sy-metric-copy">
+<div class="sy-metric-val num" id="sy-closed-val">12</div>
+<div class="sy-metric-label">Issues shipped</div>
+</div>
+<svg aria-hidden="true" class="sy-spark-svg" viewbox="0 0 108 30">
+<path d="M2,25 L22,25 L22,20 L46,20 L46,15 L70,15 L70,10 L90,10 L90,6 L106,6" fill="none" stroke="var(--ink-muted)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="sy-metric-item">
+<div class="sy-metric-copy">
+<div class="sy-metric-val num" id="sy-latency-val">42 ms</div>
+<div class="sy-metric-label">Median p50</div>
+</div>
+<svg aria-hidden="true" class="sy-spark-svg" viewbox="0 0 108 30">
+<defs>
+<lineargradient id="sy-spark-grad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="var(--curve-fill-top)"></stop>
+<stop offset="100%" stop-color="var(--curve-fill-bot)"></stop>
+</lineargradient>
+</defs>
+<path d="M2,8 L22,9 L38,11 L54,19 L74,20 L90,23 L106,23 L106,29 L2,29 Z" fill="url(#sy-spark-grad)"></path>
+<path d="M2,8 L22,9 L38,11 L54,19 L74,20 L90,23 L106,23" fill="none" stroke="var(--focus-ring)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<div class="sy-work-split">
+<!-- Airy 6-row issue list -->
+<div>
+<div class="sy-table-scroll">
+<table aria-label="Release issues" class="sy-table" id="sy-release-table">
+<thead>
+<tr>
+<th aria-sort="descending" data-sort-key="id" scope="col">
+<button class="sy-sort-btn" type="button">
+<span>Issue</span>
+<svg aria-hidden="true" class="sy-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+<th scope="col">Owner</th>
+<th aria-sort="none" data-sort-key="status" scope="col">
+<button class="sy-sort-btn" type="button">
+<span>Status</span>
+<svg aria-hidden="true" class="sy-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+<th aria-sort="none" data-numeric="true" data-sort-key="delta" scope="col">
+<button class="sy-sort-btn" type="button">
+<span>Delta</span>
+<svg aria-hidden="true" class="sy-sort-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12">
+<polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</button>
+</th>
+</tr>
+</thead>
+<tbody id="sy-release-tbody">
+<!-- Populated synchronously by canonical JS store -->
+</tbody>
+</table>
+</div>
+<div class="sy-empty" hidden="" id="sy-table-empty">
+<p class="muted">No release issues match that filter.</p>
+<button class="sy-btn sy-btn-sm" id="sy-clear-filter" type="button">Clear filter</button>
+</div>
+</div>
+<!-- Selected issue side detail pane -->
+<aside aria-labelledby="sy-detail-title" class="sy-panel">
+<div class="sy-detail-meta" id="sy-detail-meta">API-418 · a8f3d2 · 2m ago</div>
+<h2 id="sy-detail-title" style="font-size: 1.0625rem; line-height: 1.32;">Streamline webhook retry backoff</h2>
+<p class="sy-detail-desc" id="sy-detail-desc">Replaces fixed five-second retries with jittered exponential intervals across delivery workers.</p>
+<div aria-label="Configuration diff" class="sy-diff" id="sy-detail-diff">
+<span class="sy-diff-del">- retry_interval_ms: 5000</span>
+<span class="sy-diff-del">- retry_jitter: false</span>
+<span class="sy-diff-add">+ retry_backoff_ms: [400, 1200, 3600]</span>
+<span class="sy-diff-add">+ retry_jitter: true</span>
+</div>
+<div class="sy-action-row">
+<button class="sy-btn sy-btn-primary" data-open-modal="#promote-dialog" type="button">Promote release</button>
+<button class="sy-btn" data-open-drawer="#issue-drawer" type="button">View activity</button>
+</div>
+</aside>
+</div>
+</section>

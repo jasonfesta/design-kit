@@ -1,0 +1,36 @@
+{
+  "id": "design-critique",
+  "display_name": "design critique",
+  "google3_package": "design_critique",
+  "title": "design critique",
+  "icon": "\ud83c\udfaf",
+  "category": "shared bridge \u00b7 upfront sign-off, talk-backs & final output",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "design-critique",
+  "agent_md": "design-critique/agent.md",
+  "skill_md": "design-critique/SKILL.md",
+  "html_page": "design-critique/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/design-critique",
+  "bundle_skill": "design-critique.skill",
+  "bundle_zip": "design-critique.zip",
+  "short_summary": "runs jason-design-agent's originality and craft critiques across upfront concept sign-off, mid-build jason-dev-agent talk-backs, and the mandatory final post-build jason-design-agent output.",
+  "when_to_use": "use after concept eval passes, after any jason-dev-agent stage eval passes, or at the end of jason-dev-agent to emit the final jason-design-agent output.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=design-critique",
+  "summary": "Runs the hyper-critique designer authority inside jason-design-agent. Enforces tri-perspective brutal judgment on every round (judge like a designer, judge back to research, and judge itself via harsh self-audit), anti-inching auto-correction across 10 dimensions simultaneously before generating the next turn, and orchestrates a 10-to-15 agent critique swarm via run_critique_swarm.py across all moments from pre-Nano prompt critique, Round 1 vs. 5-Benchmark head-to-head, pre-moodboard image checkpoint, to final sign-off. Use inside jason-design-agent whenever critiquing or steering.",
+  "references": [
+    "./references/contributing.md",
+    "./references/critique-lenses-and-inspiration.md",
+    "./references/hyper-critique-swarm-and-auto-correction.md",
+    "./references/paired-dev-to-designer-loop.md",
+    "./scripts/run_critique_swarm.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=design-critique"
+  }
+}

@@ -1,0 +1,75 @@
+<article aria-labelledby="card-tabs-title" class="care-card">
+<div class="care-card-head">
+<nav aria-label="Breadcrumb" class="wl-crumbs">
+<ol>
+<li><a href="#workspace">Preventive care</a></li>
+<li><a href="#workspace">Cardiology</a></li>
+<li aria-current="page">Claire Lindqvist</li>
+</ol>
+</nav>
+<h3 id="card-tabs-title" style="margin-top:4px">Visit record</h3>
+</div>
+<div class="wl-tabs">
+<div aria-label="Visit notes" class="wl-tablist" role="tablist">
+<button aria-controls="wl-panel-1" aria-selected="true" class="wl-tab" id="wl-tab-1" role="tab" tabindex="0" type="button">Care plan</button>
+<button aria-controls="wl-panel-2" aria-selected="false" class="wl-tab" id="wl-tab-2" role="tab" tabindex="-1" type="button">Medications</button>
+<button aria-controls="wl-panel-3" aria-selected="false" class="wl-tab" id="wl-tab-3" role="tab" tabindex="-1" type="button">Daily habits</button>
+</div>
+<div aria-labelledby="wl-tab-1" class="wl-tabpanel" id="wl-panel-1" role="tabpanel">
+                Step evening Atorvastatin from 10 mg to 20 mg and repeat a fasting lipid panel in 8 weeks to bring LDL below 130 mg/dL.
+              </div>
+<div aria-labelledby="wl-tab-2" class="wl-tabpanel" hidden="" id="wl-panel-2" role="tabpanel">
+                Daily regimen includes Atorvastatin with dinner and Vitamin D3 1,000 IU each morning. Zero interactions flagged by pharmacy.
+              </div>
+<div aria-labelledby="wl-tab-3" class="wl-tabpanel" hidden="" id="wl-panel-3" role="tabpanel">
+                Four brisk 30-minute walks per week lowered resting heart rate by 4 bpm since early October with blood pressure at 118 / 74 mmHg.
+              </div>
+</div>
+<div class="care-divider">
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px">
+<span class="wl-label">Prior lipid reviews</span>
+<div aria-label="Preview table state" class="seg-switch" role="group">
+<button aria-pressed="true" data-checkins-view="live" type="button">Visits</button>
+<button aria-pressed="false" data-checkins-view="skeleton" type="button">Loading</button>
+<button aria-pressed="false" data-checkins-view="empty" type="button">Empty</button>
+</div>
+</div>
+<div class="table-scroll" id="checkins-live">
+<table class="wl-table" id="checkins-table">
+<thead>
+<tr>
+<th scope="col">Visit date</th>
+<th aria-sort="ascending" data-ci-sort="delta" data-numeric="true" scope="col">
+<button class="sort-btn" type="button">
+<span>LDL shift</span>
+<svg aria-hidden="true" class="sort-icon" fill="none" stroke="currentColor" stroke-width="1.4" viewbox="0 0 10 10"><path d="M2.5 6.5L5 3.5l2.5 3"></path></svg>
+</button>
+</th>
+<th scope="col">Status</th>
+</tr>
+</thead>
+<tbody id="checkins-tbody">
+<tr>
+<td style="color:var(--ink-primary);font-weight:500">14 Nov 2025</td>
+<td data-numeric="true">−18 mg/dL</td>
+<td><span class="status-normal">Normal</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div aria-label="Loading past visits" class="skeleton-rows" hidden="" id="checkins-skeleton">
+<div class="skel-bar" style="width:86%"></div>
+<div class="skel-bar" style="width:74%"></div>
+<div class="skel-bar" style="width:80%"></div>
+</div>
+<div class="empty-state" hidden="" id="checkins-empty">
+<p style="font-size:0.875rem">No unreviewed lipid panels are waiting for clinician signature.</p>
+<button class="wl-btn" data-checkins-view="live" type="button">Restore visits</button>
+</div>
+</div>
+<div class="inline-actions">
+<button class="wl-btn" data-open-modal="#dosage-dialog" type="button">Review prescription</button>
+<button class="wl-btn" data-marker="hr" data-open-drawer="#history-drawer" type="button">Reading history</button>
+<button class="wl-btn wl-btn--ghost" data-trigger-toast="Visit summary shared with Claire Lindqvist" type="button">Share copy</button>
+</div>
+</article>

@@ -1,0 +1,38 @@
+<article aria-labelledby="lm-card-move" class="lm-specimen">
+<div class="lm-card-head">
+<nav aria-label="Breadcrumb" style="margin-bottom: 4px;">
+<ol class="lm-crumbs num">
+<li><a href="../index.html">All systems</a></li>
+<li aria-hidden="true">/</li>
+<li><a href="#workspace">Checking •••• 4819</a></li>
+<li aria-hidden="true">/</li>
+<li><span aria-current="page">Payouts</span></li>
+</ol>
+</nav>
+<h3 id="lm-card-move">Move money</h3>
+<p class="lm-hint">Queue domestic wires, export monthly CSV ledgers, split expenses, or pause a team card.</p>
+</div>
+<div class="lm-action-row">
+<button class="lm-btn lm-btn-primary" data-open-modal="#transfer-dialog" type="button">Send wire</button>
+<button class="lm-btn" id="lm-busy-btn" type="button">
+<span class="lm-btn-stack">
+<span class="lm-btn-label">Export CSV</span>
+<svg aria-hidden="true" class="lm-spinner" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 16 16">
+<path d="M8 2a6 6 0 1 1-4.24 1.76" stroke-linecap="round"></path>
+</svg>
+</span>
+</button>
+<button class="lm-btn lm-btn-ghost" data-open-drawer="#receipt-drawer" type="button">Split expense</button>
+</div>
+<div class="lm-sub-rule" style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+<div class="lm-action-row">
+<button class="lm-btn lm-btn-danger" data-trigger-toast="Card •••• 1108 paused" type="button">Pause card</button>
+<button class="lm-btn" disabled="" type="button">Wire closed</button>
+<button aria-disabled="true" class="lm-btn" title="Second signatory required above $25,000" type="button">Needs co-signer</button>
+</div>
+<div class="num" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; font-size: 0.8125rem; color: var(--ink-muted);">
+<span>Same-day cutoff · 5:00 PM ET</span>
+<span>Last trace · <span class="mono" style="font-size: 0.78125rem;">FW00291844</span></span>
+</div>
+</div>
+</article>

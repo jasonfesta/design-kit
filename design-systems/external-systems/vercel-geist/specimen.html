@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vercel Geist Design System — Interactive Telemetry Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/switchyard-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: var(--ds-background-200);
+      box-shadow: var(--ds-shadow-border); border-radius: var(--geist-radius-md);
+      margin-bottom: 22px; gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      height: 32px; padding: 0 12px; border-radius: var(--geist-radius-sm);
+      border: none; box-shadow: var(--ds-shadow-border);
+      background: var(--ds-gray-100); color: var(--ds-gray-1000);
+      font-size: 12px; font-family: var(--geist-font-mono); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    }
+    .btn:hover { background: var(--ds-gray-200); box-shadow: var(--ds-shadow-border-hover); }
+    .geist-card {
+      background: var(--ds-background-200); box-shadow: var(--ds-shadow-card);
+      border-radius: var(--geist-radius-md); padding: 20px; margin-bottom: 22px;
+    }
+    .scale-strip {
+      display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; margin-bottom: 16px;
+    }
+    @media (max-width: 820px) { .scale-strip { grid-template-columns: repeat(5, 1fr); } }
+    .step-box {
+      padding: 10px 8px; border-radius: 4px; box-shadow: var(--ds-shadow-border);
+      font-family: var(--geist-font-mono); font-size: 10.5px;
+    }
+    .telemetry-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
+    }
+    .node-box {
+      background: var(--ds-gray-100); border-radius: var(--geist-radius-md);
+      padding: 14px; box-shadow: var(--ds-shadow-border);
+      transition: box-shadow 180ms ease;
+    }
+    .node-box.glow-ok {
+      box-shadow: 0 0 0 1px var(--ds-green-500), 0 0 20px var(--ds-green-glow);
+    }
+    .node-box.glow-err {
+      box-shadow: 0 0 0 1px var(--ds-red-500), 0 0 24px var(--ds-red-glow);
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong style="font-size:14px;letter-spacing:-0.02em;">Vercel Templates &amp; Geist Design System (`vercel.com/design`)</strong>
+        <div class="geist-mono" style="font-size:11.5px;color:var(--ds-gray-900);">10-Step P3/OKLCH Scale, Shadow-as-Border &amp; Dark Telemetry · Prompts #01, #05, #06, #08</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn" id="outage-btn" type="button" style="color:var(--ds-red-500);">⚡ Trigger Incident / Outage Glow</button>
+        <button class="btn" id="theme-btn" type="button">Polarity: Dark / Light</button>
+        <a class="btn" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="geist-card">
+      <h2 style="margin:0 0 12px;font-size:15px;letter-spacing:-0.02em;">1. Geist 10-Step Neutral Scale (`--ds-gray-100` → `1000`) &amp; Telemetry Accents</h2>
+      <div class="scale-strip">
+        <div class="step-box" style="background:var(--ds-gray-100);">100<br>#171717</div>
+        <div class="step-box" style="background:var(--ds-gray-200);">200<br>#1F1F1F</div>
+        <div class="step-box" style="background:var(--ds-gray-300);">300<br>#292929</div>
+        <div class="step-box" style="background:var(--ds-gray-400);">400<br>#2E2E2E</div>
+        <div class="step-box" style="background:var(--ds-gray-500);">500<br>#454545</div>
+        <div class="step-box" style="background:var(--ds-gray-600);color:#000;">600<br>#878787</div>
+        <div class="step-box" style="background:var(--ds-gray-700);color:#000;">700<br>#8F8F8F</div>
+        <div class="step-box" style="background:var(--ds-gray-800);color:#000;">800<br>#7D7D7D</div>
+        <div class="step-box" style="background:var(--ds-gray-900);color:#000;">900<br>#A1A1A1</div>
+        <div class="step-box" style="background:var(--ds-gray-1000);color:var(--ds-background-100);">1000<br>#EDEDED</div>
+      </div>
+    </section>
+
+    <section class="geist-card">
+      <h2 style="margin:0 0 12px;font-size:15px;letter-spacing:-0.02em;">2. Interactive Telemetry &amp; Value-Chain Glow Matrix (Prompts #01, #05, #08)</h2>
+      <div class="telemetry-grid">
+        <div class="node-box glow-ok" id="vc-1">
+          <div class="geist-mono" style="font-size:11px;color:var(--ds-cyan-500);">VALUE CHAIN 01 · DISI-AMMAN CONVEYOR</div>
+          <strong style="display:block;font-size:15px;margin:4px 0 8px;">1. Water for People</strong>
+          <div class="geist-mono" style="font-size:12px;color:var(--ds-gray-900);">Flow: <strong>14,820 m³/h</strong> · Turbidity: <strong>0.42 NTU</strong><br>Lift Stage: Booster Pump #3 Nominal</div>
+        </div>
+        <div class="node-box glow-ok" id="vc-2">
+          <div class="geist-mono" style="font-size:11px;color:var(--ds-cyan-500);">ESTATE GLOBE · LON-01 → SIN-01</div>
+          <strong style="display:block;font-size:15px;margin:4px 0 8px;">CEO Executive Availability</strong>
+          <div class="geist-mono" style="font-size:12px;color:var(--ds-gray-900);">Availability: <strong>99.94%</strong> (Target 99.0%)<br>Apdex: <strong>0.94</strong> · Throughput: <strong>184,200 rpm</strong></div>
+        </div>
+        <div class="node-box glow-ok" id="vc-3">
+          <div class="geist-mono" style="font-size:11px;color:var(--ds-cyan-500);">QUANT TERMINAL · WS 23h 59m TTL</div>
+          <strong style="display:block;font-size:15px;margin:4px 0 8px;">D55-MH &amp; FBDC Carry</strong>
+          <div class="geist-mono" style="font-size:12px;color:var(--ds-gray-900);">OOS Sharpe: <strong>1.42</strong> (≥0.80) · MDD: <strong>8.4%</strong><br>150% Cost Stress: <strong>LIVE_APPROVED</strong></div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      html.dataset.theme = html.dataset.theme === 'light' ? 'dark' : 'light';
+    });
+    let outage = false;
+    document.getElementById('outage-btn').addEventListener('click', (e) => {
+      outage = !outage;
+      ['vc-1', 'vc-2', 'vc-3'].forEach(id => {
+        const el = document.getElementById(id);
+        el.classList.toggle('glow-ok', !outage);
+        el.classList.toggle('glow-err', outage);
+      });
+      e.currentTarget.textContent = outage ? '✓ Restore Normal Green Glow' : '⚡ Trigger Incident / Outage Glow';
+    });
+  </script>
+</body>
+</html>

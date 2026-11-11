@@ -1,0 +1,2669 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="alabaster" data-density="comfortable">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ledgermark — Operating Treasury Design System</title>
+  <link rel="stylesheet" href="../fonts/ledgermark-fonts.css">
+  <style>
+    @layer reset, tokens, base, components, layout, utilities;
+
+    /* ==========================================================================
+       1. TOKENS — Warm Alabaster & Deep Pine Dark Theme (OKLCH)
+       ========================================================================== */
+    @layer tokens {
+      :root {
+        --lm-hue-paper: 90;
+        --lm-hue-ink: 235;
+        --lm-hue-forest: 172;
+        --lm-hue-pine: 195;
+        --lm-hue-amber: 68;
+        --lm-hue-danger: 24;
+
+        --font-display: 'Source Serif 4', Georgia, 'Liberation Serif', serif;
+        --font-ui: 'Instrument Sans', 'Liberation Sans', system-ui, -apple-system, sans-serif;
+        --font-mono: 'IBM Plex Mono', 'Liberation Mono', ui-monospace, monospace;
+
+        --radius-ctrl: 8px;
+        --radius-card: 12px;
+        --radius-check: 5px;
+
+        --ctrl-h: 38px;
+        --ctrl-px: 15px;
+        --row-h: 52px;
+        --row-py: 14px;
+        --font-body: 0.90625rem; /* 14.5px */
+
+        --ease-out: cubic-bezier(0.18, 0.89, 0.32, 1.04);
+        --ease-press: cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      :root,
+      html[data-theme="alabaster"] {
+        color-scheme: light;
+        --surface-canvas: oklch(0.982 0.004 var(--lm-hue-paper));
+        --surface-card: oklch(0.997 0.002 var(--lm-hue-paper));
+        --surface-tinted: oklch(0.958 0.005 var(--lm-hue-paper));
+        --surface-hover: oklch(0.970 0.004 var(--lm-hue-paper));
+        --surface-row-active: oklch(0.962 0.009 var(--lm-hue-forest));
+
+        --ink-primary: oklch(0.170 0.015 var(--lm-hue-ink));
+        --ink-secondary: oklch(0.352 0.014 var(--lm-hue-ink));
+        --ink-muted: oklch(0.448 0.012 var(--lm-hue-ink));
+
+        --border-card: oklch(0.900 0.006 88);
+        --hairline: oklch(0.916 0.005 88);
+        --border-control: oklch(0.812 0.008 220);
+        --border-strong: oklch(0.680 0.012 225);
+
+        /* Deep mineral forest-slate primary with crisp ivory text */
+        --pri-bg: oklch(0.250 0.042 var(--lm-hue-forest));
+        --pri-bg-hover: oklch(0.292 0.045 var(--lm-hue-forest));
+        --pri-ink: oklch(0.988 0.003 var(--lm-hue-paper));
+        --pri-shadow: inset 0 1px 0 oklch(1 0 0 / 0.20), 0 1px 2px oklch(0.18 0.02 172 / 0.16), 0 8px 18px -6px oklch(0.18 0.02 172 / 0.22);
+
+        --sec-bg: oklch(0.997 0.002 var(--lm-hue-paper));
+        --sec-bg-hover: oklch(0.968 0.004 var(--lm-hue-paper));
+        --sec-shadow: inset 0 1px 0 oklch(1 0 0 / 0.92), 0 1px 2px oklch(0.20 0.01 235 / 0.04);
+
+        --danger-text: oklch(0.450 0.135 var(--lm-hue-danger));
+        --danger-bg-hover: oklch(0.962 0.016 var(--lm-hue-danger));
+        --danger-border: oklch(0.450 0.135 var(--lm-hue-danger) / 0.26);
+
+        --focus-ring: oklch(0.365 0.068 var(--lm-hue-forest));
+        --chart-stroke: oklch(0.315 0.056 var(--lm-hue-forest));
+        --chart-fill-top: oklch(0.315 0.056 var(--lm-hue-forest) / 0.12);
+        --chart-fill-bot: oklch(0.315 0.056 var(--lm-hue-forest) / 0.0);
+
+        --positive-text: oklch(0.382 0.072 164);
+        --pending-text: oklch(0.438 0.095 var(--lm-hue-amber));
+
+        --shadow-card: 0 1px 2px oklch(0.20 0.01 235 / 0.04), 0 12px 32px -8px oklch(0.20 0.01 235 / 0.06);
+        --shadow-dialog: 0 24px 64px -12px oklch(0.17 0.015 235 / 0.18);
+        --backdrop-bg: oklch(0.17 0.015 235 / 0.34);
+      }
+
+      html[data-theme="pine"] {
+        color-scheme: dark;
+        --surface-canvas: oklch(0.152 0.012 var(--lm-hue-pine));
+        --surface-card: oklch(0.186 0.013 var(--lm-hue-pine));
+        --surface-tinted: oklch(0.132 0.011 var(--lm-hue-pine));
+        --surface-hover: oklch(0.212 0.014 var(--lm-hue-pine));
+        --surface-row-active: oklch(0.220 0.020 var(--lm-hue-forest));
+
+        --ink-primary: oklch(0.948 0.006 var(--lm-hue-paper));
+        --ink-secondary: oklch(0.798 0.008 var(--lm-hue-paper));
+        --ink-muted: oklch(0.692 0.010 190);
+
+        --border-card: oklch(1 0 0 / 0.085);
+        --hairline: oklch(1 0 0 / 0.065);
+        --border-control: oklch(1 0 0 / 0.14);
+        --border-strong: oklch(1 0 0 / 0.24);
+
+        --pri-bg: oklch(0.932 0.012 168);
+        --pri-bg-hover: oklch(0.968 0.008 168);
+        --pri-ink: oklch(0.155 0.028 var(--lm-hue-forest));
+        --pri-shadow: inset 0 1px 0 oklch(1 0 0 / 0.92), 0 1px 2px oklch(0.04 0.01 195 / 0.50), 0 8px 20px -6px oklch(0.04 0.01 195 / 0.45);
+
+        --sec-bg: oklch(0.222 0.014 var(--lm-hue-pine));
+        --sec-bg-hover: oklch(0.256 0.015 var(--lm-hue-pine));
+        --sec-shadow: inset 0 1px 0 oklch(1 0 0 / 0.07), 0 1px 2px oklch(0.04 0.01 195 / 0.30);
+
+        --danger-text: oklch(0.755 0.120 var(--lm-hue-danger));
+        --danger-bg-hover: oklch(0.242 0.026 var(--lm-hue-danger));
+        --danger-border: oklch(0.755 0.120 var(--lm-hue-danger) / 0.26);
+
+        --focus-ring: oklch(0.750 0.092 168);
+        --chart-stroke: oklch(0.765 0.088 168);
+        --chart-fill-top: oklch(0.765 0.088 168 / 0.18);
+        --chart-fill-bot: oklch(0.765 0.088 168 / 0.0);
+
+        --positive-text: oklch(0.778 0.088 164);
+        --pending-text: oklch(0.798 0.098 78);
+
+        --shadow-card: 0 1px 2px oklch(0.04 0.01 195 / 0.36), 0 16px 40px -10px oklch(0.04 0.01 195 / 0.48);
+        --shadow-dialog: 0 28px 72px -12px oklch(0.02 0.01 195 / 0.80);
+        --backdrop-bg: oklch(0.08 0.01 195 / 0.68);
+      }
+
+      html[data-density="compact"] {
+        --ctrl-h: 32px;
+        --ctrl-px: 12px;
+        --row-h: 38px;
+        --row-py: 8px;
+        --font-body: 0.84375rem; /* 13.5px */
+      }
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE TYPOGRAPHY
+       ========================================================================== */
+    @layer reset {
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      body, h1, h2, h3, h4, p, ul, ol, dl, dd, figure, pre {
+        margin: 0;
+      }
+    }
+
+    @layer base {
+      html {
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: 16px;
+        line-height: 1.56;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      html, body, button, input, select, textarea, output {
+        font-kerning: normal;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        background-color: var(--surface-canvas);
+        color: var(--ink-primary);
+        font-family: var(--font-ui);
+        font-size: var(--font-body);
+        overflow-x: clip;
+        transition: background-color 180ms ease, color 180ms ease;
+      }
+
+      button, input, select, textarea {
+        font: inherit;
+        color: inherit;
+        letter-spacing: normal;
+      }
+
+      h1, h2 {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+        color: var(--ink-primary);
+        font-weight: 400;
+        text-wrap: balance;
+      }
+
+      h1 {
+        font-size: clamp(1.875rem, 2.9vw, 2.375rem);
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 2.2vw, 1.8125rem);
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+      }
+
+      h3 {
+        font-family: var(--font-ui);
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.35;
+        letter-spacing: -0.01em;
+        color: var(--ink-primary);
+        text-wrap: balance;
+      }
+
+      .mono, code, kbd {
+        font-family: var(--font-mono);
+        font-size: 0.84375rem;
+      }
+
+      .num,
+      th[data-numeric="true"],
+      td[data-numeric="true"],
+      time,
+      output {
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      :focus {
+        outline: none;
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      section[id] {
+        scroll-margin-top: 5rem;
+      }
+    }
+
+    /* ==========================================================================
+       3. LAYOUT — Open ground & exact left plumbline
+       ========================================================================== */
+    @layer layout {
+      .lm-container {
+        width: 100%;
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: 32px;
+      }
+
+      @media (max-width: 767px) {
+        .lm-container {
+          padding-inline: 20px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .lm-container {
+          padding-inline: 14px;
+        }
+      }
+
+      .lm-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background-color: color-mix(in oklch, var(--surface-canvas) 90%, transparent);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .lm-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-block: 18px;
+      }
+
+      .lm-header-left {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+        min-width: 0;
+      }
+
+      .lm-brand {
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 500;
+        letter-spacing: -0.012em;
+        color: var(--ink-primary);
+        white-space: nowrap;
+      }
+
+      .lm-nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .lm-nav a {
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+        white-space: nowrap;
+        padding-block: 4px;
+        transition: color 140ms ease;
+      }
+
+      .lm-nav a:hover {
+        color: var(--ink-primary);
+      }
+
+      .lm-header-tools {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 920px) {
+        .lm-header-inner {
+          gap: 14px;
+        }
+        .lm-header-left {
+          gap: 18px;
+        }
+        .lm-nav {
+          gap: 14px;
+        }
+        .lm-nav a {
+          font-size: 0.8125rem;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .lm-header-inner {
+          flex-wrap: wrap;
+          gap: 10px 16px;
+          padding-block: 14px;
+        }
+        .lm-header-left {
+          width: 100%;
+          justify-content: space-between;
+          gap: 8px 12px;
+          flex-wrap: wrap;
+        }
+        .lm-nav {
+          width: 100%;
+          gap: 9px;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          scrollbar-width: none;
+        }
+        .lm-nav::-webkit-scrollbar {
+          display: none;
+        }
+        .lm-nav a {
+          font-size: 0.75rem;
+        }
+        .lm-header-tools {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+
+      .lm-workspace {
+        padding-top: 40px;
+        padding-bottom: 68px;
+      }
+
+      .lm-work-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .lm-acct-sub {
+        margin-top: 6px;
+        font-size: 0.90625rem;
+        color: var(--ink-muted);
+      }
+
+      .lm-chapter {
+        padding-block: 68px;
+        border-top: 1px solid var(--hairline);
+      }
+
+      .lm-chapter-head {
+        margin-bottom: 36px;
+      }
+
+      .lm-chapter-sub {
+        margin-top: 8px;
+        max-width: 62ch;
+        font-size: 0.96875rem;
+        line-height: 1.58;
+        color: var(--ink-muted);
+        text-wrap: pretty;
+      }
+
+      /* Treasury Overview layout */
+      .lm-treasury-card {
+        background-color: var(--surface-card);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        padding: 36px 40px;
+      }
+
+      @media (max-width: 640px) {
+        .lm-treasury-card {
+          padding: 24px 18px;
+        }
+      }
+
+      .lm-treasury-top {
+        display: grid;
+        grid-template-columns: minmax(250px, 0.88fr) minmax(0, 1.42fr);
+        gap: 40px;
+        align-items: end;
+        margin-bottom: 32px;
+        padding-bottom: 28px;
+        border-bottom: 1px solid var(--hairline);
+      }
+
+      .lm-treasury-top > * {
+        min-width: 0;
+      }
+
+      @media (max-width: 900px) {
+        .lm-treasury-top {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 24px;
+        }
+      }
+
+      .lm-toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+
+      .lm-toolbar-filters {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      /* Treasury Pattern Cards — 2-column asymmetric Mercury deck */
+      .lm-deck-top {
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(0, 1.16fr);
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .lm-deck-bot {
+        display: grid;
+        grid-template-columns: minmax(0, 1.04fr) minmax(0, 1.16fr);
+        gap: 24px;
+        margin-top: 24px;
+        align-items: stretch;
+      }
+
+      .lm-deck-top > *,
+      .lm-deck-bot > * {
+        min-width: 0;
+      }
+
+      .lm-spec-two {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 24px;
+        align-items: start;
+      }
+
+      @media (max-width: 960px) {
+        .lm-deck-top,
+        .lm-deck-bot {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .lm-spec-two {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
+        }
+      }
+
+      .lm-footer {
+        padding-top: 36px;
+        padding-bottom: 68px;
+        border-top: 1px solid var(--hairline);
+        color: var(--ink-muted);
+        font-size: 0.84375rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px 24px;
+      }
+    }
+
+    /* ==========================================================================
+       4. COMPONENTS — Forest-slate triggers, OS-free inputs, borderless ledger
+       ========================================================================== */
+    @layer components {
+      /* Editorial Balance figure */
+      .lm-acct-label {
+        font-size: 0.84375rem;
+        color: var(--ink-muted);
+        margin-bottom: 8px;
+      }
+
+      .lm-balance {
+        font-family: var(--font-display);
+        font-optical-sizing: auto;
+        font-size: clamp(2.375rem, 3.8vw, 3.125rem);
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: -0.022em;
+        color: var(--ink-primary);
+      }
+
+      .lm-balance-cents {
+        color: var(--ink-muted);
+        font-size: 0.68em;
+        font-weight: 400;
+      }
+
+      .lm-balance-delta {
+        margin-top: 12px;
+        font-size: 0.875rem;
+        color: var(--ink-muted);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .lm-pos {
+        color: var(--positive-text);
+        font-weight: 500;
+      }
+
+      /* Daily stepped/straight-segment SVG treasury balance chart */
+      .lm-chart-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .lm-chart-svg {
+        width: 100%;
+        height: auto;
+        max-height: 144px;
+        display: block;
+        overflow: visible;
+      }
+
+      .lm-chart-ref {
+        font-family: var(--font-ui);
+        font-size: 11px;
+        fill: var(--ink-muted);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .lm-sweep-scale {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+        margin-top: 2px;
+      }
+
+      .lm-step-nudge {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 2px 5px;
+        border-radius: 4px;
+        color: var(--ink-muted);
+        font-family: var(--font-ui);
+        font-size: 0.78125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 120ms ease, background-color 120ms ease;
+      }
+
+      .lm-step-nudge:hover {
+        color: var(--ink-primary);
+        background-color: var(--surface-tinted);
+      }
+
+      /* Buttons — inline-flex, refined 8px curvature */
+      .lm-btn {
+        margin: 0;
+        appearance: none;
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: auto;
+        min-height: var(--ctrl-h);
+        padding: 0 var(--ctrl-px);
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--sec-bg);
+        color: var(--ink-primary);
+        box-shadow: var(--sec-shadow);
+        font-family: var(--font-ui);
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        transition:
+          transform 150ms var(--ease-out),
+          background-color 130ms ease,
+          border-color 130ms ease,
+          box-shadow 150ms ease,
+          color 130ms ease;
+      }
+
+      .lm-btn-primary {
+        background-color: var(--pri-bg);
+        color: var(--pri-ink);
+        border-color: transparent;
+        box-shadow: var(--pri-shadow);
+      }
+
+      .lm-btn-ghost {
+        background-color: transparent;
+        border-color: transparent;
+        box-shadow: none;
+        color: var(--ink-secondary);
+      }
+
+      .lm-btn-danger {
+        background-color: var(--sec-bg);
+        color: var(--danger-text);
+        border-color: var(--border-control);
+        box-shadow: var(--sec-shadow);
+      }
+
+      .lm-btn-sm {
+        min-height: 32px;
+        padding-inline: 11px;
+        font-size: 0.8125rem;
+      }
+
+      .lm-btn[aria-pressed="true"] {
+        background-color: var(--surface-tinted);
+        border-color: var(--border-strong);
+        color: var(--ink-primary);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .lm-btn:not(:disabled):not([aria-disabled="true"]):hover {
+          background-color: var(--sec-bg-hover);
+          border-color: var(--border-strong);
+          transform: translateY(-0.5px);
+        }
+        .lm-btn-primary:not(:disabled):not([aria-disabled="true"]):hover {
+          background-color: var(--pri-bg-hover);
+          border-color: transparent;
+          transform: translateY(-1px);
+        }
+        .lm-btn-ghost:not(:disabled):not([aria-disabled="true"]):hover {
+          background-color: var(--surface-hover);
+          border-color: transparent;
+          color: var(--ink-primary);
+          transform: none;
+        }
+        .lm-btn-danger:not(:disabled):not([aria-disabled="true"]):hover {
+          background-color: var(--danger-bg-hover);
+          border-color: var(--danger-border);
+        }
+      }
+
+      .lm-btn:not(:disabled):not([aria-disabled="true"]):active {
+        transform: translateY(1px);
+        transition-duration: 40ms;
+        transition-timing-function: var(--ease-press);
+      }
+
+      .lm-btn:disabled,
+      .lm-btn[aria-disabled="true"] {
+        opacity: 0.46;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+
+      /* Zero-shift loading spinner */
+      .lm-btn-stack {
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+      }
+      .lm-btn-stack > * {
+        grid-area: 1 / 1;
+      }
+      .lm-btn[data-loading="true"] .lm-btn-label {
+        visibility: hidden;
+      }
+      .lm-btn:not([data-loading="true"]) .lm-spinner {
+        display: none;
+      }
+      .lm-spinner {
+        width: 14px;
+        height: 14px;
+        animation: lm-spin 720ms linear infinite;
+      }
+      @keyframes lm-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Form fields & Custom Selects (zero OS chrome) */
+      .lm-field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .lm-label {
+        font-size: 0.84375rem;
+        font-weight: 500;
+        color: var(--ink-secondary);
+      }
+
+      .lm-hint {
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+        text-wrap: pretty;
+      }
+
+      .lm-error {
+        font-size: 0.8125rem;
+        color: var(--danger-text);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .lm-error[hidden] {
+        display: none;
+      }
+
+      .lm-input,
+      .lm-select {
+        margin: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        min-height: var(--ctrl-h);
+        padding: 0 13px;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-control);
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        font-size: 0.875rem;
+        transition: border-color 130ms ease, background-color 130ms ease;
+      }
+
+      .lm-input::placeholder {
+        color: var(--ink-muted);
+        opacity: 0.82;
+      }
+
+      .lm-input:hover:not(:disabled):not([readonly]),
+      .lm-select:hover:not(:disabled) {
+        border-color: var(--border-strong);
+      }
+
+      .lm-input:focus-visible,
+      .lm-select:focus-visible {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 1px;
+        border-color: var(--focus-ring);
+      }
+
+      .lm-input[readonly] {
+        background-color: var(--surface-tinted);
+        color: var(--ink-secondary);
+        font-family: var(--font-mono);
+        font-size: 0.84375rem;
+      }
+
+      .lm-input[aria-invalid="true"] {
+        border-color: var(--danger-text);
+      }
+
+      .lm-select-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .lm-select {
+        padding-right: 36px;
+        cursor: pointer;
+      }
+
+      .lm-select-chevron {
+        position: absolute;
+        right: 12px;
+        width: 14px;
+        height: 14px;
+        color: var(--ink-muted);
+        pointer-events: none;
+      }
+
+      .lm-search-wrap {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+      }
+      .lm-search-wrap .lm-input {
+        padding-left: 35px;
+        width: 230px;
+      }
+      @media (max-width: 560px) {
+        .lm-search-wrap,
+        .lm-search-wrap .lm-input {
+          width: 100%;
+        }
+      }
+      .lm-search-icon {
+        position: absolute;
+        left: 12px;
+        width: 14px;
+        height: 14px;
+        color: var(--ink-muted);
+        pointer-events: none;
+      }
+
+      /* Custom Checkboxes, Radios, Switch, and Range */
+      .lm-choice {
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 10px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        line-height: 1.45;
+        color: var(--ink-primary);
+        user-select: none;
+      }
+
+      .lm-check,
+      .lm-radio {
+        margin: 2px 0 0;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        border: 1px solid var(--border-strong);
+        background-color: var(--surface-card);
+        display: inline-grid;
+        place-content: center;
+        cursor: pointer;
+        transition: background-color 120ms ease, border-color 120ms ease;
+      }
+
+      .lm-check {
+        border-radius: var(--radius-check);
+      }
+
+      .lm-radio {
+        border-radius: 50%;
+      }
+
+      .lm-check::before {
+        content: "";
+        width: 9px;
+        height: 5px;
+        border-left: 1.75px solid var(--pri-ink);
+        border-bottom: 1.75px solid var(--pri-ink);
+        transform: translateY(-1px) rotate(-45deg) scale(0);
+        transition: transform 110ms var(--ease-out);
+      }
+
+      .lm-check:checked,
+      .lm-check:indeterminate {
+        background-color: var(--pri-bg);
+        border-color: var(--pri-bg);
+      }
+
+      .lm-check:checked::before {
+        transform: translateY(-1px) rotate(-45deg) scale(1);
+      }
+
+      .lm-check:indeterminate::before {
+        width: 9px;
+        height: 0;
+        border-left: 0;
+        border-bottom: 1.75px solid var(--pri-ink);
+        transform: scale(1);
+      }
+
+      .lm-radio::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--pri-ink);
+        transform: scale(0);
+        transition: transform 110ms var(--ease-out);
+      }
+
+      .lm-radio:checked {
+        background-color: var(--pri-bg);
+        border-color: var(--pri-bg);
+      }
+
+      .lm-radio:checked::before {
+        transform: scale(1);
+      }
+
+      .lm-switch-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .lm-switch {
+        margin: 0;
+        appearance: none;
+        position: relative;
+        width: 40px;
+        height: 23px;
+        padding: 2px;
+        border-radius: 999px;
+        border: 1px solid var(--border-control);
+        background-color: var(--surface-tinted);
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: background-color 150ms ease, border-color 150ms ease;
+      }
+
+      .lm-switch-thumb {
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        background-color: var(--surface-card);
+        box-shadow: 0 1px 3px oklch(0 0 0 / 0.24);
+        transition: transform 150ms var(--ease-out), background-color 150ms ease;
+        pointer-events: none;
+      }
+
+      .lm-switch[aria-checked="true"] {
+        background-color: var(--pri-bg);
+        border-color: var(--pri-bg);
+      }
+
+      .lm-switch[aria-checked="true"] .lm-switch-thumb {
+        transform: translateX(17px);
+        background-color: var(--pri-ink);
+      }
+
+      .lm-range-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .lm-range {
+        --pct: 45%;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 24px;
+        background: transparent;
+        cursor: pointer;
+        margin: 0;
+      }
+
+      .lm-range::-webkit-slider-runnable-track {
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          var(--pri-bg) 0%,
+          var(--pri-bg) var(--pct),
+          var(--surface-tinted) var(--pct),
+          var(--surface-tinted) 100%
+        );
+        border: 1px solid var(--border-control);
+      }
+
+      .lm-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        margin-top: -7px;
+        border-radius: 50%;
+        background-color: var(--surface-card);
+        border: 2px solid var(--pri-bg);
+        box-shadow: 0 1px 4px oklch(0 0 0 / 0.18);
+        transition: transform 120ms ease;
+      }
+
+      .lm-range::-moz-range-track {
+        height: 6px;
+        border-radius: 999px;
+        background: var(--surface-tinted);
+        border: 1px solid var(--border-control);
+      }
+
+      .lm-range::-moz-range-progress {
+        height: 6px;
+        border-radius: 999px;
+        background: var(--pri-bg);
+      }
+
+      .lm-range::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--surface-card);
+        border: 2px solid var(--pri-bg);
+        box-shadow: 0 1px 4px oklch(0 0 0 / 0.18);
+      }
+
+      /* Airy Transaction Table — zero vertical prison gridlines */
+      .lm-table-scroll {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      .lm-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+      }
+
+      .lm-table th {
+        padding: 10px 14px 12px 10px;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+        border-bottom: 1px solid var(--hairline);
+        white-space: nowrap;
+      }
+
+      .lm-table th[data-numeric="true"],
+      .lm-table td[data-numeric="true"] {
+        text-align: right;
+      }
+
+      .lm-sort-btn {
+        appearance: none;
+        background: none;
+        border: 0;
+        padding: 2px 0;
+        margin: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font: inherit;
+        color: var(--ink-muted);
+        cursor: pointer;
+        transition: color 120ms ease;
+      }
+
+      .lm-sort-btn:hover,
+      th[aria-sort="ascending"] .lm-sort-btn,
+      th[aria-sort="descending"] .lm-sort-btn {
+        color: var(--ink-primary);
+      }
+
+      .lm-sort-icon {
+        width: 12px;
+        height: 12px;
+        opacity: 0.65;
+        transition: transform 140ms ease, opacity 140ms ease;
+      }
+
+      th[aria-sort="ascending"] .lm-sort-icon {
+        opacity: 1;
+        transform: rotate(180deg);
+      }
+
+      th[aria-sort="descending"] .lm-sort-icon {
+        opacity: 1;
+      }
+
+      .lm-table tbody tr {
+        height: var(--row-h);
+        border-bottom: 1px solid var(--hairline);
+        transition: background-color 120ms ease;
+      }
+
+      .lm-table tbody tr:last-child {
+        border-bottom: 0;
+      }
+
+      .lm-table tbody tr[data-tx-id] {
+        cursor: pointer;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .lm-table tbody tr[data-tx-id]:hover {
+          background-color: var(--surface-hover);
+        }
+      }
+
+      .lm-table td {
+        padding: var(--row-py) 14px var(--row-py) 10px;
+        vertical-align: middle;
+      }
+
+      .lm-payee-cell {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .lm-payee-name {
+        font-weight: 500;
+        color: var(--ink-primary);
+      }
+
+      .lm-pending {
+        font-size: 0.78125rem;
+        color: var(--pending-text);
+        font-weight: 500;
+      }
+
+      .lm-acct-mono {
+        font-family: var(--font-ui);
+        font-variant-numeric: tabular-nums;
+        font-size: 0.84375rem;
+        color: var(--ink-muted);
+      }
+
+      .lm-amt-pos {
+        color: var(--positive-text);
+        font-weight: 500;
+      }
+
+      /* Treasury Pattern Cards — elevated porcelain cards with single perimeter border */
+      .lm-specimen {
+        margin: 0;
+        background-color: var(--surface-card);
+        border: 1px solid var(--border-card);
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-card);
+        padding: 30px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        min-width: 0;
+      }
+
+      .lm-card-head {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .lm-sub-rule {
+        padding-top: 18px;
+        border-top: 1px solid var(--hairline);
+      }
+
+      @media (max-width: 560px) {
+        .lm-specimen {
+          padding: 24px 20px;
+        }
+      }
+
+      .lm-action-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* Foundations — Open Color Chips & Typography */
+      .lm-swatch-grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      @media (max-width: 960px) {
+        .lm-swatch-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 520px) {
+        .lm-swatch-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .lm-swatch {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .lm-swatch-chip {
+        height: 58px;
+        border-radius: var(--radius-ctrl);
+        border: 1px solid var(--border-card);
+        box-shadow: var(--sec-shadow);
+      }
+
+      .lm-swatch-name {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-primary);
+      }
+
+      .lm-swatch-val {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+      }
+
+      .lm-type-list {
+        margin-top: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .lm-type-row {
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        gap: 24px;
+        align-items: baseline;
+      }
+
+      @media (max-width: 680px) {
+        .lm-type-row {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+      }
+
+      /* Breadcrumbs & Roving Tabs */
+      .lm-crumbs {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0.84375rem;
+        color: var(--ink-muted);
+      }
+
+      .lm-crumbs a:hover {
+        color: var(--ink-primary);
+      }
+
+      .lm-crumbs [aria-current="page"] {
+        color: var(--ink-primary);
+        font-weight: 500;
+      }
+
+      .lm-tablist {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        padding: 4px;
+        background-color: var(--surface-tinted);
+        border-radius: 10px;
+        width: fit-content;
+        max-width: 100%;
+      }
+
+      .lm-tab {
+        appearance: none;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--ink-muted);
+        padding: 7px 15px;
+        border-radius: 7px;
+        font-size: 0.84375rem;
+        font-weight: 500;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: color 130ms ease, background-color 130ms ease;
+      }
+
+      .lm-tab:hover {
+        color: var(--ink-primary);
+      }
+
+      .lm-tab[aria-selected="true"] {
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        border-color: var(--border-card);
+        box-shadow: var(--sec-shadow);
+      }
+
+      .lm-tabpanel {
+        padding-top: 8px;
+        color: var(--ink-secondary);
+        line-height: 1.62;
+      }
+
+      /* Empty & Skeleton States */
+      .lm-empty {
+        padding: 36px 24px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .lm-empty[hidden] {
+        display: none;
+      }
+
+      .lm-skeleton-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .lm-skeleton-stack[hidden] {
+        display: none;
+      }
+
+      .lm-skel-line {
+        height: 14px;
+        border-radius: 5px;
+        background: linear-gradient(
+          90deg,
+          var(--surface-tinted) 0%,
+          var(--surface-hover) 50%,
+          var(--surface-tinted) 100%
+        );
+        background-size: 200% 100%;
+        animation: lm-shimmer 1.6s ease-in-out infinite;
+      }
+      @keyframes lm-shimmer {
+        0% { background-position: 100% 0; }
+        100% { background-position: -100% 0; }
+      }
+
+      /* Wire Transfer Modal & Receipt/Split Drawer (<dialog>) */
+      dialog.lm-dialog {
+        margin: auto;
+        width: min(470px, calc(100vw - 32px));
+        padding: 34px;
+        border-radius: var(--radius-card);
+        border: 1px solid var(--border-card);
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-dialog);
+      }
+
+      dialog.lm-dialog::backdrop {
+        background-color: var(--backdrop-bg);
+        backdrop-filter: blur(4px);
+      }
+
+      dialog.lm-drawer {
+        margin: 0 0 0 auto;
+        width: min(430px, 100vw);
+        height: 100dvh;
+        max-height: 100dvh;
+        padding: 34px;
+        border: 0;
+        border-left: 1px solid var(--border-card);
+        border-radius: 0;
+        background-color: var(--surface-card);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-dialog);
+      }
+
+      dialog.lm-drawer::backdrop {
+        background-color: var(--backdrop-bg);
+      }
+
+      .lm-dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .lm-dialog-foot {
+        margin-top: 28px;
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      /* Split allocation bar (Engineering 60% / Product 40% = 100%) */
+      .lm-split-bar {
+        display: flex;
+        height: 8px;
+        border-radius: 4px;
+        overflow: hidden;
+        gap: 2px;
+        margin-block: 14px;
+      }
+
+      .lm-split-seg-a {
+        background-color: var(--pri-bg);
+        transition: width 120ms ease;
+      }
+
+      .lm-split-seg-b {
+        background-color: var(--border-strong);
+        flex: 1;
+      }
+
+      .lm-kv-list {
+        display: grid;
+        grid-template-columns: 120px minmax(0, 1fr);
+        row-gap: 12px;
+        column-gap: 16px;
+        font-size: 0.875rem;
+      }
+
+      .lm-kv-list dt {
+        color: var(--ink-muted);
+      }
+
+      /* Single Polite Toast */
+      .lm-toast {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 18px;
+        border-radius: var(--radius-ctrl);
+        background-color: var(--surface-card);
+        border: 1px solid var(--border-control);
+        color: var(--ink-primary);
+        box-shadow: var(--shadow-dialog);
+        font-size: 0.875rem;
+      }
+      .lm-toast[hidden] {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       5. ACCESSIBILITY, REDUCED MOTION, COARSE POINTER & FORCED COLORS
+       ========================================================================== */
+    @layer utilities {
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .lm-skip {
+        position: absolute;
+        left: -9999px;
+        top: 12px;
+        z-index: 100;
+        padding: 10px 16px;
+        border-radius: var(--radius-ctrl);
+        background-color: var(--pri-bg);
+        color: var(--pri-ink);
+        font-weight: 500;
+      }
+      .lm-skip:focus {
+        left: 16px;
+      }
+
+      .muted {
+        color: var(--ink-muted);
+      }
+
+      @media (any-pointer: coarse) {
+        .lm-btn,
+        .lm-input,
+        .lm-select,
+        .lm-tab {
+          min-height: 44px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          transition-duration: 0.01ms !important;
+        }
+        .lm-skel-line {
+          animation: none !important;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .lm-btn,
+        .lm-input,
+        .lm-select,
+        .lm-check,
+        .lm-radio,
+        .lm-switch,
+        .lm-range,
+        .lm-tab,
+        .lm-treasury-card,
+        .lm-specimen,
+        dialog.lm-dialog,
+        dialog.lm-drawer,
+        .lm-toast {
+          border: 1px solid ButtonText !important;
+          box-shadow: none !important;
+        }
+        .lm-btn-primary,
+        .lm-check:checked,
+        .lm-check:indeterminate,
+        .lm-radio:checked,
+        .lm-switch[aria-checked="true"],
+        .lm-tab[aria-selected="true"] {
+          forced-color-adjust: none;
+          background-color: Highlight !important;
+          color: HighlightText !important;
+          border-color: Highlight !important;
+        }
+        .lm-switch-thumb {
+          background-color: ButtonText !important;
+        }
+        .lm-switch[aria-checked="true"] .lm-switch-thumb {
+          background-color: HighlightText !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="lm-skip" href="#workspace">Skip to operating treasury</a>
+
+  <header class="lm-header">
+    <div class="lm-container lm-header-inner">
+      <div class="lm-header-left">
+        <span class="lm-brand">Ledgermark</span>
+        <nav class="lm-nav" aria-label="Primary">
+          <a href="../index.html">All systems</a>
+          <a href="#workspace">Product</a>
+          <a href="#tokens">Foundations</a>
+          <a href="#components">Components</a>
+          <a href="../marketing/ledgermark.html">Marketing</a>
+        </nav>
+      </div>
+      <div class="lm-header-tools">
+        <button type="button" class="lm-btn lm-btn-ghost lm-btn-sm" data-density-toggle aria-pressed="false">Compact</button>
+        <button type="button" class="lm-btn lm-btn-ghost lm-btn-sm" data-theme-toggle aria-pressed="false">Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Assembled Product Screen: Operating Treasury Account (opens directly under header) -->
+    <section id="workspace" data-section="workspace" class="lm-container lm-workspace">
+      <div class="lm-work-head">
+        <div>
+          <h1>Operating cash</h1>
+          <p class="lm-acct-sub num">Checking •••• 4819 · Sweeps nightly above <span id="lm-sweep-sub-val">$525,000</span> into Treasury Reserve</p>
+        </div>
+        <div class="lm-action-row">
+          <button type="button" class="lm-btn" data-open-drawer="#receipt-drawer">Split expense</button>
+          <button type="button" class="lm-btn lm-btn-primary" data-open-modal="#transfer-dialog">Send transfer</button>
+        </div>
+      </div>
+
+      <div class="lm-treasury-card">
+        <div class="lm-treasury-top">
+          <div>
+            <div class="lm-acct-label">Available balance</div>
+            <div class="lm-balance num" id="lm-balance-hero">$482,910<span class="lm-balance-cents">.40</span></div>
+            <div class="lm-balance-delta">
+              <span class="lm-pos num">+$18,420.00</span>
+              <span class="num">past 30 days · 4.65% reserve yield</span>
+            </div>
+          </div>
+
+          <div class="lm-chart-box">
+            <svg class="lm-chart-svg" viewBox="0 0 544 134" role="img" aria-label="Daily stepped cash balance from Oct 11 to Nov 4 showing $84,120 payroll drops on Oct 15 and Oct 31, AWS card settlement on Nov 2, and Stripe payout settling at $482,910.40 on Nov 4">
+              <defs>
+                <linearGradient id="lm-area-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--chart-fill-top)"></stop>
+                  <stop offset="100%" stop-color="var(--chart-fill-bot)"></stop>
+                </linearGradient>
+              </defs>
+              <!-- Horizontal reference hairlines at $520k (y=26), $480k (y=62), and $440k (y=98) -->
+              <line x1="0" y1="26" x2="484.8" y2="26" stroke="var(--hairline)" stroke-width="1" stroke-dasharray="3 3"></line>
+              <text x="493" y="29.5" class="lm-chart-ref">$520k</text>
+              <line x1="0" y1="62" x2="484.8" y2="62" stroke="var(--hairline)" stroke-width="1" stroke-dasharray="3 3"></line>
+              <text x="493" y="65.5" class="lm-chart-ref">$480k</text>
+              <line x1="0" y1="98" x2="484.8" y2="98" stroke="var(--hairline)" stroke-width="1" stroke-dasharray="3 3"></line>
+              <text x="493" y="101.5" class="lm-chart-ref">$440k</text>
+
+              <!-- Daily stepped balance: Oct 15 (-$84,120 at x=80.8), Oct 28 (+$1,890), Oct 29 (-$840), Oct 31 (-$84,120 at x=404.0: $530.5k -> $446.4k), Nov 2 (-$6,240 -> $440.1k), Nov 4 (+$42,800 -> $482,910.40) -->
+              <path
+                d="M0,76.0 H40.4 V47.5 H60.6 V22.3 H80.8 V98.0 H101.0 V84.1 H121.2 V68.8 H181.8 V54.4 H202.0 V58.1 H222.2 V44.5 H242.4 V34.1 H262.6 V26.5 H323.2 V17.5 H343.4 V15.8 H363.6 V16.6 H404.0 V92.3 H444.4 V97.9 H484.8 V59.4 V108 H0 Z"
+                fill="url(#lm-area-grad)"
+              ></path>
+              <path
+                d="M0,76.0 H40.4 V47.5 H60.6 V22.3 H80.8 V98.0 H101.0 V84.1 H121.2 V68.8 H181.8 V54.4 H202.0 V58.1 H222.2 V44.5 H242.4 V34.1 H262.6 V26.5 H323.2 V17.5 H343.4 V15.8 H363.6 V16.6 H404.0 V92.3 H444.4 V97.9 H484.8 V59.4"
+                fill="none"
+                stroke="var(--chart-stroke)"
+                stroke-width="1.65"
+                stroke-linejoin="round"
+                stroke-linecap="round"
+              ></path>
+              <circle cx="484.8" cy="59.4" r="3" fill="var(--chart-stroke)"></circle>
+
+              <!-- Exact pixel x-anchored ticks & labels for Oct 15 payroll (x=80.8) and Oct 31 payroll (x=404.0) -->
+              <line x1="80.8" y1="101" x2="80.8" y2="112" stroke="var(--border-control)" stroke-width="1"></line>
+              <line x1="404.0" y1="96" x2="404.0" y2="112" stroke="var(--border-control)" stroke-width="1"></line>
+              <text x="0" y="126" text-anchor="start" class="lm-chart-ref">Oct 11</text>
+              <text x="80.8" y="126" text-anchor="middle" class="lm-chart-ref">Oct 15 payroll</text>
+              <text x="242.4" y="126" text-anchor="middle" class="lm-chart-ref">Oct 23</text>
+              <text x="404.0" y="126" text-anchor="middle" class="lm-chart-ref">Oct 31 payroll</text>
+              <text x="484.8" y="126" text-anchor="end" class="lm-chart-ref" style="fill: var(--ink-primary); font-weight: 500;">Nov 4</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Single-line filter toolbar -->
+        <div class="lm-toolbar">
+          <div class="lm-toolbar-filters">
+            <div class="lm-search-wrap">
+              <svg class="lm-search-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <circle cx="7" cy="7" r="4.75"></circle>
+                <line x1="10.5" y1="10.5" x2="14" y2="14" stroke-linecap="round"></line>
+              </svg>
+              <input type="search" id="lm-payee-search" class="lm-input" placeholder="Search payee..." aria-label="Search payee">
+            </div>
+            <div class="lm-select-wrap" style="width: auto;">
+              <select id="lm-acct-filter" class="lm-select" aria-label="Filter account">
+                <option value="all">All accounts</option>
+                <option value="Checking •••• 4819">Checking •••• 4819</option>
+                <option value="Cards •••• 1108">Cards •••• 1108</option>
+                <option value="Treasury •••• 9024">Treasury •••• 9024</option>
+              </select>
+              <svg class="lm-select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+              </svg>
+            </div>
+          </div>
+          <span class="muted num" style="font-size: 0.8125rem;">Showing Oct 28 – Nov 4 · ABA <span class="mono" style="font-size: 0.78125rem;">021000021</span></span>
+        </div>
+
+        <!-- Airy 52px-row Transaction Table -->
+        <div class="lm-table-scroll">
+          <table class="lm-table" id="lm-tx-table" aria-label="Recent transactions">
+            <thead>
+              <tr>
+                <th scope="col" aria-sort="none" data-sort-key="payee">
+                  <button type="button" class="lm-sort-btn">
+                    <span>Payee</span>
+                    <svg class="lm-sort-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                    </svg>
+                  </button>
+                </th>
+                <th scope="col">Account</th>
+                <th scope="col" aria-sort="descending" data-sort-key="order">
+                  <button type="button" class="lm-sort-btn">
+                    <span>Date</span>
+                    <svg class="lm-sort-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                    </svg>
+                  </button>
+                </th>
+                <th scope="col" data-numeric="true" aria-sort="none" data-sort-key="cents">
+                  <button type="button" class="lm-sort-btn">
+                    <span>Amount</span>
+                    <svg class="lm-sort-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                    </svg>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            <tbody id="lm-tx-tbody">
+              <!-- Populated synchronously by canonical JS store -->
+            </tbody>
+          </table>
+        </div>
+        <div class="lm-empty" id="lm-tx-empty" hidden>
+          <p class="muted">No transactions match your search.</p>
+          <button type="button" class="lm-btn lm-btn-sm" id="lm-clear-search">Reset filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foundations (#tokens) -->
+    <section id="tokens" data-section="tokens" class="lm-container lm-chapter">
+      <div class="lm-chapter-head">
+        <h2>Foundations</h2>
+        <p class="lm-chapter-sub">Surface &amp; text palette and type scale across light and dark modes.</p>
+      </div>
+
+      <div class="lm-swatch-grid">
+        <div class="lm-swatch">
+          <div class="lm-swatch-chip" style="background: var(--surface-canvas);"></div>
+          <div class="lm-swatch-name">Canvas</div>
+          <div class="lm-swatch-val">0.982 · 0.004 · 90</div>
+        </div>
+        <div class="lm-swatch">
+          <div class="lm-swatch-chip" style="background: var(--surface-card);"></div>
+          <div class="lm-swatch-name">Account panel</div>
+          <div class="lm-swatch-val">0.997 · 0.002 · 90</div>
+        </div>
+        <div class="lm-swatch">
+          <div class="lm-swatch-chip" style="background: var(--surface-tinted);"></div>
+          <div class="lm-swatch-name">Muted tint</div>
+          <div class="lm-swatch-val">0.958 · 0.005 · 90</div>
+        </div>
+        <div class="lm-swatch">
+          <div class="lm-swatch-chip" style="background: var(--pri-bg);"></div>
+          <div class="lm-swatch-name">Forest slate</div>
+          <div class="lm-swatch-val">0.250 · 0.042 · 172</div>
+        </div>
+        <div class="lm-swatch">
+          <div class="lm-swatch-chip" style="background: var(--ink-primary);"></div>
+          <div class="lm-swatch-name">Primary ink</div>
+          <div class="lm-swatch-val">0.170 · 0.015 · 235</div>
+        </div>
+        <div class="lm-swatch">
+          <div class="lm-swatch-chip" style="background: var(--danger-text);"></div>
+          <div class="lm-swatch-name">Alert garnet</div>
+          <div class="lm-swatch-val">0.450 · 0.135 · 24</div>
+        </div>
+      </div>
+
+      <div class="lm-type-list">
+        <div class="lm-type-row">
+          <span class="muted">Source Serif 4 · Display</span>
+          <span class="num" style="font-family: var(--font-display); font-size: 1.875rem; font-weight: 400; letter-spacing: -0.018em;">$482,910<span style="color: var(--ink-muted); font-size: 0.7em;">.40</span> available</span>
+        </div>
+        <div class="lm-type-row">
+          <span class="muted">Instrument Sans · Ledger</span>
+          <span class="num" style="font-size: 0.96875rem; color: var(--ink-secondary);">Stripe Settlement · Checking •••• 4819 · +$42,800.00 · −$12,500.00</span>
+        </div>
+        <div class="lm-type-row">
+          <span class="muted">IBM Plex Mono · Routing</span>
+          <span class="mono" style="color: var(--ink-secondary);">ABA 021000021 · Fedwire FW00291844</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Treasury Controls (#components) -->
+    <section id="components" data-section="components" class="lm-container lm-chapter">
+      <div class="lm-chapter-head">
+        <h2>Components</h2>
+        <p class="lm-chapter-sub">Send domestic wires, set daily ACH limits, manage officer sign-off rules, and review account statements.</p>
+      </div>
+
+      <div class="lm-deck-top">
+        <!-- Card 1: Move money -->
+        <article class="lm-specimen" aria-labelledby="lm-card-move">
+          <div class="lm-card-head">
+            <nav aria-label="Breadcrumb" style="margin-bottom: 4px;">
+              <ol class="lm-crumbs num">
+                <li><a href="../index.html">All systems</a></li>
+                <li aria-hidden="true">/</li>
+                <li><a href="#workspace">Checking •••• 4819</a></li>
+                <li aria-hidden="true">/</li>
+                <li><span aria-current="page">Payouts</span></li>
+              </ol>
+            </nav>
+            <h3 id="lm-card-move">Move money</h3>
+            <p class="lm-hint">Queue domestic wires, export monthly CSV ledgers, split expenses, or pause a team card.</p>
+          </div>
+
+          <div class="lm-action-row">
+            <button type="button" class="lm-btn lm-btn-primary" data-open-modal="#transfer-dialog">Send wire</button>
+            <button type="button" class="lm-btn" id="lm-busy-btn">
+              <span class="lm-btn-stack">
+                <span class="lm-btn-label">Export CSV</span>
+                <svg class="lm-spinner" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                  <path d="M8 2a6 6 0 1 1-4.24 1.76" stroke-linecap="round"></path>
+                </svg>
+              </span>
+            </button>
+            <button type="button" class="lm-btn lm-btn-ghost" data-open-drawer="#receipt-drawer">Split expense</button>
+          </div>
+
+          <div class="lm-sub-rule" style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+            <div class="lm-action-row">
+              <button type="button" class="lm-btn lm-btn-danger" data-trigger-toast="Card •••• 1108 paused">Pause card</button>
+              <button type="button" class="lm-btn" disabled>Wire closed</button>
+              <button type="button" class="lm-btn" aria-disabled="true" title="Second signatory required above $25,000">Needs co-signer</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; font-size: 0.8125rem; color: var(--ink-muted);" class="num">
+              <span>Same-day cutoff · 5:00 PM ET</span>
+              <span>Last trace · <span class="mono" style="font-size: 0.78125rem;">FW00291844</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2: Account limits & routing -->
+        <article class="lm-specimen" aria-labelledby="lm-card-limits">
+          <div class="lm-card-head">
+            <h3 id="lm-card-limits">Account limits and routing</h3>
+            <p class="lm-hint">Daily ACH ceiling, default settlement speed, and copyable ABA wire routing.</p>
+          </div>
+
+          <form id="lm-settings-form" novalidate style="display: flex; flex-direction: column; gap: 18px; flex: 1;">
+            <div class="lm-spec-two">
+              <div class="lm-field">
+                <label class="lm-label" for="lm-ach-limit">Daily ACH limit (USD)</label>
+                <input
+                  type="text"
+                  id="lm-ach-limit"
+                  name="achLimit"
+                  class="lm-input num"
+                  value="$40,000"
+                  required
+                  aria-describedby="lm-limit-err lm-limit-hint"
+                >
+                <div class="lm-error" id="lm-limit-err" hidden>
+                  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="8" cy="8" r="6"></circle>
+                    <line x1="8" y1="5" x2="8" y2="8.8" stroke-linecap="round"></line>
+                    <circle cx="8" cy="11.3" r="0.6" fill="currentColor" stroke="none"></circle>
+                  </svg>
+                  <span id="lm-limit-err-text" class="num">Enter a daily limit up to $50,000, or request CFO co-signing.</span>
+                </div>
+                <p class="lm-hint num" id="lm-limit-hint">Self-serve ceiling up to $50,000 per business day.</p>
+              </div>
+
+              <div class="lm-field">
+                <label class="lm-label" for="lm-method-select">Default transfer rail</label>
+                <div class="lm-select-wrap">
+                  <select id="lm-method-select" class="lm-select num">
+                    <option value="ach">Same-day ACH · $0.00</option>
+                    <option value="wire">Domestic Fedwire · $15.00</option>
+                    <option value="std">Standard 2-day ACH · $0.00</option>
+                  </select>
+                  <svg class="lm-select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                  </svg>
+                </div>
+                <p class="lm-hint">Applied automatically to domestic vendor bills.</p>
+              </div>
+            </div>
+
+            <div class="lm-sub-rule lm-spec-two" style="margin-top: auto; align-items: end;">
+              <div class="lm-field">
+                <label class="lm-label" for="lm-routing-num">ABA routing number</label>
+                <div style="display: flex; gap: 8px; min-width: 0;">
+                  <input type="text" id="lm-routing-num" class="lm-input" style="min-width: 0; flex: 1;" value="021000021" readonly>
+                  <button type="button" class="lm-btn" id="lm-copy-routing">Copy</button>
+                </div>
+              </div>
+              <div class="lm-action-row">
+                <button type="submit" class="lm-btn lm-btn-primary">Save limit</button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </div>
+
+      <div class="lm-deck-bot">
+        <!-- Card 3: Approval rules -->
+        <article class="lm-specimen" aria-labelledby="lm-card-approvals">
+          <div class="lm-card-head">
+            <h3 id="lm-card-approvals">Approval rules</h3>
+            <p class="lm-hint">Dual-signatory wires, department allocation splits, and notification filters.</p>
+          </div>
+
+          <form id="lm-approvals-form" novalidate style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+            <div class="lm-switch-row">
+              <div>
+                <div id="lm-switch-lbl" class="lm-label num" style="color: var(--ink-primary);">Dual sign-off on wires over $25,000</div>
+                <p class="lm-hint" style="margin-top: 2px;">Holds outgoing Fedwires until a second officer approves.</p>
+              </div>
+              <button type="button" role="switch" aria-checked="true" aria-labelledby="lm-switch-lbl" class="lm-switch">
+                <span class="lm-switch-thumb"></span>
+              </button>
+            </div>
+
+            <div class="lm-field">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;">
+                <label class="lm-label" for="lm-sweep-range">Nightly reserve sweep threshold</label>
+                <div style="display: inline-flex; align-items: baseline; gap: 6px;">
+                  <button type="button" class="lm-step-nudge num" data-sweep-step="-25" aria-label="Decrease sweep threshold by $25,000">−25k</button>
+                  <output id="lm-sweep-out" for="lm-sweep-range" class="num" style="font-size: 0.90625rem; font-weight: 600; color: var(--ink-primary); min-width: 72px; text-align: center;">$525,000</output>
+                  <button type="button" class="lm-step-nudge num" data-sweep-step="25" aria-label="Increase sweep threshold by $25,000">+25k</button>
+                </div>
+              </div>
+              <input type="range" id="lm-sweep-range" class="lm-range" min="250" max="750" step="25" value="525" style="--pct: 55.0%;">
+              <div class="lm-sweep-scale num" aria-hidden="true">
+                <span>$250k</span>
+                <span>$500k</span>
+                <span>$750k</span>
+              </div>
+            </div>
+
+            <dl class="lm-sub-rule lm-kv-list num" style="row-gap: 8px;">
+              <dt>Under $5,000</dt>
+              <dd>Department lead auto-approval</dd>
+              <dt>$5,000 – $25,000</dt>
+              <dd>Controller review within 4 hours</dd>
+            </dl>
+
+            <div class="lm-sub-rule lm-spec-two" style="margin-top: auto;">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <label class="lm-choice">
+                  <input type="checkbox" class="lm-check" id="lm-check-all">
+                  <span style="font-weight: 500;">Treasury alerts</span>
+                </label>
+                <div style="display: flex; flex-direction: column; gap: 9px; padding-left: 28px;">
+                  <label class="lm-choice num">
+                    <input type="checkbox" class="lm-check lm-child-check" checked>
+                    <span>Payouts above $10,000</span>
+                  </label>
+                  <label class="lm-choice">
+                    <input type="checkbox" class="lm-check lm-child-check" checked>
+                    <span>New payee bank added</span>
+                  </label>
+                  <label class="lm-choice">
+                    <input type="checkbox" class="lm-check lm-child-check">
+                    <span>Weekly cash summary</span>
+                  </label>
+                </div>
+              </div>
+
+              <fieldset style="border: 0; padding: 0; margin: 0;">
+                <legend class="lm-label" style="margin-bottom: 10px;">Receipt requirement</legend>
+                <div style="display: flex; flex-direction: column; gap: 9px;">
+                  <label class="lm-choice num">
+                    <input type="radio" name="cadence" class="lm-radio" value="over75" checked>
+                    <span>Card charges above $75</span>
+                  </label>
+                  <label class="lm-choice">
+                    <input type="radio" name="cadence" class="lm-radio" value="every">
+                    <span>Every card transaction</span>
+                  </label>
+                  <label class="lm-choice">
+                    <input type="radio" name="cadence" class="lm-radio" value="monthly">
+                    <span>Month-end close only</span>
+                  </label>
+                </div>
+              </fieldset>
+            </div>
+          </form>
+        </article>
+
+        <!-- Card 4: Statements & alerts -->
+        <article class="lm-specimen" aria-labelledby="lm-card-statements">
+          <div class="lm-card-head">
+            <h3 id="lm-card-statements">Statements and alerts</h3>
+            <p class="lm-hint">Account compartments, rail fee schedule, and statement delivery notices.</p>
+          </div>
+
+          <div>
+            <div class="lm-tablist" role="tablist" aria-label="Account compartments">
+              <button type="button" class="lm-tab" role="tab" id="lm-tab-checking" aria-selected="true" aria-controls="lm-panel-checking" tabindex="0">Checking</button>
+              <button type="button" class="lm-tab" role="tab" id="lm-tab-treasury" aria-selected="false" aria-controls="lm-panel-treasury" tabindex="-1">Treasury</button>
+              <button type="button" class="lm-tab" role="tab" id="lm-tab-cards" aria-selected="false" aria-controls="lm-panel-cards" tabindex="-1">Cards</button>
+            </div>
+            <div id="lm-panel-checking" class="lm-tabpanel num" role="tabpanel" aria-labelledby="lm-tab-checking">
+              Checking •••• 4819 holds $482,910.40 with $12,500.00 pending vendor authorization.
+            </div>
+            <div id="lm-panel-treasury" class="lm-tabpanel num" role="tabpanel" aria-labelledby="lm-tab-treasury" hidden>
+              Treasury •••• 9024 holds $1,240,000.00 in T-bill sweep earning 4.65% annualized yield.
+            </div>
+            <div id="lm-panel-cards" class="lm-tabpanel num" role="tabpanel" aria-labelledby="lm-tab-cards" hidden>
+              Cards •••• 1108 has $7,080.00 posted across four active employee cards this cycle.
+            </div>
+          </div>
+
+          <div class="lm-table-scroll">
+            <table class="lm-table" id="lm-fee-table" aria-label="Transfer fee schedule">
+              <thead>
+                <tr>
+                  <th scope="col" aria-sort="none" data-fee-col="0" data-fee-type="text">
+                    <button type="button" class="lm-sort-btn">
+                      <span>Rail</span>
+                      <svg class="lm-sort-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                      </svg>
+                    </button>
+                  </th>
+                  <th scope="col">Settlement</th>
+                  <th scope="col" data-numeric="true" aria-sort="ascending" data-fee-col="2" data-fee-type="num">
+                    <button type="button" class="lm-sort-btn">
+                      <span>Fee</span>
+                      <svg class="lm-sort-icon" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <polyline points="2.5 4.5 6 8 9.5 4.5" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                      </svg>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="lm-payee-name">Same-day ACH</td>
+                  <td class="muted num">By 4:30 PM ET</td>
+                  <td data-numeric="true" class="num" data-sort-val="0">$0.00</td>
+                </tr>
+                <tr>
+                  <td class="lm-payee-name">Domestic Fedwire</td>
+                  <td class="muted num">Under 2 hours</td>
+                  <td data-numeric="true" class="num" data-sort-val="15">$15.00</td>
+                </tr>
+                <tr>
+                  <td class="lm-payee-name">International SWIFT</td>
+                  <td class="muted num">1–2 business days</td>
+                  <td data-numeric="true" class="num" data-sort-val="25">$25.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="lm-sub-rule" style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+            <div class="lm-action-row">
+              <button type="button" class="lm-btn lm-btn-sm" data-trigger-toast="October statement sent to finance@northstar.design">Send October statement</button>
+              <button type="button" class="lm-btn lm-btn-ghost lm-btn-sm" id="lm-toggle-skel">Ledger loading preview</button>
+            </div>
+            <div class="lm-skeleton-stack" id="lm-skel-demo" hidden aria-label="Loading transactions">
+              <div class="lm-skel-line" style="width: 72%;"></div>
+              <div class="lm-skel-line" style="width: 90%;"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lm-container lm-footer">
+    <span>Ledgermark — Operating treasury design system</span>
+    <a href="../index.html" style="color: var(--ink-secondary);">All systems</a>
+  </footer>
+
+  <!-- Wire Transfer Modal (<dialog>) -->
+  <dialog class="lm-dialog" id="transfer-dialog" aria-labelledby="transfer-title">
+    <div class="lm-dialog-head">
+      <h2 id="transfer-title" style="font-size: 1.4375rem;">Send transfer</h2>
+      <button type="button" class="lm-btn lm-btn-ghost lm-btn-sm" data-close-dialog aria-label="Close transfer dialog">Close</button>
+    </div>
+    <form id="lm-transfer-form" style="display: flex; flex-direction: column; gap: 16px;">
+      <div class="lm-field">
+        <label class="lm-label" for="lm-tx-recipient">Recipient</label>
+        <input type="text" id="lm-tx-recipient" class="lm-input" value="Figma">
+      </div>
+      <div class="lm-field">
+        <label class="lm-label" for="lm-tx-from">From account</label>
+        <div class="lm-select-wrap">
+          <select id="lm-tx-from" class="lm-select num">
+            <option value="Checking •••• 4819">Checking •••• 4819 — $482,910.40</option>
+            <option value="Treasury •••• 9024">Treasury •••• 9024 — $1,240,000.00</option>
+          </select>
+          <svg class="lm-select-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="lm-field">
+        <label class="lm-label" for="lm-tx-amount">Amount (USD)</label>
+        <input type="text" id="lm-tx-amount" class="lm-input num" value="2,400.00">
+      </div>
+      <div class="lm-field">
+        <label class="lm-label" for="lm-tx-memo">Memo</label>
+        <input type="text" id="lm-tx-memo" class="lm-input" value="Annual design seats">
+      </div>
+      <div class="lm-dialog-foot">
+        <button type="button" class="lm-btn" data-close-dialog>Cancel</button>
+        <button type="submit" class="lm-btn lm-btn-primary num">Send $2,400.00</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Slide-over Expense Split Drawer (<dialog>) -->
+  <dialog class="lm-drawer" id="receipt-drawer" aria-labelledby="receipt-title">
+    <div class="lm-dialog-head">
+      <h2 id="receipt-title" style="font-size: 1.375rem;">Northstar Design Studio</h2>
+      <button type="button" class="lm-btn lm-btn-ghost lm-btn-sm" data-close-dialog aria-label="Close split expense drawer">Close</button>
+    </div>
+    <p class="num" id="receipt-amount" style="font-size: 1.3125rem; font-weight: 500; margin-bottom: 20px;">−$12,500.00</p>
+
+    <dl class="lm-kv-list">
+      <dt>Account</dt>
+      <dd class="lm-acct-mono" id="receipt-acct">Checking •••• 4819</dd>
+      <dt>Date</dt>
+      <dd class="num" id="receipt-date">Nov 4 · Pending</dd>
+      <dt>Attachment</dt>
+      <dd id="receipt-note">brand-refresh-nov.pdf attached</dd>
+    </dl>
+
+    <div style="margin-top: 32px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline;">
+        <h3>Split expense</h3>
+        <span class="num muted" style="font-size: 0.8125rem;">Total 100%</span>
+      </div>
+      <div class="lm-split-bar" aria-hidden="true">
+        <div class="lm-split-seg-a" id="lm-split-bar-a" style="width: 60%;"></div>
+        <div class="lm-split-seg-b"></div>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 0.84375rem; margin-bottom: 14px;">
+        <span>Engineering · <strong id="lm-eng-pct" class="num" style="font-weight: 600;">60%</strong></span>
+        <span>Product · <strong id="lm-prod-pct" class="num" style="font-weight: 600;">40%</strong></span>
+      </div>
+      <label class="lm-label sr-only" for="lm-split-slider">Engineering allocation percentage</label>
+      <input type="range" id="lm-split-slider" class="lm-range" min="10" max="90" step="5" value="60" style="--pct: 62.5%;">
+    </div>
+
+    <div class="lm-action-row" style="margin-top: 28px;">
+      <button type="button" class="lm-btn lm-btn-primary" id="lm-save-split">Save split</button>
+      <button type="button" class="lm-btn" data-close-dialog>Close</button>
+    </div>
+  </dialog>
+
+  <!-- Single Polite Toast -->
+  <div class="lm-toast" id="lm-toast" role="status" aria-live="polite" hidden></div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* Safe sandbox storage wrapper for window.origin === "null" */
+      var memPrefs = {};
+      function savePref(k, v) {
+        memPrefs[k] = v;
+        try { window.localStorage.setItem(k, v); } catch (_e) {}
+      }
+
+      /* Canonical Transactions Store */
+      var TRANSACTIONS = [
+        {
+          id: 'tx-1',
+          order: 6,
+          payee: 'Stripe Settlement',
+          status: 'Settled',
+          account: 'Checking •••• 4819',
+          date: 'Nov 4',
+          cents: 4280000,
+          note: 'Daily customer card payout'
+        },
+        {
+          id: 'tx-2',
+          order: 5,
+          payee: 'Northstar Design Studio',
+          status: 'Pending',
+          account: 'Checking •••• 4819',
+          date: 'Nov 4',
+          cents: -1250000,
+          note: 'brand-refresh-nov.pdf attached'
+        },
+        {
+          id: 'tx-3',
+          order: 4,
+          payee: 'AWS Cloud Services',
+          status: 'Settled',
+          account: 'Cards •••• 1108',
+          date: 'Nov 2',
+          cents: -624000,
+          note: 'October production infrastructure'
+        },
+        {
+          id: 'tx-4',
+          order: 3,
+          payee: 'Gusto Payroll',
+          status: 'Settled',
+          account: 'Checking •••• 4819',
+          date: 'Oct 31',
+          cents: -8412000,
+          note: 'Bi-weekly team payroll · 18 employees'
+        },
+        {
+          id: 'tx-5',
+          order: 2,
+          payee: 'Linear Software',
+          status: 'Settled',
+          account: 'Cards •••• 1108',
+          date: 'Oct 29',
+          cents: -84000,
+          note: 'Workspace subscription'
+        },
+        {
+          id: 'tx-6',
+          order: 1,
+          payee: 'Treasury Yield',
+          status: 'Settled',
+          account: 'Treasury •••• 9024',
+          date: 'Oct 28',
+          cents: 189040,
+          note: 'Monthly reserve dividend at 4.65%'
+        }
+      ];
+
+      var state = {
+        query: '',
+        account: 'all',
+        sortKey: 'order',
+        sortDir: 'descending'
+      };
+
+      function formatMoney(cents) {
+        var abs = (Math.abs(cents) / 100).toLocaleString('en-US', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+        if (cents < 0) return '\u2212$' + abs;
+        if (cents > 0) return '+$' + abs;
+        return '$0.00';
+      }
+
+      var tbody = document.getElementById('lm-tx-tbody');
+      var emptyEl = document.getElementById('lm-tx-empty');
+
+      function populateDrawer(tx) {
+        document.getElementById('receipt-title').textContent = tx.payee;
+        document.getElementById('receipt-amount').textContent = formatMoney(tx.cents);
+        document.getElementById('receipt-acct').textContent = tx.account;
+        document.getElementById('receipt-date').textContent = tx.date + ' · ' + tx.status;
+        document.getElementById('receipt-note').textContent = tx.note;
+      }
+
+      function renderTable() {
+        var q = state.query.trim().toLowerCase();
+        var rows = TRANSACTIONS.filter(function (tx) {
+          var matchQ = !q || tx.payee.toLowerCase().indexOf(q) !== -1 || tx.account.toLowerCase().indexOf(q) !== -1;
+          var matchA = state.account === 'all' || tx.account === state.account;
+          return matchQ && matchA;
+        });
+
+        var dir = state.sortDir === 'ascending' ? 1 : -1;
+        rows.sort(function (a, b) {
+          if (state.sortKey === 'order') return (a.order - b.order) * dir;
+          if (state.sortKey === 'cents') return (a.cents - b.cents) * dir;
+          if (state.sortKey === 'payee') return a.payee.localeCompare(b.payee) * dir;
+          return 0;
+        });
+
+        tbody.textContent = '';
+        if (rows.length === 0) {
+          emptyEl.hidden = false;
+          return;
+        }
+        emptyEl.hidden = true;
+
+        rows.forEach(function (tx) {
+          var tr = document.createElement('tr');
+          tr.setAttribute('data-tx-id', tx.id);
+          tr.tabIndex = 0;
+
+          var tdPayee = document.createElement('td');
+          var wrap = document.createElement('div');
+          wrap.className = 'lm-payee-cell';
+          var name = document.createElement('span');
+          name.className = 'lm-payee-name';
+          name.textContent = tx.payee;
+          wrap.appendChild(name);
+          if (tx.status === 'Pending') {
+            var pend = document.createElement('span');
+            pend.className = 'lm-pending';
+            pend.textContent = 'Pending';
+            wrap.appendChild(pend);
+          }
+          tdPayee.appendChild(wrap);
+
+          var tdAcct = document.createElement('td');
+          tdAcct.className = 'lm-acct-mono';
+          tdAcct.textContent = tx.account;
+
+          var tdDate = document.createElement('td');
+          tdDate.className = 'muted num';
+          tdDate.textContent = tx.date;
+
+          var tdAmt = document.createElement('td');
+          tdAmt.setAttribute('data-numeric', 'true');
+          tdAmt.className = tx.cents > 0 ? 'num lm-amt-pos' : 'num';
+          tdAmt.textContent = formatMoney(tx.cents);
+
+          tr.appendChild(tdPayee);
+          tr.appendChild(tdAcct);
+          tr.appendChild(tdDate);
+          tr.appendChild(tdAmt);
+
+          tr.addEventListener('click', function () {
+            populateDrawer(tx);
+            openDialogBySelector('#receipt-drawer', tr);
+          });
+          tr.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              populateDrawer(tx);
+              openDialogBySelector('#receipt-drawer', tr);
+            }
+          });
+
+          tbody.appendChild(tr);
+        });
+      }
+
+      renderTable();
+
+      /* Search & Account Filter */
+      document.getElementById('lm-payee-search').addEventListener('input', function (e) {
+        state.query = e.target.value;
+        renderTable();
+      });
+      document.getElementById('lm-acct-filter').addEventListener('change', function (e) {
+        state.account = e.target.value;
+        renderTable();
+      });
+      document.getElementById('lm-clear-search').addEventListener('click', function () {
+        state.query = '';
+        state.account = 'all';
+        document.getElementById('lm-payee-search').value = '';
+        document.getElementById('lm-acct-filter').value = 'all';
+        renderTable();
+      });
+
+      /* Sortable Workspace Ledger Headers */
+      var sortHeaders = document.querySelectorAll('#lm-tx-table th[data-sort-key]');
+      sortHeaders.forEach(function (th) {
+        var btn = th.querySelector('button');
+        btn.addEventListener('click', function () {
+          var key = th.getAttribute('data-sort-key');
+          var cur = th.getAttribute('aria-sort');
+          var next = cur === 'ascending' ? 'descending' : 'ascending';
+          sortHeaders.forEach(function (other) {
+            other.setAttribute('aria-sort', other === th ? next : 'none');
+          });
+          state.sortKey = key;
+          state.sortDir = next;
+          renderTable();
+        });
+      });
+
+      /* Sortable Fee Schedule Table (#components) */
+      var feeTable = document.getElementById('lm-fee-table');
+      if (feeTable) {
+        var feeThs = feeTable.querySelectorAll('thead th[aria-sort]');
+        feeThs.forEach(function (th) {
+          var btn = th.querySelector('button');
+          btn.addEventListener('click', function () {
+            var cur = th.getAttribute('aria-sort');
+            var next = cur === 'ascending' ? 'descending' : 'ascending';
+            feeThs.forEach(function (o) { o.setAttribute('aria-sort', o === th ? next : 'none'); });
+            var col = parseInt(th.getAttribute('data-fee-col') || '0', 10);
+            var isNum = th.getAttribute('data-fee-type') === 'num';
+            var fBody = feeTable.querySelector('tbody');
+            var fRows = Array.prototype.slice.call(fBody.querySelectorAll('tr'));
+            fRows.sort(function (a, b) {
+              var cA = a.children[col];
+              var cB = b.children[col];
+              if (isNum) {
+                var nA = parseFloat(cA.getAttribute('data-sort-val') || '0') || 0;
+                var nB = parseFloat(cA === cB ? '0' : (cB.getAttribute('data-sort-val') || '0')) || 0;
+                return next === 'ascending' ? nA - nB : nB - nA;
+              }
+              return next === 'ascending'
+                ? cA.textContent.localeCompare(cB.textContent)
+                : cB.textContent.localeCompare(cA.textContent);
+            });
+            fRows.forEach(function (r) { fBody.appendChild(r); });
+          });
+        });
+      }
+
+      /* Theme & Density Toggles */
+      var htmlEl = document.documentElement;
+      var themeBtn = document.querySelector('[data-theme-toggle]');
+      themeBtn.addEventListener('click', function () {
+        var isPine = htmlEl.getAttribute('data-theme') === 'pine';
+        var next = isPine ? 'alabaster' : 'pine';
+        htmlEl.setAttribute('data-theme', next);
+        themeBtn.setAttribute('aria-pressed', String(next === 'pine'));
+        savePref('lm-theme', next);
+      });
+
+      var densityBtn = document.querySelector('[data-density-toggle]');
+      densityBtn.addEventListener('click', function () {
+        var isCompact = htmlEl.getAttribute('data-density') === 'compact';
+        var next = isCompact ? 'comfortable' : 'compact';
+        htmlEl.setAttribute('data-density', next);
+        densityBtn.setAttribute('aria-pressed', String(next === 'compact'));
+        savePref('lm-density', next);
+      });
+
+      /* Single Polite Toast */
+      var toastEl = document.getElementById('lm-toast');
+      var toastTimer = null;
+      function showToast(msg) {
+        if (toastTimer) clearTimeout(toastTimer);
+        toastEl.textContent = msg;
+        toastEl.hidden = false;
+        toastTimer = setTimeout(function () {
+          toastEl.hidden = true;
+        }, 3600);
+      }
+
+      document.querySelectorAll('[data-trigger-toast]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          showToast(btn.getAttribute('data-trigger-toast'));
+        });
+      });
+
+      /* Busy CSV Export Button */
+      var busyBtn = document.getElementById('lm-busy-btn');
+      busyBtn.addEventListener('click', function () {
+        if (busyBtn.getAttribute('data-loading') === 'true') return;
+        busyBtn.setAttribute('data-loading', 'true');
+        setTimeout(function () {
+          busyBtn.removeAttribute('data-loading');
+          showToast('November ledger CSV exported');
+        }, 700);
+      });
+
+      /* Copy ABA Routing Number */
+      document.getElementById('lm-copy-routing').addEventListener('click', function () {
+        var val = document.getElementById('lm-routing-num').value;
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(val).catch(function () {});
+          }
+        } catch (_e) {}
+        showToast('ABA routing number copied');
+      });
+
+      /* Natural Daily ACH Limit Validation (blur + Save limit submit + live clear) */
+      var form = document.getElementById('lm-settings-form');
+      var limitInput = document.getElementById('lm-ach-limit');
+      var limitErr = document.getElementById('lm-limit-err');
+      var limitErrText = document.getElementById('lm-limit-err-text');
+
+      function validateLimit() {
+        var raw = limitInput.value.trim();
+        var cleaned = raw.replace(/[$,\s]/g, '');
+        var amount = Number(cleaned);
+        var validNum = cleaned.length > 0 && /^\d+(\.\d{1,2})?$/.test(cleaned) && amount >= 1000 && amount <= 50000;
+        if (!validNum) {
+          limitInput.setAttribute('aria-invalid', 'true');
+          if (!cleaned || !/^\d+(\.\d{1,2})?$/.test(cleaned) || amount < 1000) {
+            limitErrText.textContent = 'Enter a daily ACH limit between $1,000 and $50,000.';
+          } else {
+            limitErrText.textContent = 'Enter a daily limit up to $50,000, or request CFO co-signing.';
+          }
+          limitErr.hidden = false;
+          return false;
+        }
+        limitInput.setAttribute('aria-invalid', 'false');
+        limitErr.hidden = true;
+        return true;
+      }
+
+      limitInput.addEventListener('blur', validateLimit);
+      limitInput.addEventListener('input', function () {
+        if (limitInput.getAttribute('aria-invalid') === 'true') validateLimit();
+      });
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (validateLimit()) {
+          showToast('Daily ACH limit saved');
+        } else {
+          limitInput.focus();
+        }
+      });
+
+      var appForm = document.getElementById('lm-approvals-form');
+      if (appForm) {
+        appForm.addEventListener('submit', function (e) { e.preventDefault(); });
+      }
+
+      /* Indeterminate Parent Checkbox */
+      var parentCheck = document.getElementById('lm-check-all');
+      var childChecks = Array.prototype.slice.call(document.querySelectorAll('.lm-child-check'));
+      function syncParentCheck() {
+        var n = childChecks.filter(function (c) { return c.checked; }).length;
+        parentCheck.checked = n === childChecks.length;
+        parentCheck.indeterminate = n > 0 && n < childChecks.length;
+      }
+      syncParentCheck();
+      parentCheck.addEventListener('change', function () {
+        childChecks.forEach(function (c) { c.checked = parentCheck.checked; });
+        parentCheck.indeterminate = false;
+      });
+      childChecks.forEach(function (c) {
+        c.addEventListener('change', syncParentCheck);
+      });
+
+      /* Switch */
+      document.querySelectorAll('[role="switch"]').forEach(function (sw) {
+        sw.addEventListener('click', function () {
+          var on = sw.getAttribute('aria-checked') === 'true';
+          sw.setAttribute('aria-checked', String(!on));
+        });
+      });
+
+      /* Sweep Range Slider + Threshold Nudge */
+      var sweepRange = document.getElementById('lm-sweep-range');
+      var sweepOut = document.getElementById('lm-sweep-out');
+      var sweepSubVal = document.getElementById('lm-sweep-sub-val');
+      function syncSweep() {
+        var val = Number(sweepRange.value);
+        var minV = Number(sweepRange.min) || 250;
+        var maxV = Number(sweepRange.max) || 750;
+        var pct = ((val - minV) / (maxV - minV)) * 100;
+        sweepRange.style.setProperty('--pct', pct.toFixed(1) + '%');
+        var formatted = '$' + (val * 1000).toLocaleString('en-US');
+        sweepOut.textContent = formatted;
+        if (sweepSubVal) sweepSubVal.textContent = formatted;
+      }
+      syncSweep();
+      sweepRange.addEventListener('input', syncSweep);
+      document.querySelectorAll('[data-sweep-step]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var step = Number(btn.getAttribute('data-sweep-step'));
+          var next = Math.max(250, Math.min(750, Number(sweepRange.value) + step));
+          sweepRange.value = String(next);
+          syncSweep();
+        });
+      });
+
+      /* Drawer Split Slider (always sums to 100%) */
+      var splitSlider = document.getElementById('lm-split-slider');
+      function syncSplit() {
+        var eng = Number(splitSlider.value);
+        var prod = 100 - eng;
+        var trackPct = ((eng - 10) / 80) * 100;
+        splitSlider.style.setProperty('--pct', trackPct.toFixed(1) + '%');
+        document.getElementById('lm-split-bar-a').style.width = eng + '%';
+        document.getElementById('lm-eng-pct').textContent = eng + '%';
+        document.getElementById('lm-prod-pct').textContent = prod + '%';
+      }
+      splitSlider.addEventListener('input', syncSplit);
+      document.getElementById('lm-save-split').addEventListener('click', function () {
+        document.getElementById('receipt-drawer').close();
+        showToast('Expense split saved');
+      });
+
+      /* Roving ARIA Tabs */
+      document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        function activateTab(idx, focusTab) {
+          tabs.forEach(function (t, i) {
+            var sel = i === idx;
+            t.setAttribute('aria-selected', String(sel));
+            t.tabIndex = sel ? 0 : -1;
+            var pid = t.getAttribute('aria-controls');
+            var panel = pid ? document.getElementById(pid) : null;
+            if (panel) panel.hidden = !sel;
+            if (sel && focusTab) t.focus();
+          });
+        }
+        tabs.forEach(function (t, i) {
+          t.addEventListener('click', function () { activateTab(i, false); });
+          t.addEventListener('keydown', function (e) {
+            var next = -1;
+            if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') next = 0;
+            else if (e.key === 'End') next = tabs.length - 1;
+            if (next !== -1) {
+              e.preventDefault();
+              activateTab(next, true);
+            }
+          });
+        });
+      });
+
+      /* Skeleton Toggle */
+      var skelBtn = document.getElementById('lm-toggle-skel');
+      var skelDemo = document.getElementById('lm-skel-demo');
+      skelBtn.addEventListener('click', function () {
+        skelDemo.hidden = !skelDemo.hidden;
+      });
+
+      /* Modal & Slide-over Drawer (<dialog>) with deterministic focus return */
+      var activeOpener = null;
+      function openDialogBySelector(sel, opener) {
+        var dlg = document.querySelector(sel);
+        if (!dlg || dlg.open) return;
+        toastEl.hidden = true;
+        activeOpener = opener || document.activeElement;
+        dlg.showModal();
+      }
+
+      document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openDialogBySelector(btn.getAttribute('data-open-modal'), btn);
+        });
+      });
+      document.querySelectorAll('[data-open-drawer]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          openDialogBySelector(btn.getAttribute('data-open-drawer'), btn);
+        });
+      });
+
+      document.querySelectorAll('dialog').forEach(function (dlg) {
+        dlg.addEventListener('close', function () {
+          if (activeOpener && typeof activeOpener.focus === 'function') {
+            activeOpener.focus({ preventScroll: true });
+          }
+        });
+        dlg.addEventListener('click', function (e) {
+          if (e.target === dlg) dlg.close();
+        });
+      });
+
+      document.querySelectorAll('[data-close-dialog]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var dlg = btn.closest('dialog');
+          if (dlg) dlg.close();
+        });
+      });
+
+      document.getElementById('lm-transfer-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var recipient = document.getElementById('lm-tx-recipient').value.trim() || 'Recipient';
+        var fromAcct = document.getElementById('lm-tx-from').value;
+        var rawAmt = parseFloat(document.getElementById('lm-tx-amount').value.replace(/[^0-9.]/g, '')) || 2400;
+        var cents = -Math.round(rawAmt * 100);
+        TRANSACTIONS.unshift({
+          id: 'tx-' + String(TRANSACTIONS.length + 1),
+          order: TRANSACTIONS.length + 1,
+          payee: recipient,
+          status: 'Pending',
+          account: fromAcct,
+          date: 'Today',
+          cents: cents,
+          note: document.getElementById('lm-tx-memo').value.trim() || 'Transfer queued'
+        });
+        renderTable();
+        document.getElementById('transfer-dialog').close();
+        showToast('Transfer queued to ' + recipient);
+      });
+    })();
+  </script>
+</body>
+</html>

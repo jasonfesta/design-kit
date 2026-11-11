@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>design critique</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>design critique</h1>
+      <p>runs jason-design-agent&#x27;s originality and craft critiques across upfront concept sign-off, mid-build jason-dev-agent talk-backs, and the mandatory final post-build jason-design-agent output.</p>
+      <div class="actions">
+        <a href="../design-critique.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>design critique</h1>
+<pre data-lang="text"><code>jason-design-agent &lt;-&gt; jason-dev-agent / design critique (5 critique moments)
+────────────────────────────────────────────────────────────────────
+moment 0      PRE-NANO 10-ITERATION CRITIQUE (10 rewrites BEFORE Round 1)
+moment 0.5    ROUND 1 vs. 5 BENCHMARKS CRITIQUE -&gt; drives competing Round 2
+moment 1      post-render concept sign-off (zero beige · direct research DNA)
+moment 2      mid-build talk-backs (passed jason-dev-agent stage -&gt; critique)
+moment 3      FINAL jason-design-agent output AFTER jason-dev-agent finishes
+tri-persp     1. judge like a designer  2. judge back to research  3. judge itself
+anti-inching  10-dimension auto-correction matrix (NEVER inch 1 change at a time)
+swarm         10-15 agent critique swarm orchestrated via scripts/run_critique_swarm.py</code></pre>
+<p><code>design-critique</code> is <strong><code>jason-design-agent</code>&#x27;s brutal hyper-critique and designer judgment authority</strong>:</p>
+<ul>
+<li><strong>tri-perspective brutal judgment on every round</strong>:</li>
+</ul>
+<ol>
+<li><em>Judge like a Designer</em>: evaluate pure aesthetic power, typographic hierarchy, optical padding, negative space, and material depth. Is it high-end and commanding, or generic AI template output?</li>
+<li><em>Judge back to Research</em>: relentlessly cross-reference against the 5 standout research benchmarks. Did we honor their layout mechanisms, contrast, and avoid lists—or average them into safe mush?</li>
+<li><em>Judge Itself (Self-Audit)</em>: brutal retrospective on prior decisions and compromises. Where did the agent get lazy? Where did it take the easiest path?</li>
+</ol>
+<ul>
+<li><strong>anti-inching rule (10-dimension auto-correction)</strong>: a turn must <strong>NEVER</strong> inch one minor change at a time. Every turn must execute <strong>10 simultaneous auto-corrections</strong> (grid, fonts, color, padding, hero mechanism, copy canon, materiality, mobile parity, component modularity, and benchmark distinction) before generating another round.</li>
+<li><strong>hyper-critique swarm (10 to 15 specialized critics)</strong>: orchestrates 10 to 15 dedicated critique agents via <a href="scripts/run_critique_swarm.py">run_critique_swarm.py</a> (lead taste director, benchmark auditor, typographic anatomist, grid structuralist, chromatic specialist, optical padding inspector, hero specialist, copy auditor, mobile architect, materialist, anti-cliché killer, component modularist, spatial depth critic, acutance inspector, and brutal red-team critic).</li>
+<li><strong>moment 0 (<code>critique/pre-nano-10-iterations.md</code>)</strong>: 10 critique-and-rewrite passes + <code>python3 ../jason-design-agent/scripts/font_scale_and_pairing.py audit</code> <em>before</em> Nano Banana (<code>0</code> calls spent), killing warm-beige defaults, basic AI fonts, <code>&lt; 12px</code> font tokens, <code>&lt; 4.5:1</code> WCAG contrast, missing surface viewport/char-per-line copy locks, cramped padding, and generic wireframes so <strong>zero Nano Banana rounds get wasted solely on font fixes</strong>.</li>
+<li><strong>moment 0.5 (<code>critique/round-1-vs-benchmarks.md</code> &amp; <code>critique/hyper-critique-report.md</code> — base-to-original multi-round driver)</strong>: between every design round (<code>round 1</code> -&gt; <code>round 2</code> -&gt; <code>round 3</code>), runs the hyper-critique swarm against the prior round AND compares directly against the full-webpage Chrome DevTools / Playwright reference (<code>desktop-fullpage.png</code> / <code>desktop-fullpage-contact.jpg</code> + <code>fullpage-callouts.json</code>). Rejects rudimentary junior wireframes and <code>2%</code> cosmetic tweaks, extracts missed multi-section callouts and micro-chrome from the full webpage, and executes 10 substantive art-direction auto-corrections so each round delivers a <strong>dramatic visual and originality leap</strong> from the pixel-perfect reference base toward an unmistakably original plate.</li>
+<li><strong>moment 1 (<code>pre-moodboard designer image checkpoint &amp; upfront sign-off</code>)</strong>: verifies all plates meet <code>&gt;= 1K</code> every-edge / <code>2K</code> crystal-clear PNG standards (<code>lock_and_verify_plates.py verify</code>), preserve distinct non-beige worlds, clean live Primary + Companion Google Font anatomy, <code>2:1</code> button optical padding, <strong>4-surface accessible CSS-to-<code>2K</code> font proportions (<code>desktop-web</code>: <code>48-60px</code> H1 / <code>16-18px</code> body at <code>55-70</code> chars/line / <code>12-13px</code> floor; <code>mobile</code>: <code>28-34pt</code> H1 <code>&lt;= 2</code> lines / <code>16pt</code> body at <code>34-42</code> chars/line / <code>&gt;= 44pt</code> targets / <code>4</code>-tab iOS bar at <code>12-13pt</code>; <code>desktop-app</code>: <code>1</code>-line <code>24-30px</code> view title / <code>14-16px</code> rows &amp; prose, <code>0</code> <code>64px</code> hero bloat; <code>component</code>: <code>20-24px</code> card title / <code>15-16px</code> body at <code>32-46</code> chars/line), and 100% de-AI product realism (<code>0</code> <code>01 / ...</code> or <code>BUILT AROUND YOUR PROCESS</code> ALL-CAPS eyebrows, <code>0</code> middle dots <code>·</code> between links, <code>0</code> rudimentary wireframe boxes, <code>0</code> cropped-off software windows, <code>0</code> floating callouts over 3D art, <code>0</code> cartoon storybook plants/books)</strong>, and zero meta-prompt text leakage—and <strong>shows all verified images (<code>critique/pre-moodboard-image-checkpoint.md</code>) directly to the designer for approval or edits BEFORE <code>build_moodboard.py</code> runs</strong>.</li>
+<li><strong>moment 2 (<code>mid-build talk-backs</code>)</strong>: critiques each passed <code>jason-dev-agent</code> stage (<code>nano-banana</code>, <code>image-to-react</code>, <code>responsiveness</code>, <code>interaction</code>, <code>feel</code>) for up to <code>design_agent_turns</code> rounds.</li>
+<li><strong>moment 3 (<code>critique/final-design-signoff.md</code>)</strong>: mandatory final <code>jason-design-agent</code> output after <code>jason-dev-agent</code> completes all engineering gates.</li>
+</ul>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 0 — lock <code>design_agent_turns</code></strong>: ask <strong>&quot;how many turns do you want out of the design agent?&quot;</strong> unless already specified by the user.</span></li>
+<li><span class="check-box"></span><span><strong>step 1 — run Moment 0 (<code>10</code> pre-Nano iterations) before Round 1</strong>: reject any warm beige/cream/oat default, banned cliché font, or averaged non-specific layout before firing Nano Banana.</span></li>
+<li><span class="check-box"></span><span><strong>step 2 — run Moment 0.5 Hyper-Critique Swarm &amp; Tri-Perspective Audit (<code>critique/round-1-vs-benchmarks.md</code> &amp; <code>critique/hyper-critique-report.md</code>)</strong>:</span></li>
+<li>Run <code>python3 scripts/run_critique_swarm.py audit --study-dir=&lt;study-dir&gt; --turn=1 --swarm-count=15</code>.</li>
+<li>Judge Round 1 across all 3 perspectives: (a) like an elite designer, (b) back to the 5 research benchmarks, and (c) a brutal self-audit of compromises.</li>
+<li>Enforce the <strong>Anti-Inching Rule</strong>: author the Round 2 prompt diff across all 10 auto-correction dimensions simultaneously so Round 2 makes a massive, decisive leap.</li>
+<li><span class="check-box"></span><span><strong>step 3 — run Moment 2 &amp; Moment 3 on <code>jason-dev-agent</code> builds</strong>: require passed dev evals first, critique against <code>research/</code> + approved concept plates, and emit <code>critique/final-design-signoff.md</code> at completion.</span></li>
+</ul>
+<h2>references &amp; examples</h2>
+<ul>
+<li><a href="references/hyper-critique-swarm-and-auto-correction.md">hyper-critique swarm, tri-perspective judgment &amp; 10-dimension auto-correction protocol</a></li>
+<li><a href="references/paired-dev-to-designer-loop.md">paired <code>jason-dev-agent</code> &lt;-&gt; <code>jason-design-agent</code> turn protocol &amp; message format</a></li>
+<li><a href="references/critique-lenses-and-inspiration.md">designer critique lenses &amp; mode-aware uniqueness rules</a></li>
+<li><a href="examples/paired-critique-session.md">example multi-stage critique session across visuals, responsiveness, interaction &amp; feel</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

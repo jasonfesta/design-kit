@@ -1,0 +1,16 @@
+{
+  "entries": [
+    {
+      "path": "/usr/local/google/home/jfesta/skills",
+      "exclude": [
+        "_agents",
+        "\\.agents",
+        "jason-design-agent",
+        "jason-dev-agent"
+      ]
+    },
+    {
+      "path": "/usr/local/google/home/jfesta/skills/_agents/agents"
+    }
+  ]
+}

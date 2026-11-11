@@ -1,0 +1,33 @@
+{
+  "id": "game-deterministic-sim-core",
+  "display_name": "Game deterministic simulation core",
+  "google3_package": "game_deterministic_sim_core",
+  "title": "Game deterministic simulation core",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "game-deterministic-sim-core",
+  "agent_md": "game-deterministic-sim-core/agent.md",
+  "skill_md": "game-deterministic-sim-core/SKILL.md",
+  "html_page": "game-deterministic-sim-core/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/game-deterministic-sim-core",
+  "bundle_skill": "game-deterministic-sim-core.skill",
+  "bundle_zip": "game-deterministic-sim-core.zip",
+  "short_summary": "Decouple game simulation state from rendering and browser globals across three determinism levels\u2014frame-rate independence, seeded headless replayability, and cross-browser lockstep parity.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Decouple game simulation state from rendering and browser globals across three determinism levels\u2014frame-rate independence, seeded headless replayability, and cross-browser lockstep parity.",
+  "references": [
+    "./references/contributing.md",
+    "./scripts/verify_sim_determinism.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=game-deterministic-sim-core"
+  }
+}

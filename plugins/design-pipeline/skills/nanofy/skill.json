@@ -1,0 +1,36 @@
+{
+  "id": "nanofy",
+  "display_name": "nanofy",
+  "google3_package": "nanofy",
+  "title": "nanofy",
+  "icon": "\ud83c\udf4c",
+  "category": "sub-skill of concept-art \u00b7 folder intake & anchored nano banana refresh",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "nanofy",
+  "agent_md": "nanofy/agent.md",
+  "skill_md": "nanofy/SKILL.md",
+  "html_page": "nanofy/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/nanofy",
+  "bundle_skill": "nanofy.skill",
+  "bundle_zip": "nanofy.zip",
+  "short_summary": "intakes a zip or folder of plates plus the prompt mds behind them, re-outputs every plate through nano banana with the desktop anchor taking a 0.1-0.5 unique take propagated to all spokes (same size, same format, >= 1k, invariants locked), and curates the design | development moodboard before handing to jason-dev-agent.",
+  "when_to_use": "use inside jason-design-agent whenever the design agent starts from a folder of plates instead of a prompt.",
+  "quick_cmd": "python3 nanofy/scripts/nanofy-plates.py plan --study=./my-study --variation 0.2",
+  "summary": "Intakes a zip or local folder of externally rendered plates (desktop web, mobile web, application, components, experiences) plus the prompt MDs that describe the style direction, research, and how the plates were achieved, bootstraps the single Design/Development moodboard study in place, and re-outputs every plate through Nano Banana before anything is built: the desktop web anchor (slot 01, the very first image) takes a distinct unique stance at variation 0.5 by default (dial 0.1 to 0.5), then the same refinement is applied consistently to every other plate, always at least 1k, in the same format and same pixel size, with titling, logos, product UI, and layout held invariant. Outputs are new images in nano/ plus new nano-based prompt MDs in nano/prompts/, the moodboard supports thumbs up/down curation, the whole pass counts as exactly one jason-design-agent turn, and the selections are pushed to jason-dev-agent. Use inside jason-design-agent whenever plates arrive from outside the harness. Don't use...",
+  "references": [
+    "./references/contributing.md",
+    "./references/intake-folder-and-moodboard.md",
+    "./references/variation-dial-and-invariants.md",
+    "./scripts/intake-study-from-folder.py",
+    "./scripts/nanofy-plates.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=nanofy"
+  }
+}

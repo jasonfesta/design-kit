@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>game concept and toy first</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>game concept and toy first</h1>
+      <p>turn a real-world observation or physical mechanism into a clear 10-second playable browser toy with real stakes, spatial depth, and batch genre diversity before building menus, economies, or progression.</p>
+      <div class="actions">
+        <a href="../game-concept-and-toy-first.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Game concept and toy first</h1>
+<h2>What it is</h2>
+<p>This skill guides the earliest stage of making a browser game: finding an original premise, proving its core interaction as a live 10-second toy at boot, and ensuring the loop has genuine stakes and visual depth before writing surrounding scaffolding.</p>
+<p>Models default to two opposite failure modes—either wrapping a lifeless action in title screens, inventory grids, and currency counters, or misreading &quot;toy first&quot; as a flat, unloseable vector diagram where dragging a slider fills a progress bar. This skill breaks both habits by pushing off stock genre clichés, anchoring mechanics in physical tension, choosing a rendering medium with real spatial presence, and pairing immediately with the sibling simulation, 3D, balance, and audio skills.</p>
+<h2>When to use it</h2>
+<ul>
+<li>Starting a new browser game, action prototype, tactical skirmish, puzzle, or physical simulation from an open brief.</li>
+<li>Spawning parallel sub-agents to build a diverse batch of distinct games without collapsing onto a single visual or mechanical template.</li>
+<li>Rescuing a prototype that has menus, lore, or resource tables before its primary action feels exciting to touch.</li>
+</ul>
+<h2>When not to use it</h2>
+<ul>
+<li>Extending an existing game whose core loop already plays well.</li>
+<li>Porting a fixed ruleset (such as chess, solitaire, or a published board game) where fidelity to known rules is the requirement.</li>
+<li>Stopping after a gentle 10-second demo when the user asked for a full game; once the boot loop works, pull in the sibling skills below in the same session.</li>
+</ul>
+<h2>Why models produce lifeless prototypes</h2>
+<ol>
+<li>Genre-shell gravity. Training corpora associate &quot;game&quot; with boilerplate chrome—start modals, settings drawers, health bars, XP meters, and shop tabs—so models build the wrapper before the stage.</li>
+<li>Adjective drift. Prompts like &quot;cozy&quot;, &quot;tactical&quot;, or &quot;retro&quot; steer toward stock visual clichés rather than a specific mechanical tension.</li>
+<li>Polite calibration-widget collapse. Models confuse &quot;10-second toy first&quot; with an unloseable museum kiosk—dragging one dial, spotlight, or specimen until a threshold hits 100% with zero opposition, failure risk, or replayable depth.</li>
+<li>Flat vector and SVG fallback. Because single-file static hosting discourages external asset fetches, models lazily draw flat <code>&lt;svg&gt;</code> paths or unlit <code>Canvas2D</code> primitives instead of bundling a real 3D engine, GPU shaders, or lit spatial layers.</li>
+<li>Delayed spreadsheet loops. Complex resource calendars and multi-step crafting chains hide cause and effect behind minutes of opaque waiting.</li>
+<li>Batch clone collapse. When asked for multiple games, a coordinator or model repeats one safe camera angle, tempo, and flat rendering style across every slot.</li>
+</ol>
+<h2>The method</h2>
+<h3>1. Name and refuse the genre default</h3>
+<p>Write down the obvious template your prompt would normally trigger in one sentence—its stock camera, stock verb, and stock UI chrome—and explicitly reject both that cliché and the passive &quot;drag-to-calibrate&quot; widget trap.</p>
+<h3>2. Anchor in a concrete physical or tactical tension</h3>
+<p>Replace abstract genre labels with a specific real-world force, mechanism, or contested situation: how a crane load whips past its tether on a sudden stop, how billiard spin hooks off a cushion into a cluster, how tugboats pivot a heavy hull in cross-current, how wind shifts jump a firebreak, or how sound waves focus along curved walls. Translate three physical qualities from that world directly into input feel, risk-reward timing, and spatial camera framing.</p>
+<h3>3. Sketch three to five structural verb ideas before writing code</h3>
+<p>Write three to five one-line game structures that differ in how the player acts and how the world pushes back—not how the screen is decorated. Vary the input relationship (momentum launch, rhythmic parry, spatial herding, contested placement, chain-reaction trigger, asymmetric vehicle control), drop both the most conventional genre clone and any unloseable slider toy, and commit to the sharpest playable conflict.</p>
+<h3>4. Give the core verb real pushback, risk, and escalation</h3>
+<p>&quot;Toy first&quot; means <strong>zero pre-game chrome</strong>, never <strong>zero game stakes</strong>. Unless the user explicitly asks for a meditative sandbox, every game needs active counter-pressure from the first screen:</p>
+<ul>
+<li>Immediate pushback: hazards, rival agents, momentum overshoot, collapsing terrain, or tight turn/space budgets where careless or passive play visibly loses.</li>
+<li>High-ceiling skill expression: grazing danger, chaining ricochets, timing releases, or reading terrain geometry should reward skilled hands far above random tapping.</li>
+<li>Structural escalation: each subsequent wave, room, or board must introduce new spatial layouts, hazard interactions, or opponent behaviours—never just repeat the opening calibration check with slightly tighter numbers.</li>
+</ul>
+<h3>5. Choose a rendering medium with real spatial depth and materiality</h3>
+<p>Never default to flat <code>&lt;svg&gt;</code> elements or unlit 2D vector diagrams out of bundling convenience unless the user specifically asks for an abstract board or diagram style. Match the rendering medium to the physical world of the game:</p>
+<ul>
+<li>Procedural 3D stages (<code>Three.js</code> or raw <code>WebGL2</code> / <code>WebGPU</code>): ideal for vehicles, physics arenas, tactical skirmishes, architectural cutaways, and destructible mechanisms; bundle cleanly as a single classic IIFE script via <code>esbuild</code> so static sandboxes never force you back to 2D.</li>
+<li>Custom GPU fragment and particle shaders: ideal for fluid, optical, magnetic, acoustic, or high-density arcade fields where thousands of elements react with real specular lighting and shadows.</li>
+<li>Lit layered 2.5D or crisp pixel/sprite canvases: when 2D fits best, establish foreground/midground/background depth, directional lighting, contact shadows, and multi-frame impact deformation rather than flat geometric primitives.</li>
+</ul>
+<h3>6. Prove the 10-second loop at boot across pointer, keyboard, and touch</h3>
+<p>Boot directly into the live interactive world with at most one short line of contextual guidance. Within the first 15 seconds, a new player must:</p>
+<ol>
+<li>Touch, click, drag, or press an obvious affordance (<code>&gt;= 44 x 44 CSS px</code>, unified <code>pointerdown</code>/<code>pointermove</code>/<code>pointerup</code>, <code>touch-action: none</code> on the stage) without reading a tutorial wall.</li>
+<li>See and hear an unmistakable physical or tactical response within 150 ms across both desktop landscape and mobile portrait viewports.</li>
+<li>Experience one complete beat of risk and resolution—landing a shot, surviving an exchange, triggering a chain clear, or crashing and instantly resetting (<code>&lt; 300 ms</code> restart) with an immediate urge to try again.</li>
+</ol>
+<p>Withhold title modals, save-slot pickers, currency shops, and upgrade trees until that core loop already feels hard to put down.</p>
+<h3>7. Keep ambient delight off the critical path</h3>
+<p>Layer three to five reactive world details—wildlife scattering from shockwaves, weather shifting surface grip, scorch marks persisting across rounds, or subtle acoustic callbacks—while keeping every easter egg strictly non-blocking so missing one never gates progress.</p>
+<h2>Multi-game batches and sub-agent delegation</h2>
+<p>Whenever a prompt asks to spawn sub-agents or build multiple games (<code>N &gt;= 2</code>), enforce structural orthogonality before launching builders:</p>
+<ol>
+<li>Assign distinct <strong>genre, camera, tempo, and renderer slots</strong> across the batch—for example: (a) 3D third-person/chase physics action, (b) 3D angled cutaway tactical skirmish, (c) high-speed WebGL2 shader/arcade reflex arena, (d) turn-based spatial chain-reaction puzzle, and (e) articulated 3D vehicle or mechanism challenge. No two slots may share the same camera projection, primary input gesture, or calm observational tone.</li>
+<li>Delegate <strong>open structural slots, not pre-baked dioramas</strong>: pass each sub-agent its assigned genre/camera slot, quality gates, and sibling skills, and require the sub-agent itself to run Steps 1–4 so it invents a high-tension mechanic rather than illustrating a coordinator&#x27;s prose vignette.</li>
+<li>Require every sub-agent to pair this skill with the sibling suite below rather than stopping at <code>v0</code> toy-spec compliance.</li>
+</ol>
+<h2>Pairing with the sibling game skills</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Need</th><th>Sibling skill</th><th>What it adds once the 10-second toy boots</th></tr></thead>
+<tbody>
+<tr><td>3D rigs, sightlines, and static bundling</td><td><code>game-procedural-3d-and-cutaway</code></td><td>Procedural Three.js/WebGL actors, isolated <code>?inspect=1</code> turntables, roof/wall cutaways, 3-plane blur readability, and <code>esbuild</code> classic IIFE bundles (<code>--forbid-svg-only</code>)</td></tr>
+<tr><td>Crisp fixed-step physics and replays</td><td><code>game-deterministic-sim-core</code></td><td>Renderer-free simulation state, 60 Hz/120 Hz parity, and seeded headless runner hooks</td></tr>
+<tr><td>Real depth, pacing, and replay pull</td><td><code>game-fun-and-balance-ratchet</code></td><td>Anti-stagnation pressure, comeback arcs, and 50–500 episode headless sweeps proving skilled play beats random/passive play</td></tr>
+<tr><td>Expressive music and impact juice</td><td><code>game-text-score-audio-and-juice</code></td><td>Genre-matched grooves, transient-body-tail impact foley, adaptive tension stems, and WAV acoustic safety checks</td></tr>
+<tr><td>AI tournaments, multiplayer, or quests</td><td><code>game-arena-multiplayer-and-quests</code></td><td>Perspective-fair LLM arenas, URL-seed or stateless lockstep play, and softlock-free progression graphs</td></tr>
+</tbody>
+</table></div>
+<h2>Decisions across game types</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Game family</th><th>10-second toy target</th><th>Pushback &amp; escalation source</th><th>Scaffolding to defer</th></tr></thead>
+<tbody>
+<tr><td>Action or physics</td><td>One 3D/lit arena with trajectory arc, hazard, and instant <code>&lt;300 ms</code> reset</td><td>Moving threats, momentum overshoot, destructible cover</td><td>Level select, gear shops, skill trees</td></tr>
+<tr><td>Strategy or tactics</td><td>One contested skirmish or terrain choke with instant exchange</td><td>Flanking AI policies, shrinking safe zones, scarce high ground</td><td>Tech trees, faction lore, diplomacy menus</td></tr>
+<tr><td>Puzzle or board</td><td>One 3-move spatial setup that teaches a surprising chain rule wordlessly</td><td>Tight move budgets, coupled blockers, escalating board topologies</td><td>Campaign map, hint currency, star ratings</td></tr>
+<tr><td>Vehicle or mechanism</td><td>One articulated craft or rig tackling an immediate physical obstacle</td><td>Load instability, crosswinds, structural stress limits</td><td>Garage upgrades, fuel timers, career menus</td></tr>
+<tr><td>Cozy or observational</td><td>One tactile specimen or instrument (<em>only when requested or 1 slot in a batch</em>)</td><td>Expressive combo harmony or precision mastery without timer stress</td><td>Day-night calendars, inventory bags, fetch quests</td></tr>
+</tbody>
+</table></div>
+<h2>Traps</h2>
+<ul>
+<li>Mistaking a calibration slider for a game. Dragging one paddle, lens, or droplet until a progress ring fills—with no way to lose and no tactical choice—produces a 10-second kiosk, not a game.</li>
+<li>Defaulting to flat SVG or unlit <code>Canvas2D</code> primitives. Bundle <code>Three.js</code>, custom <code>WebGL2</code> shaders, or lit multi-plane rendering via an IIFE build step instead of settling for flat vector shapes.</li>
+<li>Cloning one mood across a multi-agent batch. Five quiet desk/harbour crafts in a row bore the player immediately; enforce distinct genre, camera, and tempo slots across sub-agents.</li>
+<li>Building menus or tutorial walls before mechanics. If the first 300 lines draw modals, settings tabs, or rule paragraphs, delete them and build the playable world first.</li>
+<li>Blocking easter eggs. Ambient wildlife or visual surprises must never silently gate the main objective.</li>
+</ul>
+<h2>Self-check</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Check</th><th>Pass</th><th>Fail symptom</th></tr></thead>
+<tbody>
+<tr><td>Boot to play</td><td>Page loads straight into an active playable world</td><td>Blocking title overlay, setup cloud sandbox, or multi-paragraph instructions</td></tr>
+<tr><td>150 ms response</td><td>First input produces immediate physical motion, impact, and sound</td><td>Input only highlights UI chrome or ticks a silent number</td></tr>
+<tr><td>Real stakes &amp; pull</td><td>Passive or sloppy play fails; skilled play unlocks combos and escalating rounds</td><td>Unloseable dial/slider widget where every round repeats the same check</td></tr>
+<tr><td>Spatial &amp; visual depth</td><td>3D rigs, GPU shaders, or lit multi-plane visuals give real material depth</td><td>Flat <code>&lt;svg&gt;</code> elements or unlit vector <code>Canvas2D</code> diagram shapes</td></tr>
+<tr><td>Batch diversity (<code>N &gt;= 2</code>)</td><td>Every game in a batch differs in genre family, camera projection, and tempo</td><td>Multiple games share the same calm top-down/elevation drag loop</td></tr>
+<tr><td>Unified input &amp; delight</td><td>Clean mouse, keyboard, and <code>&gt;=44 px</code> touch play; easter eggs stay non-blocking</td><td>Hover-only controls, page-scroll drag bugs, or progression-blocking secrets</td></tr>
+</tbody>
+</table></div>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

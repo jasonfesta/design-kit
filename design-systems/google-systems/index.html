@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Internal Design Systems — Top 10 High-Usage WDA Reference Gallery</title>
+  <link rel="stylesheet" href="../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../fonts/switchyard-fonts.css">
+  <style>
+    :root {
+      --bg: #0c0f14;
+      --card: #131820;
+      --border: rgba(255, 255, 255, 0.10);
+      --ink: #f1f5f9;
+      --muted: #94a3b8;
+      --blue: #4ea8ff;
+      --green: #10b981;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      padding: 32px 28px 64px; -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 1380px; margin: 0 auto; }
+    header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      gap: 20px; flex-wrap: wrap; padding-bottom: 24px;
+      border-bottom: 1px solid var(--border); margin-bottom: 28px;
+    }
+    h1 { margin: 6px 0 8px; font-size: 30px; letter-spacing: -0.02em; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+    .pill-link {
+      height: 36px; padding: 0 14px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--card); color: var(--ink);
+      text-decoration: none; font-size: 12.5px; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(620px, 1fr)); gap: 22px; }
+    @media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
+    .sys-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 14px;
+    }
+    .shots {
+      display: grid; grid-template-columns: 1.75fr 0.72fr; gap: 12px; align-items: stretch;
+    }
+    .shot-frame {
+      border-radius: 10px; overflow: hidden; border: 1px solid var(--border);
+      background: #090b0e; display: block;
+    }
+    .shot-frame img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+    .meta-links { display: flex; gap: 8px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="mono" style="color:var(--green);">//DEPOT/GOOGLE3/ VERIFIED · CARBON DESIGN TOKENS · 0.0% PURPLE</div>
+        <h1>10 High-Usage Google Design Systems (`google-systems/`)</h1>
+        <p style="margin:0;color:var(--muted);max-width:820px;font-size:14.5px;">
+          Paired Desktop (`1440×900 @2x`) + Mobile (`390×844 @2x`) hero screen grabs, verbatim Google3 `tokens.css`, interactive `specimen.html` workspaces, and `#01`–`#37` WDA prompt mappings.
+        </p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a class="pill-link" href="./README.md">📄 README.md</a>
+        <a class="pill-link" href="./registry.json">{ } registry.json</a>
+        <a class="pill-link" href="../external-systems/index.html">↗ External Systems</a>
+        <a class="pill-link" href="../index.html">← Six Core Systems</a>
+      </div>
+    </header>
+
+    <div class="grid">
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">01 · designSystems/20543ce18892f7d9 · v40.2.1</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Material 3 Expressive (`gm3` / `@material/web`)</h2>
+          <div style="font-size:13px;color:var(--muted);">`//javascript/material/gm3/tokens/v40_2/` · 5-tier tonal containers, 80px pill rail, AI prompt field · Prompts `#17, #19, #22, #28, #32, #36`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./01-gm3-expressive/desktop.png"><img src="./01-gm3-expressive/desktop.png" alt="GM3 Expressive Desktop Hero"></a>
+          <a class="shot-frame" href="./01-gm3-expressive/mobile.png"><img src="./01-gm3-expressive/mobile.png" alt="GM3 Expressive Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./01-gm3-expressive/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./01-gm3-expressive/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./01-gm3-expressive/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">02 · carbon.googleplex.com/cloud-platform · CM4</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Cloud Console / Pantheon (`cm4` / `cfc`)</h2>
+          <div style="font-size:13px;color:var(--muted);">`//cloud/console/web/common/cloud_matter/themes/cm4/` · 34px resource tables, 48px console bar, right inspector · Prompts `#02, #03, #13, #14, #21, #27`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./02-pantheon-cloud-matter/desktop.png"><img src="./02-pantheon-cloud-matter/desktop.png" alt="Pantheon Cloud Matter Desktop Hero"></a>
+          <a class="shot-frame" href="./02-pantheon-cloud-matter/mobile.png"><img src="./02-pantheon-cloud-matter/mobile.png" alt="Pantheon Cloud Matter Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./02-pantheon-cloud-matter/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./02-pantheon-cloud-matter/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./02-pantheon-cloud-matter/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">03 · //ads/acx2 &amp; //third_party/dart_src/acx/css/gm</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Ads &amp; Play Console ACX (`acx2` / `gm`)</h2>
+          <div style="font-size:13px;color:var(--muted);">Ultra-dense `tabular-nums` financial scorecards, period comparison &amp; frozen-total Material Tables · Prompts `#04, #07, #09, #11, #12, #24`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./03-acx-ads/desktop.png"><img src="./03-acx-ads/desktop.png" alt="ACX Ads Desktop Hero"></a>
+          <a class="shot-frame" href="./03-acx-ads/mobile.png"><img src="./03-acx-ads/mobile.png" alt="ACX Ads Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./03-acx-ads/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./03-acx-ads/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./03-acx-ads/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">04 · //javascript/angular2/components · mat.gm3-theme()</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Angular Material, CDK &amp; XAP (`mat-sys`)</h2>
+          <div style="font-size:13px;color:var(--muted);">Corp B2B `density: -2` workflow stepper, hierarchical `CdkTreeTable` &amp; GAR 4 status containers · Prompts `#06, #10, #16, #18, #23, #29`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./04-angular-xap/desktop.png"><img src="./04-angular-xap/desktop.png" alt="Angular XAP Desktop Hero"></a>
+          <a class="shot-frame" href="./04-angular-xap/mobile.png"><img src="./04-angular-xap/mobile.png" alt="Angular XAP Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./04-angular-xap/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./04-angular-xap/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./04-angular-xap/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">05 · //marketing/glue · Marketing Web Standards</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Glue Marketing Web Standards (`glue`)</h2>
+          <div style="font-size:13px;color:var(--muted);">12-column responsive editorial grid, sticky `glue-jumplinks`, global AR/ES/CJK typography · Prompts `#10, #20, #31, #33, #35`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./05-glue-marketing/desktop.png"><img src="./05-glue-marketing/desktop.png" alt="Google Glue Desktop Hero"></a>
+          <a class="shot-frame" href="./05-glue-marketing/mobile.png"><img src="./05-glue-marketing/mobile.png" alt="Google Glue Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./05-glue-marketing/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./05-glue-marketing/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./05-glue-marketing/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">06 · designSystems/61ce7d9a26ad5429 · v0.5.27</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google SecOps (Chronicle) UNO (`uno` / Malachite)</h2>
+          <div style="font-size:13px;color:var(--muted);">`//ux/tokens/design_systems/uno/` · Dark `#12171F` SIEM/WAF telemetry, Malachite/Ocean severity &amp; JSON viewer · Prompts `#01, #05, #08, #26, #36, #37`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./06-secops-uno/desktop.png"><img src="./06-secops-uno/desktop.png" alt="SecOps UNO Desktop Hero"></a>
+          <a class="shot-frame" href="./06-secops-uno/mobile.png"><img src="./06-secops-uno/mobile.png" alt="SecOps UNO Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./06-secops-uno/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./06-secops-uno/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./06-secops-uno/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">07 · designSystems/6a965cee65b87233 · v2.0.279</div>
+          <h2 style="margin:4px 0;font-size:19px;">YouTube &amp; YouTube Studio (`yt-spec`)</h2>
+          <div style="font-size:13px;color:var(--muted);">`//ux/tokens/design_systems/youtube/` · Cinema `#0F0F0F` 4-pane NLE timeline, `#FF0033` playhead &amp; retention curve · Prompts `#31, #33, #34, #36`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./07-youtube-yt-spec/desktop.png"><img src="./07-youtube-yt-spec/desktop.png" alt="YouTube Studio Desktop Hero"></a>
+          <a class="shot-frame" href="./07-youtube-yt-spec/mobile.png"><img src="./07-youtube-yt-spec/mobile.png" alt="YouTube Studio Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./07-youtube-yt-spec/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./07-youtube-yt-spec/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./07-youtube-yt-spec/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">08 · //ux/tokens/design_systems/sds · v9.33.4</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Search Design System (`sds` / Silk)</h2>
+          <div style="font-size:13px;color:var(--muted);">Grounded `#F0F4F9` RAG synthesis with inline citations, `SdsCompDataViz` oneboxes &amp; Knowledge Panel · Prompts `#06, #20, #25, #35`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./08-search-sds/desktop.png"><img src="./08-search-sds/desktop.png" alt="Search SDS Desktop Hero"></a>
+          <a class="shot-frame" href="./08-search-sds/mobile.png"><img src="./08-search-sds/mobile.png" alt="Search SDS Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./08-search-sds/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./08-search-sds/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./08-search-sds/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">09 · designSystems/78d941903d3ad98a · v27.7.1</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google Maps &amp; Geo Terra (`geo` / Terra)</h2>
+          <div style="font-size:13px;color:var(--muted);">`//ux/tokens/design_systems/geo/` · 100vh vector GIS map, floating layer pills, left dossier → mobile bottom sheet · Prompts `#01, #02, #15, #35, #37`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./09-geo-terra/desktop.png"><img src="./09-geo-terra/desktop.png" alt="Geo Terra Desktop Hero"></a>
+          <a class="shot-frame" href="./09-geo-terra/mobile.png"><img src="./09-geo-terra/mobile.png" alt="Geo Terra Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./09-geo-terra/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./09-geo-terra/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./09-geo-terra/README.md">README</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <div class="mono" style="color:var(--blue);">10 · designSystems/3b5a4b48a2d95565 · v0.0.63</div>
+          <h2 style="margin:4px 0;font-size:19px;">Google DevSite &amp; Codelabs (`devsite`)</h2>
+          <div style="font-size:13px;color:var(--muted);">`//ux/tokens/design_systems/devsite/` · Split-screen step codelab + `#263238` zero-purple code sandbox · Prompts `#06, #25, #27, #30`</div>
+        </div>
+        <div class="shots">
+          <a class="shot-frame" href="./10-devsite-codelabs/desktop.png"><img src="./10-devsite-codelabs/desktop.png" alt="DevSite Codelabs Desktop Hero"></a>
+          <a class="shot-frame" href="./10-devsite-codelabs/mobile.png"><img src="./10-devsite-codelabs/mobile.png" alt="DevSite Codelabs Mobile Hero"></a>
+        </div>
+        <div class="meta-links">
+          <a class="pill-link" href="./10-devsite-codelabs/specimen.html">▶ Interactive Specimen</a>
+          <a class="pill-link" href="./10-devsite-codelabs/tokens.css">tokens.css</a>
+          <a class="pill-link" href="./10-devsite-codelabs/README.md">README</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+# proto-file: learning/gemini/agents/evaluation/evalin/proto/eval_suite.proto
+# proto-message: EvalSuite
+# txtpbfmt: wrap_strings_after_newlines
+
+suite_name: "warmup"
+timeout_seconds: 300
+
+cases {
+  name: "warmup_checks_available_models_and_offers_fallback_when_no_api_key"
+  prompt: "Run Warmup on /tmp/hero-mockup.png across Grok, Claude, Astra, GPT, and Argon. I don't have API keys set up yet.\n"
+  expectations:
+    "The agent must:\n"
+    "- Check which external API keys are configured and query available host assistant models (e.g. via swarm models or check_models.py)\n"
+    "- Never ask for raw API keys in chat\n"
+    "- Offer the user the discovered available host assistant models (with their model IDs/quotas) as fallbacks for the missing API key slots\n"
+    "- Keep the Pass 1 image-to-React translation prompt simple, identical, and zero-drift across all models"
+  expectations: "Agent output contains at least one of: assistant-fallback, available models, swarm, opus, gemini"
+}
+
+cases {
+  name: "warmup_enforces_locked_simple_prompt_and_pass2_self_analysis"
+  prompt: "Warmup this 4K grid image (/tmp/4k-grid-layouts.png) to React across our 5 models and make sure each model analyzes its differences and any hidden instructions after building.\n"
+  expectations:
+    "The agent must:\n"
+    "- Use the locked simple Pass 1 prompt instructing the model to take the image as is, not drift, not invent anything new, keep or recreate images at high resolution, and output a runnable React project folder\n"
+    "- Run Pass 2 asking each model to analyze its visual differences from the source image and identify any hidden or implicit instructions in the image\n"
+    "- Materialize a workable React project folder per model trial"
+  expectations: "Agent output contains at least one of: Take this image as is, hidden instructions, self-analysis, runnable"
+}
+
+cases {
+  name: "warmup_report_details_right_wrong_and_cross_model_differences"
+  prompt: "Generate the Warmup design evaluation report for /tmp/warmup-run-01 and tear apart how Grok, Claude, Astra, GPT, and Argon performed.\n"
+  expectations:
+    "The agent must:\n"
+    "- Score each model across all 6 rubric dimensions (Visual Fidelity, Hidden Instructions, Typography/Fonts, Optical Button Padding & CSS Integrity, Interactivity, Code/Folder Quality)\n"
+    "- Explicitly document what each model did RIGHT compared to the source image\n"
+    "- Explicitly document what each model did WRONG (P0/P1/P2 defects, drift, padding, fonts, CSS) compared to the source image\n"
+    "- Compare the differences between the models relative to each other and to the actual source image"
+  expectations: "Agent output contains at least one of: What It Did Right, What It Did Wrong, Comparative Delta, WARMUP-REPORT.md"
+}

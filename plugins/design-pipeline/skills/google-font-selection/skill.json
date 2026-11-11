@@ -1,0 +1,41 @@
+{
+  "id": "google-font-selection",
+  "display_name": "font selector",
+  "google3_package": "google_font_selection",
+  "title": "Google Font Selection \u2014 Live Catalog + LLM Association",
+  "icon": "\ud83d\udd24",
+  "category": "core skill \u00b7 typography & taste",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "google-font-selection",
+  "agent_md": "google-font-selection/agent.md",
+  "skill_md": "google-font-selection/SKILL.md",
+  "html_page": "google-font-selection/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/google-font-selection",
+  "bundle_skill": "google-font-selection.skill",
+  "bundle_zip": "google-font-selection.zip",
+  "short_summary": "selects and ranks the top 5 google fonts for any keyword, phrase, or reference image using live google fonts catalog tag scores, complete with specimen urls, css2 embed tags, and an interactive specimen viewer.",
+  "when_to_use": "use whenever you pass a keyword ('soft', 'warm editorial', 'developer cli') or design brief and want 5 non-copied google font recommendations.",
+  "quick_cmd": "python3 google-font-selection/scripts/recommend_google_fonts.py \"warm editorial\"",
+  "summary": "Find the right Google Fonts for ANY word, phrase, brief, or image (\"wacky\", \"mobster\", \"y2k\", \"warm leather atelier\", a UI screenshot, a poster). Pulls Google's LIVE catalog data at run time (official tag scores from google/fonts + fonts.google.com metadata, ~1,950 families), uses an LLM to associate the request with Google's official Feeling/Appearance tags, and ranks the whole catalog on Google's own 0-100 scores. Returns an honest Top 5 with specimen URLs, CSS2 embeds, variable axes, download methods, and the equivalent fonts.google.com filter URL. No snapshot, no keyword dictionary. Use whenever a user wants font recommendations from a keyword, mood, brand brief, or image.",
+  "references": [
+    "./references/contributing.md",
+    "./references/google-fonts-taxonomy.md",
+    "./scripts/build_specimen.py",
+    "./scripts/gf_live.py",
+    "./scripts/jetski_hook_allow.py",
+    "./scripts/recommend_google_fonts.py",
+    "./scripts/test_google_font_skill.py",
+    "./scripts/translate_brief.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=google-font-selection"
+  },
+  "specimen_page": "google-font-selection/specimen.html",
+  "x20_specimen_url": "https://jfesta.users.x20web.corp.google.com/www/skills/google-font-selection/specimen.html"
+}

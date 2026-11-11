@@ -1,0 +1,36 @@
+<dialog aria-labelledby="transfer-title" class="lm-dialog" id="transfer-dialog">
+<div class="lm-dialog-head">
+<h2 id="transfer-title" style="font-size: 1.4375rem;">Send transfer</h2>
+<button aria-label="Close transfer dialog" class="lm-btn lm-btn-ghost lm-btn-sm" data-close-dialog="" type="button">Close</button>
+</div>
+<form id="lm-transfer-form" style="display: flex; flex-direction: column; gap: 16px;">
+<div class="lm-field">
+<label class="lm-label" for="lm-tx-recipient">Recipient</label>
+<input class="lm-input" id="lm-tx-recipient" type="text" value="Figma"/>
+</div>
+<div class="lm-field">
+<label class="lm-label" for="lm-tx-from">From account</label>
+<div class="lm-select-wrap">
+<select class="lm-select num" id="lm-tx-from">
+<option value="Checking •••• 4819">Checking •••• 4819 — $482,910.40</option>
+<option value="Treasury •••• 9024">Treasury •••• 9024 — $1,240,000.00</option>
+</select>
+<svg aria-hidden="true" class="lm-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+</div>
+<div class="lm-field">
+<label class="lm-label" for="lm-tx-amount">Amount (USD)</label>
+<input class="lm-input num" id="lm-tx-amount" type="text" value="2,400.00"/>
+</div>
+<div class="lm-field">
+<label class="lm-label" for="lm-tx-memo">Memo</label>
+<input class="lm-input" id="lm-tx-memo" type="text" value="Annual design seats"/>
+</div>
+<div class="lm-dialog-foot">
+<button class="lm-btn" data-close-dialog="" type="button">Cancel</button>
+<button class="lm-btn lm-btn-primary num" type="submit">Send $2,400.00</button>
+</div>
+</form>
+</dialog>

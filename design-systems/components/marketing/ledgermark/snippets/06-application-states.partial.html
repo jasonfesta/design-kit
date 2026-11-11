@@ -1,0 +1,91 @@
+<section aria-labelledby="h-application-states" class="lm-doc-section" data-component-doc="" id="application-states">
+<div class="lm-doc-head">
+<h2 id="h-application-states">Onboarding form states</h2>
+<p class="lm-doc-desc">Documents every stage of Ledgermark conversion intake across rest, consumer domain rejection, registry verification, and issued routing receipt.</p>
+</div>
+<div class="lm-usage-notes" data-usage-notes="">
+<div class="lm-usage-col">
+<h3>When to use</h3>
+<ul class="lm-usage-list">
+<li>Start commercial onboarding with two unambiguous fields so corporate officers finish initial intake in under sixty seconds.</li>
+<li>Reject personal email domains explicitly with plain instructions explaining why corporate filing verification needs a company domain.</li>
+</ul>
+</div>
+<div class="lm-usage-col">
+<h3>How to apply it</h3>
+<ul class="lm-usage-list">
+<li>Validate fresh inputs on blur or submit, keeping error IDs ahead of helper text inside ARIA descriptions.</li>
+<li>Disable double-submission cleanly during federal EIN checks while reporting specific registry progress.</li>
+<li>Conclude submission with a concrete confirmation state displaying next settlement steps and copyable sample routing details.</li>
+</ul>
+</div>
+</div>
+<div class="lm-specimen-well">
+<div class="lm-grid-2">
+<!-- State 1: Default -->
+<form class="lm-spec-card" data-lead-form="" data-specimen-state="default" id="lm-cta-form" novalidate="">
+<span class="lm-state-caption">Default</span>
+<div class="lm-field">
+<label class="lm-label" for="lm-work-email">Work email</label>
+<input aria-describedby="lm-email-err lm-cta-hint" autocomplete="email" class="lm-input" id="lm-work-email" name="workEmail" placeholder="claire@helvetia.io" required="" type="email"/>
+<div class="lm-error" hidden="" id="lm-email-err">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="14">
+<circle cx="8" cy="8" r="6"></circle>
+<line stroke-linecap="round" x1="8" x2="8" y1="5" y2="8.8"></line>
+<circle cx="8" cy="11.3" fill="currentColor" r="0.6" stroke="none"></circle>
+</svg>
+<span id="lm-email-err-text">Enter your company work email address to start an application.</span>
+</div>
+</div>
+<button class="lm-btn lm-btn-primary" data-test-validate="" type="submit">Start application</button>
+<p class="lm-hint" id="lm-cta-hint">Checking and sweep accounts provided through Member FDIC partner banks.</p>
+</form>
+<!-- State 2: Domain error -->
+<div class="lm-spec-card" data-specimen-state="domain-error">
+<span class="lm-state-caption">Domain error</span>
+<div class="lm-field">
+<label class="lm-label" for="lm-state-err-email">Work email</label>
+<input class="lm-input lm-mock-invalid" id="lm-state-err-email" readonly="" type="email" value="claire.mercer@gmail.com"/>
+<div class="lm-error">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16" width="14">
+<circle cx="8" cy="8" r="6"></circle>
+<line stroke-linecap="round" x1="8" x2="8" y1="5" y2="8.8"></line>
+<circle cx="8" cy="11.3" fill="currentColor" r="0.6" stroke="none"></circle>
+</svg>
+<span>Enter a company domain email rather than a personal inbox so we can verify corporate filings.</span>
+</div>
+</div>
+<button class="lm-btn lm-btn-primary" data-open-modal="#apply-dialog" data-tier="Operating" type="button">Start application</button>
+</div>
+<!-- State 3: Verifying -->
+<div class="lm-spec-card" data-specimen-state="verifying">
+<span class="lm-state-caption">Verifying</span>
+<div class="lm-field">
+<label class="lm-label" for="lm-state-busy-co">Work email</label>
+<input class="lm-input muted" id="lm-state-busy-co" readonly="" type="email" value="claire@helvetia.io"/>
+</div>
+<button aria-disabled="true" class="lm-btn lm-btn-primary" type="button">
+<span style="display: inline-flex; align-items: center; gap: 8px;">
+<svg aria-hidden="true" class="lm-spinner" fill="none" stroke="currentColor" stroke-width="1.75" viewbox="0 0 16 16">
+<path d="M8 2a6 6 0 1 1-4.24 1.76" stroke-linecap="round"></path>
+</svg>
+<span>Verifying standing</span>
+</span>
+</button>
+<p class="lm-hint">Matching Delaware corporate registry and partner-bank standing.</p>
+</div>
+<!-- State 4: Received (static calm confirmation, zero extra action buttons) -->
+<div class="lm-spec-card" data-specimen-state="received">
+<span class="lm-state-caption">Received</span>
+<div class="lm-status-pos">
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" viewbox="0 0 14 14">
+<polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+<span>Application received for Helvetia Robotics</span>
+</div>
+<p class="lm-photo-caption num">Officer passkey enrollment sent to claire@helvetia.io. Partner-bank wire routing opens once two-officer review clears within one business day.</p>
+<p class="lm-hint">Assigned partner routing ABA: <code class="mono">021000021</code></p>
+</div>
+</div>
+</div>
+</section>

@@ -1,0 +1,32 @@
+{
+  "id": "arch-daylight-and-interior-glow",
+  "display_name": "Architectural Daylight, Sky Radiance & Interior Glow",
+  "google3_package": "arch_daylight_and_interior_glow",
+  "title": "Architectural Daylight, Sky Radiance & Interior Glow",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "arch-daylight-and-interior-glow",
+  "agent_md": "arch-daylight-and-interior-glow/agent.md",
+  "skill_md": "arch-daylight-and-interior-glow/SKILL.md",
+  "html_page": "arch-daylight-and-interior-glow/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/arch-daylight-and-interior-glow",
+  "bundle_skill": "arch-daylight-and-interior-glow.skill",
+  "bundle_zip": "arch-daylight-and-interior-glow.zip",
+  "short_summary": "Calibrate overcast diffuse skies, solar cast-shadow azimuth/elevation, scoped PMREM environment maps (preventing interior grazing Fresnel leaks), analytic planar glass reflections, and Neutral vs. AgX tone mapping in Three.js.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Calibrate overcast diffuse skies, solar cast-shadow azimuth/elevation, scoped PMREM environment maps (preventing interior grazing Fresnel leaks), analytic planar glass reflections, and Neutral vs. AgX tone mapping in Three.js.",
+  "references": [
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=arch-daylight-and-interior-glow"
+  }
+}

@@ -1,0 +1,78 @@
+<article aria-labelledby="lm-card-approvals" class="lm-specimen">
+<div class="lm-card-head">
+<h3 id="lm-card-approvals">Approval rules</h3>
+<p class="lm-hint">Dual-signatory wires, department allocation splits, and notification filters.</p>
+</div>
+<form id="lm-approvals-form" novalidate="" style="display: flex; flex-direction: column; gap: 20px; flex: 1;">
+<div class="lm-switch-row">
+<div>
+<div class="lm-label num" id="lm-switch-lbl" style="color: var(--ink-primary);">Dual sign-off on wires over $25,000</div>
+<p class="lm-hint" style="margin-top: 2px;">Holds outgoing Fedwires until a second officer approves.</p>
+</div>
+<button aria-checked="true" aria-labelledby="lm-switch-lbl" class="lm-switch" role="switch" type="button">
+<span class="lm-switch-thumb"></span>
+</button>
+</div>
+<div class="lm-field">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px;">
+<label class="lm-label" for="lm-sweep-range">Nightly reserve sweep threshold</label>
+<div style="display: inline-flex; align-items: baseline; gap: 6px;">
+<button aria-label="Decrease sweep threshold by $25,000" class="lm-step-nudge num" data-sweep-step="-25" type="button">−25k</button>
+<output class="num" for="lm-sweep-range" id="lm-sweep-out" style="font-size: 0.90625rem; font-weight: 600; color: var(--ink-primary); min-width: 72px; text-align: center;">$525,000</output>
+<button aria-label="Increase sweep threshold by $25,000" class="lm-step-nudge num" data-sweep-step="25" type="button">+25k</button>
+</div>
+</div>
+<input class="lm-range" id="lm-sweep-range" max="750" min="250" step="25" style="--pct: 55.0%;" type="range" value="525"/>
+<div aria-hidden="true" class="lm-sweep-scale num">
+<span>$250k</span>
+<span>$500k</span>
+<span>$750k</span>
+</div>
+</div>
+<dl class="lm-sub-rule lm-kv-list num" style="row-gap: 8px;">
+<dt>Under $5,000</dt>
+<dd>Department lead auto-approval</dd>
+<dt>$5,000 – $25,000</dt>
+<dd>Controller review within 4 hours</dd>
+</dl>
+<div class="lm-sub-rule lm-spec-two" style="margin-top: auto;">
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<label class="lm-choice">
+<input class="lm-check" id="lm-check-all" type="checkbox"/>
+<span style="font-weight: 500;">Treasury alerts</span>
+</label>
+<div style="display: flex; flex-direction: column; gap: 9px; padding-left: 28px;">
+<label class="lm-choice num">
+<input checked="" class="lm-check lm-child-check" type="checkbox"/>
+<span>Payouts above $10,000</span>
+</label>
+<label class="lm-choice">
+<input checked="" class="lm-check lm-child-check" type="checkbox"/>
+<span>New payee bank added</span>
+</label>
+<label class="lm-choice">
+<input class="lm-check lm-child-check" type="checkbox"/>
+<span>Weekly cash summary</span>
+</label>
+</div>
+</div>
+<fieldset style="border: 0; padding: 0; margin: 0;">
+<legend class="lm-label" style="margin-bottom: 10px;">Receipt requirement</legend>
+<div style="display: flex; flex-direction: column; gap: 9px;">
+<label class="lm-choice num">
+<input checked="" class="lm-radio" name="cadence" type="radio" value="over75"/>
+<span>Card charges above $75</span>
+</label>
+<label class="lm-choice">
+<input class="lm-radio" name="cadence" type="radio" value="every"/>
+<span>Every card transaction</span>
+</label>
+<label class="lm-choice">
+<input class="lm-radio" name="cadence" type="radio" value="monthly"/>
+<span>Month-end close only</span>
+</label>
+</div>
+</fieldset>
+</div>
+</form>
+</article>

@@ -1,0 +1,32 @@
+{
+  "id": "arch-materials-and-weathering",
+  "display_name": "Architectural Materials, Tectonics & Weathering",
+  "google3_package": "arch_materials_and_weathering",
+  "title": "Architectural Materials, Tectonics & Weathering",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "arch-materials-and-weathering",
+  "agent_md": "arch-materials-and-weathering/agent.md",
+  "skill_md": "arch-materials-and-weathering/SKILL.md",
+  "html_page": "arch-materials-and-weathering/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/arch-materials-and-weathering",
+  "bundle_skill": "arch-materials-and-weathering.skill",
+  "bundle_zip": "arch-materials-and-weathering.zip",
+  "short_summary": "Author hyperrealistic architectural materials in Three.js with zero external textures: profiled courses, Nyquist-filtered standing seams, perforated Corten steel, glazed roof tiles, non-double-multiplied linear sRGB albedos, and fast CPU hashes.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Author hyperrealistic architectural materials in Three.js with zero external textures: profiled courses, Nyquist-filtered standing seams, perforated Corten steel, glazed roof tiles, non-double-multiplied linear sRGB albedos, and fast CPU hashes.",
+  "references": [
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=arch-materials-and-weathering"
+  }
+}

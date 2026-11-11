@@ -1,0 +1,43 @@
+<figure class="fig-plate">
+<form aria-label="Gallery room and edition selection" class="fig-mount" novalidate="">
+<div class="selection-columns">
+<fieldset class="choice-stack">
+<legend class="fa-label" style="margin-bottom:10px">Exhibition chapters</legend>
+<label class="choice-row">
+<input class="fa-check" id="fa-check-all" type="checkbox"/>
+<span>All gallery rooms</span>
+</label>
+<div class="choice-children">
+<label class="choice-row"><input checked="" class="fa-check fa-child-check" type="checkbox"/><span>Gallery 3: Chromatic squares</span></label>
+<label class="choice-row"><input checked="" class="fa-check fa-child-check" type="checkbox"/><span>Gallery 4: Horizon diptychs</span></label>
+<label class="choice-row"><input class="fa-check fa-child-check" type="checkbox"/><span>Gallery 5: Graphite on linen</span></label>
+</div>
+</fieldset>
+<div style="display:flex;flex-direction:column;gap:18px">
+<fieldset class="choice-stack">
+<legend class="fa-label" style="margin-bottom:10px">Edition binding</legend>
+<label class="choice-row"><input checked="" class="fa-radio" name="fa-binding" type="radio"/><span>Sewn paperback</span></label>
+<label class="choice-row"><input class="fa-radio" name="fa-binding" type="radio"/><span>Linen clothbound</span></label>
+</fieldset>
+<div class="switch-line">
+<button aria-checked="true" aria-labelledby="fa-switch-lbl" class="fa-switch" id="fa-caption-switch" role="switch" type="button">
+<span aria-hidden="true" class="fa-switch-thumb"></span>
+</button>
+<span id="fa-switch-lbl">Extended wall labels</span>
+</div>
+</div>
+</div>
+<div class="range-group">
+<div class="range-head">
+<label class="fa-label" for="fa-margin-range">Plate viewing scale</label>
+<output for="fa-margin-range" id="fa-range-out" style="color:var(--ink-primary);font-weight:500">100%</output>
+</div>
+<div class="range-bar">
+<button aria-label="Decrease plate viewing scale" class="fa-step-btn" data-range-step="-5" type="button">−</button>
+<input class="fa-range" id="fa-margin-range" max="115" min="85" step="5" type="range" value="100"/>
+<button aria-label="Increase plate viewing scale" class="fa-step-btn" data-range-step="5" type="button">+</button>
+</div>
+</div>
+</form>
+<figcaption class="fig-caption">Fig. 3 — Gallery room and edition selection</figcaption>
+</figure>

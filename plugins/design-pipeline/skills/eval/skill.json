@@ -1,0 +1,33 @@
+{
+  "id": "eval",
+  "display_name": "eval",
+  "google3_package": "eval",
+  "title": "eval",
+  "icon": "\u2705",
+  "category": "sub-skill of concept-art \u00b7 6-gate concept & originality audit",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "eval",
+  "agent_md": "eval/agent.md",
+  "skill_md": "eval/SKILL.md",
+  "html_page": "eval/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/eval",
+  "bundle_skill": "eval.skill",
+  "bundle_zip": "eval.zip",
+  "short_summary": "audits 2k plates against 01-anchor coherence, anti-clone originality vs. 5 standout benchmarks, canon.md agreement, 2k footers, surface distinctness, and the 3-round cap.",
+  "when_to_use": "use at stage 5 of jason-design-agent after image-gen or polish renders any 2k concept plate.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=eval",
+  "summary": "Evaluates generated 2K Nano Banana 2 concept images across the 4x3 = 12 matrix (3 web, 3 app, 3 distinct components, 3 unique interactive experiences) against the locked style direction, Prompt 01 constitution, canon.md domain state, and the 5 standout benchmark research dossiers and screenshots. Audits six gates\u2014Prompt 01 coherence, anti-clone originality (zero copied fonts, palettes, or layouts), canon.md data agreement, 2K geometry and footer completeness, component and experience distinctness, and Nano Banana round budget compliance (max 3 rounds)\u2014emitting surgical polish directives until passed or capped. Use inside jason-design-agent after image-gen or polish renders any 2K plate. Don't use for frontend code or DOM scoring (use jason-dev-agent).",
+  "references": [
+    "./references/concept-eval-gates.md",
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=eval"
+  }
+}

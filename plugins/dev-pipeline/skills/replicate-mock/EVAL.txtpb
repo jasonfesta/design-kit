@@ -1,0 +1,27 @@
+# proto-file: learning/gemini/agents/evaluation/evalin/proto/eval_suite.proto
+# proto-message: EvalSuite
+# txtpbfmt: wrap_strings_after_newlines
+
+suite_name: "replicate_mock"
+timeout_seconds: 300
+
+cases {
+  name: "replicate_mock_triggers_and_executes_primary_workflow"
+  prompt: "Use the replicate-mock skill to execute its primary workflow and verify all required outputs and quality gates.\n"
+  expectations:
+    "The agent must:\n"
+    "- Load and follow replicate-mock/SKILL.md\n"
+    "- Execute the deterministic workflow or bundled scripts in replicate-mock\n"
+    "- Verify all output invariants before completing the turn"
+  expectations: "Agent output references replicate-mock or its primary deliverables"
+}
+
+cases {
+  name: "replicate_mock_enforces_quality_gates_and_references"
+  prompt: "Run a full verification audit with replicate-mock and check all reference invariants.\n"
+  expectations:
+    "The agent must:\n"
+    "- Consult the bundled references/ guides when verifying edge cases\n"
+    "- Report pass/fail status against the skill's verification checklist"
+  expectations: "Agent output includes concrete verification results"
+}

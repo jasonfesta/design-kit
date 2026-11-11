@@ -1,0 +1,33 @@
+{
+  "id": "game-text-score-audio-and-juice",
+  "display_name": "Game audio, adaptive stems, and feel",
+  "google3_package": "game_text_score_audio_and_juice",
+  "title": "Game audio, adaptive stems, and feel",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "game-text-score-audio-and-juice",
+  "agent_md": "game-text-score-audio-and-juice/agent.md",
+  "skill_md": "game-text-score-audio-and-juice/SKILL.md",
+  "html_page": "game-text-score-audio-and-juice/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/game-text-score-audio-and-juice",
+  "bundle_skill": "game-text-score-audio-and-juice.skill",
+  "bundle_zip": "game-text-score-audio-and-juice.zip",
+  "short_summary": "Design expressive procedural or symbolic browser game audio, smooth adaptive intensity layers, proportional multi-sensory action feedback, and listener-safe acoustic ceilings without locking into a fixed score format.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Design expressive procedural or symbolic browser game audio, smooth adaptive intensity layers, proportional multi-sensory action feedback, and listener-safe acoustic ceilings without locking into a fixed score format.",
+  "references": [
+    "./references/contributing.md",
+    "./scripts/audit_game_audio_safety.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=game-text-score-audio-and-juice"
+  }
+}

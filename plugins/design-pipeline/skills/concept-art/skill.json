@@ -1,0 +1,42 @@
+{
+  "id": "concept-art",
+  "display_name": "concept art",
+  "google3_package": "concept_art",
+  "title": "concept art",
+  "icon": "\ud83e\udded",
+  "category": "core skill \u00b7 jason-design-agent upfront plan & 2k plates",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [
+    "research",
+    "style-direction",
+    "image-gen",
+    "polish",
+    "eval",
+    "design-critique",
+    "nanofy",
+    "url-variant"
+  ],
+  "path": "concept-art",
+  "agent_md": "concept-art/agent.md",
+  "skill_md": "concept-art/SKILL.md",
+  "html_page": "concept-art/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/concept-art",
+  "bundle_skill": "concept-art.skill",
+  "bundle_zip": "concept-art.zip",
+  "short_summary": "transforms a natural-language user prompt into 5 standout benchmark dossiers, named style range, and prompt-01-anchored 2k nano banana 2 concept plates within a hard 3-round cap.",
+  "when_to_use": "use in jason-design-agent when planning a website, mobile app, component suite, 3d experience, or game from a prompt before jason-dev-agent builds it.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=concept-art",
+  "summary": "Transforms a natural-language user prompt into 5+ distinct non-beige researched benchmark examples, live google-font-selection pairings, a 10-iteration pre-Nano critique, strict image-to-image minimum 1K and 2K crystal-clear Nano Banana 2 concept plates (max-2 concurrency, capped at 3 rounds), a 10-to-15 agent hyper-critique swarm with tri-perspective brutal audits and 10-dimension auto-correction, a mandatory Pre-Moodboard Designer Image Checkpoint, and one clean #0c0c0b lowercase Design/Development moodboard with zero default approvals.",
+  "references": [
+    "./references/contributing.md",
+    "./references/end-to-end-handoff-contract.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=concept-art"
+  }
+}

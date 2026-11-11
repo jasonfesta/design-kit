@@ -1,0 +1,132 @@
+@layer reset, tokens, base, components, utilities;
+
+/* ==========================================================================
+   VERCEL GEIST DESIGN SYSTEM (vercel.com/design | vercel.com/templates)
+   10-Step P3/OKLCH Scale + Shadow-as-Border Architecture
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* --- Geist Dark Mode (Default for Telemetry, GIS & Quant Terminals) --- */
+    --ds-background-100: #0a0a0a;
+    --ds-background-100-oklch: oklch(0.145 0.000 0);
+    --ds-background-200: #111111;
+    --ds-background-200-oklch: oklch(0.178 0.000 0);
+
+    /* 10-Step Neutral Gray Scale (Dark) */
+    --ds-gray-100: #171717;
+    --ds-gray-200: #1f1f1f;
+    --ds-gray-300: #292929;
+    --ds-gray-400: #2e2e2e;
+    --ds-gray-500: #454545;
+    --ds-gray-600: #878787;
+    --ds-gray-700: #8f8f8f;
+    --ds-gray-800: #7d7d7d;
+    --ds-gray-900: #a1a1a1;
+    --ds-gray-1000: #ededed;
+    --ds-gray-1000-oklch: oklch(0.946 0.000 0);
+
+    /* Semantic Telemetry Scales (Cyan, Blue, Emerald, Amber, Red — <9.5% purple) */
+    --ds-cyan-500: #06b6d4;
+    --ds-cyan-500-oklch: oklch(0.715 0.143 215.2);
+    --ds-cyan-glow: rgba(6, 182, 212, 0.18);
+
+    --ds-blue-500: #0070f3;
+    --ds-blue-500-oklch: oklch(0.580 0.220 258.5);
+    --ds-blue-900: #68b5fb;
+
+    --ds-green-500: #10b981;
+    --ds-green-500-oklch: oklch(0.696 0.149 162.5);
+    --ds-green-glow: rgba(16, 185, 129, 0.18);
+
+    --ds-amber-500: #f59e0b;
+    --ds-amber-500-oklch: oklch(0.769 0.165 70.1);
+    --ds-amber-glow: rgba(245, 158, 11, 0.18);
+
+    --ds-red-500: #ef4444;
+    --ds-red-500-oklch: oklch(0.637 0.208 25.3);
+    --ds-red-glow: rgba(239, 68, 68, 0.22);
+
+    /* Geist Signature Shadow-as-Border */
+    --ds-shadow-border: 0 0 0 1px rgba(255, 255, 255, 0.11);
+    --ds-shadow-border-hover: 0 0 0 1px rgba(255, 255, 255, 0.22);
+    --ds-shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.11), 0 8px 24px -4px rgba(0, 0, 0, 0.55);
+  }
+
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --ds-background-100: #ffffff;
+    --ds-background-100-oklch: oklch(1.000 0.000 0);
+    --ds-background-200: #fafafa;
+    --ds-background-200-oklch: oklch(0.985 0.000 0);
+
+    --ds-gray-100: #f2f2f2;
+    --ds-gray-200: #ebebeb;
+    --ds-gray-300: #e6e6e6;
+    --ds-gray-400: #eaeaea;
+    --ds-gray-500: #c9c9c9;
+    --ds-gray-600: #a8a8a8;
+    --ds-gray-700: #8f8f8f;
+    --ds-gray-800: #7d7d7d;
+    --ds-gray-900: #666666;
+    --ds-gray-1000: #171717;
+    --ds-gray-1000-oklch: oklch(0.205 0.000 0);
+
+    --ds-cyan-500: #0891b2;
+    --ds-cyan-500-oklch: oklch(0.609 0.126 221.7);
+    --ds-cyan-glow: rgba(8, 145, 178, 0.12);
+
+    --ds-blue-500: #0070f3;
+    --ds-blue-900: #0068d6;
+
+    --ds-green-500: #059669;
+    --ds-green-glow: rgba(5, 150, 105, 0.12);
+
+    --ds-amber-500: #d97706;
+    --ds-amber-glow: rgba(217, 119, 6, 0.12);
+
+    --ds-red-500: #dc2626;
+    --ds-red-glow: rgba(220, 38, 38, 0.14);
+
+    --ds-shadow-border: 0 0 0 1px rgba(0, 0, 0, 0.08);
+    --ds-shadow-border-hover: 0 0 0 1px rgba(0, 0, 0, 0.18);
+    --ds-shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  :root {
+    --geist-font-sans: 'Space Grotesk', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --geist-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    --geist-radius-sm: 6px;
+    --geist-radius-md: 8px;
+    --geist-radius-lg: 12px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background-color: var(--ds-background-100);
+    color: var(--ds-gray-1000);
+    font-family: var(--geist-font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  .geist-mono {
+    font-family: var(--geist-font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}

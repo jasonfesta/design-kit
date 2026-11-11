@@ -1,0 +1,8 @@
+{
+  "name": "motion-craft",
+  "displayName": "Motion Craft",
+  "description": "Emil Kowalski / animations.dev motion craft plus the Motion library: animate, choreograph, gestures, performance, review, improve, remove, vocabulary, Apple-style fluid motion, and the Motion MCP.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Animate this modal open and close the right way", "Review the animations in this component", "Why is this animation janky?"]
+}

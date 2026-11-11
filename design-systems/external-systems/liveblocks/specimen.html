@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liveblocks (@liveblocks/react-ui) — Interactive Collaboration &amp; Inspection Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: var(--lb-background);
+      border: 1px solid var(--lb-border); border-radius: var(--lb-radius);
+      margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      height: 32px; padding: 0 12px; border-radius: 6px;
+      border: 1px solid var(--lb-border-strong); background: var(--lb-background);
+      color: var(--lb-foreground); font-size: 12px; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    }
+    .card {
+      background: var(--lb-background); border: 1px solid var(--lb-border);
+      border-radius: var(--lb-radius); padding: 18px; margin-bottom: 20px;
+    }
+    .swatch-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px;
+    }
+    .swatch {
+      border: 1px solid var(--lb-border); border-radius: 6px; overflow: hidden;
+    }
+    .swatch-fill { height: 40px; border-bottom: 1px solid var(--lb-border); }
+    .swatch-meta { padding: 8px; font-size: 11px; font-family: var(--lb-font-mono); }
+    .avatar-stack { display: inline-flex; align-items: center; }
+    .avatar {
+      width: 28px; height: 28px; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #fff;
+      border: 2px solid var(--lb-background); margin-left: -6px;
+    }
+    .avatar:first-child { margin-left: 0; }
+    .collab-grid {
+      display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 16px;
+    }
+    @media (max-width: 920px) { .collab-grid { grid-template-columns: 1fr; } }
+    .canvas-stage {
+      position: relative; background: var(--lb-surface-elevated);
+      border: 1px solid var(--lb-border-strong); border-radius: var(--lb-radius);
+      padding: 20px; min-height: 220px;
+    }
+    .lb-pin {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 999px 999px 999px 2px;
+      background: var(--lb-accent); color: #fff; font-weight: 700; font-size: 12px;
+      cursor: pointer; box-shadow: var(--lb-elevation-floating); border: none;
+    }
+    .lb-thread {
+      background: var(--lb-background); border: 1px solid var(--lb-border);
+      border-radius: var(--lb-radius); box-shadow: var(--lb-elevation-floating);
+      padding: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell lb-root">
+    <header class="top-bar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="avatar-stack" title="Active Raters &amp; Maker-Checker Supervisors">
+          <span class="avatar" style="background:var(--lb-user-1);">RA</span>
+          <span class="avatar" style="background:var(--lb-user-2);">RB</span>
+          <span class="avatar" style="background:var(--lb-user-3);">MC</span>
+        </div>
+        <div>
+          <strong style="font-size:14px;">Liveblocks Design System (`@liveblocks/react-ui` · `liveblocks.io`)</strong>
+          <div style="font-size:11.5px;color:var(--lb-foreground-muted);">Anchored Canvas Pins, Blinded Rater Agreement (`κ`) &amp; Maker-Checker Threads · Prompts #06, #01, #07, #09</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn" id="mode-btn" type="button">Protocol: Mode A (Uncalibrated)</button>
+        <button class="btn" id="theme-btn" type="button">Toggle Light / Dark</button>
+        <a class="btn" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2 style="margin:0 0 12px;font-size:15px;">1. Extracted `--lb-*` Collaboration, Pin &amp; Biometric Teal Tokens (Hex + OKLCH)</h2>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-fill" style="background:var(--lb-surface-canvas);"></div><div class="swatch-meta"><strong>--lb-surface-canvas</strong><br>#F8FAFC / #0B0F17</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--lb-background);"></div><div class="swatch-meta"><strong>--lb-background</strong><br>#FFFFFF · Thread Surface</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--lb-foreground);"></div><div class="swatch-meta"><strong>--lb-foreground</strong><br>#0F172A · oklch(0.208 0.040 266)</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--lb-accent);"></div><div class="swatch-meta"><strong>--lb-accent</strong><br>#0284C7 · Anchored Pin Cobalt</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--lb-biometric-teal);"></div><div class="swatch-meta"><strong>--lb-biometric-teal</strong><br>#0F766E · Landmark Vector</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--lb-user-3);"></div><div class="swatch-meta"><strong>--lb-user-3</strong><br>#D97706 · Threshold Reviewer</div></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 12px;font-size:15px;">2. Interactive Anchored Biometric &amp; Formula Annotation Thread (`<FloatingThreads />`)</h2>
+      <div class="collab-grid">
+        <div class="canvas-stage">
+          <div style="font-family:var(--lb-font-mono);font-size:11.5px;color:var(--lb-biometric-teal);margin-bottom:10px;">
+            112×112 MODEL-NATIVE ALIGNED CROP · 68-POINT LANDMARK OVERLAY (ZERO CLAHE/BEAUTY FILTER)
+          </div>
+          <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:14px;">
+            <button class="lb-pin" type="button" data-pin="1" data-author="Rater A · Vision Scientist" data-body="Pin #1: Interocular landmark distance measured at 46.8 native source pixels (outer/inner eye-corner centroid — explicitly distinct from clinical interpupillary distance).">1</button>
+            <button class="lb-pin" type="button" data-pin="2" style="background:var(--lb-biometric-teal);" data-author="Rater B · Calibration Lead" data-body="Pin #2: Raw AdaFace-IR101 cosine similarity s_cos = 0.418. Placeholder sigmoid σ(12(s-0.25)) disabled to prevent artificial >95% saturation.">2</button>
+            <button class="lb-pin" type="button" data-pin="3" style="background:var(--lb-user-3);" data-author="Supervisor MC · Audit Sign-Off" data-body="Pin #3: Effective geometric weight w_g*r / (w_e + w_g*r) = 0.242 under pose yaw +4.2°, pitch -1.8°, roll +0.6° (CR-FIQA suitability: PASS).">3</button>
+            <span style="font-size:12px;color:var(--lb-foreground-secondary);">← Click any anchored canvas pin (`1`, `2`, `3`) to switch the live `.lb-thread`</span>
+          </div>
+          <div class="tabular-nums" style="font-family:var(--lb-font-mono);font-size:12px;padding:10px;background:var(--lb-background);border:1px solid var(--lb-border);border-radius:6px;">
+            <div id="protocol-banner"><strong>Mode A Active</strong>: Descriptor-based comparison; resemblance interpretation not validated.</div>
+          </div>
+        </div>
+
+        <div class="lb-thread">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+            <strong id="th-author" style="font-size:13px;">Rater A · Vision Scientist</strong>
+            <span style="font-family:var(--lb-font-mono);font-size:11px;color:var(--lb-foreground-muted);">Anchored Thread</span>
+          </div>
+          <p id="th-body" style="margin:0 0 12px;font-size:13px;color:var(--lb-foreground-secondary);">
+            Pin #1: Interocular landmark distance measured at 46.8 native source pixels (outer/inner eye-corner centroid — explicitly distinct from clinical interpupillary distance).
+          </p>
+          <div style="font-family:var(--lb-font-mono);font-size:11px;color:var(--lb-biometric-teal);">
+            ✓ Verified against Artifact Hash: RetinaFace-R50 · 68pt-2D · AdaFace-IR101
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+    let modeB = false;
+    document.getElementById('mode-btn').addEventListener('click', (e) => {
+      modeB = !modeB;
+      e.currentTarget.textContent = modeB ? 'Protocol: Mode B (Validated κ = 0.86)' : 'Protocol: Mode A (Uncalibrated)';
+      document.getElementById('protocol-banner').innerHTML = modeB
+        ? '<strong>Mode B Active</strong>: Empirical isotonic calibration validated against blinded human rater panel (Fleiss κ = 0.86).'
+        : '<strong>Mode A Active</strong>: Descriptor-based comparison; resemblance interpretation not validated.';
+    });
+    document.querySelectorAll('.lb-pin').forEach(pin => {
+      pin.addEventListener('click', () => {
+        document.getElementById('th-author').textContent = pin.dataset.author;
+        document.getElementById('th-body').textContent = pin.dataset.body;
+      });
+    });
+  </script>
+</body>
+</html>

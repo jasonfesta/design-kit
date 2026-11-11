@@ -1,0 +1,36 @@
+{
+  "id": "taxonomy",
+  "display_name": "taxonomy",
+  "google3_package": "taxonomy",
+  "title": "taxonomy: canonical WDA Silvers Prompt \u2194 Template Match classification & gap registry",
+  "icon": "\ud83d\uddc2\ufe0f",
+  "category": "core skill \u00b7 wda silvers prompt \u2194 template match classification & gap registry",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "taxonomy",
+  "agent_md": "taxonomy/agent.md",
+  "skill_md": "taxonomy/SKILL.md",
+  "html_page": "taxonomy/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/taxonomy",
+  "bundle_skill": "taxonomy.skill",
+  "bundle_zip": "taxonomy.zip",
+  "short_summary": "classifies prompts, screenshots, briefs, benchmark slices, and react builds into the locked wda v1.1 prompt \u2194 template match taxonomy (3 categories, 15 subcategories, 557 prompts, 257 templates, 77 gap archetypes, and auxiliary dimensions), recommends templates and gaps, audits slice distributions, and extends append-only.",
+  "when_to_use": "use when labeling a prompt or build with a category, subcategory, surface, or 3d role, querying templates or missing-template gaps, auditing a benchmark dataset slice, or proposing new taxonomy entries.",
+  "quick_cmd": "python3 taxonomy/scripts/classify_taxonomy.py --query \"3d supercar landing page with camera preset toolbar\"",
+  "summary": "Classifies user prompts, UI screenshots, design briefs, benchmark slices, and React deliverables into the canonical two-level WDA Silvers Prompt {-} Template Match taxonomy of 3 locked top-level categories (Landing Page 202, Enterprise 154, Consumer Apps 201 = 557 target prompts across 1,530 battles) and 15 subcategories with immutable kebab-case IDs, coverage metrics, 257 accepted/golden template archetypes, 77 missing-template gap archetypes, and auxiliary dimensions (surface, complexity, 3D slot role, template page type, adaptation flags, loss tags, and WDA V5 16-category mapping). Resolves boundary cases by primary user intent and core loop, recommends matching templates and gap archetypes, audits JSONL slices, and extends the registry append-only without breaking IDs. Use when labeling a prompt or build, querying templates or missing-template gaps, auditing a benchmark dataset, or proposing new taxonomy categories. Don't use for choosing fonts (use google-font-selection), researching benchmarks...",
+  "references": [
+    "./references/contributing.md",
+    "./references/disambiguation-and-extension.md",
+    "./references/prompt-template-match-catalog.md",
+    "./references/taxonomy-catalog.md",
+    "./scripts/classify_taxonomy.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=taxonomy"
+  }
+}

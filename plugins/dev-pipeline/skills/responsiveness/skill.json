@@ -1,0 +1,35 @@
+{
+  "id": "responsiveness",
+  "display_name": "responsiveness",
+  "google3_package": "responsiveness",
+  "title": "responsiveness",
+  "icon": "\ud83d\udcd0",
+  "category": "sub-skill of image-to-react \u00b7 viewports & reflow loop",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "responsiveness",
+  "agent_md": "responsiveness/agent.md",
+  "skill_md": "responsiveness/SKILL.md",
+  "html_page": "responsiveness/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/responsiveness",
+  "bundle_skill": "responsiveness.skill",
+  "bundle_zip": "responsiveness.zip",
+  "short_summary": "evaluates one shared responsive react dom across desktop, mobile, and six viewports (320px to 1536px) before designer critique.",
+  "when_to_use": "use in jason-dev-agent when building, tuning, or verifying responsive layouts across desktop, tablet, and mobile viewports.",
+  "quick_cmd": "node responsiveness/scripts/eval-responsive-pair.mjs --project-dir=./project --desktop-ref=./desktop.png --mobile-ref=./mobile.png",
+  "summary": "Reflows and evaluates a single unified Golden Template React build across desktop, mobile, and a 6-viewport continuum (320px, 375px, mobile @2x CSS width, 768px, 1024px, and desktop CSS width) without vertical squashing or duplicate desktop/mobile DOM trees. Runs an iterative self-judging responsiveness dev eval loop until all viewport gates pass, then hands the same stage back into jason-design-agent via design-critique for a designer critique against the original inspiration. Use whenever building, tuning, or verifying responsive layouts across viewports. Don't use for single-image pixel cropping alone (use replicate-mock) or font ranking (use google-font-selection).",
+  "references": [
+    "./references/contributing.md",
+    "./references/responsive_dual_authority_rules.md",
+    "./scripts/crop-and-clean-plate.py",
+    "./scripts/eval-responsive-pair.mjs"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=responsiveness"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "entries": [
+    {
+      "path": "."
+    },
+    {
+      "path": "jason-design-agent"
+    },
+    {
+      "path": "jason-dev-agent"
+    },
+    {
+      "path": "skill-maker"
+    },
+    {
+      "path": "google-font-selection"
+    },
+    {
+      "path": "golden-template"
+    },
+    {
+      "path": "concept-art"
+    },
+    {
+      "path": "research"
+    },
+    {
+      "path": "style-direction"
+    },
+    {
+      "path": "image-gen"
+    },
+    {
+      "path": "polish"
+    },
+    {
+      "path": "eval"
+    },
+    {
+      "path": "nanofy"
+    },
+    {
+      "path": "url-variant"
+    },
+    {
+      "path": "image-to-react"
+    },
+    {
+      "path": "replicate-mock"
+    },
+    {
+      "path": "nano-banana"
+    },
+    {
+      "path": "responsiveness"
+    },
+    {
+      "path": "interaction"
+    },
+    {
+      "path": "feel"
+    },
+    {
+      "path": "font-pairing"
+    },
+    {
+      "path": "accessibility"
+    },
+    {
+      "path": "design-critique"
+    },
+    {
+      "path": "warmup"
+    },
+    {
+      "path": "taxonomy"
+    },
+    {
+      "path": "arch-camera-matching-and-perspective"
+    },
+    {
+      "path": "arch-daylight-and-interior-glow"
+    },
+    {
+      "path": "arch-materials-and-weathering"
+    },
+    {
+      "path": "arch-site-foliage-and-atmosphere"
+    },
+    {
+      "path": "arch-turing-test-loop"
+    },
+    {
+      "path": "car-camera-matching-and-blueprints"
+    },
+    {
+      "path": "car-class-a-surfacing-and-proportions"
+    },
+    {
+      "path": "car-paint-glazing-and-lamp-optics"
+    },
+    {
+      "path": "car-studio-scrims-and-env-lighting"
+    },
+    {
+      "path": "car-turing-test-and-blueprint-loop"
+    },
+    {
+      "path": "chair-studio-threejs"
+    },
+    {
+      "path": "declarative-photoreal-threejs-worlds"
+    },
+    {
+      "path": "design-flywheel"
+    },
+    {
+      "path": "game-arena-multiplayer-and-quests"
+    },
+    {
+      "path": "game-concept-and-toy-first"
+    },
+    {
+      "path": "game-deterministic-sim-core"
+    },
+    {
+      "path": "game-fun-and-balance-ratchet"
+    },
+    {
+      "path": "game-procedural-3d-and-cutaway"
+    },
+    {
+      "path": "game-text-score-audio-and-juice"
+    },
+    {
+      "path": "image-to-working-model"
+    },
+    {
+      "path": "photoreal-game-turing-loop"
+    }
+  ]
+}

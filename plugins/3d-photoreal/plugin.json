@@ -1,0 +1,8 @@
+{
+  "name": "3d-photoreal",
+  "displayName": "3D Photoreal",
+  "description": "Photoreal Three.js: architectural and automotive Turing-test reconstruction, studio lighting, materials, declarative worlds, image-to-working-model, and daily photoreal game loops.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Reconstruct this architecture photo in Three.js", "Turn this car photo into an articulated 3D model", "Build a photoreal 3D world with volumetric clouds"]
+}

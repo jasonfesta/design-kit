@@ -1,0 +1,8 @@
+{
+  "name": "dev-pipeline",
+  "displayName": "Dev Pipeline",
+  "description": "Image-to-React engineering on the Golden Template: replicate-mock, font pairing, nano-banana upscaling, accessibility, responsiveness, interaction, feel, clean-up, local build preview, and warmup benchmarking.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Turn this screenshot into a Golden Template React build", "Run the accessibility and responsiveness evals on my build", "Clean up this artifact into a pure React file"]
+}

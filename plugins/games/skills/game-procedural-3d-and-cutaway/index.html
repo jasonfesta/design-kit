@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>game procedural worlds, sightlines, and bundles</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>game procedural worlds, sightlines, and bundles</h1>
+      <p>build legible procedural 3d, webgl2, and layered 2.5d game worlds with isolated asset inspection views, unobstructed camera sightlines and interior cutaways, minimal hud clutter, and esbuild classic-iife static web bundles.</p>
+      <div class="actions">
+        <a href="../game-procedural-3d-and-cutaway.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Game procedural worlds, sightlines, and bundles</h1>
+<h2>What it is</h2>
+<p>This skill covers the spatial presentation and static delivery layer of a browser game: authoring readable procedural 3D or lit 2.5D actors and environments, inspecting rigs outside live gameplay chaos, keeping the player&#x27;s view unobstructed indoors or behind tall geometry, and bundling full 3D/WebGL engines (<code>Three.js</code>, custom shaders) cleanly into classic scripts for sandboxed static hosts and mobile screens.</p>
+<h2>When to use it</h2>
+<ul>
+<li>Building a 3D, isometric, 2.5D, or GPU-shaded browser game whose actors, vehicles, props, or terrain are generated in code.</li>
+<li>Adding roofed buildings, caves, dense canopies, or multi-level arenas where walls or roofs could hide the player or active threats.</li>
+<li>Packaging a <code>Three.js</code> or <code>WebGL2</code>/<code>WebGPU</code> game for static hosting, mobile touchscreens, or opaque-origin sandboxes (<code>window.origin === &quot;null&quot;</code>) without falling back to flat <code>&lt;svg&gt;</code> or unlit vector shapes.</li>
+</ul>
+<h2>When not to use it</h2>
+<ul>
+<li>Pure text or abstract 2D board games where the user explicitly requested a flat graphic notation.</li>
+<li>Non-interactive architectural walkthroughs or cinematic 360-degree worlds with no gameplay HUD, occlusion dynamics, or actor readability requirements; use the dedicated photorealistic 3D environment skills for those builds.</li>
+</ul>
+<h2>Decisions that determine quality</h2>
+<h3>1. Bundle real 3D and GPU shaders cleanly instead of falling back to flat SVG</h3>
+<p>Opaque-origin sandboxes (<code>window.origin === &quot;null&quot;</code> on x20) block <code>&lt;script type=&quot;module&quot;&gt;</code> and <code>&lt;script type=&quot;importmap&quot;&gt;</code>, which causes unprepared builders to abandon <code>Three.js</code> and settle for flat <code>&lt;svg&gt;</code> or unlit <code>Canvas2D</code> vector art. Never downgrade visual depth because of module restrictions:</p>
+<ul>
+<li>Install <code>three</code> (or your WebGL/math libraries) locally during build and compile the entry point into a single classic IIFE script (<code>esbuild src/main.ts --bundle --format=iife --target=es2020 --outfile=dist/bundle.js</code>, or inline the compiled IIFE into <code>&lt;script&gt;...&lt;/script&gt;</code> inside <code>dist/index.html</code>).</li>
+<li>Rewrite or avoid <code>import.meta.url</code> during bundling so classic <code>&lt;script&gt;</code> execution never throws <code>SyntaxError: Cannot use &#x27;import.meta&#x27; outside a module</code>.</li>
+<li>Embed lookup tables, procedural noise seeds, or compact binary buffers as inline typed arrays or base64 data URLs rather than calling relative <code>fetch()</code>.</li>
+<li>Convert authored palette colours into linear working space (<code>convertSRGBToLinear()</code>) before PBR/hemisphere/directional lighting, cast crisp contact or shadow-map shadows so heights and trajectories read immediately, and run a single tone-mapping + sRGB output pass.</li>
+</ul>
+<h3>2. Inspect procedural assets on an isolated sidecar stage</h3>
+<p>Debugging actor proportions, ground contact, pivot points, facing axes, animation loops, or team palettes inside a live match wastes time and hides defects behind camera motion.</p>
+<p>Whenever a game builds multiple procedural actors, vehicles, creatures, tiles, or props:</p>
+<ul>
+<li>Expose a lightweight inspection view (such as a query flag <code>?inspect=1</code> or a companion <code>models.html</code> turntable page) that mounts each asset on a neutral ground reference.</li>
+<li>Verify four geometric facts before tuning gameplay: base contact sits cleanly on the ground plane (<code>minY = 0</code>) without floating or sinking, forward orientation matches movement vectors across every asset, team or state palettes read clearly from gameplay camera distance, and key animation states transition without limb or mesh separation.</li>
+</ul>
+<h3>3. Separate visual planes so gameplay reads at a glance</h3>
+<p>Busy procedural textures and glowing backgrounds swallow projectiles, hazards, and characters. Structure every frame into three distinct contrast planes:</p>
+<ol>
+<li>Background and terrain: low local contrast and calm value variation so ground tiles or distant scenery never compete with actors.</li>
+<li>Interactive world objects: clear geometric silhouettes and distinct material cues for doors, ramps, pickups, destructibles, and cover.</li>
+<li>Foreground actors and active threats: highest value and chroma contrast against the floor, verified by squinting or applying a 20 px blur to a gameplay screenshot.</li>
+</ol>
+<h3>4. Keep sightlines clear when geometry crosses the camera ray</h3>
+<p>In angled top-down, isometric, third-person, or multi-storey worlds, roofs, tall facades, pillars, and tree crowns routinely step between the camera and the action. Choose the sightline remedy that fits your projection and art style:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Camera and world type</th><th>Sightline remedy</th><th>Key continuity rule</th></tr></thead>
+<tbody>
+<tr><td>Angled top-down or isometric interiors</td><td>Fade or hide roof and south/front wall groups when an actor enters or crosses behind</td><td>Smooth transitions over 80–150 ms; disable <code>depthWrite</code> on faded shells</td></tr>
+<tr><td>Dense 3D props, pillars, or foliage</td><td>Screen-space dithered discard or analytic capsule fade along the camera-to-subject segment</td><td>Keep a subtle ground footprint or rim cue so obstacle collisions never feel invisible</td></tr>
+<tr><td>Third-person follow or 6-DoF rig</td><td>Spring-arm collision pull-in paired with floor height clamping</td><td>Carry velocity and look target continuously when switching camera modes</td></tr>
+</tbody>
+</table></div>
+<h3>5. Keep HUD chrome minimal and batch repeated geometry</h3>
+<p>Internal state names, pixel coordinates, frame counters, and chunk indices belong in developer tools, never on the player&#x27;s screen.</p>
+<ul>
+<li>Reserve almost the entire viewport (<code>&gt;= 97%</code>) for the playable world, anchoring essential status (health, score, wave, or compact minimap) in borderless corner slots rather than wide dashboard bars.</li>
+<li>Communicate cooldowns, telegraphs, recoil, and danger diegetically on the world or actor wherever possible.</li>
+<li>Batch repeated foliage, projectiles, debris, tiles, or crowd props (<code>THREE.InstancedMesh</code> in 3D, instanced quads in WebGL2, or offscreen sprite caches in 2.5D) so action stays locked at 60 fps on mobile GPUs.</li>
+<li>Wrap <code>localStorage</code>, <code>sessionStorage</code>, <code>navigator.clipboard</code>, and <code>history</code> calls in <code>try / catch</code>, and set <code>touch-action: none</code> on the active <code>&lt;canvas&gt;</code>.</li>
+</ul>
+<h2>CLI bundle check</h2>
+<p><code>scripts/audit_web_game_bundle.py</code> (PEP 723, zero external dependencies) inspects built <code>.html</code>, <code>.css</code>, and <code>.js</code> files for opaque-origin sandbox blockers (<code>type=&quot;module&quot;</code>, <code>importmap</code>, leaked <code>import.meta</code>, local <code>crossorigin</code>, relative <code>fetch()</code>, unguarded storage), mobile viewport/touch rules, and detected rendering surfaces (<code>webgl_or_3d</code>, <code>canvas2d</code>, <code>svg</code>):</p>
+<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-procedural-3d-and-cutaway/scripts/audit_web_game_bundle.py \
+  --dist-dir ./dist \
+  --forbid-svg-only \
+  --json</code></pre>
+<p>Pass <code>--forbid-svg-only</code> on spatial, action, physics, and 3D game builds to fail fast if a sub-agent skipped <code>&lt;canvas&gt;</code>/WebGL rendering and fell back to an SVG-only DOM stage, or <code>--require-3d</code> when the slot specifically calls for WebGL / Three.js / WebGPU rendering.</p>
+<h2>Traps</h2>
+<ul>
+<li>Abandoning 3D for flat SVG/vector shapes because <code>&lt;script type=&quot;module&quot;&gt;</code> is blocked on static hosts. Bundle <code>Three.js</code> or WebGL2 shaders into a classic IIFE script with <code>esbuild</code> in one build command.</li>
+<li>Leaving <code>import.meta</code> inside a classic script bundle. Modern libraries referencing <code>import.meta.url</code> crash immediately outside ES modules; replace or define it out at bundle time.</li>
+<li>Invisible solid walls after cutaway. Hiding a wall down to 0% opacity with no floor sill leaves players snagging on invisible collision boxes. Always keep the wall base, sill, or rim outline visible.</li>
+<li>Depth-buffer sorting artefacts on faded roofs. Setting <code>opacity &lt; 1</code> on a multi-mesh roof while leaving <code>depthWrite: true</code> punches holes through interior actors behind it. Disable <code>depthWrite</code> while faded, or use screen-space stipple discard.</li>
+<li>High-frequency procedural noise on floors. Random per-pixel or per-tile contrast hides fast projectiles and strains the eye during motion.</li>
+</ul>
+<h2>Self-check</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Check</th><th>Pass</th><th>Fail symptom</th></tr></thead>
+<tbody>
+<tr><td>Rich rendering medium</td><td>WebGL/Three.js, custom GPU shaders, or lit multi-plane canvas match the game&#x27;s physical world</td><td>Fallback to flat <code>&lt;svg&gt;</code> or unlit vector diagram primitives</td></tr>
+<tr><td>Asset grounding</td><td>Actors and props rest flush on the ground plane (<code>minY = 0</code>) and face their velocity</td><td>Floating wheels/feet, sunken bases, or sideways movement</td></tr>
+<tr><td>Squint readability</td><td>Player, threats, and pickups stay unmistakable under a 20 px blur</td><td>Foreground actors blend into noisy floors or bright backgrounds</td></tr>
+<tr><td>Interior sightlines</td><td>Entering a room or moving behind tall cover cleanly reveals the actor</td><td>Camera view blocked by opaque roofs, walls, or tree canopies</td></tr>
+<tr><td>Clean sandbox bundle</td><td>Classic IIFE bundle passes <code>audit_web_game_bundle.py</code> with zero <code>import.meta</code>, CORS, or storage errors</td><td>Module CORS block, <code>import.meta</code> SyntaxError, <code>SecurityError</code>, or page drag scroll</td></tr>
+</tbody>
+</table></div>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

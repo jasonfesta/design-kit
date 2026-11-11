@@ -1,0 +1,48 @@
+<article aria-labelledby="pat-actions" class="pattern-block">
+<div class="pattern-card">
+<div class="pattern-stage">
+<div>
+<h3 class="pattern-title" id="pat-actions">Start and confirmation actions</h3>
+<p class="field-hint" style="margin-top: 6px;">Start an application, save a 28-day draft, cancel an active permit, or check Zone B fees.</p>
+</div>
+<div class="action-row action-row--stack">
+<button class="civic-btn" data-trigger-toast="Permit application started for Zone B." type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Start now</span>
+</button>
+<button class="civic-btn civic-btn--secondary" data-trigger-toast="Draft held for 28 days." type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Save draft</span>
+</button>
+<button class="civic-btn civic-btn--danger" data-trigger-toast="Cancellation request opened." type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Cancel permit</span>
+</button>
+<button class="civic-btn civic-btn--secondary" disabled="" title="Available after annual fee payment clears" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Download receipt</span>
+</button>
+</div>
+<div class="pattern-divider action-row action-row--stack">
+<button class="civic-btn civic-btn--primary" data-open-modal="permit-modal" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Edit permit details</span>
+</button>
+<button class="civic-btn civic-btn--secondary" data-open-drawer="fee-drawer" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Zone B fee guide</span>
+</button>
+</div>
+</div>
+<div class="pattern-usage">
+<div>
+<div class="usage-label">When to use</div>
+<p class="usage-copy">Use one green action per screen to start an application or save an answer; pair drafts, fee guides, and edits as secondary actions.</p>
+</div>
+<div>
+<div class="usage-label">Validation rule</div>
+<p class="usage-copy">Keep start and submit buttons active before checking answers so screen-reader users reach field errors; lock only post-payment actions like receipt downloads.</p>
+</div>
+</div>
+</div>
+</article>

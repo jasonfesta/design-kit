@@ -1,0 +1,82 @@
+<section aria-labelledby="h-background-banner" class="doc-section" data-component-doc="" id="background-banner">
+<div class="shell">
+<h2 class="doc-h2" id="h-background-banner">Background-image reminder banner</h2>
+<p class="doc-desc">Frames a two-field renewal reminder card or direct action prompt over an evening terrace background photograph while preserving clear lamp-lit street detail and high-contrast fallbacks.</p>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul>
+<li>Place at the foot of a public service start page for residents whose current permit is still valid and who want a single 28-day expiry email.</li>
+<li>Switch to the solid high-contrast surface variant during civil contingencies or on dense statutory policy pages.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Usage and image rules</h3>
+<ul>
+<li>Anchor the background crop on the warm right-hand streetlamp and shade only behind the left form card so the lit terrace stays unobstructed.</li>
+<li>Set an opaque dark fallback color behind every background image and strip background photography cleanly when forced-colors mode is active.</li>
+</ul>
+</div>
+</div>
+<div aria-label="Background-image banner states" class="state-tabs" data-state-tabs="" role="tablist" style="margin-top: 28px;">
+<button aria-controls="panel-bg-card" aria-selected="true" class="state-tab" id="tab-bg-card" role="tab" tabindex="0" type="button">Twilight background with elevated card</button>
+<button aria-controls="panel-bg-ramp" aria-selected="false" class="state-tab" id="tab-bg-ramp" role="tab" tabindex="-1" type="button">Direct overlaid headline ramp</button>
+<button aria-controls="panel-bg-solid" aria-selected="false" class="state-tab" id="tab-bg-solid" role="tab" tabindex="-1" type="button">High-contrast solid surface</button>
+</div>
+<div class="specimen-stage" style="margin-top: 0;">
+<div aria-labelledby="tab-bg-card" id="panel-bg-card" role="tabpanel">
+<div class="twilight-stage">
+<div class="twilight-copy">
+<h3 class="twilight-title">Get an expiry reminder 28 days before renewal</h3>
+<p class="twilight-lead">Register your number plate now and we will email you four weeks before your street permit runs out.</p>
+</div>
+<form class="reminder-card" data-lead-form="" id="reminder-form" novalidate="">
+<div class="reminder-row">
+<div class="field-group">
+<label class="field-label" for="rem-reg">Vehicle registration</label>
+<input aria-describedby="rem-reg-err" autocomplete="off" class="text-input text-input--plate" id="rem-reg" name="registration" placeholder="AB72 KLP" type="text"/>
+<p class="field-error" hidden="" id="rem-reg-err">Enter a registration number in a valid format, like AB72 KLP</p>
+</div>
+<div class="field-group">
+<label class="field-label" for="rem-email">Email address</label>
+<input aria-describedby="rem-email-err" autocomplete="email" class="text-input" id="rem-email" name="email" placeholder="alex.patel@example.co.uk" type="email"/>
+<p class="field-error" hidden="" id="rem-email-err">Enter an email address in standard format, like name@example.co.uk.</p>
+</div>
+<div class="reminder-submit-cell">
+<button class="civic-btn civic-btn--primary" data-test-validate="" type="submit">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Set annual reminder</span>
+</button>
+</div>
+</div>
+<p class="privacy-note">Sent once a year before expiry and never shared outside borough parking services.</p>
+</form>
+</div>
+</div>
+<div aria-labelledby="tab-bg-ramp" hidden="" id="panel-bg-ramp" role="tabpanel">
+<div class="twilight-stage" style="padding-block: clamp(40px, 6vw, 68px);">
+<div class="twilight-copy" style="max-width: 38ch; display: flex; flex-direction: column; gap: 16px;">
+<h3 class="twilight-title">Overnight resident bays start again at 8.30am Monday</h3>
+<p class="twilight-lead" style="margin-top: 0;">Moving into Zone B this weekend? Upload your signed tenancy agreement for 28-day temporary cover while DVLA updates your logbook.</p>
+<button aria-haspopup="dialog" class="over-photo-btn" data-open-modal="start-modal" type="button">
+<span>Check new resident checklist</span>
+<svg aria-hidden="true" class="btn-arrow" fill="none" viewbox="0 0 18 18">
+<path d="M3.2 9h11.2M10.2 4.5L14.8 9l-4.6 4.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-bg-solid" hidden="" id="panel-bg-solid" role="tabpanel">
+<div class="solid-banner-fallback">
+<h3 class="doc-h2" style="font-size: 1.375rem;">Get an expiry reminder 28 days before renewal</h3>
+<p class="doc-desc" style="margin-bottom: 18px;">Solid stone fallback removes background photography cleanly while preserving full spacing, button hierarchy, and keyboard focus geometry.</p>
+<button aria-haspopup="dialog" class="civic-btn civic-btn--primary" data-open-modal="start-modal" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Check readiness checklist</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>

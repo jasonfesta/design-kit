@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>game arenas, multiplayer, and quest graphs</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>game arenas, multiplayer, and quest graphs</h1>
+      <p>scale games cleanly into fair llm or bot arenas, right-sized multiplayer topologies, and softlock-free quest or progression graphs without over-engineering servers or bespoke schemas.</p>
+      <div class="actions">
+        <a href="../game-arena-multiplayer-and-quests.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Game arenas, multiplayer, and quest graphs</h1>
+<h2>What it is</h2>
+<p>This skill covers three ways a working single-player game expands to more players or deeper worlds: pitting AI models or bots fairly against each other in an arena harness, connecting human players across devices with minimal infrastructure, and structuring multi-step quests or world states so players can never get softlocked.</p>
+<p>Each pattern is independent. Pull in only the section your game actually needs.</p>
+<h2>When to use it</h2>
+<ul>
+<li>Building an evaluation or spectator arena where LLMs or scripted agents play your game head-to-head or solo.</li>
+<li>Adding multiplayer across phones or browsers without standing up heavy backend infrastructure when a lighter topology works.</li>
+<li>Designing interconnected quests, locks and keys, dialogue flags, or NPC schedules where events can occur in multiple orders.</li>
+</ul>
+<h2>When not to use it</h2>
+<ul>
+<li>Solo arcade, puzzle, or toy prototypes with no external agent harness, no networked play, and linear level progression.</li>
+<li>Forcing networked multiplayer onto a game whose best social form is local shared-screen or pass-and-play.</li>
+</ul>
+<h2>Pattern 1. Fair agent and LLM arena harnesses</h2>
+<p>Running language models or bots inside your game reveals emergent tactics and makes compelling spectator matches, provided the harness removes structural bias and hidden-state leaks.</p>
+<h3>Match decision cadence to game tempo</h3>
+<ul>
+<li>Turn-based games: step strictly turn by turn with a per-move token and wall-clock timeout plus a clear fallback rule on illegal moves.</li>
+<li>Realtime games: advance the simulation in short fixed windows (for example 2 to 10 simulated seconds), pause while all active seats compute orders, and commit those orders simultaneously on the same tick. Simultaneous window commits ensure a slower reasoning model is tested on tactical judgement rather than API latency.</li>
+</ul>
+<h3>Enforce information-set and perspective symmetry</h3>
+<ul>
+<li>Filter every observation strictly to what that seat is allowed to know—visible tiles, own inventory or units, public scores, and currently sighted opponents—never raw world state dumps.</li>
+<li>Normalise spatial coordinates or board orientation per seat (for example rotating symmetric maps so each player&#x27;s home side sits in an equivalent local frame) so pretraining coordinate habits never favour Seat 1 over Seat 2.</li>
+<li>Keep context size flat across long matches by sending the current legal observation plus a bounded seat-authored scratchpad (such as 200 to 600 tokens of carry-over notes) rather than appending unbounded turn histories.</li>
+</ul>
+<h2>Pattern 2. Right-sized multiplayer topology</h2>
+<p>Pick the simplest multiplayer architecture that satisfies your game&#x27;s trust model, input cadence, and hosting constraints:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Topology</th><th>Best game fit</th><th>Trade-off</th></tr></thead>
+<tbody>
+<tr><td>Shared screen or pass-and-play</td><td>Local 2–4 player duel, co-op, or board game</td><td>Zero network code or latency; single physical device</td></tr>
+<tr><td>Async share links (seed + replay)</td><td>Daily puzzles, time trials, score challenges</td><td>Works 100% on static hosts via URL hashes; no live opponent</td></tr>
+<tr><td>Stateless lockstep WebSocket relay</td><td>Friendly co-op, tactics, or casual room-code play</td><td>Tiny <code>&lt; 150</code>-line relay forwarding inputs; trusts peer simulation</td></tr>
+<tr><td>Authoritative state server</td><td>Competitive hidden-hand or twitch action with strangers</td><td>Prevents map-hack cheating and hides latency; highest ops cost</td></tr>
+</tbody>
+</table></div>
+<p>When building casual room-code lockstep over a stateless relay:</p>
+<ul>
+<li>Pair players via short room links or inline QR codes rather than account sign-up walls.</li>
+<li>Exchange compact input frames plus periodic simulation state hashes (<code>game-deterministic-sim-core</code> Tier 3) so any desync surfaces immediately instead of silently splitting into two different matches.</li>
+<li>Design graceful seat continuity on mobile browsers: let AI policies fill open lobby seats or temporarily hold a seat if a phone briefly drops connection.</li>
+<li>Avoid raw local-network WebRTC without TURN relays (which fails silently across symmetric NATs and corporate Wi-Fi) and never transmit multiplayer data over audible or ultrasonic speaker modems.</li>
+</ul>
+<h2>Pattern 3. Softlock-free quest and progression graphs</h2>
+<p>In narrative RPGs, metroidvanias, and adventure games, softlocks rarely come from a single broken quest; they happen when Event B moves an NPC, consumes an item, or seals a room still required to finish active Quest A.</p>
+<h3>Model shared progression as explicit state transitions</h3>
+<p>Instead of scattering ad-hoc boolean mutations across dialogue callbacks and room scripts, keep progression conditions explicit:</p>
+<ol>
+<li>Define the discrete world flags, item states, room locks, and NPC locations that affect progression.</li>
+<li>Express each story beat, door unlock, or quest step by its required preconditions and resulting state changes.</li>
+<li>Ensure quest turn-ins bind to an NPC&#x27;s logical identity across valid locations (or provide an alternate hand-in path) whenever world events relocate characters.</li>
+</ol>
+<h3>Verify forward and backward reachability</h3>
+<p>Whenever two or more quests or world events can fire in arbitrary order, write a small breadth-first reachability test over your game&#x27;s own quest/flag table:</p>
+<ul>
+<li>Forward check: every intended quest completion and ending state is reachable from the starting world state.</li>
+<li>No-orphan check: from every reachable intermediate world state, every active non-failed quest (and the main ending) still has at least one valid transition path to completion.</li>
+</ul>
+<h2>Traps</h2>
+<ul>
+<li>Dumping full game state into LLM prompts with instructions to &quot;ignore hidden enemies&quot;. Models still condition on leaked coordinates; strip hidden state in code before serialising the prompt.</li>
+<li>Letting arena transcripts grow linearly. By turn 30, prompt tokens explode and older observations drown current state; use fresh per-turn state plus a bounded scratchpad.</li>
+<li>Standing up an authoritative server for a two-friend static prototype. Use URL-seed challenges or a tiny stateless room relay unless untrusted competitive integrity requires server authority.</li>
+<li>Mutating NPC locations globally without checking active turn-ins. Any world event that despawns or moves an actor must preserve or cleanly resolve pending interactions.</li>
+</ul>
+<h2>Self-check</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Check</th><th>Pass</th><th>Fail symptom</th></tr></thead>
+<tbody>
+<tr><td>Seat symmetry</td><td>Swapping seat assignments between identical agents yields ~50% split</td><td>Seat 1 wins systematically due to coordinate or turn-order bias</td></tr>
+<tr><td>Information isolation</td><td>Prompt or client payload omits unseen opponents and hidden cards</td><td>Agent reacts to hidden moves or inspects unrevealed map tiles</td></tr>
+<tr><td>Topology fit</td><td>Networking layer is the simplest option matching trust and latency needs</td><td>Unneeded server ops for a daily seed game, or raw NAT-fragile WebRTC</td></tr>
+<tr><td>Disconnect resilience</td><td>Mobile tab sleep or brief drop neither crashes peers nor freezes lobbies</td><td>One dropped phone bricks the session for every connected player</td></tr>
+<tr><td>Softlock freedom</td><td>Every reachable state preserves a valid path to finish active quests</td><td>Triggering Story Event B strands Quest A with a missing NPC or key</td></tr>
+</tbody>
+</table></div>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

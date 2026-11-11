@@ -1,0 +1,35 @@
+{
+  "id": "feel",
+  "display_name": "feel",
+  "google3_package": "feel",
+  "title": "feel",
+  "icon": "\u2728",
+  "category": "sub-skill of image-to-react \u00b7 60fps scroll, tactile physics & gpu curves",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "feel",
+  "agent_md": "feel/agent.md",
+  "skill_md": "feel/SKILL.md",
+  "html_page": "feel/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/feel",
+  "bundle_skill": "feel.skill",
+  "bundle_zip": "feel.zip",
+  "short_summary": "verifies 60fps scrolling (eval-feel-and-scroll.py), tactile press response, gpu transform/opacity curves, zero layout shift, and reduced-motion safety.",
+  "when_to_use": "use in stage 4 of jason-dev-agent to verify 60fps scroll performance and physical feel under pointer, touch, keyboard, and scroll.",
+  "quick_cmd": "python3 feel/scripts/eval-feel-and-scroll.py --project=./projects/01-website-app",
+  "summary": "Audits, refines, and evaluates how a Golden Template React interface feels under pointer, touch, keyboard, and scroll\u2014covering tactile press response, capability-gated hover, GPU-composited transform and opacity curves, easing and timing discipline, rapid-click interruption, 60fps scroll smoothness, zero layout shift, and reduced-motion safety. Runs a multi-turn dev self-eval loop until every feel gate passes, then hands the same stage back to jason-design-agent via design-critique to judge physical temperament against the original inspiration. Use whenever tuning or grading micro-interactions, motion curves, responsiveness under input, or interface feel. Don't use for adding missing buttons or sliders (use interaction) or static pixel cropping (use replicate-mock).",
+  "references": [
+    "./references/contributing.md",
+    "./references/scroll-interruption-and-reduced-motion.md",
+    "./references/tactile-motion-and-timing.md",
+    "./scripts/eval-feel-and-scroll.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=feel"
+  }
+}

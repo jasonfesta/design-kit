@@ -1,0 +1,75 @@
+<form aria-labelledby="mod-trim" class="deck-module" id="selection-specimen" novalidate="">
+<div class="module-head">
+<h3 id="mod-trim">Monitor output</h3>
+<span class="module-meta">Ceiling −1.0 dBTP</span>
+</div>
+<div class="knob-panel">
+<!-- Rotary monitor knob arc (-30 dB at -135deg to 0 dB at +135deg, r=25, arc len=117.81) -->
+<svg aria-hidden="true" class="knob-svg" viewbox="0 0 68 68">
+<path d="M 16.32 51.68 A 25 25 0 1 1 51.68 51.68" fill="none" stroke="var(--border-hairline)" stroke-linecap="round" stroke-width="3"></path>
+<path d="M 16.32 51.68 A 25 25 0 1 1 51.68 51.68" fill="none" id="mon-knob-arc" stroke="var(--ink-primary)" stroke-dasharray="94.25 140" stroke-linecap="round" stroke-width="3"></path>
+<circle cx="34" cy="34" fill="var(--surface-elevated)" r="18.5" stroke="var(--fader-cap-border)" stroke-width="1.2"></circle>
+<g id="mon-knob-rotor" transform="rotate(81 34 34)">
+<line stroke="var(--braun-accent)" stroke-linecap="round" stroke-width="2" x1="34" x2="34" y1="18" y2="26.5"></line>
+</g>
+</svg>
+<div class="knob-track-col">
+<div class="monitor-head">
+<label class="field-label" for="mon-fader">Headphone level</label>
+<output class="tnum" for="mon-fader" id="mon-out" style="font-size:0.9375rem;font-weight:600">−6.0 dB</output>
+</div>
+<div class="hfader-shell">
+<input class="hw-fader" id="mon-fader" max="0" min="-30" step="0.5" type="range" value="-6"/>
+</div>
+<div class="knob-sub-row">
+<span>−30 to 0 dB</span>
+<span class="mon-nudge-group">
+<button aria-label="Lower headphone level by 1 dB" class="mon-nudge" data-mon-step="-1" type="button">−1 dB</button>
+<button aria-label="Raise headphone level by 1 dB" class="mon-nudge" data-mon-step="1" type="button">+1 dB</button>
+</span>
+</div>
+</div>
+</div>
+<div class="selection-pair">
+<div aria-labelledby="stem-bounce-lbl" class="check-stack" role="group">
+<span class="field-label" id="stem-bounce-lbl">Stems in bounce</span>
+<label class="opt-label" for="stem-all">
+<input id="stem-all" type="checkbox"/>
+<span>All four channels</span>
+</label>
+<div class="check-children">
+<label class="opt-label" for="stem-c1">
+<input checked="" class="stem-chk" id="stem-c1" type="checkbox"/>
+<span>01 Felt piano</span>
+</label>
+<label class="opt-label" for="stem-c2">
+<input checked="" class="stem-chk" id="stem-c2" type="checkbox"/>
+<span>02 Upright bass</span>
+</label>
+<label class="opt-label" for="stem-c3">
+<input checked="" class="stem-chk" id="stem-c3" type="checkbox"/>
+<span>03 Brush snare</span>
+</label>
+<label class="opt-label" for="stem-c4">
+<input class="stem-chk" id="stem-c4" type="checkbox"/>
+<span>04 Room stereo</span>
+</label>
+</div>
+</div>
+<fieldset class="check-stack">
+<legend class="field-label" style="margin-bottom: 9px;">Tape speed</legend>
+<label class="opt-label" for="spd-norm">
+<input checked="" id="spd-norm" name="tape-speed" type="radio"/>
+<span>Normal · 1.0x pitch</span>
+</label>
+<label class="opt-label" for="spd-half">
+<input id="spd-half" name="tape-speed" type="radio"/>
+<span>Half speed · −12 st</span>
+</label>
+<label class="opt-label" for="spd-var">
+<input id="spd-var" name="tape-speed" type="radio"/>
+<span>Tape varispeed · −3 st</span>
+</label>
+</fieldset>
+</div>
+</form>

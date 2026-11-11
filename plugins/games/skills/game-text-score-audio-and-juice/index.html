@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>game audio, adaptive stems, and feel</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>game audio, adaptive stems, and feel</h1>
+      <p>design expressive procedural or symbolic browser game audio, smooth adaptive intensity layers, proportional multi-sensory action feedback, and listener-safe acoustic ceilings without locking into a fixed score format.</p>
+      <div class="actions">
+        <a href="../game-text-score-audio-and-juice.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Game audio, adaptive stems, and feel</h1>
+<h2>What it is</h2>
+<p>This skill guides how a browser game sounds and feels under the player&#x27;s hands: choosing the right musical and sound-effect representation, tying audio smoothly to gameplay tension, pairing motion and sound for crisp action feedback, and enforcing hard acoustic comfort limits so synthesized sound never clips, clicks, or fatigues the ear.</p>
+<h2>When to use it</h2>
+<ul>
+<li>Adding sound effects, musical beds, adaptive combat/tension layers, or tactile impact feel (&quot;juice&quot;) to a web game.</li>
+<li>Building zero-asset or offline-capable WebAudio engines where models author music and foley directly in code.</li>
+<li>Auditing rendered game audio <code>.wav</code> captures for clipping, DC offset, loop-seam clicks, silence, or harsh high-frequency screech.</li>
+</ul>
+<h2>When not to use it</h2>
+<ul>
+<li>Silent data visualisations or productivity tools where unsolicited audio annoys the user.</li>
+<li>Studio film scoring or multi-minute vocal songwriting outside interactive games; use dedicated music production or video scoring skills there.</li>
+</ul>
+<h2>Decisions that determine quality</h2>
+<h3>1. Pick the musical representation that fits the genre</h3>
+<p>Models cannot hear opaque binary audio files while editing code, which is why symbolic or parametric representations work well for iterative game builds. Do not force every game into one fixed JSON score schema; pick the representation that matches the game&#x27;s musical structure:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Musical need</th><th>Natural code representation</th><th>Best fit</th></tr></thead>
+<tbody>
+<tr><td>Melodic themes and loops</td><td>Compact tracker rows, ABC/MML strings, or pitch-duration tuples</td><td>Adventure, RPG, platformer, puzzle themes</td></tr>
+<tr><td>Rhythmic groove and pulse</td><td>Step-sequencer bitmasks or Euclidean trigger generators</td><td>Arcade action, rhythm, tactics, sports</td></tr>
+<tr><td>Generative ambient worlds</td><td>Scale-constrained chord walkers and sparse probabilistic arpeggios</td><td>Meditative toys, exploration, cozy sims</td></tr>
+<tr><td>Rich acoustic or vocal stems</td><td>Pre-rendered compressed audio stems scheduled on a shared WebAudio clock</td><td>Narrative scenes or acoustic instruments DSP cannot fake</td></tr>
+</tbody>
+</table></div>
+<p>Always unlock <code>AudioContext</code> on the first user gesture and provide an obvious, instant mute control.</p>
+<h3>2. Shape every synthesized sound from transient, body, and tail</h3>
+<p>Bare un-enveloped sine, square, or sawtooth waves sound like diagnostic test equipment and fatigue listeners within seconds.</p>
+<ul>
+<li>Layer physical impacts and UI cues across three short windows: a crisp onset transient (<code>0-30 ms</code> filtered noise burst or pitch drop) for timing snap, a resonant mid-range body (<code>30-200 ms</code> filtered tone or resonant mode bank) for material weight, and a gentle decay tail.</li>
+<li>Tame raw geometric waveforms (<code>sawtooth</code>, <code>square</code>) through a low-pass filter or bandlimited synthesis, and ramp every voice&#x27;s gain envelope over at least <code>4 ms</code> on attack and release to prevent discontinuity clicks.</li>
+<li>Vary pitch (<code>±4% to 8%</code>), filter cutoff, or sample choice across repeated footsteps, hits, and pickups to defeat the robotic machine-gun effect.</li>
+</ul>
+<h3>3. Couple adaptive music smoothly to gameplay state</h3>
+<p>Hard-stopping an exploration loop and starting a combat loop resets musical phase and creates jarring seams.</p>
+<ul>
+<li>Drive musical layers from one shared lookahead clock (<code>AudioContext.currentTime</code> scheduled 50 to 100 ms ahead of a short timer, never raw <code>setTimeout</code> alone).</li>
+<li>Adapt to rising gameplay tension by ramping stem gains, opening low-pass filter cutoffs, or enabling rhythmic accompaniment voices smoothly over <code>100 to 300 ms</code> (<code>setTargetAtTime</code> or linear ramps) rather than calling <code>stop()</code> and <code>start()</code> mid-phrase.</li>
+</ul>
+<h3>4. Scale multi-channel feedback proportionally to stakes</h3>
+<p>Good game feel comes from synchronising visual, temporal, and acoustic cues in proportion to what just happened—not shaking the camera on every footstep or spraying floating damage text across the screen.</p>
+<ul>
+<li>Routine actions (footsteps, tile shifts, cursor moves): subtle micro-motion (<code>&lt; 80 ms</code>) and quiet mid/low-pocket foley (<code>-20 to -14 dBFS</code>).</li>
+<li>Significant hits, clears, or parries: clear startup telegraph before impact, brief hit-pause or velocity impulse on contact, secondary physical reaction on the target, and layered transient-plus-body impact sound.</li>
+<li>Critical warnings or major swings: pre-duck continuous background beds by <code>3 to 6 dB</code> just before the alert sounds, pair a clear spatial indicator on the playfield with a distinct acoustic callout, and drop any active fast-forward (<code>2x/4x</code>) back to <code>1x</code> speed so the player can react.</li>
+</ul>
+<h3>5. Enforce hard psychoacoustic comfort and headroom limits</h3>
+<p>Careless browser synthesis can cause real physical listener discomfort—especially continuous high-pitched carriers or unclipped oscillator sums when twenty projectiles land at once.</p>
+<ul>
+<li>Keep continuous ambient beds quiet (<code>-24 to -18 dBFS</code>) so foreground actions cut through by subtraction rather than loudness wars.</li>
+<li>Route game buses through gentle dynamic compression or soft limiting with master peaks capped at or below <code>-1.0 dBFS</code>.</li>
+<li>Never emit sustained or pulsing narrowband tones above <code>6 kHz</code>, and never use ultrasonic or near-ultrasonic audio modems for device pairing.</li>
+</ul>
+<h2>CLI acoustic safety check</h2>
+<p><code>scripts/audit_game_audio_safety.py</code> (PEP 723, zero external dependencies) inspects any rendered 16/24/32-bit PCM <code>.wav</code> bounce directly—regardless of how your game authored or synthesized its audio—to catch clipping, dead silence, DC offset, optional loop-seam clicks (<code>--loop</code>), and harsh <code>&gt; 6 kHz</code> energy spikes:</p>
+<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-text-score-audio-and-juice/scripts/audit_game_audio_safety.py \
+  --wav ./preview.wav \
+  --json</code></pre>
+<h2>Traps</h2>
+<ul>
+<li>Scheduling notes on <code>requestAnimationFrame</code> or <code>setInterval</code> directly. Main-thread frame jitter turns steady 16th-note grooves into uneven stumbles; always schedule ahead against <code>AudioContext.currentTime</code>.</li>
+<li>Uncapped voice polyphony. Spawning 40 simultaneous explosion nodes during a chain reaction clips the output and stalls mobile audio threads; pool voices and steal oldest quiet tails.</li>
+<li>Constant screen shake and text popups. Uniform camera shake blurs trajectories and hides incoming hazards; tie directional recoil to real impact vectors and let motion dissolve cleanly.</li>
+<li>Harsh upper-midrange oscillator buildup. Stacking bright square and saw leads around <code>4-10 kHz</code> causes rapid ear fatigue; carve spectral room with gentle low-pass roll-off.</li>
+</ul>
+<h2>Self-check</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Check</th><th>Pass</th><th>Fail symptom</th></tr></thead>
+<tbody>
+<tr><td>Gesture &amp; mute</td><td>Audio starts cleanly on first input and mutes instantly via one control</td><td>Console autoplay errors or unstoppable background music</td></tr>
+<tr><td>Clock stability</td><td>Musical pulse stays rock-steady during heavy rendering frames</td><td>Audible rhythm stutter when frame rate dips</td></tr>
+<tr><td>Variation</td><td>Ten rapid pickups or footsteps sound organic rather than identical</td><td>Identical repeated waveform produces robotic phasing</td></tr>
+<tr><td>Proportional feel</td><td>Feedback intensity clearly distinguishes minor taps from major impacts</td><td>Everything shakes the screen equally, or major hits feel weightless</td></tr>
+<tr><td>Acoustic safety</td><td><code>.wav</code> capture passes <code>-1 dBFS</code> peak, zero DC offset, and <code>&lt;= 6 kHz</code> comfort check</td><td>Digital clipping, envelope clicks, or piercing high-frequency whine</td></tr>
+</tbody>
+</table></div>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

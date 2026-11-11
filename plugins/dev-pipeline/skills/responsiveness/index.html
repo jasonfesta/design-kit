@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>responsiveness</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>responsiveness</h1>
+      <p>evaluates one shared responsive react dom across desktop, mobile, and six viewports (320px to 1536px) before designer critique.</p>
+      <div class="actions">
+        <a href="../responsiveness.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>responsiveness</h1>
+<pre data-lang="text"><code>jason-dev-agent / responsiveness
+────────────────────────────────────────────────────────────────────
+stage         2 of 4 in the image-to-react loop
+dev eval      desktop + mobile match + 6-viewport sweep + single dom
+paired gate   responsiveness design critique in jason-design-agent</code></pre>
+<p><code>responsiveness</code> ensures a React build adapts naturally from <code>320px</code> handheld screens through <code>1536px+</code> desktop monitors using <strong>one shared semantic DOM</strong>. <code>jason-dev-agent</code> iterates back and forth over multiple turns, stopping after each turn to judge itself against the <strong>responsiveness dev eval</strong>, and as soon as the dev eval passes, sends the <strong>same responsiveness stage into <code>jason-design-agent</code></strong> (via <code>design-critique</code>) to be critiqued as a designer against the original inspiration.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>testing prompt (<code>design_agent_turns</code>)</strong>: if not already set for this run, ask the user <strong>&quot;how many turns do you want out of the design agent?&quot;</strong> before starting the critique loop.</span></li>
+<li><span class="check-box"></span><span><strong>turn 0 — inspect inspiration &amp; references</strong>: read the project&#x27;s research specs and inspect <code>desktop.png</code>, <code>mobile.png</code> (when paired), and <code>jason-design-agent</code>&#x27;s original inspiration notes so desktop and handheld art direction are understood before editing layout classes.</span></li>
+<li><span class="check-box"></span><span><strong>turn 1..n — build &amp; stop to run the dev eval</strong>: implement fluid spacing, <code>clamp()</code> type, <code>&lt;picture&gt;</code> art-directed crops, and accessible mobile drawers in a single semantic DOM, then run <a href="scripts/eval-responsive-pair.mjs"><code>scripts/eval-responsive-pair.mjs</code></a> (or single-sheet 6-viewport sweep).</span></li>
+<li><span class="check-box"></span><span><strong>inspect slices &amp; fix drift</strong>: inspect <code>dual_eval_report.json</code> and <code>side_by_side_slice_*.png</code> across both desktop and mobile; fix height drift, overflow, collisions, button padding, or grid inequalities until <code>overall_passed: true</code>.</span></li>
+<li><span class="check-box"></span><span><strong>paired designer critique (<code>jason-design-agent</code>)</strong>: once the dev eval passes, send the desktop, tablet, and mobile renders + slices into <code>jason-design-agent</code> using <code>design-critique</code> (<code>stage: responsiveness</code>) and iterate until <code>jason-design-agent</code> approves handheld composition, pacing, and mood against the original inspiration.</span></li>
+</ul>
+<h2>1. three rules of true responsiveness</h2>
+<ol>
+<li><strong>dual visual &amp; vertical-rhythm fidelity (zero vertical squashing)</strong>:</li>
+</ol>
+<ul>
+<li>renders <code>dist/index.html</code> in headless <code>WebKit2GTK</code> (<code>FULL_DOCUMENT</code>) at both desktop CSS width (<code>1440px</code> or <code>1536px</code>) and mobile <code>@2x</code> CSS width (<code>round(mobile_ref_w / 2)</code>, typically <code>390px-432px</code>).</li>
+<li>scales width uniformly (<code>-resize {ref_w}x</code>) without vertical stretching so any chapter padding, image aspect-ratio, or line-height error surfaces immediately in <code>height_delta_pct</code> and <code>side_by_side_slice_*.png</code>.</li>
+</ul>
+<ol>
+<li><strong>6-viewport fluid continuum (<code>320px</code> -&gt; <code>1536px</code>)</strong>:</li>
+</ol>
+<ul>
+<li>probes the live DOM at <strong><code>320px</code>, <code>375px</code>, <code>mobile_css_w</code>, <code>768px</code>, <code>1024px</code>, and <code>desktop_css_w</code></strong>.</li>
+<li>enforces <code>0</code> horizontal overflow, <code>0</code> leaf text/button collisions, <code>0</code> clipped text, <code>0</code> asymmetric button padding, and <code>0</code> uneven equal-column CSS grids at every width.</li>
+</ul>
+<ol>
+<li><strong>single semantic dom (anti-bifurcation)</strong>:</li>
+</ol>
+<ul>
+<li>verifies structural <code>h1</code>/<code>h2</code> headings inside <code>&lt;main&gt;</code> remain mounted and visible across both desktop and mobile (<code>visibility_ratio &gt;= 0.65</code>), blocking shortcuts that duplicate the page into separate <code>hidden md:block</code> and <code>md:hidden</code> trees or branch content on <code>window.innerWidth</code>.</li>
+</ul>
+<h2>2. running the responsiveness dev eval loop</h2>
+<h3>photographic plate cleaning (when needed)</h3>
+<p>When desktop and mobile use distinct art-directed crops of a photograph, extract clean plates with <a href="scripts/crop-and-clean-plate.py"><code>scripts/crop-and-clean-plate.py</code></a> and mount them inside a single <code>&lt;picture&gt;</code> tag:</p>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/responsiveness/scripts/crop-and-clean-plate.py \
+  --src=/path/to/references/desktop.png \
+  --crop=0,0,1536,860 \
+  --quality=88 \
+  --out=/tmp/hero_desktop.jpg</code></pre>
+<h3>self-judging dev eval command</h3>
+<p>Run <a href="scripts/eval-responsive-pair.mjs"><code>scripts/eval-responsive-pair.mjs</code></a> after each responsive edit turn:</p>
+<pre data-lang="bash"><code>/usr/local/google/home/jfesta/.local/bin/node \
+  /usr/local/google/home/jfesta/skills/responsiveness/scripts/eval-responsive-pair.mjs \
+  --project-dir=/path/to/projects/01-website-example \
+  --desktop-ref=/path/to/references/desktop.png \
+  --mobile-ref=/path/to/references/mobile.png \
+  --desktop-css-width=1440 \
+  --mobile-css-width=410 \
+  --out-dir=/tmp/responsiveness_eval_example</code></pre>
+<p><em>(When only a single desktop or 4K column reference exists rather than a separate <code>mobile.png</code>, <code>jason-dev-agent</code> still sweeps all 6 continuum widths—<code>320px</code>, <code>375px</code>, <code>410px</code>, <code>768px</code>, <code>1024px</code>, <code>1440px</code>—requiring <code>0</code> overflow, <code>0</code> collisions, <code>&gt;= 44px</code> mobile tap targets, and clean fluid stacking below <code>768px</code> while locking the reference width 1:1.)</em></p>
+<h3>dev eval pass gates (stop &amp; judge)</h3>
+<p><code>jason-dev-agent</code> repeats its build -&gt; measure -&gt; inspect loop until every hard gate passes:</p>
+<ul>
+<li><code>desktop.s_total &gt;= 0.85</code> and <code>mobile.s_total &gt;= 0.85</code> (when paired references exist)</li>
+<li><code>desktop.dimensions.height_delta_pct &lt;= 8.0%</code> and <code>mobile.dimensions.height_delta_pct &lt;= 8.0%</code></li>
+<li><code>0</code> collisions, <code>0</code> horizontal overflow, <code>0</code> clipped text, <code>0</code> button padding violations, and <code>0</code> grid equality violations across all 6 continuum viewports (<code>320px</code> -&gt; <code>desktop</code>)</li>
+<li><code>anti_bifurcation.passed === true</code></li>
+</ul>
+<h2>3. paired responsiveness design critique (<code>jason-dev-agent</code> -&gt; <code>jason-design-agent</code>)</h2>
+<p>Passing the responsiveness dev eval proves geometric and DOM health—it does <strong>not</strong> yet prove the handheld and tablet layouts <em>feel intentionally designed</em>. Immediately hand the passed responsiveness stage back to <code>jason-design-agent</code> (following <code>design-critique</code>) with:</p>
+<ul>
+<li>desktop &amp; mobile <code>side_by_side_slice_*.png</code> strips and <code>375px</code> / <code>768px</code> / <code>1440px</code> full-page captures</li>
+<li>the original inspiration references and <code>taste</code> / <code>atlas</code> notes</li>
+</ul>
+<p><code>jason-design-agent</code> critiques responsiveness as a designer:</p>
+<ol>
+<li><strong>handheld art direction</strong>: do portrait crops frame the subject intentionally rather than slicing off hands, silhouettes, or focal light?</li>
+<li><strong>pacing &amp; breathing room</strong>: do mobile chapter pauses (<code>py-12</code> to <code>py-16</code>) preserve the calm or energy of the desktop inspiration without endless empty scrolling or cramped stacking?</li>
+<li><strong>tablet composure (<code>768px</code> &amp; <code>1024px</code>)</strong>: do 3- and 4-column rows step cleanly (<code>sm:grid-cols-2 lg:grid-cols-3</code>) instead of producing narrow, awkward columns?</li>
+<li><strong>thumb &amp; navigation hierarchy</strong>: does compact mobile navigation (<code>menu</code> sheet, sticky actions, <code>16px+</code> inputs, <code>44px</code> tap targets) honor the brand&#x27;s tone?</li>
+</ol>
+<p>If <code>jason-design-agent</code> requests changes, <code>jason-dev-agent</code> applies them, <strong>re-runs the responsiveness dev eval</strong> to confirm zero regressions, and returns to <code>jason-design-agent</code> until approved.</p>
+<h2>references &amp; examples</h2>
+<ul>
+<li><a href="references/responsive_dual_authority_rules.md">responsive dual-authority &amp; 6-viewport continuum rules</a></li>
+<li><a href="examples/wda-dual-breakpoint-loop.md">multi-turn responsiveness dev eval &amp; designer critique walkthrough</a></li>
+</ul>
+<h2>Credits &amp; Lineage</h2>
+<p>Built by Jason Festa (<code>jfesta</code>), incorporating button optical padding and multi-tile grid equality verifiers from <strong><code>sds-measurement-verifier</code></strong> (Google Search DevAI SDS: <code>sskhandp</code>, <code>str</code>), <code>64x64</code> visual scoring from <strong><code>visual-matcher</code> (<code>AutoRaterV1</code>)</strong> (Google Agentic Design Loop: <code>dfreedm</code>, <code>jonathangamble</code>, <code>meaplet</code>, <code>igormr</code>), and 3-panel slice comparison from <strong><code>screenshot-compare</code></strong> (Google Search DevAI Aegis).</p>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

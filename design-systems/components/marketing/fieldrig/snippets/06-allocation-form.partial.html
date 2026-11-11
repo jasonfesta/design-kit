@@ -1,0 +1,143 @@
+<section aria-labelledby="h-allocation-form" class="doc-section" data-component-doc="" id="allocation-form">
+<div class="shell">
+<h2 class="doc-h2" id="h-allocation-form">Batch reservation and editorial proof states</h2>
+<p class="doc-desc">Pairs a Stockholm session photograph and named APx555 engineer measurement with a two-field Batch 05 waitlist reservation form documented across all four submission states.</p>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul>
+<li>Anchor the closing decision band with one verifiable studio measurement and firmware log directly ahead of serialized batch reservation.</li>
+<li>Reference the four side-by-side form cards whenever building hardware pre-order, dealer hold, or calibration registration inputs.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Usage and image rules</h3>
+<ul>
+<li>Frame a 4:3 documentary session photo beside one named engineer quote and test condition instead of headshot triplets or five-star icons.</li>
+<li>Validate email only on blur or submit, announce clear recovery guidance, and keep the tactile keycap width fixed while holding a serial slot.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div class="specimen-surface">
+<div class="story-split">
+<figure>
+<div class="photo-frame photo-frame--4x3">
+<img alt="Fieldrig TP-4 recorder inside a stitched saddle-leather field case beside open acoustic piano felt hammers and braided studio cable" height="1792" src="../images/fr-studio-session.png" width="2400"/>
+</div>
+<figcaption class="photo-caption">TP-4 in stitched saddle-leather case beside upright felt piano action, Stockholm session.</figcaption>
+</figure>
+<div>
+<figure>
+<blockquote class="bench-quote tnum">
+                    “Measured −128.8 dBu A-weighted input noise on internal battery, matching Kronberg’s −129 dBu bench reading within 0.2 dB at a tenth of my mobile rack mass.”
+                  </blockquote>
+<figcaption class="bench-cite">Henrik Lind, Mastering Engineer, Stockholm</figcaption>
+<p class="bench-method tnum">Audio Precision APx555 sweep · 150-ohm source termination · 20 Hz to 20 kHz</p>
+</figure>
+<dl class="spec-dl tnum" style="margin-top: 20px;">
+<div class="spec-row">
+<dt class="hw-code">FW 1.4 · Oct</dt>
+<dd>USB-C stem bounce and pre-fader 32-bit ISO split</dd>
+</div>
+<div class="spec-row">
+<dt class="hw-code">FW 1.3 · Aug</dt>
+<dd>Count-in metronome isolated to headphone cue bus</dd>
+</div>
+<div class="spec-row">
+<dt class="hw-code">FW 1.2 · May</dt>
+<dd>SMPTE LTC timecode jam-sync on channel 04</dd>
+</div>
+</dl>
+</div>
+</div>
+<form class="dispatch-form-wrap" data-lead-form="" id="dispatch-form" novalidate="">
+<h3 style="font-size: 1.1875rem; margin-bottom: 14px;">Kronberg Batch 05 reservation</h3>
+<div class="dispatch-row">
+<div class="field-group">
+<label class="field-label" for="disp-email">Studio email address</label>
+<input aria-describedby="disp-email-err" autocomplete="email" class="hw-input" id="disp-email" name="email" placeholder="henrik@studio-nord.se" type="email"/>
+<p class="field-error" hidden="" id="disp-email-err">Enter a complete email address so we can send your Batch 05 serial confirmation.</p>
+</div>
+<div class="field-group">
+<label class="field-label" for="disp-region">Shipping region</label>
+<div class="select-wrap">
+<select class="hw-select" id="disp-region" name="region">
+<option value="na">North America — 2-day air</option>
+<option selected="" value="eu">European Union — Kronberg DHL</option>
+<option value="uk">United Kingdom — Duty paid</option>
+<option value="jp">Japan and Asia-Pacific — Express</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 15 15">
+<path d="M3.8 5.8L7.5 9.5l3.7-3.7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="dispatch-btn-cell">
+<button class="hw-key hw-key--dark" data-test-validate="" type="submit">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Reserve Batch 05 slot</span>
+</button>
+</div>
+</div>
+<p class="field-hint" style="margin-top: 10px;">Charged only when your calibrated Batch 05 unit leaves Kronberg in January.</p>
+</form>
+</div>
+<div class="specimen-grid-2" style="margin-top: 20px;">
+<!-- State 1: Default -->
+<div class="specimen-card" data-specimen-state="default">
+<p class="specimen-label">Default</p>
+<div class="field-group">
+<label class="field-label" for="spec-email-rest">Studio email address</label>
+<input class="hw-input" id="spec-email-rest" placeholder="henrik@studio-nord.se" type="email"/>
+</div>
+<button class="hw-key hw-key--dark" data-trigger-specimen-note="Use the Kronberg Batch 05 form directly above to test full interactive validation." type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Reserve Batch 05 slot</span>
+</button>
+</div>
+<!-- State 2: Invalid email error -->
+<div class="specimen-card" data-specimen-state="error">
+<p class="specimen-label">Invalid email error</p>
+<div class="field-group">
+<label class="field-label" for="spec-email-err-in">Studio email address</label>
+<input aria-describedby="spec-email-err-msg" aria-invalid="true" class="hw-input" id="spec-email-err-in" type="email" value="henrik@studio-nord"/>
+<p class="field-error" id="spec-email-err-msg">Enter a complete domain, like henrik@studio-nord.se, to receive your serial sheet.</p>
+</div>
+</div>
+<!-- State 3: Holding serial (submitting) -->
+<div class="specimen-card" data-specimen-state="submitting">
+<p class="specimen-label">Holding serial (submitting)</p>
+<div class="field-group">
+<label class="field-label" for="spec-email-busy">Studio email address</label>
+<input class="hw-input" id="spec-email-busy" readonly="" type="email" value="henrik@studio-nord.se"/>
+</div>
+<button aria-disabled="true" class="hw-key hw-key--dark" data-loading="true" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">
+<span class="key-cell-stack">
+<span class="key-rest-layer">Reserve Batch 05 slot</span>
+<span class="key-busy-layer">
+<svg aria-hidden="true" class="spin-ring" fill="none" viewbox="0 0 16 16">
+<circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2.2"></circle>
+<path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"></path>
+</svg>
+<span>Holding serial</span>
+</span>
+</span>
+</span>
+</button>
+</div>
+<!-- State 4: Batch 05 slot reserved -->
+<div class="specimen-card" data-specimen-state="reserved">
+<p class="specimen-label">Batch 05 slot reserved</p>
+<div class="oled-confirm tnum">
+<h3>Batch 05 slot reserved · <span class="hw-code">TP4-0518</span></h3>
+<p>Held for henrik@studio-nord.se · Kronberg DHL dispatch 24 January.</p>
+</div>
+<p class="field-hint">Signed APx555 bench calibration sheet links automatically to your serial number.</p>
+</div>
+</div>
+</div>
+</div>
+</section>

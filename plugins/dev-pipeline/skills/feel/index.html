@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>feel</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>feel</h1>
+      <p>verifies 60fps scrolling (eval-feel-and-scroll.py), tactile press response, gpu transform/opacity curves, zero layout shift, and reduced-motion safety.</p>
+      <div class="actions">
+        <a href="../feel.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>feel</h1>
+<pre data-lang="text"><code>jason-dev-agent / feel
+────────────────────────────────────────────────────────────────────
+stage         4 of 4 in the image-to-react loop (&quot;how it feels&quot;)
+dev eval      eval-feel-and-scroll.py (60fps scroll + 0 transition-all
+              + tactile :active/:hover + 0 shift + reduced-motion)
+paired gate   feel design critique in jason-design-agent</code></pre>
+<p>Where <code>interaction</code> verifies <em>what</em> elements do (buttons, sliders, pagination, scroll, story), <code>feel</code> judges <strong>how the interface feels in motion and under the hand</strong>. <code>jason-dev-agent</code> runs multiple turns, stopping after each turn to judge itself against the <strong>feel dev eval</strong>, and as soon as the dev eval passes, sends the <strong>same feel stage back into <code>jason-design-agent</code></strong> (via <code>design-critique</code>) to critique physical character against the original inspiration.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>testing prompt (<code>design_agent_turns</code>)</strong>: if not already set for this run, ask the user <strong>&quot;how many turns do you want out of the design agent?&quot;</strong> before starting the critique loop.</span></li>
+<li><span class="check-box"></span><span><strong>turn 0 — match temperament to original inspiration</strong>: read <code>jason-design-agent</code>&#x27;s original inspiration notes to establish the target physical character (for example, unhurried architectural calm, crisp developer immediacy, or buoyant tactile spring).</span></li>
+<li><span class="check-box"></span><span><strong>turn 1..n — refine css/state physics &amp; stop for the feel dev eval</strong>: audit every transition, <code>:active</code> / <code>:hover</code> / <code>:focus-visible</code> rule, drawer curve, swatch crossfade, and scroll handler against the six feel dev gates below.</span></li>
+<li><span class="check-box"></span><span><strong>verify zero regression on <code>t=0</code> &amp; responsiveness</strong>: confirm feel refinements keep initial <code>t=0</code> fidelity (<code>s_total &gt;= 0.85+</code>) and 6-viewport layout integrity intact.</span></li>
+<li><span class="check-box"></span><span><strong>paired designer critique (<code>jason-design-agent</code>)</strong>: once the feel dev eval passes, send the live build and feel notes into <code>jason-design-agent</code> (<code>stage: feel</code>) and iterate until <code>jason-design-agent</code> approves pacing, weight, and tactile polish against the original inspiration.</span></li>
+</ul>
+<h2>1. the six pillars of interface feel</h2>
+<h3>1.1 immediate tactile press &amp; honest affordances</h3>
+<ul>
+<li>Every interactive <code>&lt;button&gt;</code>, pill, swatch, and clickable card acknowledges input immediately on press (<code>active:scale-[0.98]</code> or subtle surface shift) with <code>cursor: pointer</code> (<code>grab</code> / <code>grabbing</code> on draggable surfaces).</li>
+<li>Frequent or keyboard-repeated actions (tabs, pagination, command rows) respond immediately without artificial entrance delays.</li>
+<li>Keyboard navigation shows clean <code>:focus-visible</code> outlines (<code>focus-visible:outline-2 focus-visible:outline-offset-2</code>), and mobile touch targets maintain comfortable <code>&gt;= 44px</code> hit areas.</li>
+</ul>
+<h3>1.2 gpu-composited motion only</h3>
+<ul>
+<li>Animate <strong><code>transform</code></strong> (<code>translate3d</code>, <code>translateX</code>, <code>translateY</code>, <code>scale</code>) and <strong><code>opacity</code></strong> (plus lightweight color/border tokens on compact controls).</li>
+<li><strong>Never</strong> use <code>transition-all</code> (<code>transition-property: all</code>) on containers, cards, or layout wrappers, and <strong>never</strong> animate layout-thrashing properties (<code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, <code>margin</code>, <code>padding</code>).</li>
+</ul>
+<h3>1.3 intentional timing &amp; easing curves</h3>
+<ul>
+<li><strong>micro-controls (buttons, pills, toggles, swatches)</strong>: <code>120ms - 220ms</code> crisp ease-out (<code>cubic-bezier(0.2, 0, 0, 1)</code>).</li>
+<li><strong>drawers, sheets, modals &amp; gallery slides</strong>: <code>240ms - 420ms</code> smooth deceleration (<code>cubic-bezier(0.32, 0.72, 0, 1)</code> or <code>cubic-bezier(0.16, 1, 0.3, 1)</code>), with exit animations <code>20%-30%</code> faster than entrances.</li>
+<li><strong>editorial chapter settles</strong>: <code>&lt;= 550ms</code> with restrained travel (<code>8px - 14px</code> max), clearing <code>transform</code> / <code>will-change</code> after settle so serif and body text stay razor-sharp.</li>
+<li>Never use robotic <code>linear</code> easing on spatial UI movement (reserve <code>linear</code> strictly for timecodes, progress bars, or continuous marquees).</li>
+</ul>
+<h3>1.4 zero layout shift &amp; zero flash on state change</h3>
+<ul>
+<li>Switching tabs, swatches, thumbnails, or slider frames must preserve container height and aspect ratio (<code>0px</code> vertical jump, <code>0</code> colliding leaves, zero blank white/black image flash via pre-stacked opacity crossfades).</li>
+</ul>
+<h3>1.5 interruption &amp; capability-gated hover</h3>
+<ul>
+<li>Rapid consecutive clicks on tabs, swatches, or slider arrows retarget cleanly mid-flight without locking controls or stacking duplicate overlays.</li>
+<li>Pointer hover effects (<code>scale</code>, subtle underline/surface shifts) are gated behind <code>@media (hover: hover) and (pointer: fine)</code> so touch taps never get stuck in a hover state.</li>
+</ul>
+<h3>1.6 verified <code>60fps</code> scroll performance &amp; reduced-motion safety</h3>
+<ul>
+<li>Scrolling across the entire document and crossing <code>interaction</code> scroll points must hold <strong><code>60fps</code> (<code>&lt;= 16.67ms</code> frame budget, <code>effective_fps &gt;= 55-60</code>, <code>0</code> jank spikes <code>&gt; 34ms</code>)</strong>, verified deterministically via <a href="scripts/eval-feel-and-scroll.py"><code>scripts/eval-feel-and-scroll.py</code></a>.</li>
+<li>Never mutate React state on raw <code>window.scroll</code> ticks (use <code>{ passive: true }</code> listeners or <code>IntersectionObserver</code>), avoid large non-fixed <code>filter: blur()</code> / <code>backdrop-filter</code> repaints on scrolling containers, pause offscreen <code>&lt;video&gt;</code> elements, and always include <code>@media (prefers-reduced-motion: reduce)</code> in <code>src/index.css</code>.</li>
+</ul>
+<h2>2. stopping to judge: the feel &amp; <code>60fps</code> scroll dev eval</h2>
+<p>At the end of each feel turn, <code>jason-dev-agent</code> runs <a href="scripts/eval-feel-and-scroll.py"><code>scripts/eval-feel-and-scroll.py</code></a> and checks six deterministic pass gates (detailed in <a href="references/tactile-motion-and-timing.md">tactile motion and timing</a> and <a href="references/scroll-interruption-and-reduced-motion.md">scroll, interruption, and reduced motion</a>):</p>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/feel/scripts/eval-feel-and-scroll.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;</code></pre>
+<div class="table-wrap"><table>
+<thead><tr><th>gate</th><th>requirement to pass on the dev side</th></tr></thead>
+<tbody>
+<tr><td><strong>1. tactile press &amp; cursor</strong></td><td><code>button:not(:disabled)</code> and interactive controls define pointer cursor, <code>:active</code> press response, and <code>:focus-visible</code> rings.</td></tr>
+<tr><td><strong>2. zero <code>transition-all</code> / layout anim</strong></td><td><code>0</code> instances of <code>transition-all</code> on layout/card containers and <code>0</code> transitions on <code>width</code>, <code>height</code>, <code>top</code>, <code>left</code>, or <code>margin</code>.</td></tr>
+<tr><td><strong>3. calibrated durations &amp; curves</strong></td><td>Control transitions stay within <code>120ms-260ms</code>, drawers/modals within <code>220ms-450ms</code>, and spatial transitions use non-linear easing curves.</td></tr>
+<tr><td><strong>4. zero state-change shift</strong></td><td>Toggling swatches, tabs, accordions, or sliders produces <code>0px</code> unexpected container jump, <code>0</code> media flash, and <code>0</code> collisions.</td></tr>
+<tr><td><strong>5. hover &amp; reduced-motion safety</strong></td><td>Hover transforms respect <code>@media (hover: hover)</code> and <code>src/index.css</code> includes <code>@media (prefers-reduced-motion: reduce)</code>.</td></tr>
+<tr><td><strong>6. <code>60fps</code> scroll &amp; interruption</strong></td><td><code>eval-feel-and-scroll.py</code> reports <code>effective_fps &gt;= 55-60</code> (<code>jank_frames_over_34ms &lt;= 2</code>), rapid clicks on sliders/tabs/drawers never wedge UI state, and <code>Escape</code> dismisses overlays cleanly.</td></tr>
+</tbody>
+</table></div>
+<p>If any gate fails, <code>jason-dev-agent</code> fixes the CSS/JSX physics and re-runs the feel dev eval before handing off.</p>
+<h2>3. paired feel design critique (<code>jason-dev-agent</code> -&gt; <code>jason-design-agent</code>)</h2>
+<p>Once all six feel dev gates pass, <code>jason-dev-agent</code> sends the build back into <code>jason-design-agent</code> using <code>design-critique</code> (<code>stage: feel</code>).</p>
+<p><code>jason-design-agent</code> critiques how the build <em>feels</em> against the <strong>original inspiration</strong>:</p>
+<ul>
+<li><em>Does the motion temperament match the inspiration&#x27;s world—quiet, weighted, and architectural for warm editorial craft, or crisp and immediate for a precision tool?</em></li>
+<li><em>Is any animation unnecessary, showy, or distracting where stillness would feel more confident?</em></li>
+<li><em>Do drawers, sliders, swatches, and scroll transitions feel cohesive as one family of physical materials?</em></li>
+</ul>
+<p><code>jason-dev-agent</code> and <code>jason-design-agent</code> iterate until <code>jason-design-agent</code> marks <code>feel</code> <strong>approved</strong> with zero dev eval regressions.</p>
+<h2>references, scripts &amp; examples</h2>
+<ul>
+<li><a href="scripts/eval-feel-and-scroll.py"><code>scripts/eval-feel-and-scroll.py</code></a> — headless WebKit2GTK <code>60fps</code> <code>requestAnimationFrame</code> scroll benchmark + <code>transition-all</code> / layout-transition / <code>prefers-reduced-motion</code> auditor.</li>
+<li><a href="references/tactile-motion-and-timing.md">tactile physics, gpu properties, curves &amp; timing table</a></li>
+<li><a href="references/scroll-interruption-and-reduced-motion.md">60fps scroll, rapid-click interruption &amp; reduced-motion rules</a></li>
+<li><a href="examples/feel-turn-loop.md">multi-turn feel dev eval &amp; <code>jason-design-agent</code> critique walkthrough</a></li>
+</ul>
+<h2>Credits &amp; Lineage</h2>
+<p>Motion curve, press scale, interruptibility, and tactile restraint guidelines in <code>feel</code> credit <strong>Emil Kowalski</strong> (<code>emil-design-eng</code>, <code>make-interfaces-feel-better</code>, <code>break-ui</code>), adapted into deterministic Tailwind v4 + WebKit2GTK <code>60fps</code> scroll gates by Jason Festa (<code>jfesta</code>).</p>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

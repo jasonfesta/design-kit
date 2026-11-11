@@ -1,0 +1,83 @@
+<section aria-labelledby="h-form-states" class="doc-section" data-component-doc="" id="form-states">
+<div class="shell">
+<h2 class="doc-h2" id="h-form-states">Registration input and alert states</h2>
+<p class="doc-desc">Shows all four operational states of the UK number plate reminder control side by side so engineering and service teams implement validation, DVLA checks, and confirmation consistently.</p>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul>
+<li>Apply across every council service collecting a vehicle number plate, Blue Badge serial, or annual reminder email address.</li>
+<li>Pair field-level error text with a top error summary whenever a submitted plate cannot be matched to UK format rules.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Usage and image rules</h3>
+<ul>
+<li>Validate on blur or submit rather than flagging incomplete plates while a resident is still typing the first letters.</li>
+<li>Frame error summaries with an even two-pixel crimson border rather than thick left bars, and hold button width steady during DVLA checks.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage specimen-grid-2">
+<!-- State 1: Default -->
+<div class="specimen-card" data-specimen-state="default">
+<p class="specimen-label">Default</p>
+<div class="field-group">
+<label class="field-label" for="spec-plate-rest">Vehicle registration</label>
+<p class="field-hint" id="spec-plate-rest-hint">Enter letters and numbers, for example AB72 KLP</p>
+<input aria-describedby="spec-plate-rest-hint" class="text-input text-input--plate" id="spec-plate-rest" placeholder="AB72 KLP" type="text"/>
+</div>
+<button class="civic-btn civic-btn--primary" data-trigger-specimen-note="Enter a UK registration in the live reminder banner above to test full submission." type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Continue</span>
+</button>
+</div>
+<!-- State 2: Validation Error (even 2px crimson frame, matching GDS summary + field error) -->
+<div class="specimen-card" data-specimen-state="error">
+<p class="specimen-label">Unrecognised UK number plate error</p>
+<div aria-labelledby="err-sum-heading" class="error-summary" role="group">
+<p class="error-summary-title" id="err-sum-heading">There is a problem</p>
+<p class="error-summary-msg"><a class="error-summary-link" href="#spec-plate-err-input">Enter a registration number in a valid format, like AB72 KLP</a></p>
+</div>
+<div class="field-group">
+<label class="field-label" for="spec-plate-err-input">Vehicle registration</label>
+<input aria-describedby="spec-plate-err-msg" aria-invalid="true" class="text-input text-input--plate" id="spec-plate-err-input" type="text" value="AB72 99999"/>
+<p class="field-error" id="spec-plate-err-msg">Enter a registration number in a valid format, like AB72 KLP</p>
+</div>
+</div>
+<!-- State 3: Checking DVLA (busy) -->
+<div class="specimen-card" data-specimen-state="busy">
+<p class="specimen-label">Checking DVLA (busy)</p>
+<div class="field-group">
+<label class="field-label" for="spec-plate-busy">Vehicle registration</label>
+<input class="text-input text-input--plate" id="spec-plate-busy" readonly="" type="text" value="AB72 KLP"/>
+</div>
+<button aria-disabled="true" class="civic-btn civic-btn--primary" data-loading="true" type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">
+<span class="btn-cell-stack">
+<span class="btn-rest-layer">Checking DVLA record</span>
+<span class="btn-busy-layer">
+<svg aria-hidden="true" class="spin-ring" fill="none" viewbox="0 0 16 16">
+<circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2.2"></circle>
+<path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"></path>
+</svg>
+<span>Checking DVLA</span>
+</span>
+</span>
+</span>
+</button>
+<p class="field-hint">Matching CO<sub class="chem-sub">2</sub> emissions band against Zone B tariff schedule.</p>
+</div>
+<!-- State 4: Reminder scheduled confirmation -->
+<div class="specimen-card" data-specimen-state="confirmed">
+<p class="specimen-label">Reminder scheduled confirmation</p>
+<div class="confirm-banner tnum">
+<h3 style="font-size: 1.25rem;">Reminder scheduled for AB72 KLP</h3>
+<p style="margin-top: 8px; font-size: 0.95rem;">Reference CG-28491</p>
+</div>
+<p class="tnum" style="font-size: 0.9375rem; color: var(--ink-secondary);">We will email alex.patel@example.co.uk on 14 October 2027, 28 days before your Zone B permit expires.</p>
+</div>
+</div>
+</div>
+</section>

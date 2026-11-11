@@ -1,0 +1,39 @@
+<dialog aria-labelledby="bounce-title" class="hw-modal" id="bounce-modal">
+<form class="dialog-body" id="bounce-form" method="dialog">
+<div class="dialog-head">
+<h2 id="bounce-title">Bounce stereo mix</h2>
+<button aria-label="Close dialog" class="close-btn" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="15" viewbox="0 0 15 15" width="15">
+<path d="M3.5 3.5l8 8m0-8l-8 8" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path>
+</svg>
+</button>
+</div>
+<div class="field-group">
+<label class="field-label" for="bounce-file">File name</label>
+<input class="hw-input" id="bounce-file" type="text" value="Reel 04 — Late Sketch (Take 5)"/>
+</div>
+<div class="field-group">
+<label class="field-label" for="bounce-rate">Format</label>
+<div class="select-wrap">
+<select class="hw-select" id="bounce-rate">
+<option selected="" value="wav48">WAV · 48 kHz / 24-bit</option>
+<option value="wav96">WAV · 96 kHz / 24-bit</option>
+<option value="flac">FLAC · Lossless</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 15 15">
+<path d="M3.8 5.8L7.5 9.5l3.7-3.7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="key-row">
+<button class="hw-key hw-key--dark" type="submit">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Export mix</span>
+</button>
+<button class="hw-key" data-close-dialog="" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Cancel</span>
+</button>
+</div>
+</form>
+</dialog>

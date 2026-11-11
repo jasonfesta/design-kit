@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>url variant</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>url variant</h1>
+      <p>captures full-length desktop and mobile screenshots plus complete desktop and mobile dom text from a url via chrome devtools, generates a true unique nano banana 2.1 variant (new text, new colors, new fonts, same vibe, zero flutter/artifacts), and scores uniqueness vs. aesthetic quality.</p>
+      <div class="actions">
+        <a href="../url-variant.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>url-variant</h1>
+<pre data-lang="text"><code>url-variant (devtools capture -&gt; upfront prompt architecture -&gt; 2-pass nano banana 2.1 -&gt; score &amp; designer review)
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+input         live url + stance dial (0.10..1.00, default 0.65) + style stance (8 stances or auto)
+step 1        chrome devtools capture (scripts/capture_url_devtools_and_dom.mjs)
+              - captures/desktop-fullpage.png (@2x 1440px -&gt; 2880px wide, long-form + 2K bands)
+              - captures/mobile-fullpage.png  (@3x 390pt  -&gt; 1170px wide, long-form + 2K bands)
+              - dom/desktop-dom.txt + dom/mobile-dom.txt (full dom + shadow/flutter semantics text)
+              - dom/dom-audit.json (forbidden copy, avoid_fonts, avoid_colors, widget counts, flutter)
+step 2        UPFRONT PROMPT ARCHITECTURE &amp; PRE-FLIGHT LOCK (scripts/plan_and_run_variant.py plan)
+              (done 100% AHEAD OF TIME because variation happens while passing in the screenshot)
+              - visually inspect desktop &amp; mobile captures via read_file + dom-audit.json
+              - lock Stance Dial, Style Stance, WCAG 2.2 AA 8-token palette &amp; live Google Fonts
+              - write variants/variation-blueprint.md + 10-section prompts (variants/prompts/*.md)
+              - run pre-flight prompt audit (audit-prompts: WCAG contrast, 0 font/copy collisions)
+step 3        2-pass screenshot-conditioned nano banana 2.1 transfer (scripts/plan_and_run_variant.py run)
+              - pass 1 (desktop): passes desktop screenshot bands + pre-architected prompt
+                                  -&gt; variants/desktop-variant-fullpage.png + 2K
+              - pass 2 (mobile):  passes BOTH mobile screenshot band AND rendered desktop variant
+                                  -&gt; variants/mobile-variant-fullpage.png + 2K
+step 4        diagnostic regression/uniqueness score &amp; DESIGNER REVIEW CHECKPOINT (scripts/eval_url_variant.py)
+              - computes 3 diagnostic scores (0-100): uniqueness_score, quality_score, regression_score
+              - emits variants/designer-review-checkpoint.md + &lt;study-dir&gt;/index.html
+              - pauses and presents images + scores directly to the designer for review &amp; calibration</code></pre>
+<p><code>url-variant</code> takes any live URL, captures <strong>full-length long-form screenshots</strong> of both <strong>Desktop</strong> and <strong>Mobile</strong> alongside the <strong>DOM of both Desktop and Mobile as text</strong> via Google Chrome DevTools Protocol (CDP), and architects the entire variation <strong>ahead of time</strong> (<code>variants/variation-blueprint.md</code>) before passing the screenshots into <strong>Nano Banana 2.1</strong>. Once the Desktop and Mobile variants are rendered, it computes a clean <strong>Uniqueness | Quality | Non-Regression</strong> scorecard and presents the results directly to the <strong>Designer for review</strong>.</p>
+<h2>Workflow Checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 1 — Capture Full-Length Desktop &amp; Mobile Screenshots + DOM Text via Chrome DevTools (<code>scripts/capture_url_devtools_and_dom.mjs</code>)</strong>:</span></li>
+</ul>
+<p>Run <a href="scripts/capture_url_devtools_and_dom.mjs">capture_url_devtools_and_dom.mjs</a> outside the sandbox (<code>BypassSandbox: true</code>):</p>
+<pre data-lang="bash"><code>  node /usr/local/google/home/jfesta/skills/url-variant/scripts/capture_url_devtools_and_dom.mjs \
+    --url=&quot;https://example.com&quot; \
+    --out-dir=&quot;/path/to/study&quot; \
+    --max-viewports=6</code></pre>
+<p>Verify that all 5 capture deliverables exist:</p>
+<ol>
+<li><code>captures/desktop-fullpage.png</code> (<code>@2x</code> <code>1440px</code> $\rightarrow$ <code>2880px</code> wide) + <code>captures/tiles/desktop-band-01..NN.png</code></li>
+<li><code>captures/mobile-fullpage.png</code> (<code>@3x</code> <code>390pt</code> $\rightarrow$ <code>1170px</code> wide) + <code>captures/tiles/mobile-band-01..NN.png</code></li>
+<li><code>dom/desktop-dom.txt</code> and <code>dom/desktop-dom.html</code> (including open Shadow DOM and Flutter <code>flt-semantics</code>)</li>
+<li><code>dom/mobile-dom.txt</code> and <code>dom/mobile-dom.html</code></li>
+<li><code>dom/dom-audit.json</code> (cataloguing <code>avoid_fonts</code>, <code>avoid_bg_colors</code>, <code>avoid_text_colors</code>, <code>forbidden_copy_phrases</code>, per-section <code>interactiveSignals</code>, and <code>artifacts_detected</code>).</li>
+</ol>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 2 — Architect &amp; Lock the Complete Variation Blueprint Ahead of Time (<code>scripts/plan_and_run_variant.py plan</code> + <code>audit-prompts</code>)</strong>:</span></li>
+</ul>
+<p>Because Nano Banana 2.1 executes the variation <em>while</em> receiving the captured screenshot as its image-to-image reference, <strong>all prompt architecture must be completed and audited ahead of time</strong>:</p>
+<ol>
+<li><strong>Deep Visual + DOM Inspection</strong>: Call <code>read_file</code> on <code>captures/desktop-fullpage.png</code>, <code>captures/mobile-fullpage.png</code>, and <code>dom/dom-audit.json</code>. Catalog every hero visual mechanic, interactive widget (<code>tabs</code>, <code>tables</code>, <code>codeSamples</code>, <code>canvases</code>, <code>svgs</code>, <code>cards</code>), and layout split so the prompt explicitly transforms each one without regression.</li>
+<li><strong>Select Stance Dial &amp; Style Stance</strong>: Choose <code>--stance-dial</code> (<code>0.15-0.30</code> <code>subtle-sibling</code>, <code>0.40-0.60</code> <code>editorial-reframe</code>, <code>0.65-0.85</code> <code>theme-polarity-inversion</code> [default], or <code>0.90-1.00</code> <code>archetype-transmutation</code>) and <code>--style-stance</code> (<a href="references/style-stances-and-variation-dial.md">style stances and variation dial guide</a>).</li>
+<li><strong>Generate &amp; Pre-Audit the 10-Section Prompts</strong>:</li>
+</ol>
+<pre data-lang="bash"><code>     python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/plan_and_run_variant.py plan \
+       --study-dir=&quot;/path/to/study&quot; \
+       --stance-dial=0.65 \
+       --style-stance=auto \
+       --brand-name=&quot;KINETIX LABS&quot; \
+       --visual-notes=&quot;Hero features a split 50/50 stage with an interactive 3D node mesh on the right; Band 2 has a 3-card bento grid with live latency sparklines and a tabbed CLI terminal.&quot;</code></pre>
+<p>This writes <code>variants/variation-blueprint.md</code> and <code>variants/prompts/*.md</code>, and runs the <strong>Pre-Flight Prompt Audit</strong> (<code>audit-prompts</code>) verifying WCAG 2.2 AA token contrast (<code>&gt;= 4.5:1</code>), <code>0</code> font collisions with <code>avoid_fonts</code>, <code>4</code>-surface CSS-to-<code>2K</code> scale locks (<code>font_scale_and_pairing.py</code>), and all 10 prompt sections (<a href="references/deep-transfer-prompt-architecture.md">deep transfer prompt architecture</a>).</p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 3 — Execute the Two-Pass Screenshot-Conditioned Nano Banana 2.1 Transfer (<code>scripts/plan_and_run_variant.py run</code>)</strong>:</span></li>
+<li><strong>Pass 1 (Desktop Variant — Passing in the Desktop Screenshot + Pre-Architected Prompt)</strong>:</li>
+</ul>
+<pre data-lang="bash"><code>    python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/plan_and_run_variant.py run \
+      --study-dir=&quot;/path/to/study&quot; \
+      --pass=desktop \
+      --route=gempix</code></pre>
+<ul>
+<li><strong>Pass 2 (Mobile Variant — Passing in BOTH the Mobile Screenshot AND the Rendered Desktop Variant)</strong>:</li>
+</ul>
+<pre data-lang="bash"><code>    python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/plan_and_run_variant.py run \
+      --study-dir=&quot;/path/to/study&quot; \
+      --pass=mobile \
+      --route=gempix</code></pre>
+<p><em>(If generating via the <code>image-generator</code> subagent, pass <code>ImagePaths</code> from <code>reference_images</code> in <code>variants/variant-plan.json</code>, then run <code>plan_and_run_variant.py stitch --study-dir=&quot;/path/to/study&quot;</code> inside the sandbox.)</em></p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 4 — Score Uniqueness, Quality &amp; Non-Regression and Present at the Designer Review Checkpoint (<code>scripts/eval_url_variant.py</code>)</strong>:</span></li>
+</ul>
+<p>Run <a href="scripts/eval_url_variant.py">eval_url_variant.py</a> to compute the diagnostic scores without triggering automated re-generation loops:</p>
+<pre data-lang="bash"><code>  python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/eval_url_variant.py \
+    --study-dir=&quot;/path/to/study&quot;</code></pre>
+<p>Present the generated images (<code>variants/desktop-variant-fullpage.png</code>, <code>variants/mobile-variant-fullpage.png</code>, <code>variants/comparison-contact-sheet.jpg</code>), the <code>variants/designer-review-checkpoint.md</code> scorecard, and <code>&lt;study-dir&gt;/index.html</code> <strong>directly to the Designer for review</strong> so the designer can evaluate the call and dial in any adjustments.</p>
+<h2>1. Upfront 10-Section Prompt Architecture (Locked Before Generation)</h2>
+<p>Every prompt in <code>variants/prompts/&lt;surface&gt;-variant-band-&lt;NN&gt;.md</code> is built <strong>ahead of time</strong> with 10 explicit locks (<a href="references/deep-transfer-prompt-architecture.md">deep transfer prompt architecture</a>):</p>
+<ol>
+<li><strong>Use Case, Stance Dial &amp; Orthographic Framing</strong>: Locks <code>ui-mockup</code>, <code>--stance-dial</code> (<code>0.10..1.00</code>), <code>--style-stance</code>, and flat full-bleed orthographic framing (<code>0</code> bezels or angled desks).</li>
+<li><strong>Pass-Specific Screenshot Conditioning Roles</strong>: Pass 1 conditions on the Desktop capture; Pass 2 conditions on <strong>both</strong> the Mobile capture (<code>390pt</code> vertical reflow) and the rendered Desktop Variant (style/palette/brand transfer).</li>
+<li><strong>Voice 1 — Textural &amp; Material World</strong>: Physical substrate micro-texture, studio lighting, and zero plastic AI sheen.</li>
+<li><strong>Voice 2 — Live Google Fonts &amp; 4-Surface CSS-to-2K Scale Lock</strong>: Live-ranked Primary + Companion Google Fonts (<code>font_scale_and_pairing.py</code>) with physical letterform anatomy and exact <code>desktop-web</code> vs. <code>mobile</code> <code>% canvas height</code> and character-per-line budgets.</li>
+<li><strong>8-Token WCAG-Verified Chromatic System</strong>: All 8 hex tokens pre-audited ahead of time for WCAG 2.2 AA contrast (<code>&gt;= 4.5:1</code>) and CIE $L^<em>a^</em>b^<em>$ $\Delta E^</em>_{ab}$ separation from <code>avoid_bg_colors</code> and <code>avoid_text_colors</code>.</li>
+<li><strong>Voice 3 — Frontend Developer Grid &amp; Optical Padding</strong>: Exact column splits, <code>1px</code> continuous seams, corner radii, <code>42-48px</code> buttons with <code>2:1</code> L/R optical padding, <code>tabular-nums</code>, and <code>0</code> middle dots (<code>·</code>).</li>
+<li><strong>Anti-Regression Complexity &amp; Interactive Widget Lock</strong>: Inventories every <code>tab</code>, <code>table</code>, <code>code</code> block, <code>canvas</code>, <code>svg</code>, and <code>card</code> in that band from <code>dom-audit.json</code> + visual inspection so rich UI never simplifies into empty boxes.</li>
+<li><strong>Ordered Region-by-Region Verbatim New Copy</strong>: Exact replacement copy for Region A (Header/Section Title), Region B (Hero/Bento/Interactive Stage), and Region C (Telemetry/Footer Closure).</li>
+<li><strong>Flutter &amp; DOM Artifact Remediation</strong>: Strips <code>flt-glass-pane</code> canvas blur, <code>DEBUG</code> ribbons, builder watermarks, cookie modals, and repeated sticky navbars (<a href="references/flutter-and-artifact-remediation.md">flutter and artifact remediation</a>).</li>
+<li><strong>Hard Anti-Clone &amp; Anti-Leakage Exclusions</strong>: Bans all <code>forbidden_copy_phrases</code>, <code>avoid_fonts</code>, raw hex strings printed on screen, font names printed as text, and <code>FIG 0.1</code> labels.</li>
+</ol>
+<h2>2. Diagnostic Scorecard Readout for Designer Review (<code>eval_url_variant.py</code>)</h2>
+<p>Full mathematical details live in <a href="references/uniqueness-and-quality-metrics.md">uniqueness, quality, and non-regression metrics</a>. After generation, <code>eval_url_variant.py</code> outputs three <code>0-100</code> scores per surface in <code>variants/designer-review-checkpoint.md</code>:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Diagnostic Score</th><th>Scale</th><th>What It Measures for the Designer</th></tr></thead>
+<tbody>
+<tr><td><strong><code>uniqueness_score</code></strong></td><td><code>0 - 100</code></td><td>Dial-calibrated CIE $L^<em>a^</em>b^<em>$ palette shift ($\Delta E^</em>_{ab}$), <code>16x16</code> RGB MAE in the variant sweet-spot, and <code>0%</code> brand/copy overlap with <code>desktop-dom.txt</code> / <code>mobile-dom.txt</code>.</td></tr>
+<tr><td><strong><code>quality_score</code></strong></td><td><code>0 - 100</code></td><td>Standalone visual craft: multi-scale <code>2K</code> acutance (<code>sharpness_ratio</code>, <code>hf_detail_std</code>), orthogonal UI grid alignment (<code>hv_edge_ratio</code>), luminance contrast, and <code>&gt;= 1K</code> resolution.</td></tr>
+<tr><td><strong><code>regression_score</code></strong></td><td><code>0 - 100</code> (<code>100</code> = Zero Regression)</td><td>Direct parity against the original screenshot: <strong>Complexity &amp; Detail Retention (<code>complexity_retention_ratio</code>)</strong>, <strong>Sharpness Parity (<code>sharpness_parity_ratio</code>)</strong>, <strong>Grid Orthogonality Parity (<code>grid_parity_ratio</code>)</strong>, and <strong>Vertical Section Rhythm Correlation</strong>.</td></tr>
+</tbody>
+</table></div>
+<h2>References</h2>
+<ul>
+<li><a href="references/style-stances-and-variation-dial.md">Design style stances (8 canonical stances) and the variation stance dial (0.10 to 1.00)</a></li>
+<li><a href="references/deep-transfer-prompt-architecture.md">Upfront prompt architecture and two-pass screenshot-conditioned image-to-image transfer</a></li>
+<li><a href="references/uniqueness-and-quality-metrics.md">Diagnostic uniqueness, quality, and non-regression score formulas</a></li>
+<li><a href="references/flutter-and-artifact-remediation.md">Flutter Web semantics, shadow DOM extraction, and artifact remediation rules</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

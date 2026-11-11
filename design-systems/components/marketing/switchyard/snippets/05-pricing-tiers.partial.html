@@ -1,0 +1,128 @@
+<section aria-labelledby="h-pricing-tiers" class="sy-doc-section" data-component-doc="" data-section="pricing" id="pricing-tiers">
+<div class="sy-doc-head">
+<h2 id="h-pricing-tiers">Seat pricing cards</h2>
+<p class="sy-doc-desc">Displays self-serve software tiers named by developer role with a live cadence switch calculating exact yearly cash savings.</p>
+</div>
+<div class="sy-usage-notes" data-usage-notes="">
+<div class="sy-usage-col">
+<h3>When to use</h3>
+<ul class="sy-usage-list">
+<li>Present three card states side by side when solo engineers deploy free and teams buy per active committer.</li>
+<li>Publish an honest starting figure on the enterprise tier instead of hiding budget scale behind a contact button.</li>
+</ul>
+</div>
+<div class="sy-usage-col">
+<h3>How to apply it</h3>
+<ul class="sy-usage-list">
+<li>State annual savings in dollars per seat rather than rounded discount tags.</li>
+<li>Mark the primary team tier with a stronger hairline border and plain text label, avoiding capsule badges or scale jumps.</li>
+<li>List only the three capabilities that step up between adjacent tiers so buyers spot differences quickly.</li>
+</ul>
+</div>
+</div>
+<div class="sy-specimen-well">
+<div class="sy-billing-row">
+<div aria-label="Billing period" class="sy-seg" role="group">
+<button aria-pressed="true" class="sy-seg-btn" id="sy-bill-monthly" type="button">Monthly</button>
+<button aria-pressed="false" class="sy-seg-btn" data-billing-toggle="" id="sy-bill-annual" type="button">Annual</button>
+</div>
+<output class="sy-state-caption num" data-billing-note="" id="sy-billing-out">Save $60 per seat a year on annual billing</output>
+</div>
+<div class="sy-grid-3">
+<!-- Free tier state -->
+<article aria-labelledby="sy-tier-hobby" class="sy-tier-card" data-specimen-state="free-tier">
+<div>
+<div class="sy-tier-top">
+<h3 id="sy-tier-hobby">Hobby</h3>
+</div>
+<p class="sy-hint" style="margin-top: 4px;">For personal APIs, webhooks, and prototypes.</p>
+</div>
+<div>
+<div class="sy-price-row num">
+<span class="sy-price-fig">$0</span>
+<span class="sy-price-unit">/ month</span>
+</div>
+<p class="sy-hint num" style="margin-top: 4px;">Three production services free, no card required</p>
+</div>
+<ul class="sy-spec-list">
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span class="num">3 production services in 1 worker region</span>
+</li>
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span class="num">Automatic 640 ms drain above 1.0% errors</span>
+</li>
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span class="num">24-hour request and deploy logs</span>
+</li>
+</ul>
+<button class="sy-btn" data-open-modal="#onboard-dialog" data-plan="Hobby" style="margin-top: auto;" type="button">Deploy free</button>
+</article>
+<!-- Highlighted tier state -->
+<article aria-labelledby="sy-tier-team" class="sy-tier-card sy-tier-featured" data-specimen-state="highlighted-tier">
+<div>
+<div class="sy-tier-top">
+<h3 id="sy-tier-team">Team</h3>
+<span class="sy-tier-note">Most popular</span>
+</div>
+<p class="sy-hint" style="margin-top: 4px;">For product teams shipping daily API changes.</p>
+</div>
+<div>
+<div class="sy-price-row num">
+<span class="sy-price-fig" data-annual="$19" data-monthly="$24" data-price="" id="sy-team-price">$24</span>
+<span class="sy-price-unit">/ seat / month</span>
+</div>
+<p class="sy-hint num" data-billing-note="" id="sy-team-sub" style="margin-top: 4px;">Billed monthly, or save $60 per seat a year</p>
+</div>
+<ul class="sy-spec-list">
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span>Unlimited services and pull-request previews</span>
+</li>
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span class="num">3 regional pools with automatic failover</span>
+</li>
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span class="num">30-day webhook replay and diff checks</span>
+</li>
+</ul>
+<button class="sy-btn sy-btn-primary" data-open-modal="#onboard-dialog" data-plan="Team" style="margin-top: auto;" type="button">Start 14-day trial</button>
+</article>
+<!-- Enterprise contact state -->
+<article aria-labelledby="sy-tier-ent" class="sy-tier-card" data-specimen-state="enterprise-contact">
+<div>
+<div class="sy-tier-top">
+<h3 id="sy-tier-ent">Enterprise</h3>
+</div>
+<p class="sy-hint" style="margin-top: 4px;">For multi-region platforms needing isolated hosts.</p>
+</div>
+<div>
+<div class="sy-price-row num">
+<span class="sy-price-fig">From $600</span>
+<span class="sy-price-unit">/ month</span>
+</div>
+<p class="sy-hint num" style="margin-top: 4px;">Includes 15 active seats on annual agreement</p>
+</div>
+<ul class="sy-spec-list">
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span>Dedicated single-tenant NVMe blades</span>
+</li>
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span>SAML single sign-on and private VPC peering</span>
+</li>
+<li>
+<svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" viewbox="0 0 14 14"><polyline points="2.5 7.2 5.6 10.3 11.5 3.8" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+<span class="num">99.99% uptime commitment and 1-year logs</span>
+</li>
+</ul>
+<button class="sy-btn" data-open-modal="#onboard-dialog" data-plan="Enterprise" style="margin-top: auto;" type="button">Book architecture review</button>
+</article>
+</div>
+</div>
+</section>

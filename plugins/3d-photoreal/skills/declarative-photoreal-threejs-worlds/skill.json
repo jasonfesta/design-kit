@@ -1,0 +1,33 @@
+{
+  "id": "declarative-photoreal-threejs-worlds",
+  "display_name": "Declarative Photorealistic 360\u00b0 Three.js Worlds (Spatial Compiler + Optical Realism Engine)",
+  "google3_package": "declarative_photoreal_threejs_worlds",
+  "title": "Declarative Photorealistic 360\u00b0 Three.js Worlds (Spatial Compiler + Optical Realism Engine)",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "declarative-photoreal-threejs-worlds",
+  "agent_md": "declarative-photoreal-threejs-worlds/agent.md",
+  "skill_md": "declarative-photoreal-threejs-worlds/SKILL.md",
+  "html_page": "declarative-photoreal-threejs-worlds/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/declarative-photoreal-threejs-worlds/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/declarative-photoreal-threejs-worlds/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/declarative-photoreal-threejs-worlds/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/declarative-photoreal-threejs-worlds.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/declarative-photoreal-threejs-worlds",
+  "bundle_skill": "declarative-photoreal-threejs-worlds.skill",
+  "bundle_zip": "declarative-photoreal-threejs-worlds.zip",
+  "short_summary": "Build ultra-photorealistic, 360\u00b0 Actor-Ready Three.js 3D worlds and environments by combining a fast ( 5 ms) declarative spatial constraint solver & sightline auto-repair engine (HeliosDSL SG0\u2013SG4, G8\u2013G9, AABB, and Ring-3 horizon closure gates) with Takram-grade volumetric cloud raymarching, Chappuis ozone sky, live sun-disk-free PMREM IBL, hybrid AI-generated stochastic PBR + analytical 3D erosion/derivative shaders, finite-depth dispersive planar-mirror water, and an 8-view 360\u00b0 VLM realism climb.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Build ultra-photorealistic, 360\u00b0 Actor-Ready Three.js 3D worlds and environments by combining a fast ( 5 ms) declarative spatial constraint solver & sightline auto-repair engine (HeliosDSL SG0\u2013SG4, G8\u2013G9, AABB, and Ring-3 horizon closure gates) with Takram-grade volumetric cloud raymarching, Chappuis ozone sky, live sun-disk-free PMREM IBL, hybrid AI-generated stochastic PBR + analytical 3D erosion/derivative shaders, finite-depth dispersive planar-mirror water, and an 8-view 360\u00b0 VLM realism climb.",
+  "references": [
+    "./references/01_spatial_solver_and_hybrid_shader_pipeline.md",
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=declarative-photoreal-threejs-worlds"
+  }
+}

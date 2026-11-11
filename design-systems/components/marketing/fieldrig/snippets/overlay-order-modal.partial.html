@@ -1,0 +1,52 @@
+<dialog aria-labelledby="order-modal-title" class="hw-modal" id="order-modal">
+<form class="dialog-body" id="order-form" method="dialog">
+<div class="dialog-head">
+<h2 id="order-modal-title">TP-4 order review</h2>
+<button aria-label="Close order review" class="close-btn" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="15" viewbox="0 0 15 15" width="15">
+<path d="M3.5 3.5l8 8m0-8l-8 8" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path>
+</svg>
+</button>
+</div>
+<div class="field-group">
+<label class="field-label" for="modal-finish">Anodized chassis finish</label>
+<div class="select-wrap">
+<select class="hw-select" id="modal-finish">
+<option value="silver">Natural Silver (6061 bead-blasted)</option>
+<option value="black">Black Anodized (Type III hard coat)</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 15 15">
+<path d="M3.8 5.8L7.5 9.5l3.7-3.7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<dl class="order-summary-rows tnum">
+<div class="order-row">
+<dt>Selected build</dt>
+<dd id="modal-build-label">TP-4 + Leather case and CM-2</dd>
+</div>
+<div class="order-row">
+<dt>Dispatch window</dt>
+<dd>2 business days from Kronberg</dd>
+</div>
+<div class="order-row">
+<dt>Studio trial</dt>
+<dd>30 days</dd>
+</div>
+<div class="order-row">
+<dt>Total with calibration sheet</dt>
+<dd id="modal-total">$749</dd>
+</div>
+</dl>
+<div class="dialog-actions">
+<button class="hw-key hw-key--rec" type="submit">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Confirm Batch 04 order</span>
+</button>
+<button class="hw-key" data-close-dialog="" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Cancel</span>
+</button>
+</div>
+</form>
+</dialog>

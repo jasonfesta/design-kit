@@ -1,0 +1,42 @@
+{
+  "id": "golden-template",
+  "display_name": "golden template",
+  "google3_package": "golden_template",
+  "title": "Golden Template: `dating`-Judged Architecture, 3-Tier Extractor & Research Folder Linker",
+  "icon": "\ud83c\udfdb\ufe0f",
+  "category": "core skill \u00b7 architecture & research linker",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "golden-template",
+  "agent_md": "golden-template/agent.md",
+  "skill_md": "golden-template/SKILL.md",
+  "html_page": "golden-template/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/golden-template",
+  "bundle_skill": "golden-template.skill",
+  "bundle_zip": "golden-template.zip",
+  "short_summary": "standardizes react 19 + vite 7 + tailwind v4 projects using the bundled dating reference folder (assets/dating/) as the ground-truth judge for all config files, 3-tier src/ structure, and strict tsc linting.",
+  "when_to_use": "use in jason-dev-agent when scaffolding or porting components and landing pages into golden template folders or linting against the dating blueprint.",
+  "quick_cmd": "node golden-template/scripts/lint-golden-template.mjs --dir=./my-workspace --fix",
+  "summary": "Extracts, polishes, lints, links, and packages standalone React 19, Vite 7, and Tailwind v4 deliverables using the bundled canonical dating reference folder as the ground-truth judge for all root configuration files, 3-tier source folder arrangement, vendor-neutral nomenclature, strict TypeScript compilation, and cross-folder research, prompt, source, screenshot, and skill linking. Consolidates golden-template-extractor and react-extractor into one canonical skill. Use when scaffolding or porting components, landing pages, mobile screens, or chat UIs into Golden Template folders, linting against the dating blueprint, or linking research briefs, source trees, and project manifests together. Don't use for multi-model benchmark grading (use warmup) or font catalog ranking (use google-font-selection).",
+  "references": [
+    "./references/contributing.md",
+    "./references/dating-blueprint-and-research-linking.md",
+    "./references/image-to-react-pipeline.md",
+    "./references/nano_banana_multi_screen_protocol.md",
+    "./references/nomenclature-and-polish-rules.md",
+    "./references/subagent_parallel_execution_runbook.md",
+    "./references/website-to-react-pipeline.md",
+    "./scripts/audit-all-projects.mjs",
+    "./scripts/build-all-projects.mjs",
+    "./scripts/lint-golden-template.mjs",
+    "./scripts/verify-html-bundle.mjs"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=golden-template"
+  }
+}

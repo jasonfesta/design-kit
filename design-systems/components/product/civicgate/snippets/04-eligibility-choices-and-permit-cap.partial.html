@@ -1,0 +1,62 @@
+<article aria-labelledby="pat-choices" class="pattern-block">
+<form class="pattern-card" id="selection-form" novalidate="">
+<div class="pattern-stage">
+<h3 class="pattern-title" id="pat-choices">Eligibility choices and permit cap</h3>
+<div class="pattern-two">
+<div aria-labelledby="remind-group-label" class="check-tree" role="group">
+<span class="field-label" id="remind-group-label">Renewal notification channels</span>
+<label class="check-label" for="chk-all">
+<input id="chk-all" type="checkbox"/>
+<span class="choice-title">Select all channels</span>
+</label>
+<div class="check-children">
+<label class="check-label" for="chk-email">
+<input checked="" class="chk-child" id="chk-email" type="checkbox"/>
+<span class="tabular">Email notice 28 days before expiry</span>
+</label>
+<label class="check-label" for="chk-sms">
+<input class="chk-child" id="chk-sms" type="checkbox"/>
+<span class="tabular">Text message 7 days before expiry</span>
+</label>
+<label class="check-label" for="chk-post">
+<input class="chk-child" id="chk-post" type="checkbox"/>
+<span>Posted renewal letter for Blue Badge holders</span>
+</label>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 20px;">
+<div class="switch-row">
+<div>
+<div class="field-label" id="autorenew-label">Automatic annual renewal</div>
+<div class="field-hint">Charges your saved card unless turned off</div>
+</div>
+<button aria-checked="true" aria-labelledby="autorenew-label" class="civic-switch" role="switch" type="button">
+<span aria-hidden="true" class="switch-thumb"></span>
+</button>
+</div>
+<div class="range-block">
+<div class="range-head">
+<label class="field-label" for="visitor-range">Visitor day stays</label>
+<output class="tabular" for="visitor-range" id="visitor-out" style="font-weight: 600;">10 stays · £20</output>
+</div>
+<div class="range-controls">
+<button aria-label="Remove 5 visitor stays" class="util-btn tabular" data-vis-step="-5" type="button">−5</button>
+<input class="civic-range" id="visitor-range" max="30" min="5" step="5" type="range" value="10"/>
+<button aria-label="Add 5 visitor stays" class="util-btn tabular" data-vis-step="5" type="button">+5</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-usage">
+<div>
+<div class="usage-label">When to use</div>
+<p class="usage-copy">Let residents choose email, text, or postal reminders, switch annual auto-renewal on or off, and adjust visitor stay packs.</p>
+</div>
+<div>
+<div class="usage-label">Validation rule</div>
+<p class="usage-copy">Cap household visitor packs between 5 and 30 days per order and keep −5 and +5 step actions beside the range.</p>
+</div>
+</div>
+</form>
+</article>

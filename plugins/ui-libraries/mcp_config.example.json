@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "21st": {
+      "url": "https://21st.dev/api/mcp",
+      "headers": {
+        "x-api-key": "<YOUR_KEY_HERE>"
+      }
+    },
+    "originkit": {
+      "url": "https://mcp.originkit.dev/mcp"
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "spectrumui": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@spectrumui/mcp"
+      ]
+    }
+  }
+}

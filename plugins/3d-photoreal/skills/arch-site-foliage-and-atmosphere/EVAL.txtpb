@@ -1,0 +1,27 @@
+# proto-file: learning/gemini/agents/evaluation/evalin/proto/eval_suite.proto
+# proto-message: EvalSuite
+# txtpbfmt: wrap_strings_after_newlines
+
+suite_name: "arch_site_foliage_and_atmosphere"
+timeout_seconds: 300
+
+cases {
+  name: "arch_site_foliage_and_atmosphere_triggers_and_executes_primary_workflow"
+  prompt: "Use the arch-site-foliage-and-atmosphere skill to execute its primary workflow and verify all required outputs and quality gates.\n"
+  expectations:
+    "The agent must:\n"
+    "- Load and follow arch-site-foliage-and-atmosphere/SKILL.md\n"
+    "- Execute the deterministic workflow or bundled scripts in arch-site-foliage-and-atmosphere\n"
+    "- Verify all output invariants before completing the turn"
+  expectations: "Agent output references arch-site-foliage-and-atmosphere or its primary deliverables"
+}
+
+cases {
+  name: "arch_site_foliage_and_atmosphere_enforces_quality_gates_and_references"
+  prompt: "Run a full verification audit with arch-site-foliage-and-atmosphere and check all reference invariants.\n"
+  expectations:
+    "The agent must:\n"
+    "- Consult the bundled references/ guides when verifying edge cases\n"
+    "- Report pass/fail status against the skill's verification checklist"
+  expectations: "Agent output includes concrete verification results"
+}

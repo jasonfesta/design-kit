@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>taxonomy</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>taxonomy</h1>
+      <p>classifies prompts, screenshots, briefs, benchmark slices, and react builds into the locked wda v1.1 prompt ↔ template match taxonomy (3 categories, 15 subcategories, 557 prompts, 257 templates, 77 gap archetypes, and auxiliary dimensions), recommends templates and gaps, audits slice distributions, and extends append-only.</p>
+      <div class="actions">
+        <a href="../taxonomy.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>taxonomy: canonical WDA Silvers Prompt ↔ Template Match classification &amp; gap registry</h1>
+<p><code>taxonomy</code> is the single source of truth for <strong>what kind of thing</strong> a prompt, screenshot, brief, benchmark item, template, or React deliverable is, synchronized with the live <strong>WDA Silvers · Prompt ↔ Template Match</strong> dataset (<code>https://my-chirpy-chipmunk.corp.google.com/prompt_template_match</code>).</p>
+<p>It locks the canonical two-level taxonomy (<code>v1.1</code>): <strong>3 top-level categories</strong> and <strong>15 subcategories</strong> covering all <strong>557 classified target prompts</strong> (<code>109</code> curated <code>v6_report</code> + <code>448</code> LLM-classified out of <code>1,384</code> unique prompts across <code>1,530</code> battles), <strong>257 accepted/golden templates</strong> across <code>10</code> review-ready collections (<code>7,133</code> total cards across <code>29</code> gallery collections), <strong>77 missing-template gap archetypes</strong>, and all auxiliary Prompt ↔ Template Match dimensions.</p>
+<pre data-lang="text"><code>skill / taxonomy
+---------------------------------------------------------------------------
+input      prompt text, design brief, UI screenshot, JSONL slice, or built React app
+registries assets/taxonomy.json            (3 categories, 15 subcategories, 557 prompts, 77 gaps, auxiliary taxonomies)
+           assets/templates_and_gaps.json  (257 accepted/golden templates + 77 missing-template gap briefs)
+           assets/prompts_index.json       (all 557 classified target prompts with 3D roles, widgets &amp; top candidates)
+output     primary (category_id, subcategory_id) + confidence + inferred dimensions + templates + gap archetypes
+tools      scripts/classify_taxonomy.py  --tree | --list | --validate | --query | --gaps | --templates | --prompts | --dimensions | --check-slice | --add-*</code></pre>
+<h2>The locked <code>v1.1</code> taxonomy (<code>557</code> target prompts · <code>257</code> templates · <code>77</code> gaps)</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>#</th><th>Category (<code>id</code>, total / V6 / LLM)</th><th>Subcategories (<code>id</code>, total · usable % · 3D · gaps)</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Landing Page</strong> (<code>landing-page</code>, <strong>202</strong> = 34 V6 + 168 LLM · 48.5% usable · 22 gaps)</td><td>Advanced 3D Website Landing Page (<code>advanced-3d-website-landing-page</code>, <strong>21</strong> · 38.1% · 20 3D · 4 gaps) · Portfolio (<code>portfolio</code>, <strong>19</strong> · 36.8% · 3 3D · 3 gaps) · General Website Landing Page (<code>general-website-landing-page</code>, <strong>91</strong> · 61.5% · 8 3D · 8 gaps) · Marketing / Brand Sites (<code>marketing-brand-sites</code>, <strong>24</strong> · 66.7% · 2 3D · 2 gaps) · Ecommerce (<code>ecommerce</code>, <strong>47</strong> · 23.4% · 2 3D · 5 gaps)</td></tr>
+<tr><td>2</td><td><strong>Enterprise</strong> (<code>enterprise</code>, <strong>154</strong> = 28 V6 + 126 LLM · 50.6% usable · 23 gaps)</td><td>Data and Analytics Dashboard (<code>data-and-analytics-dashboard</code>, <strong>36</strong> · 69.4% · 3 3D · 4 gaps) · Finance (<code>finance</code>, <strong>24</strong> · 50.0% · 0 3D · 4 gaps) · Productivity Apps (<code>productivity-apps</code>, <strong>63</strong> · 38.1% · 2 3D · 11 gaps) · Dev Tools (<code>dev-tools</code>, <strong>31</strong> · 54.8% · 1 3D · 4 gaps)</td></tr>
+<tr><td>3</td><td><strong>Consumer Apps</strong> (<code>consumer-apps</code>, <strong>201</strong> = 47 V6 + 154 LLM · 42.3% usable · 32 gaps)</td><td>Social Site (<code>social-site</code>, <strong>18</strong> · 33.3% · 0 3D · 3 gaps) · Education (<code>education</code>, <strong>61</strong> · 36.1% · 6 3D · 9 gaps) · Media Apps (<code>media-apps</code>, <strong>42</strong> · 54.8% · 5 3D · 5 gaps) · Health/Lifestyle (<code>health-lifestyle</code>, <strong>30</strong> · 40.0% · 2 3D · 6 gaps) · Travel (<code>travel</code>, <strong>11</strong> · 45.5% · 2 3D · 3 gaps) · Content and Publishing (<code>content-and-publishing</code>, <strong>39</strong> · 43.6% · 0 3D · 6 gaps)</td></tr>
+</tbody>
+</table></div>
+<p>Total target prompts: <code>202 + 154 + 201 = 557</code> (<code>109</code> V6 curated + <code>448</code> LLM). The complete per-subcategory specification lives in the <a href="references/taxonomy-catalog.md">taxonomy catalog</a>, and the 77 missing-template gap archetypes plus all auxiliary taxonomies live in the <a href="references/prompt-template-match-catalog.md">Prompt ↔ Template Match catalog</a>.</p>
+<h2>Auxiliary Prompt ↔ Template Match dimensions (<code>--dimensions</code>)</h2>
+<p>Every prompt and template in <code>prompt_template_match</code> also carries secondary taxonomy tags:</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Dimension</th><th>Values (<code>count</code>)</th></tr></thead>
+<tbody>
+<tr><td><strong>Prompt Surface (<code>surf</code>)</strong></td><td><code>web_app</code> (255) · <code>marketing_site</code> (188) · <code>dashboard</code> (47) · <code>editor_tool</code> (37) · <code>mobile_app</code> (14) · <code>other</code> (6) · <code>animation</code> (5) · <code>3d_scene</code> (4) · <code>game</code> (1)</td></tr>
+<tr><td><strong>Complexity Tier (<code>cx</code>)</strong></td><td><code>multi_view_app</code> (284) · <code>multi_section</code> (195) · <code>single_page</code> (78)</td></tr>
+<tr><td><strong>Platform (<code>br.platform</code>)</strong></td><td><code>both</code> (293) · <code>desktop_web</code> (247) · <code>mobile</code> (17)</td></tr>
+<tr><td><strong>3D Slot Role (<code>r3d</code>, 56 prompts)</strong></td><td><code>hero_centerpiece</code> (27) · <code>section_feature</code> (10) · <code>product_viewer</code> (8) · <code>scroll_scene</code> (5) · <code>whole_page_scene</code> (5) · <code>background_ambient</code> (1)</td></tr>
+<tr><td><strong>Template Page Type (<code>pt</code>, 257 templates)</strong></td><td><code>dashboard</code> (108) · <code>landing_marketing</code> (51) · <code>web_app</code> (30) · <code>ecommerce_store</code> (22) · <code>mobile_app</code> (15) · <code>portfolio</code> (13) · <code>content_editorial</code> (10) · <code>chat_app</code> (7) · <code>widget</code> (1)</td></tr>
+<tr><td><strong>Match Status (<code>st</code>)</strong></td><td><code>strong</code> (3) · <code>adaptable</code> (258) · <code>no_match</code> (268) · <code>not_templatable</code> (28)</td></tr>
+<tr><td><strong>Gap Reason (<code>gr</code>)</strong></td><td><code>missing_domain_widgets</code> (267) · <code>not_templatable</code> (28) · <code>missing_page_type</code> (1) · <code>platform_mismatch</code> · <code>style_conflict</code> · <code>human_invalidated</code></td></tr>
+<tr><td><strong>Pair Invalidation (<code>PAIR_REASONS</code>)</strong></td><td><code>style_mismatch</code> · <code>missing_features</code> · <code>specificity</code> · <code>wrong_category</code> · <code>not_templatable</code> · <code>retrieval_missed</code> · <code>prompt_unclear</code></td></tr>
+<tr><td><strong>Adaptation Flags (<code>ads</code>)</strong></td><td><code>NEEDS_COLOR_CHANGE</code> · <code>NEEDS_FONT_CHANGE</code> · <code>NEEDS_LAYOUT_CHANGE</code></td></tr>
+<tr><td><strong>Template Loss Tags (<code>loss_tags</code>)</strong></td><td><code>slop_inducing</code> · <code>spacing</code> · <code>text_density</code> · <code>color</code> · <code>hero</code> · <code>content_density</code> · <code>layout</code></td></tr>
+</tbody>
+</table></div>
+<p>&gt; [!IMPORTANT]</p>
+<p>&gt; Only the 3 categories and 15 subcategories are <strong>active</strong> primary classification targets. Experimental WDA Silvers collections (<code>3D Games</code> 1,001, <code>Retro 2D Games</code> 378, <code>Widgets</code> 347, <code>Modern 2D Games</code> 142, <code>SWE Agent Game References</code> 104, <code>Media Experiences</code> 37) are tracked in <code>auxiliary_taxonomies</code> and Part B4 of the <a href="references/disambiguation-and-extension.md">disambiguation and extension guide</a>. Never emit them as primary labels.</p>
+<h2>Workflow checklist</h2>
+<p>Copy this checklist for every classification or taxonomy task:</p>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Step 1</strong>: Identify the input type and extract the primary user intent and core loop</span></li>
+<li><span class="check-box"></span><span><strong>Step 2</strong>: Run <code>classify_taxonomy.py --query</code> (and <code>--gaps</code> / <code>--templates</code> when matching archetypes)</span></li>
+<li><span class="check-box"></span><span><strong>Step 3</strong>: Resolve ambiguity with the decision tree, never by visual treatment</span></li>
+<li><span class="check-box"></span><span><strong>Step 4</strong>: Emit one primary pair with confidence, inferred dimensions, templates/gaps, and reasoning</span></li>
+<li><span class="check-box"></span><span><strong>Step 5</strong>: For datasets, audit the slice distribution with <code>--check-slice</code></span></li>
+<li><span class="check-box"></span><span><strong>Step 6</strong>: For gaps, follow the append-only extension protocol and re-validate</span></li>
+</ul>
+<h2>Step 1: Identify the input and its core loop</h2>
+<p>Accept any of these inputs and reduce each to one sentence: <em>&quot;The primary user is X, and the product is useless without screen or action Y.&quot;</em></p>
+<div class="table-wrap"><table>
+<thead><tr><th>Input</th><th>What to read</th><th>Where intent hides</th></tr></thead>
+<tbody>
+<tr><td>Prompt or brief</td><td>Nouns for the product, verbs for the user, audience words</td><td>&quot;for a team&quot; (Enterprise), &quot;for me&quot; or &quot;daily&quot; (Consumer), &quot;visitors&quot; or &quot;convert&quot; (Landing Page)</td></tr>
+<tr><td>UI screenshot</td><td>Nav pattern, primary surface, data density</td><td>Sidebar plus tables (Enterprise), tab bar plus feed or player (Consumer), hero plus section stack (Landing Page)</td></tr>
+<tr><td>Benchmark item</td><td>Original prompt text first, title second, footer tags last</td><td>Existing footer tags are hints, not ground truth</td></tr>
+<tr><td>React deliverable</td><td><code>App.tsx</code> routes, <code>data/*.ts</code> entity names, dominant components</td><td>A <code>Cart</code> drawer, a <code>NowPlaying</code> bar, a <code>KpiCard</code> grid each name the loop</td></tr>
+</tbody>
+</table></div>
+<h2>Step 2: Run the classifier &amp; query templates/gaps/prompts</h2>
+<pre data-lang="bash"><code># print the canonical tree with coverage/gaps, Markdown summary, and verify registry integrity
+python3 {skill_dir}/scripts/classify_taxonomy.py --tree
+python3 {skill_dir}/scripts/classify_taxonomy.py --list --format markdown
+python3 {skill_dir}/scripts/classify_taxonomy.py --validate
+
+# classify a prompt/brief and return inferred dimensions, recommended templates, and gap archetypes
+python3 {skill_dir}/scripts/classify_taxonomy.py --query &quot;3d supercar landing page with camera preset toolbar and material swatches configurator&quot; --top 3
+
+# inspect the 77 missing-template gap archetypes, 257 templates, 557 prompts, or auxiliary dimensions
+python3 {skill_dir}/scripts/classify_taxonomy.py --gaps --sub advanced-3d-website-landing-page
+python3 {skill_dir}/scripts/classify_taxonomy.py --templates --sub ecommerce --limit 10
+python3 {skill_dir}/scripts/classify_taxonomy.py --prompts --sub advanced-3d-website-landing-page --3d --limit 5
+python3 {skill_dir}/scripts/classify_taxonomy.py --dimensions</code></pre>
+<p>The classifier scores every active subcategory on whole-phrase hits against <code>positive_signals</code> (<code>+3</code>), <code>dominant_domains</code> (<code>+2</code>), <code>characteristic_widgets</code> (<code>+1.5</code>), category signals (<code>+1</code>), label hits (<code>+2</code>), and negative signals (<code>-2</code> / <code>-0.5</code>). It returns <code>confident</code>, <code>ambiguous</code> (with a <code>model_prompt</code> rubric), or <code>unclassified</code>.</p>
+<h2>Step 3: Resolve ambiguity by intent, not treatment</h2>
+<p>Apply the principles in this order, then the per-category trees in the <a href="references/disambiguation-and-extension.md">disambiguation and extension guide</a>:</p>
+<ol>
+<li><strong>Intent over treatment.</strong> A dark, chart-heavy fintech app is <code>finance</code>; a WebGL-accented SaaS homepage is <code>general-website-landing-page</code> unless the page would collapse without the canvas (<code>advanced-3d-website-landing-page</code>).</li>
+<li><strong>Public vs. logged-in.</strong> Scroll-to-convert pages are Landing Page; logged-in work is Enterprise; logged-in personal life is Consumer Apps.</li>
+<li><strong>Audience tiebreak inside Enterprise.</strong> Developer wins <code>dev-tools</code>, finance operator wins <code>finance</code>, analyst or executive wins <code>data-and-analytics-dashboard</code>, everyone else wins <code>productivity-apps</code>.</li>
+<li><strong>Teaching intent wins</strong> over surface form: a lab simulator or a course page with lessons inside is <code>education</code>.</li>
+<li><strong>Play/edit media vs. read.</strong> Pressing play or editing audio/video/images is <code>media-apps</code>; reading articles, books, lore, or timelines is <code>content-and-publishing</code>.</li>
+</ol>
+<h2>Step 4: Emit the classification</h2>
+<p>Return exactly one primary pair plus inferred dimensions and ranked secondaries:</p>
+<pre data-lang="json"><code>{
+  &quot;category_id&quot;: &quot;landing-page&quot;,
+  &quot;subcategory_id&quot;: &quot;advanced-3d-website-landing-page&quot;,
+  &quot;confidence&quot;: 0.94,
+  &quot;inferred_dimensions&quot;: {
+    &quot;surface&quot;: &quot;marketing_site&quot;,
+    &quot;complexity&quot;: &quot;multi_section&quot;,
+    &quot;needs_3d&quot;: true,
+    &quot;r3d_role&quot;: &quot;product_viewer&quot;
+  },
+  &quot;secondary&quot;: [{&quot;category_id&quot;: &quot;landing-page&quot;, &quot;subcategory_id&quot;: &quot;marketing-brand-sites&quot;, &quot;confidence&quot;: 0.25}],
+  &quot;reasoning&quot;: &quot;Real-time 3D product configurator and camera preset HUD carry the page structure.&quot;
+}</code></pre>
+<h2>Step 5: Audit a dataset or benchmark slice</h2>
+<pre data-lang="bash"><code># each JSONL row carries category_id and subcategory_id (field names configurable; labels or slugs accepted)
+python3 {skill_dir}/scripts/classify_taxonomy.py --check-slice ./slice.jsonl --key category_id --subkey subcategory_id</code></pre>
+<h2>Step 6: Extend without breaking IDs</h2>
+<p>Follow Part B of the <a href="references/disambiguation-and-extension.md">disambiguation and extension guide</a>:</p>
+<pre data-lang="bash"><code>python3 {skill_dir}/scripts/classify_taxonomy.py --add-subcategory &quot;Example Label&quot; --parent consumer-apps --definition &quot;...&quot; --dry-run
+python3 {skill_dir}/scripts/classify_taxonomy.py --add-category &quot;Example Category&quot; --definition &quot;...&quot; --dry-run
+python3 {skill_dir}/scripts/classify_taxonomy.py --validate</code></pre>
+<h2>References</h2>
+<ul>
+<li><a href="references/taxonomy-catalog.md">Taxonomy catalog: 3 categories, 15 subcategories, 557 prompt stats, domains, widgets, templates, gaps &amp; examples</a></li>
+<li><a href="references/prompt-template-match-catalog.md">Prompt ↔ Template Match full catalog: auxiliary taxonomies, 29 collections, loss tags &amp; all 77 gap archetypes</a></li>
+<li><a href="references/disambiguation-and-extension.md">Disambiguation decision tree and append-only extension protocol</a></li>
+<li><a href="assets/taxonomy.json">Canonical machine-readable registry (<code>557</code> prompts, <code>77</code> gaps, auxiliary taxonomies)</a></li>
+<li><a href="assets/templates_and_gaps.json">257 accepted/golden templates and 77 missing-template gap briefs</a></li>
+<li><a href="assets/prompts_index.json">All 557 classified target prompts index</a></li>
+<li><a href="scripts/classify_taxonomy.py">Classifier, gap/template/prompt explorer, slice auditor, and extension CLI</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

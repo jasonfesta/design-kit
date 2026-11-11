@@ -1,0 +1,49 @@
+<dialog aria-labelledby="apply-dialog-title" class="lm-dialog" id="apply-dialog">
+<div class="lm-dialog-head">
+<div>
+<h2 id="apply-dialog-title" style="font-size: 1.4375rem;">Treasury application</h2>
+<p class="lm-hint num" id="lm-step-indicator" style="margin-top: 4px;">Step 1 of 2, registered U.S. entity on Operating plan</p>
+</div>
+<button aria-label="Close application dialog" class="lm-btn lm-btn-ghost lm-btn-sm" data-close-dialog="" type="button">Close</button>
+</div>
+<form id="lm-modal-form" novalidate="">
+<div id="lm-step-1" style="display: flex; flex-direction: column; gap: 16px;">
+<div class="lm-field">
+<label class="lm-label" for="lm-entity-name">Legal company name</label>
+<input aria-describedby="lm-entity-err" class="lm-input" id="lm-entity-name" required="" type="text" value="Helvetia Robotics, Inc."/>
+<div class="lm-error" hidden="" id="lm-entity-err">Enter your registered legal company name.</div>
+</div>
+<div class="lm-field">
+<label class="lm-label" for="lm-ein-input">Federal EIN</label>
+<input class="lm-input mono" id="lm-ein-input" type="text" value="84-2910482"/>
+<p class="lm-hint">Used strictly to verify corporate standing with Member FDIC partner banks.</p>
+</div>
+<div class="lm-dialog-foot">
+<button class="lm-btn" data-close-dialog="" type="button">Cancel</button>
+<button class="lm-btn lm-btn-primary" id="lm-next-step" type="button">Continue to sweep floor</button>
+</div>
+</div>
+<div hidden="" id="lm-step-2">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div class="lm-field">
+<label class="lm-label" for="lm-floor-select">Checking operating floor</label>
+<div class="lm-select-wrap">
+<select class="lm-select num" id="lm-floor-select">
+<option value="$250,000">$250,000 kept in checking, sweep excess nightly</option>
+<option selected="" value="$500,000">$500,000 kept in checking, sweep excess nightly</option>
+<option value="$1,000,000">$1,000,000 kept in checking, sweep excess nightly</option>
+</select>
+<svg aria-hidden="true" class="lm-select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 16 16">
+<polyline points="4 6 8 10 12 6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+</svg>
+</div>
+<p class="lm-hint num">Funds above your floor earn 4.65% APY in Treasury Reserve and return before payroll settles.</p>
+</div>
+<div class="lm-dialog-foot">
+<button class="lm-btn" id="lm-prev-step" type="button">Back</button>
+<button class="lm-btn lm-btn-primary" type="submit">Submit application</button>
+</div>
+</div>
+</div>
+</form>
+</dialog>

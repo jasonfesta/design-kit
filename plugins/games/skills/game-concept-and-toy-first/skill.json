@@ -1,0 +1,32 @@
+{
+  "id": "game-concept-and-toy-first",
+  "display_name": "Game concept and toy first",
+  "google3_package": "game_concept_and_toy_first",
+  "title": "Game concept and toy first",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "game-concept-and-toy-first",
+  "agent_md": "game-concept-and-toy-first/agent.md",
+  "skill_md": "game-concept-and-toy-first/SKILL.md",
+  "html_page": "game-concept-and-toy-first/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/game-concept-and-toy-first",
+  "bundle_skill": "game-concept-and-toy-first.skill",
+  "bundle_zip": "game-concept-and-toy-first.zip",
+  "short_summary": "Turn a real-world observation or physical mechanism into a clear 10-second playable browser toy with real stakes, spatial depth, and batch genre diversity before building menus, economies, or progression.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Turn a real-world observation or physical mechanism into a clear 10-second playable browser toy with real stakes, spatial depth, and batch genre diversity before building menus, economies, or progression.",
+  "references": [
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=game-concept-and-toy-first"
+  }
+}

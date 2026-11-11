@@ -1,0 +1,38 @@
+{
+  "id": "chair-studio-threejs",
+  "display_name": "Daily Studio Chair Reconstruction & Memory Synthesis",
+  "google3_package": "chair_studio_threejs",
+  "title": "Daily Studio Chair Reconstruction & Memory Synthesis",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "chair-studio-threejs",
+  "agent_md": "chair-studio-threejs/agent.md",
+  "skill_md": "chair-studio-threejs/SKILL.md",
+  "html_page": "chair-studio-threejs/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/chair-studio-threejs",
+  "bundle_skill": "chair-studio-threejs.skill",
+  "bundle_zip": "chair-studio-threejs.zip",
+  "short_summary": "Harvests one high-resolution single-chair photograph on a solid white background from up to 5 curated design RSS feeds within a strict 5-call budget over the last 24 hours, reconstructs it 1-to-1 in pure procedural photorealistic Three.js against a seamless white cyclorama with a soft floor shadow bottom using tilt-shift camera matching and 4x RGSS cinema optics, and synthesizes a brand-new original chair side-by-side from cumulative daily memory and designer notes. Use when running the daily chair design agent, reconstructing a studio furniture photograph 1-to-1 in Three.js, or generating memory-informed procedural chair designs side-by-side. Don't use for multi-building landscape scenes (use arch-turing-test-loop) or static 2D HTML marketing pages (use jason-dev-agent).",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Harvests one high-resolution single-chair photograph on a solid white background from up to 5 curated design RSS feeds within a strict 5-call budget over the last 24 hours, reconstructs it 1-to-1 in pure procedural photorealistic Three.js against a seamless white cyclorama with a soft floor shadow bottom using tilt-shift camera matching and 4x RGSS cinema optics, and synthesizes a brand-new original chair side-by-side from cumulative daily memory and designer notes. Use when running the daily chair design agent, reconstructing a studio furniture photograph 1-to-1 in Three.js, or generating memory-informed procedural chair designs side-by-side. Don't use for multi-building landscape scenes (use arch-turing-test-loop) or static 2D HTML marketing pages (use jason-dev-agent).",
+  "references": [
+    "./references/contributing.md",
+    "./references/memory-and-original-synthesis.md",
+    "./references/procedural-chair-tectonics.md",
+    "./references/white-cyclorama-and-camera-lock.md",
+    "./scripts/harvest_rss_chair.py",
+    "./scripts/probe_white_studio_chair.py",
+    "./scripts/render_and_compare_chair.mjs"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=chair-studio-threejs"
+  }
+}

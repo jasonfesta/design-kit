@@ -1,0 +1,227 @@
+@layer reset, tokens, base, components, utilities;
+
+/* ==========================================================================
+   TWENTY CRM (twenty-ui) — Two-Layer OKLCH + Hex Token Sheet
+   Source: https://twenty.com | https://github.com/twentyhq/twenty (packages/twenty-ui)
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* --- Layer 1: Native twenty-ui (--t-*) Light Tokens (Hex + OKLCH) --- */
+    --t-background-primary: #ffffff;
+    --t-background-primary-oklch: oklch(1.000 0.000 0);
+    --t-background-secondary: #fcfcfc;
+    --t-background-secondary-oklch: oklch(0.991 0.000 0);
+    --t-background-tertiary: #f5f5f5;
+    --t-background-tertiary-oklch: oklch(0.970 0.000 0);
+    --t-background-quaternary: #ebebeb;
+    --t-background-quaternary-oklch: oklch(0.940 0.000 0);
+    --t-background-transparent-light: rgba(0, 0, 0, 0.04);
+    --t-background-transparent-medium: rgba(0, 0, 0, 0.08);
+
+    /* Ink / Font Hierarchy */
+    --t-font-color-primary: #171717;
+    --t-font-color-primary-oklch: oklch(0.205 0.000 0);
+    --t-font-color-secondary: #474747;
+    --t-font-color-secondary-oklch: oklch(0.398 0.000 0);
+    --t-font-color-tertiary: #666666;
+    --t-font-color-tertiary-oklch: oklch(0.510 0.000 0);
+    --t-font-color-light: #8f8f8f;
+    --t-font-color-light-oklch: oklch(0.648 0.000 0);
+    --t-font-color-inverted: #ffffff;
+
+    /* Borders & Hairlines */
+    --t-border-color-light: #ededed;
+    --t-border-color-light-oklch: oklch(0.946 0.000 0);
+    --t-border-color-medium: #e0e0e0;
+    --t-border-color-medium-oklch: oklch(0.906 0.000 0);
+    --t-border-color-strong: #cccccc;
+    --t-border-color-strong-oklch: oklch(0.845 0.000 0);
+
+    /* Semantic & Categorical Accents (<9.5% purple discipline; cobalt/emerald primary) */
+    --t-accent-primary: #1961ed;
+    --t-accent-primary-oklch: oklch(0.546 0.215 262.8);
+    --t-accent-primary-soft: #eef4ff;
+    --t-accent-primary-border: #b8d0ff;
+
+    --t-accent-forest: #0d7a5f;
+    --t-accent-forest-oklch: oklch(0.528 0.112 168.4);
+    --t-accent-forest-soft: #ecfdf5;
+
+    --t-color-success: #15803d;
+    --t-color-success-oklch: oklch(0.527 0.154 150.1);
+    --t-color-success-bg: #dcfce7;
+
+    --t-color-warning: #b45309;
+    --t-color-warning-oklch: oklch(0.555 0.146 66.4);
+    --t-color-warning-bg: #fef3c7;
+
+    --t-color-danger: #dc2626;
+    --t-color-danger-oklch: oklch(0.577 0.215 27.3);
+    --t-color-danger-bg: #fee2e2;
+
+    /* Categorical Pill Swatches (Record Tags & Mandate Tiers) */
+    --t-tag-blue-bg: #e0f2fe;
+    --t-tag-blue-ink: #0369a1;
+    --t-tag-emerald-bg: #d1fae5;
+    --t-tag-emerald-ink: #047857;
+    --t-tag-amber-bg: #fef3c7;
+    --t-tag-amber-ink: #b45309;
+    --t-tag-rose-bg: #ffe4e6;
+    --t-tag-rose-ink: #be123c;
+    --t-tag-slate-bg: #f1f5f9;
+    --t-tag-slate-ink: #334155;
+
+    /* Shadows */
+    --t-shadow-super-light: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+    --t-shadow-light: 0 2px 4px 0 rgba(0, 0, 0, 0.04), 0 0 1px 0 rgba(0, 0, 0, 0.08);
+    --t-shadow-medium: 0 4px 16px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    --t-shadow-heavy: 0 16px 40px -8px rgba(0, 0, 0, 0.16), 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* --- Layer 1: Native twenty-ui (--t-*) Dark Tokens (Hex + OKLCH) --- */
+    --t-background-primary: #141414;
+    --t-background-primary-oklch: oklch(0.191 0.000 0);
+    --t-background-secondary: #1c1c1c;
+    --t-background-secondary-oklch: oklch(0.226 0.000 0);
+    --t-background-tertiary: #242424;
+    --t-background-tertiary-oklch: oklch(0.260 0.000 0);
+    --t-background-quaternary: #2e2e2e;
+    --t-background-quaternary-oklch: oklch(0.301 0.000 0);
+    --t-background-transparent-light: rgba(255, 255, 255, 0.05);
+    --t-background-transparent-medium: rgba(255, 255, 255, 0.09);
+
+    --t-font-color-primary: #f5f5f5;
+    --t-font-color-primary-oklch: oklch(0.970 0.000 0);
+    --t-font-color-secondary: #b3b3b3;
+    --t-font-color-secondary-oklch: oklch(0.767 0.000 0);
+    --t-font-color-tertiary: #808080;
+    --t-font-color-tertiary-oklch: oklch(0.600 0.000 0);
+    --t-font-color-light: #595959;
+    --t-font-color-light-oklch: oklch(0.464 0.000 0);
+    --t-font-color-inverted: #141414;
+
+    --t-border-color-light: #262626;
+    --t-border-color-light-oklch: oklch(0.269 0.000 0);
+    --t-border-color-medium: #333333;
+    --t-border-color-medium-oklch: oklch(0.321 0.000 0);
+    --t-border-color-strong: #474747;
+    --t-border-color-strong-oklch: oklch(0.398 0.000 0);
+
+    --t-accent-primary: #3b82f6;
+    --t-accent-primary-oklch: oklch(0.623 0.188 259.8);
+    --t-accent-primary-soft: rgba(59, 130, 246, 0.15);
+    --t-accent-primary-border: rgba(59, 130, 246, 0.38);
+
+    --t-accent-forest: #10b981;
+    --t-accent-forest-oklch: oklch(0.696 0.149 162.5);
+    --t-accent-forest-soft: rgba(16, 185, 129, 0.15);
+
+    --t-color-success: #4ade80;
+    --t-color-success-oklch: oklch(0.792 0.184 151.7);
+    --t-color-success-bg: rgba(74, 222, 128, 0.14);
+
+    --t-color-warning: #fbbf24;
+    --t-color-warning-oklch: oklch(0.828 0.165 84.4);
+    --t-color-warning-bg: rgba(251, 191, 36, 0.14);
+
+    --t-color-danger: #f87171;
+    --t-color-danger-oklch: oklch(0.704 0.165 22.2);
+    --t-color-danger-bg: rgba(248, 113, 113, 0.15);
+
+    --t-tag-blue-bg: rgba(14, 165, 233, 0.16);
+    --t-tag-blue-ink: #7dd3fc;
+    --t-tag-emerald-bg: rgba(16, 185, 129, 0.16);
+    --t-tag-emerald-ink: #6ee7b7;
+    --t-tag-amber-bg: rgba(245, 158, 11, 0.16);
+    --t-tag-amber-ink: #fcd34d;
+    --t-tag-rose-bg: rgba(244, 63, 94, 0.16);
+    --t-tag-rose-ink: #fda4af;
+    --t-tag-slate-bg: rgba(148, 163, 184, 0.16);
+    --t-tag-slate-ink: #cbd5e1;
+
+    --t-shadow-super-light: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --t-shadow-light: 0 2px 5px 0 rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.06);
+    --t-shadow-medium: 0 8px 24px -4px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.07);
+    --t-shadow-heavy: 0 20px 48px -8px rgba(0, 0, 0, 0.78), 0 0 0 1px rgba(255, 255, 255, 0.09);
+  }
+
+  /* --- Layer 2: Typography, Spacing, Radii & Density --- */
+  :root {
+    --t-font-family-sans: 'Inter', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --t-font-family-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+
+    --t-font-size-2xs: 0.6875rem; /* 11px */
+    --t-font-size-xs: 0.75rem;    /* 12px */
+    --t-font-size-sm: 0.8125rem;  /* 13px — Twenty default record table cell size */
+    --t-font-size-md: 0.875rem;   /* 14px */
+    --t-font-size-lg: 1.0rem;     /* 16px */
+    --t-font-size-xl: 1.25rem;    /* 20px */
+    --t-font-size-2xl: 1.5rem;    /* 24px */
+
+    --t-font-weight-regular: 400;
+    --t-font-weight-medium: 500;
+    --t-font-weight-semibold: 600;
+
+    --t-spacing-0-5: 2px;
+    --t-spacing-1: 4px;
+    --t-spacing-1-5: 6px;
+    --t-spacing-2: 8px;
+    --t-spacing-3: 12px;
+    --t-spacing-4: 16px;
+    --t-spacing-6: 24px;
+    --t-spacing-8: 32px;
+
+    --t-border-radius-xs: 4px;
+    --t-border-radius-sm: 4px;
+    --t-border-radius-md: 8px;
+    --t-border-radius-pill: 999px;
+
+    --t-row-height: 36px;
+    --t-cell-px: 10px;
+    --t-ctrl-height: 32px;
+  }
+
+  html[data-density="compact"] {
+    --t-row-height: 32px;
+    --t-cell-px: 8px;
+    --t-ctrl-height: 28px;
+  }
+
+  html[data-density="comfortable"] {
+    --t-row-height: 40px;
+    --t-cell-px: 12px;
+    --t-ctrl-height: 36px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background-color: var(--t-background-secondary);
+    color: var(--t-font-color-primary);
+    font-family: var(--t-font-family-sans);
+    font-size: var(--t-font-size-sm);
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  .mono-code {
+    font-family: var(--t-font-family-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}

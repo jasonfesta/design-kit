@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marketing and media components</title>
+  <link rel="stylesheet" href="./fonts/directory-fonts.css">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper-canvas: oklch(0.984 0.005 84);
+      --paper-card: oklch(0.997 0.002 84);
+      --paper-tint: oklch(0.958 0.007 82);
+
+      --ink-primary: oklch(0.180 0.014 252);
+      --ink-secondary: oklch(0.335 0.014 252);
+      --ink-muted: oklch(0.420 0.012 252);
+
+      --rule-subtle: oklch(0.868 0.008 82);
+      --rule-strong: oklch(0.715 0.012 82);
+
+      --link-ink: oklch(0.335 0.095 252);
+      --link-hover: oklch(0.235 0.090 252);
+      --focus-ring: oklch(0.385 0.125 252);
+
+      --font-editorial: 'Newsreader', Georgia, 'Liberation Serif', serif;
+      --font-sans: 'Plus Jakarta Sans', 'Liberation Sans', sans-serif;
+
+      --card-shadow-rest: 0 1px 3px oklch(0.18 0.02 252 / 0.04), 0 10px 26px -12px oklch(0.18 0.02 252 / 0.07);
+      --card-shadow-hover: 0 4px 10px oklch(0.18 0.02 252 / 0.06), 0 18px 38px -12px oklch(0.18 0.02 252 / 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      background-color: var(--paper-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-editorial);
+      font-size: 16px;
+      line-height: 1.58;
+      -webkit-text-size-adjust: 100%;
+      font-kerning: normal;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--paper-canvas);
+      color: var(--ink-primary);
+      overflow-x: hidden;
+      font-kerning: normal;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: var(--link-ink);
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+      transition: color 140ms ease, text-decoration-color 140ms ease;
+    }
+
+    a:hover {
+      color: var(--link-hover);
+      text-decoration-thickness: 1.5px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 12px;
+      z-index: 100;
+      padding: 10px 16px;
+      background-color: var(--ink-primary);
+      color: var(--paper-card);
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 1260px;
+      margin-inline: auto;
+      padding-inline: clamp(20px, 4vw, 44px);
+    }
+
+    /* Single-row header */
+    .site-header {
+      width: 100%;
+      border-bottom: 1px solid var(--rule-subtle);
+      background-color: var(--paper-canvas);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 18px;
+    }
+
+    .site-brand {
+      font-family: var(--font-editorial);
+      font-size: 1.1875rem;
+      font-weight: 500;
+      font-optical-sizing: auto;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-brand:hover {
+      color: var(--link-ink);
+      text-decoration: none;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 24px;
+    }
+
+    .site-nav a {
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover {
+      color: var(--ink-primary);
+      text-decoration: underline;
+      text-underline-offset: 0.24em;
+    }
+
+    .site-nav a[aria-current="page"] {
+      color: var(--ink-primary);
+      text-decoration-line: underline;
+      text-decoration-color: var(--rule-strong);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 0.28em;
+    }
+
+    @media (max-width: 680px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-block: 16px;
+      }
+
+      .site-nav {
+        flex-wrap: wrap;
+        gap: 8px 16px;
+      }
+
+      .site-nav a {
+        font-size: 0.8125rem;
+      }
+    }
+
+    /* Above-the-fold two-column editorial intro */
+    .hero {
+      padding-top: clamp(32px, 3.6vw, 44px);
+      padding-bottom: clamp(30px, 3.4vw, 40px);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.32fr) minmax(300px, 0.88fr);
+      gap: 32px 56px;
+      align-items: start;
+    }
+
+    .hero-lead h1 {
+      margin: 0 0 16px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: clamp(2.05rem, 3.4vw, 2.8125rem);
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.016em;
+      color: var(--ink-primary);
+      max-width: none;
+      text-wrap: balance;
+    }
+
+    .hero-lead p {
+      margin: 0 0 13px 0;
+      max-width: 60ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.125rem;
+      line-height: 1.58;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    .hero-lead p:last-child {
+      margin-bottom: 0;
+    }
+
+    .hero-toc {
+      padding-left: 30px;
+      border-left: 1px solid var(--rule-subtle);
+    }
+
+    .hero-toc h2 {
+      margin: 0 0 10px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.1875rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: normal;
+      color: var(--ink-primary);
+      max-width: none;
+    }
+
+    /* Single-column Contents list in uniform Newsreader */
+    .contents-list {
+      margin: 0;
+      padding: 0 0 0 1.2em;
+      list-style-position: outside;
+      columns: 1;
+      font-family: var(--font-editorial);
+      font-size: 1.03125rem;
+      line-height: 1.48;
+      color: var(--ink-secondary);
+    }
+
+    .contents-list li {
+      padding-block: 3px;
+      padding-left: 0.15em;
+      font-family: var(--font-editorial);
+    }
+
+    .contents-list a {
+      font-family: var(--font-editorial);
+      font-weight: 400;
+      color: var(--link-ink);
+    }
+
+    .contents-list a:hover {
+      color: var(--link-hover);
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .hero-toc {
+        padding-left: 0;
+        padding-top: 26px;
+        border-left: 0;
+        border-top: 1px solid var(--rule-subtle);
+      }
+    }
+
+    /* Balanced section framing with generous surrounding air */
+    .page-section {
+      border-top: 1px solid var(--rule-subtle);
+      padding-top: 38px;
+      padding-bottom: 58px;
+    }
+
+    .page-section h2 {
+      margin: 0 0 10px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: clamp(1.5rem, 2.2vw, 1.8125rem);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--ink-primary);
+      max-width: none;
+      text-wrap: balance;
+    }
+
+    .section-intro {
+      margin: 0 0 30px 0;
+      max-width: 62ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.0625rem;
+      line-height: 1.58;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    /* Spacious 2-column gallery grid of lossless 16:10 plates */
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px 40px;
+    }
+
+    @media (max-width: 767px) {
+      .systems-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 38px;
+      }
+    }
+
+    .system-card {
+      display: flex;
+      flex-direction: column;
+      scroll-margin-top: 28px;
+    }
+
+    .card-media-link {
+      display: block;
+      line-height: 0;
+      border: 1px solid var(--rule-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: var(--paper-card);
+      box-shadow: var(--card-shadow-rest);
+      text-decoration: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .system-card:hover .card-media-link,
+    .card-media-link:focus-visible {
+      border-color: var(--rule-strong);
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .card-shot {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .card-body {
+      padding: 18px 0 0;
+    }
+
+    .card-body h3 {
+      margin: 0 0 8px 0;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.34375rem;
+      font-weight: 500;
+      line-height: 1.24;
+      letter-spacing: -0.008em;
+      max-width: none;
+      text-wrap: balance;
+    }
+
+    .card-title-link {
+      color: var(--ink-primary);
+      text-decoration-line: underline;
+      text-decoration-color: var(--rule-strong);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    .card-title-link:hover,
+    .system-card:hover .card-title-link {
+      color: var(--link-ink);
+      text-decoration-color: currentColor;
+      text-decoration-thickness: 1.5px;
+    }
+
+    .card-desc {
+      margin: 0;
+      max-width: 56ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.03125rem;
+      line-height: 1.56;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    .card-links {
+      margin: 12px 0 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 18px;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      line-height: 1.45;
+    }
+
+    .card-links a {
+      color: var(--link-ink);
+      font-weight: 500;
+      text-decoration-line: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+    }
+
+    .card-links a:hover {
+      color: var(--link-hover);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .section-closing {
+      margin: 44px 0 0 0;
+      max-width: 62ch;
+      font-family: var(--font-editorial);
+      font-optical-sizing: auto;
+      font-size: 1.0625rem;
+      line-height: 1.58;
+      color: var(--ink-secondary);
+      text-wrap: pretty;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--rule-subtle);
+      padding-block: 36px;
+      background-color: var(--paper-canvas);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px 28px;
+      font-family: var(--font-sans);
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+    }
+
+    .footer-links a {
+      color: var(--ink-secondary);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+      }
+      .system-card:hover .card-media-link,
+      .card-media-link:focus-visible {
+        transform: none;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .card-media-link {
+        border-color: CanvasText;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="site-brand" href="./index.html">Design systems</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="./index.html">Product components</a>
+        <a href="./marketing.html" aria-current="page">Marketing components</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation">Git repository</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="shell hero-grid">
+        <div class="hero-lead">
+          <h1 id="page-title">Marketing and media components</h1>
+          <p>We built six marketing and media component guides so public pages share the same typography and palette as each product.</p>
+          <p>Each guide documents photography ratios, inward portrait direction, background-image contrast ramps, pricing schedules, and signup validation across live component states.</p>
+        </div>
+
+        <aside id="contents" class="hero-toc" aria-labelledby="contents-heading">
+          <h2 id="contents-heading">Contents</h2>
+          <ol class="contents-list">
+            <li><a href="#switchyard">Switchyard launch and pricing components</a></li>
+            <li><a href="#ledgermark">Ledgermark treasury and portrait components</a></li>
+            <li><a href="#civicgate">Civicgate public service components</a></li>
+            <li><a href="#fieldrig">Fieldrig hardware commerce components</a></li>
+            <li><a href="#folioarchive">Folio Archive exhibition components</a></li>
+            <li><a href="#wardline">Wardline patient clinic components</a></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section id="guides" class="page-section" aria-labelledby="guides-heading">
+      <div class="shell">
+        <h2 id="guides-heading">Component and photography guides</h2>
+        <p class="section-intro">Every guide pairs usage and framing rules with interactive light and dark specimens, loading frames, image-off fallbacks, and error states.</p>
+
+        <div class="systems-grid">
+          <article id="switchyard" class="system-card">
+            <a class="card-media-link" href="./marketing/switchyard.html">
+              <img class="card-shot" src="./images/mktg-switchyard.webp" alt="Switchyard marketing guide showing a cobalt and silver server-blade aisle hero with variant tabs above a terminal install command section" width="1440" height="900" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./marketing/switchyard.html">Switchyard</a></h3>
+              <p class="card-desc">Documents bare-metal rack photography, server-aisle hero washes, terminal install lines, seat pricing tiers, and repository signup validation.</p>
+              <p class="card-links">
+                <a href="./marketing/switchyard.html">Marketing components</a>
+                <a href="./systems/switchyard.html">Product components</a>
+              </p>
+            </div>
+          </article>
+
+          <article id="ledgermark" class="system-card">
+            <a class="card-media-link" href="./marketing/ledgermark.html">
+              <img class="card-shot" src="./images/mktg-ledgermark.webp" alt="Ledgermark marketing guide pairing a sunlit travertine card photograph with an operating-cash yield hero and state switcher tabs" width="1440" height="900" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./marketing/ledgermark.html">Ledgermark</a></h3>
+              <p class="card-desc">Covers sunlit travertine still-lifes, inward executive portraits, split treasury heroes, limestone banners, fee schedules, and onboarding states.</p>
+              <p class="card-links">
+                <a href="./marketing/ledgermark.html">Marketing components</a>
+                <a href="./systems/ledgermark.html">Product components</a>
+              </p>
+            </div>
+          </article>
+
+          <article id="civicgate" class="system-card">
+            <a class="card-media-link" href="./marketing/civicgate.html">
+              <img class="card-shot" src="./images/mktg-civicgate.webp" alt="Civicgate public service guide showing a low-emission parking start page beside a residential street photograph and state tabs" width="1440" height="900" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./marketing/civicgate.html">Civicgate</a></h3>
+              <p class="card-desc">Sets out neighbourhood street photography, permit start pages, household fee calculators, published tariff tables, and number-plate validation alerts.</p>
+              <p class="card-links">
+                <a href="./marketing/civicgate.html">Marketing components</a>
+                <a href="./systems/civicgate.html">Product components</a>
+              </p>
+            </div>
+          </article>
+
+          <article id="fieldrig" class="system-card">
+            <a class="card-media-link" href="./marketing/fieldrig.html">
+              <img class="card-shot" src="./images/mktg-fieldrig.webp" alt="Fieldrig commerce guide presenting an uncropped silver TP-4 four-track mixer render with anodized finish controls and order bar" width="1440" height="900" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./marketing/fieldrig.html">Fieldrig</a></h3>
+              <p class="card-desc">Pairs angle-locked silver and black anodized hardware renders with finish switchers, macro lighting stages, bundle configurators, and waitlist states.</p>
+              <p class="card-links">
+                <a href="./marketing/fieldrig.html">Marketing components</a>
+                <a href="./systems/fieldrig.html">Product components</a>
+              </p>
+            </div>
+          </article>
+
+          <article id="folioarchive" class="system-card">
+            <a class="card-media-link" href="./marketing/folioarchive.html">
+              <img class="card-shot" src="./images/mktg-folioarchive.webp" alt="Folio Archive exhibition guide showing a sky-lit gallery wing poster for Colour as Structure with a lower shadow ramp and booking action" width="1440" height="900" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./marketing/folioarchive.html">Folio Archive</a></h3>
+              <p class="card-desc">Frames uncropped linen paintings, gallery wing posters with lower shadow ramps, room switchers, admission tables, and lender-restricted image fallbacks.</p>
+              <p class="card-links">
+                <a href="./marketing/folioarchive.html">Marketing components</a>
+                <a href="./systems/folioarchive.html">Product components</a>
+              </p>
+            </div>
+          </article>
+
+          <article id="wardline" class="system-card">
+            <a class="card-media-link" href="./marketing/wardline.html">
+              <img class="card-shot" src="./images/mktg-wardline.webp" alt="Wardline patient marketing guide showing a warm morning portrait looking inward toward a preventive heart membership headline" width="1440" height="900" style="width:100%; height:auto; display:block;">
+            </a>
+            <div class="card-body">
+              <h3><a class="card-title-link" href="./marketing/wardline.html">Wardline</a></h3>
+              <p class="card-desc">Shows warm daylight clinician portraits gazing inward, plain-English lab range bands, membership selectors, clinic slot lookups, and privacy fallbacks.</p>
+              <p class="card-links">
+                <a href="./marketing/wardline.html">Marketing components</a>
+                <a href="./systems/wardline.html">Product components</a>
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <p class="section-closing">Every guide shares the exact typography and color palette of its <a href="./index.html">paired product workspace</a>. Browse the <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/SKILL.md">design system skill</a> and the <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation">Git repository on Google Depot</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <span>Marketing and media components</span>
+      <div class="footer-links">
+        <a href="./index.html">Product components</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/SKILL.md">Skill specification</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation/blob/main/research/synthesis.md">Research synthesis</a>
+        <a href="https://depot.code.corp.goog/fofr-agents-exp/design-system-creation">Git repository</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

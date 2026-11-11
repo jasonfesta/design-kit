@@ -1,0 +1,33 @@
+{
+  "id": "polish",
+  "display_name": "polish",
+  "google3_package": "polish",
+  "title": "polish",
+  "icon": "\ud83e\ude84",
+  "category": "sub-skill of concept-art \u00b7 surgical edits (rounds 2-3 max)",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "polish",
+  "agent_md": "polish/agent.md",
+  "skill_md": "polish/SKILL.md",
+  "html_page": "polish/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/polish",
+  "bundle_skill": "polish.skill",
+  "bundle_zip": "polish.zip",
+  "short_summary": "runs surgical nano banana 2 image-to-image edits on failing 2k plates in rounds 2 and 3 only while freezing passing slots at round 1.",
+  "when_to_use": "use at stage 4 of jason-design-agent when eval flags localized defects and rounds used is under 3.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=polish",
+  "summary": "Executes research-enriched, surgical Nano Banana 2 refinement passes in Rounds 2 and 3 on 2K concept plates that fail eval or return weak design. Whenever a slot comes back with bad or uninspired design, runs a targeted micro-research pass (2-3 fresh competitor or inner-design examples for that exact pattern) and feeds richer textural, designer, and frontend-developer steering into the prompt while enforcing the hard 3-round Nano Banana ceiling. Use when eval flags design, hierarchy, palette, framing, or canon.md defects and rounds used is less than 3. Don't use for initial 12-slot generation (use image-gen) or when a slot has already reached 3 rounds.",
+  "references": [
+    "./references/contributing.md",
+    "./references/surgical-edit-patterns.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=polish"
+  }
+}

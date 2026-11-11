@@ -1,0 +1,80 @@
+<article aria-labelledby="pat-review" class="pattern-block">
+<div class="pattern-card">
+<div class="pattern-stage">
+<h3 class="pattern-title" id="pat-review">Application review table and notices</h3>
+<div>
+<div aria-label="Permit scheme guidance" class="tab-bar" role="tablist">
+<button aria-controls="panel-res" aria-selected="true" class="tab-btn" id="tab-res" role="tab" tabindex="0" type="button">Resident permits</button>
+<button aria-controls="panel-vis" aria-selected="false" class="tab-btn" id="tab-vis" role="tab" tabindex="-1" type="button">Visitor stays</button>
+<button aria-controls="panel-blue" aria-selected="false" class="tab-btn" id="tab-blue" role="tab" tabindex="-1" type="button">Blue Badge</button>
+</div>
+<div aria-labelledby="tab-res" class="tab-panel" id="panel-res" role="tabpanel">
+<p>Up to two vehicles registered at your home can hold an active Zone B permit at the same time. Moving within the borough transfers remaining months free of charge.</p>
+</div>
+<div aria-labelledby="tab-vis" class="tab-panel" hidden="" id="panel-vis" role="tabpanel">
+<p>Guests and tradespeople can park all day using a digital visitor session or a posted scratchcard. Unused stays carry over for two years.</p>
+</div>
+<div aria-labelledby="tab-blue" class="tab-panel" hidden="" id="panel-blue" role="tabpanel">
+<p>Blue Badge holders receive one free resident permit for a nominated vehicle and may park in any Zone B resident bay without a time limit.</p>
+</div>
+</div>
+<div class="pattern-divider pattern-two">
+<div class="table-scroll">
+<table aria-label="Proof documents required" class="civic-table">
+<thead>
+<tr>
+<th scope="col">Evidence</th>
+<th scope="col">Check method</th>
+<th class="num-col" scope="col">Turnaround</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="font-weight: 600;">Council Tax record</td>
+<td>Matched automatically</td>
+<td class="num-col">Instant</td>
+</tr>
+<tr>
+<td style="font-weight: 600;">V5C logbook</td>
+<td>Photo upload</td>
+<td class="num-col">1 day</td>
+</tr>
+<tr>
+<td style="font-weight: 600;">Blue Badge</td>
+<td>National badge serial</td>
+<td class="num-col">Instant</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<div class="empty-surface">
+<h4>No visitor stays active today</h4>
+<p>Start a single-day visitor session when a guest or tradesperson arrives.</p>
+<div class="action-row">
+<button class="civic-btn civic-btn--secondary" data-trigger-toast="Visitor stay ready to activate for Zone B." type="button">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Book visitor stay</span>
+</button>
+</div>
+</div>
+<div aria-busy="true" aria-label="Checking DVLA vehicle record" class="skeleton-surface">
+<div class="skeleton-title">Checking DVLA vehicle record</div>
+<div aria-hidden="true" class="skel-bar skel-bar--w80"></div>
+<div aria-hidden="true" class="skel-bar skel-bar--w60"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pattern-usage">
+<div>
+<div class="usage-label">When to use</div>
+<p class="usage-copy">Pair scheme tabs with concise evidence tables so residents see upfront whether proof is verified automatically or needs a photo upload.</p>
+</div>
+<div>
+<div class="usage-label">Validation rule</div>
+<p class="usage-copy">Confirm saved changes once in a single dismissible notice rather than stacking multiple alerts.</p>
+</div>
+</div>
+</div>
+</article>

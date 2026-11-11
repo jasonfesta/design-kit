@@ -1,0 +1,94 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   07. YOUTUBE & YOUTUBE STUDIO DESIGN SYSTEM (yt-spec v2.0.279)
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/youtube/versions/v2_0/sass_maps/
+       (_yt-ref-color-constants.scss & _yt-sys-color-baseline.scss)
+     - //depot/google3/video/youtube/src/web/ & creator/
+     - Carbon ID: designSystems/6a965cee65b87233 (v2.0.279)
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Verbatim YouTube Dark Cinema & Studio Tokens */
+    --yt-spec-base-background: #0f0f0f;
+    --yt-spec-raised-background: #212121;
+    --yt-spec-menu-background: #282828;
+    --yt-spec-additive-background: rgba(255, 255, 255, 0.10);
+    --yt-spec-additive-background-hover: rgba(255, 255, 255, 0.20);
+    --yt-spec-frost-heavy: rgba(15, 15, 15, 0.85);
+    --yt-spec-outline: rgba(255, 255, 255, 0.14);
+
+    --yt-spec-text-primary: #f1f1f1;
+    --yt-spec-text-secondary: #aaaaaa;
+    --yt-spec-text-disabled: #717171;
+
+    /* Verbatim _yt-ref-color-constants.scss Accents (0% Purple) */
+    --yt-spec-brand-red: #ff0033;
+    --yt-spec-brand-red-solid: #e1002d;
+    --yt-spec-call-to-action: #3ea6ff;
+    --yt-spec-call-to-action-hover: #65b8ff;
+    --yt-spec-badge-green: #2ba640;
+    --yt-spec-badge-teal: #007a65;
+    --yt-spec-ad-yellow: #fbc02d;
+    --yt-spec-inverted-cta-bg: #f1f1f1;
+    --yt-spec-inverted-cta-ink: #0f0f0f;
+  }
+
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --yt-spec-base-background: #ffffff;
+    --yt-spec-raised-background: #f8f8f8;
+    --yt-spec-menu-background: #f2f2f2;
+    --yt-spec-additive-background: rgba(0, 0, 0, 0.05);
+    --yt-spec-additive-background-hover: rgba(0, 0, 0, 0.10);
+    --yt-spec-frost-heavy: rgba(255, 255, 255, 0.88);
+    --yt-spec-outline: rgba(0, 0, 0, 0.12);
+
+    --yt-spec-text-primary: #0f0f0f;
+    --yt-spec-text-secondary: #606060;
+    --yt-spec-text-disabled: #909090;
+
+    --yt-spec-brand-red: #ff0033;
+    --yt-spec-brand-red-solid: #c30027;
+    --yt-spec-call-to-action: #065fd4;
+    --yt-spec-call-to-action-hover: #0556bf;
+    --yt-spec-badge-green: #107516;
+    --yt-spec-badge-teal: #007a65;
+    --yt-spec-ad-yellow: #be8800;
+    --yt-spec-inverted-cta-bg: #0f0f0f;
+    --yt-spec-inverted-cta-ink: #ffffff;
+  }
+
+  :root {
+    --yt-font-display: 'YouTube Sans', 'Archivo', 'Plus Jakarta Sans', sans-serif;
+    --yt-font-sans: 'Roboto', 'IBM Plex Sans', sans-serif;
+    --yt-font-mono: 'JetBrains Mono', 'Azeret Mono', ui-monospace, monospace;
+    --yt-radius-chip: 8px;
+    --yt-radius-card: 12px;
+    --yt-radius-pill: 9999px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--yt-spec-base-background);
+    color: var(--yt-spec-text-primary);
+    font-family: var(--yt-font-sans);
+    font-size: 13.5px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .yt-mono { font-family: var(--yt-font-mono); font-variant-numeric: tabular-nums; }
+}

@@ -1,0 +1,80 @@
+<section aria-labelledby="h-park-banner" class="doc-chapter" data-component-doc="" id="park-banner">
+<div class="chapter-head">
+<h2 id="h-park-banner">Background-image clinic lookup stage</h2>
+<p>Float a daylight porcelain clinic finder over coastal morning trail photography to close long patient pages warmly. Switch between the primary floating card, a compact inline bar, and a waitlist card when local phlebotomy rooms fill.</p>
+</div>
+<div class="usage-notes" data-usage-notes="">
+<div class="usage-col">
+<h3>When to use</h3>
+<ul class="usage-list">
+<li>Place near the bottom of regional landing pages so prospective members check nearby morning draw hours.</li>
+<li>Activate the waitlist variant when a neighborhood clinic has zero morning fasting slots left for five days.</li>
+</ul>
+</div>
+<div class="usage-col">
+<h3>Composition and copy rules</h3>
+<ul class="usage-list">
+<li>Anchor the porcelain card over shaded trees on the left so sunlit coastal trail and mist stay bright on the right.</li>
+<li>Declare a dark spruce fallback ground color and forced-colors Canvas rule behind the background image.</li>
+<li>Limit the lookup card to postal code and email with a reassuring no-card helper note beneath.</li>
+</ul>
+</div>
+</div>
+<div class="specimen-stage">
+<div aria-label="Clinic lookup stage variants" class="wl-tablist" data-state-tabs="" role="tablist">
+<button aria-controls="panel-park-card" aria-selected="true" class="wl-tab" id="tab-park-card" role="tab" tabindex="0" type="button">Floating porcelain card</button>
+<button aria-controls="panel-park-bar" aria-selected="false" class="wl-tab" id="tab-park-bar" role="tab" tabindex="-1" type="button">Compact inline bar</button>
+<button aria-controls="panel-park-wait" aria-selected="false" class="wl-tab" id="tab-park-wait" role="tab" tabindex="-1" type="button">Clinic full waitlist state</button>
+</div>
+<div aria-labelledby="tab-park-card" id="panel-park-card" role="tabpanel">
+<div aria-label="Floating porcelain clinic lookup stage" class="park-photo-stage" role="region">
+<form class="park-float-card" data-lead-form="" novalidate="">
+<div>
+<h3>Find morning draw times near home</h3>
+<p class="wl-hint" style="margin-top:4px">15-minute fasting draws run 07:30–10:30 before work.</p>
+</div>
+<div class="zip-email-grid">
+<div class="wl-field">
+<label class="wl-label" for="wl-park-zip">ZIP code</label>
+<input class="wl-input tnum" id="wl-park-zip" inputmode="numeric" maxlength="10" name="zip" type="text" value="94102"/>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-park-email">Email address</label>
+<input aria-describedby="wl-park-err wl-park-hint" autocomplete="email" class="wl-input" id="wl-park-email" name="email" placeholder="you@domain.com" required="" type="email"/>
+</div>
+<button class="wl-btn-pri" type="submit">
+<span class="btn-label">See slots</span>
+<span aria-hidden="true" class="btn-spinner">
+<svg class="spin-svg" fill="none" viewbox="0 0 16 16"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2"></circle><path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2"></path></svg>
+                      Checking
+                    </span>
+</button>
+</div>
+<p class="wl-error" hidden="" id="wl-park-err" role="alert"></p>
+<p class="wl-hint" id="wl-park-hint">No card needed to view open mornings · One email with local times, zero marketing drip.</p>
+</form>
+</div>
+</div>
+<div aria-labelledby="tab-park-bar" hidden="" id="panel-park-bar" role="tabpanel">
+<div aria-label="Compact inline clinic bar" class="park-photo-stage park-photo-stage--bar" role="region">
+<div class="park-inline-bar">
+<div>
+<h3>Hayes Valley and Marina clinics have open draws Thursday</h3>
+<p class="wl-hint" style="margin-top:3px">07:50, 08:10, and 09:20 phlebotomy rooms available · Step-free street entry</p>
+</div>
+<button class="wl-btn-pri" data-open-modal="#intake-dialog" type="button">Hold Thursday morning slot</button>
+</div>
+</div>
+</div>
+<div aria-labelledby="tab-park-wait" hidden="" id="panel-park-wait" role="tabpanel">
+<div aria-label="Clinic full waitlist state" class="park-photo-stage" role="region">
+<div class="park-float-card">
+<h3>Hayes Valley morning draws full through Saturday</h3>
+<p class="partner-desc">Next week's fasting phlebotomy slots open Monday at 08:00. Castro Clinic two Muni stops south still has Thursday 08:20 and Friday 08:40 openings.</p>
+<button class="wl-btn-pri" data-open-modal="#intake-dialog" type="button">Book Castro 08:20 draw</button>
+<p class="wl-hint">Same physician team reviews lab panels across both neighborhood clinics.</p>
+</div>
+</div>
+</div>
+</div>
+</section>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jason dev agent</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>jason dev agent</h1>
+      <p>coordinates the lowercase image-to-react agent chain across dev evals, loop a self-eval against comps, loop b talk-backs with jason-design-agent, and final handback for design sign-off.</p>
+      <div class="actions">
+        <a href="../jason-dev-agent.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>jason-dev-agent</h1>
+<pre data-lang="text"><code>jason-dev-agent (8 simple developer steps + 5-turn source check-back -&gt; designer checkpoint)
+--------------------------------------------------------------------------------------------
+step 1: replicate-mock          exact tokens, px measurements &amp; 3 buckets (native/crisp/upscale)
+step 2: font-pairing            primary, secondary, optional tertiary (&lt;=15%) &amp; modular scale
+step 3: image-to-react          react 19 dom shell &amp; autoraterv1 visual match (s_total &gt;= 0.93)
+step 4: nano-banana             target upscale-queue only -&gt; 2x retina &amp; eval-image-readiness
+step 5: accessibility           wcag 2.2 aa contrast (&gt;= 4.5:1), 16px body floor, 24/44px targets
+step 6: responsiveness          single unified semantic dom across 6 viewports (320px-1536px)
+step 7: interaction &amp; feel      0 dead controls, [data-scroll-point] hooks, 60fps &amp; :active press
+step 7.5: check-back loop       5-turn automated source check-back (comp + style kit + captures)
+step 8: golden-template         strict tsc linting &amp; headless verify_html_bundle.mjs packaging
+--------------------------------------------------------------------------------------------
+finish: designer checkpoint     pause &amp; present live build, receipts &amp; open link for review</code></pre>
+<p><code>jason-dev-agent</code> is the master frontend software engineer. It transforms curated design studies and 2K concept plates into production-grade, standalone <strong>React 19 + Vite 7 + Tailwind v4</strong> applications built to the canonical Golden Template standard.</p>
+<p>It speaks exclusively with a <strong>frontend software engineer voice</strong>, executes an 8-step developer pipeline, runs an <strong>automated 5-turn source check-back loop</strong> against original sources of truth, and pauses at a <strong>Designer Checkpoint</strong> presenting verified code, live receipts, and interactive links for human designer review.</p>
+<h2>how to activate in chat</h2>
+<p>To activate the developer agent in chat, type:</p>
+<p>&gt; <strong>&quot;Activate jason-dev-agent&quot;</strong></p>
+<p><em>(Alternative triggers: <code>&quot;Run jason-dev-agent&quot;</code>, <code>&quot;Build with dev agent&quot;</code>, <code>&quot;Start jason-dev-agent&quot;</code>)</em></p>
+<p>Upon activation, the agent immediately executes an interactive intake sequence via <code>ask_question</code> (or direct prompt):</p>
+<ol>
+<li><strong>Curated Study Folder</strong>: Path to <code>&lt;study-slug&gt;</code> containing <code>selections.json</code>, plates, and <code>style-direction</code>.</li>
+<li><strong>Build Scope</strong>: All approved plates (<code>selected: true</code>) vs. specific item slug.</li>
+<li><strong>Dev Flywheel Settings</strong>: Default (5 cycles, <strong>40-minute timeout ceiling / 2400s</strong>, 60fps frame budget).</li>
+<li><strong>Preview Target</strong>: Local right-hand artifact pane &amp; localhost (Default) vs. <code>x20</code>.</li>
+</ol>
+<p>Detailed protocol: <a href="references/activation-instructions.md">activation &amp; interactive intake</a>.</p>
+<h2>8 simple developer steps &amp; check-back loop</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 1 — <code>replicate-mock</code> (blueprint &amp; 3-bucket classification)</strong>:</span></li>
+<li>Inspect the comp plate using <code>replicate-mock</code>. Measure pixel geometries, extract exact sRGB hex color tokens, and partition all regions into 3 strict developer buckets:</li>
+</ul>
+<ol>
+<li><code>native-code</code>: HTML5 tags, Tailwind utilities, and inline SVGs for cards, pills, buttons, navbars, and icons (<strong>0 raster upscaling</strong>).</li>
+<li><code>crisp-media</code>: Photographic plates already <code>&gt;= 2x</code> mounted CSS dimensions (<strong>0 upscaling</strong>).</li>
+<li><code>upscale-queue</code>: Blurry, soft, or <code>&lt; 2x</code> photo crops queued for Step 4.</li>
+</ol>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 2 — <code>font-pairing</code> (type system &amp; role locks)</strong>:</span></li>
+<li>Map Google Fonts to strict roles using <code>font-pairing</code>:</li>
+<li><strong>Primary</strong>: H1–H3 headlines and display titles.</li>
+<li><strong>Secondary</strong>: Body copy, inputs, table rows, and navigation items.</li>
+<li><strong>Tertiary</strong> (optional, capped at 15%): Eyebrows, mono labels, or tabular KPI numbers.</li>
+<li>Wire <code>--font-*</code> CSS tokens with one modular type scale and pass <code>eval-font-pairing.py</code> (<code>0</code> fallback leaks, <code>&gt;= 90%</code> role lock).</li>
+</ul>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 3 — <code>image-to-react</code> (dom shell &amp; visual match)</strong>:</span></li>
+<li>Author the modular React 19 architecture (<code>src/data/&lt;domain&gt;Data.ts</code>, <code>src/components/</code>, <code>src/App.tsx</code>) matching the comp&#x27;s grid and visual hierarchy.</li>
+<li>Pass AutoRaterV1 <code>eval-image-to-react.mjs</code> (<code>s_total &gt;= 0.85</code> floor, <code>0.93</code> target, <code>0</code> collisions, <code>0</code> overflow, symmetrical optical padding).</li>
+</ul>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 4 — <code>nano-banana</code> (targeted 2x retina upscaling &amp; readiness)</strong>:</span></li>
+<li>Upgrade <strong>only <code>upscale-queue</code> slots</strong> to exact <code>2 <em> clientWidth x 2 </em> clientHeight</code> Retina assets using <code>nano-banana</code>.</li>
+<li>Pass <code>eval-image-readiness.py</code> (<code>0</code> blurry images, <code>0</code> dithered crops).</li>
+</ul>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 5 — <code>accessibility</code> (wcag 2.2 standards)</strong>:</span></li>
+<li>Enforce WCAG 2.2 sizing using <code>accessibility</code>:</li>
+<li>Text contrast: <code>&gt;= 4.5:1</code> normal text, <code>&gt;= 3:1</code> large text.</li>
+<li>Font sizes: Body text floor <code>&gt;= 16px</code> at <code>1.5</code> line height (<code>14px</code> absolute floor for secondary labels, nothing sub-12px).</li>
+<li>Interactive targets: <code>&gt;= 24x24px</code> minimum (<code>44x44px</code> on touch controls).</li>
+<li>Visible focus rings (<code>focus-visible</code>) and image <code>alt</code> tags.</li>
+<li>Pass <code>eval-accessibility.py</code> across all 8 gates.</li>
+</ul>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 6 — <code>responsiveness</code> (6-viewport continuum)</strong>:</span></li>
+<li>Reflow that single semantic DOM across <code>320px</code>, <code>375px</code>, <code>768px</code>, <code>1024px</code>, and <code>1440px</code> viewports using <code>responsiveness</code>.</li>
+<li>Pass <code>eval-responsive-pair.mjs</code> with zero horizontal overflow, zero colliding elements, and zero squashed containers.</li>
+</ul>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 7 — <code>interaction</code> &amp; <code>feel</code> (controls, triggers, physics &amp; 60fps scroll)</strong>:</span></li>
+<li>Wire 100% of controls to live React state hooks using <code>interaction</code> (<code>0</code> dead buttons).</li>
+<li>Wire explicit <code>[data-scroll-point]</code> IntersectionObserver anchors and deterministic <code>data-state=&quot;open|closed&quot;</code> animation triggers while keeping initial <code>t=0</code> render locked.</li>
+<li>Tune physical temperament using <code>feel</code>: <code>:active</code> press scale, capability-gated <code>@media (hover: hover)</code>, GPU-composited motion curves (<code>0 transition-all</code>), and <code>prefers-reduced-motion</code>.</li>
+<li>Pass <code>eval-interaction.py --require-scroll-points</code> and <code>eval-feel-and-scroll.py</code> (<code>effective_fps &gt;= 55-60</code>, <code>jank_frames_over_34ms &lt;= 2</code>).</li>
+</ul>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 7.5 — <code>run_checkback_loop.py</code> / <code>run_dev_flywheel.py</code> (automated dev flywheel)</strong>:</span></li>
+<li>Execute the <strong>dev flywheel</strong> before Step 8, iterating continuously across the 5 source check-back targets until all pass or until hitting the <strong>40-minute timeout limit (2400s)</strong>:</li>
+</ul>
+<ol>
+<li><strong>Turn 1 (Geometry vs. Reference Comp Plate)</strong>: Checks max-widths, container alignment, and visual cell match (<code>eval-image-to-react.mjs</code>).</li>
+<li><strong>Turn 2 (Typography vs. Style Kit)</strong>: Audits font roles, line heights, and tabular numbers (<code>eval-font-pairing.py</code>).</li>
+<li><strong>Turn 3 (Chromatic Polarity vs. Style Kit)</strong>: Verifies 90/10 color polarity and WCAG 2.2 AA contrast ratios (<code>eval-accessibility.py</code>).</li>
+<li><strong>Turn 4 (Micro-Spacing vs. Screen Captures)</strong>: Audits button optical padding ($2:1$ ratio), badge pills, avatar stacks, and strips AI middle dots (<code>·</code>).</li>
+<li><strong>Turn 5 (Full Regression &amp; Convergence)</strong>: Validates composite convergence ($s_{total} \ge 0.93$, zero collisions, zero dead controls, clean bundle mount) and writes <code>checkback_audit.json</code>.</li>
+</ol>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>step 8 — <code>golden-template</code> linting &amp; bundle verification</strong>:</span></li>
+<li>Run <code>lint-golden-template.mjs --fix</code>: Verifies the 4 root config files, 3-tier folder structure, and strict TypeScript compilation (<code>tsc --noEmit</code> exit 0).</li>
+<li>Run <code>verify_html_bundle.mjs</code>: Ensures the built <code>dist/index.html</code> has 0 JS syntax errors, 0 leaked scripts, and mounts <code>#root</code> with non-trivial DOM.</li>
+<li>Update <code>&lt;study&gt;/projects/dev-turns.json</code> with final iteration metrics and populate the moodboard <code>Development</code> tab.</li>
+</ul>
+<h2>designer checkpoint</h2>
+<p>You do <strong>not</strong> perform an automated handoff back to the design agent. Instead, pause at the <strong>Designer Checkpoint</strong>:</p>
+<ol>
+<li>Present the built application directly in chat (project slug, relative build path, and working <code>open build</code> link).</li>
+<li>Display the consolidated receipt table from <code>run_dev_loop.py</code> showing all 8 steps passing and the 5-turn check-back loop converged.</li>
+<li>Invite the designer to review the live build in the artifact pane/browser and request any surgical polish or design adjustments.</li>
+</ol>
+<h2>master developer receipt runner</h2>
+<p>Run the complete 8-step receipt chain plus 5-turn check-back loop on any project using <a href="scripts/run_dev_loop.py">run_dev_loop.py</a>:</p>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_loop.py \
+  --project=&lt;study&gt;/projects/&lt;item-slug&gt; \
+  --reference=&lt;study&gt;/concepts/&lt;item-slug&gt;.png \
+  --require-scroll-points</code></pre>
+<p>Or execute the dev flywheel independently via <a href="scripts/run_checkback_loop.py">run_dev_flywheel.py</a>:</p>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_flywheel.py \
+  --project=&lt;study&gt;/projects/&lt;item-slug&gt; \
+  --reference=&lt;study&gt;/concepts/&lt;item-slug&gt;.png \
+  --max-cycles=5 \
+  --timeout-seconds=2400</code></pre>
+<h2>references</h2>
+<ul>
+<li><a href="references/activation-instructions.md">activation instructions &amp; usage in chat</a></li>
+<li><a href="references/session-initialization-and-intake.md">session initialization &amp; interactive intake protocol</a></li>
+<li><a href="references/google-engineering-architecture.md">google engineering architecture &amp; technical design document</a></li>
+<li><a href="references/five-turn-checkback-loop.md">the 5-turn automated source check-back loop</a></li>
+<li><a href="references/dev-eval-receipts-and-loop-a.md">loop a dev self-eval receipts &amp; execution</a></li>
+<li><a href="references/designer-talkbacks-and-loop-b.md">loop b designer talk-backs &amp; engineer voice</a></li>
+<li><a href="references/definition-of-done-and-handback.md">definition of done &amp; designer checkpoint</a></li>
+<li><a href="references/contributing.md">contributing &amp; validation</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

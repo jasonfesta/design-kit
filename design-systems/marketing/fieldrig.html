@@ -1,0 +1,2808 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fieldrig marketing components</title>
+  <link rel="stylesheet" href="../fonts/fieldrig-fonts.css">
+  <style>
+    @layer reset, tokens, base, components, layout, utilities;
+
+    @layer reset {
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      html, body, h1, h2, h3, h4, p, dl, dd, ol, ul, figure, figcaption, blockquote, fieldset {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    @layer tokens {
+      :root {
+        color-scheme: light;
+
+        /* Bead-blasted aluminum primitives shared verbatim with ../systems/fieldrig.html */
+        --fr-chalk-50: oklch(0.982 0.003 88);
+        --fr-satin-100: oklch(0.958 0.004 88);
+        --fr-stone-150: oklch(0.934 0.005 88);
+        --fr-silver-200: oklch(0.902 0.005 88);
+        --fr-socket-250: oklch(0.874 0.005 88);
+        --fr-chamfer-300: oklch(0.822 0.006 88);
+        --fr-wall-400: oklch(0.748 0.007 88);
+
+        --fr-graphite-950: oklch(0.162 0.008 255);
+        --fr-graphite-900: oklch(0.202 0.008 255);
+        --fr-graphite-800: oklch(0.255 0.008 255);
+        --fr-graphite-700: oklch(0.342 0.008 255);
+        --fr-graphite-600: oklch(0.412 0.007 255);
+
+        /* Single Braun vermilion accent calibrated >= 5.2:1 with chalk ink */
+        --fr-vermilion-500: oklch(0.492 0.180 35);
+        --fr-vermilion-600: oklch(0.458 0.174 35);
+        --fr-vermilion-800: oklch(0.332 0.135 34);
+        --fr-vermilion-ink: oklch(0.415 0.162 34);
+        --fr-vermilion-tint: oklch(0.954 0.016 38);
+
+        /* Semantic chassis surfaces */
+        --surface-field: var(--fr-stone-150);
+        --surface-deck: var(--fr-satin-100);
+        --surface-elevated: var(--fr-chalk-50);
+        --surface-recess: var(--fr-silver-200);
+        --surface-socket: var(--fr-socket-250);
+        --surface-photo: oklch(0.892 0.010 82);
+
+        --ink-primary: var(--fr-graphite-900);
+        --ink-secondary: var(--fr-graphite-700);
+        --ink-muted: var(--fr-graphite-600);
+        --ink-accent: var(--fr-vermilion-ink);
+
+        --border-hairline: var(--fr-chamfer-300);
+        --border-field: oklch(0.510 0.008 255);
+        --border-util: oklch(0.580 0.008 88);
+        --deck-chamfer: oklch(0.818 0.006 88);
+        --photo-ring: oklch(0 0 0 / 0.08);
+        --deck-shadow:
+          0 2px 4px oklch(0.22 0.008 85 / 0.06),
+          0 22px 44px -16px oklch(0.20 0.008 85 / 0.14);
+
+        /* Tactile socketed keycaps */
+        --cap-std-top: oklch(0.990 0.002 88);
+        --cap-std-bot: oklch(0.956 0.004 88);
+        --cap-std-wall: var(--fr-wall-400);
+        --cap-std-ink: var(--fr-graphite-900);
+
+        --cap-dark-top: oklch(0.248 0.008 255);
+        --cap-dark-bot: oklch(0.202 0.008 255);
+        --cap-dark-wall: oklch(0.118 0.006 255);
+        --cap-dark-ink: oklch(0.978 0.003 88);
+
+        --cap-rec-top: var(--fr-vermilion-500);
+        --cap-rec-bot: var(--fr-vermilion-600);
+        --cap-rec-wall: var(--fr-vermilion-800);
+        --cap-rec-ink: oklch(0.995 0.002 88);
+
+        --cap-dis-bg: oklch(0.905 0.004 88);
+        --cap-dis-fg: oklch(0.460 0.006 255);
+
+        /* Raking macro aluminum stage (opaque dark studio plate across both themes) */
+        --banner-base: oklch(0.135 0.008 255);
+        --banner-fg: oklch(0.972 0.004 88);
+        --banner-sub: oklch(0.858 0.006 88);
+        --banner-muted: oklch(0.775 0.006 88);
+        --banner-well: oklch(0.155 0.008 255 / 0.94);
+        --banner-border: oklch(0.350 0.008 255);
+        --banner-track: oklch(0.320 0.008 255);
+
+        /* OLED confirmation surface */
+        --oled-bg: oklch(0.162 0.008 255);
+        --oled-fg: oklch(0.968 0.004 88);
+        --oled-sub: oklch(0.815 0.006 88);
+
+        --signal-err-ink: oklch(0.415 0.165 33);
+        --signal-err-bg: var(--fr-vermilion-tint);
+        --signal-err-border: oklch(0.600 0.145 35);
+
+        --focus-outer: var(--fr-graphite-900);
+        --focus-inner: var(--fr-chalk-50);
+        --backdrop-scrim: oklch(0.150 0.008 255 / 0.54);
+
+        --font-sans: 'Archivo', 'Liberation Sans', sans-serif;
+        --font-mono: 'Azeret Mono', 'Liberation Mono', monospace;
+
+        --r-deck: 14px;
+        --r-cap: 8px;
+        --r-input: 8px;
+        --target-min: 44px;
+      }
+
+      /* Anodized dark mode */
+      html[data-theme="dark"] {
+        color-scheme: dark;
+
+        --surface-field: oklch(0.175 0.006 255);
+        --surface-deck: oklch(0.208 0.007 255);
+        --surface-elevated: oklch(0.246 0.008 255);
+        --surface-recess: oklch(0.158 0.006 255);
+        --surface-socket: oklch(0.140 0.006 255);
+        --surface-photo: oklch(0.225 0.007 255);
+
+        --ink-primary: oklch(0.958 0.004 88);
+        --ink-secondary: oklch(0.838 0.005 88);
+        --ink-muted: oklch(0.748 0.006 88);
+        --ink-accent: oklch(0.830 0.115 38);
+
+        --border-hairline: oklch(0.310 0.008 255);
+        --border-field: oklch(0.520 0.008 255);
+        --border-util: oklch(0.485 0.009 255);
+        --deck-chamfer: oklch(0.325 0.008 255);
+        --photo-ring: oklch(1 0 0 / 0.10);
+        --deck-shadow:
+          0 4px 10px oklch(0.05 0.005 255 / 0.55),
+          0 26px 52px -16px oklch(0.03 0.005 255 / 0.72);
+
+        --cap-std-top: oklch(0.285 0.008 255);
+        --cap-std-bot: oklch(0.250 0.008 255);
+        --cap-std-wall: oklch(0.130 0.006 255);
+        --cap-std-ink: oklch(0.958 0.004 88);
+
+        --cap-dark-top: oklch(0.930 0.005 88);
+        --cap-dark-bot: oklch(0.885 0.005 88);
+        --cap-dark-wall: oklch(0.560 0.006 255);
+        --cap-dark-ink: oklch(0.158 0.008 255);
+
+        --cap-dis-bg: oklch(0.215 0.006 255);
+        --cap-dis-fg: oklch(0.565 0.006 255);
+
+        --signal-err-ink: oklch(0.832 0.112 38);
+        --signal-err-bg: oklch(0.235 0.032 35);
+        --signal-err-border: oklch(0.580 0.135 35);
+
+        --focus-outer: oklch(0.958 0.004 88);
+        --focus-inner: oklch(0.175 0.006 255);
+        --backdrop-scrim: oklch(0.050 0.006 255 / 0.76);
+      }
+    }
+
+    @layer base {
+      html {
+        background-color: var(--surface-field);
+        color: var(--ink-primary);
+        font-size: 16px;
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      html:has(dialog[open]) {
+        overflow: hidden;
+      }
+
+      html, body, button, input, select, textarea, output {
+        font-family: var(--font-sans);
+        font-kerning: normal;
+        text-rendering: geometricPrecision;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: var(--surface-field);
+        color: var(--ink-primary);
+        font-size: 1rem;
+        line-height: 1.55;
+        overflow-x: clip;
+      }
+
+      h1, h2, h3, h4 {
+        color: var(--ink-primary);
+        font-weight: 600;
+        letter-spacing: -0.024em;
+        text-wrap: balance;
+      }
+
+      a {
+        color: var(--ink-primary);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.22em;
+      }
+      a:hover {
+        text-decoration-thickness: 2px;
+      }
+
+      section[id] {
+        scroll-margin-top: 1.75rem;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      .tnum,
+      output {
+        font-family: var(--font-sans);
+        font-variant-numeric: tabular-nums lining-nums;
+      }
+
+      .hw-code {
+        font-family: var(--font-mono);
+        font-size: 0.84375rem;
+        letter-spacing: -0.01em;
+      }
+
+      .chem-sub {
+        font-size: 0.72em;
+        line-height: 0;
+        vertical-align: -0.18em;
+      }
+
+      :is(a, button, input, select, textarea, [tabindex]):focus {
+        outline: none;
+      }
+
+      :is(a, button, input, select, textarea, [role="tab"]):focus-visible {
+        outline: 2px solid var(--focus-outer);
+        outline-offset: 3px;
+        box-shadow: 0 0 0 2px var(--focus-inner);
+      }
+
+      .macro-stage :is(a, button, input):focus-visible {
+        outline: 2px solid var(--banner-fg);
+        outline-offset: 3px;
+        box-shadow: 0 0 0 2px var(--banner-base);
+      }
+    }
+
+    @layer components {
+      /* Tactile Socketed Keycaps (zero status dots — crisp text labels only) */
+      .hw-key {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        padding: 0 0 3px 0;
+        position: relative;
+        display: inline-grid;
+        align-self: flex-start;
+        justify-self: start;
+        min-height: var(--target-min);
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .hw-edge {
+        grid-area: 1 / 1;
+        align-self: end;
+        width: 100%;
+        height: calc(100% - 2px);
+        margin-bottom: -3px;
+        border-radius: var(--r-cap);
+        background-color: var(--cap-std-wall);
+      }
+
+      .hw-cap {
+        grid-area: 1 / 1;
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+        min-height: calc(var(--target-min) - 3px);
+        padding: 10px 18px;
+        border-radius: var(--r-cap);
+        border: 1px solid var(--border-hairline);
+        background-color: var(--cap-std-top);
+        background-image: linear-gradient(180deg, var(--cap-std-top), var(--cap-std-bot));
+        color: var(--cap-std-ink);
+        font-size: 0.90625rem;
+        font-weight: 600;
+        line-height: 1.2;
+        white-space: nowrap;
+        transition: transform 75ms ease, filter 110ms ease;
+      }
+
+      .hw-key--rec .hw-edge {
+        background-color: var(--cap-rec-wall);
+      }
+      .hw-key--rec .hw-cap {
+        border-color: transparent;
+        background-color: var(--cap-rec-top);
+        background-image: linear-gradient(180deg, var(--cap-rec-top), var(--cap-rec-bot));
+        color: var(--cap-rec-ink);
+      }
+
+      .hw-key--dark .hw-edge {
+        background-color: var(--cap-dark-wall);
+      }
+      .hw-key--dark .hw-cap {
+        border-color: transparent;
+        background-color: var(--cap-dark-top);
+        background-image: linear-gradient(180deg, var(--cap-dark-top), var(--cap-dark-bot));
+        color: var(--cap-dark-ink);
+      }
+
+      .hw-key:disabled {
+        cursor: not-allowed;
+        padding-bottom: 0;
+      }
+      .hw-key:disabled .hw-edge {
+        display: none;
+      }
+      .hw-key:disabled .hw-cap {
+        background-image: none;
+        background-color: var(--cap-dis-bg);
+        color: var(--cap-dis-fg);
+        border-color: var(--border-hairline);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .hw-key:not(:disabled):not([aria-disabled="true"]):hover .hw-cap {
+          filter: brightness(0.96);
+        }
+      }
+
+      .hw-key:not(:disabled):not([aria-disabled="true"]):active .hw-cap {
+        transform: translateY(2px);
+      }
+
+      /* Locked-width cell overlap for submitting keycap */
+      .key-cell-stack {
+        display: inline-grid;
+        align-items: center;
+        justify-items: center;
+      }
+      .key-cell-stack > * {
+        grid-area: 1 / 1;
+      }
+      .hw-key[data-loading="true"] {
+        cursor: progress;
+      }
+      .hw-key:not([data-loading="true"]) .key-busy-layer {
+        visibility: hidden;
+      }
+      .hw-key[data-loading="true"] .key-rest-layer {
+        visibility: hidden;
+      }
+      .key-busy-layer {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .spin-ring {
+        width: 15px;
+        height: 15px;
+        animation: fr-spin 0.9s linear infinite;
+      }
+      @keyframes fr-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      /* Over-photo luminous chalk CTA */
+      .over-macro-btn {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        min-height: var(--target-min);
+        padding: 10px 18px;
+        border-radius: var(--r-cap);
+        border: 1px solid transparent;
+        background-color: var(--banner-fg);
+        color: var(--banner-base);
+        font-size: 0.90625rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .over-macro-btn:hover {
+          filter: brightness(0.93);
+        }
+      }
+
+      /* Bordered Theme Toggle */
+      .util-chip {
+        appearance: none;
+        min-height: 38px;
+        padding: 6px 14px;
+        border: 1px solid var(--border-util);
+        border-radius: var(--r-cap);
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .util-chip:hover {
+          background-color: var(--surface-deck);
+        }
+      }
+
+      /* Specimen State Switcher Tabs ([role="tablist"][data-state-tabs]) */
+      .state-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        padding: 4px;
+        margin-bottom: 18px;
+        border-radius: 10px;
+        background-color: var(--surface-recess);
+        width: fit-content;
+        max-width: 100%;
+      }
+
+      .state-tab {
+        appearance: none;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        background: transparent;
+        min-height: 38px;
+        padding: 7px 14px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-secondary);
+        cursor: pointer;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .state-tab:hover {
+          color: var(--ink-primary);
+        }
+      }
+
+      .state-tab[aria-selected="true"] {
+        background-color: var(--surface-elevated);
+        border-color: var(--border-hairline);
+        color: var(--ink-primary);
+        font-weight: 600;
+      }
+
+      /* Photography Frames (100% un-dimmed luminance in both themes + inner ring) */
+      .photo-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        background-color: var(--surface-photo);
+        box-shadow: inset 0 0 0 1px var(--photo-ring);
+      }
+
+      .photo-frame img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        filter: none;
+      }
+
+      .photo-frame--16x9 img {
+        aspect-ratio: 16 / 9;
+      }
+
+      .photo-frame--4x3 img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .photo-loading-well {
+        aspect-ratio: 4 / 3;
+        width: 100%;
+        border-radius: 10px;
+        background-color: var(--surface-photo);
+        background-image: linear-gradient(
+          110deg,
+          var(--surface-photo) 28%,
+          var(--surface-elevated) 50%,
+          var(--surface-photo) 72%
+        );
+        box-shadow: inset 0 0 0 1px var(--border-hairline);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+      }
+
+      .photo-caption {
+        margin-top: 10px;
+        font-size: 0.875rem;
+        line-height: 1.48;
+        color: var(--ink-secondary);
+      }
+
+      /* Fixed-pigment finish swatch buttons (immune to dark-mode token inversion) */
+      .finish-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .finish-choice {
+        appearance: none;
+        min-height: 40px;
+        padding: 7px 13px;
+        border: 1px solid var(--border-hairline);
+        border-radius: var(--r-cap);
+        background-color: var(--surface-elevated);
+        color: var(--ink-secondary);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+      }
+
+      .finish-choice[aria-pressed="true"] {
+        border-color: var(--border-field);
+        color: var(--ink-primary);
+        font-weight: 600;
+      }
+
+      .finish-swatch {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
+
+      .finish-check {
+        width: 13px;
+        height: 13px;
+        opacity: 0;
+      }
+
+      .finish-choice[aria-pressed="true"] .finish-check {
+        opacity: 1;
+      }
+
+      /* Full-bleed Raking Macro Aluminum Background Stage (right fader bank completely uncovered) */
+      .macro-stage {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--r-deck);
+        background-color: var(--banner-base);
+        background-image:
+          linear-gradient(
+            96deg,
+            oklch(0.125 0.008 255 / 0.94) 0%,
+            oklch(0.125 0.008 255 / 0.78) 28%,
+            oklch(0.125 0.008 255 / 0.00) 47%
+          ),
+          url('../images/fr-macro-bg.png');
+        background-size: cover;
+        background-position: center, 76% 50%;
+        padding: clamp(26px, 4.5vw, 44px);
+        box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.10);
+      }
+
+      @media (max-width: 720px) {
+        .macro-stage {
+          background-image:
+            linear-gradient(
+              0deg,
+              oklch(0.125 0.008 255 / 0.95) 0%,
+              oklch(0.125 0.008 255 / 0.78) 54%,
+              oklch(0.125 0.008 255 / 0.18) 100%
+            ),
+            url('../images/fr-macro-bg.png');
+          background-position: center, 76% 30%;
+        }
+      }
+
+      .macro-mobile-specimen {
+        width: min(356px, 100%);
+        border-radius: var(--r-deck);
+        overflow: hidden;
+        background-color: var(--banner-base);
+        background-image:
+          linear-gradient(
+            0deg,
+            oklch(0.125 0.008 255 / 0.94) 0%,
+            oklch(0.125 0.008 255 / 0.74) 48%,
+            oklch(0.125 0.008 255 / 0.00) 76%
+          ),
+          url('../images/fr-macro-bg.png');
+        background-size: cover;
+        background-position: center, 76% 24%;
+        padding: 132px 22px 24px;
+        color: var(--banner-fg);
+        box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.12);
+      }
+
+      .macro-copy {
+        max-width: 38ch;
+        color: var(--banner-fg);
+      }
+
+      .macro-title {
+        font-size: clamp(1.375rem, 2.2vw, 1.75rem);
+        line-height: 1.18;
+        color: var(--banner-fg);
+      }
+
+      .macro-lead {
+        margin-top: 10px;
+        color: var(--banner-sub);
+        font-size: 0.9375rem;
+      }
+
+      .audition-well {
+        margin-top: 20px;
+        max-width: 428px;
+        padding: 18px 20px;
+        border-radius: 10px;
+        border: 1px solid var(--banner-border);
+        background-color: var(--banner-well);
+        color: var(--banner-fg);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .audition-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 16px;
+      }
+
+      .audition-label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--banner-sub);
+      }
+
+      .audition-readout {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--banner-fg);
+      }
+
+      .fader-row {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .step-nudge {
+        appearance: none;
+        min-height: 38px;
+        padding: 6px 12px;
+        border: 1px solid var(--banner-border);
+        border-radius: 6px;
+        background-color: oklch(0.22 0.008 255);
+        color: var(--banner-fg);
+        font-size: 0.8125rem;
+        font-weight: 600;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .hw-fader {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        height: 30px;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .hw-fader::-webkit-slider-runnable-track {
+        height: 6px;
+        border-radius: 3px;
+        background-color: var(--banner-track);
+        border: 1px solid var(--banner-border);
+      }
+
+      .hw-fader::-webkit-slider-thumb {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 24px;
+        height: 18px;
+        margin-top: -7px;
+        border-radius: 3px;
+        background-color: oklch(0.95 0.004 88);
+        border: 1px solid oklch(0.42 0.008 255);
+      }
+
+      .hw-fader::-moz-range-track {
+        height: 6px;
+        border-radius: 3px;
+        background-color: var(--banner-track);
+        border: 1px solid var(--banner-border);
+      }
+
+      .hw-fader::-moz-range-thumb {
+        width: 24px;
+        height: 18px;
+        border-radius: 3px;
+        background-color: oklch(0.95 0.004 88);
+        border: 1px solid oklch(0.42 0.008 255);
+      }
+
+      .audition-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        font-size: 0.8125rem;
+        color: var(--banner-muted);
+      }
+
+      /* Form Inputs, OS-free Selects & Custom Checkboxes */
+      .field-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        min-width: 0;
+      }
+
+      .field-label {
+        font-size: 0.90625rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .field-hint {
+        font-size: 0.84375rem;
+        color: var(--ink-muted);
+        line-height: 1.42;
+      }
+
+      .hw-input,
+      .hw-select {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        min-height: var(--target-min);
+        padding: 10px 13px;
+        border: 1px solid var(--border-field);
+        border-radius: var(--r-input);
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        font-size: 0.95rem;
+      }
+
+      .hw-input[readonly] {
+        background-color: var(--surface-recess);
+      }
+
+      .select-wrap {
+        position: relative;
+        display: grid;
+        align-items: center;
+      }
+
+      .hw-select {
+        padding-right: 38px;
+        cursor: pointer;
+      }
+
+      .select-chevron {
+        position: absolute;
+        right: 12px;
+        width: 15px;
+        height: 15px;
+        pointer-events: none;
+        color: var(--ink-primary);
+      }
+
+      .hw-input[aria-invalid="true"] {
+        border: 1.5px solid var(--signal-err-border);
+        background-color: var(--signal-err-bg);
+      }
+
+      .field-error {
+        margin-top: 3px;
+        color: var(--signal-err-ink);
+        font-size: 0.84375rem;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+
+      input[type="checkbox"].hw-check {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        margin: 2px 0 0 0;
+        flex-shrink: 0;
+        border: 1.5px solid var(--border-field);
+        border-radius: 4px;
+        background-color: var(--surface-elevated);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+
+      input[type="checkbox"].hw-check::after {
+        content: "";
+        width: 10px;
+        height: 6px;
+        border-left: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+        transform: rotate(-45deg) translate(1px, -1px);
+      }
+
+      input[type="checkbox"].hw-check:checked {
+        background-color: var(--ink-primary);
+        border-color: var(--ink-primary);
+      }
+
+      input[type="checkbox"].hw-check:checked::after {
+        border-left-color: var(--surface-elevated);
+        border-bottom-color: var(--surface-elevated);
+      }
+
+      input[type="checkbox"].hw-check:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      /* Currency Cadence Toggle */
+      .currency-toggle {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        padding: 3px;
+        min-height: 40px;
+        border: 1px solid var(--border-util);
+        border-radius: var(--r-cap);
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        cursor: pointer;
+      }
+
+      .cur-usd,
+      .cur-eur {
+        padding: 6px 12px;
+        border-radius: 5px;
+        font-size: 0.84375rem;
+        font-weight: 600;
+        color: var(--ink-secondary);
+        white-space: nowrap;
+      }
+
+      .currency-toggle[aria-pressed="false"] .cur-usd,
+      .currency-toggle[aria-pressed="true"] .cur-eur {
+        background-color: var(--ink-primary);
+        color: var(--surface-elevated);
+      }
+
+      /* OLED Reserved Confirmation Panel */
+      .oled-confirm {
+        padding: 18px 20px;
+        border-radius: 10px;
+        background-color: var(--oled-bg);
+        color: var(--oled-fg);
+      }
+
+      .oled-confirm h3 {
+        font-size: 1.03125rem;
+        color: var(--oled-fg);
+      }
+
+      .oled-confirm p {
+        margin-top: 6px;
+        font-size: 0.875rem;
+        color: var(--oled-sub);
+      }
+
+      /* Order Summary Dialog & Toast */
+      dialog {
+        padding: 0;
+        border: 1px solid var(--deck-chamfer);
+        background-color: var(--surface-deck);
+        color: var(--ink-primary);
+        box-shadow: var(--deck-shadow);
+        overscroll-behavior: contain;
+      }
+      dialog::backdrop {
+        background-color: var(--backdrop-scrim);
+      }
+
+      .hw-modal {
+        width: min(480px, calc(100vw - 32px));
+        border-radius: var(--r-deck);
+        margin: auto;
+      }
+
+      .dialog-body {
+        padding: clamp(22px, 4vw, 28px);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .dialog-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .dialog-head h2 {
+        font-size: 1.25rem;
+        line-height: 1.22;
+      }
+
+      .close-btn {
+        appearance: none;
+        background-color: var(--surface-elevated);
+        border: 1px solid var(--border-util);
+        border-radius: var(--r-cap);
+        min-width: 40px;
+        min-height: 40px;
+        display: inline-grid;
+        place-items: center;
+        color: var(--ink-primary);
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .order-summary-rows {
+        border-top: 1px solid var(--border-hairline);
+      }
+
+      .order-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 14px;
+        padding-block: 11px;
+        border-bottom: 1px solid var(--border-hairline);
+        font-size: 0.875rem;
+      }
+
+      .order-row dt {
+        color: var(--ink-secondary);
+      }
+
+      .order-row dd {
+        font-weight: 600;
+        color: var(--ink-primary);
+        text-align: right;
+      }
+
+      .dialog-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .toast-region {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        z-index: 150;
+        max-width: min(370px, calc(100vw - 32px));
+      }
+
+      .toast-box {
+        padding: 14px 18px;
+        border-radius: 10px;
+        border: 1px solid var(--deck-chamfer);
+        background-color: var(--surface-elevated);
+        color: var(--ink-primary);
+        box-shadow: var(--deck-shadow);
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+    }
+
+    @layer layout {
+      .shell {
+        width: 100%;
+        max-width: 1120px;
+        margin-inline: auto;
+        padding-inline: clamp(18px, 4vw, 44px);
+      }
+
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 12px;
+        z-index: 200;
+        padding: 10px 16px;
+        border-radius: var(--r-cap);
+        background-color: var(--ink-primary);
+        color: var(--surface-elevated);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .skip-link:focus {
+        left: 20px;
+      }
+
+      /* Single-row Header */
+      .site-header {
+        background-color: var(--surface-field);
+        border-bottom: 1px solid var(--border-hairline);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px 24px;
+        min-height: 66px;
+        padding-block: 12px;
+      }
+
+      .brand-mark {
+        font-size: 1.1875rem;
+        font-weight: 650;
+        letter-spacing: -0.022em;
+        color: var(--ink-primary);
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .header-end {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 22px;
+      }
+
+      .site-nav a {
+        font-size: 0.90625rem;
+        font-weight: 500;
+        color: var(--ink-secondary);
+        text-decoration: none;
+        white-space: nowrap;
+        padding-block: 5px;
+        border-bottom: 2px solid transparent;
+      }
+
+      .site-nav a:hover {
+        color: var(--ink-primary);
+      }
+
+      .site-nav a[aria-current="page"] {
+        color: var(--ink-primary);
+        font-weight: 600;
+        border-bottom-color: var(--fr-vermilion-500);
+      }
+
+      @media (max-width: 740px) {
+        .header-inner {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          align-items: center;
+          gap: 10px 16px;
+        }
+        .header-end {
+          display: contents;
+        }
+        .util-chip {
+          grid-column: 2;
+          grid-row: 1;
+        }
+        .site-nav {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          flex-wrap: wrap;
+          gap: 6px 12px;
+        }
+        .site-nav a {
+          font-size: 0.78125rem;
+        }
+      }
+
+      /* Design System Page Intro + Single-Column Contents */
+      .doc-intro {
+        padding-block: clamp(32px, 4.5vw, 48px);
+        border-bottom: 1px solid var(--border-hairline);
+      }
+
+      .intro-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.32fr) minmax(280px, 0.85fr);
+        gap: 32px 52px;
+        align-items: start;
+      }
+
+      @media (max-width: 860px) {
+        .intro-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .doc-h1 {
+        font-size: clamp(2rem, 3.4vw, 2.6875rem);
+        line-height: 1.08;
+        max-width: 22ch;
+      }
+
+      .doc-intro-copy {
+        margin-top: 16px;
+        max-width: 62ch;
+        color: var(--ink-secondary);
+        font-size: 1.03125rem;
+      }
+
+      .toc-heading {
+        font-size: 1rem;
+        margin-bottom: 12px;
+      }
+
+      .contents-list {
+        columns: 1;
+        padding-left: 1.35rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-family: var(--font-sans);
+        font-size: 0.9375rem;
+        color: var(--ink-secondary);
+      }
+
+      .contents-list li {
+        padding-left: 4px;
+      }
+
+      /* 6 Component Documentation Chapters */
+      .doc-section {
+        padding-block: clamp(38px, 5vw, 54px);
+      }
+
+      .doc-section + .doc-section {
+        padding-top: clamp(24px, 3.5vw, 36px);
+      }
+
+      .doc-h2 {
+        font-size: clamp(1.4375rem, 2.3vw, 1.8125rem);
+        line-height: 1.18;
+      }
+
+      .doc-desc {
+        margin-top: 10px;
+        max-width: 65ch;
+        color: var(--ink-secondary);
+        text-wrap: pretty;
+      }
+
+      /* Usage Guidance Block (satin aluminum deck — borderless to prevent nested cages) */
+      .usage-notes {
+        margin-top: 22px;
+        padding: 22px 26px;
+        border-radius: var(--r-deck);
+        background-color: var(--surface-deck);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px 40px;
+      }
+
+      @media (max-width: 760px) {
+        .usage-notes {
+          grid-template-columns: 1fr;
+          padding: 20px;
+        }
+      }
+
+      .usage-col h3 {
+        font-size: 0.96875rem;
+        margin-bottom: 10px;
+      }
+
+      .usage-col ul {
+        padding-left: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.90625rem;
+        line-height: 1.5;
+        color: var(--ink-secondary);
+      }
+
+      .usage-col li {
+        text-wrap: pretty;
+      }
+
+      /* Specimen Stages & Explicit State Grids */
+      .specimen-stage {
+        margin-top: 28px;
+      }
+
+      .specimen-surface {
+        padding: clamp(20px, 3vw, 30px);
+        border-radius: var(--r-deck);
+        border: 1px solid var(--deck-chamfer);
+        background-color: var(--surface-deck);
+      }
+
+      .specimen-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .specimen-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 820px) {
+        .specimen-grid-2,
+        .specimen-grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .specimen-card {
+        padding: 22px;
+        border-radius: var(--r-deck);
+        border: 1px solid var(--deck-chamfer);
+        background-color: var(--surface-deck);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .specimen-label {
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border-hairline);
+        font-size: 0.84375rem;
+        font-weight: 600;
+        color: var(--ink-muted);
+      }
+
+      /* Chapter 2: Hardware Showcase & Docked Buy Bar */
+      .hero-copy-bar {
+        margin-bottom: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 8px 24px;
+      }
+
+      .buy-strip {
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-hairline);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px 24px;
+      }
+
+      .buy-summary {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 16px 22px;
+      }
+
+      .buy-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .buy-price {
+        font-size: 1.5rem;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+      }
+
+      .buy-ship {
+        font-size: 0.84375rem;
+        color: var(--ink-secondary);
+      }
+
+      /* Chapter 3: Mobile Crop Split */
+      .crop-split {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 24px 36px;
+        align-items: center;
+      }
+
+      @media (max-width: 760px) {
+        .crop-split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Chapter 4: Asymmetric 2fr/1fr & 1fr/2fr Spec Bento */
+      .spec-bento {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .spec-cell {
+        padding: 24px;
+        border-radius: var(--r-deck);
+        border: 1px solid var(--deck-chamfer);
+        background-color: var(--surface-deck);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .spec-cell--wide {
+        grid-column: span 2;
+      }
+
+      @media (max-width: 820px) {
+        .spec-bento {
+          grid-template-columns: 1fr;
+        }
+        .spec-cell--wide {
+          grid-column: span 1;
+        }
+      }
+
+      .spec-unit {
+        font-size: 1.125rem;
+      }
+
+      .spec-copy {
+        font-size: 0.90625rem;
+        color: var(--ink-secondary);
+        max-width: 58ch;
+      }
+
+      .spec-dl {
+        margin-top: 16px;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+        font-size: 0.875rem;
+      }
+
+      .spec-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 14px;
+      }
+
+      .spec-row dt {
+        color: var(--ink-secondary);
+      }
+
+      .spec-row dd {
+        font-weight: 600;
+        color: var(--ink-primary);
+        text-align: right;
+      }
+
+      .routing-panel {
+        padding: 24px;
+        border-radius: var(--r-deck);
+        border: 1px solid var(--deck-chamfer);
+        background-color: var(--surface-deck);
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.9fr);
+        gap: 20px 32px;
+        align-items: start;
+      }
+
+      @media (max-width: 780px) {
+        .routing-panel {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Chapter 5: Modular Two-Column Kit Configurator */
+      .config-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px 24px;
+        margin-bottom: 20px;
+      }
+
+      .config-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(270px, 0.9fr);
+        gap: 24px 32px;
+        align-items: start;
+      }
+
+      @media (max-width: 860px) {
+        .config-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .config-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .step-legend {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+        margin-bottom: 10px;
+      }
+
+      .addon-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .addon-card {
+        padding: 16px 18px;
+        border-radius: 10px;
+        background-color: var(--surface-elevated);
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        cursor: pointer;
+      }
+
+      .addon-card--base {
+        justify-content: space-between;
+        cursor: default;
+      }
+
+      .addon-card--disabled {
+        background-color: var(--surface-recess);
+        cursor: not-allowed;
+      }
+
+      .addon-body {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .addon-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .addon-title {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .addon-price {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+        white-space: nowrap;
+      }
+
+      .addon-desc {
+        font-size: 0.84375rem;
+        color: var(--ink-secondary);
+      }
+
+      .addon-save {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--ink-accent);
+      }
+
+      .buybox {
+        padding: 20px;
+        border-radius: 12px;
+        background-color: var(--surface-elevated);
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .buybox-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .buybox-lines {
+        list-style: none;
+        padding-top: 18px;
+        border-top: 1px solid var(--border-hairline);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 0.875rem;
+      }
+
+      .buybox-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--ink-secondary);
+      }
+
+      .buybox-item-col {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .buybox-item-save {
+        font-size: 0.78125rem;
+        font-weight: 500;
+        color: var(--ink-accent);
+      }
+
+      .buybox-total-row {
+        padding-top: 18px;
+        border-top: 1px solid var(--border-hairline);
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 12px;
+      }
+
+      .buybox-total {
+        font-size: 1.625rem;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+        color: var(--ink-primary);
+      }
+
+      /* Chapter 6: Session Proof Split & Reservation Form */
+      .story-split {
+        display: grid;
+        grid-template-columns: minmax(250px, 0.98fr) minmax(0, 1.2fr);
+        gap: 24px 36px;
+        align-items: center;
+      }
+
+      @media (max-width: 820px) {
+        .story-split {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .bench-quote {
+        font-size: 1.125rem;
+        line-height: 1.44;
+        color: var(--ink-primary);
+      }
+
+      .bench-cite {
+        margin-top: 10px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--ink-primary);
+      }
+
+      .bench-method {
+        margin-top: 3px;
+        font-size: 0.8125rem;
+        color: var(--ink-muted);
+      }
+
+      .dispatch-form-wrap {
+        margin-top: 26px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border-hairline);
+      }
+
+      .dispatch-row {
+        display: grid;
+        grid-template-columns: minmax(200px, 1fr) minmax(200px, 0.9fr) auto;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .dispatch-btn-cell {
+        padding-top: 27px;
+      }
+
+      @media (max-width: 800px) {
+        .dispatch-row {
+          grid-template-columns: 1fr;
+        }
+        .dispatch-btn-cell {
+          padding-top: 4px;
+        }
+      }
+
+      /* Footer */
+      .site-footer {
+        padding-block: 34px 48px;
+        border-top: 1px solid var(--border-hairline);
+        color: var(--ink-muted);
+        font-size: 0.875rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px 24px;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 24px;
+      }
+    }
+
+    @layer utilities {
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .hw-key:not(:disabled):active .hw-cap {
+          transform: none !important;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .hw-edge { display: none !important; }
+        .hw-key { padding-bottom: 0 !important; }
+        .hw-cap, .over-macro-btn, .util-chip, .close-btn, .state-tab, .currency-toggle, .finish-choice, .step-nudge {
+          transform: none !important;
+          background-image: none !important;
+          background: ButtonFace !important;
+          color: ButtonText !important;
+          border: 1.5px solid ButtonText !important;
+          box-shadow: none !important;
+        }
+        .hw-key:disabled .hw-cap {
+          color: GrayText !important;
+          border-color: GrayText !important;
+        }
+        .util-chip[aria-pressed="true"],
+        .finish-choice[aria-pressed="true"],
+        .state-tab[aria-selected="true"],
+        .currency-toggle[aria-pressed="false"] .cur-usd,
+        .currency-toggle[aria-pressed="true"] .cur-eur,
+        .oled-confirm {
+          forced-color-adjust: none;
+          background: Highlight !important;
+          color: HighlightText !important;
+          border: 1px solid Highlight !important;
+        }
+        .oled-confirm h3,
+        .oled-confirm p {
+          color: HighlightText !important;
+        }
+        .hw-input, .hw-select, input[type="checkbox"].hw-check {
+          background: Field !important;
+          color: FieldText !important;
+          border: 1.5px solid FieldText !important;
+        }
+        input[type="checkbox"].hw-check:checked {
+          forced-color-adjust: none;
+          background: Highlight !important;
+          border-color: Highlight !important;
+        }
+        .hw-fader {
+          appearance: auto !important;
+          -webkit-appearance: auto !important;
+          border: 1px solid ButtonText !important;
+        }
+        .macro-stage,
+        .macro-mobile-specimen,
+        .audition-well,
+        .usage-notes,
+        .specimen-surface,
+        .specimen-card,
+        .spec-cell,
+        .routing-panel,
+        .addon-card,
+        .buybox,
+        .photo-loading-well,
+        dialog,
+        .toast-box {
+          background-image: none !important;
+          background: Canvas !important;
+          color: CanvasText !important;
+          border: 1px solid CanvasText !important;
+          box-shadow: none !important;
+        }
+        .macro-title,
+        .macro-lead,
+        .audition-label,
+        .audition-readout,
+        .audition-meta {
+          color: CanvasText !important;
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to commerce and media components</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand-mark" href="../index.html">Fieldrig</a>
+      <div class="header-end">
+        <nav class="site-nav" aria-label="Primary">
+          <a href="../index.html">All systems</a>
+          <a href="../systems/fieldrig.html">Product components</a>
+          <a href="#main-content" aria-current="page">Marketing components</a>
+        </nav>
+        <button type="button" class="util-chip" data-theme-toggle aria-pressed="false" aria-label="Switch display theme">Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="doc-intro">
+      <div class="shell intro-grid">
+        <div>
+          <h1 class="doc-h1">Fieldrig marketing components</h1>
+          <p class="doc-intro-copy">Use these components to present studio hardware photography, finish switchers, measured specifications, and direct-to-engineer ordering alongside the TP-4 mixer interface. Every pattern pairs lighting, crop, and contrast rules with live controls shown across stock, bundle, waitlist, and validation states.</p>
+        </div>
+
+        <nav class="doc-toc" aria-labelledby="toc-title">
+          <h2 id="toc-title" class="toc-heading">Contents</h2>
+          <ol class="contents-list">
+            <li><a href="#product-photography">Studio and session photography</a></li>
+            <li><a href="#hardware-hero">Studio product showcase and buy bar</a></li>
+            <li><a href="#macro-banner">Macro background-image feature stage</a></li>
+            <li><a href="#spec-bento">Measured specification bento</a></li>
+            <li><a href="#kit-configurator">Modular hardware configurator</a></li>
+            <li><a href="#allocation-form">Batch reservation and editorial proof states</a></li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         1. STUDIO AND SESSION PHOTOGRAPHY (#product-photography)
+         ====================================================================== -->
+    <section id="product-photography" data-component-doc class="doc-section" aria-labelledby="h-product-photography">
+      <div class="shell">
+        <h2 id="h-product-photography" class="doc-h2">Studio and session photography</h2>
+        <p class="doc-desc">Establishes how aluminum product renders, studio accessory photographs, and zero-image fallbacks preserve geometry across light and anodized dark themes.</p>
+
+        <div class="usage-notes" data-usage-notes>
+          <div class="usage-col">
+            <h3>When to use</h3>
+            <ul>
+              <li>Lead hardware launches, finish selectors, and engineer case blocks with real directional photography rather than flat chassis drawings or synthetic audio charts.</li>
+              <li>Supply dimensioned spec fallbacks and fixed-ratio loading wells so slow studio guest networks never jump buy controls downward.</li>
+            </ul>
+          </div>
+          <div class="usage-col">
+            <h3>Usage and image rules</h3>
+            <ul>
+              <li>Lock camera angle and warm limestone table lighting across Natural Silver and Black Anodized renders so finish swaps shift zero pixels.</li>
+              <li>Angle session instruments and cables toward adjacent copy, and keep photographs at full native brightness in dark mode with an inner hairline ring.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="specimen-stage specimen-grid-2">
+          <div class="specimen-card" data-specimen-state="chassis-macro">
+            <p class="specimen-label">Milled chassis corner</p>
+            <figure>
+              <div class="photo-frame photo-frame--4x3">
+                <img
+                  src="../images/fr-chassis-angle.png"
+                  alt="Close studio photograph of bead-blasted Natural Silver 6061 aluminum corner bevel, recessed stainless Torx screw, and four front XLR sockets on pale limestone"
+                  width="2400"
+                  height="1792"
+                >
+              </div>
+              <figcaption class="photo-caption">Directional key lighting separates the 45-degree milled aluminum bevel and four recessed XLR / TRS inputs without crushing dark shadows.</figcaption>
+            </figure>
+          </div>
+
+          <div class="specimen-card" data-specimen-state="studio-accessories">
+            <p class="specimen-label">Studio accessories</p>
+            <figure>
+              <div class="photo-frame photo-frame--4x3">
+                <img
+                  src="../images/fr-desk-cable.png"
+                  alt="Coiled charcoal braided studio cable, brushed silver CM-2 stereo condenser microphone in a brass desk rest, and unmarked session notebook on an oak table"
+                  width="2400"
+                  height="1792"
+                >
+              </div>
+              <figcaption class="photo-caption">Coiled cable, CM-2 condenser barrel, and session book angle toward the page center rather than leading off the viewport edge.</figcaption>
+            </figure>
+          </div>
+
+          <div class="specimen-card" data-specimen-state="loading-frame">
+            <p class="specimen-label">Loading</p>
+            <figure>
+              <div class="photo-loading-well" role="img" aria-label="Studio photograph loading">
+                <span>Loading photograph</span>
+              </div>
+              <figcaption class="photo-caption">Finish buttons and dispatch date remain clickable at their final coordinates while lossless studio plates load.</figcaption>
+            </figure>
+          </div>
+
+          <div class="specimen-card" data-specimen-state="spec-fallback">
+            <p class="specimen-label">Specification fallback</p>
+            <dl class="spec-dl tnum" style="margin-top: 0; padding-top: 0; border-top: 0;">
+              <div class="spec-row">
+                <dt>Chassis footprint</dt>
+                <dd class="hw-code">118 × 84 × 18 mm</dd>
+              </div>
+              <div class="spec-row">
+                <dt>Field mass</dt>
+                <dd>310 g with internal cell</dd>
+              </div>
+              <div class="spec-row">
+                <dt>Front panel</dt>
+                <dd>OLED + 3 transport keys + 4 × 45 mm faders</dd>
+              </div>
+              <div class="spec-row">
+                <dt>Front audio I/O</dt>
+                <dd>4 × XLR / TRS inputs + USB-C</dd>
+              </div>
+            </dl>
+            <p class="photo-caption">Physical dimensions and connector counts stand in cleanly for offline dealer sheets and text-only assistive readers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         2. STUDIO PRODUCT SHOWCASE AND BUY BAR (#hardware-hero)
+         ====================================================================== -->
+    <section id="hardware-hero" data-component-doc class="doc-section" aria-labelledby="h-hardware-hero">
+      <div class="shell">
+        <h2 id="h-hardware-hero" class="doc-h2">Studio product showcase and buy bar</h2>
+        <p class="doc-desc">Combines an uncropped three-quarter hardware stage with geometry-matched finish switching and a docked order bar across active stock and closed-batch waitlist states.</p>
+
+        <div class="usage-notes" data-usage-notes>
+          <div class="usage-col">
+            <h3>When to use</h3>
+            <ul>
+              <li>Open single-instrument product pages where engineers inspect physical fader travel, I/O jacks, finish anodizing, and dispatch lead time together.</li>
+              <li>Switch to the closed-allocation state cleanly between Kronberg production runs rather than running fake countdown clocks.</li>
+            </ul>
+          </div>
+          <div class="usage-col">
+            <h3>Usage and image rules</h3>
+            <ul>
+              <li>Never stamp headlines or translucent badges across the milled aluminum chassis; dock finish swatches, price, and order action cleanly below the frame.</li>
+              <li>Use one plain-text vermilion order keycap with zero decorative status dots, and pair disabled closed-batch states with the next real build month.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="specimen-stage">
+          <div class="specimen-surface" data-specimen-state="in-stock" style="border: 0;">
+            <div class="hero-copy-bar">
+              <div>
+                <h3 style="font-size: clamp(1.375rem, 2.2vw, 1.75rem);">Four studio tracks in 310 grams of milled aluminum</h3>
+                <p style="margin-top: 6px; color: var(--ink-secondary); max-width: 58ch;">Record 32-bit float audio for 14 hours on internal battery and mix hands-on across four 45 mm Alps studio faders.</p>
+              </div>
+              <span class="hw-code" id="hero-sku-code">TP-4-SLV · Batch 04</span>
+            </div>
+
+            <figure class="photo-frame photo-frame--16x9">
+              <img
+                id="hero-img-silver"
+                src="../images/tp4-silver.png"
+                alt="Fieldrig TP-4 portable four-track recorder in Natural Silver 6061 aluminum on pale studio limestone"
+                width="2752"
+                height="1536"
+              >
+              <img
+                id="hero-img-black"
+                src="../images/tp4-black.png"
+                alt="Fieldrig TP-4 portable four-track recorder in matte Black Anodized aluminum on pale studio limestone"
+                width="2752"
+                height="1536"
+                hidden
+              >
+            </figure>
+
+            <div class="buy-strip">
+              <div class="finish-bar" role="group" aria-label="TP-4 chassis finish">
+                <button type="button" class="finish-choice" data-finish-btn="silver" aria-pressed="true">
+                  <svg class="finish-swatch" viewBox="0 0 16 16" aria-hidden="true">
+                    <rect x="1" y="1" width="14" height="14" rx="2" fill="#dedcd4" stroke="#76756f" stroke-width="1.2"/>
+                  </svg>
+                  <span>Natural Silver</span>
+                  <svg class="finish-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7.3L5.6 10.4L11.5 3.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button type="button" class="finish-choice" data-finish-btn="black" aria-pressed="false">
+                  <svg class="finish-swatch" viewBox="0 0 16 16" aria-hidden="true">
+                    <rect x="1" y="1" width="14" height="14" rx="2" fill="#23252a" stroke="#686c75" stroke-width="1.2"/>
+                  </svg>
+                  <span>Black Anodized</span>
+                  <svg class="finish-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M2.5 7.3L5.6 10.4L11.5 3.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              <div class="buy-summary">
+                <div class="buy-meta">
+                  <span class="buy-price tnum" data-price data-usd="$649" data-eur="€619">$649</span>
+                  <span class="buy-ship tnum">Ships in 2 business days · 30-day studio trial</span>
+                </div>
+                <button type="button" class="hw-key hw-key--rec" data-open-modal="order-modal" data-preset="base" aria-haspopup="dialog">
+                  <span class="hw-edge" aria-hidden="true"></span>
+                  <span class="hw-cap">Order TP-4</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Compact Waitlist Buy-Bar State (zero duplicate hero photo or outer tab clutter) -->
+          <div class="specimen-card" data-specimen-state="allocation-closed" style="margin-top: 20px;">
+            <p class="specimen-label">Allocation closed — Waitlist buy-bar state</p>
+            <div class="buy-strip" style="margin-top: 0; padding-top: 4px; border-top: 0;">
+              <div class="buy-meta">
+                <span class="buy-price tnum" data-price data-usd="$649" data-eur="€619">$649</span>
+                <span class="buy-ship">Batch 04 fully allocated · Batch 05 opens 18 January</span>
+              </div>
+              <div class="buy-summary">
+                <button type="button" class="hw-key" disabled>
+                  <span class="hw-edge" aria-hidden="true"></span>
+                  <span class="hw-cap">Allocation closed</span>
+                </button>
+                <a href="#allocation-form" class="hw-key hw-key--dark">
+                  <span class="hw-edge" aria-hidden="true"></span>
+                  <span class="hw-cap">Reserve Batch 05 slot</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         3. MACRO BACKGROUND-IMAGE FEATURE STAGE (#macro-banner)
+         ====================================================================== -->
+    <section id="macro-banner" data-component-doc class="doc-section" aria-labelledby="h-macro-banner">
+      <div class="shell">
+        <h2 id="h-macro-banner" class="doc-h2">Macro background-image feature stage</h2>
+        <p class="doc-desc">Frames one concise acoustic claim inside the natural left shadow pocket of a raking side-light macro photograph so brushed fader surfaces breathe without overlaid widgets.</p>
+
+        <div class="usage-notes" data-usage-notes>
+          <div class="usage-col">
+            <h3>When to use</h3>
+            <ul>
+              <li>Highlight one tactile engineering detail such as analog preamp headroom or fader travel over close-up milled hardware photography.</li>
+              <li>Never overlay sliders, forms, or telemetry boxes onto background photography; reserve interactive widgets for solid chassis surfaces.</li>
+            </ul>
+          </div>
+          <div class="usage-col">
+            <h3>Usage and image rules</h3>
+            <ul>
+              <li>Anchor the frame on the right fader bank and confine the charcoal ramp behind the left copy so the side-lit metal caps stay uncovered.</li>
+              <li>Declare an opaque dark background color behind the image and provide a solid fallback surface when forced-colors mode strips backgrounds.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="specimen-stage">
+          <div class="state-tabs" role="tablist" data-state-tabs aria-label="Macro background banner states">
+            <button type="button" class="state-tab" role="tab" id="tab-macro-left" aria-selected="true" aria-controls="panel-macro-left" tabindex="0">Left shadow callout</button>
+            <button type="button" class="state-tab" role="tab" id="tab-macro-bot" aria-selected="false" aria-controls="panel-macro-bot" tabindex="-1">Bottom caption banner</button>
+            <button type="button" class="state-tab" role="tab" id="tab-macro-solid" aria-selected="false" aria-controls="panel-macro-solid" tabindex="-1">High-contrast solid fallback</button>
+          </div>
+
+          <!-- Tab 1: Pure Left Shadow Callout (zero sliders or stepper buttons) -->
+          <div role="tabpanel" id="panel-macro-left" aria-labelledby="tab-macro-left">
+            <div class="macro-stage" style="padding-block: clamp(56px, 7.5vw, 92px);">
+              <div class="macro-copy" style="max-width: 34ch; display: flex; flex-direction: column; gap: 16px;">
+                <h3 class="macro-title">Discrete analog headroom across four channels</h3>
+                <p class="macro-lead tnum" style="margin-top: 0;">Stepped analog preamps feed dual 32-bit converters for 122 dB dynamic range on internal battery.</p>
+                <a href="#spec-bento" class="over-macro-btn">Read bench tolerances</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 2: Pure Bottom Caption Banner (zero buttons) -->
+          <div role="tabpanel" id="panel-macro-bot" aria-labelledby="tab-macro-bot" hidden>
+            <div class="macro-stage" style="padding-top: clamp(140px, 18vw, 220px); padding-bottom: 28px; background-image: linear-gradient(0deg, oklch(0.125 0.008 255 / 0.92) 0%, oklch(0.125 0.008 255 / 0.48) 38%, oklch(0.125 0.008 255 / 0.00) 68%), url('../images/fr-macro-bg.png'); background-position: center, 72% 42%;">
+              <div class="macro-copy" style="max-width: 54ch;">
+                <h3 class="macro-title" style="font-size: 1.3125rem;">Dust-sealed 45 mm Alps studio travel</h3>
+                <p class="macro-lead tnum" style="margin-top: 6px;">Laser-etched dB ticks sit flush in the bead-blasted face while all four carbon tracks send 14-bit MIDI CC over USB-C.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3: High-Contrast Solid Fallback -->
+          <div class="specimen-surface" role="tabpanel" id="panel-macro-solid" aria-labelledby="tab-macro-solid" hidden>
+            <div style="max-width: 52ch; display: flex; flex-direction: column; gap: 12px;">
+              <h3 style="font-size: 1.375rem;">Discrete analog headroom across four channels</h3>
+              <p class="tnum" style="color: var(--ink-secondary);">Stepped analog preamps feed dual 32-bit converters for 122 dB dynamic range and −129 dBu equivalent input noise on internal battery.</p>
+              <p class="field-hint">Solid chassis fallback removes background photography cleanly for assistive high-contrast and reduced-data sessions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         4. MEASURED SPECIFICATION BENTO (#spec-bento)
+         ====================================================================== -->
+    <section id="spec-bento" data-component-doc class="doc-section" aria-labelledby="h-spec-bento">
+      <div class="shell">
+        <h2 id="h-spec-bento" class="doc-h2">Measured specification bento</h2>
+        <p class="doc-desc">Presents bench-verified acoustic, battery, and CNC enclosure tolerances across an asymmetric two-to-one grid pairing wide ledger cards with compact single-focus cards.</p>
+
+        <div class="usage-notes" data-usage-notes>
+          <div class="usage-col">
+            <h3>When to use</h3>
+            <ul>
+              <li>Publish falsifiable bench readings where audio engineers verify noise floor, converter dynamic range, mass, and clock drift before buying.</li>
+              <li>Let typography and tabular figures stand cleanly on the page surface without stuffing extra mode switches or checkmarks underneath.</li>
+            </ul>
+          </div>
+          <div class="usage-col">
+            <h3>Usage and image rules</h3>
+            <ul>
+              <li>Keep analog equivalent input noise in dBu strictly distinct from converter dynamic range in dB across every heading and summary list.</li>
+              <li>Use one clear heading per card without stacked monospace eyebrows, placing bench figures inside bottom metric rows.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="specimen-stage">
+          <div class="spec-bento">
+            <article class="spec-cell spec-cell--wide" data-specimen-state="wide-ledger-card">
+              <h3 class="spec-unit">Dual-ADC 32-bit float input stage</h3>
+              <p class="spec-copy tnum">Four discrete preamps step from +12 dB to +60 dB into paired converters achieving 122 dB dynamic range without clipping close snare transients or starving low-output ribbon mics.</p>
+              <dl class="spec-dl tnum">
+                <div class="spec-row">
+                  <dt>Equivalent input noise</dt>
+                  <dd class="hw-code">−129 dBu A-weighted</dd>
+                </div>
+                <div class="spec-row">
+                  <dt>Converter dynamic range</dt>
+                  <dd class="hw-code">122 dB</dd>
+                </div>
+                <div class="spec-row">
+                  <dt>Phantom power</dt>
+                  <dd>48 V switchable per channel</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="spec-cell" data-specimen-state="compact-spec-card">
+              <h3 class="spec-unit tnum">118 × 84 × 18 mm CNC unibody</h3>
+              <p class="spec-copy">Milled from solid 6061-T6 bar stock to a 310 g finished unibody that shields mic inputs from RF interference, with a serviceable Torx T6 baseplate.</p>
+              <dl class="spec-dl tnum">
+                <div class="spec-row">
+                  <dt>Field mass</dt>
+                  <dd class="hw-code">310 g with cell</dd>
+                </div>
+                <div class="spec-row">
+                  <dt>Audio inputs</dt>
+                  <dd>4 × XLR / TRS inputs</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="spec-cell" data-specimen-state="narrative-spec-card">
+              <h3 class="spec-unit tnum">14-hour LiFePO<sub class="chem-sub">4</sub> internal battery</h3>
+              <p class="spec-copy">Records four isolated broadcast WAV stems plus a stereo fader mix all day across a 2,000-cycle cell with hum-free USB-C pass-through.</p>
+              <dl class="spec-dl tnum">
+                <div class="spec-row">
+                  <dt>Timecode clock</dt>
+                  <dd class="hw-code">0.2 ppm TCXO</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="spec-cell spec-cell--wide" data-specimen-state="wide-narrative-card">
+              <h3 class="spec-unit">45 mm Alps faders and USB-C audio</h3>
+              <p class="spec-copy tnum">Dust-sealed 45 mm carbon-track faders transmit 14-bit MIDI CC alongside 4-in / 4-out 96 kHz class-compliant audio across macOS, Linux, Windows, and iPadOS, while writing simultaneous safety ISO stems to microSDXC.</p>
+              <dl class="spec-dl tnum">
+                <div class="spec-row">
+                  <dt>Fader telemetry</dt>
+                  <dd>14-bit MIDI CC over USB-C</dd>
+                </div>
+                <div class="spec-row">
+                  <dt>Removable media</dt>
+                  <dd>microSDXC V30 up to 1 TB</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         5. MODULAR HARDWARE CONFIGURATOR (#kit-configurator)
+         ====================================================================== -->
+    <section id="kit-configurator" data-component-doc data-section="pricing" class="doc-section" aria-labelledby="h-kit-configurator">
+      <div class="shell">
+        <h2 id="h-kit-configurator" class="doc-h2">Modular hardware configurator</h2>
+        <p class="doc-desc">Replaces software seat tiers with a two-column build-to-order kit selector, live USD and EUR currency switch, and clean ledger order summary.</p>
+
+        <div class="usage-notes" data-usage-notes>
+          <div class="usage-col">
+            <h3>When to use</h3>
+            <ul>
+              <li>Use whenever engineers configure one calibrated instrument with anodized finishes, leather field protection, or multi-unit sync accessories.</li>
+              <li>Keep base unit, active bundle savings, and temporarily out-of-stock accessory rows distinct without resorting to Most popular ribbons.</li>
+            </ul>
+          </div>
+          <div class="usage-col">
+            <h3>Usage and image rules</h3>
+            <ul>
+              <li>Place bundle savings as a subtle note beneath the accessory line so item prices add cleanly down to the configured total.</li>
+              <li>Sync the selected chassis finish name into the order summary header, and state the restock month clearly on disabled accessories.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="specimen-stage">
+          <div class="specimen-surface" style="border: 0;">
+            <div class="config-toolbar">
+              <p style="font-size: 0.90625rem; color: var(--ink-secondary);">Every serialized unit is bench-swept in Kronberg and backed by a two-year hardware warranty.</p>
+              <button type="button" class="currency-toggle" id="currency-toggle" data-billing-toggle aria-pressed="false" aria-label="Switch store currency between USD and EUR">
+                <span class="cur-usd">USD $</span>
+                <span class="cur-eur">EUR €</span>
+              </button>
+            </div>
+
+            <form class="config-grid" id="config-form" novalidate>
+              <div class="config-steps">
+                <fieldset style="border: 0;">
+                  <legend class="step-legend">1. Anodized chassis finish</legend>
+                  <div class="finish-bar">
+                    <button type="button" class="finish-choice" data-finish-btn="silver" aria-pressed="true">
+                      <svg class="finish-swatch" viewBox="0 0 16 16" aria-hidden="true">
+                        <rect x="1" y="1" width="14" height="14" rx="2" fill="#dedcd4" stroke="#76756f" stroke-width="1.2"/>
+                      </svg>
+                      <span>Natural Silver</span>
+                      <svg class="finish-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M2.5 7.3L5.6 10.4L11.5 3.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                    <button type="button" class="finish-choice" data-finish-btn="black" aria-pressed="false">
+                      <svg class="finish-swatch" viewBox="0 0 16 16" aria-hidden="true">
+                        <rect x="1" y="1" width="14" height="14" rx="2" fill="#23252a" stroke="#686c75" stroke-width="1.2"/>
+                      </svg>
+                      <span>Black Anodized</span>
+                      <svg class="finish-check" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M2.5 7.3L5.6 10.4L11.5 3.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                </fieldset>
+
+                <fieldset style="border: 0;">
+                  <legend class="step-legend">2. Studio bundles and modular accessories</legend>
+                  <div class="addon-stack">
+                    <div class="addon-card addon-card--base">
+                      <div class="addon-body">
+                        <div class="addon-head">
+                          <span class="addon-title">TP-4 Recorder base unit</span>
+                          <span class="addon-price tnum" data-price data-usd="$649" data-eur="€619">$649</span>
+                        </div>
+                        <p class="addon-desc">Serialized 4-track deck, braided USB-C cable, 64 GB V30 card, and cotton dust pouch.</p>
+                      </div>
+                    </div>
+
+                    <label class="addon-card" for="addon-case">
+                      <input type="checkbox" class="hw-check" id="addon-case" checked data-kit-addon data-calc-input>
+                      <span class="addon-body">
+                        <span class="addon-head">
+                          <span class="addon-title">Stitched saddle-leather case and CM-2 mic</span>
+                          <span class="addon-price tnum" data-price data-usd="+$100" data-eur="+€96">+$100</span>
+                        </span>
+                        <span class="addon-desc">Cognac fitted leather sleeve, matched stereo condenser capsule, and fur windshield.</span>
+                        <span class="addon-save tnum" data-price data-usd="Saves $48 compared with individual accessories" data-eur="Saves €45 compared with individual accessories">Saves $48 compared with individual accessories</span>
+                      </span>
+                    </label>
+
+                    <label class="addon-card" for="addon-duo">
+                      <input type="checkbox" class="hw-check" id="addon-duo" data-kit-addon>
+                      <span class="addon-body">
+                        <span class="addon-head">
+                          <span class="addon-title">Matched second TP-4 and TRS clock link</span>
+                          <span class="addon-price tnum" data-price data-usd="+$591" data-eur="+€561">+$591</span>
+                        </span>
+                        <span class="addon-desc">Gain-matched companion unit, shielded word-clock cable for 8-track lock, and twin travel case.</span>
+                        <span class="addon-save tnum" data-price data-usd="Saves $58 compared with two single units" data-eur="Saves €58 compared with two single units">Saves $58 compared with two single units</span>
+                      </span>
+                    </label>
+
+                    <label class="addon-card addon-card--disabled" for="addon-stand">
+                      <input type="checkbox" class="hw-check" id="addon-stand" disabled>
+                      <span class="addon-body">
+                        <span class="addon-head">
+                          <span class="addon-title">Milled 18-degree desk stand</span>
+                          <span class="addon-price tnum" data-price data-usd="+$59" data-eur="+€55">+$59</span>
+                        </span>
+                        <span class="addon-desc">Temporarily out of stock · Next Kronberg milling batch ships December.</span>
+                      </span>
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <aside class="buybox" aria-label="Configured TP-4 order summary">
+                <div class="buybox-head">
+                  <h3 style="font-size: 1.03125rem;">Order summary</h3>
+                  <span class="hw-code" style="color: var(--ink-muted);" id="buybox-finish">Natural Silver</span>
+                </div>
+
+                <ul class="buybox-lines tnum">
+                  <li class="buybox-line">
+                    <span class="buybox-item-col">
+                      <span style="color: var(--ink-primary); font-weight: 500;">TP-4 Recorder</span>
+                      <span style="font-size: 0.78125rem; color: var(--ink-muted);">Batch 04 · 64 GB card + braided USB-C</span>
+                    </span>
+                    <span data-price data-usd="$649" data-eur="€619">$649</span>
+                  </li>
+                  <li class="buybox-line" id="line-case">
+                    <span class="buybox-item-col">
+                      <span style="color: var(--ink-primary); font-weight: 500;">Leather case + CM-2 mic</span>
+                      <span class="buybox-item-save" data-price data-usd="Saves $48 vs separate items" data-eur="Saves €45 vs separate items">Saves $48 vs separate items</span>
+                    </span>
+                    <span data-price data-usd="+$100" data-eur="+€96">+$100</span>
+                  </li>
+                  <li class="buybox-line" id="line-duo" hidden>
+                    <span class="buybox-item-col">
+                      <span style="color: var(--ink-primary); font-weight: 500;">Matched 2nd TP-4 + clock cable</span>
+                      <span class="buybox-item-save" data-price data-usd="Saves $58 vs separate items" data-eur="Saves €58 vs separate items">Saves $58 vs separate items</span>
+                    </span>
+                    <span data-price data-usd="+$591" data-eur="+€561">+$591</span>
+                  </li>
+                </ul>
+
+                <div class="buybox-total-row">
+                  <span style="font-size: 0.90625rem; font-weight: 600;">Configured total</span>
+                  <output id="kit-total" class="buybox-total tnum" data-price data-calc-output>$749</output>
+                </div>
+
+                <p class="field-hint">Signed APx555 bench sheet included · Ships in 2 business days · 30-day returns.</p>
+
+                <button type="button" class="hw-key hw-key--rec" data-open-modal="order-modal" data-preset="configured" aria-haspopup="dialog">
+                  <span class="hw-edge" aria-hidden="true"></span>
+                  <span class="hw-cap">Order configured kit</span>
+                </button>
+              </aside>
+            </form>
+          </div>
+
+          <div class="specimen-grid-3">
+            <div class="specimen-card tnum" data-specimen-state="base-unit">
+              <p class="specimen-label">Base unit state</p>
+              <p class="buy-price" data-price data-usd="$649" data-eur="€619">$649</p>
+              <p class="addon-desc">TP-4 deck, braided USB-C cable, and 64 GB card with zero bundle rows shown.</p>
+            </div>
+
+            <div class="specimen-card tnum" data-specimen-state="bundle-selected">
+              <p class="specimen-label">Bundle selected state</p>
+              <p class="buy-price" data-price data-usd="$749" data-eur="€715">$749</p>
+              <p class="addon-save" data-price data-usd="Saves $48 with leather case + CM-2" data-eur="Saves €45 with leather case + CM-2">Saves $48 with leather case + CM-2</p>
+            </div>
+
+            <div class="specimen-card" data-specimen-state="accessory-out-of-stock">
+              <p class="specimen-label">Out-of-stock accessory state</p>
+              <p class="addon-title">18-degree milled stand</p>
+              <p class="addon-desc">Checkbox disabled natively so Tab skips it while restock month stays legible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         6. BATCH RESERVATION AND EDITORIAL PROOF STATES (#allocation-form)
+         ====================================================================== -->
+    <section id="allocation-form" data-component-doc class="doc-section" aria-labelledby="h-allocation-form">
+      <div class="shell">
+        <h2 id="h-allocation-form" class="doc-h2">Batch reservation and editorial proof states</h2>
+        <p class="doc-desc">Pairs a Stockholm session photograph and named APx555 engineer measurement with a two-field Batch 05 waitlist reservation form documented across all four submission states.</p>
+
+        <div class="usage-notes" data-usage-notes>
+          <div class="usage-col">
+            <h3>When to use</h3>
+            <ul>
+              <li>Anchor the closing decision band with one verifiable studio measurement and firmware log directly ahead of serialized batch reservation.</li>
+              <li>Reference the four side-by-side form cards whenever building hardware pre-order, dealer hold, or calibration registration inputs.</li>
+            </ul>
+          </div>
+          <div class="usage-col">
+            <h3>Usage and image rules</h3>
+            <ul>
+              <li>Frame a 4:3 documentary session photo beside one named engineer quote and test condition instead of headshot triplets or five-star icons.</li>
+              <li>Validate email only on blur or submit, announce clear recovery guidance, and keep the tactile keycap width fixed while holding a serial slot.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="specimen-stage">
+          <div class="specimen-surface">
+            <div class="story-split">
+              <figure>
+                <div class="photo-frame photo-frame--4x3">
+                  <img
+                    src="../images/fr-studio-session.png"
+                    alt="Fieldrig TP-4 recorder inside a stitched saddle-leather field case beside open acoustic piano felt hammers and braided studio cable"
+                    width="2400"
+                    height="1792"
+                  >
+                </div>
+                <figcaption class="photo-caption">TP-4 in stitched saddle-leather case beside upright felt piano action, Stockholm session.</figcaption>
+              </figure>
+
+              <div>
+                <figure>
+                  <blockquote class="bench-quote tnum">
+                    “Measured −128.8 dBu A-weighted input noise on internal battery, matching Kronberg’s −129 dBu bench reading within 0.2 dB at a tenth of my mobile rack mass.”
+                  </blockquote>
+                  <figcaption class="bench-cite">Henrik Lind, Mastering Engineer, Stockholm</figcaption>
+                  <p class="bench-method tnum">Audio Precision APx555 sweep · 150-ohm source termination · 20 Hz to 20 kHz</p>
+                </figure>
+
+                <dl class="spec-dl tnum" style="margin-top: 20px;">
+                  <div class="spec-row">
+                    <dt class="hw-code">FW 1.4 · Oct</dt>
+                    <dd>USB-C stem bounce and pre-fader 32-bit ISO split</dd>
+                  </div>
+                  <div class="spec-row">
+                    <dt class="hw-code">FW 1.3 · Aug</dt>
+                    <dd>Count-in metronome isolated to headphone cue bus</dd>
+                  </div>
+                  <div class="spec-row">
+                    <dt class="hw-code">FW 1.2 · May</dt>
+                    <dd>SMPTE LTC timecode jam-sync on channel 04</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+
+            <form class="dispatch-form-wrap" id="dispatch-form" data-lead-form novalidate>
+              <h3 style="font-size: 1.1875rem; margin-bottom: 14px;">Kronberg Batch 05 reservation</h3>
+              <div class="dispatch-row">
+                <div class="field-group">
+                  <label class="field-label" for="disp-email">Studio email address</label>
+                  <input
+                    class="hw-input"
+                    type="email"
+                    id="disp-email"
+                    name="email"
+                    placeholder="henrik@studio-nord.se"
+                    autocomplete="email"
+                    aria-describedby="disp-email-err"
+                  >
+                  <p class="field-error" id="disp-email-err" hidden>Enter a complete email address so we can send your Batch 05 serial confirmation.</p>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label" for="disp-region">Shipping region</label>
+                  <div class="select-wrap">
+                    <select class="hw-select" id="disp-region" name="region">
+                      <option value="na">North America — 2-day air</option>
+                      <option value="eu" selected>European Union — Kronberg DHL</option>
+                      <option value="uk">United Kingdom — Duty paid</option>
+                      <option value="jp">Japan and Asia-Pacific — Express</option>
+                    </select>
+                    <svg class="select-chevron" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+                      <path d="M3.8 5.8L7.5 9.5l3.7-3.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="dispatch-btn-cell">
+                  <button type="submit" class="hw-key hw-key--dark" data-test-validate>
+                    <span class="hw-edge" aria-hidden="true"></span>
+                    <span class="hw-cap">Reserve Batch 05 slot</span>
+                  </button>
+                </div>
+              </div>
+              <p class="field-hint" style="margin-top: 10px;">Charged only when your calibrated Batch 05 unit leaves Kronberg in January.</p>
+            </form>
+          </div>
+
+          <div class="specimen-grid-2" style="margin-top: 20px;">
+            <!-- State 1: Default -->
+            <div class="specimen-card" data-specimen-state="default">
+              <p class="specimen-label">Default</p>
+              <div class="field-group">
+                <label class="field-label" for="spec-email-rest">Studio email address</label>
+                <input class="hw-input" type="email" id="spec-email-rest" placeholder="henrik@studio-nord.se">
+              </div>
+              <button type="button" class="hw-key hw-key--dark" data-trigger-specimen-note="Use the Kronberg Batch 05 form directly above to test full interactive validation.">
+                <span class="hw-edge" aria-hidden="true"></span>
+                <span class="hw-cap">Reserve Batch 05 slot</span>
+              </button>
+            </div>
+
+            <!-- State 2: Invalid email error -->
+            <div class="specimen-card" data-specimen-state="error">
+              <p class="specimen-label">Invalid email error</p>
+              <div class="field-group">
+                <label class="field-label" for="spec-email-err-in">Studio email address</label>
+                <input
+                  class="hw-input"
+                  type="email"
+                  id="spec-email-err-in"
+                  value="henrik@studio-nord"
+                  aria-invalid="true"
+                  aria-describedby="spec-email-err-msg"
+                >
+                <p class="field-error" id="spec-email-err-msg">Enter a complete domain, like henrik@studio-nord.se, to receive your serial sheet.</p>
+              </div>
+            </div>
+
+            <!-- State 3: Holding serial (submitting) -->
+            <div class="specimen-card" data-specimen-state="submitting">
+              <p class="specimen-label">Holding serial (submitting)</p>
+              <div class="field-group">
+                <label class="field-label" for="spec-email-busy">Studio email address</label>
+                <input class="hw-input" type="email" id="spec-email-busy" value="henrik@studio-nord.se" readonly>
+              </div>
+              <button type="button" class="hw-key hw-key--dark" data-loading="true" aria-disabled="true">
+                <span class="hw-edge" aria-hidden="true"></span>
+                <span class="hw-cap">
+                  <span class="key-cell-stack">
+                    <span class="key-rest-layer">Reserve Batch 05 slot</span>
+                    <span class="key-busy-layer">
+                      <svg class="spin-ring" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-opacity="0.3" stroke-width="2.2"/>
+                        <path d="M14 8a6 6 0 0 0-6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                      </svg>
+                      <span>Holding serial</span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+
+            <!-- State 4: Batch 05 slot reserved -->
+            <div class="specimen-card" data-specimen-state="reserved">
+              <p class="specimen-label">Batch 05 slot reserved</p>
+              <div class="oled-confirm tnum">
+                <h3>Batch 05 slot reserved · <span class="hw-code">TP4-0518</span></h3>
+                <p>Held for henrik@studio-nord.se · Kronberg DHL dispatch 24 January.</p>
+              </div>
+              <p class="field-hint">Signed APx555 bench calibration sheet links automatically to your serial number.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell site-footer">
+    <span>Fieldrig Portable Studio Design System, Kronberg</span>
+    <div class="footer-links">
+      <a href="../systems/fieldrig.html">Product components and TP-4 web mixer</a>
+      <a href="../index.html">All six design systems</a>
+    </div>
+  </footer>
+
+  <!-- Polite single-item status toast -->
+  <div class="toast-region" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast-box" id="toast-box" hidden></div>
+  </div>
+
+  <!-- Hardware Order Review Modal Dialog -->
+  <dialog class="hw-modal" id="order-modal" aria-labelledby="order-modal-title">
+    <form class="dialog-body" id="order-form" method="dialog">
+      <div class="dialog-head">
+        <h2 id="order-modal-title">TP-4 order review</h2>
+        <button type="button" class="close-btn" data-close-dialog aria-label="Close order review">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M3.5 3.5l8 8m0-8l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="modal-finish">Anodized chassis finish</label>
+        <div class="select-wrap">
+          <select class="hw-select" id="modal-finish">
+            <option value="silver">Natural Silver (6061 bead-blasted)</option>
+            <option value="black">Black Anodized (Type III hard coat)</option>
+          </select>
+          <svg class="select-chevron" viewBox="0 0 15 15" fill="none" aria-hidden="true">
+            <path d="M3.8 5.8L7.5 9.5l3.7-3.7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <dl class="order-summary-rows tnum">
+        <div class="order-row">
+          <dt>Selected build</dt>
+          <dd id="modal-build-label">TP-4 + Leather case and CM-2</dd>
+        </div>
+        <div class="order-row">
+          <dt>Dispatch window</dt>
+          <dd>2 business days from Kronberg</dd>
+        </div>
+        <div class="order-row">
+          <dt>Studio trial</dt>
+          <dd>30 days</dd>
+        </div>
+        <div class="order-row">
+          <dt>Total with calibration sheet</dt>
+          <dd id="modal-total">$749</dd>
+        </div>
+      </dl>
+
+      <div class="dialog-actions">
+        <button type="submit" class="hw-key hw-key--rec">
+          <span class="hw-edge" aria-hidden="true"></span>
+          <span class="hw-cap">Confirm Batch 04 order</span>
+        </button>
+        <button type="button" class="hw-key" data-close-dialog>
+          <span class="hw-edge" aria-hidden="true"></span>
+          <span class="hw-cap">Cancel</span>
+        </button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+    (function () {
+      'use strict';
+
+      function safeStore(k, v) {
+        try { window.localStorage.setItem(k, v); } catch (_) {}
+      }
+
+      /* 1. Theme Toggle ("Dark" in light mode, "Light" in dark mode) */
+      var root = document.documentElement;
+      var themeBtn = document.querySelector('[data-theme-toggle]');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', function () {
+          var isDark = root.getAttribute('data-theme') !== 'dark';
+          var next = isDark ? 'dark' : 'light';
+          root.setAttribute('data-theme', next);
+          themeBtn.setAttribute('aria-pressed', String(isDark));
+          themeBtn.textContent = isDark ? 'Light' : 'Dark';
+          safeStore('fr-theme', next);
+        });
+      }
+
+      /* 2. Polite Toast Helper */
+      var toastBox = document.getElementById('toast-box');
+      var toastTimer = null;
+      function showToast(msg) {
+        if (!toastBox) return;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastBox.textContent = msg;
+        toastBox.hidden = false;
+        toastTimer = setTimeout(function () { toastBox.hidden = true; }, 4200);
+      }
+
+      document.querySelectorAll('[data-trigger-specimen-note]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          showToast(btn.getAttribute('data-trigger-specimen-note'));
+        });
+      });
+
+      /* 3. Keyboard-Roving State & Workflow Tablists ([data-state-tabs]) */
+      document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        function activateTab(target, moveFocus) {
+          tabs.forEach(function (t) {
+            var sel = t === target;
+            t.setAttribute('aria-selected', String(sel));
+            t.tabIndex = sel ? 0 : -1;
+            var pid = t.getAttribute('aria-controls');
+            var panel = pid ? document.getElementById(pid) : null;
+            if (panel) panel.hidden = !sel;
+          });
+          if (moveFocus) target.focus();
+        }
+        tabs.forEach(function (tab, idx) {
+          tab.addEventListener('click', function () { activateTab(tab, false); });
+          tab.addEventListener('keydown', function (e) {
+            var nextIdx = -1;
+            if (e.key === 'ArrowRight') nextIdx = (idx + 1) % tabs.length;
+            else if (e.key === 'ArrowLeft') nextIdx = (idx - 1 + tabs.length) % tabs.length;
+            else if (e.key === 'Home') nextIdx = 0;
+            else if (e.key === 'End') nextIdx = tabs.length - 1;
+            if (nextIdx !== -1) {
+              e.preventDefault();
+              activateTab(tabs[nextIdx], true);
+            }
+          });
+        });
+      });
+
+      /* 4. Shared Chassis Finish Synchronization (#hardware-hero + #kit-configurator + modal) */
+      var currentFinish = 'silver';
+      var heroSilver = document.getElementById('hero-img-silver');
+      var heroBlack = document.getElementById('hero-img-black');
+      var heroSku = document.getElementById('hero-sku-code');
+      var buyFinishLabel = document.getElementById('buybox-finish');
+      var modalFinish = document.getElementById('modal-finish');
+
+      function setFinish(finish) {
+        currentFinish = finish === 'black' ? 'black' : 'silver';
+        var isBlack = currentFinish === 'black';
+        if (heroSilver) heroSilver.hidden = isBlack;
+        if (heroBlack) heroBlack.hidden = !isBlack;
+        if (heroSku) heroSku.textContent = isBlack ? 'TP-4-BLK · Batch 04' : 'TP-4-SLV · Batch 04';
+        if (buyFinishLabel) buyFinishLabel.textContent = isBlack ? 'Black Anodized' : 'Natural Silver';
+        if (modalFinish && modalFinish.value !== currentFinish) modalFinish.value = currentFinish;
+        document.querySelectorAll('[data-finish-btn]').forEach(function (btn) {
+          btn.setAttribute('aria-pressed', String(btn.getAttribute('data-finish-btn') === currentFinish));
+        });
+      }
+
+      document.querySelectorAll('[data-finish-btn]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setFinish(btn.getAttribute('data-finish-btn'));
+        });
+      });
+      if (modalFinish) {
+        modalFinish.addEventListener('change', function () { setFinish(modalFinish.value); });
+      }
+
+      /* 5. Modular Kit Configurator & USD / EUR Currency Switch ([data-billing-toggle]) */
+      var isEur = false;
+      var curBtn = document.getElementById('currency-toggle');
+      var chkCase = document.getElementById('addon-case');
+      var chkDuo = document.getElementById('addon-duo');
+      var lineCase = document.getElementById('line-case');
+      var lineDuo = document.getElementById('line-duo');
+      var lineSave = document.getElementById('line-save');
+      var buyboxSave = document.getElementById('buybox-save');
+      var kitTotal = document.getElementById('kit-total');
+      var modalBuild = document.getElementById('modal-build-label');
+      var modalTotal = document.getElementById('modal-total');
+
+      var prices = {
+        usd: { sym: '$', base: 649, caseAdd: 100, caseSave: 48, duoAdd: 591, duoSave: 58 },
+        eur: { sym: '€', base: 619, caseAdd: 96, caseSave: 45, duoAdd: 561, duoSave: 58 }
+      };
+
+      function updateConfigurator() {
+        var p = isEur ? prices.eur : prices.usd;
+        var hasCase = Boolean(chkCase && chkCase.checked);
+        var hasDuo = Boolean(chkDuo && chkDuo.checked);
+        var total = p.base + (hasCase ? p.caseAdd : 0) + (hasDuo ? p.duoAdd : 0);
+
+        document.querySelectorAll('[data-usd]').forEach(function (el) {
+          el.textContent = isEur ? el.getAttribute('data-eur') : el.getAttribute('data-usd');
+        });
+        if (lineCase) lineCase.hidden = !hasCase;
+        if (lineDuo) lineDuo.hidden = !hasDuo;
+        if (kitTotal) kitTotal.textContent = p.sym + total.toLocaleString('en-US');
+
+        var parts = ['TP-4'];
+        if (hasCase) parts.push('Leather case and CM-2');
+        if (hasDuo) parts.push('2nd TP-4');
+        if (modalBuild) modalBuild.textContent = parts.join(' + ');
+        if (modalTotal) modalTotal.textContent = p.sym + total.toLocaleString('en-US');
+      }
+
+      if (curBtn) {
+        curBtn.addEventListener('click', function () {
+          isEur = !isEur;
+          curBtn.setAttribute('aria-pressed', String(isEur));
+          updateConfigurator();
+        });
+      }
+      document.querySelectorAll('[data-kit-addon]').forEach(function (chk) {
+        chk.addEventListener('change', updateConfigurator);
+      });
+      updateConfigurator();
+
+      /* 8. Batch 04 Reservation Form Validation (blur-late, live clear) */
+      var dispForm = document.getElementById('dispatch-form');
+      var dispEmail = document.getElementById('disp-email');
+      var dispEmailErr = document.getElementById('disp-email-err');
+
+      function validEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((v || '').trim());
+      }
+      function setEmailState(ok) {
+        if (!dispEmail || !dispEmailErr) return;
+        if (ok) {
+          dispEmail.removeAttribute('aria-invalid');
+          dispEmailErr.hidden = true;
+        } else {
+          dispEmail.setAttribute('aria-invalid', 'true');
+          dispEmailErr.hidden = false;
+        }
+      }
+
+      if (dispEmail) {
+        dispEmail.addEventListener('blur', function () {
+          if (dispEmail.value.trim().length > 0 && !validEmail(dispEmail.value)) {
+            setEmailState(false);
+          }
+        });
+        dispEmail.addEventListener('input', function () {
+          if (dispEmail.getAttribute('aria-invalid') === 'true' && validEmail(dispEmail.value)) {
+            setEmailState(true);
+          }
+        });
+      }
+
+      if (dispForm) {
+        dispForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var ok = validEmail(dispEmail ? dispEmail.value : '');
+          setEmailState(ok);
+          if (!ok) {
+            if (dispEmail) dispEmail.focus();
+            return;
+          }
+          showToast('Batch 05 serial slot held for ' + dispEmail.value.trim() + '.');
+          dispForm.reset();
+        });
+      }
+
+      /* 9. Order Review Modal Dialog + Escape / Backdrop Close + Focus Return */
+      var modal = document.getElementById('order-modal');
+      var orderForm = document.getElementById('order-form');
+      var lastTrigger = null;
+
+      document.querySelectorAll('[data-open-modal]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (!modal || typeof modal.showModal !== 'function') return;
+          lastTrigger = btn;
+          var preset = btn.getAttribute('data-preset');
+          if (preset === 'black') setFinish('black');
+          if (preset === 'base') {
+            var p = isEur ? prices.eur : prices.usd;
+            if (modalBuild) modalBuild.textContent = 'TP-4 Recorder (' + (currentFinish === 'black' ? 'Black Anodized' : 'Natural Silver') + ')';
+            if (modalTotal) modalTotal.textContent = p.sym + p.base;
+          } else {
+            updateConfigurator();
+          }
+          modal.showModal();
+        });
+      });
+
+      if (modal) {
+        modal.querySelectorAll('[data-close-dialog]').forEach(function (cbtn) {
+          cbtn.addEventListener('click', function () { modal.close(); });
+        });
+        modal.addEventListener('click', function (e) {
+          var rect = modal.getBoundingClientRect();
+          var inside = e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+          if (!inside) modal.close();
+        });
+        modal.addEventListener('close', function () {
+          if (lastTrigger && typeof lastTrigger.focus === 'function') {
+            lastTrigger.focus();
+          }
+        });
+      }
+
+      if (orderForm) {
+        orderForm.addEventListener('submit', function () {
+          showToast('Kronberg Batch 04 order review confirmed.');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

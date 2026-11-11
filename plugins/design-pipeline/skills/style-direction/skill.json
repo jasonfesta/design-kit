@@ -1,0 +1,33 @@
+{
+  "id": "style-direction",
+  "display_name": "style direction",
+  "google3_package": "style_direction",
+  "title": "style direction",
+  "icon": "\ud83c\udfa8",
+  "category": "sub-skill of concept-art \u00b7 non-copied fonts, colors & canon",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "style-direction",
+  "agent_md": "style-direction/agent.md",
+  "skill_md": "style-direction/SKILL.md",
+  "html_page": "style-direction/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/style-direction",
+  "bundle_skill": "style-direction.skill",
+  "bundle_zip": "style-direction.zip",
+  "short_summary": "synthesizes 5 benchmarks into named 5-10 style directions with web-safe and companion google fonts, 8-token colors, canon.md, coverage.md, and copy tables.",
+  "when_to_use": "use at stage 2 of jason-design-agent after research and before image-gen authors prompts.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=style-direction",
+  "summary": "Translates the 5 distinct researched examples directly into dialed, non-beige art directions and tri-voice specifications (textural materiality, designer hierarchy/typography, and frontend-developer structural geometry) using live google-font-selection rankings, canon.md, and explicit website/app architecture notes in coverage.md. Bans warm-beige defaults and watered-down averaging. Use after research completes and before image-gen writes prompts. Don't use for capturing screenshots (use research) or rendering images directly (use image-gen).",
+  "references": [
+    "./references/contributing.md",
+    "./references/originality-and-canon-tables.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=style-direction"
+  }
+}

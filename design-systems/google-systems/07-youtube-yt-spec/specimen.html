@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YouTube &amp; YouTube Studio (yt-spec v2.0.279) — Creator NLE &amp; Analytics Specimen</title>
+  <link rel="stylesheet" href="../../fonts/fieldrig-fonts.css">
+  <link rel="stylesheet" href="../../fonts/switchyard-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .yt-studio { min-height: 100vh; display: flex; flex-direction: column; }
+    .yt-topbar {
+      height: 54px; padding: 0 18px;
+      border-bottom: 1px solid var(--yt-spec-outline);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    }
+    .yt-chip-row { display: flex; gap: 8px; overflow-x: auto; }
+    .yt-chip {
+      height: 30px; padding: 0 12px; border-radius: var(--yt-radius-chip);
+      background: var(--yt-spec-additive-background); color: var(--yt-spec-text-primary);
+      border: none; font-size: 12.5px; font-weight: 500; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+    }
+    .yt-chip.active {
+      background: var(--yt-spec-inverted-cta-bg); color: var(--yt-spec-inverted-cta-ink); font-weight: 600;
+    }
+    .yt-cta-pill {
+      height: 34px; padding: 0 16px; border-radius: var(--yt-radius-pill);
+      background: var(--yt-spec-brand-red); color: #ffffff; border: none;
+      font-weight: 600; font-size: 12.5px; cursor: pointer; white-space: nowrap;
+    }
+    .upper-stage {
+      display: grid; grid-template-columns: 220px 1.35fr 330px; gap: 12px; padding: 12px 18px;
+    }
+    .yt-panel {
+      background: var(--yt-spec-raised-background);
+      border: 1px solid var(--yt-spec-outline);
+      border-radius: var(--yt-radius-card); padding: 14px;
+      display: flex; flex-direction: column; gap: 10px; min-width: 0;
+    }
+    .clip-bin-item {
+      padding: 9px 10px; border-radius: 8px;
+      background: var(--yt-spec-additive-background);
+      display: flex; justify-content: space-between; align-items: center; font-size: 12px;
+    }
+    .monitor-screen {
+      aspect-ratio: 16 / 9; max-height: 290px; width: 100%;
+      border-radius: 10px; background: linear-gradient(135deg, #111927 0%, #092026 55%, #162b24 100%);
+      position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
+      padding: 14px; border: 1px solid rgba(255,255,255,0.12);
+    }
+    .timecode-hud {
+      align-self: flex-start; padding: 4px 10px; border-radius: 6px;
+      background: rgba(15, 15, 15, 0.82); color: #ffffff;
+      font-family: var(--yt-font-mono); font-size: 12px;
+    }
+    .caption-pill {
+      align-self: center; padding: 6px 14px; border-radius: 8px;
+      background: rgba(15, 15, 15, 0.86); color: #ffffff;
+      font-family: var(--yt-font-display); font-size: 15px; font-weight: 700;
+      border-bottom: 2px solid #3ea6ff;
+    }
+    .kpi-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .kpi-mini {
+      padding: 10px; border-radius: 8px; background: var(--yt-spec-additive-background);
+    }
+    .timeline-dock {
+      flex: 1; margin: 0 18px 16px;
+      background: var(--yt-spec-raised-background);
+      border: 1px solid var(--yt-spec-outline);
+      border-radius: var(--yt-radius-card); padding: 12px 16px;
+      position: relative; display: flex; flex-direction: column; gap: 8px;
+    }
+    .track-row {
+      display: grid; grid-template-columns: 110px 1fr; gap: 10px; align-items: center;
+    }
+    .track-lane {
+      height: 30px; border-radius: 6px; background: var(--yt-spec-base-background);
+      border: 1px solid var(--yt-spec-outline); position: relative; overflow: hidden;
+      display: flex; align-items: center; padding: 0 8px; gap: 6px;
+    }
+    .clip-seg {
+      height: 22px; border-radius: 4px; padding: 0 8px;
+      font-size: 11px; font-weight: 600; display: inline-flex; align-items: center; color: #fff;
+    }
+    .playhead {
+      position: absolute; top: 10px; bottom: 10px; left: 46%;
+      width: 2px; background: var(--yt-spec-brand-red); pointer-events: none;
+    }
+    .playhead::before {
+      content: ''; position: absolute; top: -4px; left: -5px;
+      width: 12px; height: 10px; border-radius: 2px; background: var(--yt-spec-brand-red);
+    }
+
+    @media (max-width: 920px) {
+      .yt-topbar { height: auto; padding: 10px 12px; flex-wrap: wrap; gap: 8px; }
+      .yt-chip-row { order: 3; width: 100%; }
+      .upper-stage { grid-template-columns: 1fr; padding: 10px 12px; }
+      .upper-stage > .yt-panel:first-child { display: none; }
+      .timeline-dock { margin: 0 12px 14px; padding: 10px 12px; }
+      .track-row { grid-template-columns: 70px 1fr; }
+      .clip-seg { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    }
+  </style>
+</head>
+<body>
+  <div class="yt-studio">
+    <header class="yt-topbar">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="padding:3px 8px;border-radius:6px;background:var(--yt-spec-brand-red);color:#fff;font-weight:700;font-size:12px;">▶ STUDIO</span>
+        <strong style="font-family:var(--yt-font-display);font-size:16px;">yt-spec v2.0 · Creator NLE &amp; Repurpose</strong>
+      </div>
+      <div class="yt-chip-row">
+        <button class="yt-chip active" type="button">16:9 Master</button>
+        <button class="yt-chip" type="button">9:16 Shorts (4)</button>
+        <button class="yt-chip" type="button">AI Captions</button>
+        <button class="yt-chip" id="theme-toggle" type="button">◑ Cinema / Light</button>
+      </div>
+      <button class="yt-cta-pill" type="button">Export &amp; Schedule</button>
+    </header>
+
+    <section class="upper-stage">
+      <aside class="yt-panel">
+        <strong style="font-family:var(--yt-font-display);font-size:14px;">AI Highlight Bin</strong>
+        <div class="clip-bin-item"><span>Hook · 00:14</span><span class="yt-mono" style="color:var(--yt-spec-badge-green);">96%</span></div>
+        <div class="clip-bin-item"><span>Demo · 01:42</span><span class="yt-mono" style="color:var(--yt-spec-call-to-action);">92%</span></div>
+        <div class="clip-bin-item"><span> Metric · 03:18</span><span class="yt-mono" style="color:var(--yt-spec-badge-green);">89%</span></div>
+        <div class="clip-bin-item"><span>CTA · 04:51</span><span class="yt-mono" style="color:var(--yt-spec-ad-yellow);">84%</span></div>
+      </aside>
+
+      <div class="yt-panel">
+        <div class="monitor-screen">
+          <div style="display:flex;justify-content:space-between;width:100%;">
+            <span class="timecode-hud">● TC 00:01:42:18 · 4K60</span>
+            <span class="timecode-hud" style="color:#3ea6ff;">LUFS -14.1 dB</span>
+          </div>
+          <div class="caption-pill">“Real-time telemetry drops latency by 42%”</div>
+        </div>
+      </div>
+
+      <aside class="yt-panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <strong style="font-family:var(--yt-font-display);font-size:14px;">Retention &amp; Reach</strong>
+          <span class="yt-mono" style="font-size:11.5px;color:var(--yt-spec-badge-green);">▲ +18% vs avg</span>
+        </div>
+        <div class="kpi-mini-grid">
+          <div class="kpi-mini">
+            <div style="font-size:11px;color:var(--yt-spec-text-secondary);">30s Hold Rate</div>
+            <strong class="yt-mono" style="font-size:18px;">78.4%</strong>
+          </div>
+          <div class="kpi-mini">
+            <div style="font-size:11px;color:var(--yt-spec-text-secondary);">Shorts Queued</div>
+            <strong class="yt-mono" style="font-size:18px;color:var(--yt-spec-call-to-action);">06 Clips</strong>
+          </div>
+        </div>
+        <svg viewBox="0 0 280 70" width="100%" height="68">
+          <path d="M0,18 Q60,16 120,28 T280,44 L280,70 L0,70 Z" fill="rgba(62,166,255,0.16)"/>
+          <path d="M0,18 Q60,16 120,28 T280,44" fill="none" stroke="var(--yt-spec-call-to-action)" stroke-width="2.5"/>
+          <line x1="128" y1="4" x2="128" y2="68" stroke="var(--yt-spec-brand-red)" stroke-width="1.5"/>
+        </svg>
+        <div class="yt-mono" style="font-size:11px;color:var(--yt-spec-text-secondary);">
+          #0F0F0F base · #212121 raised · #3EA6FF CTA · #FF0033 playhead
+        </div>
+      </aside>
+    </section>
+
+    <section class="timeline-dock" aria-label="Multi-track timeline">
+      <div class="playhead"></div>
+      <div style="display:flex;justify-content:space-between;font-size:11.5px;color:var(--yt-spec-text-secondary);" class="yt-mono">
+        <span>00:00:00</span><span>00:01:00</span><span style="color:var(--yt-spec-brand-red);font-weight:700;">▼ 00:01:42:18</span><span>00:03:00</span><span>00:04:30</span>
+      </div>
+      <div class="track-row">
+        <span class="yt-mono" style="font-size:11.5px;">V1 · Camera</span>
+        <div class="track-lane">
+          <span class="clip-seg" style="width:38%;background:#065fd4;">Intro_A_Roll.mp4</span>
+          <span class="clip-seg" style="width:44%;background:#007a65;">AI_Cut_Demo_Zoom.mp4</span>
+          <span class="clip-seg" style="width:16%;background:#065fd4;">Outro</span>
+        </div>
+      </div>
+      <div class="track-row">
+        <span class="yt-mono" style="font-size:11.5px;">C1 · Captions</span>
+        <div class="track-lane">
+          <span class="clip-seg" style="width:28%;background:#2ba640;">EN/ES Synced</span>
+          <span class="clip-seg" style="width:52%;background:#2ba640;">Keyword Highlight Active</span>
+        </div>
+      </div>
+      <div class="track-row">
+        <span class="yt-mono" style="font-size:11.5px;">A1 · Voiceover</span>
+        <div class="track-lane">
+          <svg viewBox="0 0 600 24" width="100%" height="22" preserveAspectRatio="none">
+            <path d="M0,12 L15,4 L30,19 L45,6 L60,18 L75,3 L90,20 L110,8 L130,17 L150,5 L170,19 L190,7 L215,16 L240,4 L265,20 L290,6 L320,18 L350,5 L380,19 L410,8 L440,17 L470,5 L500,18 L535,7 L570,16 L600,12" fill="none" stroke="#3ea6ff" stroke-width="2"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'light' ? 'dark' : 'light';
+    });
+  </script>
+</body>
+</html>

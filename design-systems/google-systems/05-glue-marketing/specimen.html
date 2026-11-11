@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Glue Marketing Web Standards — 12-Column Editorial Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/folioarchive-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .glue-header {
+      height: 64px; background: var(--glue-surface);
+      border-bottom: 1px solid var(--glue-border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px; gap: 16px;
+    }
+    .glue-nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 500; color: var(--glue-ink-secondary); }
+    .glue-btn {
+      height: 40px; padding: 0 22px; border-radius: var(--glue-radius-pill);
+      border: 1px solid var(--glue-border); background: transparent;
+      color: var(--glue-accent); font-family: var(--glue-font-display);
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .glue-btn-filled { background: var(--glue-accent); color: #ffffff; border-color: transparent; }
+    html[data-theme="dark"] .glue-btn-filled { color: #202124; }
+    .jumplinks {
+      background: var(--glue-surface-tonal); border-bottom: 1px solid var(--glue-border);
+      padding: 10px 32px; display: flex; align-items: center; gap: 18px; font-size: 13px; overflow-x: auto;
+    }
+    .jumplinks span { white-space: nowrap; color: var(--glue-ink-secondary); font-weight: 500; }
+    .jumplinks span.active {
+      color: var(--glue-accent); font-weight: 600;
+      background: var(--glue-accent-soft); padding: 4px 12px; border-radius: 999px;
+    }
+    .glue-container { max-width: var(--glue-grid-max-width); margin: 0 auto; padding: 0 32px; }
+    .hero-grid {
+      display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--glue-grid-gap-desktop);
+      padding: 44px 0 38px; align-items: center;
+    }
+    .hero-copy { grid-column: span 7; }
+    .hero-title {
+      font-family: var(--glue-font-display); font-size: 46px; line-height: 1.12;
+      letter-spacing: -0.02em; font-weight: 700; margin: 10px 0 16px;
+    }
+    .hero-lead { font-size: 18px; line-height: 1.55; color: var(--glue-ink-secondary); margin: 0 0 24px; max-width: 580px; }
+    .hero-stage {
+      grid-column: span 5; background: var(--glue-surface-tonal);
+      border: 1px solid var(--glue-border); border-radius: 20px; padding: 24px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .stat-band {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .stat-tile {
+      background: var(--glue-surface); border: 1px solid var(--glue-border);
+      border-radius: 12px; padding: 14px;
+    }
+    .stat-big {
+      font-family: var(--glue-font-display); font-size: 28px; font-weight: 700;
+      font-variant-numeric: tabular-nums; color: var(--glue-ink-primary);
+    }
+    .cards-band {
+      background: var(--glue-surface-tonal); border-top: 1px solid var(--glue-border);
+      padding: 36px 0 44px;
+    }
+    .three-up {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 20px;
+    }
+    .glue-card {
+      background: var(--glue-surface); border: 1px solid var(--glue-border);
+      border-radius: var(--glue-radius-card); padding: 22px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .dot-badge {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: grid; place-items: center; font-weight: 700; font-size: 15px;
+    }
+
+    @media (max-width: 860px) {
+      .glue-header { padding: 0 16px; height: 56px; }
+      .glue-nav-links { display: none; }
+      .jumplinks { padding: 8px 16px; }
+      .glue-container { padding: 0 16px; }
+      .hero-grid { grid-template-columns: 1fr; padding: 24px 0; gap: 20px; }
+      .hero-copy, .hero-stage { grid-column: 1 / -1; }
+      .hero-title { font-size: 31px; }
+      .hero-lead { font-size: 15.5px; margin-bottom: 18px; }
+      .three-up { grid-template-columns: 1fr; gap: 14px; }
+      .cards-band { padding: 24px 0 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="glue-header">
+    <div style="display:flex;align-items:center;gap:28px;">
+      <strong style="font-family:var(--glue-font-display);font-size:18px;letter-spacing:-0.01em;">Google Glue · Web Standards</strong>
+      <nav class="glue-nav-links">
+        <span>Architecture</span>
+        <span>12-Col Grid</span>
+        <span>Global Scripts</span>
+        <span>Benchmarks</span>
+      </nav>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <button class="glue-btn" id="theme-btn" type="button" style="height:36px;padding:0 16px;">◑ Stage</button>
+      <button class="glue-btn glue-btn-filled" type="button" style="height:36px;padding:0 18px;">Explore System</button>
+    </div>
+  </header>
+
+  <div class="jumplinks">
+    <span style="font-weight:700;color:var(--glue-ink-primary);">Jump to:</span>
+    <span class="active">01 · Overview</span>
+    <span>02 · Modular Lockups</span>
+    <span>03 · Localization (EN / ES / AR)</span>
+    <span>04 · Tier Matrix</span>
+  </div>
+
+  <main>
+    <div class="glue-container">
+      <section class="hero-grid">
+        <div class="hero-copy">
+          <div class="glue-eyebrow">MARKETING WEB STANDARDS · //MARKETING/GLUE</div>
+          <h1 class="hero-title">Editorial clarity built for global product storytelling.</h1>
+          <p class="hero-lead">
+            Glue pairs a disciplined 12-column responsive grid with Google Sans Display hierarchy, accessible hairline cards, and native multi-script typography across 40+ locales.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button class="glue-btn glue-btn-filled" type="button">Launch Live Portal</button>
+            <button class="glue-btn" type="button">View Token Sheet →</button>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span class="glue-eyebrow" style="color:var(--glue-green-600);">VERIFIED SPECIMEN METRICS</span>
+            <span style="font-size:12px;color:var(--glue-ink-secondary);font-family:var(--glue-font-mono);">v28 · 0% purple</span>
+          </div>
+          <div class="stat-band">
+            <div class="stat-tile">
+              <div class="stat-big">12-Col</div>
+              <div style="font-size:12.5px;color:var(--glue-ink-secondary);">4 / 8 / 12 responsive continuum</div>
+            </div>
+            <div class="stat-tile">
+              <div class="stat-big">99.4%</div>
+              <div style="font-size:12.5px;color:var(--glue-ink-secondary);">WCAG 2.2 AA contrast pass</div>
+            </div>
+            <div class="stat-tile">
+              <div class="stat-big">1.8s</div>
+              <div style="font-size:12.5px;color:var(--glue-ink-secondary);">LCP editorial chapter load</div>
+            </div>
+            <div class="stat-tile">
+              <div class="stat-big">AR·ES·EN</div>
+              <div style="font-size:12.5px;color:var(--glue-ink-secondary);">Native RTL &amp; CJK font stacks</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="cards-band">
+      <div class="glue-container">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;">
+          <h2 style="font-family:var(--glue-font-display);font-size:24px;margin:0;">Modular Chapter Architecture</h2>
+          <span style="font-size:13.5px;color:var(--glue-ink-secondary);">Alternating `$grey-0` (`#FFFFFF`) and `$grey-50` (`#F8F9FA`) bands</span>
+        </div>
+
+        <div class="three-up">
+          <article class="glue-card">
+            <div class="dot-badge" style="background:var(--glue-blue-50);color:var(--glue-blue-600);">01</div>
+            <strong style="font-family:var(--glue-font-display);font-size:18px;">Chapter Jump-Links</strong>
+            <p style="margin:0;font-size:14px;color:var(--glue-ink-secondary);">
+              Sticky progress navigation anchors long-form product narratives, investor decks, and bilingual marketplaces.
+            </p>
+          </article>
+          <article class="glue-card">
+            <div class="dot-badge" style="background:var(--glue-green-50);color:var(--glue-green-600);">02</div>
+            <strong style="font-family:var(--glue-font-display);font-size:18px;">Hairline Tonal Lockups</strong>
+            <p style="margin:0;font-size:14px;color:var(--glue-ink-secondary);">
+              Crisp `1px` `#DADCE0` borders frame photography, interactive calculators, and side-by-side tier schedules cleanly.
+            </p>
+          </article>
+          <article class="glue-card">
+            <div class="dot-badge" style="background:var(--glue-yellow-50);color:#b06000;">03</div>
+            <strong style="font-family:var(--glue-font-display);font-size:18px;">Multi-Locale Ready</strong>
+            <p style="margin:0;font-size:14px;color:var(--glue-ink-secondary);">
+              Built-in typography scales adapt seamlessly across English, Spanish, German, and Arabic RTL layouts.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

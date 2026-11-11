@@ -1,0 +1,91 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   10. GOOGLE DEVSITE & CODELABS TECHNICAL WORKBENCH (devsite v0.0.63)
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/devsite/versions/v0_0/sass_css_vars/
+       (_devsite-ref-palette.scss, _devsite-sys-color.scss, _devsite-sys-typescale.scss)
+     - //depot/google3/devtools/codereview/webclient/ & cider/
+     - Carbon ID: designSystems/3b5a4b48a2d95565 (Version 0.0.63)
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* Verbatim DevSite Reference & System Palette (_devsite-ref-palette.scss) */
+    --devsite-sys-color--surface: #ffffff;
+    --devsite-sys-color--surface-rail: #f8f9fa;
+    --devsite-sys-color--surface-callout: #e8f0fe;
+    --devsite-sys-color--code-terminal: #263238;
+    --devsite-sys-color--code-terminal-header: #1e272c;
+    --devsite-sys-color--code-ink: #eceff1;
+
+    --devsite-sys-color--on-surface: #202124;
+    --devsite-sys-color--on-surface-variant: #5f6368;
+    --devsite-sys-color--border: #dadce0;
+
+    /* DevSite & AI Technical Accents (0% Purple) */
+    --devsite-sys-color--primary: #1a73e8;
+    --devsite-ref-palette--ai-blue: #076eff;
+    --devsite-ref-palette--ai-cyan: #24c1e0;
+    --devsite-ref-palette--teal600: #00897b;
+    --devsite-ref-palette--green600: #1e8e3e;
+    --devsite-ref-palette--green50: #e6f4ea;
+    --devsite-ref-palette--orange600: #e8710a;
+    --devsite-ref-palette--orange50: #feefe3;
+    --devsite-ref-palette--red600: #d93025;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --devsite-sys-color--surface: #202124;
+    --devsite-sys-color--surface-rail: #17181b;
+    --devsite-sys-color--surface-callout: #1e3a5f;
+    --devsite-sys-color--code-terminal: #12171c;
+    --devsite-sys-color--code-terminal-header: #0d1115;
+    --devsite-sys-color--code-ink: #e8eaed;
+
+    --devsite-sys-color--on-surface: #e8eaed;
+    --devsite-sys-color--on-surface-variant: #9aa0a6;
+    --devsite-sys-color--border: #3c4043;
+
+    --devsite-sys-color--primary: #8ab4f8;
+    --devsite-ref-palette--ai-blue: #4fabff;
+    --devsite-ref-palette--ai-cyan: #78d9ec;
+    --devsite-ref-palette--teal600: #4db6ac;
+    --devsite-ref-palette--green600: #81c995;
+    --devsite-ref-palette--green50: #173a21;
+    --devsite-ref-palette--orange600: #fcad70;
+    --devsite-ref-palette--orange50: #4d3012;
+    --devsite-ref-palette--red600: #f28b82;
+  }
+
+  :root {
+    --devsite-font-display: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --devsite-font-body: 'Roboto', 'IBM Plex Sans', sans-serif;
+    --devsite-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+    --devsite-radius-sm: 6px;
+    --devsite-radius-md: 10px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--devsite-sys-color--surface);
+    color: var(--devsite-sys-color--on-surface);
+    font-family: var(--devsite-font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .devsite-mono { font-family: var(--devsite-font-mono); font-variant-numeric: tabular-nums; }
+}

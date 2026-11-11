@@ -1,0 +1,65 @@
+<section aria-labelledby="h-image-guidelines" class="sy-doc-section" data-component-doc="" id="image-guidelines">
+<div class="sy-doc-head">
+<h2 id="h-image-guidelines">Photography and frame ratios</h2>
+<p class="sy-doc-desc">Frames bare-metal rack photography and engineering studio portraits at fixed aspect ratios while network images decode or fail offline.</p>
+</div>
+<div class="sy-usage-notes" data-usage-notes="">
+<div class="sy-usage-col">
+<h3>When to use</h3>
+<ul class="sy-usage-list">
+<li>Pair 4 to 3 engineering portraits with matching hardware frames inside multi-column feature and proof rows.</li>
+<li>Reserve wider 16 to 9 framing for full-span launch stages and horizontal conversion bands.</li>
+<li>Render matching skeleton and surface fallback plates whenever slow links delay or block image requests.</li>
+</ul>
+</div>
+<div class="sy-usage-col">
+<h3>How to apply it</h3>
+<ul class="sy-usage-list">
+<li>Place right-facing portraits in the left column so the engineer gazes inward toward adjacent plates and copy.</li>
+<li>Keep photographs at true brightness in both themes, adding an inset hairline so dark edges stay clear on obsidian backgrounds.</li>
+<li>Set explicit width, height, and aspect-ratio properties so captions hold position before pixels arrive.</li>
+</ul>
+</div>
+</div>
+<div class="sy-specimen-well">
+<div class="sy-grid-2">
+<!-- State 1 (LEFT): 4:3 inward-gazing portrait facing right into Column 2 -->
+<figure class="sy-spec-card" data-specimen-state="portrait">
+<span class="sy-state-caption">Portrait</span>
+<div class="sy-photo-frame">
+<img alt="Systems engineer in dark merino sweater seated at an oak desk at dusk gazing inward toward the right" class="sy-ratio-4-3" decoding="sync" height="1792" src="../images/sy-lead-portrait.webp" width="2400"/>
+</div>
+<figcaption class="sy-photo-caption">Placed in the left column, the engineer faces right toward the adjacent hardware plate rather than out off the margin.</figcaption>
+</figure>
+<!-- State 2 (RIGHT): Matched 4:3 hardware frame -->
+<figure class="sy-spec-card" data-specimen-state="hardware-frame">
+<span class="sy-state-caption">Hardware frame</span>
+<div class="sy-photo-frame">
+<img alt="Matte-graphite modular compute blades inside Switchyard Frankfurt worker hall" class="sy-ratio-4-3" decoding="sync" height="1536" src="../images/sy-mesh-racks.webp" width="2752"/>
+</div>
+<figcaption class="sy-photo-caption num">Frankfurt EU Central pool — Go, Node, and Rust bare-metal blades with 11 ms median edge hop.</figcaption>
+</figure>
+<!-- State 3: Loading -->
+<div aria-busy="true" class="sy-spec-card" data-specimen-state="loading">
+<span class="sy-state-caption">Loading</span>
+<div aria-label="Reserved image loading frame" class="sy-skeleton-box" role="img"></div>
+<div aria-hidden="true" class="sy-skeleton-line"></div>
+<p class="sy-photo-caption">Holds frame height steady while high-density WebP bytes stream in over constrained links.</p>
+</div>
+<!-- State 4: Image unavailable (vertically centered inside card) -->
+<div class="sy-spec-card" data-specimen-state="image-unavailable">
+<span class="sy-state-caption">Image unavailable</span>
+<div aria-label="Offline hardware frame fallback" class="sy-fallback-plate" role="img">
+<svg aria-hidden="true" fill="none" height="26" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="26">
+<rect height="6" rx="1.5" width="18" x="3" y="4"></rect>
+<rect height="6" rx="1.5" width="18" x="3" y="14"></rect>
+<line stroke-linecap="round" x1="7" x2="10" y1="7" y2="7"></line>
+<line stroke-linecap="round" x1="7" x2="10" y1="17" y2="17"></line>
+</svg>
+<span class="num" style="font-weight: 500; color: var(--ink-primary); font-size: 0.875rem;">Hardware plate unavailable offline</span>
+<span class="num" style="font-size: 0.8125rem; max-width: 38ch;">Frankfurt EU Central pool metadata and latency figures stay legible when media requests fail.</span>
+</div>
+</div>
+</div>
+</div>
+</section>

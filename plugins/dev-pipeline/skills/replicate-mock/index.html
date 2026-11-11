@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>replicate mock</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>replicate mock</h1>
+      <p>extracts exact hex tokens, pixel measurements, and classifies dom native-code vs. crisp-media vs. upscale-queue crops (adapted with credit from manasababu).</p>
+      <div class="actions">
+        <a href="../replicate-mock.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>replicate mock</h1>
+<pre data-lang="text"><code>jason-dev-agent / replicate mock
+────────────────────────────────────────────────────────────────────
+stage         1a (pixel, hex &amp; 3-bucket classifier inside image-to-react)
+rules         8 pixel-perfection directives (0 hallucination, 0 omission)
+buckets       native-code (css/svg) · crisp-media (&gt;=2x) · upscale-queue (&lt;2x)
+scripts       prepare-and-extract-image.py · crop_regions.py · measure_px.py
+origin        lifted &amp; adapted from manasa babu (manasababu, google3)</code></pre>
+<p>A skill for converting uploaded UI screenshots and design mocks into pixel-perfect, functioning frontend prototypes and Google Golden Template React applications.</p>
+<h2>Why This Skill Exists</h2>
+<p>When converting UI mocks into prototypes, default code generation often drifts from the visual design: it invents unrequested UI elements, omits subtle dividers or borders, uses generic placeholder icons, approximates colors and typography, or replaces real photographs and complex icons with cartoonish semantic approximations. This skill enforces strict visual fidelity, bit-for-bit asset extraction, and completeness so that prototypes match the design mock exactly while providing a live, interactive frontend experience.</p>
+<h2>Core Directives</h2>
+<h3>1. Zero Hallucination</h3>
+<p>Do not invent, add, or assume any new UI elements, text, buttons, navigation bars, or features that are not explicitly visible in the uploaded image.</p>
+<ul>
+<li><strong>Why:</strong> Adding unrequested features breaks design fidelity and introduces elements that were intentionally excluded from the mock.</li>
+<li><strong>Rule:</strong> If an element is not visible in the screenshot, do not add it to the DOM.</li>
+</ul>
+<h3>2. Zero Omission</h3>
+<p>Do not skip, simplify, or remove any elements present in the mock. Every single piece of text, divider, border, badge, and background detail must be accounted for.</p>
+<ul>
+<li><strong>Why:</strong> Skipping subtle borders, dividers, or secondary text labels causes the prototype to look unfinished or low-fidelity compared to the design.</li>
+<li><strong>Rule:</strong> Audit every section of the mock from top to bottom and verify that every visual detail has a corresponding element in the code.</li>
+</ul>
+<h3>3. Exact Visual Match (Pixel-Perfect)</h3>
+<p>Replicate the exact typography scale, font weights, colors (extracting exact hex codes from the image), padding, margins, shadows, and border radii. Proportions must match the original image exactly.</p>
+<ul>
+<li><strong>Why:</strong> Approximating colors or spacing ruins the visual balance and brand identity of the design.</li>
+<li><strong>Rule:</strong></li>
+<li>Extract and apply exact hexadecimal color codes (e.g., <code>#1A73E8</code>, <code>#F8F9FA</code>, <code>#202124</code>) for backgrounds, borders, and text.</li>
+<li>Match exact typography hierarchy (font sizes, font weights, line heights, and letter spacing).</li>
+<li>Reproduce exact padding, margins, border radii, and box shadows.</li>
+</ul>
+<h3>4. No Generic Placeholders</h3>
+<p>Do NOT use generic placeholder boxes, generic placeholder text (unless explicitly in the mock), or standard icon libraries UNLESS they are a 100% exact match to the mock.</p>
+<ul>
+<li><strong>Why:</strong> Standard icon libraries or generic placeholder wireframe boxes look like rough sketches rather than finished production UI.</li>
+<li><strong>Rule:</strong> Do not insert generic <code>[Placeholder]</code> boxes or generic lorem ipsum unless the mock literally displays that placeholder text.</li>
+</ul>
+<h3>5. Asset Recreation</h3>
+<p>For icons, logos, or unique visual assets visible in the screenshot, recreate them visually to match the mock exactly. Never leave a broken image link or a text label like <code>[User Icon]</code>.</p>
+<ul>
+<li><strong>Why:</strong> Broken image links or text labels destroy the visual realism of the prototype.</li>
+<li><strong>Rule:</strong></li>
+<li>Never use <code>&lt;img&gt;</code> tags with external or broken URLs.</li>
+<li>Apply strict asset extraction rules (see Section 6 and 8 below) to ensure every visual asset is rendered with true-to-mock fidelity.</li>
+</ul>
+<h3>6. Bit-for-Bit Asset Extraction (Crucial)</h3>
+<p>If an element is a complex visual image (photograph, icon, menu item, logo, etc.), extract the exact bitmap pixel data of that region and render it directly (e.g., via embedded base64 image data or precise bitmap slicing). NEVER use semantic reasoning to &quot;infer&quot; what the asset is and replace it with a generated approximation or a simplified shape. Prioritize visual data fidelity over semantic understanding.</p>
+<ul>
+<li><strong>Why:</strong> Semantic approximations (such as drawing simplified bread buns for a burger photo, cartoon food shapes for a restaurant dish, or simplified circles/chevrons for specific UI badges) destroy visual realism and violate design integrity.</li>
+<li><strong>Rule:</strong></li>
+<li>When rendering photographs, food dishes, complex menu items, or detailed logos, embed exact pixel data (base64 PNG/JPEG data URI) representing the exact region from the mock.</li>
+<li><strong>Bucket-First <code>nano-banana</code> Handoff:</strong> First mount and classify every visual region inside <code>image-to-react</code> (<code>native-code</code> CSS/SVG vs. <code>crisp-media &gt;= 2x</code> vs. <code>upscale-queue &lt; 2x</code>). Only raster <code>&lt;img&gt;</code> slots in <code>upscale-queue</code>—where <code>eval-image-readiness.py</code> reports <code>&lt; 2x</code> DPR against the actual rendered CSS box (<code>clientWidth x clientHeight</code>), blur, or baked-in text over photography—are sent to <code>nano-banana</code> for <code>2x</code> Retina restoration. Non-image UI is never upscaled.</li>
+<li>Never replace a photograph or complex artwork with a simplified SVG or semantic cartoon graphic.</li>
+</ul>
+<h3>7. Perfect Text Reconstruction</h3>
+<p>Text strings must match the source character-for-character. If text repeats, it must repeat in the exact layout. Font rendering (weight, line height, antialiasing) must align precisely.</p>
+<ul>
+<li><strong>Why:</strong> Transcription errors, stuttered/duplicated words (e.g., <code>&quot;See see more&quot;</code>), or mismatched font weight/line-height degrade typography hierarchy and look unpolished.</li>
+<li><strong>Rule:</strong></li>
+<li>Read every text label character-for-character.</li>
+<li>Verify that repeated links or labels (e.g., <code>&quot;See more | See more&quot;</code>) match the exact spacing, wording, and column alignment of the source.</li>
+<li>Apply precise CSS font smoothing (<code>antialiased</code>), exact font weights (<code>font-normal</code>, <code>font-medium</code>, <code>font-semibold</code>), and exact line heights (<code>leading-tight</code>, <code>leading-snug</code>, <code>leading-normal</code>).</li>
+</ul>
+<h3>8. Vector-to-Vector Match (if possible)</h3>
+<p>If an asset appears to be vector-based (e.g., standard icons), prioritize recreating it with high-fidelity vector logic (inline SVG, precise CSS shapes) to prevent pixelation, but only if the match is perfect. If the match is not perfect, fallback to directive #6 (exact bitmap data).</p>
+<ul>
+<li><strong>Why:</strong> High-fidelity vector rendering prevents pixelation at different scales, but an imperfect SVG vector approximation is worse than exact bitmap data.</li>
+<li><strong>Rule:</strong></li>
+<li>For clean vector icons (arrows, pins, speech bubbles, QR codes), create an inline SVG that is a 100% exact geometric match to the mock icon.</li>
+<li>If any icon or graphic cannot be matched 100% perfectly with SVG paths, immediately fallback to bit-for-bit bitmap extraction (base64 image data).</li>
+</ul>
+<h2>Execution Workflow</h2>
+<ol>
+<li><strong>Analyze the Screenshot:</strong></li>
+</ol>
+<ul>
+<li>Carefully inspect the uploaded image from top to bottom, left to right.</li>
+<li>Catalog all visible UI components: headers, navigation bars, cards, buttons, text labels, dividers, inputs, and icons.</li>
+<li>Extract exact hex color codes for every text element, background, border, and shadow.</li>
+</ul>
+<ol>
+<li><strong>Plan the Prototype Hierarchy:</strong></li>
+</ol>
+<ul>
+<li>Map the visual structure to a semantic HTML DOM hierarchy or React 19 component tree.</li>
+<li>Verify that layout proportions (aspect ratios, grid columns, flex alignment, padding, and gap spacing) match the screenshot exactly.</li>
+</ul>
+<ol>
+<li><strong>Handle Visual Assets (Bit-for-Bit vs. Vector):</strong></li>
+</ol>
+<ul>
+<li>For complex photographs, food images, menu item thumbnails, or detailed illustrations: extract exact bitmap data and embed as a base64 data URI image (<code>&lt;img src=&quot;data:image/jpeg;base64,...&quot; /&gt;</code>) or optimized WebP.</li>
+<li>For clean vector icons: recreate with 100% geometric SVG precision. If an exact SVG match cannot be guaranteed, fallback to base64 bitmap extraction.</li>
+</ul>
+<ol>
+<li><strong>Reconstruct Typography &amp; Text:</strong></li>
+</ol>
+<ul>
+<li>Transcribe every text string character-for-character.</li>
+<li>Audit line wrapping, line height, font weight, and repeated text blocks to ensure zero duplication or omission.</li>
+</ul>
+<ol>
+<li><strong>Generate the React Application / Prototype:</strong></li>
+</ol>
+<ul>
+<li>When building a standalone deliverable, structure as a Google Golden Template React 19 + Vite 7 + Tailwind v4 project adhering to the canonical <code>dating</code> architecture (<code>package.json</code>, <code>tsconfig.json</code>, <code>vite.config.ts</code>, <code>src/App.tsx</code>, <code>src/components/</code>, <code>src/data/</code>, <code>src/utils/cn.ts</code>).</li>
+<li>Use Tailwind CSS utility classes supplemented by arbitrary values for exact hex codes (<code>text-[#231514]</code>, <code>bg-[#FAF5F2]</code>) and pixel-perfect measurements.</li>
+</ul>
+<ol>
+<li><strong>Verify Against Core Directives:</strong></li>
+</ol>
+<ul>
+<li>Audit against the Pre-Delivery Audit Checklist before delivery.</li>
+</ul>
+<h2>Pre-Delivery Audit Checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>Zero Hallucination:</strong> Are all rendered elements explicitly visible in the uploaded image?</span></li>
+<li><span class="check-box"></span><span><strong>Zero Omission:</strong> Are all dividers, labels, timestamps, badges, and subtle borders from the image present in the code?</span></li>
+<li><span class="check-box"></span><span><strong>Exact Visual Match:</strong> Do all background colors, font sizes, font weights, padding, border radii, and text hex codes match the mock exactly?</span></li>
+<li><span class="check-box"></span><span><strong>No Generic Placeholders:</strong> Are there zero wireframe placeholder boxes or generic text labels?</span></li>
+<li><span class="check-box"></span><span><strong>Asset Recreation:</strong> Are all visual assets rendered cleanly without broken links or placeholder labels?</span></li>
+<li><span class="check-box"></span><span><strong>Bit-for-Bit Asset Extraction:</strong> Are all photographs, food dishes, complex menu thumbnails, and intricate logos rendered using exact bitmap data rather than semantic approximations?</span></li>
+<li><span class="check-box"></span><span><strong>Perfect Text Reconstruction:</strong> Are all text strings character-for-character identical without duplicated words, with exact line height and font weight?</span></li>
+<li><span class="check-box"></span><span><strong>Vector-to-Vector Match:</strong> Are vector icons 100% geometrically identical to the source mock, with bitmap fallback used whenever an exact SVG match cannot be achieved?</span></li>
+</ul>
+<h2>Bundled Scripts, References &amp; Examples</h2>
+<ul>
+<li><strong>Scripts</strong>:</li>
+<li><a href="scripts/prepare-and-extract-image.py"><code>scripts/prepare-and-extract-image.py</code></a> — sRGB + Retina <code>@2x</code> normalization, <code>layout_metrics.json</code>, and non-widget media extraction.</li>
+<li><a href="scripts/crop_regions.py"><code>scripts/crop_regions.py</code></a> — Bit-accurate bounding-box cropping for photographic plates.</li>
+<li><a href="scripts/measure_px.py"><code>scripts/measure_px.py</code></a> — Pixel ruler &amp; 3-zone color/luminance profiler.</li>
+<li><strong>References &amp; Examples</strong>:</li>
+<li><a href="references/avela_pixel_purity_and_token_rules.md"><code>references/avela_pixel_purity_and_token_rules.md</code></a> — Unboxed silhouette grounding on <code>#FBF6EE</code>, exact sampled hex tokens, and Check <code>C8</code> anti-hallucination rules.</li>
+<li><a href="examples/avela-homepage-mock-audit.md"><code>examples/avela-homepage-mock-audit.md</code></a> — Complete 8-directive audit on <code>01-website-avela</code>.</li>
+</ul>
+<h2>Credits &amp; Lineage</h2>
+<ul>
+<li><strong><code>replicate-mock</code> (Core 8 Directives &amp; Audit Checklist)</strong>: Created by <strong>Manasa Babu</strong> (<code>manasababu</code>, <code>//depot/google3/experimental/users/manasababu/skills/replicate_mock/</code>), adapted for <code>jason-dev-agent</code>&#x27;s Golden Template React 19 + Tailwind v4 bucket pipeline by Jason Festa (<code>jfesta</code>).</li>
+<li><strong>Preprocessor &amp; Non-Widget Cropping Scripts</strong>: Adapted from <strong><code>screenshot-to-html</code></strong> by the <strong>Google Agentic Design Loop</strong> team (<code>dfreedm</code>, <code>jonathangamble</code>, <code>meaplet</code>, <code>igormr</code>, <code>//depot/google3/prototypes/projects/agentic_design_loop/skills/screenshot_to_html/</code>).</li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

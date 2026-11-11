@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>External Design Systems &amp; WDA Prompt #01–#10 Master Registry</title>
+  <link rel="stylesheet" href="../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../fonts/switchyard-fonts.css">
+  <style>
+    :root {
+      --bg-canvas: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --ink-primary: #0f172a;
+      --ink-secondary: #334155;
+      --ink-muted: #64748b;
+      --border-light: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --accent-cobalt: #0284c7;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg-canvas);
+      color: var(--ink-primary);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    .shell {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 24px 32px 72px;
+    }
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 28px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-link {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--ink-primary);
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .btn-link:hover {
+      background: var(--bg-subtle);
+    }
+    .hero-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+    .hero-banner h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 2.8vw, 2.35rem);
+      font-weight: 500;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .sys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .sys-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+    .sys-card h3 {
+      margin: 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .token-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.15);
+    }
+    .chip {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: var(--bg-subtle);
+      color: var(--ink-secondary);
+      border: 1px solid var(--border-light);
+    }
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+      font-size: 13px;
+    }
+    .matrix-table th {
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-strong);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--ink-secondary);
+    }
+    .matrix-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border-light);
+      vertical-align: top;
+    }
+    .matrix-table tr:hover td {
+      background: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="site-header">
+      <div>
+        <strong style="font-size:15px;">WDA Design System Ecosystem · External Systems &amp; Prompt #01–#10 Mapping</strong>
+        <div style="font-size:12px;color:var(--ink-muted);">6 Extracted External Systems + Motion AI Kit + 6 Core WDA Systems + 6 Component Registries</div>
+      </div>
+      <nav class="nav-links">
+        <a class="btn-link" href="../index.html">← Six Core Design Systems (`../index.html`)</a>
+        <a class="btn-link" href="../marketing.html">Marketing Systems (`../marketing.html`)</a>
+        <a class="btn-link" href="./README.md">Markdown Registry (`README.md`)</a>
+      </nav>
+    </header>
+
+    <section class="hero-banner">
+      <h1>External Design Systems &amp; WDA Archetype Association Catalog</h1>
+      <p style="margin:0;color:var(--ink-secondary);max-width:92ch;">
+        Local reference installation of <strong>Twenty CRM</strong>, <strong>Midday</strong>, <strong>Plane</strong>, <strong>Shadcnblocks</strong>, <strong>Vercel Templates &amp; Geist</strong>, and <strong>Liveblocks</strong> alongside <strong>Motion (`motion.dev`)</strong> and the <strong>Six Interactive WDA Design Systems</strong> (`Switchyard`, `Ledgermark`, `Civicgate`, `Fieldrig`, `Folio Archive`, `Wardline`). Every system includes two-layer OKLCH + Hex CSS tokens, typography scales (`tabular-nums`), and an interactive HTML specimen.
+      </p>
+    </section>
+
+    <h2 style="margin:0 0 14px;font-size:18px;">1. Newly Installed External Design Systems (Interactive Specimens &amp; Token Sheets)</h2>
+    <div class="sys-grid">
+      <article class="sys-card">
+        <div>
+          <h3>
+            <span>1. Twenty CRM (`twenty-ui`)</span>
+            <span class="token-dots">
+              <span class="dot" style="background:#FFFFFF;" title="#FFFFFF"></span>
+              <span class="dot" style="background:#171717;" title="#171717"></span>
+              <span class="dot" style="background:#1961ED;" title="#1961ED"></span>
+              <span class="dot" style="background:#0D7A5F;" title="#0D7A5F"></span>
+            </span>
+          </h3>
+          <p style="margin:8px 0;color:var(--ink-secondary);font-size:13px;">
+            High-density relational record table (`36px` rows), 11-stage Kanban deal pipeline board, typed currency/relation cells (`--t-*`), `⌘K` command menu &amp; slide-over record drawer.
+          </p>
+          <div>
+            <span class="chip">twenty.com</span>
+            <span class="chip">github.com/twentyhq/twenty</span>
+            <span class="chip">Prompt #10 Primary</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a class="btn-link" href="./twenty-crm/specimen.html">Open Interactive Specimen →</a>
+          <a class="btn-link" href="./twenty-crm/tokens.css">tokens.css</a>
+          <a class="btn-link" href="./twenty-crm/README.md">README.md</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <h3>
+            <span>2. Midday (`midday.ai`)</span>
+            <span class="token-dots">
+              <span class="dot" style="background:#F7F7F5;" title="#F7F7F5"></span>
+              <span class="dot" style="background:#111111;" title="#111111"></span>
+              <span class="dot" style="background:#059669;" title="#059669"></span>
+              <span class="dot" style="background:#DC2626;" title="#DC2626"></span>
+            </span>
+          </h3>
+          <p style="margin:8px 0;color:var(--ink-secondary);font-size:13px;">
+            Architectural 1px-border financial OS (`--md-*`), AI transaction-to-voucher inbox matcher, double-entry audit workbench, and print-paginated A4 Portrait/Landscape sheets.
+          </p>
+          <div>
+            <span class="chip">midday.ai</span>
+            <span class="chip">github.com/midday-ai/midday</span>
+            <span class="chip">Prompts #04, #07, #09</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a class="btn-link" href="./midday/specimen.html">Open Interactive Specimen →</a>
+          <a class="btn-link" href="./midday/tokens.css">tokens.css</a>
+          <a class="btn-link" href="./midday/README.md">README.md</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <h3>
+            <span>3. Plane (`plane.so` · `@makeplane/propel`)</span>
+            <span class="token-dots">
+              <span class="dot" style="background:#F8FAFC;" title="#F8FAFC"></span>
+              <span class="dot" style="background:#0F172A;" title="#0F172A"></span>
+              <span class="dot" style="background:#0284C7;" title="#0284C7"></span>
+              <span class="dot" style="background:#0D9488;" title="#0D9488"></span>
+            </span>
+          </h3>
+          <p style="margin:8px 0;color:var(--ink-secondary);font-size:13px;">
+            Locked-100vh split-pane engineering workbench (`--pl-*`), SVG workflow state rings, VSM process node cards, WIP breach badges, and slide-over parameter inspector.
+          </p>
+          <div>
+            <span class="chip">plane.so</span>
+            <span class="chip">github.com/makeplane/plane</span>
+            <span class="chip">Prompts #02, #03, #09</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a class="btn-link" href="./plane/specimen.html">Open Interactive Specimen →</a>
+          <a class="btn-link" href="./plane/tokens.css">tokens.css</a>
+          <a class="btn-link" href="./plane/README.md">README.md</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <h3>
+            <span>4. Shadcnblocks (`@shadcnblocks`)</span>
+            <span class="token-dots">
+              <span class="dot" style="background:#FFFFFF;" title="#FFFFFF"></span>
+              <span class="dot" style="background:#09090B;" title="#09090B"></span>
+              <span class="dot" style="background:#0284C7;" title="#0284C7"></span>
+              <span class="dot" style="background:#059669;" title="#059669"></span>
+            </span>
+          </h3>
+          <p style="margin:8px 0;color:var(--ink-secondary);font-size:13px;">
+            12-column asymmetric Bento metric stages (`span-8` + `span-4`), interactive weighted scorecard sliders, multi-layer comparison matrices, and SaaS data toolbars (`--sb-*`).
+          </p>
+          <div>
+            <span class="chip">shadcnblocks.com</span>
+            <span class="chip">@shadcnblocks</span>
+            <span class="chip">Prompts #02, #04, #05</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a class="btn-link" href="./shadcnblocks/specimen.html">Open Interactive Specimen →</a>
+          <a class="btn-link" href="./shadcnblocks/tokens.css">tokens.css</a>
+          <a class="btn-link" href="./shadcnblocks/README.md">README.md</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <h3>
+            <span>5. Vercel Templates &amp; Geist (`Geist UI`)</span>
+            <span class="token-dots">
+              <span class="dot" style="background:#0A0A0A;" title="#0A0A0A"></span>
+              <span class="dot" style="background:#EDEDED;" title="#EDEDED"></span>
+              <span class="dot" style="background:#06B6D4;" title="#06B6D4"></span>
+              <span class="dot" style="background:#10B981;" title="#10B981"></span>
+            </span>
+          </h3>
+          <p style="margin:8px 0;color:var(--ink-secondary);font-size:13px;">
+            10-step P3/OKLCH scale (`--ds-gray-100..1000`), shadow-as-border (`0 0 0 1px`), `Geist Mono` telemetry sparklines, glowing status cards, and artifact/TTL pills.
+          </p>
+          <div>
+            <span class="chip">vercel.com/design</span>
+            <span class="chip">vercel.com/templates</span>
+            <span class="chip">Prompts #01, #05, #06, #08</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a class="btn-link" href="./vercel-geist/specimen.html">Open Interactive Specimen →</a>
+          <a class="btn-link" href="./vercel-geist/tokens.css">tokens.css</a>
+          <a class="btn-link" href="./vercel-geist/README.md">README.md</a>
+        </div>
+      </article>
+
+      <article class="sys-card">
+        <div>
+          <h3>
+            <span>6. Liveblocks (`@liveblocks/react-ui`)</span>
+            <span class="token-dots">
+              <span class="dot" style="background:#F8FAFC;" title="#F8FAFC"></span>
+              <span class="dot" style="background:#0F172A;" title="#0F172A"></span>
+              <span class="dot" style="background:#0284C7;" title="#0284C7"></span>
+              <span class="dot" style="background:#0F766E;" title="#0F766E"></span>
+            </span>
+          </h3>
+          <p style="margin:8px 0;color:var(--ink-secondary);font-size:13px;">
+            Anchored spatial canvas pins (`1`, `2`, `3`), floating `.lb-thread` annotation cards (`--lb-*`), blinded rater agreement (`κ`) HUD, and Maker-Checker approval workflows.
+          </p>
+          <div>
+            <span class="chip">liveblocks.io</span>
+            <span class="chip">@liveblocks/react-ui</span>
+            <span class="chip">Prompts #06, #01, #07, #09</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <a class="btn-link" href="./liveblocks/specimen.html">Open Interactive Specimen →</a>
+          <a class="btn-link" href="./liveblocks/tokens.css">tokens.css</a>
+          <a class="btn-link" href="./liveblocks/README.md">README.md</a>
+        </div>
+      </article>
+    </div>
+
+    <h2 style="margin:0 0 14px;font-size:18px;">2. WDA Prompts `#01`–`#10` Design System Mapping Matrix</h2>
+    <div style="overflow-x:auto;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Prompt #</th>
+            <th>Application Archetype &amp; Run Folder</th>
+            <th>Core WDA System (`../systems/`)</th>
+            <th>External System Match (`./*/`)</th>
+            <th>Registries &amp; Motion</th>
+            <th>Surface / Ink / Accent DNA (`&lt;9.5%` Purple)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>#01</strong><br><span class="chip">30UuyID6vHMX7LAb4wxiqn</span></td>
+            <td><strong>Jordan Water Sector Operational Risk &amp; GIS Platform ("Water VVARD")</strong><br><code>archetype-runs/01-water-vvard-gis/</code></td>
+            <td><a href="../systems/switchyard.html">Switchyard</a></td>
+            <td><a href="./vercel-geist/specimen.html">Vercel Geist</a> + <a href="./liveblocks/specimen.html">Liveblocks</a></td>
+            <td><code>motion.dev</code> · <code>@kokonutui</code></td>
+            <td>Dark Graphite <code>#0B0F14</code>, Ink <code>#E2E8F0</code>, Cyan <code>#06B6D4</code>, Green Glow <code>#10B981</code>, Outage Red <code>#EF4444</code></td>
+          </tr>
+          <tr>
+            <td><strong>#02</strong><br><span class="chip">IbwVQJJ3hk4FEh35a2XLDM</span></td>
+            <td><strong>Data Center GIS Site Screener &amp; Scoring Platform</strong><br><code>archetype-runs/02-datacenter-gis-screener/</code></td>
+            <td><a href="../systems/civicgate.html">Civicgate</a></td>
+            <td><a href="./plane/specimen.html">Plane (`plane.so`)</a> + <a href="./shadcnblocks/specimen.html">Shadcnblocks</a></td>
+            <td><code>@easeui</code> · <code>@shadcn</code></td>
+            <td>Light Crisp Slate <code>#F8FAFC</code>, Ink <code>#0F172A</code>, Cobalt <code>#0284C7</code>, Pass <code>#059669</code>, Queue Warn <code>#D97706</code></td>
+          </tr>
+          <tr>
+            <td><strong>#03</strong><br><span class="chip">38YUfUDWNCA6mWqpyARqx2</span></td>
+            <td><strong>Value Stream Mapping Dashboard &amp; Manufacturing Workflow</strong><br><code>archetype-runs/03-quartz-vsm-studio/</code></td>
+            <td><a href="../systems/fieldrig.html">Fieldrig</a> + Quartz CI</td>
+            <td><a href="./plane/specimen.html">Plane (`plane.so`)</a></td>
+            <td><code>@spectrumui</code> · <code>motion.dev</code></td>
+            <td>Industrial Zinc <code>#F4F4F5</code>, Ink <code>#18181B</code>, Quartz Green <code>#3DCD58</code> / Teal <code>#0D9488</code>, WIP Breach <code>#DC2626</code></td>
+          </tr>
+          <tr>
+            <td><strong>#04</strong><br><span class="chip">7GIcIZjV9raU2VB7vBLHZF</span></td>
+            <td><strong>Photovoltaic Plant Commissioning &amp; PR/PAC Report ("PSF Moratalla 1")</strong><br><code>archetype-runs/04-solarig-pv-commissioning/</code></td>
+            <td><a href="../systems/civicgate.html">Civicgate</a> + <a href="../systems/ledgermark.html">Ledgermark</a></td>
+            <td><a href="./midday/specimen.html">Midday (`midday.ai`)</a> + <a href="./shadcnblocks/specimen.html">Shadcnblocks</a></td>
+            <td><code>@shadcn</code> · <code>@easeui</code></td>
+            <td>Architectural Stone <code>#F7F7F5</code>, Ink <code>#0F172A</code>, Sabit Navy <code>#1D4ED8</code>, Solarig Orange <code>#EA580C</code>, Delta <code>#DC2626</code></td>
+          </tr>
+          <tr>
+            <td><strong>#05</strong><br><span class="chip">edd6d26fb45d</span></td>
+            <td><strong>Stunning Horizon UI Executive CEO Telemetry Dashboard</strong><br><code>archetype-runs/05-horizon-ceo-telemetry/</code></td>
+            <td><a href="../systems/switchyard.html">Switchyard</a></td>
+            <td><a href="./vercel-geist/specimen.html">Vercel Geist</a> + <a href="./shadcnblocks/specimen.html">Shadcnblocks</a></td>
+            <td><code>motion.dev</code> · <code>21st.dev</code></td>
+            <td>Dark Graphite <code>#0B0F14</code>, Ink <code>#E2E8F0</code>, Cyan Globe <code>#06B6D4</code>, Emerald <code>#10B981</code>, Amber <code>#F59E0B</code></td>
+          </tr>
+          <tr>
+            <td><strong>#06</strong><br><span class="chip">10a3e7a5d0c0</span></td>
+            <td><strong>Scientific Facial Resemblance Biometric Evaluation Tool</strong><br><code>archetype-runs/06-biometric-resemblance-inspector/</code></td>
+            <td><a href="../systems/wardline.html">Wardline</a> + <a href="../systems/switchyard.html">Switchyard</a></td>
+            <td><a href="./liveblocks/specimen.html">Liveblocks</a> + <a href="./vercel-geist/specimen.html">Vercel Geist</a></td>
+            <td><code>@fluid</code> · <code>@shadcn</code></td>
+            <td>Clinical Slate <code>#F8FAFC</code>, Ink <code>#0F172A</code>, Cobalt <code>#0284C7</code>, Biometric Teal <code>#0F766E</code>, Warn <code>#B45309</code></td>
+          </tr>
+          <tr>
+            <td><strong>#07</strong><br><span class="chip">579P1hMwcrtGBFdbfiaE7C</span></td>
+            <td><strong>Cross-Border E-Commerce AI Bookkeeping &amp; Tax SaaS</strong><br><code>archetype-runs/07-crossborder-ai-bookkeeping/</code></td>
+            <td><a href="../systems/ledgermark.html">Ledgermark</a></td>
+            <td><a href="./midday/specimen.html">Midday (`midday.ai`)</a> + <a href="./liveblocks/specimen.html">Liveblocks</a></td>
+            <td><code>@easeui</code> · <code>@shadcn</code></td>
+            <td>Fiduciary Slate <code>#F8FAFC</code>, Ink <code>#0F172A</code>, Cobalt <code>#0284C7</code>, Reconciled <code>#059669</code>, Red-Line <code>#DC2626</code></td>
+          </tr>
+          <tr>
+            <td><strong>#08</strong><br><span class="chip">5VaQZLBWPnG4vNHTsvFfXz</span></td>
+            <td><strong>Binance Futures Quant Trading &amp; Research Dashboard</strong><br><code>archetype-runs/08-binance-quant-terminal/</code></td>
+            <td><a href="../systems/switchyard.html">Switchyard</a> + <a href="../systems/ledgermark.html">Ledgermark</a></td>
+            <td><a href="./vercel-geist/specimen.html">Vercel Geist</a> + <a href="./midday/specimen.html">Midday</a></td>
+            <td><code>motion.dev</code> · <code>@kokonutui</code></td>
+            <td>Deep Obsidian <code>#090D16</code>, Ink <code>#F1F5F9</code>, Long/Pass <code>#10B981</code>, Short/Kill <code>#EF4444</code>, Cyan <code>#06B6D4</code></td>
+          </tr>
+          <tr>
+            <td><strong>#09</strong><br><span class="chip">g5XwVTXJI1DOkAJ08QbbRD</span></td>
+            <td><strong>Operational &amp; Financial Business Digital Twin Simulator</strong><br><code>archetype-runs/09-fpa-business-digital-twin/</code></td>
+            <td><a href="../systems/ledgermark.html">Ledgermark</a></td>
+            <td><a href="./midday/specimen.html">Midday</a> + <a href="./plane/specimen.html">Plane</a> + <a href="./liveblocks/specimen.html">Liveblocks</a></td>
+            <td><code>@fluid</code> · <code>@easeui</code></td>
+            <td>Architectural Stone <code>#F7F7F5</code>, Ink <code>#0F172A</code>, Navy <code>#1D4ED8</code>, Pass <code>#059669</code>, Bottleneck <code>#DC2626</code></td>
+          </tr>
+          <tr>
+            <td><strong>#10</strong><br><span class="chip">fFqMaonroihCmGZ8w0fAu0</span></td>
+            <td><strong>Institutional Capital Advisory Deal OS ("Crystal Capital Consulting")</strong><br><code>archetype-runs/10-crystal-capital-deal-os/</code></td>
+            <td><a href="../systems/folioarchive.html">Folio Archive</a> + <a href="../systems/ledgermark.html">Ledgermark</a></td>
+            <td><a href="./twenty-crm/specimen.html">Twenty CRM (`twenty.com`)</a></td>
+            <td><code>@shadcn</code> · <code>@spectrumui</code> · <code>motion.dev</code></td>
+            <td>Warm Editorial Paper <code>#FAF9F6</code>, Ink <code>#1C1917</code>, Forest <code>#0D7A5F</code>, Tier-1 Blue <code>#1D4ED8</code>, Gate <code>#D97706</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

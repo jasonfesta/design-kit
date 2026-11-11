@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-density="default">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plane (plane.so / @makeplane/propel) — Interactive Design System Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/civicgate-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; background: var(--pl-bg-surface-1);
+      border: 1px solid var(--pl-border-subtle); border-radius: var(--pl-radius-md);
+      margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      height: var(--pl-ctrl-h); padding: 0 12px;
+      border-radius: var(--pl-radius-sm); border: 1px solid var(--pl-border-medium);
+      background: var(--pl-bg-surface-1); color: var(--pl-text-primary);
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    }
+    .btn:hover { background: var(--pl-bg-surface-3); }
+    .card {
+      background: var(--pl-bg-surface-1); border: 1px solid var(--pl-border-subtle);
+      border-radius: var(--pl-radius-md); padding: 18px; margin-bottom: 20px;
+      box-shadow: var(--pl-shadow-sm);
+    }
+    .swatch-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px;
+    }
+    .swatch {
+      border: 1px solid var(--pl-border-subtle); border-radius: var(--pl-radius-sm); overflow: hidden;
+    }
+    .swatch-fill { height: 40px; border-bottom: 1px solid var(--pl-border-subtle); }
+    .swatch-meta { padding: 8px; font-size: 11px; font-family: var(--pl-font-mono); }
+    .split-workbench {
+      display: grid; grid-template-columns: 240px 1fr 340px;
+      border: 1px solid var(--pl-border-medium); border-radius: var(--pl-radius-md);
+      background: var(--pl-bg-surface-1); overflow: hidden;
+    }
+    @media (max-width: 1024px) {
+      .split-workbench { grid-template-columns: 1fr; }
+    }
+    .rail {
+      background: var(--pl-bg-surface-2); border-right: 1px solid var(--pl-border-subtle); padding: 14px;
+    }
+    .stage-grid {
+      padding: 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px;
+      background: var(--pl-bg-surface-2);
+    }
+    .node-card {
+      background: var(--pl-bg-surface-1); border: 1px solid var(--pl-border-subtle);
+      border-radius: var(--pl-radius-md); padding: 12px; cursor: pointer;
+      box-shadow: var(--pl-shadow-sm);
+    }
+    .node-card.is-active {
+      border-color: var(--pl-accent-primary);
+      box-shadow: 0 0 0 2px var(--pl-accent-primary-soft);
+    }
+    .drawer {
+      border-left: 1px solid var(--pl-border-subtle); padding: 16px; background: var(--pl-bg-surface-1);
+    }
+    .state-pill {
+      display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px;
+      border-radius: 999px; font-size: 11px; font-weight: 600;
+    }
+    .st-ok { background: var(--pl-state-completed-bg); color: var(--pl-state-completed); }
+    .st-warn { background: var(--pl-state-started-bg); color: var(--pl-state-started); }
+    .st-err { background: var(--pl-state-urgent-bg); color: var(--pl-state-urgent); }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong style="font-size:14px;">Plane Design System (`@makeplane/propel` · `plane.so`)</strong>
+        <div style="font-size:11.5px;color:var(--pl-text-tertiary);">Split-Pane Engineering Workbench, VSM Process Nodes &amp; Bottleneck Flow · Prompts #02, #03, #09</div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn" id="theme-btn" type="button">Toggle Light / Dark</button>
+        <a class="btn" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card">
+      <h2 style="margin:0 0 12px;font-size:15px;">1. Propel (`--pl-*`) Surface, Ink &amp; Workflow State Tokens (Hex + OKLCH)</h2>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-fill" style="background:var(--pl-bg-surface-1);"></div><div class="swatch-meta"><strong>--pl-bg-surface-1</strong><br>#FFFFFF / #111318</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--pl-bg-surface-2);"></div><div class="swatch-meta"><strong>--pl-bg-surface-2</strong><br>#F8FAFC · oklch(0.984 0.003 248)</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--pl-text-primary);"></div><div class="swatch-meta"><strong>--pl-text-primary</strong><br>#0F172A · oklch(0.208 0.040 266)</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--pl-accent-primary);"></div><div class="swatch-meta"><strong>--pl-accent-primary</strong><br>#0284C7 · Cobalt Selection</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--pl-accent-teal);"></div><div class="swatch-meta"><strong>--pl-accent-teal</strong><br>#0D9488 · Quartz Process Teal</div></div>
+        <div class="swatch"><div class="swatch-fill" style="background:var(--pl-state-urgent);"></div><div class="swatch-meta"><strong>--pl-state-urgent</strong><br>#DC2626 · WIP Breach / Bottleneck</div></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 style="margin:0 0 12px;font-size:15px;">2. Interactive Split-Pane Process &amp; Site Scoring Workbench</h2>
+      <div class="split-workbench">
+        <aside class="rail">
+          <div style="font-size:11px;font-weight:600;color:var(--pl-text-tertiary);text-transform:uppercase;margin-bottom:8px;">Active Workstreams</div>
+          <div style="padding:7px 10px;border-radius:4px;background:var(--pl-accent-primary-soft);color:var(--pl-accent-primary);font-weight:600;margin-bottom:4px;">Line 01 · Stator Winding VSM</div>
+          <div style="padding:7px 10px;border-radius:4px;color:var(--pl-text-secondary);margin-bottom:4px;">PJM Ashburn North 345kV</div>
+          <div style="padding:7px 10px;border-radius:4px;color:var(--pl-text-secondary);">FP&amp;A Delivery Bottleneck</div>
+        </aside>
+
+        <div class="stage-grid">
+          <div class="node-card is-active" data-title="STG-01 · CNC Core Stamping" data-ct="42.0s" data-wip="140 pcs (Pass)" data-oee="94.2%" data-status="Normal Takt Flow">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-family:var(--pl-font-mono);font-size:11px;color:var(--pl-text-tertiary);">STG-01</span>
+              <span class="state-pill st-ok">● Pass</span>
+            </div>
+            <strong style="display:block;margin-bottom:8px;">CNC Core Stamping</strong>
+            <div class="tabular-nums" style="font-size:12px;color:var(--pl-text-secondary);">C/T: <strong>42.0s</strong> · OEE: <strong>94.2%</strong><br>WIP Queue: 140 / 250 max</div>
+          </div>
+
+          <div class="node-card" data-title="STG-02 · Hairpin Laser Weld" data-ct="68.5s" data-wip="490 pcs (BREACH > 300)" data-oee="78.4%" data-status="CRITICAL WIP BREACH & PRIMARY BOTTLENECK">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-family:var(--pl-font-mono);font-size:11px;color:var(--pl-text-tertiary);">STG-02</span>
+              <span class="state-pill st-err">▲ WIP Breach</span>
+            </div>
+            <strong style="display:block;margin-bottom:8px;">Hairpin Laser Weld</strong>
+            <div class="tabular-nums" style="font-size:12px;color:var(--pl-text-secondary);">C/T: <strong>68.5s</strong> · OEE: <strong>78.4%</strong><br>WIP Queue: 490 / 300 max</div>
+          </div>
+
+          <div class="node-card" data-title="STG-03 · VPI Resin Impregnation" data-ct="51.0s" data-wip="265 pcs (Warning)" data-oee="88.9%" data-status="Secondary Constraint Warning">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+              <span style="font-family:var(--pl-font-mono);font-size:11px;color:var(--pl-text-tertiary);">STG-03</span>
+              <span class="state-pill st-warn">◐ Near Cap</span>
+            </div>
+            <strong style="display:block;margin-bottom:8px;">VPI Resin Impregnation</strong>
+            <div class="tabular-nums" style="font-size:12px;color:var(--pl-text-secondary);">C/T: <strong>51.0s</strong> · OEE: <strong>88.9%</strong><br>WIP Queue: 265 / 300 max</div>
+          </div>
+        </div>
+
+        <aside class="drawer">
+          <div style="font-size:11px;font-family:var(--pl-font-mono);color:var(--pl-text-tertiary);">SLIDE-OVER PARAMETER INSPECTOR</div>
+          <h3 id="pl-title" style="margin:6px 0 12px;font-size:14px;">STG-01 · CNC Core Stamping</h3>
+          <div class="tabular-nums" style="font-size:12.5px;display:grid;gap:8px;">
+            <div>Cycle Time (`C/T`): <strong id="pl-ct">42.0s</strong></div>
+            <div>Inter-Stage WIP: <strong id="pl-wip">140 pcs (Pass)</strong></div>
+            <div>Station OEE: <strong id="pl-oee">94.2%</strong></div>
+            <div>Diagnostic: <strong id="pl-status">Normal Takt Flow</strong></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+    document.querySelectorAll('.node-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.node-card').forEach(c => c.classList.remove('is-active'));
+        card.classList.add('is-active');
+        document.getElementById('pl-title').textContent = card.dataset.title;
+        document.getElementById('pl-ct').textContent = card.dataset.ct;
+        document.getElementById('pl-wip').textContent = card.dataset.wip;
+        document.getElementById('pl-oee').textContent = card.dataset.oee;
+        document.getElementById('pl-status').textContent = card.dataset.status;
+      });
+    });
+  </script>
+</body>
+</html>

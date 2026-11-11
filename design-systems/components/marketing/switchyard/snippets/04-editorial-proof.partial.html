@@ -1,0 +1,112 @@
+<section aria-labelledby="h-editorial-proof" class="sy-doc-section" data-component-doc="" id="editorial-proof">
+<div class="sy-doc-head">
+<h2 id="h-editorial-proof">Customer portrait and release log</h2>
+<p class="sy-doc-desc">Combines an inward-facing engineering portrait and verified production numbers beside dated shipping entries.</p>
+</div>
+<div class="sy-usage-notes" data-usage-notes="">
+<div class="sy-usage-col">
+<h3>When to use</h3>
+<ul class="sy-usage-list">
+<li>Anchor social proof around one named infrastructure lead and falsifiable latency figure rather than anonymous logo strips.</li>
+<li>Pair customer quotes with four dated shipping milestones to show continuous platform engineering.</li>
+<li>Switch to the compact text fallback when a customer legal team approves attribution without studio photography.</li>
+</ul>
+</div>
+<div class="sy-usage-col">
+<h3>How to apply it</h3>
+<ul class="sy-usage-list">
+<li>Position the 4 to 3 portrait on the left when the subject gazes right so eye contact points straight into the quote.</li>
+<li>Keep aggregate event counts in separate tabular counters below the quote rather than stuffing statistics into dialogue.</li>
+<li>Format release dates and version tags in tabular sans numerals so lists scan cleanly without monospace clutter.</li>
+</ul>
+</div>
+</div>
+<div class="sy-specimen-well">
+<div class="sy-specimen-bar">
+<div aria-label="Editorial proof states" class="sy-state-tabs" data-state-tabs="" role="tablist">
+<button aria-controls="panel-proof-full" aria-selected="true" class="sy-state-tab" id="tab-proof-full" role="tab" tabindex="0" type="button">Portrait with changelog</button>
+<button aria-controls="panel-proof-quote" aria-selected="false" class="sy-state-tab" id="tab-proof-quote" role="tab" tabindex="-1" type="button">Single quote</button>
+<button aria-controls="panel-proof-compact" aria-selected="false" class="sy-state-tab" id="tab-proof-compact" role="tab" tabindex="-1" type="button">Text fallback</button>
+</div>
+</div>
+<!-- Tabpanel 1: Portrait with changelog -->
+<div aria-labelledby="tab-proof-full" data-specimen-state="portrait-with-changelog" id="panel-proof-full" role="tabpanel">
+<div class="sy-proof-split">
+<figure class="sy-portrait-quote">
+<div class="sy-photo-frame">
+<img alt="Maya Lin, Staff Infrastructure Engineer at Northwind Pay, facing right toward her quote in a concrete and walnut studio" class="sy-ratio-4-3" decoding="sync" height="1792" loading="eager" src="../images/sy-engineer-story.webp" width="2400"/>
+</div>
+<div>
+<blockquote>
+<p class="sy-quote-text">“Cut P99 webhook retry tails from 4.2 seconds to 42 ms across 1.4 billion monthly deliveries without a single midnight rollback page.”</p>
+</blockquote>
+<figcaption class="sy-quote-cite">Maya Lin, Staff Infrastructure Engineer at Northwind Pay</figcaption>
+<div class="sy-metric-pair num">
+<div>
+<div class="sy-big-metric">42 ms</div>
+<div class="sy-stage-lbl">P99 delivery after cutover</div>
+</div>
+<div>
+<div class="sy-big-metric">1.4B</div>
+<div class="sy-stage-lbl">Signed monthly events</div>
+</div>
+</div>
+</div>
+</figure>
+<ol aria-label="Recent shipped releases" class="sy-changelog">
+<li class="sy-changelog-item">
+<time class="sy-changelog-date num" datetime="2026-11-04">4 Nov</time>
+<div>
+<div class="sy-changelog-title num">v24.11 Jittered retry drain</div>
+<p class="sy-changelog-desc">Spreads webhook retry intervals across regional pools to clear downstream partner stalls.</p>
+</div>
+</li>
+<li class="sy-changelog-item">
+<time class="sy-changelog-date num" datetime="2026-10-28">28 Oct</time>
+<div>
+<div class="sy-changelog-title num">v24.10 Signed webhook replay</div>
+<p class="sy-changelog-desc">Replays failed customer deliveries from 30-day snapshots with original HMAC timestamps.</p>
+</div>
+</li>
+<li class="sy-changelog-item">
+<time class="sy-changelog-date num" datetime="2026-10-19">19 Oct</time>
+<div>
+<div class="sy-changelog-title num">v24.09 NVMe rollback snapshots</div>
+<p class="sy-changelog-desc num">Holds prior release images warm on host storage so failing canaries drain back in 640 ms.</p>
+</div>
+</li>
+<li class="sy-changelog-item">
+<time class="sy-changelog-date num" datetime="2026-10-08">8 Oct</time>
+<div>
+<div class="sy-changelog-title num">v24.08 Plain OCI Dockerfile export</div>
+<p class="sy-changelog-desc">Writes standard multi-stage build files straight into repositories with zero vendor wrappers.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<!-- Tabpanel 2: Single editorial quote -->
+<div aria-labelledby="tab-proof-quote" data-specimen-state="single-editorial-quote" hidden="" id="panel-proof-quote" role="tabpanel">
+<figure class="sy-portrait-quote">
+<div class="sy-photo-frame">
+<img alt="Maya Lin working at an engineering desk at dusk gazing right toward the editorial pull-quote" class="sy-ratio-4-3" decoding="sync" height="1792" loading="eager" src="../images/sy-engineer-story.webp" width="2400"/>
+</div>
+<div>
+<blockquote>
+<p class="sy-quote-text" style="font-size: 1.25rem;">“Every pull request prints exact retry and graceful-shutdown timings before a canary boots, so incidents stop in review rather than production.”</p>
+</blockquote>
+<figcaption class="sy-quote-cite">Maya Lin, Staff Infrastructure Engineer at Northwind Pay</figcaption>
+</div>
+</figure>
+</div>
+<!-- Tabpanel 3: Compact no-photo fallback -->
+<div aria-labelledby="tab-proof-compact" data-specimen-state="compact-no-photo" hidden="" id="panel-proof-compact" role="tabpanel">
+<figure class="sy-spec-card">
+<blockquote>
+<p class="sy-quote-text">“Cut P99 webhook retry tails from 4.2 seconds to 42 ms across 1.4 billion monthly deliveries without a single midnight rollback page.”</p>
+</blockquote>
+<figcaption class="sy-quote-cite">Maya Lin, Staff Infrastructure Engineer at Northwind Pay — unillustrated text state when portrait photography is unavailable</figcaption>
+</figure>
+</div>
+</div>
+</section>

@@ -1,0 +1,192 @@
+<section aria-labelledby="deck-heading" class="workspace-band" data-section="workspace" id="workspace">
+<nav aria-label="Breadcrumb" class="breadcrumb">
+<ol>
+<li><a href="#workspace">Library</a></li>
+<li><a href="#workspace">Reels</a></li>
+<li aria-current="page">Reel 04</li>
+</ol>
+</nav>
+<form aria-labelledby="deck-heading" class="tp4-deck" id="tp4-mixer" novalidate="">
+<div class="deck-top-bar">
+<h1 class="deck-title" id="deck-heading">TP-4 Four-Track Mixer</h1>
+<span class="deck-spec">48 kHz · 24-bit PCM · Internal sync</span>
+</div>
+<!-- Recessed dark OLED display strip -->
+<div class="tp4-glass">
+<div class="glass-row">
+<div class="reel-heading">
+<span class="reel-title">Reel 04 — Late Sketch</span>
+<span class="reel-route" id="tp-route">Solo: 02 Upright bass · Muted: 04</span>
+</div>
+<div class="glass-telemetry oled-mono">
+<span class="glass-time" id="tp-time">01:24.8</span>
+<span>96.0 BPM</span>
+<span id="tp-lufs">−16.1 LUFS</span>
+</div>
+</div>
+<svg aria-hidden="true" class="meter-svg" preserveaspectratio="none" viewbox="0 0 400 8">
+<rect fill="var(--glass-track)" height="4" rx="1" width="400" x="0" y="2"></rect>
+<rect fill="var(--glass-fg)" height="4" id="tp-meter-fill" rx="1" width="217" x="0" y="2"></rect>
+<rect fill="var(--braun-accent)" height="8" width="2" x="348" y="0"></rect>
+</svg>
+</div>
+<!-- Transport bar -->
+<div class="transport-row">
+<span class="transport-status" id="tp-state">Solo check on 02 Upright bass · Bar 34</span>
+<div class="key-row">
+<button class="hw-key" id="btn-zero" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Zero</span>
+</button>
+<button aria-pressed="false" class="hw-key" id="btn-play" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Play</span>
+</button>
+<button aria-pressed="false" class="hw-key hw-key--rec" id="btn-rec" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">
+<svg aria-hidden="true" class="rec-glyph" viewbox="0 0 10 10">
+<circle cx="5" cy="5" fill="currentColor" r="4"></circle>
+</svg>
+<span>Record</span>
+</span>
+</button>
+</div>
+</div>
+<!-- Four authentic vertical studio channel strips -->
+<div class="stem-grid">
+<!-- Strip 01: Felt piano -->
+<div class="stem-strip" data-dimmed="true" data-stem="0">
+<div class="stem-head">
+<label class="stem-name" for="fader-0"><span class="stem-num">01</span>Felt piano</label>
+<output class="stem-db" for="fader-0" id="db-0">−2.0 dB</output>
+</div>
+<div class="vfader-well" style="--fader-norm: 0.7333">
+<svg aria-hidden="true" class="vfader-scale" viewbox="0 0 144 152">
+<path d="M40 12h7M97 12h7 M38 38h9M97 38h9 M42 64h5M97 64h5 M40 90h7M97 90h7 M42 116h5M97 116h5 M40 140h7M97 140h7" stroke="currentColor" stroke-width="1"></path>
+<text text-anchor="end" x="34" y="41">0</text>
+<text text-anchor="end" x="34" y="67">−6</text>
+<text text-anchor="end" x="34" y="93">−12</text>
+<text text-anchor="end" x="34" y="143">−∞</text>
+</svg>
+<div aria-hidden="true" class="vfader-slot">
+<div class="vfader-fill"></div>
+</div>
+<div aria-hidden="true" class="vfader-cap">
+<span class="vfader-line"></span>
+</div>
+<input class="vfader-input stem-fader" id="fader-0" max="6" min="-24" step="0.5" type="range" value="-2"/>
+</div>
+<div class="stem-keys">
+<button aria-label="Mute Felt piano" aria-pressed="false" class="hw-key hw-key--micro stem-mute" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">M</span>
+</button>
+<button aria-label="Solo Felt piano" aria-pressed="false" class="hw-key hw-key--micro stem-solo" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">S</span>
+</button>
+</div>
+</div>
+<!-- Strip 02: Upright bass — pre-latched Solo active on load -->
+<div class="stem-strip" data-stem="1">
+<div class="stem-head">
+<label class="stem-name" for="fader-1"><span class="stem-num">02</span>Upright bass</label>
+<output class="stem-db" for="fader-1" id="db-1">−3.5 dB</output>
+</div>
+<div class="vfader-well" style="--fader-norm: 0.6833">
+<svg aria-hidden="true" class="vfader-scale" viewbox="0 0 144 152">
+<path d="M40 12h7M97 12h7 M38 38h9M97 38h9 M42 64h5M97 64h5 M40 90h7M97 90h7 M42 116h5M97 116h5 M40 140h7M97 140h7" stroke="currentColor" stroke-width="1"></path>
+<text text-anchor="end" x="34" y="41">0</text>
+<text text-anchor="end" x="34" y="67">−6</text>
+<text text-anchor="end" x="34" y="93">−12</text>
+<text text-anchor="end" x="34" y="143">−∞</text>
+</svg>
+<div aria-hidden="true" class="vfader-slot">
+<div class="vfader-fill"></div>
+</div>
+<div aria-hidden="true" class="vfader-cap">
+<span class="vfader-line"></span>
+</div>
+<input class="vfader-input stem-fader" id="fader-1" max="6" min="-24" step="0.5" type="range" value="-3.5"/>
+</div>
+<div class="stem-keys">
+<button aria-label="Mute Upright bass" aria-pressed="false" class="hw-key hw-key--micro stem-mute" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">M</span>
+</button>
+<button aria-label="Solo Upright bass" aria-pressed="true" class="hw-key hw-key--micro stem-solo" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">S</span>
+</button>
+</div>
+</div>
+<!-- Strip 03: Brush snare -->
+<div class="stem-strip" data-dimmed="true" data-stem="2">
+<div class="stem-head">
+<label class="stem-name" for="fader-2"><span class="stem-num">03</span>Brush snare</label>
+<output class="stem-db" for="fader-2" id="db-2">−6.0 dB</output>
+</div>
+<div class="vfader-well" style="--fader-norm: 0.6">
+<svg aria-hidden="true" class="vfader-scale" viewbox="0 0 144 152">
+<path d="M40 12h7M97 12h7 M38 38h9M97 38h9 M42 64h5M97 64h5 M40 90h7M97 90h7 M42 116h5M97 116h5 M40 140h7M97 140h7" stroke="currentColor" stroke-width="1"></path>
+<text text-anchor="end" x="34" y="41">0</text>
+<text text-anchor="end" x="34" y="67">−6</text>
+<text text-anchor="end" x="34" y="93">−12</text>
+<text text-anchor="end" x="34" y="143">−∞</text>
+</svg>
+<div aria-hidden="true" class="vfader-slot">
+<div class="vfader-fill"></div>
+</div>
+<div aria-hidden="true" class="vfader-cap">
+<span class="vfader-line"></span>
+</div>
+<input class="vfader-input stem-fader" id="fader-2" max="6" min="-24" step="0.5" type="range" value="-6"/>
+</div>
+<div class="stem-keys">
+<button aria-label="Mute Brush snare" aria-pressed="false" class="hw-key hw-key--micro stem-mute" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">M</span>
+</button>
+<button aria-label="Solo Brush snare" aria-pressed="false" class="hw-key hw-key--micro stem-solo" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">S</span>
+</button>
+</div>
+</div>
+<!-- Strip 04: Room stereo — pre-latched Mute active on load -->
+<div class="stem-strip" data-muted="true" data-stem="3">
+<div class="stem-head">
+<label class="stem-name" for="fader-3"><span class="stem-num">04</span>Room stereo</label>
+<output class="stem-db" for="fader-3" id="db-3">−8.5 dB</output>
+</div>
+<div class="vfader-well" style="--fader-norm: 0.5167">
+<svg aria-hidden="true" class="vfader-scale" viewbox="0 0 144 152">
+<path d="M40 12h7M97 12h7 M38 38h9M97 38h9 M42 64h5M97 64h5 M40 90h7M97 90h7 M42 116h5M97 116h5 M40 140h7M97 140h7" stroke="currentColor" stroke-width="1"></path>
+<text text-anchor="end" x="34" y="41">0</text>
+<text text-anchor="end" x="34" y="67">−6</text>
+<text text-anchor="end" x="34" y="93">−12</text>
+<text text-anchor="end" x="34" y="143">−∞</text>
+</svg>
+<div aria-hidden="true" class="vfader-slot">
+<div class="vfader-fill"></div>
+</div>
+<div aria-hidden="true" class="vfader-cap">
+<span class="vfader-line"></span>
+</div>
+<input class="vfader-input stem-fader" id="fader-3" max="6" min="-24" step="0.5" type="range" value="-8.5"/>
+</div>
+<div class="stem-keys">
+<button aria-label="Mute Room stereo" aria-pressed="true" class="hw-key hw-key--micro stem-mute" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">M</span>
+</button>
+<button aria-label="Solo Room stereo" aria-pressed="false" class="hw-key hw-key--micro stem-solo" type="button">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">S</span>
+</button>
+</div>
+</div>
+</div>
+</form>
+</section>

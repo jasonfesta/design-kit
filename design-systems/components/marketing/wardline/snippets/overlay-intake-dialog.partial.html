@@ -1,0 +1,34 @@
+<dialog aria-labelledby="intake-dialog-title" class="wl-dialog" id="intake-dialog">
+<form class="dialog-stack" id="intake-modal-form" method="dialog" novalidate="">
+<div class="dialog-head">
+<div>
+<h2 id="intake-dialog-title">Reserve morning blood draw</h2>
+<p class="wl-hint" style="margin-top:4px">Annual preventive care ($199/yr) · HSA/FSA eligible · PPO lab billing</p>
+</div>
+<button aria-label="Close intake dialog" class="wl-btn wl-btn--toolbar" data-close-modal="" type="button">Close</button>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-modal-slot">Clinic and morning slot</label>
+<div class="wl-select-wrap">
+<select class="wl-select" id="wl-modal-slot" name="slot">
+<option value="Thu 08:10 at Hayes Valley">Thursday 08:10 · Hayes Valley (420 Gough St)</option>
+<option value="Thu 09:20 at Marina">Thursday 09:20 · Marina (2140 Chestnut St)</option>
+<option value="Fri 08:20 at Castro">Friday 08:20 · Castro (545 Castro St)</option>
+</select>
+<svg aria-hidden="true" class="wl-select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="wl-field">
+<label class="wl-label" for="wl-modal-email">Email for confirmation and fasting prep</label>
+<input aria-describedby="wl-modal-err wl-modal-hint" autocomplete="email" class="wl-input" id="wl-modal-email" placeholder="you@domain.com" required="" type="email"/>
+<p class="wl-error" hidden="" id="wl-modal-err" role="alert"></p>
+<p class="wl-hint" id="wl-modal-hint">Free cancellation or clinic change up to 24 hours before your draw.</p>
+</div>
+<div class="dialog-actions">
+<button class="wl-btn-pri" type="submit">Confirm morning slot</button>
+<button class="wl-btn" data-close-modal="" type="button">Cancel</button>
+</div>
+</form>
+</dialog>

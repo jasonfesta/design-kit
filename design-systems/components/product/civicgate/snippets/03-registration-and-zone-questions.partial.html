@@ -1,0 +1,75 @@
+<article aria-labelledby="pat-questions" class="pattern-block">
+<div class="pattern-card">
+<form class="pattern-stage" id="specimen-form" novalidate="">
+<h3 class="pattern-title" id="pat-questions">Registration and zone questions</h3>
+<div class="pattern-two">
+<!-- Live validated reminder & zone fields -->
+<div class="form-stack">
+<div class="field-group">
+<label class="field-label" for="spec-zone">Parking zone</label>
+<div class="select-wrap" style="max-width: none;">
+<select class="custom-select" id="spec-zone" name="zone">
+<option selected="" value="B">Zone B — Kelvin and Riverside</option>
+<option value="C">Zone C — Station North</option>
+<option value="D">Zone D — Botanic Gardens</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path>
+</svg>
+</div>
+</div>
+<div class="field-group">
+<label class="field-label" for="spec-email">Email for renewal reminder</label>
+<span class="field-hint" id="spec-email-hint">We write once, 28 days before your permit ends.</span>
+<input aria-describedby="spec-email-err spec-email-hint" class="text-input" id="spec-email" name="email" required="" type="email" value=""/>
+<p class="field-error" hidden="" id="spec-email-err">
+<svg aria-hidden="true" class="err-icon" fill="none" viewbox="0 0 18 18">
+<circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.6"></circle>
+<path d="M9 5.2v4.4M9 12.6h.01" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+<span>Enter an email address in the right format, like name@example.com</span>
+</p>
+</div>
+<div class="action-row">
+<button class="civic-btn civic-btn--primary" data-test-validate="" type="submit">
+<span aria-hidden="true" class="civic-plinth"></span>
+<span class="civic-cap">Save reminder</span>
+</button>
+</div>
+</div>
+<!-- Static visible full-perimeter red error state specimen alongside readonly reference -->
+<div class="form-stack">
+<div class="field-group">
+<label class="field-label" for="spec-reg">Vehicle registration</label>
+<span class="field-hint" id="spec-reg-hint">Enter a UK number plate without hyphens</span>
+<p class="field-error" id="spec-reg-err">
+<svg aria-hidden="true" class="err-icon" fill="none" viewbox="0 0 18 18">
+<circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.6"></circle>
+<path d="M9 5.2v4.4M9 12.6h.01" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path>
+</svg>
+<span>Enter a vehicle registration number, like BD51 SMR</span>
+</p>
+<input aria-describedby="spec-reg-err spec-reg-hint" aria-invalid="true" class="text-input text-input--short" id="spec-reg" name="registration" type="text" value="BD5"/>
+</div>
+<div class="field-group">
+<label class="field-label" for="spec-council-ref">Application reference</label>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+<input class="text-input" id="spec-council-ref" readonly="" style="max-width: 220px;" type="text" value="PRM-2026-8841"/>
+<button class="util-btn" id="cg-copy-ref" style="min-height: var(--target-min); padding-inline: 16px;" type="button">Copy</button>
+</div>
+</div>
+</div>
+</div>
+</form>
+<div class="pattern-usage">
+<div>
+<div class="usage-label">When to use</div>
+<p class="usage-copy">Size registration fields to fit a standard UK number plate and show error messages directly with the question.</p>
+</div>
+<div>
+<div class="usage-label">Validation rule</div>
+<p class="usage-copy">State what went wrong plus a valid example like BD51 SMR, place the error ID first in aria-describedby, and clear it on edit.</p>
+</div>
+</div>
+</div>
+</article>

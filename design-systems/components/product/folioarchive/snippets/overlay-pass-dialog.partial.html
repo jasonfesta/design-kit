@@ -1,0 +1,43 @@
+<dialog aria-labelledby="pass-dialog-title" class="fa-modal" id="pass-dialog">
+<div class="dialog-body">
+<div class="dialog-top">
+<div>
+<h2 id="pass-dialog-title" style="font-size:1.55rem">Reserve timed pass</h2>
+<p style="margin-top:6px;font-family:var(--font-ui);font-size:0.8125rem;color:var(--ink-muted)">Colour as Structure, 1954–1978 · Galleries 3 to 5</p>
+</div>
+<button aria-label="Close reservation dialog" class="dialog-close" data-close-dialog="" type="button">
+<svg aria-hidden="true" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 14 14" width="14"><path d="M2 2l10 10M12 2L2 12"></path></svg>
+</button>
+</div>
+<form id="pass-modal-form" style="display:flex;flex-direction:column;gap:16px">
+<div class="fa-field">
+<label class="fa-label" for="pass-day">Date and entry window</label>
+<div class="select-wrap">
+<select class="fa-select" id="pass-day">
+<option value="Saturday, 10:30">Saturday, 7 November · 10:30</option>
+<option value="Saturday, 14:00">Saturday, 7 November · 14:00</option>
+<option value="Sunday, 11:00">Sunday, 8 November · 11:00</option>
+<option value="Thursday, 18:30">Thursday evening, 12 November · 18:30</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="fa-field">
+<label class="fa-label" for="pass-guests">Visitors</label>
+<div class="select-wrap">
+<select class="fa-select" id="pass-guests">
+<option value="1 visitor">1 visitor (Free with museum card)</option>
+<option selected="" value="2 visitors">2 visitors</option>
+<option value="3 visitors">3 visitors</option>
+<option value="4 visitors">4 visitors</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 12 12"><path d="M2.5 4.5L6 8l3.5-3.5"></path></svg>
+</div>
+</div>
+<div class="dialog-actions">
+<button class="fa-btn-pri" type="submit">Confirm pass</button>
+<button class="fa-btn" data-close-dialog="" type="button">Cancel</button>
+</div>
+</form>
+</div>
+</dialog>

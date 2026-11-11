@@ -1,0 +1,71 @@
+<article aria-labelledby="sy-comp-rollout" class="sy-spec-row">
+<div class="sy-spec-meta">
+<h3 id="sy-comp-rollout">Rollout gates</h3>
+<p class="sy-spec-rule"><kbd class="sy-kbd">Space</kbd> toggles mixed checks and rollback switch; step buttons adjust workers by two.</p>
+</div>
+<form class="sy-spec-cell" id="sy-rollout-form" novalidate="">
+<div class="sy-spec-two">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; flex-direction: column; gap: 9px;">
+<label class="sy-choice">
+<input class="sy-check" id="sy-check-all" type="checkbox"/>
+<span style="font-weight: 500;">Webhook triggers</span>
+</label>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-left: 27px;">
+<label class="sy-choice">
+<input checked="" class="sy-check sy-child-check" type="checkbox"/>
+<span>Deploys started</span>
+</label>
+<label class="sy-choice">
+<input checked="" class="sy-check sy-child-check" type="checkbox"/>
+<span>Health check failures</span>
+</label>
+<label class="sy-choice">
+<input class="sy-check sy-child-check" type="checkbox"/>
+<span>Latency spikes</span>
+</label>
+</div>
+</div>
+<fieldset style="border: 0; padding: 0; margin: 0;">
+<legend class="sy-label" style="margin-bottom: 8px;">Rollout pace</legend>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 14px;">
+<label class="sy-choice">
+<input checked="" class="sy-radio" name="rolloutPace" type="radio" value="gradual"/>
+<span>Canary</span>
+</label>
+<label class="sy-choice">
+<input class="sy-radio" name="rolloutPace" type="radio" value="immediate"/>
+<span>Instant</span>
+</label>
+<label class="sy-choice">
+<input class="sy-radio" name="rolloutPace" type="radio" value="manual"/>
+<span>Manual</span>
+</label>
+</div>
+</fieldset>
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div class="sy-switch-row">
+<div>
+<div class="sy-label" id="sy-switch-lbl" style="color: var(--ink-primary);">Automatic rollback</div>
+<p class="sy-hint" style="margin-top: 2px;">Drains pool if 5xx rate exceeds 1%.</p>
+</div>
+<button aria-checked="true" aria-labelledby="sy-switch-lbl" class="sy-switch" role="switch" type="button">
+<span class="sy-switch-thumb"></span>
+</button>
+</div>
+<div class="sy-field">
+<div style="display: flex; justify-content: space-between; align-items: baseline;">
+<label class="sy-label" for="sy-canary-range">Worker concurrency</label>
+<output class="num" for="sy-canary-range" id="sy-canary-out" style="font-size: 0.8125rem; color: var(--ink-secondary);">8 workers</output>
+</div>
+<div class="sy-range-row">
+<button aria-label="Decrease worker concurrency" class="sy-btn sy-btn-sm" data-range-step="-2" type="button">−2</button>
+<input class="sy-range" id="sy-canary-range" max="32" min="2" step="2" type="range" value="8"/>
+<button aria-label="Increase worker concurrency" class="sy-btn sy-btn-sm" data-range-step="2" type="button">+2</button>
+</div>
+</div>
+</div>
+</div>
+</form>
+</article>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>architectural daylight, sky radiance &amp; interior glow</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>architectural daylight, sky radiance &amp; interior glow</h1>
+      <p>calibrate overcast diffuse skies, solar cast-shadow azimuth/elevation, scoped pmrem environment maps (preventing interior grazing fresnel leaks), analytic planar glass reflections, and neutral vs. agx tone mapping in three.js.</p>
+      <div class="actions">
+        <a href="../arch-daylight-and-interior-glow.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Architectural Daylight, Sky Radiance &amp; Interior Glow (<code>architecture-threejs</code>)</h1>
+<p>Architectural photography is governed by the balance between <strong>sky/soffit irradiance</strong>, <strong>calibrated solar shadow geometry</strong>, <strong>role-split environment reflections</strong>, and <strong>true 3D interior/reflected depth</strong>.</p>
+<h2>[LOCKED] First-Principles Axioms</h2>
+<ol>
+<li><strong>Cinema Optical Pipeline (<code>createHyperrealPipeline</code> in <code>arch_hyperreal_optics.js</code>):</strong> Accumulate frame-invariant <code>4× RGSS</code> (<code>±3/8, ±1/8 px</code>) in <code>THREE.HalfFloatType</code> (<code>RGBA16F</code>) linear HDR, evaluate dual-scale (<code>0.14 m</code> + <code>0.90 m</code>) shift-lens <code>HBAO</code> via exact <code>uInvProj</code>, and resolve through soft <code>threshold = 1.08</code> bloom, highlight crosstalk roll-off (<code>ChromaClip &lt;= 0.10%</code>), <code>pbrNeutralToneMapping</code>, and static <code>±0.003</code> triangular sensor dither.</li>
+<li><strong>Three.js <code>r155+</code> <code>1/PI</code> Lambertian &amp; <code>PBR Neutral</code> Shoulder Law:</strong> <code>MeshStandardMaterial</code> divides <code>map * color</code> by <code>Math.PI</code> (<code>sun ~ 3.4-5.0, hemi ~ 1.0-1.4</code>). Keep sunlit white diffuse peaks within <code>0.76-0.85</code> linear so <code>pbrNeutralToneMapping</code>&#x27;s shoulder (<code>x &gt;= 0.76</code>) never crushes stone/plaster micro-contrast; keep shadowed masonry <code>emissive &lt;= 0x030404</code> modulated by <code>texMod</code>; and invert <code>pbrNeutral</code> (<code>lin = srgbToLinear(c) + 0.04</code> for <code>minRGB &gt;= 0.04</code>) on custom linear <code>ShaderMaterial</code>s.</li>
+<li><strong><code>PMREMGenerator</code> Cube-Target &amp; Scissor Reset Invariant (<code>r187+</code>):</strong> Three.js <code>r187+</code> replaced the packed <code>CubeUV</code> atlas with cube render targets and <strong>removed <code>THREE.CubeUVReflectionMapping</code></strong> (never reference <code>CubeUVReflectionMapping</code> or <code>textureCubeUV</code>). Immediately after <code>pmrem.fromScene(...)</code>, always call <code>renderer.setRenderTarget(null); renderer.setViewport(0, 0, width, height); renderer.setScissor(0, 0, width, height); renderer.setScissorTest(false);</code> (defensive guard against pre-<code>r187</code> <code>768 px</code> scissor mutation).</li>
+<li><strong>Right-Handed (<code>det = +1</code>) Off-Axis Planar Mirror Projection:</strong> Never call <code>mirrorCam.projectionMatrix.copy(cam.projectionMatrix)</code> (which clobbers oblique <code>near</code> back to <code>0.15</code>). Set <code>mirrorCam.near = Math.max(0.2, distToGlass + 0.08); mirrorCam.clearViewOffset(); mirrorCam.updateProjectionMatrix();</code> <strong>first</strong>, then copy only <code>elements[8] = -cam.projectionMatrix.elements[8]</code> and <code>elements[9] = cam.projectionMatrix.elements[9]</code>, rendering linear tone-mapped sky domes + real behind-camera (<code>Z &gt; Z_cam</code>) 3D context.</li>
+</ol>
+<h2>[REGIME PLAYBOOK] Conditional Rules</h2>
+<ul>
+<li><strong>WHEN <code>enclosure_regime == &quot;open_exterior&quot;</code> (Overcast vs. Direct Sun):</strong> Under overcast decks, drive <code>80%+</code> of irradiance via <code>HemisphereLight</code> + <code>PMREM</code> (<code>DirectionalLight 0.15-0.35</code>) with sky calibrated to <code>open_sky_p85_srgb</code>. Under direct sun, solve solar <code>(azimuth, elevation)</code> from cast window/pergola shadow slopes (<code>tan(phi) = du / dv</code>) with white-card neutral <code>0xfffaf1</code> sun, and project all 8 corners of off-frustum shadow casters (<code>colorWrite: false, depthWrite: false, castShadow: true</code>) along <code>-sunDir / sunDir.y</code>.</li>
+<li><strong>WHEN <code>enclosure_regime</code> is <code>&quot;enclosed_interior&quot;</code> or <code>&quot;semi_outdoor_loggia&quot;</code> (Role-Split IBL):</strong> Keep <code>scene.environment = null</code> and zero atmospheric fog so single-scatter Schlick Fresnel never washes shaded timber/plaster walls blue (<code>+80..+120</code> sRGB at <code>70°-82°</code>). Bind <code>material.envMap = pmremTex</code> selectively only to glass, water, vehicles, and metals (<code>metalness &gt; 0.15</code>).</li>
+<li><strong>WHEN modeling daytime apertures vs. dusk lit interiors:</strong> Build real 3D recessed jambs (<code>ShapeGeometry</code> with <code>Path</code> holes, pulling exact wall thickness and reveal depth from the reference photos) and <strong>complete 3D interior rooms</strong> (full partitions, ceilings, flooring, cabinetry, seating, tables, shelving, rugs, vitrines, and luminaires as shown across <code>VIEW 1..N</code>—never <code>&lt; 8 sRGB</code> cutouts or bare structural proxy blocks). Add <code>2700K</code> interior glow when <code>warm_emissive_aperture_count &gt; 0</code>, confining exterior soffit <code>PointLight</code>s (<code>distance &lt;= 9.0m, decay = 2.0</code>).</li>
+<li><strong>WHEN shading low cantilevers (<code>&lt; 1.5 m</code>), warm timber soffits, or backlit slender mullions:</strong> Analytically attenuate under-cantilever <code>HemisphereLight</code> (<code>underBoxAO</code>), add upward sunlit-paving bounce (<code>0.30-0.42</code>) onto warm timber soffits, and lift slender dark mullions in front of bright backlit glass (<code>L &gt; 210 sRGB</code>) to <code>sRGB 55-90</code> for camera PSF veiling glare.</li>
+<li><strong>WHEN saturated colored laminated glass or planar floor/water mirrors render under pbrNeutral and camera.setViewOffset:</strong> Keep non-zero linear minor-channel Beer-Lambert transmittance (G &gt;= 0.025<em>R, B &gt;= 0.030</em>R) to maintain 0% chroma_clip_pct, and on planar mirrors call mirrorCam.clearViewOffset() before negating projectionMatrix.elements[8] so lens-shifted frusta align without clipping.</li>
+<li><strong>WHEN reconciling Hero (<code>VIEW 1</code>) daylight with multi-angle interior/twilight views (<code>VIEW 2..N</code>):</strong> <strong>NEVER</strong> place floating 2D emissive sky-portal cards or backdrop flats outside windows (they float visibly in exterior/aerial views); admit daylight through true 3D glazed apertures from the 360° sky/site. Lock global sun/sky/weather to <code>VIEW 1</code>, and use camera-local <code>exposureBias</code> (EV stops) or <code>interiorLuminaireGain</code> (<code>window.__ARCH_INTERIOR_LIGHTS__</code>) in <code>window.__ARCH_CAMERAS__</code> for indoor or dusk secondary views without penalizing <code>VIEW 2..N</code> on raw pixel/shadow-time differences.</li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

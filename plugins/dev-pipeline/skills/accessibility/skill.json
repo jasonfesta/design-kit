@@ -1,0 +1,34 @@
+{
+  "id": "accessibility",
+  "display_name": "accessibility",
+  "google3_package": "accessibility",
+  "title": "accessibility",
+  "icon": "\u267f",
+  "category": "sub-skill of image-to-react \u00b7 wcag 2.2 type, contrast & target sizing",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "accessibility",
+  "agent_md": "accessibility/agent.md",
+  "skill_md": "accessibility/SKILL.md",
+  "html_page": "accessibility/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/accessibility",
+  "bundle_skill": "accessibility.skill",
+  "bundle_zip": "accessibility.zip",
+  "short_summary": "enforces accessible standards when sizing type and controls: body >= 16px at 1.5 line height (12px floor), 4.5:1 / 3:1 contrast, targets >= 24x24 (44x44 recommended), visible focus, accessible names, alt text, and lang, verified in the live dom by eval-accessibility.py.",
+  "when_to_use": "use in jason-dev-agent whenever sizing fonts, buttons, pills, or inputs, or picking text and background colors; re-run after every stage.",
+  "quick_cmd": "python3 accessibility/scripts/eval-accessibility.py --project=./projects/01-website-app",
+  "summary": "Enforces accessible type and control sizing in Golden Template React builds inside jason-dev-agent: WCAG 2.2 text contrast (4.5:1 normal, 3:1 large), body text at least 16px with 1.5 line height (12px absolute floor), control targets at least 24x24 css px with 44x44 recommended, visible keyboard focus, accessible names, image alt text, and document language. Runs eval-accessibility.py against the live built DOM at Stage 1a, re-runs after responsiveness, interaction, and feel, and talks back to jason-design-agent as a developer whenever a design value must move to meet a standard. Use whenever sizing fonts, buttons, pills, inputs, or choosing text/background colors in a build. Don't use for benchmark research or concept plates (use jason-design-agent).",
+  "references": [
+    "./references/contributing.md",
+    "./references/wcag-type-contrast-and-targets.md",
+    "./scripts/eval-accessibility.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=accessibility"
+  }
+}

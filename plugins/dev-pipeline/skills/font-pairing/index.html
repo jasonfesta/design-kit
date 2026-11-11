@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>font pairing</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>font pairing</h1>
+      <p>locks every build to one role-based type system: primary for headlines and subheadlines, secondary for body and ui, at most one tertiary accent (&lt;= 15% of text), a monotonic modular scale, and zero fallback leaks, verified in the live dom by eval-font-pairing.py.</p>
+      <div class="actions">
+        <a href="../font-pairing.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>font pairing</h1>
+<pre data-lang="text"><code>jason-dev-agent / font pairing
+────────────────────────────────────────────────────────────────────
+roles      primary = headlines + subheadlines · secondary = body + ui · tertiary = one accent (optional)
+budget     &lt;= 3 real families; primary &gt;= 90% of headline text; secondary &gt;= 90% of body/ui text
+scale      modular: h1 &gt;= h2 &gt;= h3, step ratio 1.1-1.8, h1 &gt;= 1.5x body, body &gt;= 16px (accessibility)
+eval       scripts/eval-font-pairing.py  (live dom in headless webkit; --expect-* asserts style-direction)</code></pre>
+<p><code>font-pairing</code> is how <code>jason-dev-agent</code> ships typography as a <strong>system</strong> rather than per-component choices. <code>jason-design-agent</code> picks the families (live <code>google-font-selection</code>, non-cliché, <code>avoid_fonts</code> honoured) in <code>style-direction/typography-and-color.md</code>; this skill assigns them to roles, wires them once as tokens, applies one type scale everywhere, and proves it in the built DOM.</p>
+<h2>1. the three roles</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>role</th><th>used for</th><th>rules</th></tr></thead>
+<tbody>
+<tr><td><strong>primary</strong></td><td><code>h1</code>–<code>h3</code>, hero and section headlines, subheadlines, pull quotes, large numerals <code>&gt;= 28px</code></td><td>one family; carries the brand voice; <code>2</code>–<code>3</code> weights max; tight leading (<code>1.0</code>–<code>1.15</code>), optical tracking (<code>-0.01em</code> to <code>-0.03em</code> at display sizes)</td></tr>
+<tr><td><strong>secondary</strong></td><td>body copy, lists, captions, forms, buttons, pills, nav, tables</td><td>one family built for reading at <code>14</code>–<code>18px</code> (generous x-height, open apertures, real italics, <code>tabular-nums</code>); <code>1.5</code> line height for body, <code>1.0</code> for one-line controls</td></tr>
+<tr><td><strong>tertiary</strong> <em>(optional)</em></td><td>one accent job only: eyebrows / overlines, <code>h4</code>–<code>h6</code> subheads, tabular numerals or prices, mono code/labels</td><td><code>&lt;= 15%</code> of all text, never body or <code>h1</code>–<code>h3</code>; earns its place by contrast of construction (mono, slab, humanist italic) — otherwise drop it</td></tr>
+</tbody>
+</table></div>
+<p>Lean toward <strong>primary + secondary only</strong>. Add a tertiary when the system genuinely needs a third voice (editorial eyebrows, data-dense numerals), never for variety.</p>
+<p>Good pairings contrast in construction and agree on proportion: a high-contrast serif or expressive display primary over a neutral grotesque/humanist secondary; or a geometric sans primary over a readable serif secondary. Match x-heights within <code>~10%</code> and align weights so a primary <code>600</code> sits next to a secondary <code>400</code>/<code>500</code> without shouting. A single superfamily (one family for both roles, differentiated by size, weight, and tracking) is allowed — the eval reports <code>single_family_system: true</code> so <code>jason-design-agent</code> can confirm that is intentional.</p>
+<h2>2. wiring (Golden Template)</h2>
+<ol>
+<li><strong>load once, in <code>index.html</code></strong> via Google Fonts CSS2 (<code>display=swap</code>, only the weights used) or Base64 WOFF2 for <code>4K</code> studio locks; never load a family you do not assign to a role.</li>
+<li><strong>tokens in <code>src/index.css</code></strong> (<code>@layer base</code>): <code>--font-primary</code>, <code>--font-secondary</code>, <code>--font-tertiary</code> + helpers <code>.font-primary</code> / <code>.font-secondary</code> / <code>.font-tertiary</code>; body gets <code>font-family: var(--font-secondary)</code>.</li>
+<li><strong>type scale as utilities</strong>: pick a ratio (<code>1.2</code> minor third for product UI, <code>1.25</code>–<code>1.333</code> for editorial) and derive <code>h1</code>–<code>h3</code>, body, small; keep <code>h1 &gt;= 1.5x</code> body on mobile and <code>&gt;= 2.5x</code> on desktop; use <code>clamp()</code> for fluid display sizes.</li>
+<li><strong>data drives roles</strong>: headings and eyebrows in <code>src/components/*.tsx</code> use the role helpers, never ad-hoc <code>font-[&quot;…&quot;]</code> arbitrary values.</li>
+<li><strong>accessibility floors apply</strong> (<code>accessibility</code> skill): body <code>&gt;= 16px</code> / <code>1.5</code>, no text <code>&lt; 12px</code>.</li>
+</ol>
+<h2>3. evaluating</h2>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/font-pairing/scripts/eval-font-pairing.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; \
+  --expect-primary=&quot;&lt;family from style-direction&gt;&quot; --expect-secondary=&quot;&lt;family&gt;&quot; [--expect-tertiary=&quot;&lt;family&gt;&quot;]
+# gates: family_budget_ok · primary_locked_ok · secondary_locked_ok · tertiary_restrained_ok · scale_ok · no_fallback_leaks_ok · matches_style_direction_ok</code></pre>
+<p>The report names the shipped <code>primary</code> / <code>secondary</code> / <code>tertiary</code> families with their shares, the heading px per level, step ratios, and <code>h1_over_body</code>. <code>no_fallback_leaks_ok</code> fails when generic/system families render visible text (a font that did not load). Run at <code>--viewport-width 390</code> too: the mobile scale must stay monotonic.</p>
+<h2>references</h2>
+<ul>
+<li><a href="references/roles-scale-and-pairing-rules.md">roles, type scale &amp; pairing rules with tailwind recipes</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

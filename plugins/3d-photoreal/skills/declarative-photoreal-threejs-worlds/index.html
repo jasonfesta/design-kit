@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>declarative photorealistic 360° three.js worlds (spatial compiler + optical realism engine)</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>declarative photorealistic 360° three.js worlds (spatial compiler + optical realism engine)</h1>
+      <p>build ultra-photorealistic, 360° actor-ready three.js 3d worlds and environments by combining a fast ( 5 ms) declarative spatial constraint solver &amp; sightline auto-repair engine (heliosdsl sg0–sg4, g8–g9, aabb, and ring-3 horizon closure gates) with takram-grade volumetric cloud raymarching, chappuis ozone sky, live sun-disk-free pmrem ibl, hybrid ai-generated stochastic pbr + analytical 3d erosion/derivative shaders, finite-depth dispersive planar-mirror water, and an 8-view 360° vlm realism climb.</p>
+      <div class="actions">
+        <a href="../declarative-photoreal-threejs-worlds.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Declarative Photorealistic 360° Three.js Worlds (Spatial Compiler + Optical Realism Engine)</h1>
+<p>Use this skill when building **photorealistic 3D worlds, environments,</p>
+<p>architectural sanctuaries, or interactive 360° stages<strong> that require </strong>both**:</p>
+<ol>
+<li><strong>Compile-Time Mathematical Spatial Guarantees (<code>&lt; 5 ms</code> CPU Solver)</strong>: Zero</li>
+</ol>
+<p>floating geometry, zero AABB interpenetration, guaranteed foundation</p>
+<p>embedment, 100% unobstructed camera sightlines, and automatic layout repair</p>
+<p>before a single GPU buffer is allocated (inspired by <code>HeliosDSL</code>).</p>
+<ol>
+<li>**Optical, Atmospheric &amp; Biophysical Photorealism (Three.js + Custom</li>
+</ol>
+<p>GLSL)**: Full 360° concentric horizon continuity (<code>r = 0m</code> to <code>6,000m+</code>),</p>
+<p>Takram/Nubis volumetric clouds + Chappuis ozone sky, live sun-disk-free</p>
+<p><code>PMREMGenerator</code> IBL, hybrid AI-generated PBR textures + derivative-weighted</p>
+<p>Swiss erosion shaders, <code>2048×2048</code> botanical cutout atlases, and dispersive</p>
+<p>planar-mirror water (inspired by <code>photorealistic-threejs-environments</code> and</p>
+<p><code>photorealistic-threejs-generation</code>).</p>
+<h2>1. Unified Architecture: Declarative World Compiler -&gt; Photoreal Three.js Stage</h2>
+<p>Never place 3D structures, boulders, trees, or cameras blindly with ad-hoc</p>
+<p>coordinates, and never rely on textureless procedural grids for surface realism.</p>
+<p>Every build follows a <strong>two-layer architecture</strong>:</p>
+<pre data-lang="text"><code>┌─────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 1: Declarative WorldSpec + &lt; 5 ms CPU Spatial Solver &amp; Auto-Repair    │
+│  • Shared CPU/GPU Analytical Heightfield H(x, z) + Concentric Ring Profiles │
+│  • 8 Compile-Time Gates: SG0 (Stage Clear), SG1 (Foundations &gt;= 1.5m),      │
+│    SG2 (Water Collar &amp; C2 Shore), SG3 (8-Pt Slope Grounding),               │
+│    SG4 (Sub-Part Weld &gt;= 0.04m), G8 (Cam Clearance &gt;= 1.2m),                │
+│    G9 (Ray-Slab Sightline Tube), AABB + RING3 (0 Overlap &amp; 360° Horizon)    │
+│  • Fast 96×96 Bilinear Height/Slope LUT for 75,000+ Grounded Grass Blades   │
+└──────────────────────────────────────┬──────────────────────────────────────┘
+                                       │ Emits Verified CompiledWorld JSON
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ LAYER 2: Photorealistic Three.js 360° Renderer &amp; Hybrid Shader Pipeline     │
+│  • 4 Concentric 360° Rings (r = 0..18m Stage -&gt; r = 900..6,000m+ Skirt)     │
+│  • Takram Spherical Ozone Sky + 20-Step IGN Volumetric Clouds + Cloud Shadow│
+│  • Live Sun-Disk-Free PMREM Cubemap IBL + 4096² 9-Tap Poisson PCF Shadows   │
+│  • Hybrid Stochastic Hex-Tiled Photo-PBR + Swiss Erosion + Safe Derivatives │
+│  • Finite-Depth Dispersive 1024² Planar Mirror Water + Wet Porosity Optics  │
+│  • 2048² Botanical Cutout Atlases + Planckian Blackbody Fire + Test Actors  │
+└─────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<h2>2. Layer 1: Shared Heightfield Contract &amp; Concentric 360° Ring Topology</h2>
+<p>A world fails if it only looks good from one locked camera angle or ends in an</p>
+<p>abrupt <code>160m × 160m</code> square patch edge. Drive both the CPU spatial solver and</p>
+<p>GPU vertex/fragment shaders from a <strong>single deterministic terrain contract</strong></p>
+<p>across <strong>four concentric 360° spatial rings</strong> around <code>(0, groundY, 0)</code>:</p>
+<ol>
+<li><strong>Ring 0 — The Actor Staging Zone (<code>r = 0m - 18m</code>)</strong>:</li>
+</ol>
+<ul>
+<li>  Unobstructed or intentionally framed clearing, plaza, bridge deck, or</li>
+</ul>
+<p>shoal centered at <code>(0, groundY, 0)</code> where a test actor</p>
+<p>(<code>reference_spheres</code>, <code>monolith</code>, <code>explorer_rover</code>, <code>empty_stage</code>) or</p>
+<p>custom glTF asset can be placed and orbited <code>360°</code>.</p>
+<ul>
+<li>  Expose `window.ENVIRONMENT_API.getGroundAt(x, z) -&gt; { y, normal,</li>
+</ul>
+<p>wetness, materialType }`.</p>
+<ol>
+<li>**Ring 1 — Near-Field Framing &amp; Architectural Landmarks (<code>r = 18m - 140m</code>,</li>
+</ol>
+<p>full <code>360°</code>)**:</p>
+<ul>
+<li>  Grounded architectural structures (bridges, pavilions, rotundas,</li>
+</ul>
+<p>facades, shrines, lighthouses), hero trees, and river/shoreline boulders</p>
+<p>solved by the CPU constraint engine across all four quadrants (<code>0° N</code>,</p>
+<p><code>90° E</code>, <code>180° S</code>, <code>270° W</code>) with deliberate sightline corridors.</p>
+<ol>
+<li>**Ring 2 — Midground Landforms &amp; Instanced Biome Density (<code>r = 140m - 900m</code>,</li>
+</ol>
+<p>full <code>360°</code>)**:</p>
+<ul>
+<li>  Continuous Swiss-eroded terrain relief (<code>evalSwissErosionFBM</code>) populated</li>
+</ul>
+<p>via <code>THREE.InstancedMesh</code> (<code>5,000-75,000</code> instances sampled via a</p>
+<p><code>96×96</code> bilinear height/slope LUT in <code>&lt; 2.5 ms</code>).</p>
+<ol>
+<li>**Ring 3 — Closed 360° Distant Horizon Vista Skirt (<code>r = 900m - 6,000m+</code>,</li>
+</ol>
+<p>full <code>360°</code>)**:</p>
+<ul>
+<li>  Continuous 360° mountain massifs, interlocking canyon walls, or ocean</li>
+</ul>
+<p>curvature whose outer skirt vertices sit below the local ground plane</p>
+<p>and whose upper ridges blend into the physical sky via azimuth-coupled</p>
+<p>Rayleigh + Mie aerial perspective. **Never leave an open V-notch or bare</p>
+<p>ground edge terminating in empty sky.**</p>
+<h2>3. Pre-Render Compile-Time Spatial Verification &amp; Auto-Repair (<code>&lt; 5 ms</code>)</h2>
+<p>Before initializing WebGL or launching headless Chrome, pass the declarative</p>
+<p><code>WorldSpec</code> through <code>validateAndRepairWorld(spec)</code> (reference implementation in</p>
+<p><a href="references/01_spatial_solver_and_hybrid_shader_pipeline.md"><code>references/01_spatial_solver_and_hybrid_shader_pipeline.md</code></a>).</p>
+<p>Every build MUST pass all <strong>8 deterministic spatial gates</strong>:</p>
+<p>Gate                 | Invariant                                       | Mathematical Condition &amp; Auto-Repair Action</p>
+<p>:------------------- | :---------------------------------------------- | :------------------------------------------</p>
+<p><strong><code>SG0</code></strong>            | <strong>Actor Stage &amp; Sightline Corridor Clear</strong>      | Zero non-stage props/trees/boulders inside <code>r &lt; 7.5m</code> of <code>(0, groundY, 0)</code> or inside the primary hero sightline corridor (<code>\|x\| &lt; 5.5m, z &gt; -2.0m</code>). Reject or relocate violating instances.</p>
+<p><strong><code>SG1</code></strong>            | <strong>Foundation Load-Path Embedment</strong>              | Every architectural structure must anchor $\ge 1.50\text{m}$ below the minimum height of its 8-point terrain footprint (<code>baseY = fp.minH - max(sink, 1.65)</code>).</p>
+<p><strong><code>SG2</code></strong>            | <strong>Hydrological Continuity &amp; $C^2$ Shore</strong>       | Water-spanning piers anchor below riverbed (<code>baseY &lt;= waterLevel - 0.50m</code>); terrain profiles extend smoothly <em>below</em> <code>waterLevel</code> ($C^2$ continuity, zero concave shoreline kink); <code>clarity &gt; 0.2m</code>.</p>
+<p><strong><code>SG3</code></strong>            | <strong>8-Point Perimeter Slope Grounding</strong>           | Sample terrain at center + 8 perimeter points (<code>r * 0.85</code>). Require <code>embedDepth &gt; 0</code> and <code>slopeDrop = fp.maxH - fp.minH &lt;= maxSlopeDrop</code> (<code>11.0m</code> structures, <code>3.2m</code> boulders/trees) so zero bottom edges float in air.</p>
+<p><strong><code>SG4</code></strong>            | <strong>Compound Prop Weld Continuity</strong>               | Stacked architectural/mechanical sub-parts interpenetrate by $\ge 0.04\text{m}$ (<code>weldPenetration &gt;= 0.04m</code>), and any cutaway casing (<code>thetaLength &lt; 2π</code>) is capped with solid cross-section face-plates.</p>
+<p><strong><code>G8</code></strong>             | <strong>Camera Frustum Clearance</strong>                    | Every standard camera preset satisfies <code>cam.pos.y &gt;= max(terrainY, waterLevel) + 1.20m</code> (or <code>+0.60m</code> for explicit <code>low_ground_sky</code> macro preset) and <code>pointToAABBDistance(cam.pos, solid.aabb) &gt;= 1.20m</code>.</p>
+<p><strong><code>G9</code></strong>             | <strong>Ray-Slab Sightline Tube Clearance</strong>           | Along $t \in [0.05, 0.80]$ of <code>cam.pos -&gt; cam.target</code>, ray height stays $\ge H(x(t), z(t)) + 0.20\text{m}$ and <code>segmentIntersectsAABB(cam.pos, cam.target, nonTarget.aabb, 0.0, 0.80)</code> is <code>false</code>. If blocked, auto-search <code>(angleOffsets × distCandidates × heightLifts)</code> for an unobstructed vantage.</p>
+<p><strong><code>AABB</code> + <code>RING3</code></strong> | <strong>Zero Sibling Overlap &amp; 360° Horizon Closure</strong> | <code>aabbIntersects(a, b, -0.02) === false</code> across all structures and props (auto-nudging colliding structures along spiral candidate rings <code>dist = 12..42m</code>), and <code>Ring 3</code> closes all 36 azimuth buckets ($10^\circ$ steps).</p>
+<h2>4. Layer 2: Takram Physical Atmosphere, Volumetric Clouds &amp; Live PMREM IBL</h2>
+<p>Avoid both flat uniform <code>THREE.FogExp2</code> and unlit black shadow recesses by</p>
+<p>coupling the sky, clouds, aerial perspective, and environment reflections into a</p>
+<p>single radiometric pipeline:</p>
+<ol>
+<li><strong>Spherical Earth-Shell Rayleigh + Mie + Chappuis Ozone Sky</strong>:</li>
+</ol>
+<ul>
+<li>  Model Earth curvature (<code>R_earth = 6371 km</code>, <code>H_top = 80 km</code>) with scale</li>
+</ul>
+<p>heights $H_R = 8.0\text{ km}$, $H_M = 1.2\text{ km}$, and stratospheric</p>
+<p><strong>Chappuis ozone absorption</strong> ($\beta_{O_3} = [0.650, 1.881, 0.085]</p>
+<p>\times 10^{-6}\text{ m}^{-1}$) so golden hour and twilight zeniths</p>
+<p>render deep cobalt-indigo rather than muddy grey-green.</p>
+<ol>
+<li><strong>4-Stage Takram/Nubis 3D Volumetric Cloud Raymarching</strong>:</li>
+</ol>
+<ul>
+<li>  <strong>Ban 4-octave unwarped cotton-ball blobs</strong>. Use:</li>
+</ul>
+<ol>
+<li><strong>Synoptic Macro Weather Map (<code>evalSynopticWeatherMap</code>)</strong> for</li>
+</ol>
+<p>cohesive cloud banks separated by clear sky vistas.</p>
+<ol>
+<li>**6-Octave Curl-Warped Base Hull + 3-Octave High-Frequency</li>
+</ol>
+<p>Worley-Perlin Edge Erosion** modulated by an altitude</p>
+<p><code>shapeAlteringFunction</code> (flat Lifting Condensation Level bases,</p>
+<p>billowing cumulus tops).</p>
+<ol>
+<li>**20+ Step Interleaved-Gradient-Noise (<code>IGN</code>) Jittered Raymarching +</li>
+</ol>
+<p>3-Tap Solar Shadow Cone<strong> with </strong>Dual-Lobe Henyey-Greenstein +</p>
+<p>Draine ($d = 10\,\mu\text{m}$) phase<strong>, </strong>Kulla-Conty 3-octave</p>
+<p>multiple scattering<strong>, and the </strong>Schneider-Vos Beer-Powder** term:</p>
+<p>$$\mathcal{E}(\tau) = \text{mix}\!\left(e^{-\tau},\; 2e^{-\tau}(1 -</p>
+<p>e^{-2\tau}),\; 0.55\right)$$</p>
+<ol>
+<li>**Projected World-XZ Cloud Shadows (`evalCloudShadow(worldPos.xz,</li>
+</ol>
+<p>uSunDir)`)** sweeping across terrain, architecture, and water.</p>
+<ol>
+<li><strong>Live Sun-Disk-Free <code>PMREMGenerator</code> Environment IBL</strong>:</li>
+</ol>
+<ul>
+<li>  Regenerate `scene.environment =</li>
+</ul>
+<p>pmremGenerator.fromScene(envScene).texture` whenever solar elevation,</p>
+<p>azimuth, or weather changes, rendering the sky/cloud dome with</p>
+<p><strong><code>uRenderSunDisk = 0.0</code></strong> plus bounced ground hemisphere irradiance</p>
+<p>(never reference <code>THREE.CubeUVReflectionMapping</code>, which was removed in</p>
+<p>Three.js <code>r187</code> in favor of cube render targets).</p>
+<ul>
+<li>  <strong>Why</strong>: This fills arch undersides, colonnades, and north-facing cliffs</li>
+</ul>
+<p>with natural sky and ground bounce light (solving the &quot;crushed black</p>
+<p>arch underside&quot; defect of raw single-light WebGL pipelines) while</p>
+<p>leaving crisp direct highlights and <code>4096×4096</code> 9-tap Poisson PCF cast</p>
+<p>shadows (<code>evalSunShadowMapPCF</code>) to the primary <code>THREE.DirectionalLight</code>.</p>
+<ol>
+<li><strong>360° Azimuth-Coupled Aerial Perspective</strong>:</li>
+</ol>
+<ul>
+<li>  Inject directional in-scattered sky radiance</li>
+</ul>
+<p>(<code>evalSkyHorizonScatter(viewDir, uSunDir, ...)</code>) into all terrain,</p>
+<p>structure, rock, foliage, and water shaders so distant ridges glow with</p>
+<p>warm golden Mie scatter toward the sun and recede into cool Rayleigh</p>
+<p>blue away from the sun.</p>
+<h2>5. Hybrid Material Pipeline: Photo-PBR + Analytical 3D Erosion &amp; Derivative Shaders</h2>
+<p>Pure procedural noise grids look like quilted plastic, while raw UV textures</p>
+<p>tile or stretch on cliffs. Combine AI-generated textures with continuous 3D</p>
+<p>analytical shaders:</p>
+<ol>
+<li><strong>Ground-Truth Reference Photo &amp; Seamless PBR Plates (<code>generate_image</code>)</strong>:</li>
+</ol>
+<ul>
+<li>  First generate <code>ref_photo.png</code> (<code>16:9</code> ground-level</li>
+</ul>
+<p>architectural/landscape photograph) and 1–2 seamless orthographic</p>
+<p>material plates (<code>1:1</code>, e.g., <code>terrain_albedo.png</code>,</p>
+<p><code>masonry_or_rock.png</code>).</p>
+<ul>
+<li>  Embed textures as base64 Data URIs in self-contained builds</li>
+</ul>
+<p>(<code>SRGBColorSpace</code>, <code>RepeatWrapping</code>, <code>anisotropy = 8</code>) so Frame 0</p>
+<p>renders with zero CORS or network stalls.</p>
+<ul>
+<li>  Optionally run <code>analyzeReferencePhotoLighting(ref_photo)</code> to calibrate</li>
+</ul>
+<p>key-light direction and warm-key / cool-fill color balance.</p>
+<ol>
+<li>**Stochastic Hex-Tiling (<code>sampleStochasticTexture</code>) &amp; 3-Axis Triplanar</li>
+</ol>
+<p>Projection (<code>evalTriplanarStochastic</code>)**:</p>
+<ul>
+<li>  Eliminate texture tiling and vertical cliff UV stretching by blending 3</li>
+</ul>
+<p>orthogonal triangle-grid UV-hashed texture lookups weighted by</p>
+<p><code>pow(abs(worldNormal), vec3(6.0))</code> and modulated by luminance ratio</p>
+<p><code>clamp(triLum / meanLum, 0.74, 1.26)</code> so base material hues never wash</p>
+<p>out.</p>
+<ul>
+<li>  Blend biome transitions (e.g., <code>Ring 0</code> pavers/sand into <code>Ring 1</code></li>
+</ul>
+<p>rock/grass) <strong>pre-lighting</strong> via physical height-threshold blending</p>
+<p>(<code>computeHeightBlendFactor</code>).</p>
+<ol>
+<li><strong>Derivative-Weighted Swiss Hydraulic Erosion (<code>evalSwissErosionFBM</code>)</strong>:</li>
+</ol>
+<ul>
+<li>  Accumulate rotated analytical quintic 2D noise derivatives</li>
+</ul>
+<p>(<code>gnoise2DDeriv</code>), warp each octave by <code>-gradSum * 0.16</code>, and damp by</p>
+<p><code>1.0 / (1.0 + dot(gradSum, gradSum) * 1.45)</code>. Use <code>ridgeCrest</code> for</p>
+<p>exposed bedrock arêtes and <code>gullyChannel</code> for snow couloirs, moss, or</p>
+<p>talus scree.</p>
+<ol>
+<li>**Quad-Oscillation-Attenuated Surface Normals (<code>evalPerturbNormalDeriv</code>) &amp;</li>
+</ol>
+<p>Analytical Cavity/Micro-Shadow (<code>evalMicroCavityAndSelfShadow</code>)**:</p>
+<ul>
+<li>  <strong>Ban raw <code>dFdx(highFreqNoise)</code> and <code>dFdx(pertNormal)</code></strong>, which evaluate</li>
+</ul>
+<p>on coarse <code>2×2</code> pixel quads and create visible <code>2×2</code> checkerboard</p>
+<p>stipple blocks.</p>
+<ul>
+<li>  Attenuate screen-space derivatives by `lowPassWeight = 1.0 / (1.0 +</li>
+</ul>
+<p>(abs(dHdx) + abs(dHdy)) * 42.0)` and layer analytical per-pixel 3D noise</p>
+<p>gradients (<code>gnoise2DDeriv</code>) projected onto the tangent plane.</p>
+<ul>
+<li>  Weather architectural masonry with per-block hash color/roughness</li>
+</ul>
+<p>variance, recessed mortar joint AO, upward-facing moss/lichen deposition</p>
+<p>(<code>smoothstep(0.55, 0.85, worldNormal.y)</code>), and a <code>0.5-1.2m</code> capillary</p>
+<p>wet band above water.</p>
+<ol>
+<li><strong>Finite-Depth Dispersive Planar-Mirror Water + Wet Porosity Optics</strong>:</li>
+</ol>
+<ul>
+<li>  Combine **8 Gerstner-Trochoidal wave trains obeying the finite-depth</li>
+</ul>
+<p>dispersion relation** $\omega(k) = \sqrt{g k \tanh(k h)}$ and</p>
+<p>wave-packet group envelopes ($c_g = \frac{1}{2} c_p$) with a</p>
+<p><strong><code>1024×1024</code> planar mirror <code>WebGLRenderTarget</code></strong></p>
+<p>(<code>createPhotorealWaterSystem</code>, reflecting the camera across `y =</p>
+<p>waterLevel` with an oblique clip plane).</p>
+<ul>
+<li>  Evaluate Beer-Lambert depth absorption (<code>evalSeabedHeight(xz)</code>),</li>
+</ul>
+<p>dual-layer Voronoi caustics, disturbed foam wakes around bridge</p>
+<p>piers/boulders, and <strong><code>evalWetPorosityOptics</code></strong> on adjacent banks,</p>
+<p>pebbles, and pier bases (darkening porous diffuse albedo via total</p>
+<p>internal reflection, flattening micro-normals toward the macro normal,</p>
+<p>and dropping roughness to <code>0.035</code>).</p>
+<ol>
+<li>**Botanical Cutout Atlases (<code>2048×2048</code>), Fast LUT Grass (<code>75,000+</code> Blades)</li>
+</ol>
+<p>&amp; Smooth Boulders**:</p>
+<ul>
+<li>  <strong>Trees, Shrubs &amp; Ferns</strong>: Ban solid geometric cones/spheres and</li>
+</ul>
+<p>un-textured lollipop cards. Use <code>2048×2048</code> procedural botanical cutout</p>
+<p>atlases (<code>generateBotanicalLeafAtlas</code>, <code>generateFrondPinnaeAtlas</code>) with</p>
+<p><code>alphaTest: 0.38</code>, <code>alphaToCoverage: true</code>, spherical canopy bent</p>
+<p>normals, and dual-lobe subsurface scattering (<code>evalLeafSubsurface</code>).</p>
+<p><strong>Critical Three.js Shadow Gotcha</strong>: Always set `shaderMat.map =</p>
+<p>leafAtlas; shaderMat.alphaTest = 0.36;` directly on custom</p>
+<p><code>ShaderMaterial</code> foliage so <code>WebGLShadowMap</code> does not overwrite</p>
+<p><code>customDepthMaterial.map</code> with <code>undefined</code>.</p>
+<ul>
+<li>  <strong>Meadow Grass</strong>: Generate <code>35,000-75,000</code> curved 5-to-7-segment</li>
+</ul>
+<p>parabolic Bézier grass blades in <code>&lt; 2.5 ms</code> using the <code>96×96</code> bilinear</p>
+<p>height/slope LUT (<code>generateGrassInstances</code>), rejecting blades inside</p>
+<p>structure footprints or below <code>waterLevel + 0.32m</code>, with natural</p>
+<p>olive/straw spectral variance and harmonic wind sway.</p>
+<ul>
+<li>  <strong>Boulders</strong>: Never displace non-indexed low-poly</li>
+</ul>
+<p><code>IcosahedronGeometry(r, 2)</code>. Use <code>IcosahedronGeometry(r, 4)</code> (<code>5,120</code></p>
+<p>tris) with spatial-hash vertex normal welding or indexed</p>
+<p><code>SphereGeometry(r, 48, 36)</code> with triplanar rock shaders.</p>
+<ul>
+<li>  <strong>Buoyant Planckian Blackbody Fire &amp; Lantern Point Lights</strong>: When</li>
+</ul>
+<p>braziers, campfires, or stone lanterns are present, pair analytical</p>
+<p>Planckian blackbody flame sheets + spiraling ember particles (`900K -&gt;</p>
+<p>3800K`) with warm emissive lantern cores and distance-attenuated</p>
+<p>point/fill lights so lanterns visibly illuminate surrounding masonry and</p>
+<p>water.</p>
+<h2>6. Architectural Interior Craft, Narrative Loading Screen &amp; Bespoke Exploration UI</h2>
+<ol>
+<li>**Richly Crafted, Walkable Building Interiors (Never Hollow Shells or Black</li>
+</ol>
+<p>Doorway Boxes)**:</p>
+<ul>
+<li>  <strong>Ban fake doorway plugs</strong>: Never block temple, sanctuary, rotunda, or</li>
+</ul>
+<p>pavilion doorways with opaque black boxes or flat glowing planes. Every</p>
+<p>architectural landmark in Ring 1 must be **genuinely hollow,</p>
+<p>open-portaled, and richly modeled on the inside** so users can walk or</p>
+<p>glide through the threshold.</p>
+<ul>
+<li>  <strong>Interior Structural &amp; Material Depth</strong>: Model complete interior spaces</li>
+</ul>
+<p>with:</p>
+<ul>
+<li>  <strong>Overhead Structure</strong>: Coffered stone domes with zenith oculi,</li>
+</ul>
+<p>stepped corbel-arch vaults, or exposed timber scissor-trusses</p>
+<p>(<code>Sakserost</code>) and arcade braces.</p>
+<ul>
+<li>  <strong>Columns &amp; Wall Relief</strong>: Interior fluted pilasters, stave mast</li>
+</ul>
+<p>colonnades (<code>Staver</code>), or recessed trapezoidal/arched wall niches</p>
+<p>(<code>aediculae</code>) holding reliefs, vessels, or inscriptions.</p>
+<ul>
+<li>  <strong>Sacred / Functional Centerpiece &amp; Floor Craft</strong>: Inlaid `opus</li>
+</ul>
+<p>sectile` marble/star-map floors, sunken ceremonial</p>
+<p>reflection/libation basins (<code>impluvium</code>), carved altars, gilded</p>
+<p>shrines, or kinetic astronomical instruments.</p>
+<ul>
+<li>  <strong>Warm Interior Radiosity &amp; Sunbeams</strong>: Light interiors with buoyant</li>
+</ul>
+<p>Planckian hearth/brazier flames (<code>createBuoyantFireSystem</code>), hanging</p>
+<p>wrought-iron chandeliers or bronze oil lamps (<code>THREE.PointLight</code>),</p>
+<p>and overhead oculus/cleft sunbeam shafts so interior stonework and</p>
+<p>timber glow with warm depth.</p>
+<ul>
+<li>  <strong>Dedicated Interior Camera Vantage</strong>: Always include at least one</li>
+</ul>
+<p>camera preset positioned inside the primary architectural interior</p>
+<p>looking across the focal shrine/hearth and out through the open portal.</p>
+<ol>
+<li><strong>Clean, Narrative Loading Screen (Zero Internal or Technical Jargon)</strong>:</li>
+</ol>
+<ul>
+<li>  The loading screen (<code>#loading-overlay</code>), <code>&lt;title&gt;</code>, and any gallery</li>
+</ul>
+<p>wrapper must **only describe what the user is about to see and</p>
+<p>experience in the world*<em> (e.g., </em>&quot;The Aqueduct of the Emerald Gorge —</p>
+<p>Step into a sunlit alpine limestone canyon spanned by a three-arch Roman</p>
+<p>aqueduct, a coffered Doric rotunda sanctuary, and mossy emerald</p>
+<p>rapids&quot;*).</p>
+<ul>
+<li>  <strong>Strictly forbidden in any user-facing text</strong>: Never display internal</li>
+</ul>
+<p>acronyms, project codes, or rendering/compiler jargon such as `&quot;WDA</p>
+<p>3D&quot;<code>, </code>&quot;3D-WDA&quot;<code>, </code>&quot;ENV 21&quot;<code>, </code>&quot;HeliosDSL&quot;<code>, </code>&quot;8/8 Gates PASS&quot;`,</p>
+<p><code>&quot;SG0-SG4&quot;</code>, <code>&quot;Spatial Solver&quot;</code>, <code>&quot;PMREM&quot;</code>, <code>&quot;Takram&quot;</code>, `&quot;Compiling</p>
+<p>Shaders&quot;<code>, or </code>&quot;Calibration Rig&quot;`.</p>
+<ol>
+<li>**Minimal, Bespoke, Style-Matched Exploration UI (<code>&gt; 96%</code> Unobstructed</li>
+</ol>
+<p>Viewport)**:</p>
+<ul>
+<li>  <strong>Ban cookie-cutter technical HUDs</strong>: Never use the same generic</li>
+</ul>
+<p>developer HUD across different builds, and never clutter the viewport</p>
+<p>with stage actor selectors, solver telemetry badges, or debug drawers.</p>
+<p>Default the scene to a pure, natural world (<code>setActorMode(&#x27;none&#x27;)</code>).</p>
+<ul>
+<li>  <strong>World-Matched Aesthetic &amp; Typography</strong>: Design a whisper-quiet (<code>&lt; 4%</code></li>
+</ul>
+<p>screen area) UI tailored to the specific world&#x27;s material culture and</p>
+<p>historical period:</p>
+<ul>
+<li>  <em>Classical Roman</em>: Engraved travertine ivory &amp; antique gold</li>
+</ul>
+<p>(<code>Cinzel</code> / <code>Cormorant Garamond</code>) with Roman numeral markers (`I ·</p>
+<p>II · III · IV · V`).</p>
+<ul>
+<li>  <em>Nordic Stave &amp; Fjord</em>: Charred pitch-pine &amp; hearth-amber serif with</li>
+</ul>
+<p>runic diamond dividers (<code>◆</code>).</p>
+<ul>
+<li>  <em>Nabataean Desert</em>: Rose-sandstone &amp; burnished desert brass with</li>
+</ul>
+<p>geometric diamond borders (<code>◇</code>).</p>
+<ul>
+<li>  <em>Khmer Sanctuary</em>: Weathered laterite &amp; saffron lotus-gold (<code>❖</code>).</li>
+<li>  <em>Andean Observatory</em>: Obsidian slate &amp; astronomical bronze astrolabe</li>
+</ul>
+<p>dial with degree tick marks (<code>☉</code>).</p>
+<ul>
+<li>  <strong>Encourage Exploration with Minimal Controls</strong>: Show only a subtle</li>
+</ul>
+<p>title + navigation hint (`&quot;Drag to look · WASD to walk inside · Scroll</p>
+<p>to glide&quot;`), <strong>4–5 evocative place names</strong> (including the building</p>
+<p>interior) that smoothly fly (<code>~1.4s</code> cubic ease-in-out camera</p>
+<p>interpolation) the user to each location when clicked, and a tiny</p>
+<p>3-state time-of-day mood pill (<em>Morning · Golden Hour · Dusk</em>).</p>
+<ul>
+<li>  <strong>Headless Harness Compatibility</strong>: Keep `window.ENVIRONMENT_API = {</li>
+</ul>
+<p>setAtmospherePreset, setActorMode, setCameraPreset }` (with instant</p>
+<p>camera snapping when called via <code>ENVIRONMENT_API</code>) and</p>
+<p><code>window.__ENV_READY = true</code> wired in JavaScript so automated 8-view</p>
+<p>Playwright verification continues to run deterministically.</p>
+<h2>7. Two-Tier Verification &amp; 8-View 360° VLM Realism Climb</h2>
+<p>Every build must pass <strong>both</strong> verification tiers before completion:</p>
+<h3>Tier 1: Compile-Time Spatial &amp; WebGL Health Gate (<code>&lt; 5 ms</code> + Frame 0 Check)</h3>
+<ul>
+<li>  Run <code>validateAndRepairWorld(worldSpec)</code> and verify **8/8 spatial gates pass</li>
+</ul>
+<p>(<code>0</code> errors, <code>0</code> floating objects, <code>0</code> AABB collisions, <code>100%</code> clear</p>
+<p>sightlines, <code>360°</code> Ring-3 horizon closure)**.</p>
+<ul>
+<li>  Guard all fragment and bloom shaders against <code>NaN</code>/<code>Inf</code> (`if (!(col.r &gt;=</li>
+</ul>
+<p>0.0 &amp;&amp; col.r &lt;= 65000.0)) col.r = 0.0;<code>) and use </code>samples: 4` MSAA on</p>
+<p><code>HalfFloatType</code> <code>EffectComposer</code> render targets.</p>
+<h3>Tier 2: 8-View 360° Hemisphere Capture &amp; 5-Axis Realism Climb</h3>
+<p>Capture <strong>8 views</strong> in headless Chromium (<code>1280×720</code> or <code>1440×900</code>, <code>0</code></p>
+<p>console/WebGL errors):</p>
+<ol>
+<li><code>view_01_stage_hero.png</code> — Primary hero framing showing Ring 0</li>
+</ol>
+<p>(<code>reference_spheres</code> or hero monument) through Ring 3 horizon.</p>
+<ol>
+<li><code>view_02_azimuth_000_north.png</code> — <code>0° North</code> sightline.</li>
+<li><code>view_03_azimuth_090_east.png</code> — <code>90° East</code> sightline.</li>
+<li><code>view_04_azimuth_180_south.png</code> — <code>180° South</code> backstage verification (zero</li>
+</ol>
+<p>empty void).</p>
+<ol>
+<li><code>view_05_azimuth_270_west.png</code> — <code>270° West</code> sightline.</li>
+<li><code>view_06_aerial_overview.png</code> — High-altitude overview (<code>y = +45m..+90m</code>)</li>
+</ol>
+<p>verifying all 4 concentric rings and spatial distribution.</p>
+<ol>
+<li><code>view_07_low_ground_sky.png</code> — Low grazing macro view (<code>y = groundY + 0.6m</code>)</li>
+</ol>
+<p>inspecting foreground micro-relief, wet porosity, and volumetric cloud</p>
+<p>underbellies.</p>
+<ol>
+<li><code>view_08_alt_weather_monolith.png</code> — Alternate Time-of-Day/Weather preset</li>
+</ol>
+<p>(e.g., Golden Alpenglow, Twilight, or Overcast Mist) with the <code>monolith</code> or</p>
+<p><code>explorer_rover</code> actor.</p>
+<p>Inspect all 8 renders alongside <code>ref_photo.png</code> using <code>read_file</code> and iterate</p>
+<p>across <strong>4 review stages</strong>, scoring each iteration out of **100 points across 5</p>
+<p>axes (20 pts each)**:</p>
+<ol>
+<li><strong>Lighting, Bounce IBL &amp; Shadow Fidelity (20 pts)</strong>: Natural directional</li>
+</ol>
+<p>shadow falloff, sky/ground PMREM bounce in recessed arches/crevices (shadow</p>
+<p>floor at <code>8-15%</code> linear luminance, never crushed <code>0%</code> black), zero `[255,</p>
+<p>255, 255]` blown blobs.</p>
+<ol>
+<li><strong>Materials, Hybrid Photo-PBR &amp; Weathering (20 pts)</strong>: Stochastic hex-tiled</li>
+</ol>
+<p>PBR textures + analytical 3D gradients, per-block masonry</p>
+<p>weathering/moss/waterline staining, zero <code>2×2</code> pixel-quad derivative</p>
+<p>stippling.</p>
+<ol>
+<li><strong>Landform Topology &amp; Architectural Geometry (20 pts)</strong>: Swiss-eroded cliff</li>
+</ol>
+<p>strata/ledges (never smooth cones or quilted grids), chamfered/moulded</p>
+<p>architectural relief, <code>8/8</code> spatial grounding gates passed, closed 360°</p>
+<p>Ring-3 horizon.</p>
+<ol>
+<li><strong>Foliage, Botanical Cutouts &amp; Dispersive Water Optics (20 pts)</strong>:</li>
+</ol>
+<p><code>2048×2048</code> alpha-to-coverage leaf/frond sprays with subsurface scatter,</p>
+<p>dense multi-tone Bézier grass blades, full-res ripple-distorted planar water</p>
+<p>reflections, Beer-Lambert depth absorption, and wet shoreline/pier collars.</p>
+<ol>
+<li><strong>Atmosphere, Volumetric Clouds &amp; 360° Aerial Perspective (20 pts)</strong>:</li>
+</ol>
+<p>Chappuis ozone sky gradient, 3D raymarched cumulus/cirrus with silver</p>
+<p>linings and ground shadows, azimuth-coupled aerial perspective across all 8</p>
+<p>views.</p>
+<h2>8. Reference Library</h2>
+<ul>
+<li>  <a href="references/01_spatial_solver_and_hybrid_shader_pipeline.md"><code>references/01_spatial_solver_and_hybrid_shader_pipeline.md</code></a></li>
+</ul>
+<p>— Production JS/GLSL implementation of the <code>&lt; 5 ms</code> 8-gate spatial</p>
+<p>constraint solver &amp; auto-repair engine (<code>validateAndRepairWorld</code>), <code>96×96</code></p>
+<p>LUT instanced grass generator (<code>generateGrassInstances</code>), finite-depth</p>
+<p>dispersive planar-mirror water, and Takram cloud/ozone + Swiss erosion</p>
+<p>shader chunks.</p>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

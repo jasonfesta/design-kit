@@ -1,0 +1,50 @@
+<form aria-labelledby="mod-cue" class="deck-module" id="marker-form" novalidate="">
+<div class="module-head">
+<h3 id="mod-cue">Reel bounce</h3>
+<span class="module-meta">Playhead 01:24.8</span>
+</div>
+<div class="field-grid">
+<div class="field-group">
+<label class="field-label" for="reel-name">Reel title</label>
+<input aria-describedby="reel-name-err" class="hw-input" id="reel-name" required="" type="text" value="Late Sketch"/>
+<p class="field-error" hidden="" id="reel-name-err">
+<svg aria-hidden="true" class="err-icon" fill="none" viewbox="0 0 16 16">
+<circle cx="8" cy="8" r="6.8" stroke="currentColor" stroke-width="1.5"></circle>
+<path d="M8 4.6v4M8 11.2h.01" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path>
+</svg>
+<span>Enter a reel title before saving.</span>
+</p>
+</div>
+<div class="field-group">
+<label class="field-label" for="tape-format">Master format</label>
+<div class="select-wrap">
+<select class="hw-select" id="tape-format">
+<option selected="" value="48">WAV · 48 kHz / 24-bit</option>
+<option value="96">WAV · 96 kHz / 24-bit</option>
+<option value="flac">FLAC · Lossless stereo</option>
+</select>
+<svg aria-hidden="true" class="select-chevron" fill="none" viewbox="0 0 15 15">
+<path d="M3.8 5.8L7.5 9.5l3.7-3.7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path>
+</svg>
+</div>
+</div>
+<div class="field-group field-group--full">
+<label class="field-label" for="cue-name">Cue marker label</label>
+<input aria-describedby="cue-err cue-hint" class="hw-input" id="cue-name" placeholder="Bridge bass solo" required="" type="text" value=""/>
+<p class="field-error" hidden="" id="cue-err">
+<svg aria-hidden="true" class="err-icon" fill="none" viewbox="0 0 16 16">
+<circle cx="8" cy="8" r="6.8" stroke="currentColor" stroke-width="1.5"></circle>
+<path d="M8 4.6v4M8 11.2h.01" stroke="currentColor" stroke-linecap="round" stroke-width="1.6"></path>
+</svg>
+<span>Enter a short cue label, such as Bridge in.</span>
+</p>
+<span class="field-hint" id="cue-hint">Stamped directly onto Reel 04 at bar 34 (01:24.8).</span>
+</div>
+</div>
+<div class="key-row" style="margin-top: auto;">
+<button class="hw-key hw-key--dark" type="submit">
+<span aria-hidden="true" class="hw-edge"></span>
+<span class="hw-cap">Save cue</span>
+</button>
+</div>
+</form>

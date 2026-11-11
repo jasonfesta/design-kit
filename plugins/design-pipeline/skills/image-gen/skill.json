@@ -1,0 +1,34 @@
+{
+  "id": "image-gen",
+  "display_name": "image gen",
+  "google3_package": "image_gen",
+  "title": "image gen",
+  "icon": "\ud83d\uddbc\ufe0f",
+  "category": "sub-skill of concept-art \u00b7 prompt-01 lock & 2k plates",
+  "is_subskill": true,
+  "parent_skill": "concept-art",
+  "subskills": [],
+  "path": "image-gen",
+  "agent_md": "image-gen/agent.md",
+  "skill_md": "image-gen/SKILL.md",
+  "html_page": "image-gen/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/image-gen",
+  "bundle_skill": "image-gen.skill",
+  "bundle_zip": "image-gen.zip",
+  "short_summary": "locks 01-anchor first, then authors and renders drift-free 2k nano banana 2 plates (4x3=12 matrix or multi-direction) within a strict 3-round ceiling.",
+  "when_to_use": "use at stage 3 of jason-design-agent to render the 2k concept pack anchored to prompt 01.",
+  "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=image-gen",
+  "summary": "Authors deeply dialed tri-voice prompts directly inspired by 5+ distinct researched non-beige examples and generates crystal-clear minimum 1K and 2K lossless PNG Nano Banana 2 concept plates strictly via image-to-image conditioning (ImagePaths or --input_image, quota-safe max-2 concurrency, capped at 3 rounds). Combines textural materiality, designer typography/composition, and frontend-developer optical padding while preventing meta-prompt text leakage. Use after style-direction and the 10-iteration pre-Nano critique pass. Don't use for upscaling cropped assets during React builds (use jason-dev-agent).",
+  "references": [
+    "./references/anchor-prompt-and-12-slot-matrix.md",
+    "./references/anchor-prompt-and-27-slot-matrix.md",
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=image-gen"
+  }
+}

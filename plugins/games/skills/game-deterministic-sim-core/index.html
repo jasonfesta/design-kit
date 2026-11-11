@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>game deterministic simulation core</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>game deterministic simulation core</h1>
+      <p>decouple game simulation state from rendering and browser globals across three determinism levels—frame-rate independence, seeded headless replayability, and cross-browser lockstep parity.</p>
+      <div class="actions">
+        <a href="../game-deterministic-sim-core.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Game deterministic simulation core</h1>
+<h2>What it is</h2>
+<p>This skill separates how a game updates its world state from how it draws frames and reads hardware input.</p>
+<p>Keeping simulation rules inside a pure, renderer-free module unlocks four practical payoffs: consistent physics across 60 Hz and 120 Hz screens, headless playtests running thousands of times faster than real time, compact replays and undo stacks, and low-bandwidth multiplayer. Not every game needs the strictest tier of determinism, so this skill matches simulation rigour to what the game actually requires.</p>
+<h2>When to use it</h2>
+<ul>
+<li>Building any realtime or tick-driven game where frame drops or 120 Hz displays must not alter jump heights, cooldowns, or collision outcomes.</li>
+<li>Running automated headless playtesters, solver checks, or balance sweeps without launching a browser.</li>
+<li>Supporting undo, time scrubbing, save states, shareable replays, or peer-to-peer lockstep multiplayer.</li>
+</ul>
+<h2>When not to use it</h2>
+<ul>
+<li>Purely static, stateless, or single-click DOM trivia experiences with no evolving world state.</li>
+<li>Applying cross-browser custom trigonometry to a solo turn-based game that never shares simulation ticks across engines; choose the lightest tier below that fits your brief.</li>
+</ul>
+<h2>Choose the right determinism tier</h2>
+<p>Lock your simulation tier up front so you neither leak browser globals into game logic nor over-engineer custom floating-point math where standard arithmetic suffices.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Tier</th><th>Target capability</th><th>Required rules</th></tr></thead>
+<tbody>
+<tr><td>1. Frame-rate independent</td><td>Solo realtime play on any monitor</td><td>Fixed simulation step accumulator; clamp frame delta spikes; separate state from view</td></tr>
+<tr><td>2. Seeded reproducible</td><td>Headless bots, undo, local replays, save/load</td><td>Tier 1 plus seeded PRNG, explicit input command queue, zero wall-clock or DOM reads</td></tr>
+<tr><td>3. Cross-engine lockstep</td><td>Multi-device lockstep or portable action replays</td><td>Tier 2 plus engine-invariant math, canonical collection order, periodic state hashes</td></tr>
+</tbody>
+</table></div>
+<h2>Core architecture rules</h2>
+<h3>1. Keep browser and rendering globals out of simulation files</h3>
+<p>Simulation modules own world state, rules, collisions, AI decisions, and progression. View modules own cameras, sprites, meshes, particles, DOM overlays, audio nodes, and pointer listeners.</p>
+<p>Simulation code must never touch <code>window</code>, <code>document</code>, <code>localStorage</code>, <code>AudioContext</code>, <code>requestAnimationFrame</code>, <code>Date.now</code>, <code>performance.now</code>, or rendering libraries. If removing the renderer breaks the simulation module in Node, Deno, Bun, or Python, the boundary has leaked.</p>
+<h3>2. Step realtime physics on a fixed tick accumulator</h3>
+<p>Variable render frame times (<code>dt</code>) change integration curves, letting fast monitors jump slightly higher or tunnel through thin walls on slow tabs.</p>
+<ul>
+<li>Accumulate elapsed frame time and advance the simulation in fixed steps (for example 60 Hz for crisp action or 20 to 30 Hz for strategy).</li>
+<li>Clamp accumulated frame time after a backgrounded tab resumes (such as capping at 100 to 250 ms) so the loop never freezes in a catch-up spiral.</li>
+<li>Interpolate visual positions in the renderer between the previous and current simulation states using the accumulator remainder so motion stays smooth on high-refresh screens.</li>
+<li>For strictly turn-based or puzzle games, advance state only on discrete player or agent actions rather than running an idle tick loop.</li>
+</ul>
+<h3>3. Feed all inputs and randomness through explicit boundaries</h3>
+<p>When targeting Tier 2 or Tier 3:</p>
+<ul>
+<li>Replace unseeded <code>Math.random()</code> inside simulation logic with a seeded pseudo-random generator stored as part of world state (or passed explicitly) so advancing or rewinding state advances randomness identically.</li>
+<li>Keep cosmetic particle randomness in its own separate visual RNG so turning graphics effects up or down never shifts gameplay outcomes.</li>
+<li>Apply player clicks, key presses, AI choices, and network packets only at clean tick or turn boundaries as plain serialisable commands rather than mutating entities mid-frame inside event listeners.</li>
+</ul>
+<h3>4. Eliminate cross-engine drift only when crossing runtimes (Tier 3)</h3>
+<p>Even with identical seeds and fixed ticks, JavaScript engines (V8, JavaScriptCore, SpiderMonkey) permit 1-ULP rounding differences on transcendental functions (<code>Math.sin</code>, <code>Math.cos</code>, <code>Math.tan</code>, <code>Math.atan2</code>, <code>Math.acos</code>, <code>Math.asin</code>). In chaotic continuous physics, that tiny rounding gap compounds into different trajectories within a minute.</p>
+<p>When replays or lockstep sessions must match across devices:</p>
+<ul>
+<li>Replace native transcendental calls inside simulation logic with deterministic integer fixed-point arithmetic, lookup tables, or polynomial approximations quantised at each step (such as via <code>Math.fround</code>).</li>
+<li>Iterate entities in a canonical deterministic order (sorted numeric IDs or dense arrays) rather than unordered object keys or insertion-dependent sets created from external callbacks.</li>
+<li>Compute a fast rolling hash over canonical world state every N ticks so replay tests and lockstep peers catch divergence on the exact tick it begins rather than minutes later.</li>
+</ul>
+<h3>5. Keep replay payloads portable across static sandboxes</h3>
+<p>An input command log needs only the simulation version, starting seed, tick rate (if realtime), ordered inputs, and optional terminal state hash. When hosting on sandboxed static origins (<code>window.origin === &quot;null&quot;</code>), pass small replays via URL hash fragments, pasteable text, or classic script bundles rather than relative <code>fetch()</code> calls.</p>
+<h2>CLI verification</h2>
+<p><code>scripts/verify_sim_determinism.py</code> (PEP 723, zero external dependencies) checks real simulation source files and optional headless replay commands without imposing any naming convention or replay schema:</p>
+<pre data-lang="bash"><code>python3 ~/.gemini/config/skills/game-deterministic-sim-core/scripts/verify_sim_determinism.py \
+  --sim-path ./src/sim \
+  --json</code></pre>
+<p>Pass <code>--cross-engine</code> only when targeting Tier 3 lockstep or cross-browser continuous replays, and pass <code>--check-cmd &quot;&lt;headless command&gt;&quot;</code> to run a headless simulation twice and verify identical output hashes. Plant one deliberate unseeded random call once to confirm your check catches nondeterminism before trusting a green result.</p>
+<h2>Traps</h2>
+<ul>
+<li>Visual RNG polluting gameplay RNG. Spawning extra cosmetic sparks on desktop vs mobile consumes shared random numbers and desynchronises the next enemy spawn. Keep simulation and presentation RNGs strictly separate.</li>
+<li>Mutating state inside input listeners. Updating velocity directly inside <code>keydown</code> or <code>pointermove</code> ties behaviour to browser event delivery timing between frames. Queue inputs and consume them on the tick.</li>
+<li>Unclamped tab-resume spikes. Returning from a 30-second background tab and running 1,800 physics ticks synchronously locks the main thread. Always cap accumulated delta time.</li>
+<li>Premature fixed-point ceremony. Writing custom trigonometry for a single-player grid puzzle wastes effort and hurts readability; reserve Tier 3 rules for cross-runtime continuous sims.</li>
+</ul>
+<h2>Self-check</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Check</th><th>Pass</th><th>Fail symptom</th></tr></thead>
+<tbody>
+<tr><td>Headless import</td><td>Simulation module runs in a plain CLI runtime with no DOM shims</td><td>ReferenceError on <code>window</code>, <code>document</code>, or renderer globals</td></tr>
+<tr><td>Refresh-rate parity</td><td>Outcomes match across 30 Hz, 60 Hz, and 120 Hz frame pacing</td><td>Jump heights, timers, or collisions shift with monitor refresh rate</td></tr>
+<tr><td>Seed repeatability</td><td>Two headless runs with the same seed and inputs end in identical state</td><td>Repeated runs drift because of wall clocks or unseeded randomness</td></tr>
+<tr><td>Cosmetic isolation</td><td>Disabling particles, sound, or camera shake leaves world state unchanged</td><td>Visual polish consumes simulation RNG calls or alters hitboxes</td></tr>
+<tr><td>Tier fit</td><td>Math complexity matches Tier 1, 2, or 3 requirements</td><td>Missing cross-engine safety in lockstep, or unneeded custom trig in solo turn play</td></tr>
+</tbody>
+</table></div>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

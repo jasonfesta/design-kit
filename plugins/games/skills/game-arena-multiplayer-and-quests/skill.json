@@ -1,0 +1,32 @@
+{
+  "id": "game-arena-multiplayer-and-quests",
+  "display_name": "Game arenas, multiplayer, and quest graphs",
+  "google3_package": "game_arena_multiplayer_and_quests",
+  "title": "Game arenas, multiplayer, and quest graphs",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "game-arena-multiplayer-and-quests",
+  "agent_md": "game-arena-multiplayer-and-quests/agent.md",
+  "skill_md": "game-arena-multiplayer-and-quests/SKILL.md",
+  "html_page": "game-arena-multiplayer-and-quests/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-arena-multiplayer-and-quests/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-arena-multiplayer-and-quests/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-arena-multiplayer-and-quests/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-arena-multiplayer-and-quests.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/game-arena-multiplayer-and-quests",
+  "bundle_skill": "game-arena-multiplayer-and-quests.skill",
+  "bundle_zip": "game-arena-multiplayer-and-quests.zip",
+  "short_summary": "Scale games cleanly into fair LLM or bot arenas, right-sized multiplayer topologies, and softlock-free quest or progression graphs without over-engineering servers or bespoke schemas.",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Scale games cleanly into fair LLM or bot arenas, right-sized multiplayer topologies, and softlock-free quest or progression graphs without over-engineering servers or bespoke schemas.",
+  "references": [
+    "./references/contributing.md"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=game-arena-multiplayer-and-quests"
+  }
+}

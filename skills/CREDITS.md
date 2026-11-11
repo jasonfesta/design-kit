@@ -1,0 +1,29 @@
+# credits & upstream lineage (`/usr/local/google/home/jfesta/skills`)
+
+This workspace synthesizes original `jason-design-agent <-> jason-dev-agent` architecture by **Jason Festa (`jfesta`)** alongside foundational skills, computer-vision tools, measurement verifiers, and design-engineering references lifted or adapted from colleagues across Google and the broader UI craft community.
+
+---
+
+## 1. google3 skills & engineering tools credited
+
+| local skill(s) | upstream skill / tool | author(s) & team | google3 depot path | what was lifted or adapted |
+| :--- | :--- | :--- | :--- | :--- |
+| **`replicate-mock`**, `image-to-react`, `warmup` | **`replicate-mock`** | **Manasa Babu** (`manasababu`) | `//depot/google3/experimental/users/manasababu/skills/replicate_mock/` | The **8 Core Pixel-Perfection Directives** (Zero Hallucination, Zero Omission, Exact Visual Match, No Generic Placeholders, Asset Recreation, Bit-for-Bit Asset Extraction, Perfect Text Reconstruction, and Vector-to-Vector SVG Match with bitmap fallback) and pre-delivery mockup audit checklist. |
+| **`image-to-react`**, `replicate-mock`, `warmup` | **`screenshot-to-html`** & **`visual-matcher` (`AutoRaterV1`)** | **Google Agentic Design Loop** (`dfreedm`, `jonathangamble`, `meaplet`, `igormr`) | `//depot/google3/prototypes/projects/agentic_design_loop/skills/screenshot_to_html/`<br>`//depot/google3/prototypes/projects/agentic_design_loop/skills/visual_matcher/` | sRGB + Retina `@2x` normalization, `layout_metrics.json`, non-widget asset cropping guards, `64x64` cell visual loss scoring (`s_total`, `s_block`, `s_edge`, `s_chroma`, `s_dom`), `rendered_overlay.png`, `diff_mask.png`, and DOM `container_deviations` localization. |
+| **`image-to-react`**, `golden-template`, `warmup` | **`screenshot-to-search-vibes`**, **`screenshot-to-sds-next`**, **`html-to-search-vibes`** & **`import-from-figma`** | **Google Cruxy** (`zaneriley`, `dfreedm`, `darrenhead`, `jordanfine`, `bevc`) | `//depot/google3/prototypes/projects/cruxy/skills/` | 3-tier React component decomposition (`src/data/`, `src/components/`, `src/App.tsx`), Full-Canvas 3-Zone Scan (Top `0-25%`, Middle `25-75%`, Bottom `75-100%`), equal-height card row architecture (`items-stretch` + `h-full flex-col` + `mt-auto`), and typography ramp reconciliation. |
+| **`image-to-react`**, `responsiveness`, `warmup` | **`sds-measurement-verifier`** | **Google Search DevAI SDS** (`sskhandp`, `str` & SDS team) | `//depot/google3/search/devai/agentic/labs/skills/sds/sds_measurement_verifier/` | Universal interactive element & button optical padding symmetry rules (`button_padding_violations`) and horizontal multi-tile grid equality verification (`grid_equality_violations`, `<= 2px` baseline delta). |
+| **`image-to-react`**, `responsiveness`, `warmup` | **`screenshot-compare`** | **Google Search DevAI Aegis** (`mdb-group:search-aegis-team`) | `//depot/google3/search/devai/aegis/skills/screenshot_compare/` | Labeled 3-panel visual comparison composites (`side_by_side.png`: Reference | Rendered React | Diff Heatmap). |
+| **`image-to-react`** | **`clone-check`**, **`clone-check-dom2dom`** & **`figma-to-react`** | **Minko Gechev** (`mgechev`) & **Google Selene** (`mdb-group:client-test-team`) | `//depot/google3/testing/ai/selene/skills/clone_check/`<br>`//depot/google3/experimental/users/mgechev/` | Set-of-Marks (SoM) bipartite DOM element alignment, live CSS property diffing, and iterative build-validation-fix loops. |
+| **`image-to-react`** | **`hifi-design-with-loop`**, **`hifi-mockup`** & **`creating-oneshot-landing-pages`** | **Google Stitch / OpenStitch** & **Gemini Prototyping** (`aeslami`, `deshin`, `lnoot`, `bencobley`, `nroadley`, `kenwright`) | `//depot/google3/labs/language/aida/product/stitch/`<br>`//depot/google3/experimental/gemini_prototyping/skills/creating_oneshot_landing_pages/` | Grid-first, gap-driven layout discipline (`min-h-*` over fixed text heights, `tabular-nums`) and anti-boilerplate landing page craft standards. |
+| **`skill-maker`** | **`skill_creator`** & **`customization_rules`** | **Romain Beaumont** (`romainbeaumont`) & **`mountanos`** | `//depot/google3/learning/gemini/agents/skills/skill_creator/`<br>`//depot/google3/learning/gemini/agents/customization_rules/` | `validate_skill` invariants, `agent_skill` + `agent_config` Blaze rules, `validate_agent` frontmatter/body checks, and Evalin `eval_suite` packaging conventions. |
+| **`nano-banana`**, `image-gen`, `polish` | **Nano Banana / `gempix-1`** | **Google DeepMind / Gemini Image Generation Team** | `/google/bin/releases/gempix/gempix-1/gempix` | High-resolution `2K` / `4K` image generation and faithful image-to-image restoration. |
+| **`warmup`**, `skill-maker` | **`web-design-check`** & **`web-design-review`** | **`fofr`** (`go/fofr-agent-skills`) | `/google/data/ro/users/fo/fofr/www/skills/` | 7 glyph-geometry audit gates (border crowding, orphan wrap, plumbline drift, card consistency, measure, overflow/collision, font/asset health) and `x20` opaque-origin static HTML safety. |
+
+---
+
+## 2. external craft & catalog foundations credited
+
+| local skill(s) | upstream source | author / maintainer | what informed our implementation |
+| :--- | :--- | :--- | :--- |
+| **`feel`**, `interaction` | **`emil-design-eng`**, **`make-interfaces-feel-better`** & **`break-ui`** | **Emil Kowalski** & open design-engineering community | GPU-composited `transform`/`opacity` motion curves, press scale feedback, capability-gated `@media (hover: hover)`, rapid-click interruptibility, concentric border radii, and motion restraint. |
+| **`google-font-selection`** | **`google/fonts`** official tag metadata | **Google Fonts Team** (`github.com/google/fonts` & `fonts.google.com/metadata/fonts`) | Live official `0-100` Feeling & Appearance family tag scores (`tags/all/families.csv`) and variable-axis metadata. |

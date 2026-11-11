@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>image to react</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>image to react</h1>
+      <p>builds bucket-first golden template react apps in jason-dev-agent with developer-voiced stage talk-backs, moodboard jason-dev-agent turn tracking, and a final jason-design-agent sign-off output.</p>
+      <div class="actions">
+        <a href="../image-to-react.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>image to react</h1>
+<pre data-lang="text"><code>jason-dev-agent / image to react
+────────────────────────────────────────────────────────────────────
+stage         master pipeline + stage 1 visual &amp; structural lock
+sub-skills    replicate-mock · nano-banana · font-pairing · accessibility · responsiveness · interaction · feel · design-critique
+dev eval      s_total &gt;= 0.85+, 0 collisions/overflow, button &amp; grid craft
+paired gate   every passed dev eval triggers design-critique in jason-design-agent</code></pre>
+<p><code>image-to-react</code> is <code>jason-dev-agent</code>&#x27;s top-level pipeline for turning a reference image (or multi-screen 4K grid) into a Golden Template (<code>dating</code>) React 19 + Vite 7 + Tailwind v4 build. It runs Stage 1&#x27;s iterative <strong>screenshot-to-screenshot dev eval</strong> and coordinates six focused companion skills—upscaling low-res plates via <code>nano-banana</code>, stopping at every stage to pass the <strong>dev eval</strong> first, and then sending that <strong>same stage back into <code>jason-design-agent</code> as a designer critique</strong> against the original inspiration.</p>
+<h2>1. the image-to-react skill chain (<code>jason-dev-agent</code> &lt;-&gt; <code>jason-design-agent</code>)</h2>
+<pre data-lang="mermaid"><code>flowchart TD
+    In[&quot;Approved Moodboard Slots (selections.json) + design_agent_turns&quot;] --&gt; S1A
+    S1A[&quot;Stage 1a: image-to-react + replicate-mock (manasababu) -- Build DOM first &amp; classify 3 buckets&quot;]
+    S1A --&gt; B1[&quot;Bucket 1: native-code (HTML/CSS/SVG) -- 0 upscales&quot;]
+    S1A --&gt; B2[&quot;Bucket 2: crisp-media (&gt;= 2x DPR) -- 0 upscales&quot;]
+    S1A --&gt; B3[&quot;Bucket 3: upscale-queue (&lt; 2x / blurry / baked text)&quot;]
+    B3 --&gt; S1B[&quot;Stage 1b: nano-banana -- Upgrade ONLY upscale-queue slots to 2x Retina&quot;]
+    S1A --&gt; TY[&quot;Type &amp; a11y: font-pairing (primary / secondary / tertiary) + accessibility (WCAG 2.2 sizes, contrast, targets)&quot;]
+    TY --&gt; G1
+    B1 --&gt; G1[&quot;Dev Gate 1: eval-image-readiness.py + eval-image-to-react.mjs (s_total &gt;= 0.85+) + eval-font-pairing.py + eval-accessibility.py&quot;]
+    B2 --&gt; G1
+    S1B --&gt; G1
+    G1 &lt;--&gt;|&quot;Developer &lt;-&gt; Designer talk-back&quot;| C1[&quot;jason-design-agent: visuals &amp; materials critique&quot;]
+    G1 --&gt; S2[&quot;Stage 2: responsiveness -- 1 shared DOM across 320px to 1536px (eval-responsive-pair.mjs)&quot;]
+    S2 &lt;--&gt;|&quot;Developer &lt;-&gt; Designer talk-back&quot;| C2[&quot;jason-design-agent: responsiveness critique&quot;]
+    S2 --&gt; S3[&quot;Stage 3: interaction -- 0 dead controls, scroll points &amp; animation triggers (eval-interaction.py)&quot;]
+    S3 &lt;--&gt;|&quot;Developer &lt;-&gt; Designer talk-back&quot;| C3[&quot;jason-design-agent: interaction critique&quot;]
+    S3 --&gt; S4[&quot;Stage 4: feel -- 60fps scroll (eval-feel-and-scroll.py) + GPU curves + press/hover&quot;]
+    S4 &lt;--&gt;|&quot;Developer &lt;-&gt; Designer talk-back&quot;| C4[&quot;jason-design-agent: feel critique&quot;]
+    S4 --&gt; Out[&quot;Stage 5: Write projects/dev-turns.json + Update index.html (jason-dev-agent: K turns) -&gt; jason-design-agent final sign-off&quot;]</code></pre>
+<p>Full cross-stage rules live in <a href="references/paired_dev_and_design_eval_pipeline.md">paired dev and design eval pipeline</a>:</p>
+<ol>
+<li><strong><code>image-to-react</code> + <code>replicate-mock</code></strong> (<em>stage 1a — dom synthesis &amp; 3-bucket classification first</em>): builds the Golden Template React DOM shell (<code>src/data/</code>, <code>src/components/</code>, <code>src/App.tsx</code>) using <code>replicate-mock</code> (credited to Manasa Babu, <code>manasababu</code>) and classifies every visual region into <strong>three developer buckets</strong> <em>before</em> any upscaling runs:</li>
+</ol>
+<ul>
+<li><strong><code>native-code</code> (<code>html / css / inline svg</code>)</strong> — buttons, pills, navbars, cards, borders, gradients, typography, geometric icons -&gt; <strong>0 raster upscales</strong>.</li>
+<li><strong><code>crisp-media</code> (<code>&gt;= 2x</code> DPR already)</strong> — raster regions that already pass <code>eval-image-readiness.py</code> at their actual mounted CSS dimensions -&gt; <strong>0 upscales</strong>.</li>
+<li><strong><code>upscale-queue</code> (<code>&lt; 2x</code> DPR, blurry, or baked-in text over photo)</strong> — <em>only</em> the mounted <code>&lt;img&gt;</code> slots flagged by <code>eval-image-readiness.py</code> against their real rendered <code>clientWidth x clientHeight</code>.</li>
+</ul>
+<p>1b. <strong><code>font-pairing</code> + <code>accessibility</code></strong> (<em>stage 1a type system &amp; accessible sizing</em>): assign the <code>style-direction</code> families to <strong>primary</strong> (headlines + subheadlines), <strong>secondary</strong> (body + UI), optional <strong>tertiary</strong> accent (<code>&lt;= 15%</code>), wire one modular scale, and size type/controls to WCAG 2.2 (body <code>&gt;= 16px</code> / <code>1.5</code>, contrast <code>4.5:1</code>, targets <code>&gt;= 24x24</code>, focus rings, names, alt, lang) -&gt; pass <code>eval-font-pairing.py</code> + <code>eval-accessibility.py</code> (re-run after stages 2–4).</p>
+<ol>
+<li><strong><code>nano-banana</code></strong> (<em>stage 1b — targeted bucket upgrade &amp; non-blur readiness eval</em>): upgrades <strong>only <code>upscale-queue</code> slots</strong> to exact <code>2 <em> clientWidth x 2 </em> clientHeight</code> <code>2x</code> Retina plates with zero drift, passes <code>eval-image-readiness.py --project=...</code> (<code>0</code> blurry or <code>&lt; 2x</code> images) + <code>eval-image-to-react.mjs</code> (<code>s_total &gt;= 0.85+</code>, <code>0</code> DOM/button/grid violations) -&gt; <strong>then runs <code>design-critique</code> (<code>visuals</code> + <code>materials</code>) in <code>jason-design-agent</code></strong>.</li>
+<li><strong><code>responsiveness</code></strong> (<em>stage 2 — viewports &amp; reflow</em>): tunes one shared semantic DOM across desktop, mobile, and the 6-viewport continuum (<code>320px -&gt; 1536px</code>) via <code>eval-responsive-pair.mjs</code> until passing -&gt; <strong>then runs <code>design-critique</code> (<code>responsiveness</code>) in <code>jason-design-agent</code></strong>.</li>
+<li><strong><code>interaction</code></strong> (<em>stage 3 — buttons, sliders, pagination, scroll points &amp; animation triggers</em>): ensures 100% of elements work (<code>0</code> dead controls), wires sliders, pagination/filters, <code>IntersectionObserver</code> <strong>scroll points</strong>, and explicit <strong>animation triggers</strong> while keeping <code>t=0</code> locked -&gt; <strong>then runs <code>design-critique</code> (<code>interaction</code>) in <code>jason-design-agent</code></strong>.</li>
+<li><strong><code>feel</code></strong> (<em>stage 4 — <code>60fps</code> scroll, tactile physics &amp; gpu curves</em>): verifies <strong><code>60fps</code> scrolling</strong> (<code>eval-feel-and-scroll.py</code>), <code>:active</code>/<code>:hover</code> physics, GPU <code>transform</code>/<code>opacity</code> curves, <code>0</code> layout shift, and <code>prefers-reduced-motion</code> until passing -&gt; <strong>then runs <code>design-critique</code> (<code>feel</code> + <code>final-signoff</code>) in <code>jason-design-agent</code></strong>.</li>
+<li><strong><code>design-critique</code></strong> (<em>paired developer &lt;-&gt; designer loop</em>): sends every passed dev eval from <code>jason-dev-agent</code> (speaking strictly as a developer with DOM/CSS/eval metrics) back into <code>jason-design-agent</code> against the original inspiration, recording total <code>jason-dev-agent</code> turns in <code>projects/dev-turns.json</code> and the moodboard <code>Development</code> view (<code>&lt;study-slug&gt;/index.html</code>).</li>
+</ol>
+<h2>2. bundled references &amp; scripts</h2>
+<h3>references (<code>references/</code>)</h3>
+<ul>
+<li><a href="references/paired_dev_and_design_eval_pipeline.md">paired <code>jason-dev-agent</code> &lt;-&gt; <code>jason-design-agent</code> pipeline</a> — how all stages stop for dev eval first, then run mirrored designer critiques.</li>
+<li><a href="references/visual_rubric_and_eval_loop.md">visual rubric &amp; iterative screenshot eval loop</a> — <code>s_total</code> formula, Top/Middle/Bottom 3-zone scan, 50/50 overlay + 64x64 diff heatmap, and <code>p0 -&gt; p1 -&gt; p2</code> remediation.</li>
+<li><a href="references/button_padding_and_grid_equality.md">button padding, micro-spacing &amp; equal grid rules</a> — symmetrical button/pill padding, container clearance, <code>minmax(0, 1fr)</code> equal grid tracks, and <code>&lt;= 2px</code> bottom baseline alignment.</li>
+<li><a href="references/dating_golden_template_architecture.md">golden template (<code>dating</code>) &amp; inspector architecture</a> — canonical config parity, 3-tier <code>src/</code> layout, nomenclature rules, and standalone inspector.</li>
+<li><a href="references/four_k_upgrade_and_competitor_benchmarks.md">4k website upgrade &amp; competitor benchmarks</a> — category benchmark mapping, <code>2x</code> Retina <code>gempix-1</code> de-dithering, Veo looping video posters, Base64 WOFF2 fonts, and <code>s_total &gt;= 0.93+</code> lock.</li>
+<li><a href="references/avela_dual_authority_and_60fps_media_stack.md">dual-authority responsive lock &amp; 60fps media stack</a> — desktop + mobile dual authority, off-main-thread <code>VIDEO_BLOB_CACHE</code>, pre-stacked swatch crossfades, and GPU-clean scroll settles.</li>
+<li><a href="references/nano_banana_multi_screen_protocol.md">nano banana multi-screen protocol</a> — <code>?screen=&lt;i&gt;</code> and <code>window.__setGoldenEvalScreen</code> contract across 5-10 screens per entity.</li>
+<li><a href="references/subagent_parallel_execution_runbook.md">parallel sub-agent execution runbook</a> — batch fan-out protocol for multi-project runs.</li>
+<li><a href="references/google3_image_to_react_lineage.md">google3 image-to-react lineage</a> — upstream tool &amp; skill lineage.</li>
+</ul>
+<h3>executable scripts (<code>scripts/</code>)</h3>
+<ul>
+<li><a href="scripts/eval-image-to-react.mjs"><code>scripts/eval-image-to-react.mjs</code></a> — builds the React project, renders <code>rendered.png</code> at exact reference dimensions in headless WebKit2GTK, generates <code>rendered_overlay.png</code> (50/50 blend), <code>diff_mask.png</code> (64x64 loss heatmap), and <code>side_by_side.png</code>, audits DOM collisions, button padding symmetry, and grid equality, and writes <code>visual_match_audit.json</code>.</li>
+<li><a href="scripts/eval-multi-screen-project.mjs"><code>scripts/eval-multi-screen-project.mjs</code></a> — evaluates all 5-10 screens of a multi-screen build via <code>?screen=&lt;i&gt;</code> and <code>window.__setGoldenEvalScreen</code>, enforcing <code>mean_s_total &gt;= 0.85</code>, <code>min_s_total &gt;= 0.82</code>, and <code>0</code> craft violations.</li>
+<li><a href="scripts/ingest-nano-banana.py"><code>scripts/ingest-nano-banana.py</code></a> — batch preprocessor and 8-token semantic palette extractor for multi-screen folders.</li>
+<li><a href="scripts/scaffold-golden-from-image.mjs"><code>scripts/scaffold-golden-from-image.mjs</code></a> — scaffolds a clean <code>projects/&lt;slug&gt;/</code> package from <code>golden-template/assets/dating/</code>.</li>
+</ul>
+<h2>3. stage 1 execution &amp; self-judging dev eval</h2>
+<h3>step 0 — prompt user for <code>jason-design-agent</code> turn count <em>(testing mode)</em></h3>
+<p>Before running the pipeline (unless the user already specified a number in their prompt), ask the user <strong>&quot;how many turns do you want out of the design agent?&quot;</strong> (using <code>ask_question</code> with options <code>1</code>, <code>2 (Recommended)</code>, <code>3</code>, or <code>until approved</code>, plus free-entry custom <code>N</code>). Store <code>design_agent_turns</code> and apply it across every <code>design-critique</code> handoff in the chain (<code>image-to-react</code>, <code>responsiveness</code>, <code>interaction</code>, and <code>feel</code>).</p>
+<h3>step 1 — build react dom shell, classify 3 buckets &amp; upgrade only <code>upscale-queue</code> slots</h3>
+<ol>
+<li>Inspect the reference plate via <code>read_file</code> alongside <code>jason-design-agent</code>&#x27;s direction (<code>style-direction/</code> &amp; <code>research/</code>).</li>
+<li>Extract exact sampled hex tokens (<code>--surface</code>, <code>--surface-raised</code>, <code>--ink</code>, <code>--muted</code>, <code>--accent</code>, <code>--accent-alt</code>, <code>--on-accent</code>, <code>--border</code>) and pixel coordinates with <code>replicate-mock</code>, then scaffold <code>projects/&lt;slug&gt;/</code> from <code>golden-template/assets/dating</code> (<code>src/data/<em>Data.ts</code>, <code>src/components/</em>.tsx</code>, <code>src/App.tsx</code>).</li>
+<li>Partition every visual element into <strong>3 developer buckets</strong> before running any image upscaling:</li>
+</ol>
+<ul>
+<li><strong><code>native-code</code> (<code>html / css / svg</code>)</strong>: rebuild all buttons, inputs, cards, navbars, gradients, and crisp icons natively (<strong>0 raster upscaling</strong>).</li>
+<li><strong><code>crisp-media</code> (<code>&gt;= 2x</code> DPR)</strong>: mount already-sharp high-res crops directly (<strong>0 upscaling</strong>).</li>
+<li><strong><code>upscale-queue</code> (<code>&lt; 2x</code> DPR / blurry / baked text)</strong>: run <code>eval-image-readiness.py --project=...</code> to measure each <code>&lt;img&gt;</code> against its actual mounted CSS box (<code>clientWidth x clientHeight</code>), then pass <strong>only failing <code>upscale-queue</code> slots</strong> through <code>nano-banana</code> for exact <code>2 <em> clientWidth x 2 </em> clientHeight</code> restoration.</li>
+</ul>
+<ol>
+<li>Record every <code>jason-dev-agent</code> iteration in <code>projects/dev-turns.json</code> and surface <code>jason-dev-agent: &lt;K&gt; turns</code> in the <code>Development</code> view of <code>&lt;study-slug&gt;/index.html</code>.</li>
+</ol>
+<h3>step 2 — micro-craft invariants (enforced before &amp; during eval)</h3>
+<ul>
+<li><strong>button &amp; pill optical symmetry</strong>: balanced <code>padding-left</code> / <code>padding-right</code> (<code>px-3.5 py-1.5</code> compact pills, <code>px-4 py-2</code> secondary buttons, <code>px-5 py-2.5</code> or <code>px-6 py-3</code> primary CTAs), <code>gap-1.5</code> to <code>gap-2</code> icon gaps, <code>whitespace-nowrap shrink-0</code>, <code>tabular-nums</code> on numbers, and <code>&gt;= 12px</code> card bottom clearance.</li>
+<li><strong>equal grid geometry</strong>: <code>grid-template-columns: repeat(N, minmax(0, 1fr))</code>, <code>min-w-0</code> on children, <code>h-full flex flex-col</code> + <code>mt-auto</code> on sibling cards so bottom borders align within <code>&lt;= 2px</code>.</li>
+</ul>
+<h3>step 3 — stop &amp; judge: run <code>eval-image-to-react.mjs</code> over turns</h3>
+<pre data-lang="bash"><code># 1. lint config parity &amp; strict typescript against golden-template/assets/dating
+/usr/local/google/home/jfesta/.local/bin/node \
+  /usr/local/google/home/jfesta/skills/golden-template/scripts/lint-golden-template.mjs \
+  --dir=/path/to/workspace \
+  --project=&lt;project-slug&gt; --fix
+
+# 2. verify all mounted images are loaded, &gt;= 2x retina, and non-blurry
+python3 /usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;
+
+# 3. lock the type system (primary / secondary / tertiary) and accessible sizes
+python3 /usr/local/google/home/jfesta/skills/font-pairing/scripts/eval-font-pairing.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; --expect-primary=&quot;&lt;family&gt;&quot; --expect-secondary=&quot;&lt;family&gt;&quot;
+python3 /usr/local/google/home/jfesta/skills/accessibility/scripts/eval-accessibility.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;
+
+# 4. run the stage 1 image-to-react dev eval
+/usr/local/google/home/jfesta/.local/bin/node \
+  /usr/local/google/home/jfesta/skills/image-to-react/scripts/eval-image-to-react.mjs \
+  --reference=&quot;/path/to/reference.png&quot; \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; \
+  --out-dir=&quot;/tmp/image_to_react_eval_&lt;project-slug&gt;&quot;</code></pre>
+<p>Inspect <code>rendered.png</code>, <code>rendered_overlay.png</code>, <code>diff_mask.png</code>, and <code>visual_match_audit.json</code> via <code>read_file</code> across Top (<code>0-25%</code>), Middle (<code>25-75%</code>), and Bottom (<code>75-100%</code>) zones. Iterate <code>p0 -&gt; p1 -&gt; p2</code> fixes (up to 4-6 turns) until all Stage 1 dev gates pass:</p>
+<ul>
+<li><code>s_total &gt;= 0.85</code> (<code>&gt;= 0.93</code> for 4K studio lock)</li>
+<li><code>collision_count == 0</code></li>
+<li><code>horizontal_overflow_px == 0</code></li>
+<li><code>clipped_text_count == 0</code></li>
+<li><code>button_padding_violations == 0</code></li>
+<li><code>grid_equality_violations == 0</code></li>
+<li><code>eval-font-pairing.py</code>: <code>family_budget_ok</code>, <code>primary_locked_ok</code>, <code>secondary_locked_ok</code>, <code>tertiary_restrained_ok</code>, <code>scale_ok</code></li>
+<li><code>eval-accessibility.py</code>: <code>contrast_ok</code>, <code>text_size_ok</code>, <code>line_height_ok</code>, <code>target_size_ok</code>, <code>focus_visible_ok</code>, <code>accessible_names_ok</code>, <code>img_alt_ok</code>, <code>lang_ok</code></li>
+</ul>
+<h3>step 4 — paired visuals critique (<code>jason-design-agent</code>) -&gt; advance chain -&gt; final <code>jason-design-agent</code> output</h3>
+<p>Immediately after Stage 1&#x27;s dev eval passes:</p>
+<ol>
+<li>Run <code>design-critique</code> (<code>stage: image-to-react / visuals</code>) back into <code>jason-design-agent</code> with <code>side_by_side.png</code> and the original inspiration until visuals are approved.</li>
+<li>Advance through <strong><code>responsiveness</code></strong>, <strong><code>interaction</code></strong>, and <strong><code>feel</code></strong>, talking back to <code>jason-design-agent</code> (<code>design-critique</code>) whenever needed and after each passed dev eval.</li>
+<li><strong>Final end-to-end handback to <code>jason-design-agent</code></strong>: once <code>jason-dev-agent</code> finishes all build stages, hand the completed build and renders back to <strong><code>jason-design-agent</code></strong> so <code>jason-design-agent</code> emits the <strong>mandatory final designer critique &amp; sign-off output (<code>critique/final-design-signoff.md</code>)</strong>.</li>
+</ol>
+<h2>Credits &amp; Lineage</h2>
+<p>Built by Jason Festa (<code>jfesta</code>) integrating upstream Google3 skills and verifiers documented in <a href="references/google3_image_to_react_lineage.md">google3 image-to-react lineage</a>: <strong><code>replicate-mock</code></strong> (Manasa Babu, <code>manasababu</code>), <strong><code>screenshot-to-html</code> &amp; <code>visual-matcher</code> (<code>AutoRaterV1</code>)</strong> (Google Agentic Design Loop: <code>dfreedm</code>, <code>jonathangamble</code>, <code>meaplet</code>, <code>igormr</code>), <strong><code>screenshot-to-search-vibes</code> &amp; <code>html-to-search-vibes</code></strong> (Google Cruxy: <code>zaneriley</code>, <code>dfreedm</code>, <code>darrenhead</code>, <code>jordanfine</code>, <code>bevc</code>), <strong><code>sds-measurement-verifier</code></strong> (Google Search DevAI SDS: <code>sskhandp</code>, <code>str</code>), <strong><code>screenshot-compare</code></strong> (Google Search DevAI Aegis), <strong><code>clone-check</code> &amp; <code>figma-to-react</code></strong> (Minko Gechev <code>mgechev</code> &amp; Selene), and <strong><code>hifi-mockup</code></strong> (Google Stitch / Gemini Prototyping).</p>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

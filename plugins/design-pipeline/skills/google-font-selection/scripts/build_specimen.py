@@ -1,0 +1,410 @@
+#!/usr/bin/env python3
+"""build_specimen.py — Generate specimen.html: LIVE Google Fonts data + LLM association, nothing embedded.
+
+At page load the browser fetches Google's official tag file (google/fonts tags/all/families.csv, CORS-enabled) and,
+when a Google Fonts Developer API key is present, the live Developer API for category/axes/popularity.
+The word/image → tag association is done by Gemini with a key the Googler stores in their own browser.
+
+  python3 build_specimen.py            # writes ../specimen.html
+"""
+
+from __future__ import annotations
+
+import json
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+
+OUT = HERE.parent / "specimen.html"
+
+
+
+
+TEMPLATE = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>google-font-selection — Full-Catalog Font Finder (Google's official tags)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] { color-scheme: light; --bg:#FFFFFF; --surface:#F7F7F9; --surface-hover:#EFEFF3; --ink:#18181B; --ink-strong:#000000; --muted:#686873; --border:#E6E6EB; --border-strong:#CFCFD8; --btn-bg:#000000; --btn-ink:#FFFFFF; --badge-bg:#F1F1F5; --track:#ECECF0; --bar:#000000; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { color-scheme: dark; --bg:#000000; --surface:#0A0A0D; --surface-hover:#121217; --ink:#F4F4F6; --ink-strong:#FFFFFF; --muted:#8A8A95; --border:#1A1A22; --border-strong:#2C2C38; --btn-bg:#FFFFFF; --btn-ink:#000000; --badge-bg:#14141B; --track:#16161D; --bar:#FFFFFF; } }
+    [data-theme="dark"] { color-scheme: dark; --bg:#000000; --surface:#0A0A0D; --surface-hover:#121217; --ink:#F4F4F6; --ink-strong:#FFFFFF; --muted:#8A8A95; --border:#1A1A22; --border-strong:#2C2C38; --btn-bg:#FFFFFF; --btn-ink:#000000; --badge-bg:#14141B; --track:#16161D; --bar:#FFFFFF; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--ink); font-family:"Google Sans Flex", -apple-system, BlinkMacSystemFont, sans-serif; font-size:14px; line-height:1.55; -webkit-font-smoothing:antialiased; }
+    .sheet { max-width: 980px; margin: 0 auto; padding: 36px 32px 64px; }
+    .sheet.drag-over { outline: 1.5px dashed var(--ink-strong); outline-offset: -10px; }
+    .header-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+    .brand-cluster { display:flex; align-items:center; gap:10px; }
+    .brand-dot { width:8px; height:8px; border-radius:999px; background:var(--ink-strong); display:inline-block; }
+    .brand-title { font-size:13px; font-weight:600; letter-spacing:-0.01em; color:var(--ink-strong); }
+    .brand-sub { font-family:"JetBrains Mono", ui-monospace, monospace; font-size:12px; color:var(--muted); }
+    .theme-cluster { display:flex; gap:6px; }
+    .mode-pill, .preset-chip { font-size:12px; font-weight:500; padding:5px 11px; border-radius:999px; border:1px solid var(--border); background:var(--surface); color:var(--muted); cursor:pointer; transition:all 140ms ease; font-family:inherit; }
+    .mode-pill:hover, .preset-chip:hover { color:var(--ink-strong); border-color:var(--border-strong); }
+    .mode-pill.active, .preset-chip.active { background:var(--ink-strong); color:var(--bg); border-color:var(--ink-strong); font-weight:600; }
+    .command-bar { display:flex; align-items:stretch; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+    .upload-trigger { display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:500; padding:0 15px; min-height:44px; border-radius:10px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-strong); cursor:pointer; white-space:nowrap; user-select:none; }
+    .upload-trigger:hover { background:var(--surface-hover); border-color:var(--ink-strong); }
+    .upload-icon { width:14px; height:14px; stroke:currentColor; stroke-width:1.8; fill:none; }
+    .input-box { flex:1; min-width:220px; min-height:44px; font-family:inherit; font-size:15.5px; font-weight:500; letter-spacing:-0.01em; color:var(--ink-strong); background:var(--surface); border:1px solid var(--border-strong); border-radius:10px; padding:0 15px; outline:none; }
+    .input-box::placeholder { color:var(--muted); font-weight:400; }
+    .input-box:focus { border-color:var(--ink-strong); background:var(--bg); }
+    .run-btn { font-family:inherit; font-size:13px; font-weight:600; padding:0 18px; min-height:44px; border-radius:10px; border:1px solid var(--btn-bg); background:var(--btn-bg); color:var(--btn-ink); cursor:pointer; white-space:nowrap; }
+    .sub-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+    .presets { display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+    .preset-chip { color:var(--ink); }
+    .meta-line { font-family:"JetBrains Mono", ui-monospace, monospace; font-size:12px; color:var(--muted); margin:4px 0 0; word-break:break-word; }
+    .meta-line a { color:var(--ink-strong); }
+    .image-pill { display:none; align-items:center; justify-content:space-between; gap:12px; padding:8px 12px; margin:10px 0 6px; border-radius:10px; border:1px solid var(--border); background:var(--surface); font-family:"JetBrains Mono", monospace; font-size:12px; }
+    .image-pill.visible { display:flex; }
+    .image-pill-left { display:flex; align-items:center; gap:10px; min-width:0; flex-wrap:wrap; }
+    .image-thumb { width:36px; height:36px; border-radius:6px; object-fit:cover; background:var(--surface-hover); }
+    .image-remove-btn { font-family:inherit; font-size:12px; padding:4px 10px; border-radius:6px; border:1px solid var(--border-strong); background:transparent; color:var(--ink); cursor:pointer; }
+    .loading-box { padding:28px 0; } .loading-title { font-size:14px; font-weight:600; color:var(--ink-strong); margin-bottom:10px; }
+    .loading-track { width:100%; max-width:440px; height:3px; background:var(--track); border-radius:99px; overflow:hidden; margin-bottom:10px; }
+    .loading-bar { height:100%; width:0%; background:var(--bar); transition:width 0.14s ease-out; }
+    .loading-step { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--muted); }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(4px);} to { opacity:1; transform:translateY(0);} }
+    #results { margin-top:26px; }
+    .font-block { margin-bottom:34px; animation:fadeIn 0.2s ease-out both; }
+    .font-header { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+    .font-title-group { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+    .rank, .font-meta { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--muted); }
+    .font-name { font-size:16px; font-weight:600; letter-spacing:-0.015em; color:var(--ink-strong); }
+    .links { display:flex; align-items:center; gap:10px; font-size:12px; font-weight:500; }
+    .links a { color:var(--muted); text-decoration:none; } .links a:hover { color:var(--ink-strong); }
+    .links a.dl { padding:4px 11px; border-radius:999px; border:1px solid var(--border-strong); background:var(--surface); color:var(--ink-strong); }
+    .eval-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--muted); }
+    .eval-badge { padding:2px 8px; border-radius:999px; background:var(--badge-bg); border:1px solid var(--border-strong); color:var(--ink-strong); font-weight:600; }
+    .eval-badge.low { background:transparent; border-style:dashed; color:var(--muted); }
+    .tag-chip { padding:1px 7px; border-radius:999px; border:1px solid var(--border); color:var(--ink); }
+    .fox { font-size:26px; line-height:1.24; color:var(--ink-strong); margin-bottom:10px; letter-spacing:-0.01em; }
+    .weights { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:5px 18px; }
+    @media (max-width:640px) { .weights { grid-template-columns:1fr; } }
+    .w-row { display:flex; align-items:baseline; gap:10px; font-size:13.5px; }
+    .w-lbl { font-family:"JetBrains Mono", monospace; font-size:12px; color:var(--muted); width:88px; flex-shrink:0; }
+    .low-confidence { padding:14px 16px; margin-bottom:26px; border-radius:10px; border:1px dashed var(--border-strong); background:var(--surface); animation:fadeIn 0.2s ease-out both; }
+    .low-confidence-title { font-size:14px; font-weight:600; color:var(--ink-strong); margin-bottom:6px; }
+    .low-confidence-body { font-size:13px; line-height:1.55; color:var(--muted); } .low-confidence-body strong, .low-confidence-body a { color:var(--ink-strong); }
+    .translate-box { margin-top:10px; padding:10px 12px; border-radius:8px; background:var(--bg); border:1px solid var(--border); font-family:"JetBrains Mono", monospace; font-size:11.5px; color:var(--ink); white-space:pre-wrap; max-height:140px; overflow:auto; }
+    .brief-box { width:100%; min-height:72px; margin-top:8px; font-family:"JetBrains Mono", monospace; font-size:12px; padding:8px 10px; border-radius:8px; border:1px solid var(--border-strong); background:var(--bg); color:var(--ink); resize:vertical; }
+  </style>
+</head>
+<body>
+  <div class="sheet" id="drop-zone">
+    <div class="header-bar">
+      <div class="brand-cluster">
+        <span class="brand-dot"></span>
+        <span class="brand-title">google-font-selection</span>
+        <span class="brand-sub" id="brand-sub">Google's official tag taxonomy · full catalog</span>
+      </div>
+      <div class="theme-cluster" role="group" aria-label="Settings">
+        <button type="button" class="mode-pill" id="model-pill" onclick="window.configureModel()" title="Add a Gemini API key (stored only in this browser) so any word or image is translated by a model when the offline map can't express it">Model: off</button>
+        <button type="button" class="mode-pill active" id="mode-auto" onclick="window.setThemeMode('auto')">System</button>
+        <button type="button" class="mode-pill" id="mode-dark" onclick="window.setThemeMode('dark')">Black</button>
+        <button type="button" class="mode-pill" id="mode-light" onclick="window.setThemeMode('light')">White</button>
+      </div>
+    </div>
+
+    <form id="eval-form" class="command-bar" onsubmit="event.preventDefault(); window.triggerEval(document.getElementById('skill-input').value, window.currentImagePayload);">
+      <label class="upload-trigger" for="image-file-input" title="Upload or drop an image">
+        <svg class="upload-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4l4 4M4 17v2a1 1 0 001 1h14a1 1 0 001-1v-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Upload Image
+        <input type="file" id="image-file-input" accept="image/*" style="display:none" onchange="window.handleImageFiles(this.files)" />
+      </label>
+      <input type="text" id="skill-input" class="input-box" value="" placeholder="Any word or brief: wacky, spooky, y2k, luxury editorial, developer cli, soft rounded…" />
+      <button type="submit" id="run-eval-btn" class="run-btn">Find Fonts ↵</button>
+    </form>
+
+    <div class="sub-bar">
+      <div class="presets" id="presets"></div>
+    </div>
+
+    <div id="image-pill" class="image-pill">
+      <div class="image-pill-left"><img id="image-thumb" class="image-thumb" src="" alt="Uploaded preview" /><span id="image-info"></span></div>
+      <button type="button" class="image-remove-btn" onclick="window.clearUploadedImage()">Remove ✕</button>
+    </div>
+
+    <p id="skill-meta" class="meta-line">Ready — type any word or drop an image. Every result is scored against Google's official tags for all catalog families.</p>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    // ---------- theme
+    const rootEl = document.documentElement;
+    const mqlDark = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+    window.currentThemeMode = "auto";
+    window.applySystemTheme = function() {
+      if (window.currentThemeMode !== "auto") return;
+      const isDark = Boolean(rootEl.classList.contains("dark") || (mqlDark && mqlDark.matches));
+      rootEl.setAttribute("data-theme", isDark ? "dark" : "light");
+      const b = document.getElementById("mode-auto"); if (b) b.textContent = `System (${isDark ? "Black" : "White"})`;
+    };
+    window.setThemeMode = function(mode) {
+      window.currentThemeMode = mode;
+      ["auto","dark","light"].forEach(m => { const el = document.getElementById("mode-" + m); if (el) el.classList.toggle("active", m === mode); });
+      if (mode === "auto") window.applySystemTheme(); else rootEl.setAttribute("data-theme", mode);
+    };
+    if (mqlDark && mqlDark.addEventListener) mqlDark.addEventListener("change", window.applySystemTheme);
+    window.applySystemTheme();
+
+    // ---------- LIVE data from Google (no embedded catalog)
+    const TAGS_CSV_URL = "https://raw.githubusercontent.com/google/fonts/main/tags/all/families.csv";
+    const WEBFONTS_API = "https://www.googleapis.com/webfonts/v1/webfonts?sort=popularity&key=";
+    const PRESETS = ["wacky", "mobster", "spooky", "y2k", "8-bit arcade", "wedding calligraphy", "luxury editorial", "developer cli", "soft rounded friendly"];
+    const VARIANT = /\s+(SC|Condensed|Semi Condensed|Extra Condensed|Expanded|Narrow|Display|Text|Caption|Headline|Micro|Variable|Guides|Grid|Prop|Single|Double)$/i;
+    let CATALOG = null, TAGS = [], TAG_IDX = {}, NAMES = new Set(), QUALITY = [], TAG_VOCAB = [];
+    const presetsEl = document.getElementById("presets");
+    PRESETS.forEach(p => { const b = document.createElement("button"); b.type = "button"; b.className = "preset-chip"; b.dataset.val = p; b.textContent = p; b.onclick = () => window.pickPreset(b); presetsEl.appendChild(b); });
+
+    function parseTagsCsv(text) {
+      const fams = {};
+      for (const line of text.split("\n")) {
+        const cells = line.split(",");
+        if (cells.length < 3) continue;
+        const name = cells[0].trim(); const rest = cells.slice(1).filter(c => c !== "");
+        if (rest.length < 2 || !rest[0].startsWith("/")) continue;
+        const score = Math.max(0, Math.min(100, parseInt(rest[1], 10) || 0));
+        (fams[name] ||= {})[rest[0].trim()] = score;
+      }
+      return fams;
+    }
+    function categoryFromTags(t) {
+      const top = Object.entries(t).filter(([k]) => /^\/(Sans|Serif|Slab|Script|Monospace)\//.test(k)).sort((a, b) => b[1] - a[1])[0];
+      if (!top) return "display";
+      const ns = top[0].split("/")[1];
+      return ns === "Sans" ? "sans-serif" : ns === "Serif" || ns === "Slab" ? "serif" : ns === "Script" ? "handwriting" : ns === "Monospace" ? "monospace" : "display";
+    }
+    async function loadLive() {
+      const sub = document.getElementById("brand-sub"); sub.textContent = "loading live Google Fonts tag data…";
+      const csv = await (await fetch(TAGS_CSV_URL, { cache: "no-store" })).text();
+      const tagsByFam = parseTagsCsv(csv);
+      const tagList = [...new Set(Object.values(tagsByFam).flatMap(t => Object.keys(t)))].sort();
+      TAGS = tagList; TAG_IDX = Object.fromEntries(TAGS.map((t, i) => [t, i])); TAG_VOCAB = TAGS.filter(t => !t.startsWith("/Quality/"));
+      QUALITY = ["/Quality/Concept", "/Quality/Drawing", "/Quality/Spacing"].map(t => TAG_IDX[t]);
+      let meta = {};
+      const fk = window.fontsKey();
+      if (fk) { try { const j = await (await fetch(WEBFONTS_API + encodeURIComponent(fk))).json(); (j.items || []).forEach((it, i) => { meta[it.family] = { c: it.category, a: (it.axes || []).map(a => a.tag), p: i + 1, latin: (it.subsets || []).includes("latin") }; }); } catch (e) { console.warn("webfonts api", e); } }
+      const families = [];
+      for (const [name, t] of Object.entries(tagsByFam)) {
+        const m = meta[name];
+        if (m && !m.latin) continue;
+        if (/^Noto /.test(name)) continue;
+        families.push({ n: name, c: m ? m.c : categoryFromTags(t), s: name.replace(/ /g, "+") + (m && m.a.includes("wght") ? ":wght@300..700" : ""), a: m ? m.a : [], p: m ? m.p : 1200, t: Object.entries(t).map(([k, v]) => [TAG_IDX[k], v]) });
+      }
+      CATALOG = { families, generated: new Date().toISOString(), live: true, meta: !!fk };
+      NAMES = new Set(families.map(f => f.n));
+      sub.textContent = `${families.length.toLocaleString()} families · ${TAG_VOCAB.length} official tags · live from google/fonts${fk ? " + Developer API" : ""} · ${CATALOG.generated.slice(0, 16).replace("T", " ")}`;
+    }
+    const liveReady = loadLive().catch(e => { document.getElementById("brand-sub").textContent = "could not load live Google Fonts data: " + e.message; throw e; });
+
+    function baseFamily(n) { let prev = null; while (prev !== n) { prev = n; n = n.replace(VARIANT, ""); } return n; }
+    function tagScore(f, idx) { for (const [i, s] of f.t) if (i === idx) return s; return 0; }
+    function gfUrl(tags) {
+      const parts = Object.entries(tags).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([t]) => `${t.split("/")[1] === "Expressive" ? "Feeling" : "Appearance"}:${encodeURIComponent(t)}`);
+      return "https://fonts.google.com/" + (parts.length ? "?categoryFilters=" + parts.join(";") : "");
+    }
+
+    // ---------- keys (stored only in this browser)
+    const KEY_STORE = "gfs-gemini-key", FONTS_KEY_STORE = "gfs-fonts-key";
+    window.modelKey = function() { try { return localStorage.getItem(KEY_STORE) || ""; } catch (e) { return ""; } };
+    window.fontsKey = function() { try { return localStorage.getItem(FONTS_KEY_STORE) || window.modelKey(); } catch (e) { return ""; } };
+    window.updateModelPill = function() { const p = document.getElementById("model-pill"); if (!p) return; const on = !!window.modelKey(); p.textContent = on ? "Model: Gemini ✓" : "Model: add key"; p.classList.toggle("active", on); };
+    window.configureModel = function() {
+      const cur = window.modelKey();
+      const k = prompt(cur ? "Gemini API key is set (stored only in this browser). Paste a new key, or clear the field to remove it." : "Paste a Gemini API key (free at aistudio.google.com/apikey). Stored only in this browser's localStorage; sent only to generativelanguage.googleapis.com. If the same key has the Web Fonts Developer API enabled it is also used for live category/axis data.", cur);
+      if (k === null) return;
+      try { if (k.trim()) localStorage.setItem(KEY_STORE, k.trim()); else localStorage.removeItem(KEY_STORE); } catch (e) {}
+      window.updateModelPill();
+      const v = document.getElementById("skill-input").value.trim(); if (v || window.currentImagePayload) window.triggerEval(v, window.currentImagePayload);
+    };
+    window.updateModelPill();
+
+    // ---------- Layer 1: LLM association (the only translator — no keyword dictionary)
+    function modelPrompt(query, hasImage) {
+      return `You are a typography director translating a request into Google Fonts' OFFICIAL tag vocabulary. Google scores every family 0-100 against these tags (they power the Feeling/Appearance filters on fonts.google.com):\n\n${TAG_VOCAB.join("\n")}\n\nTask: analyse ${hasImage ? "the attached image" : `the request: "${query}"`} and decide which tags describe the typeface that would fit best. Think like a type designer: tone (feeling tags), construction (Sans/Serif/Slab/Script/Monospace), theme/seasonal cues. Translate slang, characters, eras, industries or novel words into the nearest tags (e.g. "mobster" -> /Expressive/Vintage 1.0 + /Theme/Art Deco 0.9 + /Serif/Fat Face 0.7, avoid /Expressive/Cute; "y2k" -> /Theme/Techno + /Expressive/Futuristic). Note /Expressive/Sophisticated is mostly formal scripts; for luxury serifs prefer /Serif/Didone or /Serif/Old Style Garalde with category ["serif"].\n\nReturn ONLY JSON: {"tags": {"<tag>": 0-1, ... 2-6 entries, defining tag = 1.0}, "avoid_tags": {"<tag>": 0-1, ... 0-4}, "category": [subset of "serif","sans-serif","display","handwriting","monospace" or []], "rationale": "one sentence", "confidence": 0-1 (0 only if the request has no typographic meaning)}. Use tags EXACTLY as listed; never invent tags.`;
+    }
+    async function geminiTranslate(query, imgPayload) {
+      const key = window.modelKey(); if (!key) return null;
+      const parts = [{ text: modelPrompt(query, !!(imgPayload && imgPayload.dataUrl)) }];
+      if (imgPayload && imgPayload.dataUrl) { const m = imgPayload.dataUrl.match(/^data:([^;]+);base64,(.*)$/); if (m) parts.push({ inline_data: { mime_type: m[1], data: m[2] } }); }
+      const body = { contents: [{ parts }], generationConfig: { temperature: 0.2, response_mime_type: "application/json" } };
+      const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      if (!resp.ok) throw new Error(`Gemini ${resp.status}: ${(await resp.text()).slice(0, 200)}`);
+      const data = await resp.json();
+      const raw = JSON.parse(data.candidates[0].content.parts.map(p => p.text || "").join("").replace(/^```(?:json)?\s*|\s*```$/g, ""));
+      return briefFromRaw(query, raw, "gemini");
+    }
+    function briefFromRaw(query, raw, source) {
+      const tags = {}, avoid = {};
+      for (const [t, w] of Object.entries(raw.tags || {})) if (TAG_IDX[t] !== undefined && !t.startsWith("/Quality/")) tags[t] = Math.max(0, Math.min(1, +w));
+      for (const [t, w] of Object.entries(raw.avoid_tags || {})) if (TAG_IDX[t] !== undefined && !tags[t]) avoid[t] = Math.max(0, Math.min(1, +w));
+      const cats = (raw.category || []).filter(c => ["serif","sans-serif","display","handwriting","monospace"].includes(c));
+      return { query, tags, avoid, category: cats, confidence: Object.keys(tags).length ? Math.max(0.6, Math.min(1, +raw.confidence || 0.8)) : 0, source, rationale: raw.rationale || "" };
+    }
+
+    // ---------- Layer 2: rank the LIVE catalog on Google's official tag scores
+    function rank(brief, topN = 5) {
+      const want = brief.tags, avoid = brief.avoid || {}, cats = new Set(brief.category || []);
+      const wantE = Object.entries(want).map(([t, w]) => [TAG_IDX[t], w]).filter(([i]) => i !== undefined);
+      const avoidE = Object.entries(avoid).map(([t, w]) => [TAG_IDX[t], w]).filter(([i]) => i !== undefined);
+      const totalW = wantE.reduce((a, [, w]) => a + w, 0) || 1, totalA = avoidE.reduce((a, [, w]) => a + w, 0) || 1;
+      const maxW = wantE.reduce((a, [, w]) => Math.max(a, w), 0);
+      const primaryIdx = wantE.filter(([, w]) => w >= maxW - 0.05).map(([i]) => i);
+      const scored = [];
+      for (const f of CATALOG.families) {
+        if (cats.size && !cats.has(f.c)) continue;
+        const fit = wantE.reduce((a, [i, w]) => a + w * tagScore(f, i) / 100, 0) / totalW;
+        const primary = primaryIdx.reduce((a, i) => Math.max(a, tagScore(f, i) / 100), 0);
+        const clash = avoidE.length ? avoidE.reduce((a, [i, w]) => a + w * tagScore(f, i) / 100, 0) / totalA : 0;
+        const quality = QUALITY.reduce((a, i) => a + (i === undefined ? 70 : (tagScore(f, i) || 70)), 0) / 300;
+        const axisBonus = 0.03 * Math.min(f.a.length, 2);
+        const popBonus = Math.max(0, 0.04 * (1 - Math.min(f.p, 1500) / 1500));
+        let variantPenalty = (baseFamily(f.n) !== f.n && NAMES.has(baseFamily(f.n))) ? 0.15 : 0;
+        if (/\b(SC|Guides|Grid|Prop)\b/.test(f.n)) variantPenalty += 0.15;
+        const score = 0.5 * fit + 0.3 * primary - 0.25 * clash + 0.08 * quality + axisBonus + popBonus - variantPenalty;
+        const matched = wantE.filter(([i]) => tagScore(f, i) >= 50).map(([i]) => [TAGS[i], tagScore(f, i)]);
+        scored.push({ f, tier: primary >= 0.7 ? 1 : 0, score, fit, primary, matched });
+      }
+      scored.sort((a, b) => (b.tier - a.tier) || (b.score - a.score) || a.f.n.localeCompare(b.f.n));
+      const out = [], seen = new Set();
+      for (const s of scored) { if (out.length >= topN) break; const b = baseFamily(s.f.n); if (seen.has(b)) continue; seen.add(b); out.push(s); }
+      return out;
+    }
+    function confidence(brief, top) {
+      if (!Object.keys(brief.tags).length) return ["low", window.modelKey() ? "The model found no typographic meaning in this input." : "A model is needed to translate this input into Google's tags."];
+      if (!top.length) return ["low", "Tags inferred but nothing matched the category gate."];
+      const best = top[0]; const strong = Math.max(0, ...best.matched.map(m => m[1]));
+      if (brief.confidence >= 0.6 && strong >= 70 && (best.primary >= 0.6 || best.fit >= 0.55)) return ["high", null];
+      if (best.primary >= 0.4 || strong >= 60) return ["medium", "Partial tag evidence — review the Top 5 and the fonts.google.com filter link."];
+      return ["low", "Weak tag evidence; these are the nearest families, not a strong match."];
+    }
+
+    // ---------- image upload (offline pixel heuristics -> tags; the agent/LLM path does real vision)
+    window.currentImagePayload = null;
+    const dropZone = document.getElementById("drop-zone");
+    dropZone.addEventListener("dragover", e => { e.preventDefault(); dropZone.classList.add("drag-over"); });
+    dropZone.addEventListener("dragleave", () => dropZone.classList.remove("drag-over"));
+    dropZone.addEventListener("drop", e => { e.preventDefault(); dropZone.classList.remove("drag-over"); if (e.dataTransfer && e.dataTransfer.files.length) window.handleImageFiles(e.dataTransfer.files); });
+    window.handleImageFiles = function(files) {
+      if (!files || !files.length) return;
+      const file = files[0]; const reader = new FileReader();
+      reader.onload = evt => {
+        const img = new Image();
+        img.onload = () => {
+          window.currentImagePayload = { name: file.name, width: img.naturalWidth, height: img.naturalHeight, dataUrl: evt.target.result };
+          document.getElementById("image-thumb").src = evt.target.result;
+          document.getElementById("image-info").textContent = `${file.name} (${img.naturalWidth}×${img.naturalHeight})` + (window.modelKey() ? " · analysed by Gemini" : " · add a Gemini key to analyse this image");
+          document.getElementById("image-pill").classList.add("visible");
+          window.triggerEval(document.getElementById("skill-input").value, window.currentImagePayload);
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    };
+    window.clearUploadedImage = function() {
+      window.currentImagePayload = null; document.getElementById("image-file-input").value = ""; document.getElementById("image-pill").classList.remove("visible");
+      const v = document.getElementById("skill-input").value.trim(); if (v) window.triggerEval(v, null); else { document.getElementById("results").innerHTML = ""; }
+    };
+
+    // ---------- render
+    let timers = [];
+    window.triggerEval = function(rawQuery, imgPayload) {
+      timers.forEach(clearTimeout); timers = [];
+      const query = (rawQuery || "").trim();
+      const metaEl = document.getElementById("skill-meta"), resultsEl = document.getElementById("results");
+      document.querySelectorAll(".preset-chip").forEach(c => c.classList.toggle("active", c.dataset.val === query));
+      if (!query && !imgPayload) { metaEl.textContent = "Ready — type any word or drop an image."; resultsEl.innerHTML = ""; return; }
+      const label = imgPayload && query ? `image "${imgPayload.name}" + "${query}"` : imgPayload ? `image "${imgPayload.name}"` : `"${query}"`;
+      metaEl.textContent = `Translating ${label} into Google's official tags and scoring the live catalog…`;
+      resultsEl.innerHTML = `<div class="loading-box"><div class="loading-title">Finding fonts for ${label}</div><div class="loading-track"><div class="loading-bar" id="load-bar" style="width:30%"></div></div><div class="loading-step" id="load-step">Step 1/2 · model translating into official tags…</div></div>`;
+      timers.push(setTimeout(() => { const b = document.getElementById("load-bar"), s = document.getElementById("load-step"); if (b) b.style.width = "100%"; if (s) s.textContent = "Step 2/2 · scoring the live catalog…"; }, 120));
+      timers.push(setTimeout(() => window.render(query, imgPayload, label), 260));
+    };
+
+    window.render = async function(query, imgPayload, label) {
+      const metaEl = document.getElementById("skill-meta"), resultsEl = document.getElementById("results");
+      try { await liveReady; } catch (e) { metaEl.textContent = "Live Google Fonts data unavailable: " + e.message; return; }
+      let brief = { query, tags: {}, avoid: {}, category: [], confidence: 0, source: "none" }, modelError = null;
+      if (window.__forcedBrief) { brief = window.__forcedBrief; window.__forcedBrief = null; }
+      else if (window.modelKey()) {
+        metaEl.textContent = `Asking Gemini to translate ${label} into Google's official tags…`;
+        try { const mb = await geminiTranslate(query, imgPayload); if (mb) brief = mb; } catch (e) { modelError = e.message; }
+      }
+      const top = rank(brief);
+      const [conf, note] = confidence(brief, top);
+      const url = gfUrl(brief.tags);
+      const tagList = Object.entries(brief.tags).sort((a, b) => b[1] - a[1]).map(([t, w]) => `${t} ×${w}`).join(", ");
+      const via = brief.source === "gemini" ? ` · Gemini: ${brief.rationale || "translated"}` : brief.source === "brief" ? " · agent brief" : "";
+      if (conf === "high") metaEl.innerHTML = `Tags for ${label}: ${tagList}${via} · <a href="${url}" target="_blank" rel="noopener">open this filter on fonts.google.com ↗</a>`;
+      else metaEl.textContent = `${conf.toUpperCase()} CONFIDENCE — ${note}${modelError ? " · model error: " + modelError : ""}`;
+
+      const prompt = `Translate "${query || (imgPayload ? imgPayload.name : "")}" into Google Fonts' official tags (the Feeling/Appearance filters). Return JSON {"tags": {"/Theme/…": 0-1, "/Expressive/…": 0-1}, "avoid_tags": {…}, "category": []}. Valid tags: ${TAG_VOCAB.join(", ")}`;
+      const modelHint = window.modelKey()
+        ? (modelError ? `Gemini call failed (${modelError}).` : `The model found no typographic meaning in this input.`)
+        : `<button type="button" class="run-btn" style="min-height:34px;padding:0 12px;font-size:12px" onclick="window.configureModel()">Add a Gemini key</button> — the association step is a model, not a dictionary. Paste a free key once (stored only in this browser) and any word or image resolves against the live catalog.`;
+      const banner = conf === "low" ? `
+        <div class="low-confidence">
+          <div class="low-confidence-title">${window.modelKey() ? `Couldn't translate ${label} into Google's tag vocabulary` : `A model is needed to translate ${label}`}</div>
+          <div class="low-confidence-body">
+            ${modelHint}<br/>Or ask the <strong>google-font-selection</strong> agent skill (or any LLM) to translate it and paste the JSON brief below — the full-catalog ranking runs right here.
+            <div class="translate-box">${prompt.replace(/</g, "&lt;")}</div>
+            <textarea class="brief-box" id="brief-box" placeholder='Paste brief JSON, e.g. {"tags": {"/Theme/Wacky": 1, "/Expressive/Playful": 0.7}}'></textarea>
+            <button type="button" class="run-btn" style="margin-top:8px;min-height:36px" onclick="window.applyBrief()">Rank with this brief</button>
+          </div>
+        </div>` : "";
+
+      resultsEl.innerHTML = banner + (conf === "low" && !Object.keys(brief.tags).length ? "" : top.map((s, i) => {
+        const f = s.f; const fb = f.c === "monospace" ? "monospace" : f.c === "serif" ? "serif" : f.c === "handwriting" ? "cursive" : "sans-serif";
+        const stack = `'${f.n}', ${fb}`;
+        if (!document.querySelector(`link[data-fam="${f.n}"]`)) { const link = document.createElement("link"); link.rel = "stylesheet"; link.dataset.fam = f.n; link.href = `https://fonts.googleapis.com/css2?family=${f.s}&display=swap`; document.head.appendChild(link); }
+        const topTags = f.t.filter(([i]) => !TAGS[i].startsWith("/Quality/")).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([i, sc]) => `<span class="tag-chip">${TAGS[i].split("/").pop()} ${sc}</span>`).join("");
+        const verdict = conf === "low" ? "LOW CONFIDENCE" : ((s.primary >= 0.7 || (s.fit >= 0.55 && s.primary >= 0.6)) ? "PASS" : ((s.fit >= 0.35 || s.primary >= 0.5) ? "REVIEW" : "WEAK"));
+        const pct = Math.min(99.5, 40 + 60 * Math.max(0, Math.min(1, s.score))).toFixed(1);
+        const slug = f.n.toLowerCase().replace(/ /g, "-");
+        return `<div class="font-block" style="animation-delay:${i * 45}ms">
+          <div class="font-header">
+            <div class="font-title-group"><span class="rank">0${i + 1}</span><span class="font-name">${f.n}</span><span class="font-meta">${f.c}${f.a.length ? " · " + f.a.join(", ") : ""}</span></div>
+            <div class="links"><a href="https://fonts.google.com/specimen/${encodeURIComponent(f.n).replace(/%20/g, "+")}" target="_blank" rel="noopener">Google Fonts ↗</a><a class="dl" href="https://gwfh.mranftl.com/api/fonts/${slug}?download=zip&subsets=latin&formats=woff2" target="_blank" rel="noopener">Download .zip</a></div>
+          </div>
+          <div class="eval-row"><span class="eval-badge ${verdict === "LOW CONFIDENCE" ? "low" : ""}">${verdict} · ${pct}%</span>${topTags}</div>
+          <div class="fox" style="font-family:${stack}">The quick brown fox jumps over the lazy dog.</div>
+          <div class="weights" style="font-family:${stack}">
+            <div class="w-row"><span class="w-lbl">300 Light</span><span style="font-weight:300">The quick brown fox jumps over the lazy dog</span></div>
+            <div class="w-row"><span class="w-lbl">400 Regular</span><span style="font-weight:400">The quick brown fox jumps over the lazy dog</span></div>
+            <div class="w-row"><span class="w-lbl">400 Italic</span><span style="font-weight:400;font-style:italic">The quick brown fox jumps over the lazy dog</span></div>
+            <div class="w-row"><span class="w-lbl">700 Bold</span><span style="font-weight:700">The quick brown fox jumps over the lazy dog</span></div>
+          </div></div>`;
+      }).join(""));
+    };
+
+    window.applyBrief = async function() {
+      try {
+        await liveReady;
+        const raw = JSON.parse(document.getElementById("brief-box").value);
+        const q = document.getElementById("skill-input").value;
+        window.renderBrief(briefFromRaw(q, raw, "brief"), `agent brief for "${q}"`);
+      } catch (e) { alert("Brief must be valid JSON: " + e.message); }
+    };
+    window.renderBrief = function(brief, label) { window.__forcedBrief = brief; window.render(brief.query, null, label); };
+    window.pickPreset = function(btn) { const v = btn.dataset.val; document.getElementById("skill-input").value = v; window.triggerEval(v, window.currentImagePayload); };
+    const initial = new URLSearchParams(location.search).get("q"); if (initial) { document.getElementById("skill-input").value = initial; window.triggerEval(initial, null); }
+  </script>
+</body>
+</html>
+"""
+
+
+def main() -> None:
+    OUT.write_text(TEMPLATE, encoding="utf-8")
+    print(f"Wrote {OUT} ({OUT.stat().st_size:,} bytes) — live data + model association, nothing embedded")
+
+
+if __name__ == "__main__":
+    main()

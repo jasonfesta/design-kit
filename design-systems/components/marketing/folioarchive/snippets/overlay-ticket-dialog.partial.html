@@ -1,0 +1,34 @@
+<dialog aria-labelledby="ticket-dialog-title" class="fa-dialog" id="ticket-dialog">
+<form class="dialog-stack" id="ticket-modal-form" method="dialog" novalidate="">
+<div class="dialog-head">
+<div>
+<h2 id="ticket-dialog-title">Book timed gallery entry</h2>
+<p class="doubt-line" style="margin-top:6px">Colour as Structure · Folio Kunsthalle Zürich, Galleries 3 to 5</p>
+</div>
+<button aria-label="Close booking dialog" class="fa-btn fa-btn--toolbar" data-close-modal="" type="button">Close</button>
+</div>
+<div class="fa-field">
+<label class="fa-label" for="fa-slot-select">Entry slot</label>
+<div class="fa-select-wrap">
+<select class="fa-select" id="fa-slot-select" name="slot">
+<option value="Tue 11:00">Tuesday · 11:00–12:00 (CHF 24 adult)</option>
+<option value="Thu 18:00">Thursday late view · 18:00–19:00 (CHF 16 evening)</option>
+<option value="Sat 10:00">Saturday morning · 10:00–11:00 (CHF 24 adult)</option>
+</select>
+<svg aria-hidden="true" class="fa-select-chevron" fill="none" viewbox="0 0 16 16">
+<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-linecap="square" stroke-width="1.5"></path>
+</svg>
+</div>
+</div>
+<div class="fa-field">
+<label class="fa-label" for="fa-ticket-email">Email for mobile entry pass</label>
+<input aria-describedby="fa-ticket-err fa-ticket-hint" autocomplete="email" class="fa-input" id="fa-ticket-email" placeholder="visitor@domain.ch" required="" type="email"/>
+<p class="fa-error" hidden="" id="fa-ticket-err" role="alert"></p>
+<p class="fa-hint" id="fa-ticket-hint">Free cancellation or slot transfer up to 24 hours before entry.</p>
+</div>
+<div class="dialog-actions">
+<button class="fa-btn-pri" type="submit">Reserve entry pass</button>
+<button class="fa-btn" data-close-modal="" type="button">Cancel</button>
+</div>
+</form>
+</dialog>

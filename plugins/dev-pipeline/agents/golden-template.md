@@ -1,0 +1,1 @@
+../skills/golden-template/agent.md

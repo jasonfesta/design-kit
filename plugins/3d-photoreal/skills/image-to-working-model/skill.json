@@ -1,0 +1,35 @@
+{
+  "id": "image-to-working-model",
+  "display_name": "Universal Image-to-Working-3D-Model & Simulation Skill",
+  "google3_package": "image_to_working_model",
+  "title": "Universal Image-to-Working-3D-Model & Simulation Skill",
+  "icon": "\u2728",
+  "category": "Core Skill",
+  "is_subskill": false,
+  "parent_skill": null,
+  "subskills": [],
+  "path": "image-to-working-model",
+  "agent_md": "image-to-working-model/agent.md",
+  "skill_md": "image-to-working-model/SKILL.md",
+  "html_page": "image-to-working-model/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-working-model/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-working-model/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-working-model/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-working-model.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/image-to-working-model",
+  "bundle_skill": "image-to-working-model.skill",
+  "bundle_zip": "image-to-working-model.zip",
+  "short_summary": "Transforms any reference image\u2014a vehicle, architectural structure, mechanical weapon or prop, organic human or creature, or full multi-biome environment\u2014into a working, articulated, physically grounded AAA Three.js 3D model and interactive 60fps simulation. Enforces optical camera probing, C2 Laplacian and Catmull-Rom lofted geometry with position-hashed normal welding, hardware-GPU safe PMREM and NaN guards, 100% vertex-to-physics height parity, 1-writer-per-file swarm isolation, 400% macro-crop harsh domain critics, and CSPRNG double-blind side-by-side A/B jury verification. Use whenever turning an image into a working 3D model or playable Three.js scene. Don't use for static 2D HTML/CSS landing pages (use image-to-react or jason-dev-agent).",
+  "when_to_use": "",
+  "quick_cmd": "",
+  "summary": "Transforms any reference image\u2014a vehicle, architectural structure, mechanical weapon or prop, organic human or creature, or full multi-biome environment\u2014into a working, articulated, physically grounded AAA Three.js 3D model and interactive 60fps simulation. Enforces optical camera probing, C2 Laplacian and Catmull-Rom lofted geometry with position-hashed normal welding, hardware-GPU safe PMREM and NaN guards, 100% vertex-to-physics height parity, 1-writer-per-file swarm isolation, 400% macro-crop harsh domain critics, and CSPRNG double-blind side-by-side A/B jury verification. Use whenever turning an image into a working 3D model or playable Three.js scene. Don't use for static 2D HTML/CSS landing pages (use image-to-react or jason-dev-agent).",
+  "references": [
+    "./references/contributing.md",
+    "./references/human-taste-and-antipatterns.md",
+    "./references/image-to-working-3d-model.md",
+    "./scripts/make_blind_ab.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=image-to-working-model"
+  }
+}

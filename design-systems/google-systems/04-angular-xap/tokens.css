@@ -1,0 +1,140 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   04. GOOGLE ANGULAR MATERIAL, CDK & XAP ENTERPRISE (mat-sys | xap)
+   Google3 Provenance:
+     - //depot/google3/javascript/angular2/components/g3doc/theming.md
+     - //depot/google3/javascript/angular2/components/enterprise/ (ACE)
+     - //depot/google3/third_party/javascript/angular_components/_material.scss
+     - Docs: go/angular-components | go/angular-components/theming
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    /* Verbatim mat.gm3-theme() CSS Variables from theming.md */
+    --mat-sys-primary: #0b57d0;
+    --mat-sys-on-primary: #ffffff;
+    --mat-sys-primary-container: #d3e3fd;
+    --mat-sys-on-primary-container: #0842a0;
+
+    --mat-sys-secondary: #00639b;
+    --mat-sys-on-secondary: #ffffff;
+    --mat-sys-secondary-container: #c2e7ff;
+    --mat-sys-on-secondary-container: #004a77;
+
+    --mat-sys-tertiary: #146c2e;
+    --mat-sys-on-tertiary: #ffffff;
+    --mat-sys-tertiary-container: #c4eed0;
+    --mat-sys-on-tertiary-container: #0f5223;
+
+    /* Extended Google Semantic Roles (theming.md lines 127-146) */
+    --mat-sys-info: #1157ce;
+    --mat-sys-info-container: #d0e4ff;
+    --mat-sys-on-info-container: #04409f;
+
+    --mat-sys-success: #006c35;
+    --mat-sys-success-container: #beefbb;
+    --mat-sys-on-success-container: #00522c;
+
+    --mat-sys-warning: #8f4e06;
+    --mat-sys-warning-container: #ffe07c;
+    --mat-sys-on-warning-container: #6d3a01;
+
+    --mat-sys-error: #b3261e;
+    --mat-sys-error-container: #f9dedc;
+    --mat-sys-on-error-container: #8c1d18;
+
+    /* Surface & Outline Hierarchy */
+    --mat-sys-surface: #ffffff;
+    --mat-sys-on-surface: #1f1f1f;
+    --mat-sys-surface-variant: #e1e3e1;
+    --mat-sys-on-surface-variant: #444746;
+    --mat-sys-surface-container-lowest: #ffffff;
+    --mat-sys-surface-container-low: #f8fafd;
+    --mat-sys-surface-container: #f0f4f9;
+    --mat-sys-surface-container-high: #e9eef6;
+    --mat-sys-outline: #747775;
+    --mat-sys-outline-variant: #c4c7c5;
+    --mat-sys-link: #1157ce;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --mat-sys-primary: #a8c7fa;
+    --mat-sys-on-primary: #062e6f;
+    --mat-sys-primary-container: #0842a0;
+    --mat-sys-on-primary-container: #d3e3fd;
+
+    --mat-sys-secondary: #7fcfff;
+    --mat-sys-on-secondary: #003355;
+    --mat-sys-secondary-container: #004a77;
+    --mat-sys-on-secondary-container: #c2e7ff;
+
+    --mat-sys-tertiary: #6dd58c;
+    --mat-sys-on-tertiary: #0a3818;
+    --mat-sys-tertiary-container: #0f5223;
+    --mat-sys-on-tertiary-container: #c4eed0;
+
+    --mat-sys-info: #a1c9ff;
+    --mat-sys-info-container: #04409f;
+    --mat-sys-on-info-container: #d0e4ff;
+
+    --mat-sys-success: #80da88;
+    --mat-sys-success-container: #00522c;
+    --mat-sys-on-success-container: #beefbb;
+
+    --mat-sys-warning: #fcbd00;
+    --mat-sys-warning-container: #6d3a01;
+    --mat-sys-on-warning-container: #ffe07c;
+
+    --mat-sys-error: #f2b8b5;
+    --mat-sys-error-container: #8c1d18;
+    --mat-sys-on-error-container: #f9dedc;
+
+    --mat-sys-surface: #131314;
+    --mat-sys-on-surface: #e3e3e3;
+    --mat-sys-surface-variant: #444746;
+    --mat-sys-on-surface-variant: #c4c7c5;
+    --mat-sys-surface-container-lowest: #0e0e0e;
+    --mat-sys-surface-container-low: #1b1b1b;
+    --mat-sys-surface-container: #1e1f20;
+    --mat-sys-surface-container-high: #282a2c;
+    --mat-sys-outline: #8e918f;
+    --mat-sys-outline-variant: #444746;
+    --mat-sys-link: #a1c9ff;
+  }
+
+  :root {
+    --mat-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --mat-font-plain: 'Google Sans Text', 'Public Sans', 'IBM Plex Sans', sans-serif;
+    --mat-font-mono: 'Roboto Mono', 'Source Code Pro', ui-monospace, monospace;
+
+    /* Enterprise Density (-2) Control Dimensions */
+    --mat-density-row-height: 38px;
+    --mat-density-input-height: 38px;
+    --mat-corner-sm: 6px;
+    --mat-corner-md: 10px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--mat-sys-surface-container-low);
+    color: var(--mat-sys-on-surface);
+    font-family: var(--mat-font-plain);
+    font-size: 13.5px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .mat-mono { font-family: var(--mat-font-mono); font-variant-numeric: tabular-nums; }
+}

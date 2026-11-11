@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>interaction</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>interaction</h1>
+      <p>wires 100% live controls, sliders, pagination, intersectionobserver scroll points, and animation triggers while keeping t=0 locked.</p>
+      <div class="actions">
+        <a href="../interaction.skill" download>download</a>
+        <a href="agent.md">agent.md</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>interaction</h1>
+<pre data-lang="text"><code>jason-dev-agent / interaction
+────────────────────────────────────────────────────────────────────
+stage         3 of 4 in the image-to-react loop
+dev eval      0 dead controls + sliders/pagination + scroll points
+              + animation triggers + t=0 lock
+paired gate   interaction design critique in jason-design-agent</code></pre>
+<p><code>interaction</code> turns a visually accurate, responsive React page into a living product. <code>jason-dev-agent</code> works across multiple turns, stopping after each turn to judge itself against the <strong>interaction dev eval</strong>, and once passed, immediately sends the <strong>same interaction stage back into <code>jason-design-agent</code></strong> (via <code>design-critique</code>) to critique against the original inspiration.</p>
+<h2>workflow checklist</h2>
+<ul class="checklist">
+<li><span class="check-box"></span><span><strong>testing prompt (<code>design_agent_turns</code>)</strong>: if not already set for this run, ask the user <strong>&quot;how many turns do you want out of the design agent?&quot;</strong> before starting the critique loop.</span></li>
+<li><span class="check-box"></span><span><strong>turn 0 — inventory elements &amp; consult original inspiration</strong>: list every visible UI control on the page alongside <code>jason-design-agent</code>&#x27;s original inspiration and category benchmarks; decide what must respond and what rich interactions can elevate the experience without changing the <code>t=0</code> initial frame.</span></li>
+<li><span class="check-box"></span><span><strong>turn 1..n — wire state &amp; stop to run the interaction dev eval</strong>: connect React state (<code>useState</code>, <code>useMemo</code>, <code>useRef</code>) backed by complete domain records in <code>src/data/*Data.ts</code>, then stop and audit every element and state transition against the dev eval gates below.</span></li>
+<li><span class="check-box"></span><span><strong>verify <code>t=0</code> visual lock</strong>: confirm index <code>0</code> / default state still matches the reference image (<code>s_total &gt;= 0.85</code>, <code>0</code> collisions, <code>0</code> overflow).</span></li>
+<li><span class="check-box"></span><span><strong>paired designer critique (<code>jason-design-agent</code>)</strong>: once the interaction dev eval passes, hand the live state captures and interaction map back into <code>jason-design-agent</code> (<code>stage: interaction</code>) and iterate back and forth until <code>jason-design-agent</code> approves how the page invites exploration and tells its story.</span></li>
+</ul>
+<h2>1. the five questions of the interaction loop</h2>
+<p>Every turn in <code>interaction</code> answers five concrete questions in order:</p>
+<h3>1.1 does the page have interaction for all of its elements?</h3>
+<p>Walk top-to-bottom through the rendered DOM. <strong>Zero dead elements are allowed</strong>:</p>
+<ul>
+<li><strong>buttons &amp; ctas</strong>: every primary, secondary, icon, and inline CTA opens a contextual drawer/modal, toggles state, submits a validated flow, or scrolls smoothly to its target section with stable button width and calm inline feedback.</li>
+<li><strong>navigation &amp; footer links</strong>: header nav items, breadcrumbs, and footer links either switch active views, scroll to real section anchors, or open contextual detail sheets (never dead <code>href=&quot;#&quot;</code> no-ops).</li>
+<li><strong>inputs, toggles, tabs &amp; accordions</strong>: search bars filter live items, newsletter/contact inputs validate and confirm inline, tabs switch real content panels, and accordions expand/collapse smoothly.</li>
+<li><strong>cards, thumbnails &amp; swatches</strong>: cards open detail drawers or switch active stage previews; color/material swatches swap variant imagery and metadata without triggering accidental parent-card navigation.</li>
+</ul>
+<h3>1.2 is there a slider or gallery we should wire or add?</h3>
+<p>Check multi-card strips, lookbooks, product photos, and testimonial rows:</p>
+<ul>
+<li>Wire thumbnail rails and lookbook strips so users can step across <code>4-6+</code> rich entries (<code>prev</code> / <code>next</code>, indicator pills or <code>01 / 05</code> counters, keyboard <code>ArrowLeft</code> / <code>ArrowRight</code>, touch <code>scroll-snap</code>), keeping slide <code>0</code> identical to the reference image.</li>
+</ul>
+<h3>1.3 is there pagination, filtering, or stepping?</h3>
+<p>Check product collections, comparison tables, journals, and directories:</p>
+<ul>
+<li>Support category filter pills (<code>All</code> active at <code>t=0</code>), page/batch pagination (<code>1</code>, <code>2</code>, <code>3</code> / <code>Next</code>), or quantity steppers (<code>- 1 +</code>) with <code>tabular-nums</code> counts and subtotals.</li>
+</ul>
+<h3>1.4 are scroll points &amp; section waypoints wired cleanly?</h3>
+<ul>
+<li>Ensure full-document vertical scrolling is unlocked whenever no modal is open (<code>scrollHeight &gt; innerHeight</code> on multi-section pages) with <code>0px</code> horizontal page overflow.</li>
+<li>Replace vague &quot;story&quot; hand-waving with explicit <strong>scroll points</strong>: semantic <code>&lt;section id=&quot;...&quot;&gt;</code> targets (<code>scroll-margin-top</code>), <code>IntersectionObserver</code> threshold sentinels (<code>[data-scroll-point]</code>, active TOC/header state updates, sticky chapter indicators), and step-by-step section reveals that keep the user oriented down the page.</li>
+</ul>
+<h3>1.5 are all animation triggers wired deterministically?</h3>
+<p>Audit every interactive and viewport-driven transition trigger pushed into the build:</p>
+<ul>
+<li><strong>click / state triggers</strong>: wire <code>data-state=&quot;open|closed&quot;</code> or <code>data-active=&quot;true|false&quot;</code> on drawers, accordions, tabs, and active slide indices so CSS transitions fire predictably on user action without re-mounting the DOM.</li>
+<li><strong>scroll-point triggers</strong>: wire one-shot <code>IntersectionObserver</code> triggers (<code>data-in-view=&quot;true&quot;</code>, <code>threshold: 0.15</code>) on below-the-fold scroll points—never firing above the fold at <code>t=0</code> (keeping <code>t=0</code> 100% locked to the reference) and never re-triggering jankily on every tiny scroll tick.</li>
+</ul>
+<h2>2. stopping to judge: the interaction dev eval</h2>
+<p>At the end of every dev turn, <code>jason-dev-agent</code> stops and grades the build against five hard gates (detailed in <a href="references/element-coverage-and-audit.md">element coverage and audit</a>):</p>
+<div class="table-wrap"><table>
+<thead><tr><th>gate</th><th>requirement to pass on the dev side</th></tr></thead>
+<tbody>
+<tr><td><strong>1. zero dead controls</strong></td><td><code>100%</code> of <code>&lt;button&gt;</code>, <code>&lt;a href&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;summary&gt;</code>, and `[role=&quot;button&quot;\</td><td>&quot;tab&quot;]<code> elements produce a real state, DOM, ARIA, scroll, or overlay change; </code>0<code> no-op </code>href=&quot;#&quot;` links.</td></tr>
+<tr><td><strong>2. pattern depth</strong></td><td>All applicable collection/editorial patterns (slider/gallery, pagination/filter/swatches, scroll landmarks, story chapters/drawers) are wired with real secondary data in <code>src/data/*Data.ts</code>.</td></tr>
+<tr><td><strong>3. accessibility &amp; keyboard</strong></td><td>Native interactive tags used (never bare <code>&lt;div onClick&gt;</code>); modals/drawers close on <code>Escape</code> and backdrop click; carousels/tabs respond to keyboard focus.</td></tr>
+<tr><td><strong>4. post-action layout health</strong></td><td>Clicking tabs, stepping sliders, paginating, or opening drawers produces <code>0</code> text/button collisions, <code>0px</code> horizontal overflow, and <code>0</code> runtime console errors.</td></tr>
+<tr><td><strong>5. <code>t=0</code> baseline lock</strong></td><td>Re-running <code>image-to-react</code> (<code>eval-image-to-react.mjs</code>) at default state (<code>t=0</code>) still passes (<code>s_total &gt;= 0.85+</code>) with zero added visual clutter.</td></tr>
+</tbody>
+</table></div>
+<p>If any gate fails, <code>jason-dev-agent</code> stays in <code>interaction</code>, fixes the gap, and re-judges before calling <code>jason-design-agent</code>.</p>
+<h3>deterministic probe (<code>scripts/eval-interaction.py</code>)</h3>
+<p>Gates 1, 2 (scroll points &amp; animation triggers), and 5 (<code>t=0</code> lock) are enforced by a headless WebKit probe that activates every visible control and records observable changes (DOM mutation, <code>data-state</code>/ARIA flips, scroll, focus, in-page anchor resolution), then sweeps the page so <code>IntersectionObserver</code> scroll points can fire:</p>
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/interaction/scripts/eval-interaction.py \
+  --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; --require-scroll-points
+# gates: zero_dead_controls_ok · scroll_points_ok · animation_triggers_ok · t0_lock_ok (exit 0 = pass)</code></pre>
+<p>Dead controls are reported by selector (<code>button.h-full (\&quot;Blackwork\&quot;) -&gt; no_observable_change</code>, <code>a (\&quot;Learn more\&quot;) -&gt; dead_href</code>); already-active options in radio-like groups (<code>data-state=&quot;selected|active&quot;</code>, <code>aria-selected=&quot;true&quot;</code>) are counted live. Pair it with <code>eval-image-to-react.mjs --skip-build</code> for the <code>t=0</code> visual lock and <code>eval-responsive-pair.mjs</code> for post-action layout health.</p>
+<h2>3. paired interaction design critique (<code>jason-dev-agent</code> -&gt; <code>jason-design-agent</code>)</h2>
+<p>Once all five dev eval gates pass, <code>jason-dev-agent</code> hands the build and before/after state captures into <code>jason-design-agent</code> using <code>design-critique</code> (<code>stage: interaction</code>).</p>
+<p><code>jason-design-agent</code> critiques the build against the <strong>original inspiration</strong>:</p>
+<ul>
+<li><em>Does every element invite interaction in a way that fits the inspiration&#x27;s category and mood?</em></li>
+<li><em>Where interactions already work, what elevates them—a cleaner lookbook slider, smarter pagination, richer scroll-story progression, or removing an interaction that feels noisy or off-brand?</em></li>
+</ul>
+<p><code>jason-dev-agent</code> and <code>jason-design-agent</code> go back and forth over as many turns as needed until <code>jason-design-agent</code> marks <code>interaction</code> <strong>approved</strong> while all dev eval gates remain green.</p>
+<h2>references &amp; examples</h2>
+<ul>
+<li><a href="references/element-coverage-and-audit.md">element-by-element coverage &amp; dev eval audit checklist</a></li>
+<li><a href="references/sliders-pagination-scroll-and-story.md">blueprints for sliders, pagination, scroll, and story</a></li>
+<li><a href="examples/interaction-turn-loop.md">multi-turn interaction dev eval &amp; <code>jason-design-agent</code> critique walkthrough</a></li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>

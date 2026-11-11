@@ -1,0 +1,35 @@
+{
+  "id": "nano-banana",
+  "display_name": "nano banana",
+  "google3_package": "nano_banana",
+  "title": "nano banana",
+  "icon": "\ud83c\udf4c",
+  "category": "sub-skill of image-to-react \u00b7 targeted bucket 2x upscaler & readiness eval",
+  "is_subskill": true,
+  "parent_skill": "image-to-react",
+  "subskills": [],
+  "path": "nano-banana",
+  "agent_md": "nano-banana/agent.md",
+  "skill_md": "nano-banana/SKILL.md",
+  "html_page": "nano-banana/index.html",
+  "x20_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/index.html",
+  "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/agent.md",
+  "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/SKILL.md",
+  "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana.skill",
+  "local_path": "/usr/local/google/home/jfesta/skills/nano-banana",
+  "bundle_skill": "nano-banana.skill",
+  "bundle_zip": "nano-banana.zip",
+  "short_summary": "upgrades only upscale-queue image slots to 2x retina with zero drift and enforces non-blur readiness via eval-image-readiness.py.",
+  "when_to_use": "use in stage 1b of jason-dev-agent only on mounted image buckets flagged below 2x retina or blurry by eval-image-readiness.py.",
+  "quick_cmd": "python3 nano-banana/scripts/eval-image-readiness.py --project=./projects/01-website-app",
+  "summary": "Converts low-resolution source mockups, compressed screenshots, and soft or dithered cropped photographic assets into crisp 2x Retina and 4K high-resolution plates using Nano Banana with zero semantic drift. Handles faithful 1-to-1 super-resolution, diffusion grain and JPEG de-dithering, ultra-wide banner aspect padding, and clean removal of baked-in raster text overlays behind live HTML typography, stopping for a deterministic dev eval followed by a paired material and visual critique in jason-design-agent. Use whenever a reference image or extracted photo crop in jason-dev-agent is low-resolution, blurry, dithered, or below 2x CSS Retina dimensions. Don't use for UI buttons, icons, or typography that belong as native HTML, CSS, and inline SVG (use replicate-mock and image-to-react).",
+  "references": [
+    "./references/contributing.md",
+    "./references/dev-eval-and-zero-drift-checks.md",
+    "./references/upscale-prompts-and-aspect-rules.md",
+    "./scripts/eval-image-readiness.py"
+  ],
+  "commands": {
+    "validate": "python3 skill-maker/scripts/validate_and_wrap.py --skill-dir=nano-banana"
+  }
+}

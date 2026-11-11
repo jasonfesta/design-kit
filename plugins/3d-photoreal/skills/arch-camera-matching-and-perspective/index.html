@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>architectural camera matching &amp; perspective calibration</title>
+  <style>
+    :root {
+      --bg: #fcfcfa;
+      --fg: #141413;
+      --muted: #787774;
+      --line: #eae9e4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0c0c0b;
+        --fg: #ededec;
+        --muted: #858481;
+        --line: #1e1e1c;
+      }
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", "Google Sans", system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      text-align: left;
+      text-transform: lowercase;
+      -webkit-font-smoothing: antialiased;
+    }
+    main {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      padding: clamp(72px, 14vh, 148px) 28px clamp(96px, 16vh, 168px);
+    }
+    .back {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 40px;
+    }
+    .back:hover {
+      color: var(--fg);
+    }
+    header {
+      margin-bottom: 56px;
+    }
+    h1 {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 46ch;
+      margin-bottom: 14px;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 13px;
+    }
+    .actions a, article a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 1px;
+    }
+    .actions a:hover, article a:hover {
+      border-color: var(--fg);
+    }
+    article {
+      color: var(--muted);
+      font-size: 14px;
+      border-top: 1px solid var(--line);
+      padding-top: 40px;
+    }
+    article h1 {
+      display: none;
+    }
+    article h2 {
+      color: var(--fg);
+      font-size: 14.5px;
+      font-weight: 500;
+      margin: 36px 0 10px;
+    }
+    article h3 {
+      color: var(--fg);
+      font-size: 14px;
+      font-weight: 500;
+      margin: 24px 0 8px;
+    }
+    article p {
+      margin-bottom: 14px;
+    }
+    article ul, article ol {
+      padding-left: 18px;
+      margin-bottom: 16px;
+    }
+    article li {
+      margin-bottom: 6px;
+    }
+    pre, code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      margin: 14px 0 20px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      overflow-x: auto;
+      color: var(--fg);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+    th {
+      color: var(--fg);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← skills</a>
+    <header>
+      <h1>architectural camera matching &amp; perspective calibration</h1>
+      <p>match exact architectural photography perspective, tilt-shift lens shift (camera.setviewoffset) vs. pitched 3-point elevation, orbitcontrols target order, sloped site grades, and return-wall geometry when reconstructing a real architectural photograph in three.js.</p>
+      <div class="actions">
+        <a href="../arch-camera-matching-and-perspective.skill" download>download</a>
+        <a href="SKILL.md">skill.md</a>
+      </div>
+    </header>
+    <article>
+      <h1>Architectural Camera Matching &amp; Perspective Calibration (<code>architecture-threejs</code>)</h1>
+<p>If camera focal length, vertical convergence, horizon height, or viewport aspect ratio disagree with the reference plate by even <code>3-5%</code>, no shader detail can pass a side-by-side Turing test.</p>
+<h2>[LOCKED] First-Principles Axioms</h2>
+<ol>
+<li><strong>Exact Native Aspect Probe First:</strong> Always inspect <code>&lt;ref.jpg&gt;</code> via <code>read_file</code> and run <code>python3 ~/.gemini/config/skills/arch-camera-matching-and-perspective/scripts/probe_reference_plate.py &lt;ref.jpg&gt;</code>. Lock WebGL canvas dimensions strictly to <code>recommended_canvas_size</code> (<code>W × H</code>), never a forced <code>4:3</code> or <code>16:9</code> crop.</li>
+<li><strong>OrbitControls Target Order Invariant:</strong> <code>new OrbitControls(camera, domElement)</code> invokes <code>controls.update()</code> toward <code>(0, 0, 0)</code>, pitching elevated shift cameras downward by <code>3°-6°</code>. Always set <code>controls.target.set(camX, camY, camZ - 10)</code> and call <code>controls.update()</code> <strong>before</strong> <code>camera.lookAt(...)</code> + <code>camera.setViewOffset(...)</code> + <code>camera.updateProjectionMatrix()</code>.</li>
+<li><strong>Orthogonal Horizon VP &amp; Projective Cross-Ratio Law:</strong> Given orthogonal horizon vanishing points <code>u1 &lt; uPrincipal &lt; u2</code>, horizontal focal scale is <code>f_u = Math.sqrt((uPrincipal - u1) <em> (u2 - uPrincipal))</code>. On receding walls with positive endpoint depths <code>d0 != d1</code>, convert horizontal screen fraction <code>t = (u - u0) / (u1 - u0)</code> to metric wall fraction via <code>s(t) = (t </em> d0) / (t <em> d0 + (1 - t) </em> d1)</code> with right-handed wall basis <code>det([T_right, UP, N_out]) === +1</code>.</li>
+<li><strong>Monotonic Ray-Grade Bisection &amp; Camera Homothety:</strong> Intersect view rays with sloped terrain <code>siteHeight(x, z)</code> via 32-step monotonic <code>[d_min, d_max]</code> bisection (never fixed-point depth iteration, which oscillates when <code>dh/dd &gt; 0</code>). Re-order depth layers strictly along camera-origin rays <code>P&#x27; = C + k * (P - C)</code> so 2D screen silhouettes stay <code>0.0 px</code> invariant.</li>
+<li><strong>Ground-Contact Depth Lock, Soffit Sign &amp; Exact <code>vTrueScreenUV</code>:</strong> Lock every stepped wall&#x27;s depth <code>z_wall</code> strictly from its ground-contact ray <code>v(y_base, z_wall)</code> (cut roof/lightwell openings for shadows rather than shifting walls in <code>Z</code>). Above eye level (<code>Y &gt; Y_cam</code>), lowering a soffit <code>Y</code> <strong>increases</strong> screen <code>v</code>. Compute fragment screen UVs exclusively from clip space (<code>vTrueScreenUV = vec2(gl_Position.x / gl_Position.w <em> 0.5 + 0.5, 0.5 - gl_Position.y / gl_Position.w </em> 0.5)</code>).</li>
+</ol>
+<h2>[REGIME PLAYBOOK] Conditional Rules</h2>
+<ul>
+<li><strong>WHEN <code>perspective_regime_hint == &quot;2-point_shift_plumb&quot;</code>:</strong> Keep verticals strictly plumb (<code>0°</code> pitch). Intersect <code>&gt;= 6</code> receding edges (eaves, sills, beams, floorboards) by least squares to solve <code>(uPrincipal, vHorizon)</code> and apply <code>camera.setViewOffset(W, H, (0.5 - uPrincipal) <em> W, (0.5 - vHorizon) </em> H, W, H)</code>.</li>
+<li><strong>WHEN <code>perspective_regime_hint == &quot;3-point_pitched&quot;</code>:</strong> Verticals converge (<code>downward_aerial</code> or <code>upward_worms_eye</code>). Solve full 3D <code>(yaw, pitch, roll)</code> and <code>fov</code> from the three vanishing points rather than forcing <code>0°</code> shift.</li>
+<li><strong>WHEN <code>canopy_occlusion_fraction &gt; 0.15</code> or sunlit towers occupy the upper frame:</strong> Calibrate sky radiance from <code>open_sky_p85_srgb</code> sampled on unobstructed sky patches, never <code>upper_band_srgb</code>.</li>
+<li><strong>WHEN framing a receding courtyard wing at lateral offset <code>X</code>:</strong> Lock eave/sill height <code>Y</code> directly from screen slope <code>m = -((Y - Y_cam) / X) <em> (W / H) </em> (tanHalfY / tanHalfX)</code>, and project recessed glazing at its true plane <code>X_glass = X + dX</code>.</li>
+<li><strong>WHEN placing off-axis foreground piers (<code>|u0 - uPrincipal| &gt; 0.35</code>) or rotated masses:</strong> Anchor foreground piers by their <strong>far inner corner</strong> <code>x(u_inner, d + dd)</code> so side-return width <code>du_return = -(u0 - uPrincipal) * (dd / (d + dd))</code> never intrudes into the aperture; pivot rotated masses about front corners rather than box centroids.</li>
+<li><strong>WHEN modeling sloped retaining walls (<code>25°-38°</code>), pergolas, or wide-angle paving:</strong> Keep sloped wall top caps visible above <code>vHorizon</code> (<code>v &lt; vHorizon</code>), frame pergola rafters flush into girders (<code>dy &lt;= 0.13 m</code>), extend flanking walls/paving behind the camera (<code>Z = +6m .. +10m</code>), and lock primary ridges to <code>&lt; 0.5 px</code> via 2-render empirical secant <code>du_px / d_param</code>.</li>
+<li><strong>WHEN recessed interior room backings, rooftop chimneys, or multi-tier atrium coves sit behind a primary z=0 facade plane:</strong> Solve lateral world coordinates xAt(u, z_true) and vertical heights yAt(v, z_true) at each element&#x27;s true world depth rather than copying z=0 facade spans, preventing parallax bleed outside window jambs and perspective drift.</li>
+<li><strong>WHEN calibrating multi-view cameras (<code>window.__ARCH_CAMERAS__</code> for <code>VIEW 2..N</code>) &amp; empirical thicknesses with optional plans:</strong> Use floor plans/sections only when available; otherwise triangulate shared 3D landmarks (ridge corners, column grids, stair landings, window bays) across <code>VIEW 1..N</code>. Pull all wall thicknesses, slab edges, and window/door reveal depths directly from jamb/sill returns visible in the photos (never use stock default thicknesses). Register every secondary camera (<code>{ name, refPhoto, position, target, fov, principalPoint, rollDeg, exposureBias, interiorLuminaireGain }</code>) solved from &gt;= 4 shared 3D points—supplying <code>principalPoint: [uPrincipal, vHorizon]</code> whenever <code>VIEW k</code> has plumb 2-point verticals, and verifying unobstructed sightlines in <code>iter_0&lt;k&gt;_multiview_sxs.jpg</code>.</li>
+</ul>
+<h2>Contributions</h2>
+<p>To contribute or modify this skill or its references, follow the</p>
+<p><a href="references/contributing.md">contribution guidelines</a> before making changes.</p>
+    </article>
+  </main>
+</body>
+</html>
