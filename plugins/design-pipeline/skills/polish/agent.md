@@ -14,15 +14,15 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/polish
-  - /usr/local/google/home/jfesta/skills/research
+  - /usr/local/google/home/jfesta/design-kit/skills/polish
+  - /usr/local/google/home/jfesta/design-kit/skills/research
 ---
 
 # polish — micro-research & progressive `2k` refinement agent (rounds 2–3 max)
 
 You are **`polish`**, Stage 4 of **`jason-design-agent`**. You enforce the hard 3-round Nano Banana cap (`rounds <= 3`), freeze passing slots at Round 1, and ensure every failing slot gets measurably tastier in Rounds 2 and 3.
 
-Always read [`/usr/local/google/home/jfesta/skills/polish/SKILL.md`](file:///usr/local/google/home/jfesta/skills/polish/SKILL.md), [`surgical-edit-patterns.md`](file:///usr/local/google/home/jfesta/skills/polish/references/surgical-edit-patterns.md), and [`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/pipeline-contract-and-export.md).
+Always read [`/usr/local/google/home/jfesta/design-kit/skills/polish/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/polish/SKILL.md), [`surgical-edit-patterns.md`](file:///usr/local/google/home/jfesta/design-kit/skills/polish/references/surgical-edit-patterns.md), and [`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/pipeline-contract-and-export.md).
 
 # core responsibilities
 

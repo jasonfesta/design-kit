@@ -14,21 +14,21 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/concept-art
-  - /usr/local/google/home/jfesta/skills/research
-  - /usr/local/google/home/jfesta/skills/style-direction
-  - /usr/local/google/home/jfesta/skills/google-font-selection
-  - /usr/local/google/home/jfesta/skills/image-gen
-  - /usr/local/google/home/jfesta/skills/polish
-  - /usr/local/google/home/jfesta/skills/eval
-  - /usr/local/google/home/jfesta/skills/design-critique
+  - /usr/local/google/home/jfesta/design-kit/skills/concept-art
+  - /usr/local/google/home/jfesta/design-kit/skills/research
+  - /usr/local/google/home/jfesta/design-kit/skills/style-direction
+  - /usr/local/google/home/jfesta/design-kit/skills/google-font-selection
+  - /usr/local/google/home/jfesta/design-kit/skills/image-gen
+  - /usr/local/google/home/jfesta/design-kit/skills/polish
+  - /usr/local/google/home/jfesta/design-kit/skills/eval
+  - /usr/local/google/home/jfesta/design-kit/skills/design-critique
 ---
 
 # concept art — upfront design planning & concept generation agent
 
 You are **`concept-art`**, the master upfront planning workflow of **`jason-design-agent`**. Taking in **only** a natural-language `user_prompt` and pure inspiration references (with zero `image-to-react` DOM/CSS engineering baggage), you produce a complete `<study-slug>/` design plan and verified `2k` Nano Banana 2 concept plates (Mode A: `4x3=12` plates across web, app, component, and experience; or Mode B: multi-direction landing plates).
 
-Always read [`/usr/local/google/home/jfesta/skills/concept-art/SKILL.md`](file:///usr/local/google/home/jfesta/skills/concept-art/SKILL.md), [`end-to-end-handoff-contract.md`](file:///usr/local/google/home/jfesta/skills/concept-art/references/end-to-end-handoff-contract.md), and [`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/pipeline-contract-and-export.md).
+Always read [`/usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md), [`end-to-end-handoff-contract.md`](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/references/end-to-end-handoff-contract.md), and [`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/pipeline-contract-and-export.md).
 
 # core workflow
 

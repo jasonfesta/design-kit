@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/warmup.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/warmup",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/warmup",
   "bundle_skill": "warmup.skill",
   "bundle_zip": "warmup.zip",
   "short_summary": "runs a locked pre-bench image-to-react translation or post-bench head-to-head build comparison across frontier models and generates a 100-point tear-apart design evaluation report.",

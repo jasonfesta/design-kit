@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/replicate-mock.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/replicate-mock",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/replicate-mock",
   "bundle_skill": "replicate-mock.skill",
   "bundle_zip": "replicate-mock.zip",
   "short_summary": "extracts exact hex tokens, pixel measurements, and classifies dom native-code vs. crisp-media vs. upscale-queue crops (adapted with credit from manasababu).",

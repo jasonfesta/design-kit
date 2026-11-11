@@ -1,4 +1,4 @@
-# credits & upstream lineage (`/usr/local/google/home/jfesta/skills`)
+# credits & upstream lineage (`/usr/local/google/home/jfesta/design-kit/skills`)
 
 This workspace synthesizes original `jason-design-agent <-> jason-dev-agent` architecture by **Jason Festa (`jfesta`)** alongside foundational skills, computer-vision tools, measurement verifiers, and design-engineering references lifted or adapted from colleagues across Google and the broader UI craft community.
 

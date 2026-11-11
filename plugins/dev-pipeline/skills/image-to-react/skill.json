@@ -25,7 +25,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-to-react.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/image-to-react",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/image-to-react",
   "bundle_skill": "image-to-react.skill",
   "bundle_zip": "image-to-react.zip",
   "short_summary": "builds bucket-first golden template react apps in jason-dev-agent with developer-voiced stage talk-backs, moodboard jason-dev-agent turn tracking, and a final jason-design-agent sign-off output.",

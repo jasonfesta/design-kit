@@ -248,23 +248,23 @@ paired gate   every passed dev eval triggers design-critique in jason-design-age
 <h3>step 3 — stop &amp; judge: run <code>eval-image-to-react.mjs</code> over turns</h3>
 <pre data-lang="bash"><code># 1. lint config parity &amp; strict typescript against golden-template/assets/dating
 /usr/local/google/home/jfesta/.local/bin/node \
-  /usr/local/google/home/jfesta/skills/golden-template/scripts/lint-golden-template.mjs \
+  /usr/local/google/home/jfesta/design-kit/skills/golden-template/scripts/lint-golden-template.mjs \
   --dir=/path/to/workspace \
   --project=&lt;project-slug&gt; --fix
 
 # 2. verify all mounted images are loaded, &gt;= 2x retina, and non-blurry
-python3 /usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/nano-banana/scripts/eval-image-readiness.py \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;
 
 # 3. lock the type system (primary / secondary / tertiary) and accessible sizes
-python3 /usr/local/google/home/jfesta/skills/font-pairing/scripts/eval-font-pairing.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/font-pairing/scripts/eval-font-pairing.py \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; --expect-primary=&quot;&lt;family&gt;&quot; --expect-secondary=&quot;&lt;family&gt;&quot;
-python3 /usr/local/google/home/jfesta/skills/accessibility/scripts/eval-accessibility.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/accessibility/scripts/eval-accessibility.py \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;
 
 # 4. run the stage 1 image-to-react dev eval
 /usr/local/google/home/jfesta/.local/bin/node \
-  /usr/local/google/home/jfesta/skills/image-to-react/scripts/eval-image-to-react.mjs \
+  /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/eval-image-to-react.mjs \
   --reference=&quot;/path/to/reference.png&quot; \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; \
   --out-dir=&quot;/tmp/image_to_react_eval_&lt;project-slug&gt;&quot;</code></pre>

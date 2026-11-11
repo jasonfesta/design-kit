@@ -54,7 +54,7 @@ step 4        diagnostic regression/uniqueness score & DESIGNER REVIEW CHECKPOIN
 - [ ] **Step 1 — Capture Full-Length Desktop & Mobile Screenshots + DOM Text via Chrome DevTools (`scripts/capture_url_devtools_and_dom.mjs`)**:
   Run [capture_url_devtools_and_dom.mjs](scripts/capture_url_devtools_and_dom.mjs) outside the sandbox (`BypassSandbox: true`):
   ```bash
-  node /usr/local/google/home/jfesta/skills/url-variant/scripts/capture_url_devtools_and_dom.mjs \
+  node /usr/local/google/home/jfesta/design-kit/skills/url-variant/scripts/capture_url_devtools_and_dom.mjs \
     --url="https://example.com" \
     --out-dir="/path/to/study" \
     --max-viewports=6
@@ -72,7 +72,7 @@ step 4        diagnostic regression/uniqueness score & DESIGNER REVIEW CHECKPOIN
   2. **Select Stance Dial & Style Stance**: Choose `--stance-dial` (`0.15-0.30` `subtle-sibling`, `0.40-0.60` `editorial-reframe`, `0.65-0.85` `theme-polarity-inversion` [default], or `0.90-1.00` `archetype-transmutation`) and `--style-stance` ([style stances and variation dial guide](references/style-stances-and-variation-dial.md)).
   3. **Generate & Pre-Audit the 10-Section Prompts**:
      ```bash
-     python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/plan_and_run_variant.py plan \
+     python3 /usr/local/google/home/jfesta/design-kit/skills/url-variant/scripts/plan_and_run_variant.py plan \
        --study-dir="/path/to/study" \
        --stance-dial=0.65 \
        --style-stance=auto \
@@ -84,14 +84,14 @@ step 4        diagnostic regression/uniqueness score & DESIGNER REVIEW CHECKPOIN
 - [ ] **Step 3 — Execute the Two-Pass Screenshot-Conditioned Nano Banana 2.1 Transfer (`scripts/plan_and_run_variant.py run`)**:
   - **Pass 1 (Desktop Variant — Passing in the Desktop Screenshot + Pre-Architected Prompt)**:
     ```bash
-    python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/plan_and_run_variant.py run \
+    python3 /usr/local/google/home/jfesta/design-kit/skills/url-variant/scripts/plan_and_run_variant.py run \
       --study-dir="/path/to/study" \
       --pass=desktop \
       --route=gempix
     ```
   - **Pass 2 (Mobile Variant — Passing in BOTH the Mobile Screenshot AND the Rendered Desktop Variant)**:
     ```bash
-    python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/plan_and_run_variant.py run \
+    python3 /usr/local/google/home/jfesta/design-kit/skills/url-variant/scripts/plan_and_run_variant.py run \
       --study-dir="/path/to/study" \
       --pass=mobile \
       --route=gempix
@@ -101,7 +101,7 @@ step 4        diagnostic regression/uniqueness score & DESIGNER REVIEW CHECKPOIN
 - [ ] **Step 4 — Score Uniqueness, Quality & Non-Regression and Present at the Designer Review Checkpoint (`scripts/eval_url_variant.py`)**:
   Run [eval_url_variant.py](scripts/eval_url_variant.py) to compute the diagnostic scores without triggering automated re-generation loops:
   ```bash
-  python3 /usr/local/google/home/jfesta/skills/url-variant/scripts/eval_url_variant.py \
+  python3 /usr/local/google/home/jfesta/design-kit/skills/url-variant/scripts/eval_url_variant.py \
     --study-dir="/path/to/study"
   ```
   Present the generated images (`variants/desktop-variant-fullpage.png`, `variants/mobile-variant-fullpage.png`, `variants/comparison-contact-sheet.jpg`), the `variants/designer-review-checkpoint.md` scorecard, and `<study-dir>/index.html` **directly to the Designer for review** so the designer can evaluate the call and dial in any adjustments.

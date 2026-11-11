@@ -27,7 +27,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/jason-design-agent/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/jason-design-agent/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/jason-design-agent.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/jason-design-agent",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/jason-design-agent",
   "bundle_skill": "jason-design-agent.skill",
   "bundle_zip": "jason-design-agent.zip",
   "short_summary": "runs dialed taste research, live google-font-selection, 10-iteration pre-nano design critique, 4x3 2k concept generation, and the clean #0c0c0b lowercase moodboard with zero preview adjustments and zero default approvals.",

@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-fun-and-balance-ratchet/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-fun-and-balance-ratchet/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-fun-and-balance-ratchet.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/game-fun-and-balance-ratchet",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/game-fun-and-balance-ratchet",
   "bundle_skill": "game-fun-and-balance-ratchet.skill",
   "bundle_zip": "game-fun-and-balance-ratchet.zip",
   "short_summary": "Improve game pacing, strategic variety, recoverability, and option vitality across solo and competitive genres using external playtest sweeps and confidence-bounded outcome checks.",

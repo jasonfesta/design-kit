@@ -82,7 +82,7 @@ function findSharedNodeModules(projectDir) {
   const candidates = [
     path.resolve(projectDir, "..", "..", "node_modules"),
     "/usr/local/google/home/jfesta/moodboards/warm-landing-page/node_modules",
-    "/usr/local/google/home/jfesta/skills/golden-template/assets/dating/node_modules",
+    "/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/node_modules",
     "/usr/local/google/home/jfesta/moodboards/modern-tech-brand/node_modules",
   ];
   for (const cand of candidates) {

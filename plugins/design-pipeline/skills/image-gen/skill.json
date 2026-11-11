@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/image-gen.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/image-gen",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/image-gen",
   "bundle_skill": "image-gen.skill",
   "bundle_zip": "image-gen.zip",
   "short_summary": "locks 01-anchor first, then authors and renders drift-free 2k nano banana 2 plates (4x3=12 matrix or multi-direction) within a strict 3-round ceiling.",

@@ -72,7 +72,7 @@ def normalize_pillar_hint(raw: str) -> str | None:
   if s in {"experiences", "interactive-experience", "interactive"}:
     return "experience"
   return TOKEN_TO_PILLAR.get(s.replace("-", ""))
-REPLICATE_MOCK_EXTRACT = pathlib.Path("/usr/local/google/home/jfesta/skills/replicate-mock/scripts/prepare-and-extract-image.py")
+REPLICATE_MOCK_EXTRACT = pathlib.Path("/usr/local/google/home/jfesta/design-kit/skills/replicate-mock/scripts/prepare-and-extract-image.py")
 
 
 def slugify(text: str) -> str:

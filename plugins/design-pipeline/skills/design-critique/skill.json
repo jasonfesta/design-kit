@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-critique.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/design-critique",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/design-critique",
   "bundle_skill": "design-critique.skill",
   "bundle_zip": "design-critique.zip",
   "short_summary": "runs jason-design-agent's originality and craft critiques across upfront concept sign-off, mid-build jason-dev-agent talk-backs, and the mandatory final post-build jason-design-agent output.",

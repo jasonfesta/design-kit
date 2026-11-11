@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-deterministic-sim-core.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/game-deterministic-sim-core",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/game-deterministic-sim-core",
   "bundle_skill": "game-deterministic-sim-core.skill",
   "bundle_zip": "game-deterministic-sim-core.zip",
   "short_summary": "Decouple game simulation state from rendering and browser globals across three determinism levels\u2014frame-rate independence, seeded headless replayability, and cross-browser lockstep parity.",

@@ -10,7 +10,7 @@ mainAgent: false
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/design-flywheel
+  - /usr/local/google/home/jfesta/design-kit/skills/design-flywheel
 ---
 
 # design-flywheel

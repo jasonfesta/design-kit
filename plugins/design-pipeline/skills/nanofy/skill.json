@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nanofy.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/nanofy",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/nanofy",
   "bundle_skill": "nanofy.skill",
   "bundle_zip": "nanofy.zip",
   "short_summary": "intakes a zip or folder of plates plus the prompt mds behind them, re-outputs every plate through nano banana with the desktop anchor taking a 0.1-0.5 unique take propagated to all spokes (same size, same format, >= 1k, invariants locked), and curates the design | development moodboard before handing to jason-dev-agent.",

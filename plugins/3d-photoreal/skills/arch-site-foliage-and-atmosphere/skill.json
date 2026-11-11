@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-site-foliage-and-atmosphere/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-site-foliage-and-atmosphere/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-site-foliage-and-atmosphere.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/arch-site-foliage-and-atmosphere",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/arch-site-foliage-and-atmosphere",
   "bundle_skill": "arch-site-foliage-and-atmosphere.skill",
   "bundle_zip": "arch-site-foliage-and-atmosphere.zip",
   "short_summary": "Reconstruct hyperrealistic botanical context and site grounding in Three.js across any biome\u2014pinhole-lit broadleaf/pine canopies (zero dielectric Fresnel haze), clumped millimeter turf, sculpted streetscape vehicles, and clean plinth grounding.",

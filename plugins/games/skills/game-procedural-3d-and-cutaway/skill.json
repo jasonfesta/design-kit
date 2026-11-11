@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-procedural-3d-and-cutaway.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/game-procedural-3d-and-cutaway",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/game-procedural-3d-and-cutaway",
   "bundle_skill": "game-procedural-3d-and-cutaway.skill",
   "bundle_zip": "game-procedural-3d-and-cutaway.zip",
   "short_summary": "Build legible procedural 3D, WebGL2, and layered 2.5D game worlds with isolated asset inspection views, unobstructed camera sightlines and interior cutaways, minimal HUD clutter, and esbuild classic-IIFE static web bundles.",

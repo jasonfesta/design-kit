@@ -44,7 +44,7 @@ import tempfile
 from typing import Any
 
 GEMPIX = "/google/bin/releases/gempix/gempix-1/gempix"
-READINESS = pathlib.Path("/usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py")
+READINESS = pathlib.Path("/usr/local/google/home/jfesta/design-kit/skills/nano-banana/scripts/eval-image-readiness.py")
 MIN_LONG_EDGE = 1024
 MIN_SHORT_EDGE = 1024
 

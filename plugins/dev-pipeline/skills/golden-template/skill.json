@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/golden-template.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/golden-template",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/golden-template",
   "bundle_skill": "golden-template.skill",
   "bundle_zip": "golden-template.zip",
   "short_summary": "standardizes react 19 + vite 7 + tailwind v4 projects using the bundled dating reference folder (assets/dating/) as the ground-truth judge for all config files, 3-tier src/ structure, and strict tsc linting.",

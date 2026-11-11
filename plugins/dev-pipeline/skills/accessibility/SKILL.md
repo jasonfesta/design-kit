@@ -56,7 +56,7 @@ Button craft stays as the Golden Template rule (`px-3.5`–`px-5`, `gap-1.5`–`
 4. **run the eval, then talk back**: every stage talk-back includes the accessibility receipt (`contrast_fail_count: 0`, `targets_under_24px: 0`, `body_under_16px_count`, `targets_under_44px_count`). If a design value had to move, say exactly which (`"muted ink #858481 on #0c0c0b was 4.1:1 -> #9a9994 = 4.6:1"`).
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/accessibility/scripts/eval-accessibility.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/accessibility/scripts/eval-accessibility.py \
   --project="/path/to/workspace/projects/<project-slug>" [--require-44] [--min-body-px 16]
 # gates: text_size_ok · line_height_ok · contrast_ok · target_size_ok · focus_visible_ok · accessible_names_ok · img_alt_ok · lang_ok
 ```

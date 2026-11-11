@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-turing-test-loop.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/arch-turing-test-loop",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/arch-turing-test-loop",
   "bundle_skill": "arch-turing-test-loop.skill",
   "bundle_zip": "arch-turing-test-loop.zip",
   "short_summary": "Adversarial Reference-vs-Three.js Turing Test iteration protocol, aspect-locked evaluation, finite-difference double-edge sign checks, peak-checkpoint locking, and cumulative cross-batch skill evolution with anchor regression gates.",

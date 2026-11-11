@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-- **Purpose**: Built and hardened `jason-design-agent` in `/usr/local/google/home/jfesta/skills/jason-design-agent` as the Stage 1 taste-first concept design coordinator and critique authority.
+- **Purpose**: Built and hardened `jason-design-agent` in `/usr/local/google/home/jfesta/design-kit/skills/jason-design-agent` as the Stage 1 taste-first concept design coordinator and critique authority.
 - **Key Capabilities Engineered**: Interactive session intake (natural language prompt, DevTools URL-list research path, or `nanofy` style-kit folder intake); live `google-font-selection` + 4-surface CSS-to-2K font scale calibration; hard ban on beige defaults and AI `FIG 0.1` / middle-dot (`·`) clichés; mandatory 10-iteration pre-Nano critique gate; 5-turn self-improving `design-flywheel` at 1K; 10–15 agent tri-perspective critique swarm; mandatory Pre-Moodboard Designer Image Checkpoint; and `#0c0c0b` lowercase moodboard builder.
 
 ---
@@ -128,7 +128,7 @@ All 12 `ALBA` (`modern-coffee-brand`) concept plates (`3 web`, `3 app`, `3 disti
 
 ### Turn 11 — AGENT (`2026-10-27 09:55:08` · `57c27c51`)
 
-All 12 `2K` concept plates for **ALBA** (`modern-coffee-brand`) are generated, evaluated, and live in the right-hand Artifact Pane ([alba-moodboard-preview.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/57c27c51-4a07-4342-a3b2-7299b3eb6a7c/alba-moodboard-preview.html)). I am now inspecting [`jason-dev-agent.md`](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-dev-agent.md) and [`build_catalog.py`](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py) so I can rename every `design-agent` reference to `jason-design-agent` cleanly and sync the finished study folder.
+All 12 `2K` concept plates for **ALBA** (`modern-coffee-brand`) are generated, evaluated, and live in the right-hand Artifact Pane ([alba-moodboard-preview.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/57c27c51-4a07-4342-a3b2-7299b3eb6a7c/alba-moodboard-preview.html)). I am now inspecting [`jason-dev-agent.md`](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-dev-agent.md) and [`build_catalog.py`](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py) so I can rename every `design-agent` reference to `jason-design-agent` cleanly and sync the finished study folder.
 
 ---
 
@@ -142,7 +142,7 @@ Make sure that you're not building any of these, that you're just going to show 
 
 All **12 (`4 × 3`) `2K` Nano Banana 2 concept plates** for **ALBA** (`modern-coffee-brand`) are ready for review in the right-hand Artifact Pane ([alba-moodboard-preview.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/57c27c51-4a07-4342-a3b2-7299b3eb6a7c/alba-moodboard-preview.html)) and synced to [modern-coffee-brand/index.html](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-brand/index.html).
 
-**No React builds or development skills were started**, and **nothing was handed off to [`jason-dev-agent`](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-dev-agent.md)** (`0 turns` — stopped strictly at concept-image review so you can inspect the images and toggle `👍 / 👎` first). Every standalone `design-agent` reference has also been renamed to **`jason-design-agent`** (`0` remaining matches, local-only `--skip-x20`).
+**No React builds or development skills were started**, and **nothing was handed off to [`jason-dev-agent`](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-dev-agent.md)** (`0 turns` — stopped strictly at concept-image review so you can inspect the images and toggle `👍 / 👎` first). Every standalone `design-agent` reference has also been renamed to **`jason-design-agent`** (`0` remaining matches, local-only `--skip-x20`).
 
 ### Round-1 Concept Preview & Honest Notes (`1 / 1` Turn)
 
@@ -165,8 +165,8 @@ esta/moodboards/modern-coffee-brand/concepts/experience/10-experience-01-3d-drip
 
 ### `design-agent` → `jason-design-agent` Rename Verified
 
-- **Coordinator Agents Renamed**: Moved `_agents/agents/design-agent.md` → [jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md) (plus `.agents/agents/jason-design-agent.md`) and added the `jason design agent` coordinator block to [`build_catalog.py`](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py), [README.md](file:///usr/local/google/home/jfesta/skills/README.md), and [index.html](file:///usr/local/google/home/jfesta/skills/index.html).
-- **Workspace & Symlinks Verified**: Updated `516` references across `71` files in [AGENTS.md](file:///usr/local/google/home/jfesta/skills/AGENTS.md), [catalog.json](file:///usr/local/google/home/jfesta/skills/catalog.json), all skills, and [modern-coffee-brand/prompt.md](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-brand/prompt.md) (preserving plural `design-agents` repo references). [`validate_and_wrap.py`](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py) passed **`19/19 [PASS]`**, [`sync_x20.py`](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/sync_x20.py) refreshed `~/.gemini/config/{skills,agents}` locally (`--skip-x20`), and a full workspace scan confirmed **`0` remaining standalone `design-agent` matches**.
+- **Coordinator Agents Renamed**: Moved `_agents/agents/design-agent.md` → [jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md) (plus `.agents/agents/jason-design-agent.md`) and added the `jason design agent` coordinator block to [`build_catalog.py`](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py), [README.md](file:///usr/local/google/home/jfesta/design-kit/skills/README.md), and [index.html](file:///usr/local/google/home/jfesta/design-kit/skills/index.html).
+- **Workspace & Symlinks Verified**: Updated `516` references across `71` files in [AGENTS.md](file:///usr/local/google/home/jfesta/design-kit/skills/AGENTS.md), [catalog.json](file:///usr/local/google/home/jfesta/design-kit/skills/catalog.json), all skills, and [modern-coffee-brand/prompt.md](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-brand/prompt.md) (preserving plural `design-agents` repo references). [`validate_and_wrap.py`](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py) passed **`19/19 [PASS]`**, [`sync_x20.py`](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/sync_x20.py) refreshed `~/.gemini/config/{skills,agents}` locally (`--skip-x20`), and a full workspace scan confirmed **`0` remaining standalone `design-agent` matches**.
 
 ---
 
@@ -197,7 +197,7 @@ The initial **ALBA (`modern-coffee-brand`)** rounded-corner mosaic moodboard is 
 
 ### `design-agent` → `jason-design-agent` Rename Verified
 
-- Renamed [_agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md) and [.agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/.agents/agents/jason-design-agent.md), updated [build_catalog.py](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py), and replaced all 516 standalone `design-agent` references across 71 workspace files and [modern-coffee-brand](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-brand).
+- Renamed [_agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md) and [.agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/.agents/agents/jason-design-agent.md), updated [build_catalog.py](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py), and replaced all 516 standalone `design-agent` references across 71 workspace files and [modern-coffee-brand](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-brand).
 - Re-validated and re-wrapped via `skill-maker` (**`19/19 [PASS]`**, `0` remaining standalone `design-agent` occurrences, local symlinks refreshed with `--skip-x20`).
 
 ---
@@ -233,7 +233,7 @@ Updated [index.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/5
 
 ### Saved to `jason-design-agent` & Skills
 
-- Recorded these exact moodboard rules in [end-to-end-handoff-contract.md](file:///usr/local/google/home/jfesta/skills/concept-art/references/end-to-end-handoff-contract.md), [_agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md), and [.agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/.agents/agents/jason-design-agent.md), and re-validated via `skill-maker` (`20/20 [PASS]`).
+- Recorded these exact moodboard rules in [end-to-end-handoff-contract.md](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/references/end-to-end-handoff-contract.md), [_agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md), and [.agents/agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/.agents/agents/jason-design-agent.md), and re-validated via `skill-maker` (`20/20 [PASS]`).
 
 Once this moodboard layout feels locked in, let me know and we’ll assess the 12 plates for Round 2.
 
@@ -280,8 +280,8 @@ The 10-iteration pre-Nano critique locked `Fraunces` (`#1` live Garalde match at
 Updated `jason-design-agent` and its stage skills with permanent rules for live font matching, optical padding, research-grounded examples, a 10-iteration pre-Nano design critique loop, and the `#0c0c0b` arrow-free moodboard typography—then re-ran the entire `modern coffee brand` prompt and regenerated all 12 `2K` concept plates into [index.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/57c27c51-4a07-4342-a3b2-7299b3eb6a7c/index.html) (and synced to [modern-coffee-brand/index.html](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-brand/index.html)). Zero React builds or `jason-dev-agent` steps were started.
 
 ### Agent & Skill Rules Codified (`21/21 PASS`)
-- **Live Font Matcher Enforcement**: Banned default AI editorial clichés (`Instrument Serif`, `Playfair Display`, `Inter`) in [jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md) and [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/skills/style-direction/SKILL.md), requiring multi-tag sweeps via [`recommend_google_fonts.py`](file:///usr/local/google/home/jfesta/skills/google-font-selection/scripts/recommend_google_fonts.py).
-- **Moment 0 — 10-Iteration Pre-Nano Design Critique**: Added a mandatory 10-pass pre-generation critique loop to [design-critique/SKILL.md](file:///usr/local/google/home/jfesta/skills/design-critique/SKILL.md), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/skills/concept-art/SKILL.md), and [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/skills/image-gen/SKILL.md) before firing Nano Banana.
+- **Live Font Matcher Enforcement**: Banned default AI editorial clichés (`Instrument Serif`, `Playfair Display`, `Inter`) in [jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md) and [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/style-direction/SKILL.md), requiring multi-tag sweeps via [`recommend_google_fonts.py`](file:///usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/recommend_google_fonts.py).
+- **Moment 0 — 10-Iteration Pre-Nano Design Critique**: Added a mandatory 10-pass pre-generation critique loop to [design-critique/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/SKILL.md), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md), and [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/SKILL.md) before firing Nano Banana.
 - **Padding, Research & Moodboard Chrome**: Enforced `>= 42%–45%` open negative space, `2:1` pill padding, `>= 20%` empty outer margins on isolated `component` plates, `<surface> <01..03> — <role>` naming, `#0c0c0b` `15px / 14px / 13px` lowercase typography with zero arrows, and self-contained inline-`data:` `open plate` viewers (`0` nested `blob:null` broken images).
 
 ### `modern coffee brand` Pass 2 Overhaul
@@ -316,8 +316,8 @@ The moodboard now loads with **zero default approvals** (`approved (0)`) and an 
 
 ### Agent & Skill Rules Persisted (`21/21 PASS`)
 
-- Codified both rules across [jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md) (mirrored to [.agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/.agents/agents/jason-design-agent.md)), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/skills/concept-art/SKILL.md), [end-to-end-handoff-contract.md](file:///usr/local/google/home/jfesta/skills/concept-art/references/end-to-end-handoff-contract.md), [intake-study-from-folder.py](file:///usr/local/google/home/jfesta/skills/nanofy/scripts/intake-study-from-folder.py), and [intake-folder-and-moodboard.md](file:///usr/local/google/home/jfesta/skills/nanofy/references/intake-folder-and-moodboard.md).
-- Validated via [validate_and_wrap.py](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py) (`21/21 [PASS]`) and rebuilt [catalog.json](file:///usr/local/google/home/jfesta/skills/catalog.json) locally (`--skip-x20`), with zero React/dev builds started.
+- Codified both rules across [jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md) (mirrored to [.agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/.agents/agents/jason-design-agent.md)), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md), [end-to-end-handoff-contract.md](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/references/end-to-end-handoff-contract.md), [intake-study-from-folder.py](file:///usr/local/google/home/jfesta/design-kit/skills/nanofy/scripts/intake-study-from-folder.py), and [intake-folder-and-moodboard.md](file:///usr/local/google/home/jfesta/design-kit/skills/nanofy/references/intake-folder-and-moodboard.md).
+- Validated via [validate_and_wrap.py](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py) (`21/21 [PASS]`) and rebuilt [catalog.json](file:///usr/local/google/home/jfesta/design-kit/skills/catalog.json) locally (`--skip-x20`), with zero React/dev builds started.
 
 ---
 
@@ -386,8 +386,8 @@ Updated the moodboard in [index.html](file:///usr/local/google/home/jfesta/.gemi
 
 ### Packaged Into `jason-design-agent` Skill (`22/22 PASS`)
 
-- Created and wrapped the full [jason-design-agent/SKILL.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md) skill directory (`jason-design-agent.skill`, `jason-design-agent.zip`, [BUILD](file:///usr/local/google/home/jfesta/skills/jason-design-agent/BUILD), [EVAL.txtpb](file:///usr/local/google/home/jfesta/skills/jason-design-agent/EVAL.txtpb), [moodboard-and-pipeline-spec.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md), and smoke-tested [build_moodboard.py](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/build_moodboard.py)).
-- Synced identical rules across [_agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/skills/concept-art/SKILL.md), [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/skills/style-direction/SKILL.md), [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/skills/image-gen/SKILL.md), [nanofy](file:///usr/local/google/home/jfesta/skills/nanofy/scripts/intake-study-from-folder.py), and `~/.gemini/config/skills/jason-design-agent`.
+- Created and wrapped the full [jason-design-agent/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md) skill directory (`jason-design-agent.skill`, `jason-design-agent.zip`, [BUILD](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/BUILD), [EVAL.txtpb](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/EVAL.txtpb), [moodboard-and-pipeline-spec.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md), and smoke-tested [build_moodboard.py](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/build_moodboard.py)).
+- Synced identical rules across [_agents/jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md), [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/style-direction/SKILL.md), [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/SKILL.md), [nanofy](file:///usr/local/google/home/jfesta/design-kit/skills/nanofy/scripts/intake-study-from-folder.py), and `~/.gemini/config/skills/jason-design-agent`.
 
 ---
 
@@ -459,11 +459,11 @@ Round 2 `r2-02` (`emerald window`) passed inspection cleanly; visual inspection 
 
 ### Turn 51 — AGENT (`2026-10-27 12:52:25` · `57c27c51`)
 
-Updated [`jason-design-agent`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md) (`22/22` skills validated & wrapped) and generated two competing head-to-head design rounds (`12` `2K` plates: `round 1` vs. `round 2`) for `"make me a modern coffee shop"`—live in the Right-Hand Artifact Pane at [index.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/57c27c51-4a07-4342-a3b2-7299b3eb6a7c/index.html) and synced to [modern-coffee-shop/index.html](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-shop/index.html).
+Updated [`jason-design-agent`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md) (`22/22` skills validated & wrapped) and generated two competing head-to-head design rounds (`12` `2K` plates: `round 1` vs. `round 2`) for `"make me a modern coffee shop"`—live in the Right-Hand Artifact Pane at [index.html](file:///usr/local/google/home/jfesta/.gemini/jetski/brain/57c27c51-4a07-4342-a3b2-7299b3eb6a7c/index.html) and synced to [modern-coffee-shop/index.html](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-shop/index.html).
 
 ### Five Non-Beige Research Examples → Direct Inspiration (`Round 1` vs. `Round 2`)
 
-Every plate bans warm-beige defaults, pairs live-ranked Google Fonts via [`recommend_google_fonts.py`](file:///usr/local/google/home/jfesta/skills/google-font-selection/scripts/recommend_google_fonts.py), and channels direct layout, color, and material DNA from its researched benchmark:
+Every plate bans warm-beige defaults, pairs live-ranked Google Fonts via [`recommend_google_fonts.py`](file:///usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/recommend_google_fonts.py), and channels direct layout, color, and material DNA from its researched benchmark:
 
 - **01 · `% Arabica` (`stainless lab`)**: Pure `#FFFFFF` optic gallery white + brushed `304` stainless steel + `#0A0A0A` ink (`Afacad Flux` + `Google Sans Code`) — Round 2 adds `SOHO CROSBY · KYOTO HIGASHIYAMA · ZURICH TALSTRASSE` switching, Modbar island perspective, right-aligned `tabular-nums`, and complete footer ([01-arabica-stainless-lab.md](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-shop/research/examples/01-arabica-stainless-lab.md)).
 - **02 · `Blank Street` (`emerald window` web + `mobile app`)**: Deep `#0B3D26` forest + `#1A7548` emerald + `#C9F2DA` morning mint rectangular pickup-window color-blocking (`Martian Mono` + `Instrument Sans`) — Round 2 adds live neighborhood wait ticker, uncropped stone-ledge glassware, and edge-to-edge `9:16` mobile framing ([02-blank-street-emerald-window.md](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-shop/research/examples/02-blank-street-emerald-window.md)).
@@ -474,8 +474,8 @@ ry tins + Kreuzberg footer ([04-bonanza-berlin-brutalist-concrete.md](file:///us
 
 ### Skills & Moodboard Updates Verified
 
-- **Permanent `jason-design-agent` rules**: Updated [jason-design-agent/SKILL.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md), [jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md), [research/SKILL.md](file:///usr/local/google/home/jfesta/skills/research/SKILL.md), [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/skills/style-direction/SKILL.md), [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/skills/image-gen/SKILL.md), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/skills/concept-art/SKILL.md), and [design-critique/SKILL.md](file:///usr/local/google/home/jfesta/skills/design-critique/SKILL.md) (`validate_and_wrap.py` `22/22 PASS`).
-- **Head-to-head rollover controls**: [`render_index_html`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/build_moodboard.py#L212-L260) in [build_moodboard.py](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/build_moodboard.py) adds a `rounds` rollover row (`all rounds` · `round 1` · `round 2` · `head to head (2-col)`) while enforcing `0` default approvals, `0` preview adjustments, always-visible quoted prompt top-left, no card descriptions, and `open` links ([round-1-vs-benchmarks.md](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-shop/critique/round-1-vs-benchmarks.md)).
+- **Permanent `jason-design-agent` rules**: Updated [jason-design-agent/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md), [jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md), [research/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/research/SKILL.md), [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/style-direction/SKILL.md), [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/SKILL.md), [concept-art/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md), and [design-critique/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/SKILL.md) (`validate_and_wrap.py` `22/22 PASS`).
+- **Head-to-head rollover controls**: [`render_index_html`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/build_moodboard.py#L212-L260) in [build_moodboard.py](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/build_moodboard.py) adds a `rounds` rollover row (`all rounds` · `round 1` · `round 2` · `head to head (2-col)`) while enforcing `0` default approvals, `0` preview adjustments, always-visible quoted prompt top-left, no card descriptions, and `open` links ([round-1-vs-benchmarks.md](file:///usr/local/google/home/jfesta/moodboards/modern-coffee-shop/critique/round-1-vs-benchmarks.md)).
 
 ---
 
@@ -533,8 +533,8 @@ All subagents (`20/20` terminated) and background tasks (`0` running) are comple
 
 ### Baked Into `jason-design-agent` (Validated `22/22`)
 
-- **100% Image-to-Image Conditioning (`ImagePaths` / `--input_image`)**: Every Nano Banana call across [SKILL.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md), [agent.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/agent.md), [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/skills/image-gen/SKILL.md), [polish/SKILL.md](file:///usr/local/google/home/jfesta/skills/polish/SKILL.md), and [nanofy/SKILL.md](file:///usr/local/google/home/jfesta/skills/nanofy/SKILL.md) now requires an explicit reference image—Round 1 anchors attach a benchmark crop or a non-beige seed canvas (`seed`), and spokes/Round 2 challengers attach `01-anchor` + the latest Round 1 plate.
-- **Minimum `1K` Every Edge (`2K` Lossless PNG) & Crystal-Clear Gate**: Added [lock_and_verify_plates.py](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/lock_and_verify_plates.py) (`seed`, `lock`, `verify`) and hardened [build_moodboard.py](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/build_moodboard.py) + [nanofy-plates.py](file:///usr/local/google/home/jfesta/skills/nanofy/scripts/nanofy-plates.py) so `min(width, height) >= 1024px` (`2752x1536`, `1536x2752`, `2400x1792`, `1536x3072`), `sharpness_ratio >= 0.28`, aspect-squash ghosting (`> 8%`) is blocked, and moodboard embeds encode at `2560px 4:4:4 q93` instead of `1800px 4:2:0 q83`.
+- **100% Image-to-Image Conditioning (`ImagePaths` / `--input_image`)**: Every Nano Banana call across [SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md), [agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/agent.md), [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/SKILL.md), [polish/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/polish/SKILL.md), and [nanofy/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/nanofy/SKILL.md) now requires an explicit reference image—Round 1 anchors attach a benchmark crop or a non-beige seed canvas (`seed`), and spokes/Round 2 challengers attach `01-anchor` + the latest Round 1 plate.
+- **Minimum `1K` Every Edge (`2K` Lossless PNG) & Crystal-Clear Gate**: Added [lock_and_verify_plates.py](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/lock_and_verify_plates.py) (`seed`, `lock`, `verify`) and hardened [build_moodboard.py](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/build_moodboard.py) + [nanofy-plates.py](file:///usr/local/google/home/jfesta/design-kit/skills/nanofy/scripts/nanofy-plates.py) so `min(width, height) >= 1024px` (`2752x1536`, `1536x2752`, `2400x1792`, `1536x3072`), `sharpness_ratio >= 0.28`, aspect-squash ghosting (`> 8%`) is blocked, and moodboard embeds encode at `2560px 4:4:4 q93` instead of `1800px 4:2:0 q83`.
 - **Quota-Safe Pacing (`<= 2` Max Concurrency)**: Banned parallel subagent bursts (`> 2` workers) in favor of reusing `1–2` sequential `image-generator` workers to prevent `429 RESOURCE_EXHAUSTED` retry loops.
 - **Mandatory Pre-Moodboard Designer Image Checkpoint (Step 4.5)**: Before [build_moodboard.py]
 <truncated 6856 bytes>
@@ -581,7 +581,7 @@ All requested agent-level critique, swarm orchestration, and anti-inching auto-c
    - **Perspective C (Ruthless Self-Audit)**: Aggressive introspection exposing prior agent shortcuts, compromises, timid font choices, and beige defaults.
 
 2. **Hyper-Critique Swarm (10 to 15 Specialized Critique Agents)**:
-   - Created the executable swarm driver [`run_critique_swarm.py`](file:///usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py) supporting `roster`, `briefs`, and `audit` subcommands with 15 specialized critique personas:
+   - Created the executable swarm driver [`run_critique_swarm.py`](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py) supporting `roster`, `briefs`, and `audit` subcommands with 15 specialized critique personas:
      1. `lead_taste_critic`: Senior Design Director (aesthetic power & anti-beige conviction)
      2. `benchmark_fidelity_auditor`: Benchmark Research Inspector (5 standout examples & avoids)
      3. `typographic_anatomist`: Typographic Authority (Google Fonts anatomy & tabular-nums)
@@ -605,16 +605,16 @@ taneously**:
      10. *Benchmark Differentiation & Cliché Purge*
 
 4. **Updated Skills & References**:
-   - [`design-critique/references/hyper-critique-swarm-and-auto-correction.md`](file:///usr/local/google/home/jfesta/skills/design-critique/references/hyper-critique-swarm-and-auto-correction.md)
-   - [`design-critique/SKILL.md`](file:///usr/local/google/home/jfesta/skills/design-critique/SKILL.md) & [`design-critique/agent.md`](file:///usr/local/google/home/jfesta/skills/design-critique/agent.md)
-   - [`jason-design-agent/SKILL.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md), [`jason-design-agent/agent.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/agent.md), and [spec](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md)
-   - [`eval/SKILL.md`](file:///usr/local/google/home/jfesta/skills/eval/SKILL.md) & [`eval/references/concept-eval-gates.md`](file:///usr/local/google/home/jfesta/skills/eval/references/concept-eval-gates.md)
-   - [`concept-art/SKILL.md`](file:///usr/local/google/home/jfesta/skills/concept-art/SKILL.md)
-   - [`AGENTS.md`](file:///usr/local/google/home/jfesta/skills/AGENTS.md) (canonical workspace instructions Rule 5)
+   - [`design-critique/references/hyper-critique-swarm-and-auto-correction.md`](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/references/hyper-critique-swarm-and-auto-correction.md)
+   - [`design-critique/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/SKILL.md) & [`design-critique/agent.md`](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/agent.md)
+   - [`jason-design-agent/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md), [`jason-design-agent/agent.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/agent.md), and [spec](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md)
+   - [`eval/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/eval/SKILL.md) & [`eval/references/concept-eval-gates.md`](file:///usr/local/google/home/jfesta/design-kit/skills/eval/references/concept-eval-gates.md)
+   - [`concept-art/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/concept-art/SKILL.md)
+   - [`AGENTS.md`](file:///usr/local/google/home/jfesta/design-kit/skills/AGENTS.md) (canonical workspace instructions Rule 5)
 
 5. **Validation & Quota Safety**:
    - `validate_and_wrap.py` passed with `22/22 [PASS]`.
-   - `build_catalog.py` cleanly rebuilt [`catalog.json`](file:///usr/local/google/home/jfesta/skills/catalog.json) and [`index.html`](file:///usr/local/google/home/jfesta/skills/index.html).
+   - `build_catalog.py` cleanly rebuilt [`catalog.json`](file:///usr/local/google/home/jfesta/design-kit/skills/catalog.json) and [`index.html`](file:///usr/local/google/home/jfesta/design-kit/skills/index.html).
    - Zero image generation or subagent quota consumed (`0` running subagents, `0` background tasks).
 
 ---
@@ -712,10 +712,10 @@ I am now adding live accessible companion-body pairing (`recommend_google_fonts.
 ### Why Font Rounds Kept Failing—and How to Lock Nano Banana on Round 1
 
 Two issues in the existing skill instructions were forcing repeated font-fix rounds:
-1. **Conflicting rules across skills**: [jason-design-agent/SKILL.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md) and [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/skills/image-gen/SKILL.md) previously mandated `"10px–12px Inter shrunk by ~50%"`, which directly violated [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/skills/style-direction/SKILL.md) (banning `Inter`) and [accessibility/SKILL.md](file:///usr/local/google/home/jfesta/skills/accessibility/SKILL.md) (`>= 16px` body, `12px` absolute floor).
+1. **Conflicting rules across skills**: [jason-design-agent/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md) and [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/SKILL.md) previously mandated `"10px–12px Inter shrunk by ~50%"`, which directly violated [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/style-direction/SKILL.md) (banning `Inter`) and [accessibility/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/accessibility/SKILL.md) (`>= 16px` body, `12px` absolute floor).
 2. **Bare CSS pixels drift across surfaces in image space**: Nano Banana has no CSS layout engine. On `1440×810` desktop (`1.91x` DPR), `16px` body occupies `1.1%` of canvas width, whereas on `390×844` mobile (`3.94x` DPR), `16pt` body occupies **`4.1%` of canvas width** (~4× wider relative to frame width). Passing bare `"12px"` or `"16px"`—or conditioning a `9:16` mobile plate on a `16:9` desktop screenshot—crushes mobile/component copy or bloats desktop/app headlines.
 
-To make Nano Banana hit exact web-safe sizes on **Round 1 (`0` font-redo turns)**, every prompt now locks **four visual-spatial anchors** via [`font_scale_and_pairing.py`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py):
+To make Nano Banana hit exact web-safe sizes on **Round 1 (`0` font-redo turns)**, every prompt now locks **four visual-spatial anchors** via [`font_scale_and_pairing.py`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py):
 1. **Simulated `1x` Viewport → `2K` Canvas DPR**
 2. **CSS Size + `% of Canvas Height`** (`>= 16px` body, `>= 12px` WCAG floor)
 3. **Hard Character-Per-Line & Line-Count Copy Budgets** (constraining verbatim copy to `55–70` chars/line on desktop or `34–42` chars/line on mobile mechanically locks raster font size)
@@ -725,13 +725,13 @@ To make Nano Banana hit exact web-safe sizes on **Round 1 (`0` font-redo turns)*
 
 | Surface | `1x` Viewport →
 <truncated 4052 bytes>
-/local/google/home/jfesta/skills/jason-design-agent/SKILL.md) · [moodboard-and-pipeline-spec.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md) · [agent.md](file:///usr/local/google/home/jfesta/skills/jason-design-agent/agent.md) · [jason-design-agent.md](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md)
-  - [recommend_google_fonts.py](file:///usr/local/google/home/jfesta/skills/google-font-selection/scripts/recommend_google_fonts.py) · [google-font-selection/SKILL.md](file:///usr/local/google/home/jfesta/skills/google-font-selection/SKILL.md)
-  - [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/skills/style-direction/SKILL.md) · [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/skills/image-gen/SKILL.md) · [anchor-prompt-and-27-slot-matrix.md](file:///usr/local/google/home/jfesta/skills/image-gen/references/anchor-prompt-and-27-slot-matrix.md) · [design-critique/SKILL.md](file:///usr/local/google/home/jfesta/skills/design-critique/SKILL.md)
+/local/google/home/jfesta/skills/jason-design-agent/SKILL.md) · [moodboard-and-pipeline-spec.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md) · [agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/agent.md) · [jason-design-agent.md](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md)
+  - [recommend_google_fonts.py](file:///usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/recommend_google_fonts.py) · [google-font-selection/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/google-font-selection/SKILL.md)
+  - [style-direction/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/style-direction/SKILL.md) · [image-gen/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/SKILL.md) · [anchor-prompt-and-27-slot-matrix.md](file:///usr/local/google/home/jfesta/design-kit/skills/image-gen/references/anchor-prompt-and-27-slot-matrix.md) · [design-critique/SKILL.md](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/SKILL.md)
 - **Verified**:
-  - [test_google_font_skill.py](file:///usr/local/google/home/jfesta/skills/google-font-selection/scripts/test_google_font_skill.py): `ALL TESTS PASSED` across `1,951` live Google Fonts families (`10/10` archetypes, `0` CSS2 axis errors).
-  - [font_scale_and_pairing.py](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py): verified `pair` (`Imbue` → `Atkinson Hyperlegible Next` `90.1`), `prompt-block`, `scale-seed` (`1536×2752` PNG), and negative `audit` (caught `Inter` cliché, `Imbue` `/Purpose/Easy Reading=0` as secondary body, and `2.31:1` contrast with `#8AA396` `>= 4.5:1` auto-fix).
-  - [validate_and_wrap.py](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py) + [build_catalog.py](file:///usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py): `24/24 [PASS]` (`22` skills + `2` coordinator agents) and rebuilt catalog bundles.
+  - [test_google_font_skill.py](file:///usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/test_google_font_skill.py): `ALL TESTS PASSED` across `1,951` live Google Fonts families (`10/10` archetypes, `0` CSS2 axis errors).
+  - [font_scale_and_pairing.py](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py): verified `pair` (`Imbue` → `Atkinson Hyperlegible Next` `90.1`), `prompt-block`, `scale-seed` (`1536×2752` PNG), and negative `audit` (caught `Inter` cliché, `Imbue` `/Purpose/Easy Reading=0` as secondary body, and `2.31:1` contrast with `#8AA396` `>= 4.5:1` auto-fix).
+  - [validate_and_wrap.py](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py) + [build_catalog.py](file:///usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py): `24/24 [PASS]` (`22` skills + `2` coordinator agents) and rebuilt catalog bundles.
 
 </details>
 
@@ -777,7 +777,7 @@ try
 
 # `jason-design-agent` Pipeline Cleanup & Export Verification
 
-The `jason-design-agent` skill tree and all sub-skills in [`/usr/local/google/home/jfesta/skills/`](file:///usr/local/google/home/jfesta/skills) have been cleaned, reconciled against the canonical v2 pipeline contract, documented, and packaged for export this evening.
+The `jason-design-agent` skill tree and all sub-skills in [`/usr/local/google/home/jfesta/design-kit/skills/`](file:///usr/local/google/home/jfesta/design-kit/skills) have been cleaned, reconciled against the canonical v2 pipeline contract, documented, and packaged for export this evening.
 
 ---
 
@@ -785,10 +785,10 @@ The `jason-design-agent` skill tree and all sub-skills in [`/usr/local/google/ho
 
 | Pipeline Component | Previous State | Cleaned Canonical State |
 | :--- | :--- | :--- |
-| **Benchmark Research** | 10 category-bar benchmarks averaged into a single direction | **5 standout non-beige benchmarks** producing 5 visibly different results, documented with full-webpage DevTools captures and a named **5–10 style range** ([`research/style-range.md`](file:///usr/local/google/home/jfesta/skills/research/references/url-intake-and-multi-agent-analysis.md)) |
-| **Typography System** | Ad-hoc font choices, static pairing, font-sizing churn in Nano Banana rounds | **Web-Safe Primary** + live-scored **Easy-Reading Companion Body & UI** Google Font pairing ([`font_scale_and_pairing.py`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py)) with **4-surface CSS-to-2K font scale blocks** (`desktop-web`, `mobile`, `desktop-app`, `component`) and **zero font-redo rounds** |
+| **Benchmark Research** | 10 category-bar benchmarks averaged into a single direction | **5 standout non-beige benchmarks** producing 5 visibly different results, documented with full-webpage DevTools captures and a named **5–10 style range** ([`research/style-range.md`](file:///usr/local/google/home/jfesta/design-kit/skills/research/references/url-intake-and-multi-agent-analysis.md)) |
+| **Typography System** | Ad-hoc font choices, static pairing, font-sizing churn in Nano Banana rounds | **Web-Safe Primary** + live-scored **Easy-Reading Companion Body & UI** Google Font pairing ([`font_scale_and_pairing.py`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py)) with **4-surface CSS-to-2K font scale blocks** (`desktop-web`, `mobile`, `desktop-app`, `component`) and **zero font-redo rounds** |
 | **Concept Plate Generation** | Legacy 27-slot monolithic structure | **Mode A: `4 x 3 = 12` plates** (3 web, 3 app, 3 component, 3 experience) or **Mode B: Multi-Direction Landing Plates** with surface-matched image conditioning (`ref-base` / `scale-seed`) and a hard **$\le 3$ round Nano Banana ceiling** |
-| **Designer Critique** | Single-reviewer, single-tweak inching | **Tri-perspective brutal critique** (Designer Taste, Benchmark Grounding, Ruthless Self-Audit), **10–15 agent critique swarm** ([`run_critique_swarm.py`](file:///usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py)), and **10-dimension simultaneous auto-correction** (Anti-Inching Law) |
+| **Designer Critique** | Single-reviewer, single-tweak inching | **Tri-perspective brutal critique** (Designer Taste, Benchmark Grounding, Ruthless Self-Audit), **10–15 agent critique swarm** ([`run_critique_swarm.py`](file:///usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py)), and **10-dimension simultaneous auto-correction** (Anti-Inching Law) |
 | **Delivery & Review** | Moodbo
 <truncated 4355 bytes>
 PASS] jason-design-agent (coordinator agent)
@@ -832,7 +832,7 @@ All 24 packages passed validation.
 
 ## 5. Ready-to-Ship Archives
 
-All `.skill` and `.zip` archives have been refreshed in `/usr/local/google/home/jfesta/skills/`:
+All `.skill` and `.zip` archives have been refreshed in `/usr/local/google/home/jfesta/design-kit/skills/`:
 - `jason-design-agent.skill` & `jason-design-agent.zip` (`76 KB`)
 - `concept-art.skill` & `concept-art.zip` (`17 KB`)
 - `research.skill` & `research.zip` (`45 KB`)
@@ -858,7 +858,7 @@ Can you go through all of this agent and list it off for me what's in store for 
 
 # `jason-design-agent` & `jason-dev-agent` — Complete Pipeline Architecture & Capability Manifest
 
-Here is the complete line-by-line inventory of what is built into the canonical lowercase skills workspace ([`/usr/local/google/home/jfesta/skills/`](file:///usr/local/google/home/jfesta/skills)), detailing the end-to-end design and engineering harness.
+Here is the complete line-by-line inventory of what is built into the canonical lowercase skills workspace ([`/usr/local/google/home/jfesta/design-kit/skills/`](file:///usr/local/google/home/jfesta/design-kit/skills)), detailing the end-to-end design and engineering harness.
 
 ---
 
@@ -1087,7 +1087,7 @@ Let's make sure we write a skill for the loop that it goes into before it presen
 
 ### Turn 93 — AGENT (`2026-10-28 03:07:29` · `57c27c51`)
 
-I have created the dedicated **`design-flywheel`** skill ([`design-flywheel/SKILL.md`](file:///usr/local/google/home/jfesta/skills/design-flywheel/SKILL.md)) and wrapped and validated it successfully across the workspace.
+I have created the dedicated **`design-flywheel`** skill ([`design-flywheel/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/design-flywheel/SKILL.md)) and wrapped and validated it successfully across the workspace.
 
 ### Summary of the `design-flywheel` Skill
 - **Target**: Every aspect of the full-page layout—from the top sticky header and navigation down to individual **touts** (hero sections, card grids, feature lists, data tables, and complete footers) across both desktop and mobile viewports.
@@ -1106,7 +1106,7 @@ You are a developer at Google and you are going to be reading this skill and thi
 ### Turn 95 — AGENT (`2026-10-28 03:25:08` · `57c27c51`)
 
 An authoritative, production-grade **Technical Design Document (TDD)** has been authored and committed to the workspace:
-- **[`jason-design-agent/references/google-engineering-architecture.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/google-engineering-architecture.md)**
+- **[`jason-design-agent/references/google-engineering-architecture.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/google-engineering-architecture.md)**
 
 This document establishes the official Google engineering architecture for the `jason-design-agent` $\leftrightarrow$ `jason-dev-agent` autonomous harness, detailing data flow, subsystem contracts, the Self-Improving Design Flywheel, deterministic test suites, and validation receipts. All skill packages pass validation cleanly (`24/24 [PASS]`).
 
@@ -1125,28 +1125,28 @@ Here is a comprehensive overview of the core documentation and specification doc
 ---
 
 ## 1. Primary Coordinator & Manifest Documents
-- **[`jason-design-agent/SKILL.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/SKILL.md)**: The main instruction file and YAML-frontmatter manifest for the design coordinator agent.
-- **[`jason-design-agent/agent.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/agent.md)** (synced with [`_agents/agents/jason-design-agent.md`](file:///usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md)): The active agent definition file outlining core constraints, non-beige rules, and turn-budget enforcement.
-- **[`AGENTS.md`](file:///usr/local/google/home/jfesta/skills/AGENTS.md)**: The canonical workspace guide defining the end-to-end `jason-design-agent` $\leftrightarrow$ `jason-dev-agent` loop and skill hierarchy.
+- **[`jason-design-agent/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/SKILL.md)**: The main instruction file and YAML-frontmatter manifest for the design coordinator agent.
+- **[`jason-design-agent/agent.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/agent.md)** (synced with [`_agents/agents/jason-design-agent.md`](file:///usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md)): The active agent definition file outlining core constraints, non-beige rules, and turn-budget enforcement.
+- **[`AGENTS.md`](file:///usr/local/google/home/jfesta/design-kit/skills/AGENTS.md)**: The canonical workspace guide defining the end-to-end `jason-design-agent` $\leftrightarrow$ `jason-dev-agent` loop and skill hierarchy.
 
 ---
 
 ## 2. Core Technical Design & Architecture Documents
-- **[`google-engineering-architecture.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/google-engineering-architecture.md)**: The Google-grade Technical Design Document (TDD) detailing system architecture, data flow diagrams, subsystem contracts, and deterministic verification receipts.
-- **[`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/pipeline-contract-and-export.md)**: The complete export-grade contract outlining vocabulary, directory schemas, script arguments, and staging invariants.
+- **[`google-engineering-architecture.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/google-engineering-architecture.md)**: The Google-grade Technical Design Document (TDD) detailing system architecture, data flow diagrams, subsystem contracts, and deterministic verification receipts.
+- **[`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/pipeline-contract-and-export.md)**: The complete export-grade contract outlining vocabulary, directory schemas, script arguments, and staging invariants.
 
 ---
 
 ## 3. Pipeline & Workflow Specifications
-- **[`simplified-pipeline-spec.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/simplified-pipeline-spec.md)**: The streamlined 5-step master process covering Research/Nanofy intake, Style Direction, 1K Image Generation, Polish/Steering, and Final Expansion.
-- **[`unified-style-direction-and-gen.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/unified-style-direction-and-gen.md)**: Specifies how research URLs or nanofy plates map to distinct **Style Ranges**, comprehensive master prompts, live font selection, and initial multi-range 1K generation.
-- **[`self-improving-design-flywheel.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/self-improving-design-flywheel.md)**: Details the automated 5-turn self-improvement loop (`design-flywheel`) targeting full-page layouts (sticky header to footer) and tout-by-tout micro-research steering before the designer checkpoint.
+- **[`simplified-pipeline-spec.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/simplified-pipeline-spec.md)**: The streamlined 5-step master process covering Research/Nanofy intake, Style Direction, 1K Image Generation, Polish/Steering, and Final Expansion.
+- **[`unified-style-direction-and-gen.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/unified-style-direction-and-gen.md)**: Specifies how research URLs or nanofy plates map to distinct **Style Ranges**, comprehensive master prompts, live font selection, and initial multi-range 1K generation.
+- **[`self-improving-design-flywheel.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/self-improving-design-flywheel.md)**: Details the automated 5-turn self-improvement loop (`design-flywheel`) targeting full-page layouts (sticky header to footer) and tout-by-tout micro-research steering before the designer checkpoint.
 
 ---
 
 ## 4. Typography & Layout Specifications
-- **[`web-safe-typography-and-nano-scale.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/web-safe-typography-and-nano-scale.md)**: Defines the web-safe Primary + Easy-Reading Companion body font pairing protocol, letterform anatomy rules, 4-surface scale blocks, and copy-measure locks (`desktop-web`, `mobile`, `desktop-app`, `component`).
-- **[`moodboard-and-pipeline-spec.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md)**: Specifications for the `#0c0c0b` lowercase moodboard (`index.html`), 3-tier type scale, 5-row rollover drawer, zero default approvals, and self-contained HTML export blobs.
+- **[`web-safe-typography-and-nano-scale.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/web-safe-typography-and-nano-scale.md)**: Defines the web-safe Primary + Easy-Reading Companion body font pairing protocol, letterform anatomy rules, 4-surface scale blocks, and copy-measure locks (`desktop-web`, `mobile`, `desktop-app`, `component`).
+- **[`moodboard-and-pipeline-spec.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/moodboard-and-pipeline-spec.md)**: Specifications for the `#0c0c0b` lowercase moodboard (`index.html`), 3-tier type scale, 5-row rollover drawer, zero default approvals, and self-contained HTML export blobs.
 
 ---
 
@@ -1203,7 +1203,7 @@ During the flywheel, we need to make sure that each round of the flywheel uses t
 
 ### Turn 101 — AGENT (`2026-10-28 03:36:05` · `57c27c51`)
 
-I have explicitly updated the **`design-flywheel`** skill ([`design-flywheel/SKILL.md`](file:///usr/local/google/home/jfesta/skills/design-flywheel/SKILL.md)) and validated the package (`24/24 [PASS]`) to enforce this exact rule:
+I have explicitly updated the **`design-flywheel`** skill ([`design-flywheel/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/design-flywheel/SKILL.md)) and validated the package (`24/24 [PASS]`) to enforce this exact rule:
 
 - **Iterative Image-to-Image Conditioning**: Every single round of the flywheel **must use the output image from the immediately preceding round as its direct image input** (`ref-base` / `--input_image`). 
 - Instead of generating blind text-to-image calls, each turn applies precise prompt steering and micro-research corrections directly on top of the prior plate, guaranteeing cumulative, progressive design refinement across all 5 turns.
@@ -1218,7 +1218,7 @@ The design agent should ask for the prompt or an intake of a style kit.
 
 ### Turn 103 — AGENT (`2026-10-28 03:36:48` · `57c27c51`)
 
-I have successfully updated the pipeline specification ([`simplified-pipeline-spec.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/simplified-pipeline-spec.md)) and validated all skill packages (`24/24 [PASS]`) to reflect this intake rule:
+I have successfully updated the pipeline specification ([`simplified-pipeline-spec.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/simplified-pipeline-spec.md)) and validated all skill packages (`24/24 [PASS]`) to reflect this intake rule:
 
 - **Stage 0 Session Initialization**: At the very start of a session, `jason-design-agent` explicitly prompts the user for either a **natural-language prompt** (triggering the `research` path) or an **intake of a style kit / folder of plates** (triggering the `nanofy` path), alongside the turn budget prompt (`design_agent_turns`).
 
@@ -1233,7 +1233,7 @@ Let's finalize the design agent. The very first thing that the initial design ag
 ### Turn 105 — AGENT (`2026-10-28 05:01:17` · `57c27c51`)
 
 I have finalized and documented the exact **Session Initialization & Interactive Intake Protocol** at:
-- **[`jason-design-agent/references/session-initialization-and-intake.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/session-initialization-and-intake.md)**
+- **[`jason-design-agent/references/session-initialization-and-intake.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/session-initialization-and-intake.md)**
 
 ### How Session Initialization Works Now:
 Upon activation, `jason-design-agent` immediately engages the user with an interactive prompt sequence:
@@ -1275,20 +1275,20 @@ To test the `jason-design-agent` onboard, you can run the validation and verific
 
 1. **Validate All Skill Packages (Local Sandbox)**:
    ```bash
-   python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py \
-     --skills-root=/usr/local/google/home/jfesta/skills --fix
+   python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py \
+     --skills-root=/usr/local/google/home/jfesta/design-kit/skills --fix
    ```
    *(Expected output: `[PASS]` across all 24 skills and coordinator agents).*
 
 2. **Test Live Google Fonts Catalog & Typography Pairing (Unsandboxed / Network Enabled)**:
    ```bash
-   python3 /usr/local/google/home/jfesta/skills/google-font-selection/scripts/test_google_font_skill.py
+   python3 /usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/test_google_font_skill.py
    ```
    *(Expected output: `ALL TESTS PASSED` across 1,951 live Google Fonts families and 10 prompt benchmark categories).*
 
 3. **Test Typography Scale & Surface Prompt Blocks**:
    ```bash
-   python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py pair --primary="Fraunces"
+   python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py pair --primary="Fraunces"
    ```
 
 ### Activating the Agent in Chat
@@ -1311,7 +1311,7 @@ Go ahead and make sure that this is the instructions for activating the agent in
 ### Turn 111 — AGENT (`2026-10-28 05:21:45` · `57c27c51`)
 
 I have created the official activation and usage instructions for the installed skill at:
-- **[`jason-design-agent/references/activation-instructions.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/activation-instructions.md)**
+- **[`jason-design-agent/references/activation-instructions.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/activation-instructions.md)**
 
 ### Quick Reference for Chat Activation
 Once the plugin/skill bundle is installed and enabled in your workspace:

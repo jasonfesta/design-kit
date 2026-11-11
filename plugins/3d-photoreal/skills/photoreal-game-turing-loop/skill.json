@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/photoreal-game-turing-loop.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/photoreal-game-turing-loop",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/photoreal-game-turing-loop",
   "bundle_skill": "photoreal-game-turing-loop.skill",
   "bundle_zip": "photoreal-game-turing-loop.zip",
   "short_summary": "End-to-end daily coordinator skill that fuses the ArchDaily Reference-Grounded 4x-RGSS Multi-View Three.js Turing Test Swarm, the 10-Second Toy-First Deterministic 3D Browser Game stack, and the Vamsi AAA Living Game Dossier Laws (Racing, FPS, RTS, and Universal Image-to-Working-Model) to build a high-fidelity photorealistic 3D game each day. Use when creating a daily photoreal 3D web game, racing simulator, tactical FPS, medieval RTS, or playable 3D diorama grounded in reference photography with multi-camera Turing parity, 400% macro-crop critics, CSPRNG double-blind A/B juries, and 60fps instanced WebGL rendering. Don't use for static 2D UI mockups (use jason-design-agent or jason-dev-agent).",

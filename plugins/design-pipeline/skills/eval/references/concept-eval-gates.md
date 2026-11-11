@@ -7,7 +7,7 @@
 Before visual inspection with `read_file` and BEFORE `build_moodboard.py`, run `lock_and_verify_plates.py verify` inside the standard sandbox (`BypassSandbox: false`) to verify that all generated PNGs exist, meet `min(w, h) >= 1024` (`>= 1K` on every edge, `2K` lossless sRGB `.png`), pass crystal-clear acutance (`sharpness_ratio >= 0.28`, `hf_detail_std >= 0.8`), and emit `critique/pre-moodboard-image-checkpoint.md`:
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/lock_and_verify_plates.py verify --study-dir=.
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/lock_and_verify_plates.py verify --study-dir=.
 ```
 
 - **aspect-ratio check**:
@@ -51,7 +51,7 @@ When any slot fails any gate or enters a new turn / Round 2, `eval` invokes the 
 Run the automated audit CLI:
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py audit \
+python3 /usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py audit \
   --plate=concepts/web/01-web-01.png \
   --benchmarks=research/benchmarks.md \
   --prompt="modern coffee shop"

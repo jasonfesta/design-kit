@@ -158,14 +158,14 @@
     </header>
     <article>
       <h1>Skill Maker: Google Skill Wrapper, Validator &amp; x20 Publisher</h1>
-<p>Skill Maker (<code>skill-maker</code>) turns raw or workspace-local agent skills into clean, non-redundant, deployment-ready <strong>Google Skills packages</strong> that pass <code>validate_skill.py</code> presubmit checks and publish cleanly to both a unified local skills workspace (<code>~/skills/</code>) and an interactive <code>x20</code> catalog (<code>/google/data/rw/users/{user}/www/skills/</code>).</p>
+<p>Skill Maker (<code>skill-maker</code>) turns raw or workspace-local agent skills into clean, non-redundant, deployment-ready <strong>Google Skills packages</strong> that pass <code>validate_skill.py</code> presubmit checks and publish cleanly to both a unified local skills workspace (<code>~/design-kit/skills/</code>) and an interactive <code>x20</code> catalog (<code>/google/data/rw/users/{user}/www/skills/</code>).</p>
 <h2>Workflow Checklist</h2>
 <p>Copy this checklist when wrapping or cleaning up one or more skills:</p>
 <ul class="checklist">
 <li><span class="check-box"></span><span><strong>Step 1</strong>: Audit candidate skills for independence, clean identifiers, and zero duplicate scripts (<a href="references/deduplication-and-naming.md">deduplication and naming guide</a>)</span></li>
 <li><span class="check-box"></span><span><strong>Step 2</strong>: Normalize <code>SKILL.md</code> frontmatter, links, and progressive disclosure structure (<a href="references/google-skill-spec.md">Google skill specification</a>)</span></li>
 <li><span class="check-box"></span><span><strong>Step 3</strong>: Run <code>scripts/validate_and_wrap.py</code> to generate <code>BUILD</code>, <code>scripts/BUILD</code>, <code>EVAL.txtpb</code>, <code>TEST.md</code>, <code>references/contributing.md</code>, <code>skill.json</code>, <code>evals/smoke.json</code>, <code>index.html</code>, and <code>.skill</code> / <code>.zip</code> bundles</span></li>
-<li><span class="check-box"></span><span><strong>Step 4</strong>: Run <code>scripts/build_catalog.py</code> to generate the unified workspace <code>README.md</code>, <code>_agents/skills.json</code>, <code>catalog.json</code>, root <code>index.html</code> portal, and sync to <code>~/skills/</code> and <code>x20</code> (<a href="references/x20-and-bundle-packaging.md">x20 and bundle packaging guide</a>)</span></li>
+<li><span class="check-box"></span><span><strong>Step 4</strong>: Run <code>scripts/build_catalog.py</code> to generate the unified workspace <code>README.md</code>, <code>_agents/skills.json</code>, <code>catalog.json</code>, root <code>index.html</code> portal, and sync to <code>~/design-kit/skills/</code> and <code>x20</code> (<a href="references/x20-and-bundle-packaging.md">x20 and bundle packaging guide</a>)</span></li>
 </ul>
 <h2>Step 1: Audit for Independence, Clean Identifiers &amp; Zero Redundancy</h2>
 <p>Before wrapping skills, eliminate overlap across the skill set:</p>
@@ -205,7 +205,7 @@
 <p>Run <a href="scripts/validate_and_wrap.py">validate_and_wrap.py</a> on a single skill directory or across all skills in a workspace:</p>
 <pre data-lang="bash"><code># Validate, sanitize, generate Google3 wrappers, build HTML docs, and pack .skill/.zip archives:
 python3 {skill_dir}/scripts/validate_and_wrap.py \
-  --skills-root=/usr/local/google/home/jfesta/skills \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills \
   --fix</code></pre>
 <p>For every skill directory <code>{skills_root}/{skill_id}/</code>, <code>validate_and_wrap.py</code>:</p>
 <ol>
@@ -231,14 +231,14 @@ python3 {skill_dir}/scripts/validate_and_wrap.py \
 <p>Run <a href="scripts/build_catalog.py">build_catalog.py</a> to assemble the root skills workspace and optionally mirror the static catalog and downloadable <code>.skill</code> / <code>.zip</code> bundles to <code>x20</code>:</p>
 <pre data-lang="bash"><code># Build root README.md, catalog.json, _agents/skills.json, and root index.html portal:
 python3 {skill_dir}/scripts/build_catalog.py \
-  --skills-root=/usr/local/google/home/jfesta/skills \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills \
   --x20-dir=/google/data/rw/users/jf/jfesta/www/skills</code></pre>
 <h3>Input -&gt; Output Example</h3>
 <p><strong>Input</strong>:</p>
-<pre data-lang="text"><code>Directory: /usr/local/google/home/jfesta/skills/golden-template/
+<pre data-lang="text"><code>Directory: /usr/local/google/home/jfesta/design-kit/skills/golden-template/
 Contains: SKILL.md, scripts/lint-golden-template.mjs, references/nomenclature-and-polish-rules.md, assets/dating/</code></pre>
 <p><strong>Output after <code>validate_and_wrap.py</code> + <code>build_catalog.py</code></strong>:</p>
-<pre data-lang="text"><code>/usr/local/google/home/jfesta/skills/
+<pre data-lang="text"><code>/usr/local/google/home/jfesta/design-kit/skills/
 ├── index.html                           # Interactive dark/light Skills Catalog Portal (x20 ready)
 ├── README.md                            # Complete table &amp; architecture documentation of all skills
 ├── catalog.json                         # Machine-readable registry of all wrapped skills

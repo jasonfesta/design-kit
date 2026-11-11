@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/url-variant.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/url-variant",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/url-variant",
   "bundle_skill": "url-variant.skill",
   "bundle_zip": "url-variant.zip",
   "short_summary": "captures full-length desktop and mobile screenshots plus complete desktop and mobile dom text from a url via chrome devtools, generates a true unique nano banana 2.1 variant (new text, new colors, new fonts, same vibe, zero flutter/artifacts), and scores uniqueness vs. aesthetic quality.",

@@ -58,7 +58,7 @@ Good pairings contrast in construction and agree on proportion: a high-contrast 
 ## 3. evaluating
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/font-pairing/scripts/eval-font-pairing.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/font-pairing/scripts/eval-font-pairing.py \
   --project="/path/to/workspace/projects/<project-slug>" \
   --expect-primary="<family from style-direction>" --expect-secondary="<family>" [--expect-tertiary="<family>"]
 # gates: family_budget_ok · primary_locked_ok · secondary_locked_ok · tertiary_restrained_ok · scale_ok · no_fallback_leaks_ok · matches_style_direction_ok

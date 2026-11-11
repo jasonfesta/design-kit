@@ -11,7 +11,7 @@ This example shows how `jason-dev-agent` iterates a responsive Golden Template l
 2. **run `eval-responsive-pair.mjs`**:
    ```bash
    /usr/local/google/home/jfesta/.local/bin/node \
-     /usr/local/google/home/jfesta/skills/responsiveness/scripts/eval-responsive-pair.mjs \
+     /usr/local/google/home/jfesta/design-kit/skills/responsiveness/scripts/eval-responsive-pair.mjs \
      --brand=mellore
    ```
 3. **diagnose turn 1 report**:

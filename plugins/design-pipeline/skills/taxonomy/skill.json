@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/taxonomy.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/taxonomy",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/taxonomy",
   "bundle_skill": "taxonomy.skill",
   "bundle_zip": "taxonomy.zip",
   "short_summary": "classifies prompts, screenshots, briefs, benchmark slices, and react builds into the locked wda v1.1 prompt \u2194 template match taxonomy (3 categories, 15 subcategories, 557 prompts, 257 templates, 77 gap archetypes, and auxiliary dimensions), recommends templates and gaps, audits slice distributions, and extends append-only.",

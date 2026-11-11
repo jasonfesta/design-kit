@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-daylight-and-interior-glow.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/arch-daylight-and-interior-glow",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/arch-daylight-and-interior-glow",
   "bundle_skill": "arch-daylight-and-interior-glow.skill",
   "bundle_zip": "arch-daylight-and-interior-glow.zip",
   "short_summary": "Calibrate overcast diffuse skies, solar cast-shadow azimuth/elevation, scoped PMREM environment maps (preventing interior grazing Fresnel leaks), analytic planar glass reflections, and Neutral vs. AgX tone mapping in Three.js.",

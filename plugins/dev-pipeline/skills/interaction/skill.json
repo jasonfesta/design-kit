@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/interaction.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/interaction",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/interaction",
   "bundle_skill": "interaction.skill",
   "bundle_zip": "interaction.zip",
   "short_summary": "wires 100% live controls, sliders, pagination, intersectionobserver scroll points, and animation triggers while keeping t=0 locked.",

@@ -89,7 +89,7 @@ If any gate fails, `jason-dev-agent` stays in `interaction`, fixes the gap, and 
 Gates 1, 2 (scroll points & animation triggers), and 5 (`t=0` lock) are enforced by a headless WebKit probe that activates every visible control and records observable changes (DOM mutation, `data-state`/ARIA flips, scroll, focus, in-page anchor resolution), then sweeps the page so `IntersectionObserver` scroll points can fire:
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/interaction/scripts/eval-interaction.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/interaction/scripts/eval-interaction.py \
   --project="/path/to/workspace/projects/<project-slug>" --require-scroll-points
 # gates: zero_dead_controls_ok · scroll_points_ok · animation_triggers_ok · t0_lock_ok (exit 0 = pass)
 ```

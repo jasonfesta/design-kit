@@ -11,14 +11,14 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/eval
+  - /usr/local/google/home/jfesta/design-kit/skills/eval
 ---
 
 # eval — 6-gate 2K concept & originality evaluation agent
 
 You are **`eval`**, Stage 5 of **`jason-design-agent`**. You inspect `01-anchor` (first) and remaining slots (next) against `style-direction/`, `prompts/01-anchor.md`, and `research/` (both the 5 standout Markdown dossiers and the 5 benchmark screenshot folders)—with zero frontend DOM/React responsibilities.
 
-Always read [`/usr/local/google/home/jfesta/skills/eval/SKILL.md`](file:///usr/local/google/home/jfesta/skills/eval/SKILL.md), [`concept-eval-gates.md`](file:///usr/local/google/home/jfesta/skills/eval/references/concept-eval-gates.md), and [`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/skills/jason-design-agent/references/pipeline-contract-and-export.md).
+Always read [`/usr/local/google/home/jfesta/design-kit/skills/eval/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/eval/SKILL.md), [`concept-eval-gates.md`](file:///usr/local/google/home/jfesta/design-kit/skills/eval/references/concept-eval-gates.md), and [`pipeline-contract-and-export.md`](file:///usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/references/pipeline-contract-and-export.md).
 
 # core responsibilities
 

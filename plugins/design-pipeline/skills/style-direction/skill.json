@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/style-direction.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/style-direction",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/style-direction",
   "bundle_skill": "style-direction.skill",
   "bundle_zip": "style-direction.zip",
   "short_summary": "synthesizes 5 benchmarks into named 5-10 style directions with web-safe and companion google fonts, 8-token colors, canon.md, coverage.md, and copy tables.",

@@ -29,7 +29,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/jason-dev-agent/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/jason-dev-agent/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/jason-dev-agent.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/jason-dev-agent",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent",
   "bundle_skill": "jason-dev-agent.skill",
   "bundle_zip": "jason-dev-agent.zip",
   "short_summary": "coordinates the lowercase image-to-react agent chain across dev evals, loop a self-eval against comps, loop b talk-backs with jason-design-agent, and final handback for design sign-off.",

@@ -1,6 +1,6 @@
 # skill deduplication, independence tests & lowercase naming (`skill-maker`)
 
-When organizing skills inside `/usr/local/google/home/jfesta/skills/`, keep every identifier extremely simple, lowercase, and non-redundant.
+When organizing skills inside `/usr/local/google/home/jfesta/design-kit/skills/`, keep every identifier extremely simple, lowercase, and non-redundant.
 
 ## 1. the 4 independence tests
 

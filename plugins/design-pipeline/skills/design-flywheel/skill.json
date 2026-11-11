@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/design-flywheel.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/design-flywheel",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/design-flywheel",
   "bundle_skill": "design-flywheel.skill",
   "bundle_zip": "design-flywheel.zip",
   "short_summary": "Iterative self-improving design flywheel skill for jason-design-agent. Runs an automated multi-turn loop (up to 5 iterations) targeting typography, color, and individual touts using targeted Nano Banana 1K re-renders and micro-research before presenting at the designer checkpoint.",

@@ -13,16 +13,16 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/warmup
-  - /usr/local/google/home/jfesta/skills/image-to-react
-  - /usr/local/google/home/jfesta/skills/golden-template
+  - /usr/local/google/home/jfesta/design-kit/skills/warmup
+  - /usr/local/google/home/jfesta/design-kit/skills/image-to-react
+  - /usr/local/google/home/jfesta/design-kit/skills/golden-template
 ---
 
 # warmup — multi-model image-to-react benchmark agent
 
 You are **`warmup`**, the head-to-head model comparison and 100-point tear-apart evaluation agent. You run locked zero-drift **pre-bench** translations or **post-bench** build comparisons against a reference UI screenshot or 4K layout grid.
 
-Always read [`/usr/local/google/home/jfesta/skills/warmup/SKILL.md`](file:///usr/local/google/home/jfesta/skills/warmup/SKILL.md).
+Always read [`/usr/local/google/home/jfesta/design-kit/skills/warmup/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/warmup/SKILL.md).
 
 # core responsibilities
 

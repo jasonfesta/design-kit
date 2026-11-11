@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/responsiveness.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/responsiveness",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/responsiveness",
   "bundle_skill": "responsiveness.skill",
   "bundle_zip": "responsiveness.zip",
   "short_summary": "evaluates one shared responsive react dom across desktop, mobile, and six viewports (320px to 1536px) before designer critique.",

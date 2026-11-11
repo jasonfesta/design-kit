@@ -6,7 +6,7 @@ Warmup (`warmup`) is a Google-wide **Image-to-React Pre-Bench & Post-Bench Desig
 
 ## 1. `image-to-react` (`moodboards-borg-space`)
 
-- **Author & Origin**: Jason Festa (`/usr/local/google/home/jfesta/skills/image-to-react/SKILL.md`)
+- **Author & Origin**: Jason Festa (`/usr/local/google/home/jfesta/design-kit/skills/image-to-react/SKILL.md`)
 - **What Warmup Bakes In**:
   - **Image Preprocessing & Semantic Token Extraction (`scripts/prepare_and_extract.py`)**: Bakes in `prepare-and-extract-image.py` and `ingest-nano-banana.py` to analyze single UI screenshots or 4K Nano Banana multi-layout grid sheets (`5504x3072` 5-page website sheets or `4544x3748` 10-screen mobile sheets), auto-detect panel bounding boxes via 1D valley segmentation, slice `panels/panel_01.png`..`panel_K.png`, and extract 8 semantic CSS variables (`--surface`, `--surface-raised`, `--ink`, `--muted`, `--accent`, `--accent-alt`, `--on-accent`, `--border`).
   - **Closed-Loop WebKit2GTK Visual & DOM Evaluation (`scripts/compare_builds.py`)**: Bakes in the closed-loop headless browser evaluation pattern from `eval-image-to-react` and `eval-multi-screen-project`, including deterministic multi-screen navigation via `?screen=<i>` and `window.__setGoldenEvalScreen(index)`.
@@ -16,7 +16,7 @@ Warmup (`warmup`) is a Google-wide **Image-to-React Pre-Bench & Post-Bench Desig
 
 ## 2. `golden-template` (`moodboards-borg-space`)
 
-- **Author & Origin**: Jason Festa (`/usr/local/google/home/jfesta/skills/golden-template/SKILL.md`)
+- **Author & Origin**: Jason Festa (`/usr/local/google/home/jfesta/design-kit/skills/golden-template/SKILL.md`)
 - **What Warmup Bakes In**:
   - **Canonical `golden-template/dating` (`Nocturne`) Architecture**: Every pre-bench model trial produces a complete, runnable React 19 + TypeScript + Vite 7 + Tailwind v4 + `vite-plugin-singlefile` project (`index.html`, `package.json`, `tsconfig.json`, `vite.config.ts`, `src/main.tsx`, `src/index.css`, `src/App.tsx`, `src/components/*.tsx`, `src/data/*.ts`, `src/utils/cn.ts`, plus standalone `dist/index.html`).
   - **Golden Template AST & Style Linting (`scripts/eval_warmup.py`)**: Audits named `export function App()`, bespoke `<Brand>BrandLogo.tsx` inline SVG components (`aria-hidden="true"`), 3-tier modular decomposition, font family helpers (`.font-serif-display`, `.font-grotesk`, `.font-mono-tech`), and `tabular-nums` discipline.
@@ -25,7 +25,7 @@ Warmup (`warmup`) is a Google-wide **Image-to-React Pre-Bench & Post-Bench Desig
 
 ## 3. `replicate-mock` (`google3` & `moodboards-borg-space`)
 
-- **Author & Origin**: Manasa Babu & Jason Festa (`//depot/google3/experimental/users/manasababu/skills/replicate_mock/SKILL.md` & `/usr/local/google/home/jfesta/skills/replicate-mock/SKILL.md`)
+- **Author & Origin**: Manasa Babu & Jason Festa (`//depot/google3/experimental/users/manasababu/skills/replicate_mock/SKILL.md` & `/usr/local/google/home/jfesta/design-kit/skills/replicate-mock/SKILL.md`)
 - **What Warmup Bakes In**:
   - **8 Core Pixel-Perfection Directives**:
     1. *Zero Hallucination* (no invented components, buttons, nav links, or decorative chrome).

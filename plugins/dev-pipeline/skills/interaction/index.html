@@ -219,7 +219,7 @@ paired gate   interaction design critique in jason-design-agent</code></pre>
 <p>If any gate fails, <code>jason-dev-agent</code> stays in <code>interaction</code>, fixes the gap, and re-judges before calling <code>jason-design-agent</code>.</p>
 <h3>deterministic probe (<code>scripts/eval-interaction.py</code>)</h3>
 <p>Gates 1, 2 (scroll points &amp; animation triggers), and 5 (<code>t=0</code> lock) are enforced by a headless WebKit probe that activates every visible control and records observable changes (DOM mutation, <code>data-state</code>/ARIA flips, scroll, focus, in-page anchor resolution), then sweeps the page so <code>IntersectionObserver</code> scroll points can fire:</p>
-<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/interaction/scripts/eval-interaction.py \
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/design-kit/skills/interaction/scripts/eval-interaction.py \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; --require-scroll-points
 # gates: zero_dead_controls_ok · scroll_points_ok · animation_triggers_ok · t0_lock_ok (exit 0 = pass)</code></pre>
 <p>Dead controls are reported by selector (<code>button.h-full (\&quot;Blackwork\&quot;) -&gt; no_observable_change</code>, <code>a (\&quot;Learn more\&quot;) -&gt; dead_href</code>); already-active options in radio-like groups (<code>data-state=&quot;selected|active&quot;</code>, <code>aria-selected=&quot;true&quot;</code>) are counted live. Pair it with <code>eval-image-to-react.mjs --skip-build</code> for the <code>t=0</code> visual lock and <code>eval-responsive-pair.mjs</code> for post-action layout health.</p>

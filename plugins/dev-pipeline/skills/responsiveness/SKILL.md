@@ -59,7 +59,7 @@ paired gate   responsiveness design critique in jason-design-agent
 When desktop and mobile use distinct art-directed crops of a photograph, extract clean plates with [`scripts/crop-and-clean-plate.py`](scripts/crop-and-clean-plate.py) and mount them inside a single `<picture>` tag:
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/responsiveness/scripts/crop-and-clean-plate.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/responsiveness/scripts/crop-and-clean-plate.py \
   --src=/path/to/references/desktop.png \
   --crop=0,0,1536,860 \
   --quality=88 \
@@ -72,7 +72,7 @@ Run [`scripts/eval-responsive-pair.mjs`](scripts/eval-responsive-pair.mjs) after
 
 ```bash
 /usr/local/google/home/jfesta/.local/bin/node \
-  /usr/local/google/home/jfesta/skills/responsiveness/scripts/eval-responsive-pair.mjs \
+  /usr/local/google/home/jfesta/design-kit/skills/responsiveness/scripts/eval-responsive-pair.mjs \
   --project-dir=/path/to/projects/01-website-example \
   --desktop-ref=/path/to/references/desktop.png \
   --mobile-ref=/path/to/references/mobile.png \

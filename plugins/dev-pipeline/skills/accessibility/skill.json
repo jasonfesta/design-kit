@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/accessibility.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/accessibility",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/accessibility",
   "bundle_skill": "accessibility.skill",
   "bundle_zip": "accessibility.zip",
   "short_summary": "enforces accessible standards when sizing type and controls: body >= 16px at 1.5 line height (12px floor), 4.5:1 / 3:1 contrast, targets >= 24x24 (44x44 recommended), visible focus, accessible names, alt text, and lang, verified in the live dom by eval-accessibility.py.",

@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-concept-and-toy-first.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/game-concept-and-toy-first",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/game-concept-and-toy-first",
   "bundle_skill": "game-concept-and-toy-first.skill",
   "bundle_zip": "game-concept-and-toy-first.zip",
   "short_summary": "Turn a real-world observation or physical mechanism into a clear 10-second playable browser toy with real stakes, spatial depth, and batch genre diversity before building menus, economies, or progression.",

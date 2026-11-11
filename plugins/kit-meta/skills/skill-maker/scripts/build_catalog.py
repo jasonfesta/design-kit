@@ -138,7 +138,7 @@ def write_workspace_manifests(root: pathlib.Path, skills: list[dict]) -> None:
   ]
 
   catalog = {
-      "workspace": "/usr/local/google/home/jfesta/skills",
+      "workspace": "/usr/local/google/home/jfesta/design-kit/skills",
       "x20_url": f"{X20_BASE_URL}/index.html",
       "total_skills": len(skills),
       "coordinator_agents": coord_agents,

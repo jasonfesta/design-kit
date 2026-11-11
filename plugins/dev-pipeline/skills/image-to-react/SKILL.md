@@ -117,23 +117,23 @@ Before running the pipeline (unless the user already specified a number in their
 ```bash
 # 1. lint config parity & strict typescript against golden-template/assets/dating
 /usr/local/google/home/jfesta/.local/bin/node \
-  /usr/local/google/home/jfesta/skills/golden-template/scripts/lint-golden-template.mjs \
+  /usr/local/google/home/jfesta/design-kit/skills/golden-template/scripts/lint-golden-template.mjs \
   --dir=/path/to/workspace \
   --project=<project-slug> --fix
 
 # 2. verify all mounted images are loaded, >= 2x retina, and non-blurry
-python3 /usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/nano-banana/scripts/eval-image-readiness.py \
   --project="/path/to/workspace/projects/<project-slug>"
 
 # 3. lock the type system (primary / secondary / tertiary) and accessible sizes
-python3 /usr/local/google/home/jfesta/skills/font-pairing/scripts/eval-font-pairing.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/font-pairing/scripts/eval-font-pairing.py \
   --project="/path/to/workspace/projects/<project-slug>" --expect-primary="<family>" --expect-secondary="<family>"
-python3 /usr/local/google/home/jfesta/skills/accessibility/scripts/eval-accessibility.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/accessibility/scripts/eval-accessibility.py \
   --project="/path/to/workspace/projects/<project-slug>"
 
 # 4. run the stage 1 image-to-react dev eval
 /usr/local/google/home/jfesta/.local/bin/node \
-  /usr/local/google/home/jfesta/skills/image-to-react/scripts/eval-image-to-react.mjs \
+  /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/eval-image-to-react.mjs \
   --reference="/path/to/reference.png" \
   --project="/path/to/workspace/projects/<project-slug>" \
   --out-dir="/tmp/image_to_react_eval_<project-slug>"

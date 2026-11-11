@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/feel.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/feel",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/feel",
   "bundle_skill": "feel.skill",
   "bundle_zip": "feel.zip",
   "short_summary": "verifies 60fps scrolling (eval-feel-and-scroll.py), tactile press response, gpu transform/opacity curves, zero layout shift, and reduced-motion safety.",

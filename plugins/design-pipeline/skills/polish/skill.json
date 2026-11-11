@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/polish.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/polish",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/polish",
   "bundle_skill": "polish.skill",
   "bundle_zip": "polish.zip",
   "short_summary": "runs surgical nano banana 2 image-to-image edits on failing 2k plates in rounds 2 and 3 only while freezing passing slots at round 1.",

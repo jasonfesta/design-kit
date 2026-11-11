@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/nano-banana.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/nano-banana",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/nano-banana",
   "bundle_skill": "nano-banana.skill",
   "bundle_zip": "nano-banana.zip",
   "short_summary": "upgrades only upscale-queue image slots to 2x retina with zero drift and enforces non-blur readiness via eval-image-readiness.py.",

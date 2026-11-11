@@ -26,7 +26,7 @@ Before spawning sub-agents, the coordinator runs **once**:
 
 1. **Unpack & Run Batch Ingestion**:
    ```bash
-   python3 /usr/local/google/home/jfesta/skills/image-to-react/scripts/ingest-nano-banana.py \
+   python3 /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/ingest-nano-banana.py \
      --input-dir "<path-to-nano-banana-input>" \
      --out-dir "<scratch-dir>/nano-banana-specs"
    ```
@@ -72,7 +72,7 @@ You are assigned to build, visually evaluate, and polish the Golden Template Rea
 - **Evaluation Output Directory**: `<scratch-dir>/eval/<slug>`
 
 ### Required Reading & Instructions
-1. Read `/usr/local/google/home/jfesta/skills/image-to-react/references/nano_banana_multi_screen_protocol.md`
+1. Read `/usr/local/google/home/jfesta/design-kit/skills/image-to-react/references/nano_banana_multi_screen_protocol.md`
 2. Read `<scratch-dir>/nano-banana-specs/<slug>/nano_banana_spec.json`
 3. Use `read_file` to visually inspect **every single reference screenshot** (`screens[0].reference_png` .. `screens[N-1].reference_png`) and any markdown/metadata files listed in `nano_banana_spec.json`.
 
@@ -97,7 +97,7 @@ You are assigned to build, visually evaluate, and polish the Golden Template Rea
 1. Build the project:
    `npm --prefix "<moodboard-path>/projects/<slug>" run build`
 2. Run the strict multi-screen evaluator across all reference screenshots:
-   `node /usr/local/google/home/jfesta/skills/image-to-react/scripts/eval-multi-screen-project.mjs --project="<moodboard-path>/projects/<slug>" --spec="<scratch-dir>/nano-banana-specs/<slug>/nano_banana_spec.json" --out-dir="<scratch-dir>/eval/<slug>" --target-score=0.85 --min-screen-score=0.82`
+   `node /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/eval-multi-screen-project.mjs --project="<moodboard-path>/projects/<slug>" --spec="<scratch-dir>/nano-banana-specs/<slug>/nano_banana_spec.json" --out-dir="<scratch-dir>/eval/<slug>" --target-score=0.85 --min-screen-score=0.82`
 3. Inspect `<scratch-dir>/eval/<slug>/multi_screen_eval_report.json` and view `side_by_side_<id>.png` / `diff_mask_<id>.png` for any screen below `0.85` or with any DOM violation.
 4. Iterate on your React components and CSS until `overall_passed: true` (`mean_s_total >= 0.85`, `min_s_total >= 0.82`, `0` collisions, `0` clipped text, `0` broken images, `0` button padding violations, `0` grid equality violations).
 5. Return a concise summary with per-screen `s_total` scores and confirmation that `tsc --noEmit` and `eval-multi-screen-project.mjs` passed.
@@ -111,12 +111,12 @@ Once all parallel sub-agents report completion:
 
 1. **Run the Universal Golden Template Linter Across the Moodboard**:
    ```bash
-   node /usr/local/google/home/jfesta/skills/golden-template/scripts/lint-golden-template.mjs \
+   node /usr/local/google/home/jfesta/design-kit/skills/golden-template/scripts/lint-golden-template.mjs \
      --dir="<moodboard-path>" --fix
    ```
 2. **Run the Batch DOM & Craft Auditor + Sync 1:1 Screenshots**:
    ```bash
-   node /usr/local/google/home/jfesta/skills/image-to-react/scripts/audit-all-projects.mjs \
+   node /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/audit-all-projects.mjs \
      --dir="<moodboard-path>" --sync-screenshots
    ```
 3. **Rebuild the Moodboard Gallery & All Standalone Deliverable Bundles**:

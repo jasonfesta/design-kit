@@ -1,6 +1,6 @@
 # skills workspace — `jason-design-agent` & `jason-dev-agent` instructions (`AGENTS.md`)
 
-This workspace ([`/usr/local/google/home/jfesta/skills/`](file:///usr/local/google/home/jfesta/skills)) is the **canonical lowercase skills workspace** backing the end-to-end **`jason-design-agent <-> jason-dev-agent`** harness (`jason-design-agent -> jason-dev-agent -> jason-design-agent` final output), and mirrors to `/google/data/rw/users/jf/jfesta/www/skills/` (`x20`) only when explicitly requested.
+This workspace ([`/usr/local/google/home/jfesta/design-kit/skills/`](file:///usr/local/google/home/jfesta/design-kit/skills)) is the **canonical lowercase skills workspace** backing the end-to-end **`jason-design-agent <-> jason-dev-agent`** harness (`jason-design-agent -> jason-dev-agent -> jason-design-agent` final output), and mirrors to `/google/data/rw/users/jf/jfesta/www/skills/` (`x20`) only when explicitly requested.
 
 All skill names, display labels, agent names, and stage nomenclature stay **simple and lowercase**, and every stage in both `concept-art` (`jason-design-agent`) and `image-to-react` (`jason-dev-agent`) is represented by its own well-documented plain-text Markdown skill (`SKILL.md` + `references/*.md`).
 
@@ -9,7 +9,7 @@ All skill names, display labels, agent names, and stage nomenclature stay **simp
 ## 1. canonical lowercase skill hierarchy (twin coordinator skills & agents + 7 core skills + 13 stage sub-skills)
 
 ```text
-/usr/local/google/home/jfesta/skills/
+/usr/local/google/home/jfesta/design-kit/skills/
 ├── AGENTS.md                        # workspace instructions & end-to-end jason-design-agent <-> jason-dev-agent loop
 ├── README.md                        # lowercase overview & individual skill links
 ├── index.html                       # lowercase dark/light catalog portal
@@ -80,21 +80,21 @@ All skill names, display labels, agent names, and stage nomenclature stay **simp
        1. Displays the built application directly in chat (project slug, relative build path, and working `open build` link).
        2. Displays the consolidated 8-step receipt summary table plus dev flywheel convergence receipts.
        3. Awaits the designer's review and surgical polish instructions.
-5. **tri-perspective brutal critique, 10–15 agent swarm & anti-inching auto-correction**: every design turn, `design-critique` judges candidate plates across 3 brutal perspectives (1. designer visual taste & optical craft, 2. benchmark research fidelity & avoid lists, 3. ruthless self-audit of prior agent compromises) and orchestrates a hyper-critique swarm of **10 to 15 specialized critique agents** (`python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py audit`). A turn must **never inch 1 minor change at a time**—it must aggressively auto-correct across **10 distinct steering dimensions simultaneously** (grid architecture, Google Fonts anatomy, chromatic polarity & 90/10 balance, negative space & optical padding, signature hero visual mechanic, domain vocabulary & canon copy, tactile surface materiality, multi-surface/viewport parity, component modularity, and benchmark cliché purge) before generating another turn.
+5. **tri-perspective brutal critique, 10–15 agent swarm & anti-inching auto-correction**: every design turn, `design-critique` judges candidate plates across 3 brutal perspectives (1. designer visual taste & optical craft, 2. benchmark research fidelity & avoid lists, 3. ruthless self-audit of prior agent compromises) and orchestrates a hyper-critique swarm of **10 to 15 specialized critique agents** (`python3 /usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py audit`). A turn must **never inch 1 minor change at a time**—it must aggressively auto-correct across **10 distinct steering dimensions simultaneously** (grid architecture, Google Fonts anatomy, chromatic polarity & 90/10 balance, negative space & optical padding, signature hero visual mechanic, domain vocabulary & canon copy, tactile surface materiality, multi-surface/viewport parity, component modularity, and benchmark cliché purge) before generating another turn.
 
 ---
 
 ## 3. how to validate, re-wrap & rebuild the catalog
 
-Whenever any skill in `/usr/local/google/home/jfesta/skills/` is added or updated, run `skill-maker`:
+Whenever any skill in `/usr/local/google/home/jfesta/design-kit/skills/` is added or updated, run `skill-maker`:
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py \
-  --skills-root=/usr/local/google/home/jfesta/skills --fix && \
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py \
-  --skills-root=/usr/local/google/home/jfesta/skills && \
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/sync_x20.py \
-  --skills-root=/usr/local/google/home/jfesta/skills --skip-x20
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills --fix && \
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills && \
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/sync_x20.py \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills --skip-x20
 ```
 
 *(Omit `--skip-x20` only when explicitly publishing to `x20`.)*

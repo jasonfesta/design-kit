@@ -5,7 +5,7 @@ This walkthrough shows how to run `warmup` in **Post-Bench Mode (`--mode=post-be
 ## 1. Stage Existing AVELA Builds Against the Reference Image
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/warmup/scripts/run_warmup.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/warmup/scripts/run_warmup.py \
   --mode=post-bench \
   --image=/usr/local/google/home/jfesta/moodboards/homepage-study/images/desktop/01-avela.png \
   --output=/tmp/warmup_avela_postbench \
@@ -15,7 +15,7 @@ python3 /usr/local/google/home/jfesta/skills/warmup/scripts/run_warmup.py \
 ## 2. Run Headless WebKit2GTK DOM & `AutoRaterV1` Visual Diffing
 
 ```bash
-xvfb-run -a python3 /usr/local/google/home/jfesta/skills/warmup/scripts/compare_builds.py \
+xvfb-run -a python3 /usr/local/google/home/jfesta/design-kit/skills/warmup/scripts/compare_builds.py \
   --run-dir=/tmp/warmup_avela_postbench
 ```
 
@@ -24,7 +24,7 @@ Produces per-build `rendered.png`, `rendered_overlay.png` (50/50 blend), `diff_m
 ## 3. Generate the 100-Point Tear-Apart Scorecard
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/warmup/scripts/eval_warmup.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/warmup/scripts/eval_warmup.py \
   --run-dir=/tmp/warmup_avela_postbench --verify
 ```
 

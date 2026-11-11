@@ -121,12 +121,12 @@ act 3    design-critique m3   critique/final-design-signoff.md
 ### 6.2 rebuild, validate & bundle (run after every edit)
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py --skills-root=/usr/local/google/home/jfesta/skills --fix
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py --skills-root=/usr/local/google/home/jfesta/skills
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/sync_x20.py --skills-root=/usr/local/google/home/jfesta/skills --skip-x20   # omit --skip-x20 only to publish
-python3 /usr/local/google/home/jfesta/skills/google-font-selection/scripts/test_google_font_skill.py
-python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py audit --surface=desktop-web --primary="Imbue" --secondary="Atkinson Hyperlegible Next" --bg-hex="#0B3D26" --fg-hex="#F4FBF7" --offline
-cmp /usr/local/google/home/jfesta/skills/jason-design-agent/agent.md /usr/local/google/home/jfesta/skills/_agents/agents/jason-design-agent.md
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py --skills-root=/usr/local/google/home/jfesta/design-kit/skills --fix
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py --skills-root=/usr/local/google/home/jfesta/design-kit/skills
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/sync_x20.py --skills-root=/usr/local/google/home/jfesta/design-kit/skills --skip-x20   # omit --skip-x20 only to publish
+python3 /usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/test_google_font_skill.py
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py audit --surface=desktop-web --primary="Imbue" --secondary="Atkinson Hyperlegible Next" --bg-hex="#0B3D26" --fg-hex="#F4FBF7" --offline
+cmp /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/agent.md /usr/local/google/home/jfesta/design-kit/skills/_agents/agents/jason-design-agent.md
 ```
 
 ### 6.3 install targets
@@ -140,6 +140,6 @@ cmp /usr/local/google/home/jfesta/skills/jason-design-agent/agent.md /usr/local/
 
 ```bash
 grep -rn -E "27 2k|27 \`2k\`|27-slot|27 slot|02\.\.27|19\.\.27|9 web, 9 mobile|10 category-bar|10 benchmark|10-benchmark|1 original master|10px-12px|shrunk by ~50%|1248x2560|2048x1365" \
-  /usr/local/google/home/jfesta/skills/{jason-design-agent,concept-art,research,style-direction,google-font-selection,image-gen,polish,eval,design-critique,nanofy,_agents,AGENTS.md,README.md} \
+  /usr/local/google/home/jfesta/design-kit/skills/{jason-design-agent,concept-art,research,style-direction,google-font-selection,image-gen,polish,eval,design-critique,nanofy,_agents,AGENTS.md,README.md} \
   --include=*.md --include=*.json --include=*.txtpb | grep -v "pipeline-contract-and-export.md"
 ```

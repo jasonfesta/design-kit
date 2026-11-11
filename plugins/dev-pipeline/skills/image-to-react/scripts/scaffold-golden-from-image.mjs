@@ -3,7 +3,7 @@
  * scaffold-golden-from-image.mjs
  *
  * Scaffolds a clean Google Golden Template React 19 + Vite 7 + Tailwind v4 project
- * from `/usr/local/google/home/jfesta/skills/golden-template/assets/dating`, optionally
+ * from `/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating`, optionally
  * injects semantic CSS custom properties from a `layout_metrics.json` or `nano_banana_spec.json`
  * file into `src/index.css`, updates `<title>` in `index.html`, and symlinks offline
  * `node_modules` (GOLDEN_NODE_MODULES env, bundled assets/dating/node_modules, or

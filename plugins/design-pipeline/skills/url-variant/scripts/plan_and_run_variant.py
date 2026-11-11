@@ -25,7 +25,7 @@ from typing import Any
 GEMPIX = "/google/bin/releases/gempix/gempix-1/gempix"
 MAGICK = "/usr/bin/magick" if pathlib.Path("/usr/bin/magick").exists() else "magick"
 FONT_SCALE_SCRIPT = pathlib.Path(
-    "/usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py"
+    "/usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py"
 )
 
 STANCE_DIAL_TIERS: list[tuple[float, float, str, str]] = [

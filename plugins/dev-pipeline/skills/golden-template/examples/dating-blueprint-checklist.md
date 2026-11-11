@@ -1,6 +1,6 @@
 # Canonical `dating` Blueprint Checklist (`golden-template`)
 
-Use this checklist to verify that any extracted project in `<moodboard>/projects/<project-slug>/` matches [`/usr/local/google/home/jfesta/skills/golden-template/assets/dating`](file:///usr/local/google/home/jfesta/skills/golden-template/assets/dating) 100%:
+Use this checklist to verify that any extracted project in `<moodboard>/projects/<project-slug>/` matches [`/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating) 100%:
 
 - [ ] **Slug & Category Prefix**: Directory name matches `^(0[1-9]|[1-9][0-9])-(website|ui|mobile-app|chat-ui)-[a-z0-9-]+$`.
 - [ ] **`package.json`**: Matches `golden-template/dating/package.json` verbatim, with `"name": "<project-slug>"`.

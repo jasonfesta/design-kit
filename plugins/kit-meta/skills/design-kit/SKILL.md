@@ -5,7 +5,7 @@ description: Router for Jason's design kit at ~/design-kit. Answers "what do I h
 
 # design-kit router
 
-The kit lives at `/usr/local/google/home/jfesta/design-kit` (`~/skills` is a flat symlink view of its skills).
+The kit lives at `/usr/local/google/home/jfesta/design-kit` (`~/design-kit/skills` is a flat symlink view of its skills).
 
 1. Read `/usr/local/google/home/jfesta/design-kit/INDEX.md` first. Its "Quick lookups" table maps needs to paths.
 2. Follow the path it gives:

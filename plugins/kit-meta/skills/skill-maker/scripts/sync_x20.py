@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Syncs /usr/local/google/home/jfesta/skills to ~/.gemini/config/skills and /google/data/rw/users/jf/jfesta/www/skills (x20)."""
+"""Syncs /usr/local/google/home/jfesta/design-kit/skills to ~/.gemini/config/skills and /google/data/rw/users/jf/jfesta/www/skills (x20)."""
 
 import argparse
 import os
 import pathlib
 import shutil
 
-SKILLS_WS = pathlib.Path("/usr/local/google/home/jfesta/skills")
+SKILLS_WS = pathlib.Path("/usr/local/google/home/jfesta/design-kit/skills")
 X20_SKILLS = pathlib.Path("/google/data/rw/users/jf/jfesta/www/skills")
 GLOBAL_SKILLS = pathlib.Path("/usr/local/google/home/jfesta/.gemini/config/skills")
 GLOBAL_AGENTS = pathlib.Path("/usr/local/google/home/jfesta/.gemini/config/agents")
@@ -47,7 +47,7 @@ def prune_x20_obsolete(dst_dir: pathlib.Path) -> None:
 
 
 def copy_to_x20(src_dir: pathlib.Path, dst_dir: pathlib.Path) -> int:
-  """Copies changed files from ~/skills to x20 using copyfile (safe on x20 FUSE mounts)."""
+  """Copies changed files from ~/design-kit/skills to x20 using copyfile (safe on x20 FUSE mounts)."""
   dst_dir.mkdir(parents=True, exist_ok=True)
   prune_x20_obsolete(dst_dir)
   count = 0
@@ -73,7 +73,7 @@ def copy_to_x20(src_dir: pathlib.Path, dst_dir: pathlib.Path) -> int:
 
 
 def sync_global_symlinks(skills_root: pathlib.Path) -> tuple[int, int]:
-  """Updates ~/.gemini/config/skills and ~/.gemini/config/agents symlinks to point to ~/skills."""
+  """Updates ~/.gemini/config/skills and ~/.gemini/config/agents symlinks to point to ~/design-kit/skills."""
   linked_skills = 0
   linked_agents = 0
   try:
@@ -120,7 +120,7 @@ def sync_global_symlinks(skills_root: pathlib.Path) -> tuple[int, int]:
 
 
 def main() -> None:
-  parser = argparse.ArgumentParser(description="Sync ~/skills to ~/.gemini/config/{skills,agents} and x20.")
+  parser = argparse.ArgumentParser(description="Sync ~/design-kit/skills to ~/.gemini/config/{skills,agents} and x20.")
   parser.add_argument("--skills-root", default=str(SKILLS_WS), help="Canonical skills workspace directory")
   parser.add_argument("--x20-dir", default=str(X20_SKILLS), help="Target x20 directory")
   parser.add_argument("--skip-x20", action="store_true", help="Only update global symlinks")

@@ -1,7 +1,7 @@
 {
   "entries": [
     {
-      "path": "/usr/local/google/home/jfesta/skills",
+      "path": "/usr/local/google/home/jfesta/design-kit/skills",
       "exclude": [
         "_agents",
         "\\.agents",
@@ -10,7 +10,7 @@
       ]
     },
     {
-      "path": "/usr/local/google/home/jfesta/skills/_agents/agents"
+      "path": "/usr/local/google/home/jfesta/design-kit/skills/_agents/agents"
     }
   ]
 }

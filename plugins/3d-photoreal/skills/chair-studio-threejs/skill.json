@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/chair-studio-threejs.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/chair-studio-threejs",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/chair-studio-threejs",
   "bundle_skill": "chair-studio-threejs.skill",
   "bundle_zip": "chair-studio-threejs.zip",
   "short_summary": "Harvests one high-resolution single-chair photograph on a solid white background from up to 5 curated design RSS feeds within a strict 5-call budget over the last 24 hours, reconstructs it 1-to-1 in pure procedural photorealistic Three.js against a seamless white cyclorama with a soft floor shadow bottom using tilt-shift camera matching and 4x RGSS cinema optics, and synthesizes a brand-new original chair side-by-side from cumulative daily memory and designer notes. Use when running the daily chair design agent, reconstructing a studio furniture photograph 1-to-1 in Three.js, or generating memory-informed procedural chair designs side-by-side. Don't use for multi-building landscape scenes (use arch-turing-test-loop) or static 2D HTML marketing pages (use jason-dev-agent).",

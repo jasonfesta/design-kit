@@ -16,11 +16,11 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/skill-maker.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/skill-maker",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/skill-maker",
   "bundle_skill": "skill-maker.skill",
   "bundle_zip": "skill-maker.zip",
   "short_summary": "audits, validates, documents, and wraps agent skills into shareable google skills packages with build targets, evalin suites, html docs, and downloadable .skill / .zip archives.",
-  "when_to_use": "use when creating a new skill, cleaning up or consolidating existing skills across workspaces, validating against google skill_creator rules, or publishing skills to ~/skills and x20.",
+  "when_to_use": "use when creating a new skill, cleaning up or consolidating existing skills across workspaces, validating against google skill_creator rules, or publishing skills to ~/design-kit/skills and x20.",
   "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skills-root=. --fix",
   "summary": "Audits, deduplicates, documents, validates, and wraps agent skills into deployment-ready Google Skills packages with BUILD targets, Evalin EVAL.txtpb suites, TEST.md test plans, skill.json manifests, standalone dark and light HTML documentation pages, and distributable .skill and .zip archives ready for workspace discovery and x20 hosting. Use when creating a new skill, cleaning up or consolidating existing skills across workspaces, wrapping skills for Google3 or x20 deployment, or verifying compliance with Google skill_creator and validate_skill rules. Don't use for executing domain-specific UI or font workflows directly (use google-font-selection, golden-template, image-to-react, or warmup).",
   "references": [

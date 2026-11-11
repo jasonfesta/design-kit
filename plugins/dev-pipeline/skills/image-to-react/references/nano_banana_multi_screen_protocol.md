@@ -195,13 +195,13 @@ Every screen (`0..N`) inside a Nano Banana project is audited against its corres
 
 1. **Ingest & Extract Spec**:
    ```bash
-   python3 /usr/local/google/home/jfesta/skills/image-to-react/scripts/ingest-nano-banana.py \
+   python3 /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/ingest-nano-banana.py \
      --input-dir "<path-to-nano-banana-drop>" \
      --out-dir "<scratch-dir>/nano-banana-specs"
    ```
 2. **Scaffold Canonical Golden Template Package**:
    ```bash
-   node /usr/local/google/home/jfesta/skills/image-to-react/scripts/scaffold-golden-from-image.mjs \
+   node /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/scaffold-golden-from-image.mjs \
      --moodboard="<moodboard-path>" \
      --slug="<NN>-<category>-<descriptor>" \
      --title="<Category Label> — <Project Title>" \
@@ -216,7 +216,7 @@ Every screen (`0..N`) inside a Nano Banana project is audited against its corres
    ```
 5. **Run Strict Multi-Screen Visual & DOM Evaluator**:
    ```bash
-   node /usr/local/google/home/jfesta/skills/image-to-react/scripts/eval-multi-screen-project.mjs \
+   node /usr/local/google/home/jfesta/design-kit/skills/image-to-react/scripts/eval-multi-screen-project.mjs \
      --project="<moodboard-path>/projects/<slug>" \
      --spec="<scratch-dir>/nano-banana-specs/<slug>/nano_banana_spec.json" \
      --out-dir="<scratch-dir>/eval/<slug>" \
@@ -227,6 +227,6 @@ Every screen (`0..N`) inside a Nano Banana project is audited against its corres
    - For any screen with `s_total < 0.85` or any DOM violation, inspect `<scratch-dir>/eval/<slug>/screen_0i_<id>/side_by_side_<id>.png` and `diff_mask_<id>.png`, fix the exact component geometry/colors/padding, rebuild, and re-run `eval-multi-screen-project.mjs`.
 7. **Run Universal Golden Template Linter & Bundle Verifier**:
    ```bash
-   node /usr/local/google/home/jfesta/skills/golden-template/scripts/lint-golden-template.mjs \
+   node /usr/local/google/home/jfesta/design-kit/skills/golden-template/scripts/lint-golden-template.mjs \
      --dir="<moodboard-path>" --fix
    ```

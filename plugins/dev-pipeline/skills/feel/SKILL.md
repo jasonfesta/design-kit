@@ -76,7 +76,7 @@ Where `interaction` verifies *what* elements do (buttons, sliders, pagination, s
 At the end of each feel turn, `jason-dev-agent` runs [`scripts/eval-feel-and-scroll.py`](scripts/eval-feel-and-scroll.py) and checks six deterministic pass gates (detailed in [tactile motion and timing](references/tactile-motion-and-timing.md) and [scroll, interruption, and reduced motion](references/scroll-interruption-and-reduced-motion.md)):
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/feel/scripts/eval-feel-and-scroll.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/feel/scripts/eval-feel-and-scroll.py \
   --project="/path/to/workspace/projects/<project-slug>"
 ```
 

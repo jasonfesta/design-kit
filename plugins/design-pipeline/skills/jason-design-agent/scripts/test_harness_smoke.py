@@ -6,7 +6,7 @@ def test_smoke():
     print("  JASON-DESIGN-AGENT & JASON-DEV-AGENT — ONBOARD SMOKE TEST HARNESS           ")
     print("═══════════════════════════════════════════════════════════════════════════════")
 
-    skills_root = "/usr/local/google/home/jfesta/skills"
+    skills_root = "/usr/local/google/home/jfesta/design-kit/skills"
     
     # 1. Verify key files exist
     required_files = [
@@ -28,7 +28,7 @@ def test_smoke():
 
     # 2. Test font recommendations CLI
     print("\n[TEST] Running font recommendation CLI...")
-    ret = os.system("python3 /usr/local/google/home/jfesta/skills/google-font-selection/scripts/recommend_google_fonts.py --brief='brutalist espresso bar'")
+    ret = os.system("python3 /usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/recommend_google_fonts.py --brief='brutalist espresso bar'")
     if ret != 0:
         print("[FAIL] Font recommendation CLI failed.")
         sys.exit(1)
@@ -37,7 +37,7 @@ def test_smoke():
 
     # 3. Test font scale & pairing CLI
     print("\n[TEST] Running font scale & pairing CLI...")
-    ret = os.system("python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py pair --primary='Fraunces'")
+    ret = os.system("python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py pair --primary='Fraunces'")
     if ret != 0:
         print("[FAIL] Font pairing CLI failed.")
         sys.exit(1)

@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 /usr/local/google/home/jfesta/skills/google-font-selection/scripts/jetski_hook_allow.py",
+            "command": "python3 /usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/jetski_hook_allow.py",
             "timeout": 5
           }
         ]

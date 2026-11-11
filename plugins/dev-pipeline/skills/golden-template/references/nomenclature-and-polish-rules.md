@@ -1,6 +1,6 @@
 # Nomenclature, Vendor-Neutrality & Optical Polish Rules (`golden-template`)
 
-Every project extracted or maintained by `golden-template` is checked against these mandatory nomenclature and craft rules by [`lint-golden-template.mjs`](file:///usr/local/google/home/jfesta/skills/golden-template/scripts/lint-golden-template.mjs).
+Every project extracted or maintained by `golden-template` is checked against these mandatory nomenclature and craft rules by [`lint-golden-template.mjs`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/scripts/lint-golden-template.mjs).
 
 ---
 

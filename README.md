@@ -8,7 +8,7 @@ Every Jetski workspace loads it automatically through `~/.gemini/config/plugins.
 ~/design-kit/
 ├── INDEX.md          ← start here: "I need X" → where it lives
 ├── plugins/          ← INSTALLABLE (7 Jetski plugins: skills + agents + MCP)
-├── skills/           ← flat view: one symlink per skill (this is also ~/skills)
+├── skills/           ← flat view: one symlink per skill (this is also ~/design-kit/skills)
 ├── design-systems/   ← WDA six, external six, Google ten, hero grabs (wda/design-systems links here)
 ├── references/       ← saas-goldens, plus shortcuts to hero-grabs, google-systems, external-systems
 ├── libraries/        ← npm / component / motion catalogs, shadcn registries, Golden Template starter
@@ -26,4 +26,4 @@ Every Jetski workspace loads it automatically through `~/.gemini/config/plugins.
 - **npm packages are per project.** Use `libraries/` for guidance and the starter `package.json`.
 
 ## Migration
-Migrated on 2026-11-11 from `~/skills`, `~/wda/.agents/skills`, `~/wda/skills` (copied, still git-tracked in WDA), `~/.gemini/config/{skills,agents}` and `~/wda/design-systems`. Backup: `~/design-kit-migration-backup-20261111.tar.gz`.
+Migrated on 2026-11-11 from `~/design-kit/skills`, `~/wda/.agents/skills`, `~/wda/skills` (copied, still git-tracked in WDA), `~/.gemini/config/{skills,agents}` and `~/wda/design-systems`. Backup: `~/design-kit-migration-backup-20261111.tar.gz`.

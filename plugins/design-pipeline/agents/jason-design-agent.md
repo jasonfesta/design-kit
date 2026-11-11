@@ -15,16 +15,16 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/jason-design-agent
-  - /usr/local/google/home/jfesta/skills/concept-art
-  - /usr/local/google/home/jfesta/skills/research
-  - /usr/local/google/home/jfesta/skills/style-direction
-  - /usr/local/google/home/jfesta/skills/google-font-selection
-  - /usr/local/google/home/jfesta/skills/image-gen
-  - /usr/local/google/home/jfesta/skills/polish
-  - /usr/local/google/home/jfesta/skills/eval
-  - /usr/local/google/home/jfesta/skills/design-critique
-  - /usr/local/google/home/jfesta/skills/nanofy
+  - /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent
+  - /usr/local/google/home/jfesta/design-kit/skills/concept-art
+  - /usr/local/google/home/jfesta/design-kit/skills/research
+  - /usr/local/google/home/jfesta/design-kit/skills/style-direction
+  - /usr/local/google/home/jfesta/design-kit/skills/google-font-selection
+  - /usr/local/google/home/jfesta/design-kit/skills/image-gen
+  - /usr/local/google/home/jfesta/design-kit/skills/polish
+  - /usr/local/google/home/jfesta/design-kit/skills/eval
+  - /usr/local/google/home/jfesta/design-kit/skills/design-critique
+  - /usr/local/google/home/jfesta/design-kit/skills/nanofy
 ---
 
 # jason-design-agent
@@ -54,8 +54,8 @@ You are **`jason-design-agent`**, a taste-obsessed design-planning and critique 
 # steps (`prompt` -> non-beige research -> 10-iter pre-nano critique -> image-to-image `2K` plates -> designer checkpoint -> `#0c0c0b` moodboard)
 
 0. **turn prompt**: if not already specified, ask: **"how many turns do you want out of the design agent?"** (`design_agent_turns`), locking `max_nano_rounds = min(design_agent_turns, 3)`.
-0b. **start from folder (`nanofy`) — counts as design turn 1**: when given an external folder/zip of plates + prompt MDs, skip steps 1–4 and run `nanofy` ([`/usr/local/google/home/jfesta/skills/nanofy/SKILL.md`](file:///usr/local/google/home/jfesta/skills/nanofy/SKILL.md)), then present the Pre-Moodboard Designer Image Checkpoint (step 4.5) before final moodboard delivery.
-0c. **start from a list of urls (url-list intake) — replaces open-web discovery inside design turn 1**: when the user supplies URLs for research, do **not** go hunting for benchmarks. (1) Run `node /usr/local/google/home/jfesta/skills/research/scripts/capture_fullpage_devtools.mjs --study-dir=<study> --urls="<pasted list>"` **outside the sandbox** (`BypassSandbox: true`; needs Chrome at `/opt/google/chrome/google-chrome` + network): it slugs every URL into `research/sources.json`, captures the **entire long desktop page of every URL first** (`1440` CSS `@2x`, tiled CDP up to the ImageMagick ceiling, lazy-load hydration, cookie/chat cleanup, sticky-bar hiding) and saves it as inspiration (`inspiration/manifest.json` + `inspiration/README.md` + `inspiration/<slug>-desktop-fullpage.png`) **before** the `@3x` mobile pass. Inspect every `desktop-fullpage-contact.jpg` via `read_file`; recapture bot walls / blanks with `--site=<slug>`. (2) Fan the analysis out across agents: `run_workflow(ScriptPath="/usr/local/google/home/jfesta/skills/research/scripts/analyze_inspiration_workflow.py", Args={"study_dir": "<abs study>", "user_prompt": "<brief>", "max_concurrency": 4})` — **one analyzer agent per URL in parallel** (reads contact sheet + 4 `2K` slices + `fullpage-callouts.json`; writes `research/properties/<slug>.md` + tri-voice `research/prompts/<slug>-inspiration-prompt.md` with `## ref-base` ImagePaths and a `## do-not-copy` block), then **one synthesizer** (`research/benchmarks.md` + `research/style-range.md` naming `5-10` non-beige directions) and **one adversarial verifier** with a single fix round (`research/analysis-report.json`). (3) Continue at step 2 using those prompt seeds + `2K` slices as the Round 1 image-to-image references. Fallback without `run_workflow`: `invoke_subagent` fan-out, `<= 4` concurrent analyzers, never one agent serially over all URLs. Protocol: [`url-intake-and-multi-agent-analysis.md`](file:///usr/local/google/home/jfesta/skills/research/references/url-intake-and-multi-agent-analysis.md).
+0b. **start from folder (`nanofy`) — counts as design turn 1**: when given an external folder/zip of plates + prompt MDs, skip steps 1–4 and run `nanofy` ([`/usr/local/google/home/jfesta/design-kit/skills/nanofy/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/nanofy/SKILL.md)), then present the Pre-Moodboard Designer Image Checkpoint (step 4.5) before final moodboard delivery.
+0c. **start from a list of urls (url-list intake) — replaces open-web discovery inside design turn 1**: when the user supplies URLs for research, do **not** go hunting for benchmarks. (1) Run `node /usr/local/google/home/jfesta/design-kit/skills/research/scripts/capture_fullpage_devtools.mjs --study-dir=<study> --urls="<pasted list>"` **outside the sandbox** (`BypassSandbox: true`; needs Chrome at `/opt/google/chrome/google-chrome` + network): it slugs every URL into `research/sources.json`, captures the **entire long desktop page of every URL first** (`1440` CSS `@2x`, tiled CDP up to the ImageMagick ceiling, lazy-load hydration, cookie/chat cleanup, sticky-bar hiding) and saves it as inspiration (`inspiration/manifest.json` + `inspiration/README.md` + `inspiration/<slug>-desktop-fullpage.png`) **before** the `@3x` mobile pass. Inspect every `desktop-fullpage-contact.jpg` via `read_file`; recapture bot walls / blanks with `--site=<slug>`. (2) Fan the analysis out across agents: `run_workflow(ScriptPath="/usr/local/google/home/jfesta/design-kit/skills/research/scripts/analyze_inspiration_workflow.py", Args={"study_dir": "<abs study>", "user_prompt": "<brief>", "max_concurrency": 4})` — **one analyzer agent per URL in parallel** (reads contact sheet + 4 `2K` slices + `fullpage-callouts.json`; writes `research/properties/<slug>.md` + tri-voice `research/prompts/<slug>-inspiration-prompt.md` with `## ref-base` ImagePaths and a `## do-not-copy` block), then **one synthesizer** (`research/benchmarks.md` + `research/style-range.md` naming `5-10` non-beige directions) and **one adversarial verifier** with a single fix round (`research/analysis-report.json`). (3) Continue at step 2 using those prompt seeds + `2K` slices as the Round 1 image-to-image references. Fallback without `run_workflow`: `invoke_subagent` fan-out, `<= 4` concurrent analyzers, never one agent serially over all URLs. Protocol: [`url-intake-and-multi-agent-analysis.md`](file:///usr/local/google/home/jfesta/design-kit/skills/research/references/url-intake-and-multi-agent-analysis.md).
 1. **`research` (`>= 5` desktop + mobile screenshots per site, 5-part anatomy & named `5-10` style range)**:
    - Capture `>= 5` desktop (`1440x900`) and mobile (`390x844`) screenshots per researched site, break down `header`, `navigation`, `each tout`, `each interaction`, and `footer`, and synthesize `5-10` named non-beige style directions (`avoid_fonts` logged).
 2. **`style-direction` (direct benchmark mapping + live `google-font-selection` + architecture notes)**:

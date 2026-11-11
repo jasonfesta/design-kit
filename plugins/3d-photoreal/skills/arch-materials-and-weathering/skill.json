@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-materials-and-weathering.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/arch-materials-and-weathering",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/arch-materials-and-weathering",
   "bundle_skill": "arch-materials-and-weathering.skill",
   "bundle_zip": "arch-materials-and-weathering.zip",
   "short_summary": "Author hyperrealistic architectural materials in Three.js with zero external textures: profiled courses, Nyquist-filtered standing seams, perforated Corten steel, glazed roof tiles, non-double-multiplied linear sRGB albedos, and fast CPU hashes.",

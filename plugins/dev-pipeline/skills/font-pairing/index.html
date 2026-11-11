@@ -185,7 +185,7 @@ eval       scripts/eval-font-pairing.py  (live dom in headless webkit; --expect-
 <li><strong>accessibility floors apply</strong> (<code>accessibility</code> skill): body <code>&gt;= 16px</code> / <code>1.5</code>, no text <code>&lt; 12px</code>.</li>
 </ol>
 <h2>3. evaluating</h2>
-<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/font-pairing/scripts/eval-font-pairing.py \
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/design-kit/skills/font-pairing/scripts/eval-font-pairing.py \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; \
   --expect-primary=&quot;&lt;family from style-direction&gt;&quot; --expect-secondary=&quot;&lt;family&gt;&quot; [--expect-tertiary=&quot;&lt;family&gt;&quot;]
 # gates: family_budget_ok · primary_locked_ok · secondary_locked_ok · tertiary_restrained_ok · scale_ok · no_fallback_leaks_ok · matches_style_direction_ok</code></pre>

@@ -3,7 +3,7 @@
 
 - **Author**: Principal Software Engineer, Google AI & Frontend Systems
 - **Status**: Production-Ready / Export-Grade
-- **Scope**: Canonical lowercase skills workspace (`/usr/local/google/home/jfesta/skills/`)
+- **Scope**: Canonical lowercase skills workspace (`/usr/local/google/home/jfesta/design-kit/skills/`)
 
 ---
 

@@ -3,7 +3,7 @@
 Run with the `run_workflow` tool (NOT python3 directly):
 
     run_workflow(
-        ScriptPath="/usr/local/google/home/jfesta/skills/research/scripts/analyze_inspiration_workflow.py",
+        ScriptPath="/usr/local/google/home/jfesta/design-kit/skills/research/scripts/analyze_inspiration_workflow.py",
         Description="analyze inspiration captures -> property dossiers + prompt seeds + style range",
         Args={"study_dir": "/abs/path/<study-slug>", "user_prompt": "<the user's design brief>",
               "max_concurrency": 4, "analyzer_model": "inherit"},
@@ -46,8 +46,8 @@ MANIFEST_PATH = os.path.join(INSPIRATION_DIR, "manifest.json")
 RESEARCH_DIR = os.path.join(STUDY_DIR, "research")
 PROPERTIES_DIR = os.path.join(RESEARCH_DIR, "properties")
 PROMPTS_DIR = os.path.join(RESEARCH_DIR, "prompts")
-TEMPLATE_REF = "/usr/local/google/home/jfesta/skills/research/references/benchmark-capture-and-evidence-rules.md"
-PROTOCOL_REF = "/usr/local/google/home/jfesta/skills/research/references/url-intake-and-multi-agent-analysis.md"
+TEMPLATE_REF = "/usr/local/google/home/jfesta/design-kit/skills/research/references/benchmark-capture-and-evidence-rules.md"
+PROTOCOL_REF = "/usr/local/google/home/jfesta/design-kit/skills/research/references/url-intake-and-multi-agent-analysis.md"
 
 if not os.path.exists(MANIFEST_PATH):
     raise SystemExit(f"missing {MANIFEST_PATH} — run capture_fullpage_devtools.mjs --study-dir=... --urls=... first")

@@ -196,7 +196,7 @@ paired gate   responsiveness design critique in jason-design-agent</code></pre>
 <h2>2. running the responsiveness dev eval loop</h2>
 <h3>photographic plate cleaning (when needed)</h3>
 <p>When desktop and mobile use distinct art-directed crops of a photograph, extract clean plates with <a href="scripts/crop-and-clean-plate.py"><code>scripts/crop-and-clean-plate.py</code></a> and mount them inside a single <code>&lt;picture&gt;</code> tag:</p>
-<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/responsiveness/scripts/crop-and-clean-plate.py \
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/design-kit/skills/responsiveness/scripts/crop-and-clean-plate.py \
   --src=/path/to/references/desktop.png \
   --crop=0,0,1536,860 \
   --quality=88 \
@@ -204,7 +204,7 @@ paired gate   responsiveness design critique in jason-design-agent</code></pre>
 <h3>self-judging dev eval command</h3>
 <p>Run <a href="scripts/eval-responsive-pair.mjs"><code>scripts/eval-responsive-pair.mjs</code></a> after each responsive edit turn:</p>
 <pre data-lang="bash"><code>/usr/local/google/home/jfesta/.local/bin/node \
-  /usr/local/google/home/jfesta/skills/responsiveness/scripts/eval-responsive-pair.mjs \
+  /usr/local/google/home/jfesta/design-kit/skills/responsiveness/scripts/eval-responsive-pair.mjs \
   --project-dir=/path/to/projects/01-website-example \
   --desktop-ref=/path/to/references/desktop.png \
   --mobile-ref=/path/to/references/mobile.png \

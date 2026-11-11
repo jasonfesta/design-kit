@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/font-pairing.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/font-pairing",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/font-pairing",
   "bundle_skill": "font-pairing.skill",
   "bundle_zip": "font-pairing.zip",
   "short_summary": "locks every build to one role-based type system: primary for headlines and subheadlines, secondary for body and ui, at most one tertiary accent (<= 15% of text), a monotonic modular scale, and zero fallback leaks, verified in the live dom by eval-font-pairing.py.",

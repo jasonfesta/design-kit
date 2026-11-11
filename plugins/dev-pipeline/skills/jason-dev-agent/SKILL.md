@@ -125,7 +125,7 @@ You do **not** perform an automated handoff back to the design agent. Instead, p
 Run the complete 8-step receipt chain plus 5-turn check-back loop on any project using [run_dev_loop.py](scripts/run_dev_loop.py):
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_loop.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent/scripts/run_dev_loop.py \
   --project=<study>/projects/<item-slug> \
   --reference=<study>/concepts/<item-slug>.png \
   --require-scroll-points
@@ -134,7 +134,7 @@ python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_loo
 Or execute the dev flywheel independently via [run_dev_flywheel.py](scripts/run_checkback_loop.py):
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_flywheel.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent/scripts/run_dev_flywheel.py \
   --project=<study>/projects/<item-slug> \
   --reference=<study>/concepts/<item-slug>.png \
   --max-cycles=5 \

@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/arch-camera-matching-and-perspective.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/arch-camera-matching-and-perspective",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/arch-camera-matching-and-perspective",
   "bundle_skill": "arch-camera-matching-and-perspective.skill",
   "bundle_zip": "arch-camera-matching-and-perspective.zip",
   "short_summary": "Match exact architectural photography perspective, tilt-shift lens shift (camera.setViewOffset) vs. pitched 3-point elevation, OrbitControls target order, sloped site grades, and return-wall geometry when reconstructing a real architectural photograph in Three.js.",

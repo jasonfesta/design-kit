@@ -110,7 +110,7 @@ Before placing any cropped or upscaled asset into `src/` or `public/`—and agai
 
 ```bash
 # Audit an assets directory and/or a built React project for readiness, 2x DPR, and non-blur sharpness
-python3 /usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/nano-banana/scripts/eval-image-readiness.py \
   --assets-dir="/tmp/crops_2x" \
   --project="/path/to/workspace/projects/<project-slug>"
 ```

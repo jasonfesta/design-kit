@@ -187,7 +187,7 @@ when       stage 1a gate, re-run after stage 2 / 3 / 4, before every design talk
 <li><strong>keep focus visible</strong>: Tailwind resets outlines — ship <code>focus-visible:ring-2 focus-visible:ring-offset-2</code> (or a <code>:focus-visible</code> rule in <code>index.css</code>) on every control.</li>
 <li><strong>run the eval, then talk back</strong>: every stage talk-back includes the accessibility receipt (<code>contrast_fail_count: 0</code>, <code>targets_under_24px: 0</code>, <code>body_under_16px_count</code>, <code>targets_under_44px_count</code>). If a design value had to move, say exactly which (<code>&quot;muted ink #858481 on #0c0c0b was 4.1:1 -&gt; #9a9994 = 4.6:1&quot;</code>).</li>
 </ol>
-<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/skills/accessibility/scripts/eval-accessibility.py \
+<pre data-lang="bash"><code>python3 /usr/local/google/home/jfesta/design-kit/skills/accessibility/scripts/eval-accessibility.py \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot; [--require-44] [--min-body-px 16]
 # gates: text_size_ok · line_height_ok · contrast_ok · target_size_ok · focus_visible_ok · accessible_names_ok · img_alt_ok · lang_ok</code></pre>
 <p><code>--require-44</code> makes the 44x44 target size a hard gate (use for mobile-app and touch-first builds). Re-run at <code>--viewport-width 390</code> for the mobile pass — sizes and targets are judged at the width they ship.</p>

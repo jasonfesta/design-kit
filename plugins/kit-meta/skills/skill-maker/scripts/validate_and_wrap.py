@@ -104,7 +104,7 @@ SKILL_CATALOG_META = {
         "when_to_use": (
             "use when creating a new skill, cleaning up or consolidating existing "
             "skills across workspaces, validating against google skill_creator "
-            "rules, or publishing skills to ~/skills and x20."
+            "rules, or publishing skills to ~/design-kit/skills and x20."
         ),
         "quick_cmd": "python3 skill-maker/scripts/validate_and_wrap.py --skills-root=. --fix",
     },
@@ -576,10 +576,10 @@ def sanitize_links(skill_dir: pathlib.Path, body: str) -> str:
     for prefix in (
         f"/usr/local/google/home/jfesta/moodboards/skills/{skill_dir.name}/",
         f"/usr/local/google/home/jfesta/wda/skills/{skill_dir.name}/",
-        f"/usr/local/google/home/jfesta/skills/{skill_dir.name}/",
+        f"/usr/local/google/home/jfesta/design-kit/skills/{skill_dir.name}/",
         f"file:///usr/local/google/home/jfesta/moodboards/skills/{skill_dir.name}/",
         f"file:///usr/local/google/home/jfesta/wda/skills/{skill_dir.name}/",
-        f"file:///usr/local/google/home/jfesta/skills/{skill_dir.name}/",
+        f"file:///usr/local/google/home/jfesta/design-kit/skills/{skill_dir.name}/",
         "./",
     ):
       if target_url.startswith(prefix):
@@ -893,7 +893,7 @@ python3 ../skill-maker/scripts/validate_and_wrap.py --skill-dir=.
       "x20_agent_md_url": f"{X20_BASE_URL}/{name}/agent.md",
       "x20_skill_md_url": f"{X20_BASE_URL}/{name}/SKILL.md",
       "x20_bundle_url": f"{X20_BASE_URL}/{name}.skill",
-      "local_path": f"/usr/local/google/home/jfesta/skills/{name}",
+      "local_path": f"/usr/local/google/home/jfesta/design-kit/skills/{name}",
       "bundle_skill": f"{name}.skill",
       "bundle_zip": f"{name}.zip",
       "short_summary": cmeta.get("short_summary", desc),

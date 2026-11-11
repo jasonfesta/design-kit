@@ -88,11 +88,11 @@ Even when starting with just one screengrab and transferring to the next, each i
 
 ```bash
 # 1. Inspect the 15-critic swarm roster
-python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py roster
+python3 /usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py roster
 
 # 2. Generate assignment briefs for the swarm in a study
-python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py briefs --study-dir=<study-dir> --count=15
+python3 /usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py briefs --study-dir=<study-dir> --count=15
 
 # 3. Run tri-perspective audit and emit the 10-dimension auto-correction matrix
-python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py audit --study-dir=<study-dir> --turn=1 --swarm-count=15
+python3 /usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py audit --study-dir=<study-dir> --turn=1 --swarm-count=15
 ```

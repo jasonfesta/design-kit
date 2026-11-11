@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/eval.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/eval",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/eval",
   "bundle_skill": "eval.skill",
   "bundle_zip": "eval.zip",
   "short_summary": "audits 2k plates against 01-anchor coherence, anti-clone originality vs. 5 standout benchmarks, canon.md agreement, 2k footers, surface distinctness, and the 3-round cap.",

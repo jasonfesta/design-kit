@@ -79,7 +79,7 @@ handoff       push 👍 selections to jason-dev-agent (it reads nano/ + nano/pro
 ## 2. commands
 
 ```bash
-N=/usr/local/google/home/jfesta/skills/nanofy/scripts
+N=/usr/local/google/home/jfesta/design-kit/skills/nanofy/scripts
 python3 $N/intake-study-from-folder.py --source=<folder | plates.zip> [--study-dir=…] [--design-agent-turns=N] [--extract-tokens] [--select=all|none]
 python3 $N/nanofy-plates.py plan          --study=<study> --variation 0.5 [--target-per-pillar 3]   # 1 anchor + N spokes + K generated, coverage, draft nano/prompts/*.md, no model calls
 python3 $N/nanofy-plates.py run-anchor    --study=<study> --route=gempix      # desktop web 01 only; gempix outside the sandbox, or --route=manual

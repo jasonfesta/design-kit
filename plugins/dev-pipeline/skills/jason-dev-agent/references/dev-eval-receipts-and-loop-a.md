@@ -12,7 +12,7 @@
 Every pass through `jason-dev-agent` executes the 8 steps in strict, deterministic order:
 
 ```bash
-S=/usr/local/google/home/jfesta/skills
+S=/usr/local/google/home/jfesta/design-kit/skills
 P=<study>/projects/<item-slug>
 REF=<study>/concepts/<item-slug>.png
 

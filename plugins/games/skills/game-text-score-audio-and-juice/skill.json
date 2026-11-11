@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/game-text-score-audio-and-juice.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/game-text-score-audio-and-juice",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/game-text-score-audio-and-juice",
   "bundle_skill": "game-text-score-audio-and-juice.skill",
   "bundle_zip": "game-text-score-audio-and-juice.zip",
   "short_summary": "Design expressive procedural or symbolic browser game audio, smooth adaptive intensity layers, proportional multi-sensory action feedback, and listener-safe acoustic ceilings without locking into a fixed score format.",

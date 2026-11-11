@@ -1,6 +1,6 @@
 # Canonical `golden-template/dating` Architecture & Standalone Inspector Spec
 
-Every project synthesized by [`skills/image-to-react/`](../SKILL.md) MUST be structured as a first-class Google Golden Template package modeled verbatim after [`/usr/local/google/home/jfesta/skills/golden-template/assets/dating/`](file:///usr/local/google/home/jfesta/skills/golden-template/assets/dating) (`Kismet`) and live inside `<moodboard>/projects/<NN>-<category>-<descriptor>/`.
+Every project synthesized by [`skills/image-to-react/`](../SKILL.md) MUST be structured as a first-class Google Golden Template package modeled verbatim after [`/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating) (`Kismet`) and live inside `<moodboard>/projects/<NN>-<category>-<descriptor>/`.
 
 ---
 
@@ -53,17 +53,17 @@ export function cn(...inputs: ClassValue[]) {
 ```
 
 ### 2.2 `src/data/<domain>Data.ts`
-Just like [`golden-template/assets/dating/src/data/datingData.ts`](file:///usr/local/google/home/jfesta/skills/golden-template/assets/dating/src/data/datingData.ts), all TypeScript interfaces (`export interface ...`), union types, filter constants, and rich domain fixtures MUST reside in `src/data/<domain>Data.ts` — never inline inside `App.tsx`.
+Just like [`golden-template/assets/dating/src/data/datingData.ts`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/src/data/datingData.ts), all TypeScript interfaces (`export interface ...`), union types, filter constants, and rich domain fixtures MUST reside in `src/data/<domain>Data.ts` — never inline inside `App.tsx`.
 - Every visible card, metric, table row, badge, and image in the reference screenshot must be represented in `src/data/<domain>Data.ts` with complete, realistic copy (zero `"Lorem ipsum"`, `"Card 1"`, or `"TODO"` placeholders).
 
 ### 2.3 `src/components/<Brand>BrandLogo.tsx`
-Just like [`golden-template/dating/src/components/KismetBrandLogo.tsx`](file:///usr/local/google/home/jfesta/skills/golden-template/assets/dating/src/components/KismetBrandLogo.tsx), extract the brand mark or header emblem into a clean, reusable SVG React component accepting `size?: number` and `className?: string`.
+Just like [`golden-template/dating/src/components/KismetBrandLogo.tsx`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/src/components/KismetBrandLogo.tsx), extract the brand mark or header emblem into a clean, reusable SVG React component accepting `size?: number` and `className?: string`.
 
 ### 2.4 `src/components/*.tsx`
 Decompose distinct UI regions into focused components (e.g., `HeaderBar.tsx`, `FeatureCard.tsx`, `FilterDrawer.tsx`, `DetailModal.tsx`, `ActionToast.tsx`) with explicit props interfaces (`interface FeatureCardProps { ... }`) and `lucide-react` icons.
 
 ### 2.5 `src/App.tsx`
-Just like [`golden-template/dating/src/App.tsx`](file:///usr/local/google/home/jfesta/skills/golden-template/assets/dating/src/App.tsx):
+Just like [`golden-template/dating/src/App.tsx`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/src/App.tsx):
 - Exports `export function App()` (and/or `export default App`).
 - Owns top-level interactive `useState` / `useMemo` hooks (active navigation tab, filter state, search/sort query, selected item modal/drawer, interactive form state, toast feedback) while keeping the **initial default render state 100% faithful to the target reference screenshot** so automated visual evaluation matches on initial load.
 

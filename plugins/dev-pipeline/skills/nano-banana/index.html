@@ -231,7 +231,7 @@ paired gate   material &amp; visual fidelity critique in jason-design-agent</cod
 <h2>4. stopping to judge: the <code>nano-banana</code> image readiness &amp; anti-blur dev eval</h2>
 <p>Before placing any cropped or upscaled asset into <code>src/</code> or <code>public/</code>—and again once mounted in <code>dist/index.html</code>—<code>jason-dev-agent</code> stops and runs <a href="scripts/eval-image-readiness.py"><code>scripts/eval-image-readiness.py</code></a> alongside the five deterministic gates (detailed in <a href="references/dev-eval-and-zero-drift-checks.md">dev eval and zero-drift checks</a>):</p>
 <pre data-lang="bash"><code># Audit an assets directory and/or a built React project for readiness, 2x DPR, and non-blur sharpness
-python3 /usr/local/google/home/jfesta/skills/nano-banana/scripts/eval-image-readiness.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/nano-banana/scripts/eval-image-readiness.py \
   --assets-dir=&quot;/tmp/crops_2x&quot; \
   --project=&quot;/path/to/workspace/projects/&lt;project-slug&gt;&quot;</code></pre>
 <div class="table-wrap"><table>

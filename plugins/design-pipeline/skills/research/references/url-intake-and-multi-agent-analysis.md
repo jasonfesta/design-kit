@@ -16,7 +16,7 @@ urls ──> pass 1 · entire long desktop page of EVERY url (CDP / Playwright, 
 ## 1. intake — one command, desktop first
 
 ```bash
-node /usr/local/google/home/jfesta/skills/research/scripts/capture_fullpage_devtools.mjs \
+node /usr/local/google/home/jfesta/design-kit/skills/research/scripts/capture_fullpage_devtools.mjs \
   --study-dir=<study-slug> \
   --urls="https://a.com, https://b.com/pricing https://c.io"      # comma / space / newline separated; pasted chat text is fine
   # or --urls-file=<urls.txt>  (one per line, `#` comments allowed)
@@ -60,7 +60,7 @@ Playwright is an acceptable substitute when installed (`page.screenshot({ fullPa
 
 ```python
 run_workflow(
-    ScriptPath="/usr/local/google/home/jfesta/skills/research/scripts/analyze_inspiration_workflow.py",
+    ScriptPath="/usr/local/google/home/jfesta/design-kit/skills/research/scripts/analyze_inspiration_workflow.py",
     Description="analyze inspiration captures -> dossiers + prompt seeds + style range",
     Args={"study_dir": "/abs/<study-slug>", "user_prompt": "<brief>", "max_concurrency": 4, "analyzer_model": "inherit"},
 )

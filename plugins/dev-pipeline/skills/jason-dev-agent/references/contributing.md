@@ -9,7 +9,7 @@
 
 ## 1. Skill Workspace Organization
 
-`jason-dev-agent` lives in `/usr/local/google/home/jfesta/skills/jason-dev-agent/`:
+`jason-dev-agent` lives in `/usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent/`:
 
 ```text
 jason-dev-agent/
@@ -44,27 +44,27 @@ Before committing or exporting any changes, run the following verification pipel
 
 ### 2.1 Skill Schema & Wrapper Validation
 ```bash
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/validate_and_wrap.py \
-  --skills-root=/usr/local/google/home/jfesta/skills --fix
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/validate_and_wrap.py \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills --fix
 ```
 Ensures 100% compliance across all skills in the workspace (`25/25 [PASS]`).
 
 ### 2.2 Rebuild Catalog & Registry
 ```bash
-python3 /usr/local/google/home/jfesta/skills/skill-maker/scripts/build_catalog.py \
-  --skills-root=/usr/local/google/home/jfesta/skills
+python3 /usr/local/google/home/jfesta/design-kit/skills/skill-maker/scripts/build_catalog.py \
+  --skills-root=/usr/local/google/home/jfesta/design-kit/skills
 ```
 Rebuilds `catalog.json`, `index.html`, and `README.md`.
 
 ### 2.3 End-to-End Static Audit
 ```bash
-python3 /usr/local/google/home/jfesta/skills/taxonomy/scripts/e2e_static_audit.py
+python3 /usr/local/google/home/jfesta/design-kit/skills/taxonomy/scripts/e2e_static_audit.py
 ```
 Validates zero broken cross-references, zero stale terms, and strict manifest parity.
 
 ### 2.4 Test Receipt Runner
 ```bash
-python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_loop.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent/scripts/run_dev_loop.py \
   --project=/path/to/project \
   --reference=/path/to/reference.png
 ```

@@ -16,7 +16,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/research.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/research",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/research",
   "bundle_skill": "research.skill",
   "bundle_zip": "research.zip",
   "short_summary": "researches, screenshots, and documents 5 standout non-beige benchmarks across full-length desktop and mobile pages using pure inspiration and live web captures, logging avoid_fonts and avoid_palettes.",

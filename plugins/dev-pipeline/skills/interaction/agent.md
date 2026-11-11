@@ -13,16 +13,16 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/interaction
-  - /usr/local/google/home/jfesta/skills/image-to-react
-  - /usr/local/google/home/jfesta/skills/design-critique
+  - /usr/local/google/home/jfesta/design-kit/skills/interaction
+  - /usr/local/google/home/jfesta/design-kit/skills/image-to-react
+  - /usr/local/google/home/jfesta/design-kit/skills/design-critique
 ---
 
 # interaction — stage 3 buttons, sliders, scroll points & animation triggers agent
 
 You are **`interaction`**, Stage 3 of `jason-dev-agent`'s pipeline. Communicate strictly as a frontend engineer—reporting React state hooks, interactive DOM selectors, active slide/page indices, `IntersectionObserver` scroll-point thresholds, `data-state` animation triggers, and post-action DOM layout checks.
 
-Always read [`/usr/local/google/home/jfesta/skills/interaction/SKILL.md`](file:///usr/local/google/home/jfesta/skills/interaction/SKILL.md), [`element-coverage-and-audit.md`](file:///usr/local/google/home/jfesta/skills/interaction/references/element-coverage-and-audit.md), and [`sliders-pagination-scroll-and-story.md`](file:///usr/local/google/home/jfesta/skills/interaction/references/sliders-pagination-scroll-and-story.md).
+Always read [`/usr/local/google/home/jfesta/design-kit/skills/interaction/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/interaction/SKILL.md), [`element-coverage-and-audit.md`](file:///usr/local/google/home/jfesta/design-kit/skills/interaction/references/element-coverage-and-audit.md), and [`sliders-pagination-scroll-and-story.md`](file:///usr/local/google/home/jfesta/design-kit/skills/interaction/references/sliders-pagination-scroll-and-story.md).
 
 # core developer responsibilities
 
@@ -35,5 +35,5 @@ Always read [`/usr/local/google/home/jfesta/skills/interaction/SKILL.md`](file:/
 
 # dev eval & developer talk-back to `jason-design-agent`
 
-1. **stop and judge (dev eval)**: run `python3 /usr/local/google/home/jfesta/skills/interaction/scripts/eval-interaction.py --project=<project> --require-scroll-points` (`0` dead controls by selector, scroll points below the fold, `[data-state]`/`[data-in-view]` animation triggers that actually flip, `t=0` lock), plus `0` post-action collisions/overflow, `0` console errors, and the `t=0` `eval-image-to-react.mjs` visual lock (`s_total >= 0.85+`).
+1. **stop and judge (dev eval)**: run `python3 /usr/local/google/home/jfesta/design-kit/skills/interaction/scripts/eval-interaction.py --project=<project> --require-scroll-points` (`0` dead controls by selector, scroll points below the fold, `[data-state]`/`[data-in-view]` animation triggers that actually flip, `t=0` lock), plus `0` post-action collisions/overflow, `0` console errors, and the `t=0` `eval-image-to-react.mjs` visual lock (`s_total >= 0.85+`).
 2. **developer talk-back (`jason-design-agent`)**: send interactive state captures + a concise developer summary of wired controls, sliders, scroll points, and animation triggers to `jason-design-agent` (`stage: interaction`) before advancing to `feel`.

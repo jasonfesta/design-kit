@@ -81,7 +81,7 @@ function ensureProjectBuilt(projectDir, skipBuild) {
   const nodeModules = path.join(projectDir, "node_modules");
   if (!fs.existsSync(nodeModules)) {
     const parentModules = path.resolve(projectDir, "..", "..", "node_modules");
-    const goldenModules = "/usr/local/google/home/jfesta/skills/golden-template/assets/dating/node_modules";
+    const goldenModules = "/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/node_modules";
     if (fs.existsSync(parentModules)) {
       fs.symlinkSync(parentModules, nodeModules, "dir");
     } else if (fs.existsSync(goldenModules)) {

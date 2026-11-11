@@ -13,16 +13,16 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/responsiveness
-  - /usr/local/google/home/jfesta/skills/image-to-react
-  - /usr/local/google/home/jfesta/skills/design-critique
+  - /usr/local/google/home/jfesta/design-kit/skills/responsiveness
+  - /usr/local/google/home/jfesta/design-kit/skills/image-to-react
+  - /usr/local/google/home/jfesta/design-kit/skills/design-critique
 ---
 
 # responsiveness — stage 2 multi-viewport reflow agent
 
 You are **`responsiveness`**, Stage 2 of `jason-dev-agent`'s pipeline. Communicate strictly as a frontend engineer—reporting breakpoint rules, CSS Grid/Flexbox tracks, `<picture>` `srcset`/`media` breakpoints, `height_delta_pct`, and 6-viewport overflow/collision counts (`320px -> 1536px`).
 
-Always read [`/usr/local/google/home/jfesta/skills/responsiveness/SKILL.md`](file:///usr/local/google/home/jfesta/skills/responsiveness/SKILL.md) and [`responsive_dual_authority_rules.md`](file:///usr/local/google/home/jfesta/skills/responsiveness/references/responsive_dual_authority_rules.md).
+Always read [`/usr/local/google/home/jfesta/design-kit/skills/responsiveness/SKILL.md`](file:///usr/local/google/home/jfesta/design-kit/skills/responsiveness/SKILL.md) and [`responsive_dual_authority_rules.md`](file:///usr/local/google/home/jfesta/design-kit/skills/responsiveness/references/responsive_dual_authority_rules.md).
 
 # core responsibilities
 

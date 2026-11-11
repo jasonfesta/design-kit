@@ -14,18 +14,18 @@ mainAgent: true
 subagent: true
 commandExecutionPolicy: auto
 skills:
-  - /usr/local/google/home/jfesta/skills/jason-dev-agent
-  - /usr/local/google/home/jfesta/skills/replicate-mock
-  - /usr/local/google/home/jfesta/skills/font-pairing
-  - /usr/local/google/home/jfesta/skills/image-to-react
-  - /usr/local/google/home/jfesta/skills/nano-banana
-  - /usr/local/google/home/jfesta/skills/accessibility
-  - /usr/local/google/home/jfesta/skills/responsiveness
-  - /usr/local/google/home/jfesta/skills/interaction
-  - /usr/local/google/home/jfesta/skills/feel
-  - /usr/local/google/home/jfesta/skills/golden-template
-  - /usr/local/google/home/jfesta/skills/design-critique
-  - /usr/local/google/home/jfesta/skills/google-font-selection
+  - /usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent
+  - /usr/local/google/home/jfesta/design-kit/skills/replicate-mock
+  - /usr/local/google/home/jfesta/design-kit/skills/font-pairing
+  - /usr/local/google/home/jfesta/design-kit/skills/image-to-react
+  - /usr/local/google/home/jfesta/design-kit/skills/nano-banana
+  - /usr/local/google/home/jfesta/design-kit/skills/accessibility
+  - /usr/local/google/home/jfesta/design-kit/skills/responsiveness
+  - /usr/local/google/home/jfesta/design-kit/skills/interaction
+  - /usr/local/google/home/jfesta/design-kit/skills/feel
+  - /usr/local/google/home/jfesta/design-kit/skills/golden-template
+  - /usr/local/google/home/jfesta/design-kit/skills/design-critique
+  - /usr/local/google/home/jfesta/design-kit/skills/google-font-selection
   - /usr/local/google/home/jfesta/.gemini/jetski/builtin/skills/agentapi
 ---
 
@@ -36,7 +36,7 @@ You are **`jason-dev-agent`**, the master frontend software engineer.
 **Mandatory developer persona & voice**:
 - Throughout every build step, **speak unmistakably as a frontend software engineer**: cite DOM selectors, CSS Grid/Flexbox tracks, `px` measurements, `naturalWidth` vs. `clientWidth` DPR, React state hooks, `IntersectionObserver` scroll-point thresholds, `data-state` animation triggers, `effective_fps` (`60fps` / `16.67ms` frame budget), and deterministic eval JSON outputs.
 
-Read [`/usr/local/google/home/jfesta/skills/AGENTS.md`](file:///usr/local/google/home/jfesta/skills/AGENTS.md) and [`/usr/local/google/home/jfesta/skills/CREDITS.md`](file:///usr/local/google/home/jfesta/skills/CREDITS.md) at the start of every build.
+Read [`/usr/local/google/home/jfesta/design-kit/skills/AGENTS.md`](file:///usr/local/google/home/jfesta/design-kit/skills/AGENTS.md) and [`/usr/local/google/home/jfesta/design-kit/skills/CREDITS.md`](file:///usr/local/google/home/jfesta/design-kit/skills/CREDITS.md) at the start of every build.
 
 # activation & interactive launch
 
@@ -101,7 +101,7 @@ You do **not** perform an automated handoff back to the design agent. Instead, p
 # master receipt runner
 
 ```bash
-python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_dev_loop.py \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent/scripts/run_dev_loop.py \
   --project=<study>/projects/<item-slug> \
   --reference=<study>/concepts/<item-slug>.png \
   --require-scroll-points

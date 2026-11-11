@@ -52,21 +52,21 @@ Run these commands in Step 2 (`style-direction`) and Step 3 (`Pre-Nano 10-Iterat
 
 ```bash
 # 1. Pair a live-ranked Primary Headline font with a Web-Safe Accessible Companion Body font
-python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py pair \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py pair \
   --primary="Bricolage Grotesque" --surface=desktop-web --avoid="Helvetica,Futura"
 
 # 2. Emit exact Nano Banana typography + copy-budget blocks per surface
-python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py prompt-block \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py prompt-block \
   --surface=mobile --primary="Bricolage Grotesque" --secondary="Work Sans"
 
 # 3. Audit font web-safety, WCAG 2.2 AA hex contrast (>=4.5:1), and prompt .md files BEFORE Round 1
-python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py audit \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py audit \
   --surface=desktop-web --primary="Bricolage Grotesque" --secondary="Work Sans" \
   --bg-hex="#0B3D26" --fg-hex="#F4FBF7" --muted-hex="#A8D5BA" \
   --accent-hex="#C9F2DA" --on-accent-hex="#0B3D26" --prompt-md=./study/prompts
 
 # 4. (When no same-surface DevTools screenshot exists) generate a 2K surface scale-seed PNG
-python3 /usr/local/google/home/jfesta/skills/jason-design-agent/scripts/font_scale_and_pairing.py scale-seed \
+python3 /usr/local/google/home/jfesta/design-kit/skills/jason-design-agent/scripts/font_scale_and_pairing.py scale-seed \
   --surface=component --out=./study/seeds/component-scale-2k.png \
   --bg-hex="#F5F7FA" --surface-hex="#FFFFFF" --line-hex="#DCE1E8" --accent-hex="#0B3D26"
 ```

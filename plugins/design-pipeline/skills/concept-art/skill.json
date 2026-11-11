@@ -25,7 +25,7 @@
   "x20_agent_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/agent.md",
   "x20_skill_md_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art/SKILL.md",
   "x20_bundle_url": "https://jfesta.users.x20web.corp.google.com/www/skills/concept-art.skill",
-  "local_path": "/usr/local/google/home/jfesta/skills/concept-art",
+  "local_path": "/usr/local/google/home/jfesta/design-kit/skills/concept-art",
   "bundle_skill": "concept-art.skill",
   "bundle_zip": "concept-art.zip",
   "short_summary": "transforms a natural-language user prompt into 5 standout benchmark dossiers, named style range, and prompt-01-anchored 2k nano banana 2 concept plates within a hard 3-round cap.",

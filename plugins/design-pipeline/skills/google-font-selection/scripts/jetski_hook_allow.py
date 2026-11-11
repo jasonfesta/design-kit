@@ -5,7 +5,7 @@ Install (one time) by adding to ~/.gemini/config/hooks.json  (global)  or  <work
 {
   "allow-google-font-selection": {
     "PreToolUse": [{"matcher": "run_command", "hooks": [{"type": "command",
-      "command": "python3 /usr/local/google/home/jfesta/skills/google-font-selection/scripts/jetski_hook_allow.py"}]}]
+      "command": "python3 /usr/local/google/home/jfesta/design-kit/skills/google-font-selection/scripts/jetski_hook_allow.py"}]}]
   }
 }
 Scope: the command must invoke a script inside .../google-font-selection/scripts/. Everything else → normal prompt.
@@ -14,7 +14,7 @@ import json
 import re
 import sys
 
-SKILL_DIRS = r"(/usr/local/google/home/jfesta/skills|/usr/local/google/home/jfesta/\.gemini/config/skills|~/skills)/google-font-selection/scripts"
+SKILL_DIRS = r"(/usr/local/google/home/jfesta/design-kit/skills|/usr/local/google/home/jfesta/\.gemini/config/skills|~/design-kit/skills)/google-font-selection/scripts"
 SCRIPTS = r"(recommend_google_fonts|translate_brief|gf_live|build_specimen|test_google_font_skill)\.py\b"
 ALLOWED = re.compile(rf"^(python3 {SKILL_DIRS}/{SCRIPTS}|cd {SKILL_DIRS} && python3 {SCRIPTS})")
 # Only harmless post-processing may follow the script on the same line.

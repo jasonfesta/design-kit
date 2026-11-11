@@ -39,7 +39,7 @@ loop          pass -> freeze slot & advance to design-critique + moodboard
 - [ ] **step 1 — gate `01-anchor` before batch expansion**: inspect `concepts/web/01-web-01-*.png` via `read_file` + dimension check first. Block `02..12` generation until `01-anchor` passes Gates 1–4 and Gate 6.
 - [ ] **step 2 — inspect every `2k` image individually (`01..12`)**: inspect each PNG at readable resolution (`read_file`) plus deterministic width/height/sRGB checks.
 - [ ] **step 3 — cross-check against `research/benchmarks.md` + 5 screenshot folders**: verify category-bar craft with **zero copied benchmark fonts (`avoid_fonts`), brand hexes (`avoid_palettes`), logos, or layouts**.
-- [ ] **step 3.5 — tri-perspective brutal audit & anti-inching check**: audit failing or candidate slots across the 3 perspectives (1. designer visual taste, 2. research benchmarks, 3. ruthless self-audit) and enforce the **10-dimension auto-correction matrix** (`python3 /usr/local/google/home/jfesta/skills/design-critique/scripts/run_critique_swarm.py audit`) so polish never inches one minor change at a time.
+- [ ] **step 3.5 — tri-perspective brutal audit & anti-inching check**: audit failing or candidate slots across the 3 perspectives (1. designer visual taste, 2. research benchmarks, 3. ruthless self-audit) and enforce the **10-dimension auto-correction matrix** (`python3 /usr/local/google/home/jfesta/design-kit/skills/design-critique/scripts/run_critique_swarm.py audit`) so polish never inches one minor change at a time.
 - [ ] **step 4 — write `eval/concept-eval.md` scorecard & route failing slots**: mark every slot `FROZEN` or `NEEDS_POLISH (round R of max 3)` with 10-dimension auto-correction instructions.
 
 ---

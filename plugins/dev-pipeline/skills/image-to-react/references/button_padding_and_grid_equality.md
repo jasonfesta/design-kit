@@ -4,7 +4,7 @@ This reference codifies the non-negotiable micro-layout, button padding, and equ
 - [`//search/devai/agentic/labs/skills/sds/sds_measurement_verifier`](file:///google/src/files/head/depot/google3/search/devai/agentic/labs/skills/sds/sds_measurement_verifier/SKILL.md) (Universal Interactive Element & Button Rule, Horizontal Multi-Tile Verification)
 - [`//prototypes/projects/agentic_design_loop/skills/screenshot_to_html`](file:///google/src/files/head/depot/google3/prototypes/projects/agentic_design_loop/skills/screenshot_to_html/SKILL.md) (`references/css_synthesis_invariants.md`, `references/spatial_budgeting.md`)
 - [`//prototypes/projects/cruxy/skills/html_to_search_vibes`](file:///google/src/files/head/depot/google3/prototypes/projects/cruxy/skills/html_to_search_vibes/SKILL.md) (`references/component_synthesis_rules.md`)
-- [`/usr/local/google/home/jfesta/skills/golden-template/assets/dating`](file:///usr/local/google/home/jfesta/skills/golden-template/assets/dating/src/App.tsx) (`Kismet` canonical Golden Template)
+- [`/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating`](file:///usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/src/App.tsx) (`Kismet` canonical Golden Template)
 
 ---
 

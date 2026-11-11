@@ -4,7 +4,7 @@
 - **Author**: Principal Software Engineer, Google AI & Frontend Systems
 - **Target**: `jason-dev-agent`
 - **Location**: Executed immediately after Step 7 (`interaction & feel`) and before Step 8 (`golden-template`)
-- **CLI Runner**: `python3 /usr/local/google/home/jfesta/skills/jason-dev-agent/scripts/run_checkback_loop.py` (aliased as `run_dev_flywheel.py`)
+- **CLI Runner**: `python3 /usr/local/google/home/jfesta/design-kit/skills/jason-dev-agent/scripts/run_checkback_loop.py` (aliased as `run_dev_flywheel.py`)
 - **Safety Limits**: Maximum cycles: 5 (`--max-cycles=5`) · Hard wall-clock timeout: **40 minutes / 2400 seconds** (`--timeout-seconds=2400`)
 
 ---
