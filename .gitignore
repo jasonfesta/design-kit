@@ -21,3 +21,23 @@ tools/ms-playwright/
 # installed stacks
 libraries/stacks/*/node_modules/
 libraries/stacks/*/dist/
+
+# media stays on disk only; the repo is text-based
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.avif
+*.bmp
+*.ico
+*.tif
+*.tiff
+*.heic
+*.mp3
+*.ogg
+*.wav
+*.m4a
+*.flac
+*.webm
+*.mov
