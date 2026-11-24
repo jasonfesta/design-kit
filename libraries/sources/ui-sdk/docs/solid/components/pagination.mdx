@@ -1,0 +1,392 @@
+---
+title: Pagination
+description: Navigate pages with buttons, links, or your router.
+---
+
+<ComponentExample
+  name="pagination/basic"
+  caption="Choose a page, or use Previous and Next. The console logs each page and its reason, and the step at either end stays focusable as a button."
+/>
+
+## Installation
+
+```bash
+npm install @ui-sdk/solid @ui-sdk/core
+```
+
+## Composition
+
+Use the following composition to build a `Pagination`:
+
+```text
+Pagination
+└── PaginationList
+    ├── PaginationItem
+    │   └── PaginationPrevious
+    ├── PaginationItem
+    │   └── PaginationLink
+    ├── PaginationItem
+    │   └── PaginationEllipsis
+    ├── PaginationItem
+    │   └── PaginationLink
+    └── PaginationItem
+        └── PaginationNext
+```
+
+Name the navigation with `aria-label`, then put the page links and steps in a list.
+
+`items` contains page numbers and the strings `"ellipsis-start"` and `"ellipsis-end"`. Render a link for each number and an ellipsis for each gap. Key entries by the item itself so a page link keeps its element as the range moves.
+
+`PaginationLink` shows its page number unless you supply children. The current link gets `aria-current="page"` and `data-current`. `PaginationEllipsis` shows “…” and is hidden from screen readers.
+
+Give Previous, Next, First, and Last text or an `aria-label`. At an end, a step gets `aria-disabled="true"` and `data-disabled` and stops changing the page. As a button, it stays in the tab order.
+
+## Usage
+
+Import the parts and put them together:
+
+```tsx
+import {
+  Pagination,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationList,
+  PaginationNext,
+  PaginationPrevious,
+} from "@ui-sdk/solid/pagination"
+import { For } from "solid-js"
+
+function PageNavigation() {
+  return (
+    <Pagination aria-label="Pagination" pageCount={10}>
+      <PaginationList>
+        {({ items }) => (
+          <>
+            <PaginationItem>
+              <PaginationPrevious>Previous</PaginationPrevious>
+            </PaginationItem>
+            <For each={items}>
+              {(item) => (
+                <PaginationItem>
+                  {typeof item === "number" ? (
+                    <PaginationLink page={item} />
+                  ) : (
+                    <PaginationEllipsis />
+                  )}
+                </PaginationItem>
+              )}
+            </For>
+            <PaginationItem>
+              <PaginationNext>Next</PaginationNext>
+            </PaginationItem>
+          </>
+        )}
+      </PaginationList>
+    </Pagination>
+  )
+}
+
+export { PageNavigation }
+```
+
+## Total and Page Size
+
+Instead of `pageCount`, pass `total`, how many items there are, and `pageSize`, how many fit on a page (10 by default). Pagination calculates the page count, with a minimum of one. This example resets to page 1 when the page size changes.
+
+A page past the end, like after the count shrinks, reads as the last page.
+
+<ComponentExample
+  name="pagination/total"
+  caption="Choose a page, then change Rows per page. The console logs each change, and a new size starts again at page 1."
+/>
+
+## Simple
+
+With only a few pages, the range has no gaps, so you can write the links out and leave the steps off.
+
+```tsx
+<Pagination aria-label="Pagination" pageCount={5}>
+  <PaginationList>
+    <For each={[1, 2, 3, 4, 5]}>
+      {(page) => (
+        <PaginationItem>
+          <PaginationLink page={page} />
+        </PaginationItem>
+      )}
+    </For>
+  </PaginationList>
+</Pagination>
+```
+
+## Links
+
+Pass `getHref` to map each page to a URL. Page links and steps then render as anchors.
+
+```tsx
+<Pagination
+  aria-label="Pagination"
+  pageCount={10}
+  getHref={(page) => `/posts?page=${page}`}
+>
+  ...
+</Pagination>
+```
+
+Server-rendered anchors work before JavaScript loads. A normal click changes the page and follows the URL. Modifier clicks and middle clicks leave pagination state alone so the browser can open the link elsewhere.
+
+A step at its end loses its `href` and leaves the tab order, but keeps focus if it already had it. During navigation, its original `href` stays in place so Next cannot accidentally follow the next page's URL.
+
+## Router Links
+
+Render your router's link to page on the client. Pass it to `render`, like `render={(props) => <A {...props} />}`; it receives the part's props, with the `href` from [`getHref`](#links). The pagination's click handler runs first: when a change is canceled or a step is at its end, it calls `preventDefault()`, and the router leaves the link alone.
+
+Read the page from the URL, like your router's search params, so the route [controls](#controlled) the pagination.
+
+```tsx
+const [searchParams] = useSearchParams()
+const page = () => Number(searchParams.page ?? 1)
+
+<Pagination aria-label="Pagination" pageCount={10} page={page()} getHref={(page) => `?page=${page}`}>
+  <PaginationList>
+    {({ items }) => (
+      <For each={items}>
+        {(item) => (
+          <PaginationItem>
+            {typeof item === "number" ? (
+              <PaginationLink page={item} render={(props) => <A {...props} />} />
+            ) : (
+              <PaginationEllipsis />
+            )}
+          </PaginationItem>
+        )}
+      </For>
+    )}
+  </PaginationList>
+</Pagination>
+```
+
+## Controlled
+
+Pass `page` and `onPageChange` to control the pagination.
+
+```tsx
+const [page, setPage] = createSignal(1)
+
+<Pagination aria-label="Pagination" pageCount={10} page={page()} onPageChange={(next) => setPage(next)}>
+  ...
+</Pagination>
+```
+
+Every change carries a [reason](#reasons): `item-press` for a page, `previous-press`, `next-press`, `first-press` or `last-press` for a step, and `imperative` from a [controller](#controller). Call `details.cancel()` to keep the page, like while a form has unsaved changes. A canceled change also stops a link from navigating.
+
+## Default Page
+
+`defaultPage` is the page it starts on, when uncontrolled. It's 1 by default.
+
+```tsx
+<Pagination aria-label="Pagination" pageCount={10} defaultPage={5}>
+  ...
+</Pagination>
+```
+
+## Siblings
+
+`siblings` is how many pages show on each side of the current one, 1 by default. Near an end, the window slides over instead of shrinking, keeping the range length stable. A gap of one page shows that page instead of an ellipsis.
+
+```tsx
+<Pagination
+  aria-label="Pagination"
+  pageCount={20}
+  defaultPage={10}
+  siblings={2}
+>
+  ...
+</Pagination>
+```
+
+## Boundaries
+
+`boundaries` is how many pages always show at each end, 1 by default.
+
+```tsx
+<Pagination
+  aria-label="Pagination"
+  pageCount={20}
+  defaultPage={10}
+  boundaries={2}
+>
+  ...
+</Pagination>
+```
+
+## Paging from Anywhere
+
+A [controller](#controller), from `createPaginationController()`, pages the pagination from anywhere, like buttons elsewhere on the page or a keyboard shortcut, without controlling it. Pass it as `controller`.
+
+```tsx
+const pagination = createPaginationController()
+
+<button onClick={() => pagination.next()}>Next Page</button>
+<Pagination aria-label="Pagination" pageCount={10} controller={pagination}>
+  ...
+</Pagination>
+```
+
+## Your Own Markup
+
+`paginationRange({ page, pageCount, siblings, boundaries })` is the range the parts use, as a pure function. It runs anywhere, like on the server, in an email or for a UI that isn't a list of pages. Import it from `@ui-sdk/core/pagination`. Here it keeps a strip of slide dots the same length however many slides there are.
+
+```tsx
+import { paginationRange } from "@ui-sdk/core/pagination"
+
+const items = () => paginationRange({ page: slide(), pageCount: 20, siblings: 2, boundaries: 1 })
+
+<div role="group" aria-label="Slides">
+  <For each={items()}>
+    {(item) =>
+      typeof item === "number" ? (
+        <button
+          aria-label={`Slide ${item}`}
+          aria-current={item === slide() ? "true" : undefined}
+          onClick={() => setSlide(item)}
+        />
+      ) : (
+        <span aria-hidden="true" />
+      )
+    }
+  </For>
+</div>
+```
+
+## Custom Rendering
+
+Every part takes `render`, a function that receives the props to spread and the part's state. `class`, `style` and `children` can be functions of the same state: whether a link is `current`, and for a step, the `page` it goes to and whether it's `disabled`.
+
+<ComponentExample
+  name="pagination/render"
+  caption="Choose a page. The current page widens to say Page 3, and each arrow shows the page it goes to."
+/>
+
+## Styling
+
+Parts are unstyled. Style them through the attributes they render, which are the same in every framework: `aria-current="page"` or `data-current` on the current page's link, and `aria-disabled` or `data-disabled` on a step at its end.
+
+Each part has a `data-slot`, such as `pagination-link`, and its state attributes are listed under [Data Attributes](#data-attributes). The root, list, items and ellipsis have none.
+
+## Data Attributes
+
+### PaginationLink [#data-attributes-paginationlink]
+
+<DataAttributes component="pagination" part="link" />
+
+### PaginationPrevious [#data-attributes-paginationprevious]
+
+<DataAttributes component="pagination" part="previous" />
+
+### PaginationNext [#data-attributes-paginationnext]
+
+<DataAttributes component="pagination" part="next" />
+
+### PaginationFirst [#data-attributes-paginationfirst]
+
+<DataAttributes component="pagination" part="first" />
+
+### PaginationLast [#data-attributes-paginationlast]
+
+<DataAttributes component="pagination" part="last" />
+
+## API Reference
+
+Props and callbacks are the same as below, as Solid props.
+
+### Pagination
+
+<TypeTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationOptions"
+/>
+
+### PaginationLink
+
+<TypeTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationLinkProps"
+/>
+
+`PaginationList`, `PaginationItem`, `PaginationPrevious`, `PaginationNext`, `PaginationFirst`, `PaginationLast` and `PaginationEllipsis` take no props of their own.
+
+### State
+
+What render functions, state-based class names and slots receive, per part.
+
+`Pagination` and `PaginationList`:
+
+<StateTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationState"
+/>
+
+`PaginationLink`:
+
+<StateTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationLinkState"
+/>
+
+`PaginationPrevious`, `PaginationNext`, `PaginationFirst` and `PaginationLast`:
+
+<StateTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationStepState"
+/>
+
+### Reasons
+
+`details.reason` says why the page changed.
+
+<ReasonTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationPageChangeReason"
+/>
+
+### Controller
+
+Create one with `createPaginationController()` and pass it as `controller`.
+
+Every write method takes an optional `{ reason, event }`, passed to `onPageChange`, and returns `false` when the change is canceled or there's nowhere to go.
+
+<ControllerTable
+  path="../../packages/core/src/components/pagination/pagination.ts"
+  name="PaginationController"
+/>
+
+### Events
+
+Callbacks get the new page first, then the details.
+
+| Prop           | On           | Receives                                                    |
+| -------------- | ------------ | ----------------------------------------------------------- |
+| `onPageChange` | `Pagination` | `(page, details)`: the new page, and the [reason](#reasons) |
+
+## Accessibility
+
+There's no WAI-ARIA pattern for pagination. It follows the common practice: a `navigation` landmark named with `aria-label`, a list of links or buttons, and `aria-current="page"` on the current one. The list keeps the `list` role even when styled without bullets, which Safari would otherwise drop.
+
+### Focus
+
+Steps rendered as buttons stay focusable at the ends. A clicked page link keeps focus as the range moves; the primitive also tries to restore focus to that page or step if rendering replaces its element. Key range entries by their value rather than their index.
+
+### Tested Behavior
+
+Every line below is an automated test.
+
+<SpecList spec="pagination" />
+
+Beyond the baseline:
+
+<SpecList spec="pagination.enhancements" />
+
+Screen readers hear the same thing in each tested framework, recorded by a virtual screen reader:
+
+<SpecList spec="pagination.sr" />

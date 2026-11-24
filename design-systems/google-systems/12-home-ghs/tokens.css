@@ -1,0 +1,151 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   12. GOOGLE HOME SYSTEM (GHS / HOME UI GHST)
+   Version: 3.977 · Carbon: designSystems/6bd78148a84cf216
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/ghs/versions/latest/android_compose/color/GhsSysColorLightTokens.kt
+     - //depot/google3/ux/tokens/design_systems/ghs/versions/latest/swiftui/Color/src/Color+GHS.swift
+     - //depot/google3/ux/tokens/design_systems/ghs/versions/v3_962/android_compose/
+     - //depot/google3/java/com/google/android/libraries/home/ui/implementation/ghst/
+     - Docs: go/carbon | go/carbon-codegen-automation
+   Values: Verbatim Carbon/codegen values unless the line is annotated 'inferred'
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --ghs-sys-color-surface: #ffffff;
+    --ghs-sys-color-surface-container-low: #f8fafd;
+    --ghs-sys-color-surface-container: #f0f4f9;
+    --ghs-sys-color-surface-container-high: #e9eef6;
+    --ghs-sys-color-surface-container-highest: #dde3ea;
+    --ghs-sys-color-on-surface: #1f1f1f;
+    --ghs-sys-color-on-surface-variant: #444746;
+    --ghs-sys-color-outline: #747775;
+    --ghs-sys-color-outline-variant: #c4c7c5;
+    --ghs-sys-color-primary: #0b57d0;
+    --ghs-sys-color-on-primary: #ffffff;
+    --ghs-sys-color-primary-container: #d3e3fd;
+    --ghs-sys-color-on-primary-container: #0842a0;
+    --ghs-sys-color-secondary-container: #c2e7ff;
+    --ghs-sys-color-on-secondary-container: #004a77;
+    --ghs-sys-color-default-active: #00639b;
+    --ghs-sys-color-default-active-container: #c2e7ff;
+    --ghs-sys-color-on-default-active-container: #004a77;
+    --ghs-sys-color-heating: #a83900;
+    --ghs-sys-color-heating-container: #ffdbcf;
+    --ghs-sys-color-on-heating-container: #802a00;
+    --ghs-sys-color-heating-surface: #fff8f6;
+    --ghs-sys-color-heating-stage-1: #c74d1b;
+    --ghs-sys-color-heating-stage-2: #812800;
+    --ghs-sys-color-heating-stage-3: #380c00;
+    --ghs-sys-color-cooling: #1157ce;
+    --ghs-sys-color-cooling-container: #d0e4ff;
+    --ghs-sys-color-on-cooling-container: #04409f;
+    --ghs-sys-color-cooling-surface: #f3f7ff;
+    --ghs-sys-color-cooling-stage-1: #217cbb;
+    --ghs-sys-color-cooling-stage-2: #004a77;
+    --ghs-sys-color-lighting: #745c00;
+    --ghs-sys-color-lighting-container: #ffe089;
+    --ghs-sys-color-on-lighting-container: #584400;
+    --ghs-sys-color-lighting-dim: #f0c100;
+    --ghs-sys-color-valid: #006c35;
+    --ghs-sys-color-valid-container: #beefbb;
+    --ghs-sys-color-caution: #9a4600;
+    --ghs-sys-color-caution-container: #ffdcc3;
+    --ghs-sys-color-eco: #1e8e3e;
+    --ghs-sys-color-energy-green: #00d863;
+    --ghs-sys-color-energy-programs: #ad8200;
+    --ghs-sys-color-live: #8c1d18;
+    --ghs-sys-color-on-live: #ffffff;
+    --ghs-sys-color-error: #b3261e;
+    --ghs-sys-color-semantic-inactive: #5e5e5e;
+    --ghs-sys-color-semantic-inactive-container: #e3e3e3;
+    --ghs-sys-color-on-semantic-inactive-container: #474747;
+    --ghs-sys-color-ai-main: #217bfe;
+    --ghs-sys-color-ai-main-variant: #d7e6ff;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --ghs-sys-color-surface: #131314;
+    --ghs-sys-color-surface-container-low: #1b1b1b;
+    --ghs-sys-color-surface-container: #1e1f20;
+    --ghs-sys-color-surface-container-high: #282a2c;
+    --ghs-sys-color-surface-container-highest: #333537;
+    --ghs-sys-color-on-surface: #e3e3e3;
+    --ghs-sys-color-on-surface-variant: #c4c7c5;
+    --ghs-sys-color-outline: #8e918f;
+    --ghs-sys-color-outline-variant: #444746;
+    --ghs-sys-color-primary: #a8c7fa;
+    --ghs-sys-color-on-primary: #062e6f;
+    --ghs-sys-color-primary-container: #0842a0;
+    --ghs-sys-color-on-primary-container: #d3e3fd;
+    --ghs-sys-color-secondary-container: #004a77;
+    --ghs-sys-color-on-secondary-container: #c2e7ff;
+    --ghs-sys-color-default-active: #7fcfff;
+    --ghs-sys-color-default-active-container: #004a77;
+    --ghs-sys-color-on-default-active-container: #c2e7ff;
+    --ghs-sys-color-heating: #ffb59a;
+    --ghs-sys-color-heating-container: #802a00;
+    --ghs-sys-color-on-heating-container: #ffdbcf;
+    --ghs-sys-color-heating-surface: #431503;
+    --ghs-sys-color-heating-stage-1: #ffb598;
+    --ghs-sys-color-heating-stage-2: #ff8b5b;
+    --ghs-sys-color-heating-stage-3: #ed6834;
+    --ghs-sys-color-cooling: #a1c9ff;
+    --ghs-sys-color-cooling-container: #04409f;
+    --ghs-sys-color-on-cooling-container: #d0e4ff;
+    --ghs-sys-color-cooling-surface: #102651;
+    --ghs-sys-color-cooling-stage-1: #94ccff;
+    --ghs-sys-color-cooling-stage-2: #6cb1ee;
+    --ghs-sys-color-lighting: #f0c100;
+    --ghs-sys-color-lighting-container: #584400;
+    --ghs-sys-color-on-lighting-container: #ffe089;
+    --ghs-sys-color-lighting-dim: #745c00;
+    --ghs-sys-color-valid: #80da88;
+    --ghs-sys-color-valid-container: #00522c;
+    --ghs-sys-color-caution: #ffb683;
+    --ghs-sys-color-caution-container: #753403;
+    --ghs-sys-color-eco: #b1f2b4;
+    --ghs-sys-color-live: #f2b8b5;
+    --ghs-sys-color-on-live: #601410;
+    --ghs-sys-color-error: #f2b8b5;
+    --ghs-sys-color-semantic-inactive: #c7c7c7;
+    --ghs-sys-color-semantic-inactive-container: #303030;
+    --ghs-sys-color-on-semantic-inactive-container: #e3e3e3;
+  }
+
+  /* Verbatim GhsSysShape.kt (v3_962) — cornerNone 0dp … cornerExtraLarge 28dp */
+  :root {
+    --ghs-sys-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --ghs-sys-font-body: 'Google Sans Text', 'Roboto', Arial, sans-serif;
+    --ghs-sys-corner-extra-small: 4px;
+    --ghs-sys-corner-small: 8px;
+    --ghs-sys-corner-medium: 12px;
+    --ghs-sys-corner-large: 16px;
+    --ghs-sys-corner-extra-large: 28px;
+    --ghs-sys-corner-full: 9999px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ghs-sys-color-surface);
+    color: var(--ghs-sys-color-on-surface);
+    font-family: var(--ghs-sys-font-body, var(--ghs-sys-font-plain, var(--ghs-sys-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

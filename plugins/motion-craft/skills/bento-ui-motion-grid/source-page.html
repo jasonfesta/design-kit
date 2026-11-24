@@ -1,0 +1,156 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>bento-ui-motion-grid skill</title><meta name="description" content="A free skill for making smooth 120fps bento grid UI motion videos with HTML, Playwright and ffmpeg.">
+<meta property="og:title" content="bento-ui-motion-grid skill"><meta property="og:image" content="preview.jpg"><meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--acc:#2F5BFF;--ink:#141416;--mut:#6b6b67;--bg:#F7F7F5;--line:#E6E6E1}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:56px 22px 96px}
+.eyebrow{font-size:13px;color:var(--acc);font-weight:600;letter-spacing:.02em}
+h1{font-size:clamp(32px,6vw,52px);letter-spacing:-.03em;line-height:1.05;margin:10px 0 14px}
+.lede{font-size:19px;color:#3a3a37;max-width:640px;margin:0 0 26px}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:#fff;text-decoration:none;padding:13px 20px;border-radius:999px;font-weight:600;font-size:15px}
+.btn span{opacity:.6;font-weight:500}
+.hero{margin:34px 0 10px;border-radius:20px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05),0 18px 50px rgba(20,20,40,.10);background:#fff}
+.hero img{display:block;width:100%;height:auto}
+.cap{font-size:13px;color:var(--mut);margin:8px 2px 40px}
+article{background:#fff;border-radius:20px;padding:34px clamp(20px,4vw,44px);box-shadow:0 1px 2px rgba(0,0,0,.04)}
+article h1{font-size:28px;margin-top:0}article h2{font-size:21px;margin:34px 0 8px;letter-spacing:-.01em}article h3{font-size:17px;margin:24px 0 6px}
+article p,article li{color:#2c2c2a}
+code{font:13.5px/1.5 "Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;background:#F1F1EE;border-radius:6px;padding:1px 5px}
+pre{background:#111214;color:#E8E8E6;border-radius:14px;padding:16px 18px;overflow:auto}pre code{background:none;padding:0;color:inherit;font-size:13px}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}th{font-weight:600}
+a{color:var(--acc)}footer{margin-top:36px;font-size:13px;color:var(--mut)}
+</style></head><body><div class="wrap">
+<div class="eyebrow">Free skill</div>
+<h1>bento-ui-motion-grid</h1>
+<p class="lede">Make a silent, ultra smooth bento grid of UI cards where every card animates on its own. Rendered frame by frame at 120fps with a 60fps cut for X.</p>
+<a class="btn" href="bento-ui-motion-grid.zip" download>Download the skill <span>.zip</span></a>
+<div class="hero"><img src="preview.jpg" width="1440" height="1080" alt="Poster frame: a grid of 24 UI cards including a music player, clock, map route, chat, kanban board, timer and color picker"></div>
+<div class="cap">Poster frame from the example render (1440x1080).</div>
+<article><h1>Bento UI motion grid (time-driven HTML, 120 fps)</h1>
+<p><strong>Style tags:</strong> bento-cards, ui-mockup, clean-minimal, light-airy, grotesk-led.</p>
+<p><strong>Pick this when:</strong> you want the viral "this model can actually design" style post: one static camera on a grid of
+Dribbble-tier product widgets, everything alive at once, buttery motion, no voiceover, no cuts. Great for showing off
+design taste, a component library, an app concept or a design system in 24 seconds.</p>
+<p><strong>Don't pick it</strong> for:
+- camera pushes through one product flow: pastel-glow-ui-film;
+- cursor-driven tool tours with stickers: figma-motion-launch;
+- changelog / release cadence films: linear-releases;
+- fast hard-cut screenshot collages: fast-collage-recolor-demo.</p>
+<h2>How it differs from the nearest skills</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>bento-ui-motion-grid</strong> (this)</th>
+<th>pastel-glow-ui-film</th>
+<th>figma-motion-launch</th>
+<th>fast-collage-recolor-demo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Camera</td>
+<td>locked off, never moves</td>
+<td>big pushes and pans</td>
+<td>cuts + cursor moves</td>
+<td>cuts</td>
+</tr>
+<tr>
+<td>Motion</td>
+<td>24 cards animating at once, each on its own clock</td>
+<td>one focus at a time</td>
+<td>cursor-led</td>
+<td>screenshot swaps</td>
+</tr>
+<tr>
+<td>Cuts</td>
+<td>none (intro springs in, then continuous)</td>
+<td>scene windows</td>
+<td>cuts</td>
+<td>many</td>
+</tr>
+<tr>
+<td>Format</td>
+<td>1440x1080, 120 fps master, 60 fps cut, 24 s, silent</td>
+<td>1920x1080, 50 fps</td>
+<td>1920x1080</td>
+<td>landscape</td>
+</tr>
+<tr>
+<td>Tech</td>
+<td>single index.html, pure <code>draw(t)</code></td>
+<td>Remotion</td>
+<td>DOM/canvas</td>
+<td>DOM</td>
+</tr>
+</tbody>
+</table>
+<h2>Visual spec (template defaults)</h2>
+<ul>
+<li><strong>Stage:</strong> 1024x768 CSS px, captured at device scale 2.8125 (2880x2160) and downscaled with Lanczos to 1440x1080. Crisp type.</li>
+<li><strong>Palette:</strong> bg #F7F7F5, tray #EEEEEA, white cards with two-layer soft shadow, dark cards #0F0F12, ink #141416, muted #8B8B87, ONE accent (#2F5BFF signal blue) plus its tint #EEF2FF. Change the accent in <code>:root</code> and <code>const A</code>.</li>
+<li><strong>Type:</strong> Inter with <code>tnum</code>, <code>cv11</code>, <code>ss01</code>; 9 to 11 px labels, 16 to 36 px numerals, tracking slightly negative.</li>
+<li><strong>Grid:</strong> 5 columns (x 22, 232, 392, 642, 802; widths 200, 150, 240, 150, 200), 10 px gaps, tray radius 22, inner card radius 14. Every column sums to 720 px of height.</li>
+<li><strong>Timeline:</strong> 0 to ~1.6 s staggered spring intro (scale 0.86 to 1, opacity, content rises 6 px, delay by x and y). Then each card runs its own cycle (period 2.2 to 7.5 s, offsets spread 1.2 to 4.5 s) plus ambient motion (eq bars, sparkline scroll, car on route, timer, typing dots, pulse rings) so something is always moving.</li>
+</ul>
+<h2>Architecture (template/)</h2>
+<pre><code>index.html            everything: CSS tokens, easing + timing helpers, roll() odometer digits, 24 widget functions W.&lt;name&gt;(t),
+                      the layout table L = [[id, x, y, w, h, 'w'|'d'|''], ...] and draw(t) which re-renders the whole page for time t.
+scripts/render.py     parallel Playwright workers; frame i -&gt; draw(i/fps) -&gt; screenshot 2.8125x -&gt; 1440x1080 PNG. --fps --seconds --workers
+scripts/snap.py       stills at chosen seconds into out/ (fast review loop)
+scripts/smoothness.py per-card frame-diff spike detector (finds snaps and cycle-wrap jumps)
+scripts/encode.sh     frames -&gt; out/grid_120.mp4 (120 fps master) + out/grid_60.mp4 (every 2nd frame, for X), ffprobe check
+</code></pre>
+<h3>Timing helpers (the whole motion language)</h3>
+<ul>
+<li><code>spring(p)</code>: damped spring FROM REST (zeta 0.55, ~12% overshoot), normalised so p=1 is exactly 1. Use for anything that travels: knobs, gliders, rings, digits, cards.</li>
+<li><code>soft(p)</code>: critically damped, no overshoot, zero start velocity. Use for crossfades, colour/theme flips, stack pushes, resets.</li>
+<li><code>expo(p)</code>: ease-out-expo. Use only for opacity reveals; it starts fast, so never for big colour areas.</li>
+<li><code>io(p)</code>: quintic in-out for long travel (map car).</li>
+<li><code>st(t,P,o)</code> -&gt; <code>{k,l,pre}</code> cycle index and seconds-into-cycle; <code>st2</code> and <code>tw(t,P,o,vals,dur,ease)</code> tween value lists with the first change at <code>o</code>; <code>rollV(...)</code> rolls formatted numbers between list values.</li>
+<li><code>roll(from,to,l,dur,stagger)</code>: per-digit odometer columns (tabular digits) with left-to-right stagger; non-digits crossfade.</li>
+</ul>
+<h2>Quick start</h2>
+<pre><code class="language-bash">cp -r skills/bento-ui-motion-grid/template my-grid &amp;&amp; cd my-grid      # never build inside the skill folder
+pip install playwright pillow numpy &amp;&amp; python3 -m playwright install chromium   # or pass --chrome /usr/bin/google-chrome
+python3 scripts/snap.py 0.6 3 7.5 12                                  # look at the intro and a few mid states
+python3 scripts/render.py --fps 120 --seconds 24                      # 2880 frames, ~4 min on 6 workers / 8 cores
+python3 scripts/smoothness.py frames                                  # expect BIG SPIKES near 0; inspect any that remain
+bash scripts/encode.sh frames out                                     # out/grid_120.mp4 + out/grid_60.mp4
+</code></pre>
+<h2>Recipe</h2>
+<ol>
+<li><strong>Concept first.</strong> Pick a fictional product or a mixed "design system" set and ONE accent colour. Do not copy a reference app's widgets; vary the widget types (media, time, money, map, chat, tasks, controls, status).</li>
+<li><strong>Layout.</strong> Edit <code>L</code>. Keep 5 columns that each sum to 720 px; mix tall (180 to 240), medium (120 to 160) and thin (54 to 80) trays; 2 or 3 dark cards; 3 or 4 white trays; the rest tray grey with white inner cards.</li>
+<li><strong>Widgets.</strong> Each <code>W.name(t)</code> returns HTML for time t. Pure function of t: no <code>Math.random</code>, no Date, no CSS transitions/animations. Reuse the helpers above.</li>
+<li><strong>Make every state change continuous.</strong> For each widget check the cycle wrap (end state at l=P must equal start state at l=0 of the next cycle) and the pre-start state (t &lt; offset). Fade out then fade in rather than popping.</li>
+<li><strong>Review stills</strong> with <code>snap.py</code>, then render, then run <code>smoothness.py</code>. Fix any card with big spikes, re-render, re-check.</li>
+<li><strong>Encode</strong> with <code>encode.sh</code>. Post the 60 fps file to X (X plays at most 60 fps); keep the 120 fps master.</li>
+</ol>
+<h2>Gotchas (all hit while building the reference)</h2>
+<ul>
+<li>Springs that start with velocity (<code>1 - e^-at cos bt</code>) look like a jerk on frame 1 at 120 fps. Use the from-rest spring.</li>
+<li>Binary swaps hide in plain sight: a heart icon that switches fill at p&gt;0.5, a label that swaps text, a progress fill removed when a state ends. Layer both states and crossfade opacity.</li>
+<li><code>expo</code> on a large colour area (album art, theme flip) reads as a flash. Use <code>soft</code>.</li>
+<li>Values that wrap (<code>(t*k) % x</code>) jump; use monotonic values over the 24 s.</li>
+<li>Two widgets sharing a value (ring and its % label) must use the same cycle indexing (<code>st</code> vs <code>st2</code> differ by one).</li>
+<li>Digit-width changes (9% -&gt; 10%) show as a tiny spike in the checker; that is fine.</li>
+<li><code>.rc b{display:block}</code> must match nested spans, or the odometer prints 0123456789 inline.</li>
+<li>SVG map: match the viewBox aspect to the box or <code>slice</code> crops your route ends.</li>
+</ul>
+<h2>Known limits</h2>
+<ul>
+<li>Silent by design. Content is fictional sample data; brand marks are generic squares.</li>
+<li>Rendering is CPU bound (~0.5 s per 2880x2160 frame per worker). 120 fps x 24 s = 2880 frames.</li>
+<li>Text sizes are tuned for 1440x1080 viewing on a phone; for 1080x1920 vertical, rebuild <code>L</code> rather than scaling.</li>
+</ul>
+<h2>Verified</h2>
+<ul>
+<li><strong>Date:</strong> 2026-11-10</li>
+<li><strong>Reference render:</strong> <code>remake_120.mp4</code> (1440x1080, 120/1, 2880 frames, 24.0 s) and <code>remake_60.mp4</code> (60/1, 1440 frames), both H.264 yuv420p, silent.</li>
+<li><strong>Smoothness:</strong> after the fixes above, every card had 0 big spikes except digit-width changes (deploy % counter) and moderate spikes from intentional pops (crew avatars, chat bubbles, notifications).</li>
+<li><strong>Template smoke test:</strong> copied out of the skill folder, <code>render.py --fps 30 --seconds 2 --workers 2</code>, <code>smoothness.py</code>, <code>snap.py</code>, <code>encode.sh</code> all ran clean with no page errors.</li>
+</ul></article>
+<footer>The zip has SKILL.md, meta.json and template/ (index.html plus scripts for rendering, stills, smoothness check and encoding).</footer>
+</div></body></html>

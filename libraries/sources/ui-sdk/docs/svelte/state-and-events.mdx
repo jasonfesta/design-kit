@@ -1,0 +1,164 @@
+---
+title: State and Events
+description: Set an initial value, control it, and respond to changes.
+---
+
+Components manage their own state until you bind a value. A change callback lets you respond in either case.
+
+## Set the Starting Value
+
+Use a default prop to choose the starting state. Here, Bold starts pressed and changes when you click it:
+
+```svelte
+<script lang="ts">
+  import { Toggle } from "@ui-sdk/svelte/toggle"
+</script>
+
+<Toggle defaultPressed>Bold</Toggle>
+```
+
+The prop depends on the component: `defaultPressed`, `defaultChecked`, `defaultOpen`, or `defaultValue`.
+
+## Control the Value
+
+```svelte
+<script lang="ts">
+  import { Toggle } from "@ui-sdk/svelte/toggle"
+
+  let pressed = $state(false)
+</script>
+
+<Toggle bind:pressed>Bold</Toggle>
+<output>{pressed ? "On" : "Off"}</output>
+```
+
+Clicking Bold updates `pressed`, so the output changes too. Other components bind `open`, `checked`, or `value`.
+
+A prop without `bind:` does not write changes back to the parent. The component can still update its local value. Use a binding when the parent should stay in sync.
+
+To keep a value in the URL, bind it to `$state` and call `goto` when it changes. A value that changes only when the navigation finishes leaves the component showing the old one until then, and logs a warning in development.
+
+### Decide Which Changes to Accept
+
+A function binding lets the parent decide whether to save the next value:
+
+```svelte
+<script lang="ts">
+  import { Toggle } from "@ui-sdk/svelte/toggle"
+
+  let pressed = $state(false)
+  let allowChanges = $state(true)
+
+  function setPressed(next: boolean) {
+    if (allowChanges) {
+      pressed = next
+    }
+  }
+</script>
+
+<label
+  ><input type="checkbox" bind:checked={allowChanges} /> Allow changes</label
+>
+<Toggle bind:pressed={() => pressed, setPressed}>Bold</Toggle>
+```
+
+Uncheck Allow changes, then press Bold. The setter leaves `pressed` unchanged, so the toggle stays as it was. This also cancels the change request.
+
+A bound value may start as `undefined`. Until it has a defined value, the component manages its own state. For example, `let pressed = $state<boolean>()` lets the toggle start from `defaultPressed`; the binding receives its first change, or you can set `pressed` yourself.
+
+## Respond to a Change
+
+Callbacks such as `onPressedChange` receive the requested value and `details`. They run before a bound value updates.
+
+| Detail     | What It Tells You                                                                                |
+| ---------- | ------------------------------------------------------------------------------------------------ |
+| `reason`   | What requested the change, such as `press` or `outside-press`. Each component lists its reasons. |
+| `event`    | The DOM event, when there is one.                                                                |
+| `source`   | `keyboard`, `mouse`, `touch`, `pen`, `virtual`, `programmatic`, or `agent`.                      |
+| `cancel()` | Stops the requested change.                                                                      |
+
+For example, keep a popover open when someone clicks outside it:
+
+```svelte
+<script lang="ts">
+  import {
+    Popover,
+    PopoverClose,
+    PopoverContent,
+    PopoverTitle,
+    PopoverTrigger,
+  } from "@ui-sdk/svelte/popover"
+
+  function keepOpen(
+    open: boolean,
+    details: { reason: string; cancel: () => void }
+  ) {
+    if (!open && details.reason === "outside-press") {
+      details.cancel()
+    }
+  }
+</script>
+
+<Popover onOpenChange={keepOpen}>
+  <PopoverTrigger>Details</PopoverTrigger>
+  <PopoverContent>
+    <PopoverTitle>Project Details</PopoverTitle>
+    <p>Last updated today.</p>
+    <PopoverClose>Done</PopoverClose>
+  </PopoverContent>
+</Popover>
+```
+
+The Done button still closes it. Cancellation also works when you control the value. Add `debug` to a root to log changes while you work.
+
+## Share State Across Components
+
+When several components need the same state, create it once in a parent and hand it down through context. A pair of small functions keeps the context key in one place:
+
+```ts title="editor.svelte.ts"
+import { getContext, setContext } from "svelte"
+
+export class Editor {
+  bold = $state(false)
+}
+
+const key = Symbol("editor")
+
+export const setEditor = (editor: Editor) => setContext(key, editor)
+export const getEditor = () => getContext<Editor>(key)
+```
+
+Create the state in a component near the top of your app. In SvelteKit, the root layout works well:
+
+```svelte title="+layout.svelte"
+<script lang="ts">
+  import { Editor, setEditor } from "$lib/editor.svelte"
+
+  let { children } = $props()
+
+  setEditor(new Editor())
+</script>
+
+{@render children()}
+```
+
+Any component inside it can read and bind the same state:
+
+```svelte
+<script lang="ts">
+  import { Toggle } from "@ui-sdk/svelte/toggle"
+  import { getEditor } from "$lib/editor.svelte"
+
+  const editor = getEditor()
+</script>
+
+<Toggle bind:pressed={editor.bold}>Bold</Toggle>
+```
+
+Each render of the layout creates its own `Editor`, so on the server every request starts with a fresh copy. A `$state` exported from a module lives as long as the server does, so every visitor would read and change the same copy. Keep shared state in context, and use module state only for values that are the same for everyone.
+
+## Empty and Multiple Values
+
+Select, Tabs, and Radio Group report `null` when nothing is selected. A multiple Select or Combobox uses an array. Accordion and Toggle Group always use arrays.
+
+To change a component from outside its parts, use a [Controller](./controllers).

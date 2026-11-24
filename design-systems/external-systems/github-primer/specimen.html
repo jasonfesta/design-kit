@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GitHub Primer — Interactive Token Specimen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    :root { --pr-font-preview: "Mona Sans", var(--fontStack-sansSerif); }
+
+    :root { --pr-font-ui: var(--pr-font-preview, var(--pr-font-sans)); }
+    body { font-family: var(--pr-font-ui); }
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--pr-surface); border: 1px solid var(--pr-border); border-radius: var(--pr-card-radius); margin-bottom: 20px; }
+    .top-bar strong { font-size: 15px; letter-spacing: -0.01em; }
+    .meta { font-family: var(--pr-font-mono); font-size: 11.5px; color: var(--pr-ink-2); }
+    .tb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { height: var(--pr-control-h); padding: 0 16px; border-radius: var(--pr-btn-radius); border: 1px solid transparent;
+      font: inherit; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--pr-duration) var(--pr-ease), box-shadow var(--pr-duration) var(--pr-ease), transform 120ms var(--pr-ease); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, .field:focus-visible, .tab:focus-visible, .nav a:focus-visible { outline: 2px solid var(--pr-focus); outline-offset: 2px; }
+    .btn-primary { background: var(--pr-accent); color: var(--pr-on-accent); }
+    .btn-primary:hover, .btn-primary.is-hover { background: var(--pr-accent-hover); }
+    .btn-secondary { background: var(--pr-surface); color: var(--pr-ink); border-color: var(--pr-border-strong); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--pr-surface-2); }
+    .btn-ghost { background: transparent; color: var(--pr-accent-ink); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: var(--pr-accent-subtle); }
+    .btn-danger { background: var(--pr-danger); color: #fff; }
+    .btn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-sm { height: calc(var(--pr-control-h) - 8px); padding: 0 12px; font-size: 13px; }
+    .card { background: var(--pr-surface); border: 1px solid var(--pr-border); border-radius: var(--pr-card-radius); box-shadow: var(--pr-shadow-sm); }
+    .section { padding: 20px; margin-bottom: 20px; }
+    .section h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.01em; }
+    .section .lede { margin: 0 0 16px; color: var(--pr-ink-2); font-size: 13px; }
+
+    /* App frame */
+    .app { display: grid; grid-template-columns: 220px 1fr; overflow: hidden; margin-bottom: 20px; }
+    .nav { background: var(--pr-surface-2); border-right: 1px solid var(--pr-border); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 14px; font-weight: 700; font-size: 14px; }
+    .brand i { width: 22px; height: 22px; border-radius: var(--pr-radius-sm); background: var(--pr-accent); display: inline-block; }
+    .nav a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: var(--pr-radius-sm);
+      color: var(--pr-ink-2); text-decoration: none; font-size: 13.5px; }
+    .nav a:hover { background: var(--pr-surface); color: var(--pr-ink); }
+    .nav a.active { background: var(--pr-accent-subtle); color: var(--pr-accent-ink); font-weight: 600; }
+    .nav a .count { font-size: 11.5px; font-variant-numeric: tabular-nums; color: var(--pr-ink-3); }
+    .main { padding: 20px 24px 24px; min-width: 0; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+    .crumb { font-size: 12px; color: var(--pr-ink-3); margin-bottom: 4px; }
+    .page-head h1 { margin: 0; font-family: var(--pr-font-display, var(--pr-font-ui)); font-size: 24px; line-height: 1.25; letter-spacing: -0.015em; }
+    .page-head p { margin: 4px 0 0; color: var(--pr-ink-2); font-size: 13.5px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--pr-border); margin-bottom: 16px; overflow-x: auto; }
+    .tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; font: inherit; font-size: 13.5px; color: var(--pr-ink-2); cursor: pointer; white-space: nowrap; }
+    .tab[aria-selected="true"] { color: var(--pr-ink); border-bottom-color: var(--pr-accent-ink); font-weight: 600; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric { padding: 14px 16px; }
+    .metric .label { font-size: 12.5px; color: var(--pr-ink-2); }
+    .metric .value { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .metric .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .delta.up { color: var(--pr-success-ink, var(--pr-success)); } .delta.down { color: var(--pr-danger-ink, var(--pr-danger)); }
+    .split { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
+    .tbl-wrap { overflow-x: auto; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; font-weight: 600; font-size: 12px; color: var(--pr-ink-2); background: var(--pr-surface-2); padding: 9px 12px; border-bottom: 1px solid var(--pr-border); white-space: nowrap; }
+    .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--pr-border); white-space: nowrap; }
+    .tbl tr:last-child td { border-bottom: 0; }
+    .tbl tbody tr { cursor: pointer; }
+    .tbl tbody tr:hover td { background: var(--pr-surface-2); }
+    .tbl tbody tr.selected td { background: var(--pr-accent-subtle); }
+    .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tbl th.num { text-align: right; }
+    .tbl .id { font-family: var(--pr-font-mono); font-size: 12px; color: var(--pr-ink-2); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: var(--pr-badge-radius); font-size: 12px; font-weight: 550; color: var(--pr-ink); white-space: nowrap; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.success { background: var(--pr-success-subtle); } .badge.success::before { background: var(--pr-success); }
+    .badge.warning { background: var(--pr-warning-subtle); } .badge.warning::before { background: var(--pr-warning); }
+    .badge.danger { background: var(--pr-danger-subtle); } .badge.danger::before { background: var(--pr-danger); }
+    .badge.info { background: var(--pr-info-subtle); } .badge.info::before { background: var(--pr-info); }
+    .badge.neutral { background: var(--pr-surface-2); } .badge.neutral::before { background: var(--pr-ink-3); }
+    .panel { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .panel h3 { margin: 0; font-size: 14px; }
+    .fld label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--pr-ink); }
+    .field { width: 100%; height: var(--pr-control-h); padding: 0 12px; border-radius: var(--pr-input-radius); border: 1px solid var(--pr-border-strong); background: var(--pr-surface); color: var(--pr-ink); font: inherit; font-size: 14px; }
+    .field::placeholder { color: var(--pr-ink-3); }
+    .helper { font-size: 12px; color: var(--pr-ink-3); margin-top: 4px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+    .switch { position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--pr-border-strong); border: 0; cursor: pointer; transition: background-color var(--pr-duration) var(--pr-ease); flex: none; }
+    .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform var(--pr-duration) var(--pr-ease); }
+    .switch[aria-checked="true"] { background: var(--pr-accent); }
+    .switch[aria-checked="true"]::after { transform: translateX(16px); }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+    .check input { width: 16px; height: 16px; accent-color: var(--pr-accent); margin: 0; }
+    .alert { display: flex; gap: 10px; padding: 12px 14px; border-radius: var(--pr-input-radius); font-size: 13px; border: 1px solid var(--pr-border); background: var(--pr-info-subtle); }
+    .alert::before { content: ""; flex: none; width: 4px; border-radius: 4px; background: var(--pr-info); }
+    .alert.warning { background: var(--pr-warning-subtle); } .alert.warning::before { background: var(--pr-warning); }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Token sections */
+    .ramp { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .ramp-name { font-size: 12.5px; font-weight: 600; }
+    .ramp-steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; }
+    .sw { height: 56px; border-radius: var(--pr-radius-sm); padding: 6px; display: flex; flex-direction: column; justify-content: flex-end; font-family: var(--pr-font-mono); font-size: 9.5px; line-height: 1.25; border: 1px solid rgba(127,127,127,.18); overflow: hidden; }
+    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .role { border: 1px solid var(--pr-border); border-radius: var(--pr-radius-sm); overflow: hidden; background: var(--pr-surface); }
+    .role .chip { height: 40px; border-bottom: 1px solid var(--pr-border); }
+    .role .txt { padding: 6px 8px; font-size: 11px; font-family: var(--pr-font-mono); color: var(--pr-ink-2); }
+    .role .txt b { display: block; color: var(--pr-ink); font-family: var(--pr-font-ui); font-size: 12px; font-weight: 600; }
+    .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--pr-border); }
+    .type-row:last-child { border-bottom: 0; }
+    .type-meta { font-family: var(--pr-font-mono); font-size: 11px; color: var(--pr-ink-2); }
+    .type-meta b { display: block; font-family: var(--pr-font-ui); color: var(--pr-ink); font-size: 12.5px; }
+    .type-sample { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tok-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tok-col h3 { margin: 0 0 10px; font-size: 13px; }
+    .rad { display: flex; flex-wrap: wrap; gap: 10px; }
+    .rad div { width: 64px; height: 64px; background: var(--pr-accent-subtle); border: 1.5px solid var(--pr-accent-ink); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-family: var(--pr-font-mono); font-size: 9.5px; color: var(--pr-ink); text-align: center; }
+    .sp { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: center; font-family: var(--pr-font-mono); font-size: 10.5px; color: var(--pr-ink-2); margin-bottom: 5px; }
+    .sp span:last-child { height: 10px; background: var(--pr-accent); border-radius: 2px; }
+    .elev { display: grid; gap: 12px; }
+    .elev div { padding: 14px; background: var(--pr-surface); border-radius: var(--pr-radius-md); font-family: var(--pr-font-mono); font-size: 10.5px; color: var(--pr-ink-2); }
+    .states { display: grid; grid-template-columns: 120px repeat(3, max-content); gap: 10px 14px; align-items: center; font-size: 12px; color: var(--pr-ink-2); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .tok-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 12px 12px 48px; }
+      .app { grid-template-columns: 1fr; }
+      .nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--pr-border); padding: 8px; }
+      .brand { padding: 4px 8px; }
+      .nav a .count { display: none; }
+      .main { padding: 16px 14px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics .metric:last-child { grid-column: span 2; }
+      .metric .value { font-size: 22px; }
+      .ramp { grid-template-columns: 1fr; gap: 4px; }
+      .ramp-steps { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .type-row { grid-template-columns: 1fr; gap: 4px; }
+      .states { grid-template-columns: 1fr 1fr; }
+      .states > .lbl { grid-column: span 2; }
+      .page-head h1 { font-size: 21px; }
+    }
+
+    /* ---- Primer signature details ---- */
+
+    .btn { font-weight: 500; font-size: 14px; border-color: var(--button-primary-borderColor-rest, transparent); }
+    .btn-secondary { background: var(--button-default-bgColor-rest); color: var(--button-default-fgColor-rest); border-color: var(--button-default-borderColor-rest); box-shadow: var(--shadow-resting-small); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--button-default-bgColor-hover); }
+    .btn-danger { background: var(--button-danger-bgColor-rest); color: var(--button-danger-fgColor-rest); border-color: var(--button-default-borderColor-rest); }
+    .btn-danger:hover { background: var(--button-danger-bgColor-hover); color: var(--button-danger-fgColor-hover); }
+    .btn-ghost { color: var(--fgColor-accent); }
+    .card { box-shadow: none; }
+    .nav { background: var(--bgColor-default); }
+    .nav a.active { background: var(--bgColor-neutral-muted); color: var(--fgColor-default); box-shadow: inset 3px 0 0 var(--underlineNav-borderColor-active, #fd8c73); border-radius: var(--borderRadius-medium); }
+    .brand i { background: var(--fgColor-default); border-radius: 50%; }
+    .tab[aria-selected="true"] { border-bottom-color: var(--underlineNav-borderColor-active, #fd8c73); }
+    .metric .value { font-weight: 600; }
+    .tbl th { background: var(--bgColor-muted); color: var(--fgColor-muted); }
+    .field { background: var(--control-bgColor-rest, var(--bgColor-default)); border-color: var(--control-borderColor-rest, var(--borderColor-default)); }
+    .badge { height: 20px; font-weight: 500; border: 1px solid transparent; }
+    .badge.success { background: var(--bgColor-success-emphasis); color: var(--fgColor-onEmphasis); } .badge.success::before { background: var(--fgColor-onEmphasis); }
+    .badge.danger { background: var(--bgColor-danger-emphasis); color: var(--fgColor-onEmphasis); } .badge.danger::before { background: var(--fgColor-onEmphasis); }
+    .badge.info { background: var(--bgColor-done-emphasis); color: var(--fgColor-onEmphasis); } .badge.info::before { background: var(--fgColor-onEmphasis); }
+    .badge.neutral { border-color: var(--borderColor-default); background: transparent; color: var(--fgColor-muted); }
+    .alert { border-color: var(--borderColor-attention-muted, var(--borderColor-default)); }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong>GitHub Primer</strong>
+        <div class="meta">@primer/primitives@11.10.0 · <span>--pr-* → --bgColor-* / --fgColor-* / --borderColor-* / --button-* / --base-*</span></div>
+      </div>
+      <div class="tb-actions">
+        <button class="btn btn-secondary btn-sm" id="theme-btn" type="button">Polarity: Light / Dark</button>
+        <button class="btn btn-secondary btn-sm" id="density-btn" type="button">Density: Default</button>
+        <a class="btn btn-ghost btn-sm" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card app" aria-label="GitHub product surface">
+      <nav class="nav">
+        <div class="brand"><i></i>GitHub</div>
+          <a href="#" class="active"><span>Code</span><span class="count"></span></a>
+          <a href="#" class=""><span>Issues</span><span class="count">38</span></a>
+          <a href="#" class=""><span>Pull requests</span><span class="count">14</span></a>
+          <a href="#" class=""><span>Actions</span><span class="count"></span></a>
+          <a href="#" class=""><span>Projects</span><span class="count">3</span></a>
+          <a href="#" class=""><span>Security</span><span class="count">2</span></a>
+          <a href="#" class=""><span>Insights</span><span class="count"></span></a>
+      </nav>
+      <div class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">acme / design-tokens</div>
+            <h1>Pull requests</h1>
+            <p>14 open · 312 closed · default branch main</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-secondary" type="button">Labels</button>
+            <button class="btn btn-primary" type="button">New pull request</button>
+          </div>
+        </div>
+        <div class="tabs" role="tablist"><button class="tab" role="tab" type="button" aria-selected="true">Conversation</button><button class="tab" role="tab" type="button" aria-selected="false">Commits 12</button><button class="tab" role="tab" type="button" aria-selected="false">Checks 9</button><button class="tab" role="tab" type="button" aria-selected="false">Files changed 27</button></div>
+        <div class="metrics">
+            <div class="card metric"><div class="label">Checks passing</div><div class="value">9 / 10</div><div class="delta up">+2 since last push</div></div>
+            <div class="card metric"><div class="label">Review time (p50)</div><div class="value">3h 42m</div><div class="delta up">−48m vs. 30d</div></div>
+            <div class="card metric"><div class="label">Lines changed</div><div class="value">+1,284 −406</div><div class="delta down">27 files</div></div>
+        </div>
+        <div class="split">
+          <div class="card tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th class="">PR</th><th class="">Title</th><th class="">Author</th><th class="num">Comments</th><th class="">State</th></tr></thead>
+              <tbody>
+                <tr class=""><td class="id">#4127</td><td class="">Sync color tokens from Figma</td><td class="">mona</td><td class="num">12</td><td><span class="badge success">Open</span></td></tr>
+                <tr class="selected"><td class="id">#4126</td><td class="">Add dark-dimmed theme to docs</td><td class="">hubot</td><td class="num">4</td><td><span class="badge info">Merged</span></td></tr>
+                <tr class=""><td class="id">#4125</td><td class="">Fix focus ring on Button</td><td class="">octocat</td><td class="num">7</td><td><span class="badge info">Merged</span></td></tr>
+                <tr class=""><td class="id">#4124</td><td class="">Remove deprecated v7 vars</td><td class="">mona</td><td class="num">21</td><td><span class="badge danger">Closed</span></td></tr>
+                <tr class=""><td class="id">#4123</td><td class="">Draft: motion tokens</td><td class="">tanuki</td><td class="num">0</td><td><span class="badge neutral">Draft</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card panel">
+            <h3>Merge pull request</h3>
+              <div class="fld"><label>Commit message</label><input class="field" placeholder="" value="Sync color tokens from Figma (#4127)"></div>
+              <div class="fld"><label>Merge method</label><select class="field"><option>Squash and merge</option><option>Create a merge commit</option><option>Rebase and merge</option></select></div>
+              <div class="fld"><label>Co-authored-by</label><input class="field" placeholder="username" value=""></div>
+            <label class="check"><input type="checkbox" checked> Delete branch after merge</label>
+            <div class="row"><span>Auto-merge when checks pass</span><button class="switch" role="switch" aria-checked="true" type="button" aria-label="Auto-merge when checks pass"></button></div>
+            <div class="alert warning"><div><strong>1 required check is pending</strong>ci / visual-regression is still running (est. 4m).</div></div>
+            <div class="actions"><button class="btn btn-primary" type="button">Confirm squash and merge</button><button class="btn btn-ghost" type="button">Cancel</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>1. Official Palette Ramps</h2>
+      <p class="lede">Swatches render live from Layer 1 official tokens in <code>tokens.css</code>.</p>
+          <div class="ramp"><div class="ramp-name">Neutral roles</div><div class="ramp-steps"><div class="sw" style="background:var(--bgColor-default);color:#111">bgColor-default<br>#FFFFFF</div><div class="sw" style="background:var(--bgColor-muted);color:#111">bgColor-muted<br>#F6F8FA</div><div class="sw" style="background:var(--bgColor-neutral-muted);color:#111">bgColor-neutral-muted<br>#818B981F</div><div class="sw" style="background:var(--borderColor-muted);color:#111">borderColor-muted<br>#D1D9E0B3</div><div class="sw" style="background:var(--borderColor-default);color:#111">borderColor-default<br>#D1D9E0</div><div class="sw" style="background:var(--borderColor-emphasis);color:#fff">borderColor-emphasis<br>#818B98</div><div class="sw" style="background:var(--fgColor-muted);color:#fff">fgColor-muted<br>#59636E</div><div class="sw" style="background:var(--fgColor-default);color:#fff">fgColor-default<br>#1F2328</div><div class="sw" style="background:var(--bgColor-emphasis);color:#fff">bgColor-emphasis<br>#25292E</div><div class="sw" style="background:var(--bgColor-inset);color:#111">bgColor-inset<br>#F6F8FA</div></div></div>
+          <div class="ramp"><div class="ramp-name">Emphasis fills</div><div class="ramp-steps"><div class="sw" style="background:var(--bgColor-accent-emphasis);color:#fff">bgColor-accent-emphasis<br>#0969DA</div><div class="sw" style="background:var(--bgColor-success-emphasis);color:#fff">bgColor-success-emphasis<br>#1F883D</div><div class="sw" style="background:var(--bgColor-attention-emphasis);color:#fff">bgColor-attention-emphasis<br>#9A6700</div><div class="sw" style="background:var(--bgColor-severe-emphasis);color:#fff">bgColor-severe-emphasis<br>#BC4C00</div><div class="sw" style="background:var(--bgColor-danger-emphasis);color:#fff">bgColor-danger-emphasis<br>#CF222E</div><div class="sw" style="background:var(--bgColor-done-emphasis);color:#fff">bgColor-done-emphasis<br>#8250DF</div><div class="sw" style="background:var(--bgColor-sponsors-emphasis);color:#fff">bgColor-sponsors-emphasis<br>#BF3989</div><div class="sw" style="background:var(--bgColor-closed-emphasis);color:#fff">bgColor-closed-emphasis<br>#CF222E</div><div class="sw" style="background:var(--bgColor-open-emphasis);color:#fff">bgColor-open-emphasis<br>#1F883D</div><div class="sw" style="background:var(--button-primary-bgColor-hover);color:#fff">button-primary-bgColor-hover<br>#1C8139</div></div></div>
+          <div class="ramp"><div class="ramp-name">Muted fills</div><div class="ramp-steps"><div class="sw" style="background:var(--bgColor-accent-muted);color:#111">bgColor-accent-muted<br>#DDF4FF</div><div class="sw" style="background:var(--bgColor-success-muted);color:#111">bgColor-success-muted<br>#DAFBE1</div><div class="sw" style="background:var(--bgColor-attention-muted);color:#111">bgColor-attention-muted<br>#FFF8C5</div><div class="sw" style="background:var(--bgColor-severe-muted);color:#111">bgColor-severe-muted<br>#FFF1E5</div><div class="sw" style="background:var(--bgColor-danger-muted);color:#111">bgColor-danger-muted<br>#FFEBE9</div><div class="sw" style="background:var(--bgColor-done-muted);color:#111">bgColor-done-muted<br>#FBEFFF</div><div class="sw" style="background:var(--bgColor-sponsors-muted);color:#111">bgColor-sponsors-muted<br>#FFEFF7</div><div class="sw" style="background:var(--fgColor-accent);color:#fff">fgColor-accent<br>#0969DA</div><div class="sw" style="background:var(--fgColor-success);color:#fff">fgColor-success<br>#1A7F37</div><div class="sw" style="background:var(--fgColor-danger);color:#fff">fgColor-danger<br>#D1242F</div></div></div>
+    </section>
+
+    <section class="card section">
+      <h2>2. Semantic Roles (<code>--pr-*</code> → official tokens)</h2>
+      <p class="lede">Toggle polarity to see the official dark mapping resolve in place.</p>
+      <div class="roles">
+            <div class="role"><div class="chip" style="background:var(--pr-canvas)"></div><div class="txt"><b>canvas</b>--bgColor-default<br><span data-resolve="--pr-canvas"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-surface)"></div><div class="txt"><b>surface</b>--bgColor-default<br><span data-resolve="--pr-surface"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-surface-2)"></div><div class="txt"><b>surface-2</b>--bgColor-muted<br><span data-resolve="--pr-surface-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-border)"></div><div class="txt"><b>border</b>--borderColor-default<br><span data-resolve="--pr-border"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-border-strong)"></div><div class="txt"><b>border-strong</b>--borderColor-emphasis<br><span data-resolve="--pr-border-strong"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-ink)"></div><div class="txt"><b>ink</b>--fgColor-default<br><span data-resolve="--pr-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-ink-2)"></div><div class="txt"><b>ink-2</b>--fgColor-muted<br><span data-resolve="--pr-ink-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-ink-3)"></div><div class="txt"><b>ink-3</b>--fgColor-muted<br><span data-resolve="--pr-ink-3"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-accent)"></div><div class="txt"><b>accent</b>--button-primary-bgColor-rest<br><span data-resolve="--pr-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-accent-hover)"></div><div class="txt"><b>accent-hover</b>--button-primary-bgColor-hover<br><span data-resolve="--pr-accent-hover"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-on-accent)"></div><div class="txt"><b>on-accent</b>--button-primary-fgColor-rest<br><span data-resolve="--pr-on-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-accent-subtle)"></div><div class="txt"><b>accent-subtle</b>--bgColor-accent-muted<br><span data-resolve="--pr-accent-subtle"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-accent-ink)"></div><div class="txt"><b>accent-ink</b>--fgColor-accent<br><span data-resolve="--pr-accent-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-success)"></div><div class="txt"><b>success</b>--bgColor-success-emphasis<br><span data-resolve="--pr-success"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-warning)"></div><div class="txt"><b>warning</b>--bgColor-attention-emphasis<br><span data-resolve="--pr-warning"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-danger)"></div><div class="txt"><b>danger</b>--bgColor-danger-emphasis<br><span data-resolve="--pr-danger"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-info)"></div><div class="txt"><b>info</b>--bgColor-accent-emphasis<br><span data-resolve="--pr-info"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--pr-focus)"></div><div class="txt"><b>focus</b>--focus-outlineColor<br><span data-resolve="--pr-focus"></span></div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>3. Type Scale</h2>
+      <p class="lede">Primer’s stack starts with &quot;Mona Sans VF&quot; (GitHub’s open-source face); the specimen loads Mona Sans from Google Fonts under its public family name.</p>
+          <div class="type-row"><div class="type-meta"><b>Display</b>--text-display-* · 40px/1.4 · 500</div><div class="type-sample" style="font-size:var(--text-display-size);line-height:var(--text-display-lineHeight);font-weight:var(--text-display-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Title large</b>--text-title-size-large · 32px/1.5 · 600</div><div class="type-sample" style="font-size:var(--text-title-size-large);line-height:var(--text-title-lineHeight-large);font-weight:var(--text-title-weight-large);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Title medium</b>--text-title-size-medium · 20px/1.6 · 600</div><div class="type-sample" style="font-size:var(--text-title-size-medium);line-height:var(--text-title-lineHeight-medium);font-weight:var(--text-title-weight-medium);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body large</b>--text-body-size-large · 16px/1.5 · 400</div><div class="type-sample" style="font-size:var(--text-body-size-large);line-height:var(--text-body-lineHeight-large);font-weight:var(--text-body-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body medium</b>--text-body-size-medium · 14px/1.4285 · 400</div><div class="type-sample" style="font-size:var(--text-body-size-medium);line-height:var(--text-body-lineHeight-medium);font-weight:var(--text-body-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Caption</b>--text-caption-size · 12px/1.3333 · 400</div><div class="type-sample" style="font-size:var(--text-caption-size);line-height:var(--text-caption-lineHeight);font-weight:var(--text-caption-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Code block</b>--text-codeBlock-size · 13px/1.5385 · 400</div><div class="type-sample" style="font-size:var(--text-codeBlock-size);line-height:var(--text-codeBlock-lineHeight);font-weight:var(--text-codeBlock-weight);font-family:var(--pr-font-mono);">git push origin feat/token-sync  # 3 commits</div></div>
+    </section>
+
+    <section class="card section">
+      <h2>4. Shape, Space &amp; Elevation</h2>
+      <div class="tok-grid">
+        <div class="tok-col"><h3>Radius</h3><div class="rad"><div style="border-radius:var(--borderRadius-small)">small</div><div style="border-radius:var(--borderRadius-medium)">medium</div><div style="border-radius:var(--borderRadius-large)">large</div><div style="border-radius:var(--borderRadius-full)">full</div></div></div>
+        <div class="tok-col"><h3>Spacing</h3>
+              <div class="sp"><span>base-size-4 · 0.25rem</span><span style="width:var(--base-size-4)"></span></div>
+              <div class="sp"><span>base-size-8 · 0.5rem</span><span style="width:var(--base-size-8)"></span></div>
+              <div class="sp"><span>base-size-12 · 0.75rem</span><span style="width:var(--base-size-12)"></span></div>
+              <div class="sp"><span>base-size-16 · 1rem</span><span style="width:var(--base-size-16)"></span></div>
+              <div class="sp"><span>base-size-24 · 1.5rem</span><span style="width:var(--base-size-24)"></span></div>
+              <div class="sp"><span>base-size-32 · 2rem</span><span style="width:var(--base-size-32)"></span></div>
+              <div class="sp"><span>base-size-48 · 3rem</span><span style="width:var(--base-size-48)"></span></div>
+        </div>
+        <div class="tok-col"><h3>Elevation</h3><div class="elev">
+              <div style="box-shadow:var(--shadow-resting-small)">resting-small</div>
+              <div style="box-shadow:var(--shadow-resting-medium)">resting-medium</div>
+              <div style="box-shadow:var(--shadow-floating-small)">floating-small</div>
+              <div style="box-shadow:var(--shadow-floating-large)">floating-large</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>5. Action States</h2>
+      <div class="states">
+        <span class="lbl">Primary</span><button class="btn btn-primary" type="button">New pull request</button><button class="btn btn-primary is-hover" type="button">Hover</button><button class="btn btn-primary" type="button" disabled>Disabled</button>
+        <span class="lbl">Secondary</span><button class="btn btn-secondary" type="button">Labels</button><button class="btn btn-secondary is-hover" type="button">Hover</button><button class="btn btn-secondary" type="button" disabled>Disabled</button>
+        <span class="lbl">Ghost / tertiary</span><button class="btn btn-ghost" type="button">View details</button><button class="btn btn-ghost is-hover" type="button">Hover</button><button class="btn btn-ghost" type="button" disabled>Disabled</button>
+        <span class="lbl">Destructive</span><button class="btn btn-danger" type="button">Delete</button><button class="btn btn-danger" type="button" style="filter:brightness(.9)">Hover</button><button class="btn btn-danger" type="button" disabled>Disabled</button>
+      </div>
+      <div class="badges"><span class="badge success">Success</span><span class="badge warning">Warning</span><span class="badge danger">Critical</span><span class="badge info">Info</span><span class="badge neutral">Neutral</span></div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    const resolveAll = () => document.querySelectorAll('[data-resolve]').forEach((el) => {
+      const probe = document.createElement('i');
+      probe.style.color = 'var(' + el.dataset.resolve + ')';
+      document.body.appendChild(probe);
+      const rgb = getComputedStyle(probe).color; probe.remove();
+      const m = rgb.match(/[\d.]+/g) || [];
+      el.textContent = m.length >= 3 ? '#' + m.slice(0, 3).map((n) => (+n).toString(16).padStart(2, '0')).join('').toUpperCase() + (m[3] && +m[3] < 1 ? ' · α' + (+m[3]).toFixed(2) : '') : rgb;
+    });
+    resolveAll();
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) themeBtn.addEventListener('click', () => { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; resolveAll(); });
+    const densityBtn = document.getElementById('density-btn');
+    densityBtn.addEventListener('click', () => {
+      const compact = html.classList.toggle('compact');
+      html.style.setProperty('--pr-control-h', compact ? 'calc(var(--pr-control-base) - 8px)' : 'var(--pr-control-base)');
+      densityBtn.textContent = compact ? 'Density: Compact' : 'Density: Default';
+    });
+    document.querySelectorAll('[role="tablist"]').forEach((list) => list.addEventListener('click', (e) => {
+      const t = e.target.closest('[role="tab"]'); if (!t) return;
+      list.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    }));
+    document.querySelectorAll('.switch').forEach((sw) => sw.addEventListener('click', () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'))));
+    document.querySelectorAll('.tbl tbody tr').forEach((tr) => tr.addEventListener('click', () => {
+      tr.parentElement.querySelectorAll('tr').forEach((x) => x.classList.toggle('selected', x === tr));
+    }));
+    document.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); a.parentElement.querySelectorAll('a').forEach((x) => x.classList.toggle('active', x === a));
+    }));
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Travel Design System (travel v6.1) — Flights Search Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .tv-top { height: 64px; border-bottom: 1px solid var(--travel-sys-color-divider-secondary); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .tv-tabs { display: flex; gap: 6px; }
+    .tv-tab { height: 36px; padding: 0 14px; border-radius: var(--travel-sys-radius-pill); border: 1px solid var(--travel-sys-color-outline-default); display: inline-flex; align-items: center; gap: 6px; font: 500 13.5px var(--travel-sys-font-brand); color: var(--travel-sys-color-on-surface-default); background: transparent; cursor: pointer; }
+    .tv-tab.on { background: var(--travel-sys-color-surface-highlight-primary); color: var(--travel-sys-color-on-secondary); border-color: var(--travel-sys-color-outline-selected); }
+    .hero { text-align: center; padding: 26px 24px 8px; }
+    .hero h1 { font: 400 46px/1.1 var(--travel-sys-font-display); margin: 0; color: var(--travel-sys-color-on-surface-emphasis); }
+    .search { max-width: 1060px; margin: 18px auto 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(60,64,67,.3), 0 4px 8px 3px rgba(60,64,67,.15); background: var(--travel-sys-color-surface-level1); padding: 10px 16px 34px; position: relative; }
+    .search-opts { display: flex; gap: 14px; font-size: 13.5px; color: var(--travel-sys-color-on-surface-default); padding: 4px 4px 10px; }
+    .fields { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 10px; }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .field { height: 56px; border: 1px solid var(--travel-sys-color-outline-default); border-radius: 4px; display: flex; align-items: center; padding: 0 14px; gap: 10px; font-size: 15px; color: var(--travel-sys-color-on-surface-emphasis); background: var(--travel-sys-color-surface-level1); white-space: nowrap; overflow: hidden; }
+    .field small { color: var(--travel-sys-color-on-surface-de-emphasis); font-size: 12px; display: block; }
+    .search-btn { position: absolute; left: 50%; bottom: -20px; transform: translateX(-50%); height: 40px; padding: 0 24px 0 18px; border-radius: var(--travel-sys-radius-pill); border: 0; background: var(--travel-sys-color-primary); color: var(--travel-sys-color-on-primary); font: 500 14px var(--travel-sys-font-brand); box-shadow: 0 1px 3px rgba(60,64,67,.3); }
+    .results { max-width: 1060px; margin: 44px auto 30px; padding: 0 0; display: grid; grid-template-columns: 1fr 300px; gap: 20px; }
+    .insight { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 18px; border: 1px solid var(--travel-sys-color-divider-secondary); border-radius: 8px; margin-bottom: 14px; }
+    .tag-low { background: var(--travel-sys-color-surface-highlight-positive); color: var(--travel-sys-color-on-surface-positive); padding: 3px 10px; border-radius: 4px; font-weight: 500; font-size: 13px; }
+    .list { border: 1px solid var(--travel-sys-color-divider-secondary); border-radius: 8px; overflow: hidden; }
+    .row { display: grid; grid-template-columns: 40px 1.6fr 1fr 0.8fr 0.9fr 0.8fr; gap: 12px; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--travel-sys-color-divider-secondary); font-size: 14px; }
+    .row:last-child { border-bottom: 0; }
+    .logo { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font: 700 11px var(--travel-sys-font-brand); color: #fff; }
+    .t-main { color: var(--travel-sys-color-on-surface-emphasis); font-size: 15px; font-variant-numeric: tabular-nums; }
+    .t-sub { color: var(--travel-sys-color-on-surface-de-emphasis); font-size: 12.5px; }
+    .price { text-align: right; font: 500 16px var(--travel-sys-font-brand); color: var(--travel-sys-color-on-surface-emphasis); font-variant-numeric: tabular-nums; }
+    .price.low { color: var(--travel-sys-color-on-surface-positive); }
+    .side { display: flex; flex-direction: column; gap: 14px; }
+    .panel { border: 1px solid var(--travel-sys-color-divider-secondary); border-radius: 8px; padding: 16px; }
+    .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 11.5px; font-variant-numeric: tabular-nums; }
+    .cal div { padding: 6px 0; border-radius: 4px; }
+    .cal .d { color: var(--travel-sys-color-on-surface-de-emphasis); }
+    .cal .lo { background: var(--travel-sys-color-surface-highlight-positive); color: var(--travel-sys-color-on-surface-positive); font-weight: 600; }
+    .cal .hi { background: var(--travel-sys-color-surface-highlight-warning); color: var(--travel-sys-color-on-surface-neutral); }
+    @media (max-width: 860px) {
+      .tv-top { padding: 0 12px; height: 56px; }
+      .tv-tabs .tv-tab:not(.on) { display: none; }
+      .tv-tab { white-space: nowrap; }
+      .hero h1 { font-size: 32px; }
+      .search { margin: 14px 12px 0; padding: 8px 10px 32px; }
+      .search-opts { flex-wrap: wrap; gap: 10px; font-size: 12.5px; }
+      .fields { grid-template-columns: 1fr; gap: 8px; }
+      .field { height: 48px; font-size: 14px; }
+      .results { grid-template-columns: 1fr; margin: 40px 12px 20px; }
+      .row { grid-template-columns: 32px 1fr auto; row-gap: 2px; padding: 12px; }
+      .row .c3, .row .c4, .row .c5 { display: none; }
+      .side { display: none; }
+      .insight { flex-direction: column; align-items: flex-start; gap: 6px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="tv-top">
+    <div style="display:flex;align-items:center;gap:22px;">
+      <strong style="font:500 20px var(--travel-sys-font-brand);color:var(--travel-sys-color-on-surface-default);">Travel</strong>
+      <div class="tv-tabs"><span class="tv-tab">🧳 Travel</span><span class="tv-tab">🧭 Explore</span><span class="tv-tab on">✈ Flights</span><span class="tv-tab">🛏 Hotels</span></div>
+    </div>
+    <button class="tv-tab" id="theme-btn" type="button">◑ Light / Dark</button>
+  </header>
+  <section class="hero"><h1>Flights</h1></section>
+  <section class="search">
+    <div class="search-opts"><span>⇄ Round trip ▾</span><span>👤 2 ▾</span><span>Economy ▾</span></div>
+    <div class="fields">
+      <div class="pair"><div class="field">◎ <span><small>From</small>San Francisco</span></div><div class="field">⌖ <span><small>To</small>Lisbon LIS</span></div></div>
+      <div class="pair"><div class="field">📅 <span><small>Depart</small>Thu, Apr 9</span></div><div class="field"><span><small>Return</small>Sun, Apr 19</span></div></div>
+      <div class="field" style="justify-content:space-between;"><span><small>Price insight</small>Prices are <b style="color:var(--travel-sys-color-on-surface-positive);">low</b> — $412 cheaper than usual</span></div>
+    </div>
+    <button class="search-btn" type="button">⌕ Explore</button>
+  </section>
+  <section class="results">
+    <div>
+      <div class="insight">
+        <div><div class="t-main" style="font-weight:500;">Best departing flights</div><div class="t-sub">Ranked by price and convenience · Prices include required taxes + fees for 2 adults</div></div>
+        <span class="tag-low">↓ Low prices</span>
+      </div>
+      <div class="list">
+        <div class="row"><div class="logo" style="background:#0b57d0;">TP</div><div><div class="t-main">7:05 PM – 3:10 PM<sup>+1</sup></div><div class="t-sub">TAP Air Portugal</div></div><div class="c3"><div class="t-main">11 hr 5 min</div><div class="t-sub">SFO–LIS</div></div><div class="c4"><div class="t-main">Nonstop</div></div><div class="c5"><div class="t-main">412 kg CO2e</div><div class="t-sub" style="color:var(--travel-sys-color-on-surface-positive);">−14% emissions</div></div><div class="price low">$1,184</div></div>
+        <div class="row"><div class="logo" style="background:#188038;">UA</div><div><div class="t-main">1:40 PM – 1:25 PM<sup>+1</sup></div><div class="t-sub">United · Lufthansa</div></div><div class="c3"><div class="t-main">14 hr 45 min</div><div class="t-sub">SFO–LIS</div></div><div class="c4"><div class="t-main">1 stop</div><div class="t-sub">1 hr 30 min FRA</div></div><div class="c5"><div class="t-main">534 kg CO2e</div><div class="t-sub">Typical</div></div><div class="price">$1,326</div></div>
+        <div class="row"><div class="logo" style="background:#e37400;">IB</div><div><div class="t-main">6:15 AM – 8:50 AM<sup>+1</sup></div><div class="t-sub">Iberia</div></div><div class="c3"><div class="t-main">17 hr 35 min</div><div class="t-sub">SFO–LIS</div></div><div class="c4"><div class="t-main">1 stop</div><div class="t-sub">4 hr 10 min MAD</div></div><div class="c5"><div class="t-main">561 kg CO2e</div><div class="t-sub" style="color:var(--travel-sys-color-on-surface-neutral);">+6% emissions</div></div><div class="price">$1,402</div></div>
+        <div class="row"><div class="logo" style="background:#d93025;">AF</div><div><div class="t-main">3:25 PM – 4:55 PM<sup>+1</sup></div><div class="t-sub">Air France</div></div><div class="c3"><div class="t-main">16 hr 30 min</div><div class="t-sub">SFO–LIS</div></div><div class="c4"><div class="t-main">1 stop</div><div class="t-sub">2 hr 5 min CDG</div></div><div class="c5"><div class="t-main">548 kg CO2e</div><div class="t-sub">Typical</div></div><div class="price">$1,489</div></div>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="panel">
+        <div class="t-main" style="font-weight:500;margin-bottom:10px;">Date grid · April</div>
+        <div class="cal">
+          <div class="d">M</div><div class="d">T</div><div class="d">W</div><div class="d">T</div><div class="d">F</div><div class="d">S</div><div class="d">S</div>
+          <div>$1.3k</div><div class="lo">$1.1k</div><div class="lo">$1.1k</div><div class="lo">$1.2k</div><div>$1.4k</div><div class="hi">$1.6k</div><div class="hi">$1.7k</div>
+          <div>$1.3k</div><div class="lo">$1.2k</div><div>$1.3k</div><div>$1.4k</div><div class="hi">$1.6k</div><div class="hi">$1.8k</div><div>$1.5k</div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="t-main" style="font-weight:500;">Price history</div>
+        <div class="t-sub">Typical range $1,350–$1,900</div>
+        <svg viewBox="0 0 260 70" width="100%" height="70"><rect x="0" y="22" width="260" height="22" fill="var(--travel-sys-color-surface-highlight-positive)"/><polyline fill="none" stroke="var(--travel-sys-color-primary)" stroke-width="2.4" points="0,18 40,22 80,30 120,26 160,40 200,48 260,52"/><circle cx="260" cy="52" r="4" fill="var(--travel-sys-color-primary)"/></svg>
+      </div>
+    </aside>
+  </section>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

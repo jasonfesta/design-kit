@@ -7,7 +7,7 @@ This walkthrough shows how to run `warmup` in **Post-Bench Mode (`--mode=post-be
 ```bash
 python3 /usr/local/google/home/jfesta/design-kit/skills/warmup/scripts/run_warmup.py \
   --mode=post-bench \
-  --image=/usr/local/google/home/jfesta/moodboards/homepage-study/images/desktop/01-avela.png \
+  --image=/google/data/rw/users/jf/jfesta/moodboards/homepage-study/images/desktop/01-avela.png \
   --output=/tmp/warmup_avela_postbench \
   --builds=golden=/usr/local/google/home/jfesta/wda/prototypes/01-website-avela,astra=/usr/local/google/home/jfesta/wda/prototypes/AVELA-GPT6-Astra,grok="/usr/local/google/home/jfesta/wda/prototypes/Avela - Grok 4.7"
 ```

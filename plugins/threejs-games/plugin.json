@@ -1,0 +1,12 @@
+{
+  "name": "threejs-games",
+  "displayName": "Three.js 3D & Games",
+  "description": "Meng To's 3D rendering (water, god rays, sky, materials, virtual tours, Retina) and Three.js game-development skills (levels, cameras, enemies, encounters, inventory, map editor, VFX, combat animation, mobile games, testing and shipping).",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": [
+    "Render ultra-realistic water in Three.js",
+    "Add a fire/smoke skill VFX to my game",
+    "Build an isometric ARPG camera"
+  ]
+}

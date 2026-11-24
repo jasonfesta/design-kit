@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IBM Carbon Design System — Interactive Token Specimen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    :root {  }
+
+    :root { --cb-font-ui: var(--cb-font-preview, var(--cb-font-sans)); }
+    body { font-family: var(--cb-font-ui); }
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--cb-surface); border: 1px solid var(--cb-border); border-radius: var(--cb-card-radius); margin-bottom: 20px; }
+    .top-bar strong { font-size: 15px; letter-spacing: -0.01em; }
+    .meta { font-family: var(--cb-font-mono); font-size: 11.5px; color: var(--cb-ink-2); }
+    .tb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { height: var(--cb-control-h); padding: 0 16px; border-radius: var(--cb-btn-radius); border: 1px solid transparent;
+      font: inherit; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--cb-duration) var(--cb-ease), box-shadow var(--cb-duration) var(--cb-ease), transform 120ms var(--cb-ease); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, .field:focus-visible, .tab:focus-visible, .nav a:focus-visible { outline: 2px solid var(--cb-focus); outline-offset: 2px; }
+    .btn-primary { background: var(--cb-accent); color: var(--cb-on-accent); }
+    .btn-primary:hover, .btn-primary.is-hover { background: var(--cb-accent-hover); }
+    .btn-secondary { background: var(--cb-surface); color: var(--cb-ink); border-color: var(--cb-border-strong); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--cb-surface-2); }
+    .btn-ghost { background: transparent; color: var(--cb-accent-ink); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: var(--cb-accent-subtle); }
+    .btn-danger { background: var(--cb-danger); color: #fff; }
+    .btn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-sm { height: calc(var(--cb-control-h) - 8px); padding: 0 12px; font-size: 13px; }
+    .card { background: var(--cb-surface); border: 1px solid var(--cb-border); border-radius: var(--cb-card-radius); box-shadow: var(--cb-shadow-sm); }
+    .section { padding: 20px; margin-bottom: 20px; }
+    .section h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.01em; }
+    .section .lede { margin: 0 0 16px; color: var(--cb-ink-2); font-size: 13px; }
+
+    /* App frame */
+    .app { display: grid; grid-template-columns: 220px 1fr; overflow: hidden; margin-bottom: 20px; }
+    .nav { background: var(--cb-surface-2); border-right: 1px solid var(--cb-border); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 14px; font-weight: 700; font-size: 14px; }
+    .brand i { width: 22px; height: 22px; border-radius: var(--cb-radius-sm); background: var(--cb-accent); display: inline-block; }
+    .nav a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: var(--cb-radius-sm);
+      color: var(--cb-ink-2); text-decoration: none; font-size: 13.5px; }
+    .nav a:hover { background: var(--cb-surface); color: var(--cb-ink); }
+    .nav a.active { background: var(--cb-accent-subtle); color: var(--cb-accent-ink); font-weight: 600; }
+    .nav a .count { font-size: 11.5px; font-variant-numeric: tabular-nums; color: var(--cb-ink-3); }
+    .main { padding: 20px 24px 24px; min-width: 0; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+    .crumb { font-size: 12px; color: var(--cb-ink-3); margin-bottom: 4px; }
+    .page-head h1 { margin: 0; font-family: var(--cb-font-display, var(--cb-font-ui)); font-size: 24px; line-height: 1.25; letter-spacing: -0.015em; }
+    .page-head p { margin: 4px 0 0; color: var(--cb-ink-2); font-size: 13.5px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--cb-border); margin-bottom: 16px; overflow-x: auto; }
+    .tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; font: inherit; font-size: 13.5px; color: var(--cb-ink-2); cursor: pointer; white-space: nowrap; }
+    .tab[aria-selected="true"] { color: var(--cb-ink); border-bottom-color: var(--cb-accent-ink); font-weight: 600; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric { padding: 14px 16px; }
+    .metric .label { font-size: 12.5px; color: var(--cb-ink-2); }
+    .metric .value { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .metric .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .delta.up { color: var(--cb-success-ink, var(--cb-success)); } .delta.down { color: var(--cb-danger-ink, var(--cb-danger)); }
+    .split { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
+    .tbl-wrap { overflow-x: auto; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; font-weight: 600; font-size: 12px; color: var(--cb-ink-2); background: var(--cb-surface-2); padding: 9px 12px; border-bottom: 1px solid var(--cb-border); white-space: nowrap; }
+    .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--cb-border); white-space: nowrap; }
+    .tbl tr:last-child td { border-bottom: 0; }
+    .tbl tbody tr { cursor: pointer; }
+    .tbl tbody tr:hover td { background: var(--cb-surface-2); }
+    .tbl tbody tr.selected td { background: var(--cb-accent-subtle); }
+    .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tbl th.num { text-align: right; }
+    .tbl .id { font-family: var(--cb-font-mono); font-size: 12px; color: var(--cb-ink-2); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: var(--cb-badge-radius); font-size: 12px; font-weight: 550; color: var(--cb-ink); white-space: nowrap; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.success { background: var(--cb-success-subtle); } .badge.success::before { background: var(--cb-success); }
+    .badge.warning { background: var(--cb-warning-subtle); } .badge.warning::before { background: var(--cb-warning); }
+    .badge.danger { background: var(--cb-danger-subtle); } .badge.danger::before { background: var(--cb-danger); }
+    .badge.info { background: var(--cb-info-subtle); } .badge.info::before { background: var(--cb-info); }
+    .badge.neutral { background: var(--cb-surface-2); } .badge.neutral::before { background: var(--cb-ink-3); }
+    .panel { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .panel h3 { margin: 0; font-size: 14px; }
+    .fld label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--cb-ink); }
+    .field { width: 100%; height: var(--cb-control-h); padding: 0 12px; border-radius: var(--cb-input-radius); border: 1px solid var(--cb-border-strong); background: var(--cb-surface); color: var(--cb-ink); font: inherit; font-size: 14px; }
+    .field::placeholder { color: var(--cb-ink-3); }
+    .helper { font-size: 12px; color: var(--cb-ink-3); margin-top: 4px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+    .switch { position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--cb-border-strong); border: 0; cursor: pointer; transition: background-color var(--cb-duration) var(--cb-ease); flex: none; }
+    .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform var(--cb-duration) var(--cb-ease); }
+    .switch[aria-checked="true"] { background: var(--cb-accent); }
+    .switch[aria-checked="true"]::after { transform: translateX(16px); }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+    .check input { width: 16px; height: 16px; accent-color: var(--cb-accent); margin: 0; }
+    .alert { display: flex; gap: 10px; padding: 12px 14px; border-radius: var(--cb-input-radius); font-size: 13px; border: 1px solid var(--cb-border); background: var(--cb-info-subtle); }
+    .alert::before { content: ""; flex: none; width: 4px; border-radius: 4px; background: var(--cb-info); }
+    .alert.warning { background: var(--cb-warning-subtle); } .alert.warning::before { background: var(--cb-warning); }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Token sections */
+    .ramp { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .ramp-name { font-size: 12.5px; font-weight: 600; }
+    .ramp-steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; }
+    .sw { height: 56px; border-radius: var(--cb-radius-sm); padding: 6px; display: flex; flex-direction: column; justify-content: flex-end; font-family: var(--cb-font-mono); font-size: 9.5px; line-height: 1.25; border: 1px solid rgba(127,127,127,.18); overflow: hidden; }
+    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .role { border: 1px solid var(--cb-border); border-radius: var(--cb-radius-sm); overflow: hidden; background: var(--cb-surface); }
+    .role .chip { height: 40px; border-bottom: 1px solid var(--cb-border); }
+    .role .txt { padding: 6px 8px; font-size: 11px; font-family: var(--cb-font-mono); color: var(--cb-ink-2); }
+    .role .txt b { display: block; color: var(--cb-ink); font-family: var(--cb-font-ui); font-size: 12px; font-weight: 600; }
+    .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--cb-border); }
+    .type-row:last-child { border-bottom: 0; }
+    .type-meta { font-family: var(--cb-font-mono); font-size: 11px; color: var(--cb-ink-2); }
+    .type-meta b { display: block; font-family: var(--cb-font-ui); color: var(--cb-ink); font-size: 12.5px; }
+    .type-sample { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tok-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tok-col h3 { margin: 0 0 10px; font-size: 13px; }
+    .rad { display: flex; flex-wrap: wrap; gap: 10px; }
+    .rad div { width: 64px; height: 64px; background: var(--cb-accent-subtle); border: 1.5px solid var(--cb-accent-ink); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-family: var(--cb-font-mono); font-size: 9.5px; color: var(--cb-ink); text-align: center; }
+    .sp { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: center; font-family: var(--cb-font-mono); font-size: 10.5px; color: var(--cb-ink-2); margin-bottom: 5px; }
+    .sp span:last-child { height: 10px; background: var(--cb-accent); border-radius: 2px; }
+    .elev { display: grid; gap: 12px; }
+    .elev div { padding: 14px; background: var(--cb-surface); border-radius: var(--cb-radius-md); font-family: var(--cb-font-mono); font-size: 10.5px; color: var(--cb-ink-2); }
+    .states { display: grid; grid-template-columns: 120px repeat(3, max-content); gap: 10px 14px; align-items: center; font-size: 12px; color: var(--cb-ink-2); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .tok-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 12px 12px 48px; }
+      .app { grid-template-columns: 1fr; }
+      .nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--cb-border); padding: 8px; }
+      .brand { padding: 4px 8px; }
+      .nav a .count { display: none; }
+      .main { padding: 16px 14px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics .metric:last-child { grid-column: span 2; }
+      .metric .value { font-size: 22px; }
+      .ramp { grid-template-columns: 1fr; gap: 4px; }
+      .ramp-steps { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .type-row { grid-template-columns: 1fr; gap: 4px; }
+      .states { grid-template-columns: 1fr 1fr; }
+      .states > .lbl { grid-column: span 2; }
+      .page-head h1 { font-size: 21px; }
+    }
+
+    /* ---- Carbon signature details ---- */
+
+    .btn { font-weight: 400; letter-spacing: 0.16px; }
+    .btn-primary, .btn-danger, .actions .btn-secondary { justify-content: flex-start; padding: 0 48px 0 15px; }
+    .btn-secondary { background: var(--cds-button-secondary); color: var(--cds-text-on-color); border-color: transparent; }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--cds-button-secondary-hover); }
+    .top-bar .btn-secondary { background: transparent; color: var(--cds-link-primary); border: 1px solid var(--cds-button-tertiary); padding: 0 12px; }
+    .btn-danger { background: var(--cds-button-danger-primary); }
+    .field { border: 0; border-bottom: 1px solid var(--cds-border-strong-01); background: var(--cds-field-01); }
+    .panel .field { background: var(--cds-field-02, var(--cds-field-01)); }
+    .field:focus-visible { outline: 2px solid var(--cds-focus); outline-offset: -2px; }
+    .card { border: 0; }
+    .app { border: 1px solid var(--cds-border-subtle-01); }
+    .nav { background: var(--cds-background-inverse); }
+    html[data-theme="dark"] .nav { background: var(--cds-layer-01); }
+    .nav a { color: var(--cds-text-inverse); opacity: .8; border-radius: 0; }
+    html[data-theme="dark"] .nav a { color: var(--cds-text-secondary); opacity: 1; }
+    .nav a.active { background: var(--cds-layer-selected-inverse, #525252); color: var(--cds-text-inverse); opacity: 1; box-shadow: inset 3px 0 0 var(--cds-border-interactive); }
+    html[data-theme="dark"] .nav a.active { background: var(--cds-layer-selected-01); color: var(--cds-text-primary); }
+    .nav a:hover { background: rgba(141,141,141,.16); color: var(--cds-text-inverse); }
+    .brand { color: var(--cds-text-inverse); font-weight: 600; }
+    html[data-theme="dark"] .brand { color: var(--cds-text-primary); }
+    .brand i { background: var(--cds-button-primary); }
+    .tab[aria-selected="true"] { border-bottom-color: var(--cds-border-interactive); }
+    .metric .value { font-weight: 300; font-size: 32px; }
+    .tbl th { color: var(--cds-text-primary); }
+    .alert { border: 0; border-left: 3px solid var(--cds-support-info); border-radius: 0; background: var(--cds-notification-background-info, var(--cds-layer-01)); }
+    .alert::before { display: none; }
+    .alert.warning { border-left-color: var(--cds-support-warning); background: var(--cds-notification-background-warning, var(--cds-layer-01)); }
+    .switch { width: 48px; height: 24px; background: var(--cds-toggle-off); }
+    .switch::after { width: 18px; height: 18px; top: 3px; left: 3px; }
+    .switch[aria-checked="true"] { background: var(--cds-support-success); }
+    .switch[aria-checked="true"]::after { transform: translateX(24px); }
+    .badge { font-weight: 400; height: 24px; }
+    .badge.success { color: var(--cds-tag-color-green); } .badge.danger { color: var(--cds-tag-color-red); } .badge.info { color: var(--cds-tag-color-blue); }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong>IBM Carbon Design System</strong>
+        <div class="meta">@carbon/themes@11.85.0 · @carbon/colors@11.62.0 · @carbon/type@11.71.0 · @carbon/layout@11.63.0 · <span>--cb-* → --cds-*</span></div>
+      </div>
+      <div class="tb-actions">
+        <button class="btn btn-secondary btn-sm" id="theme-btn" type="button">Polarity: Light / Dark</button>
+        <button class="btn btn-secondary btn-sm" id="density-btn" type="button">Density: Default</button>
+        <a class="btn btn-ghost btn-sm" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card app" aria-label="IBM Cloud product surface">
+      <nav class="nav">
+        <div class="brand"><i></i>IBM Cloud</div>
+          <a href="#" class="active"><span>Clusters</span><span class="count">12</span></a>
+          <a href="#" class=""><span>Worker pools</span><span class="count">3</span></a>
+          <a href="#" class=""><span>Ingress</span><span class="count"></span></a>
+          <a href="#" class=""><span>Storage</span><span class="count">28</span></a>
+          <a href="#" class=""><span>Logging</span><span class="count"></span></a>
+          <a href="#" class=""><span>Access (IAM)</span><span class="count"></span></a>
+      </nav>
+      <div class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Kubernetes / Clusters / ops-east-1</div>
+            <h1>Worker pools</h1>
+            <p>Zone us-east · 3 pools · Kubernetes 1.31.4</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-secondary" type="button">Export CSV</button>
+            <button class="btn btn-primary" type="button">Add worker pool</button>
+          </div>
+        </div>
+        <div class="tabs" role="tablist"><button class="tab" role="tab" type="button" aria-selected="true">Overview</button><button class="tab" role="tab" type="button" aria-selected="false">Worker nodes</button><button class="tab" role="tab" type="button" aria-selected="false">Events</button><button class="tab" role="tab" type="button" aria-selected="false">Ingress</button></div>
+        <div class="metrics">
+            <div class="card metric"><div class="label">Ready nodes</div><div class="value">42 / 44</div><div class="delta up">+2 since 09:00</div></div>
+            <div class="card metric"><div class="label">CPU allocation</div><div class="value">68.4%</div><div class="delta up">−3.1 pts 1h</div></div>
+            <div class="card metric"><div class="label">Failed pods</div><div class="value">3</div><div class="delta down">+3 in last 15m</div></div>
+        </div>
+        <div class="split">
+          <div class="card tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th class="">Pool ID</th><th class="">Flavor</th><th class="">Zone</th><th class="num">Nodes</th><th class="">Status</th></tr></thead>
+              <tbody>
+                <tr class=""><td class="id">wp-7f2a</td><td class="">bx2.16x64</td><td class="">us-east-1</td><td class="num">18</td><td><span class="badge success">Normal</span></td></tr>
+                <tr class="selected"><td class="id">wp-3c91</td><td class="">bx2.8x32</td><td class="">us-east-2</td><td class="num">16</td><td><span class="badge success">Normal</span></td></tr>
+                <tr class=""><td class="id">wp-a04e</td><td class="">mx2.32x256</td><td class="">us-east-3</td><td class="num">8</td><td><span class="badge warning">Warning</span></td></tr>
+                <tr class=""><td class="id">wp-55d0</td><td class="">gx3.16x80</td><td class="">us-east-1</td><td class="num">2</td><td><span class="badge danger">Critical</span></td></tr>
+                <tr class=""><td class="id">wp-09bb</td><td class="">bx2.4x16</td><td class="">us-east-2</td><td class="num">0</td><td><span class="badge neutral">Deleting</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card panel">
+            <h3>Resize worker pool</h3>
+              <div class="fld"><label>Pool name</label><input class="field" placeholder="" value="gpu-inference-a"></div>
+              <div class="fld"><label>Workers per zone</label><input class="field" placeholder="" value="6"><div class="helper">Billed hourly · max 250 per pool</div></div>
+              <div class="fld"><label>Flavor</label><select class="field"><option>gx3.16x80 — 16 vCPU · 80 GB · 1×L4</option><option>bx2.16x64 — 16 vCPU · 64 GB</option></select></div>
+            <label class="check"><input type="checkbox" checked> Rebalance pods after resize</label>
+            <div class="row"><span>Autoscaling</span><button class="switch" role="switch" aria-checked="true" type="button" aria-label="Autoscaling"></button></div>
+            <div class="alert warning"><div><strong>Kubernetes 1.29 reaches end of support on Feb 28</strong>Update 2 worker pools to keep receiving security patches.</div></div>
+            <div class="actions"><button class="btn btn-primary" type="button">Resize pool</button><button class="btn btn-ghost" type="button">Cancel</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>1. Official Palette Ramps</h2>
+      <p class="lede">Swatches render live from Layer 1 official tokens in <code>tokens.css</code>.</p>
+          <div class="ramp"><div class="ramp-name">Blue (interactive)</div><div class="ramp-steps"><div class="sw" style="background:var(--cds-color-blue-10);color:#111">cds-color-blue-10<br>#EDF5FF</div><div class="sw" style="background:var(--cds-color-blue-20);color:#111">cds-color-blue-20<br>#D0E2FF</div><div class="sw" style="background:var(--cds-color-blue-30);color:#111">cds-color-blue-30<br>#A6C8FF</div><div class="sw" style="background:var(--cds-color-blue-40);color:#111">cds-color-blue-40<br>#78A9FF</div><div class="sw" style="background:var(--cds-color-blue-50);color:#fff">cds-color-blue-50<br>#4589FF</div><div class="sw" style="background:var(--cds-color-blue-60);color:#fff">cds-color-blue-60<br>#0F62FE</div><div class="sw" style="background:var(--cds-color-blue-70);color:#fff">cds-color-blue-70<br>#0043CE</div><div class="sw" style="background:var(--cds-color-blue-80);color:#fff">cds-color-blue-80<br>#002D9C</div><div class="sw" style="background:var(--cds-color-blue-90);color:#fff">cds-color-blue-90<br>#001D6C</div><div class="sw" style="background:var(--cds-color-blue-100);color:#fff">cds-color-blue-100<br>#001141</div></div></div>
+          <div class="ramp"><div class="ramp-name">Gray (themes)</div><div class="ramp-steps"><div class="sw" style="background:var(--cds-color-gray-10);color:#111">cds-color-gray-10<br>#F4F4F4</div><div class="sw" style="background:var(--cds-color-gray-20);color:#111">cds-color-gray-20<br>#E0E0E0</div><div class="sw" style="background:var(--cds-color-gray-30);color:#111">cds-color-gray-30<br>#C6C6C6</div><div class="sw" style="background:var(--cds-color-gray-40);color:#111">cds-color-gray-40<br>#A8A8A8</div><div class="sw" style="background:var(--cds-color-gray-50);color:#fff">cds-color-gray-50<br>#8D8D8D</div><div class="sw" style="background:var(--cds-color-gray-60);color:#fff">cds-color-gray-60<br>#6F6F6F</div><div class="sw" style="background:var(--cds-color-gray-70);color:#fff">cds-color-gray-70<br>#525252</div><div class="sw" style="background:var(--cds-color-gray-80);color:#fff">cds-color-gray-80<br>#393939</div><div class="sw" style="background:var(--cds-color-gray-90);color:#fff">cds-color-gray-90<br>#262626</div><div class="sw" style="background:var(--cds-color-gray-100);color:#fff">cds-color-gray-100<br>#161616</div></div></div>
+          <div class="ramp"><div class="ramp-name">Support hues</div><div class="ramp-steps"><div class="sw" style="background:var(--cds-color-green-50);color:#fff">cds-color-green-50<br>#24A148</div><div class="sw" style="background:var(--cds-color-green-30);color:#111">cds-color-green-30<br>#6FDC8C</div><div class="sw" style="background:var(--cds-color-yellow-30);color:#111">cds-color-yellow-30<br>#F1C21B</div><div class="sw" style="background:var(--cds-color-red-60);color:#fff">cds-color-red-60<br>#DA1E28</div><div class="sw" style="background:var(--cds-color-red-40);color:#111">cds-color-red-40<br>#FF8389</div><div class="sw" style="background:var(--cds-color-purple-60);color:#fff">cds-color-purple-60<br>#8A3FFC</div><div class="sw" style="background:var(--cds-color-teal-50);color:#fff">cds-color-teal-50<br>#009D9A</div><div class="sw" style="background:var(--cds-color-cyan-50);color:#fff">cds-color-cyan-50<br>#1192E8</div><div class="sw" style="background:var(--cds-color-magenta-50);color:#fff">cds-color-magenta-50<br>#EE5396</div><div class="sw" style="background:var(--cds-color-purple-30);color:#111">cds-color-purple-30<br>#D4BBFF</div></div></div>
+          <div class="ramp"><div class="ramp-name">Layers (theme)</div><div class="ramp-steps"><div class="sw" style="background:var(--cds-background);color:#111">cds-background<br>#FFFFFF</div><div class="sw" style="background:var(--cds-layer-01);color:#111">cds-layer-01<br>#F4F4F4</div><div class="sw" style="background:var(--cds-layer-02);color:#111">cds-layer-02<br>#FFFFFF</div><div class="sw" style="background:var(--cds-layer-accent-01);color:#111">cds-layer-accent-01<br>#E0E0E0</div><div class="sw" style="background:var(--cds-border-subtle-01);color:#111">cds-border-subtle-01<br>#C6C6C6</div><div class="sw" style="background:var(--cds-border-strong-01);color:#fff">cds-border-strong-01<br>#8D8D8D</div><div class="sw" style="background:var(--cds-text-secondary);color:#fff">cds-text-secondary<br>#525252</div><div class="sw" style="background:var(--cds-text-primary);color:#fff">cds-text-primary<br>#161616</div><div class="sw" style="background:var(--cds-highlight);color:#111">cds-highlight<br>#D0E2FF</div><div class="sw" style="background:var(--cds-background-brand);color:#fff">cds-background-brand<br>#0F62FE</div></div></div>
+    </section>
+
+    <section class="card section">
+      <h2>2. Semantic Roles (<code>--cb-*</code> → official tokens)</h2>
+      <p class="lede">Toggle polarity to see the official dark mapping resolve in place.</p>
+      <div class="roles">
+            <div class="role"><div class="chip" style="background:var(--cb-canvas)"></div><div class="txt"><b>canvas</b>--cds-background<br><span data-resolve="--cb-canvas"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-surface)"></div><div class="txt"><b>surface</b>--cds-layer-01<br><span data-resolve="--cb-surface"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-surface-2)"></div><div class="txt"><b>surface-2</b>--cds-layer-accent-01<br><span data-resolve="--cb-surface-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-border)"></div><div class="txt"><b>border</b>--cds-border-subtle-01<br><span data-resolve="--cb-border"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-border-strong)"></div><div class="txt"><b>border-strong</b>--cds-border-strong-01<br><span data-resolve="--cb-border-strong"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-ink)"></div><div class="txt"><b>ink</b>--cds-text-primary<br><span data-resolve="--cb-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-ink-2)"></div><div class="txt"><b>ink-2</b>--cds-text-secondary<br><span data-resolve="--cb-ink-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-ink-3)"></div><div class="txt"><b>ink-3</b>--cds-text-helper<br><span data-resolve="--cb-ink-3"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-accent)"></div><div class="txt"><b>accent</b>--cds-button-primary<br><span data-resolve="--cb-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-accent-hover)"></div><div class="txt"><b>accent-hover</b>--cds-button-primary-hover<br><span data-resolve="--cb-accent-hover"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-on-accent)"></div><div class="txt"><b>on-accent</b>--cds-text-on-color<br><span data-resolve="--cb-on-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-accent-subtle)"></div><div class="txt"><b>accent-subtle</b>--cds-highlight<br><span data-resolve="--cb-accent-subtle"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-accent-ink)"></div><div class="txt"><b>accent-ink</b>--cds-link-primary<br><span data-resolve="--cb-accent-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-success)"></div><div class="txt"><b>success</b>--cds-support-success<br><span data-resolve="--cb-success"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-warning)"></div><div class="txt"><b>warning</b>--cds-support-warning<br><span data-resolve="--cb-warning"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-danger)"></div><div class="txt"><b>danger</b>--cds-support-error<br><span data-resolve="--cb-danger"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-info)"></div><div class="txt"><b>info</b>--cds-support-info<br><span data-resolve="--cb-info"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--cb-focus)"></div><div class="txt"><b>focus</b>--cds-focus<br><span data-resolve="--cb-focus"></span></div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>3. Type Scale</h2>
+      <p class="lede">IBM Plex Sans / IBM Plex Mono are the official open-source faces and load directly from Google Fonts.</p>
+          <div class="type-row"><div class="type-meta"><b>Heading 07</b>--cds-heading-07-* · 54px/1.199 · 300</div><div class="type-sample" style="font-size:var(--cds-heading-07-font-size);line-height:var(--cds-heading-07-line-height);font-weight:var(--cds-heading-07-font-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Heading 05</b>--cds-heading-05-* · 32px/1.25 · 400</div><div class="type-sample" style="font-size:var(--cds-heading-05-font-size);line-height:var(--cds-heading-05-line-height);font-weight:var(--cds-heading-05-font-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Heading 03</b>--cds-heading-03-* · 20px/1.4 · 400</div><div class="type-sample" style="font-size:var(--cds-heading-03-font-size);line-height:var(--cds-heading-03-line-height);font-weight:var(--cds-heading-03-font-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Heading compact 01</b>--cds-heading-compact-01-* · 14px/1.28572 · 600</div><div class="type-sample" style="font-size:var(--cds-heading-compact-01-font-size);line-height:var(--cds-heading-compact-01-line-height);font-weight:var(--cds-heading-compact-01-font-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body 02</b>--cds-body-02-* · 16px/1.5 · 400</div><div class="type-sample" style="font-size:var(--cds-body-02-font-size);line-height:var(--cds-body-02-line-height);font-weight:var(--cds-body-02-font-weight);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body compact 01</b>--cds-body-compact-01-* · 14px/1.28572 · 400</div><div class="type-sample" style="font-size:var(--cds-body-compact-01-font-size);line-height:var(--cds-body-compact-01-line-height);font-weight:var(--cds-body-compact-01-font-weight);letter-spacing:0.16px;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Label 01</b>--cds-label-01-* · 12px/1.33333 · 400</div><div class="type-sample" style="font-size:var(--cds-label-01-font-size);line-height:var(--cds-label-01-line-height);font-weight:var(--cds-label-01-font-weight);letter-spacing:0.32px;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Code 01</b>--cds-code-01-* · 12px/1.33333 · 400</div><div class="type-sample" style="font-size:var(--cds-code-01-font-size);line-height:var(--cds-code-01-line-height);font-weight:var(--cds-code-01-font-weight);font-family:var(--cb-font-mono);">kubectl get pods -n ops-east-1  # 42 ready</div></div>
+    </section>
+
+    <section class="card section">
+      <h2>4. Shape, Space &amp; Elevation</h2>
+      <div class="tok-grid">
+        <div class="tok-col"><h3>Radius</h3><div class="rad"><div style="border-radius:var(--cb-radius-md)">0 · all controls</div><div style="border-radius:var(--cb-radius-full)">1rem · tag</div></div></div>
+        <div class="tok-col"><h3>Spacing</h3>
+              <div class="sp"><span>cds-spacing-01 · 0.125rem</span><span style="width:var(--cds-spacing-01)"></span></div>
+              <div class="sp"><span>cds-spacing-03 · 0.5rem</span><span style="width:var(--cds-spacing-03)"></span></div>
+              <div class="sp"><span>cds-spacing-05 · 1rem</span><span style="width:var(--cds-spacing-05)"></span></div>
+              <div class="sp"><span>cds-spacing-06 · 1.5rem</span><span style="width:var(--cds-spacing-06)"></span></div>
+              <div class="sp"><span>cds-spacing-07 · 2rem</span><span style="width:var(--cds-spacing-07)"></span></div>
+              <div class="sp"><span>cds-spacing-09 · 3rem</span><span style="width:var(--cds-spacing-09)"></span></div>
+              <div class="sp"><span>cds-spacing-10 · 4rem</span><span style="width:var(--cds-spacing-10)"></span></div>
+        </div>
+        <div class="tok-col"><h3>Elevation</h3><div class="elev">
+              <div style="box-shadow:var(--cb-shadow-md)">0 2px 6px var(--cds-shadow) · menus &amp; overlays only</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>5. Action States</h2>
+      <div class="states">
+        <span class="lbl">Primary</span><button class="btn btn-primary" type="button">Add worker pool</button><button class="btn btn-primary is-hover" type="button">Hover</button><button class="btn btn-primary" type="button" disabled>Disabled</button>
+        <span class="lbl">Secondary</span><button class="btn btn-secondary" type="button">Export CSV</button><button class="btn btn-secondary is-hover" type="button">Hover</button><button class="btn btn-secondary" type="button" disabled>Disabled</button>
+        <span class="lbl">Ghost / tertiary</span><button class="btn btn-ghost" type="button">View details</button><button class="btn btn-ghost is-hover" type="button">Hover</button><button class="btn btn-ghost" type="button" disabled>Disabled</button>
+        <span class="lbl">Destructive</span><button class="btn btn-danger" type="button">Delete</button><button class="btn btn-danger" type="button" style="filter:brightness(.9)">Hover</button><button class="btn btn-danger" type="button" disabled>Disabled</button>
+      </div>
+      <div class="badges"><span class="badge success">Success</span><span class="badge warning">Warning</span><span class="badge danger">Critical</span><span class="badge info">Info</span><span class="badge neutral">Neutral</span></div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    const resolveAll = () => document.querySelectorAll('[data-resolve]').forEach((el) => {
+      const probe = document.createElement('i');
+      probe.style.color = 'var(' + el.dataset.resolve + ')';
+      document.body.appendChild(probe);
+      const rgb = getComputedStyle(probe).color; probe.remove();
+      const m = rgb.match(/[\d.]+/g) || [];
+      el.textContent = m.length >= 3 ? '#' + m.slice(0, 3).map((n) => (+n).toString(16).padStart(2, '0')).join('').toUpperCase() + (m[3] && +m[3] < 1 ? ' · α' + (+m[3]).toFixed(2) : '') : rgb;
+    });
+    resolveAll();
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) themeBtn.addEventListener('click', () => { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; resolveAll(); });
+    const densityBtn = document.getElementById('density-btn');
+    densityBtn.addEventListener('click', () => {
+      const compact = html.classList.toggle('compact');
+      html.style.setProperty('--cb-control-h', compact ? 'calc(var(--cb-control-base) - 8px)' : 'var(--cb-control-base)');
+      densityBtn.textContent = compact ? 'Density: Compact' : 'Density: Default';
+    });
+    document.querySelectorAll('[role="tablist"]').forEach((list) => list.addEventListener('click', (e) => {
+      const t = e.target.closest('[role="tab"]'); if (!t) return;
+      list.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    }));
+    document.querySelectorAll('.switch').forEach((sw) => sw.addEventListener('click', () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'))));
+    document.querySelectorAll('.tbl tbody tr').forEach((tr) => tr.addEventListener('click', () => {
+      tr.parentElement.querySelectorAll('tr').forEach((x) => x.classList.toggle('selected', x === tr));
+    }));
+    document.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); a.parentElement.querySelectorAll('a').forEach((x) => x.classList.toggle('active', x === a));
+    }));
+  </script>
+</body>
+</html>

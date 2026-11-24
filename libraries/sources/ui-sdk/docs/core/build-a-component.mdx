@@ -1,0 +1,356 @@
+---
+title: Build a Component
+description: Build a toggle button, then render the same primitive in your framework.
+---
+
+Let's start with a toggle button. Press **Mute** to turn it on. Press it again to turn it off.
+
+<ComponentExample
+  name="core/mute-button"
+  caption="Click Mute, or focus it and press Enter or Space. Its pressed state changes with each press."
+  hideCode={true}
+/>
+
+We'll define its behavior, connect it to your framework, and add styles.
+
+## Install
+
+Start by installing `@ui-sdk/core`.
+
+```
+npm add @ui-sdk/core
+```
+
+## Define a Primitive
+
+A **primitive** describes a component's behavior: its state, the functions that change it, and the parts that use it. It doesn't render anything on its own.
+
+Ours is the mute button's. It has one piece of state, `muted`, which is `true` when mute is on, and one part.
+
+```ts title="lib/mute-button.ts"
+import { definePrimitive } from "@ui-sdk/core"
+
+const muteButton = definePrimitive({
+  name: "mute-button",
+  state: () => ({ muted: false }),
+  api: (context) => ({
+    toggle: () => context.store.set({ muted: !context.store.get().muted }),
+  }),
+  slots: (slot) => ({
+    root: slot({
+      attrs: (state) => ({
+        type: "button",
+        "aria-pressed": String(state.muted),
+      }),
+      press: ({ api }) => api.toggle(),
+    }),
+  }),
+})
+
+export { muteButton }
+```
+
+- `state` starts `muted` at `false`.
+- `api` defines `toggle`, which switches `muted` between `true` and `false`.
+- `slots` describes the component's parts. Our only **slot** is `root`, which becomes the button when we render it.
+- `attrs` turns state into HTML attributes. When `muted` is `true`, the root gets `aria-pressed="true"`.
+- `press` calls `toggle` when the root is activated.
+
+That's the whole behavior. [Define a Primitive](./kernel/define-a-primitive) goes through each field in more detail. Now let's put it on the page.
+
+## Render It
+
+An **adapter** connects the primitive to your framework. Choose your framework in the page header, then install its package.
+
+<FrameworkContent value="react">
+
+```bash
+npm add @ui-sdk/react
+```
+
+</FrameworkContent>
+<FrameworkContent value="vue">
+
+```bash
+npm add @ui-sdk/vue
+```
+
+</FrameworkContent>
+<FrameworkContent value="svelte">
+
+```bash
+npm add @ui-sdk/svelte
+```
+
+</FrameworkContent>
+<FrameworkContent value="solid">
+
+```bash
+npm add @ui-sdk/solid
+```
+
+</FrameworkContent>
+<FrameworkContent value="web-components">
+
+```bash
+npm add @ui-sdk/web
+```
+
+</FrameworkContent>
+
+First, create the component from the `muteButton` primitive.
+
+<FrameworkContent value="react">
+
+```ts title="components/ui/mute-button.tsx"
+"use client"
+
+import { createParts } from "@ui-sdk/react/primitive"
+import { muteButton } from "@/lib/mute-button"
+
+const { Root: MuteButton } = createParts(muteButton, { root: "button" })
+
+export { MuteButton }
+```
+
+`{ root: "button" }` says the root part of `MuteButton` renders a `<button>`. Then import it wherever you want to use it:
+
+```tsx title="pages/index.tsx"
+import { MuteButton } from "@/components/ui/mute-button"
+
+function Example() {
+  return <MuteButton>Mute</MuteButton>
+}
+```
+
+</FrameworkContent>
+<FrameworkContent value="vue">
+
+```ts title="components/ui/mute-button.ts"
+import { createParts } from "@ui-sdk/vue/primitive"
+import { muteButton } from "@/lib/mute-button"
+
+const { Root: MuteButton } = createParts(muteButton, { root: "button" })
+
+export { MuteButton }
+```
+
+`{ root: "button" }` says the root part of `MuteButton` renders a `<button>`. Then import it wherever you want to use it:
+
+```vue title="pages/index.vue"
+<script setup lang="ts">
+import { MuteButton } from "@/components/ui/mute-button"
+</script>
+
+<template>
+  <MuteButton>Mute</MuteButton>
+</template>
+```
+
+</FrameworkContent>
+<FrameworkContent value="svelte">
+
+```ts title="components/ui/mute-button.ts"
+import { createParts } from "@ui-sdk/svelte/primitive"
+import { muteButton } from "@/lib/mute-button"
+
+const { Root: MuteButton } = createParts(muteButton, { root: "button" })
+
+export { MuteButton }
+```
+
+`{ root: "button" }` says the root part of `MuteButton` renders a `<button>`. Then import it wherever you want to use it:
+
+```svelte title="pages/index.svelte"
+<script lang="ts">
+  import { MuteButton } from "@/components/ui/mute-button"
+</script>
+
+<MuteButton>Mute</MuteButton>
+```
+
+</FrameworkContent>
+<FrameworkContent value="solid">
+
+```ts title="components/ui/mute-button.ts"
+import { createParts } from "@ui-sdk/solid/primitive"
+import { muteButton } from "@/lib/mute-button"
+
+const { Root: MuteButton } = createParts(muteButton, { root: "button" })
+
+export { MuteButton }
+```
+
+`{ root: "button" }` says the root part of `MuteButton` renders a `<button>`. Then import it wherever you want to use it:
+
+```tsx title="pages/index.tsx"
+import { MuteButton } from "@/components/ui/mute-button"
+
+function Example() {
+  return <MuteButton>Mute</MuteButton>
+}
+
+export { Example }
+```
+
+</FrameworkContent>
+<FrameworkContent value="web-components">
+
+For web components, register a custom element:
+
+```ts title="components/ui/mute-button.ts"
+import { createParts, wrappedButton } from "@ui-sdk/web"
+import { muteButton } from "@/lib/mute-button"
+
+createParts(muteButton, {
+  root: { tag: "mute-button", target: wrappedButton },
+})
+```
+
+This registers a `<mute-button>` element for the root part, and `wrappedButton` puts the root's behavior and attributes on the `<button>` inside it. Import `@/components/ui/mute-button` from your app's browser entry point, then use it in your HTML:
+
+```html title="pages/index.html"
+<mute-button>
+  <button>Mute</button>
+</mute-button>
+```
+
+</FrameworkContent>
+
+Because we use a native `<button>`, clicks, Enter and Space all reach the primitive's `press` handler. Screen readers get its pressed state from `aria-pressed`.
+
+The behavior stays in `mute-button.ts`. Changing frameworks changes how you render it, but the behavior stays the same. [Render a Primitive](./kernel/render-a-primitive) covers options, state in your content and server rendering.
+
+## Style the Component
+
+Parts render without styles. Here's a complete look for the button, with hover, focus and pressed states:
+
+<StyleTabs>
+
+```css
+[data-slot="mute-button"] {
+  border: 1px solid #e5e5e5;
+  border-radius: 0.5rem;
+  background: white;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #a3a3a3;
+    outline-offset: 2px;
+  }
+
+  &[aria-pressed="true"] {
+    background: #171717;
+    color: white;
+  }
+}
+```
+
+<FrameworkContent value="react">
+
+```tsx
+<MuteButton className="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 aria-pressed:bg-neutral-900 aria-pressed:text-white">
+  Mute
+</MuteButton>
+```
+
+</FrameworkContent>
+<FrameworkContent value="vue">
+
+```vue
+<MuteButton
+  class="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 aria-pressed:bg-neutral-900 aria-pressed:text-white"
+>Mute</MuteButton>
+```
+
+</FrameworkContent>
+<FrameworkContent value="svelte">
+
+```svelte
+<MuteButton
+  class="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 aria-pressed:bg-neutral-900 aria-pressed:text-white"
+  >Mute</MuteButton
+>
+```
+
+</FrameworkContent>
+<FrameworkContent value="solid">
+
+```tsx
+<MuteButton class="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 aria-pressed:bg-neutral-900 aria-pressed:text-white">
+  Mute
+</MuteButton>
+```
+
+</FrameworkContent>
+<FrameworkContent value="web-components">
+
+```html
+<mute-button>
+  <button
+    class="rounded-lg border border-neutral-200 bg-white px-3 py-1.5 text-sm hover:bg-neutral-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-400 aria-pressed:bg-neutral-900 aria-pressed:text-white"
+  >
+    Mute
+  </button>
+</mute-button>
+```
+
+</FrameworkContent>
+
+</StyleTabs>
+
+The pressed look comes from `aria-pressed`. While `muted` is `true`, the root part renders `aria-pressed="true"`, from the `attrs` you wrote when you defined the primitive. In the CSS tab, the `&[aria-pressed="true"]` rule selects it. In the Tailwind tab, the `aria-pressed:` classes do the same.
+
+`data-slot` identifies the part, and these attributes are the same in every framework, so this CSS works for all five versions. [Style a Component](./kernel/style-a-component) covers more state attributes, CSS variables and parts that come and go.
+
+## Next
+
+You've defined a primitive, rendered it and styled it. The Core guides take each step further:
+
+<Cards>
+  <Card
+    title="Define a Primitive"
+    href="./kernel/define-a-primitive"
+    description="Give your primitive options, expose state to its parts, and work with elements."
+  />
+  <Card
+    title="Render a Primitive"
+    href="./kernel/render-a-primitive"
+    description="Turn a primitive's slots into parts in your framework, pass options, and read state."
+  />
+  <Card
+    title="Style a Component"
+    href="./kernel/style-a-component"
+    description="Style each part from its data-slot and the attributes its state sets, with CSS or Tailwind."
+  />
+  <Card
+    title="Compose Behaviors"
+    href="./compose-behaviors"
+    description="Build a star rating with shared state and keyboard navigation."
+  />
+  <Card
+    title="Handle Changes"
+    href="./kernel/handle-changes"
+    description="Report changes, let the app accept or cancel them, and choose how state updates reach the page."
+  />
+</Cards>
+
+Or start from what's already built:
+
+<Cards>
+  <Card
+    title="Components"
+    href="/docs/components"
+    description="Use ready-made components like Select, Dialog and Tabs in your framework."
+  />
+  <Card
+    title="All Behaviors"
+    href="./behaviors"
+    description="Focus, selection, popups and the other pieces your components are made of."
+  />
+</Cards>

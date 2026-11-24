@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# bento-grid: run the bento-ui-motion-grid skill with the kit's local Python deps + headless Chromium.
+# Usage:
+#   bento-grid new <dir>                 copy the template into <dir> (never build inside the skill folder)
+#   bento-grid snap   [seconds...]       stills into out/            (run inside the project dir)
+#   bento-grid render [--fps 120 --seconds 24 --workers N]
+#   bento-grid smooth [frames]           per-card frame-diff spike check
+#   bento-grid encode [frames] [out]     out/grid_120.mp4 + out/grid_60.mp4
+#   bento-grid all                       snap → render → smooth → encode with defaults
+#   bento-grid lint                      run the design-kit don'ts linter on index.html
+set -euo pipefail
+KIT="/usr/local/google/home/jfesta/design-kit"
+SKILL="$KIT/plugins/motion-craft/skills/bento-ui-motion-grid"
+export PYTHONPATH="$KIT/tools/python/site${PYTHONPATH:+:$PYTHONPATH}"
+export PLAYWRIGHT_BROWSERS_PATH="$KIT/tools/ms-playwright"
+export BENTO_BUNDLED_CHROMIUM=1
+# System google-chrome hangs headless on this host; force Playwright's bundled headless shell.
+CHROME_ARGS=(--chrome "")
+cmd="${1:-help}"; shift || true
+case "$cmd" in
+  new)
+    dest="${1:?usage: bento-grid new <dir>}"
+    mkdir -p "$dest" && cp -r "$SKILL/template/." "$dest/" && echo "template copied to $dest"
+    ;;
+  snap)   python3 scripts/snap.py "$@" ;;
+  render) python3 scripts/render.py "${CHROME_ARGS[@]}" "$@" ;;
+  smooth) python3 scripts/smoothness.py "${@:-frames}" ;;
+  encode) bash scripts/encode.sh "$@" ;;
+  all)
+    python3 scripts/snap.py 0.6 3 7.5 12
+    python3 scripts/render.py "${CHROME_ARGS[@]}" --fps 120 --seconds 24
+    python3 scripts/smoothness.py frames
+    bash scripts/encode.sh frames out
+    ;;
+  lint)   python3 "$KIT/skills/design-donts/scripts/lint_donts.py" "${1:-.}" ;;
+  *) sed -n '2,11p' "$0" ;;
+esac

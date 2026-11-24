@@ -1,0 +1,377 @@
+{
+  "version": 1,
+  "updated": "2026-11-17",
+  "rules": [
+    {
+      "id": "no-material-fonts",
+      "added": "2026-11-11",
+      "severity": "error",
+      "title": "Don't use Material fonts",
+      "why": "Roboto / Google Sans read as default Material and make every build look the same.",
+      "fix": "Pick a pairing from the font pool in rules/design-kit-taste.md or libraries/fonts.md. Keep a Google system's colors and shapes, swap its type.",
+      "check": {
+        "type": "font_banned",
+        "families": [
+          "Roboto",
+          "Roboto Flex",
+          "Roboto Serif",
+          "Roboto Mono",
+          "Roboto Condensed",
+          "Roboto Slab",
+          "Google Sans",
+          "Google Sans Text",
+          "Google Sans Display",
+          "Google Sans Code",
+          "Google Sans Flex",
+          "Product Sans",
+          "Noto Sans",
+          "Noto Serif"
+        ]
+      }
+    },
+    {
+      "id": "no-material-icons",
+      "added": "2026-11-11",
+      "severity": "warn",
+      "title": "Don't default to Material Symbols / Material Icons",
+      "why": "Same Material default look as the fonts.",
+      "fix": "Use lucide-react (Golden Template default) or another set from libraries/icons.md.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          "@mui/icons-material",
+          "material-symbols",
+          "Material\\+Symbols",
+          "Material\\+Icons",
+          "material-icons",
+          "@material-symbols/"
+        ]
+      }
+    },
+    {
+      "id": "no-purple",
+      "added": "2026-11-11",
+      "severity": "error",
+      "title": "Don't use purple",
+      "why": "Purple / violet is the stock AI-generated look.",
+      "fix": "Remap the color to a non-purple hue (blue, teal, green, ochre, red, neutral). Remap purple roles from source systems too.",
+      "check": {
+        "type": "hue_banned",
+        "oklch_hue_min": 270,
+        "oklch_hue_max": 330,
+        "min_chroma": 0.04,
+        "tailwind_classes": [
+          "purple",
+          "violet",
+          "fuchsia"
+        ],
+        "tailwind_indigo_min_shade": 500
+      }
+    },
+    {
+      "id": "no-default-dark",
+      "added": "2026-11-11",
+      "severity": "warn",
+      "title": "Don't always use dark mode",
+      "why": "Everything defaulting to near-black gets monotonous; light is the default unless the brief calls for dark. Arena data (2026-11-17, loss pattern 04): unprompted pitch-black #000 shows up in 19.5% of front-end builds (30.8% of Landing Pages) and costs 10.4pp of win rate on corporate, retail, and construction brands.",
+      "fix": "Default to a light, paper, or tinted-neutral theme. If dark is right, say why in the rationale. In a batch, keep dark to about 1 in 3.",
+      "check": {
+        "type": "dark_default",
+        "max_bg_luminance": 0.12,
+        "batch_max_dark_ratio": 0.34
+      }
+    },
+    {
+      "id": "font-variety",
+      "added": "2026-11-11",
+      "severity": "warn",
+      "title": "Use more font variety; don't lean on the usual few",
+      "why": "Inter / Geist / Manrope / Space Grotesk / Plus Jakarta Sans on every project flattens the work.",
+      "fix": "Pick a distinct pairing per project from the pool; within a batch no two variants share a primary face.",
+      "check": {
+        "type": "font_overused",
+        "families": [
+          "Inter",
+          "Geist",
+          "Manrope",
+          "Space Grotesk",
+          "Plus Jakarta Sans",
+          "DM Sans",
+          "Poppins",
+          "Montserrat",
+          "Open Sans",
+          "Lato"
+        ],
+        "batch_unique_primary": true
+      }
+    },
+    {
+      "id": "button-optical-vertical-center",
+      "added": "2026-11-16",
+      "severity": "warn",
+      "title": "Optically center button elements vertically (-2px down)",
+      "why": "Geometric vertical centering in <button> elements leaves Latin cap-height and icons visually floating ~1-2px too high inside the button pill/box.",
+      "fix": "Ensure all <button> elements are vertically optically centered by shifting optical alignment -2px down (e.g., padding-top: calc(... + 2px) or optical vertical offset on button inner content/baseline).",
+      "check": {
+        "type": "manual",
+        "hint": "Verify <button> labels and icons sit optically centered vertically (-2px down from geometric top) across both the Jig and application buttons."
+      }
+    },
+    {
+      "id": "no-saas-cards-on-cultural-prompts",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 01",
+      "title": "Don't put corporate SaaS heroes and card grids on cultural, kids, or art prompts",
+      "why": "The #1 loss driver: 59.2% of losses (35.2% primary, 75% of Landing Page losses) reuse pill badges, dual CTAs, split-box heroes, and identical white card rows.",
+      "fix": "Art-direct to the subject: editorial, cultural, or playful layout and type. Let hero art run large (not boxed in a side card); vary section rhythm instead of N identical bordered cards.",
+      "check": {
+        "type": "judgment",
+        "hint": "Does it read as a SaaS template with the subject pasted in? Look for a pill badge + 2 CTAs + a boxed hero image + uniform card rows."
+      }
+    },
+    {
+      "id": "no-wireframe-border-clutter",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 02",
+      "title": "Don't outline everything in 1px boxes or scatter micro-pills",
+      "why": "Most common UI defect: 62.4% of front-end builds have 75+ bordered elements, which costs 13.7pp of win rate (16.1pp on Landing + HTML).",
+      "fix": "Group with whitespace, alignment, and tonal surfaces instead of borders. Keep borders for real separators and inputs. Cap pill badges at 1-2 per view.",
+      "check": {
+        "type": "pattern_count",
+        "max": 75,
+        "patterns": [
+          "(?<![\\w:-])border(?:-[trblxy])?(?=[\\s\\\"'`])",
+          "border(?:-(?:top|right|bottom|left))?\\s*:\\s*1px"
+        ]
+      }
+    },
+    {
+      "id": "no-dev-tool-chrome",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss patterns 03 + 10",
+      "title": "Don't wrap the work in developer chrome nobody asked for (Copy SVG, Inspect Code, debug stats)",
+      "why": "50% of SVG losses frame the artwork in Copy-SVG / Inspect Code toolbars, and losing sites show raw DOM-node and millisecond debug bars.",
+      "fix": "Let the artwork or page fill the viewport. Only add copy, export, or debug UI when the prompt asks for a tool.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          "Copy SVG",
+          "Inspect Code",
+          "View Source",
+          "Download SVG",
+          "DOM nodes?\\b",
+          "Render(?:ed)? in \\d",
+          "\\bFPS:\\s"
+        ]
+      }
+    },
+    {
+      "id": "no-neon-hud-terminal",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 05",
+      "title": "Don't give everyday tools a dark neon HUD / terminal look",
+      "why": "House-style syndrome: 30.3% of front-end builds use slate + neon pink/cyan, sci-fi status pills, and >_ console chrome, costing 11.0pp of win rate (16.7pp on Landing + HTML).",
+      "fix": "Match the product's real users. Use a calm, light, product-appropriate palette and plain-language labels; keep terminal styling for actual developer tools.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          "(?<![=\\-\\w)])>_(?=[\\s<\\\"'{])",
+          "&gt;_",
+          "SYSTEM (?:ONLINE|STATUS|NOMINAL)",
+          "CONTROL (?:PORTAL|CENTER)",
+          "\\bTELEMETRY\\b",
+          "shadow-\\[0_0_\\d+px[^\\]]*(?:cyan|#0ff|#00ffff|#ff00ff|#f0f|pink)"
+        ]
+      }
+    },
+    {
+      "id": "no-navbar-overflow",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 06",
+      "title": "Don't overload the navbar so it wraps (or stack sticky chrome)",
+      "why": "21.5% of losses have navbars with 11+ items that wrap to two lines at 1280px (-17.6pp Landing win rate); 24.0% stack sticky headers.",
+      "fix": "Keep desktop nav to 7 or fewer items on one line at 1280px; move the rest into a menu. Put whitespace-nowrap on pills and CTAs. Use one sticky bar at most.",
+      "check": {
+        "type": "nav_overflow",
+        "max_items": 7
+      }
+    },
+    {
+      "id": "no-crowded-3d-stage",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 07",
+      "title": "Don't open sidebars, drawers, and inspectors on load around a 3D scene",
+      "why": "92% (73/76) of pure-3D losses are self-inflicted visual mistakes, led by 2D plans, asset drawers, and inspectors squeezing the 3D stage into a sliver.",
+      "fix": "The 3D canvas gets at least ~70% of the viewport on load. Panels start collapsed and open on demand; the inspector only appears after a selection.",
+      "check": {
+        "type": "judgment",
+        "hint": "At 1280px on first load, does the 3D canvas own the frame? Are any 2D labels upside down or overlapping?"
+      }
+    },
+    {
+      "id": "no-bloom-whiteout",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 08",
+      "title": "Don't tune bloom or lighting without looking at a render",
+      "why": "We add bloom in 28.3% of pure-3D builds vs 10.1% for top opponents; with low thresholds and bright lights the meshes blow out to white.",
+      "fix": "Prefer no bloom. If you use it, keep the threshold at 0.8 or higher with modest strength, and clamp light intensity and exposure. Check a screenshot before shipping.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          "luminanceThreshold\\s*[=:]\\s*\\{?\\s*0?\\.[0-7]\\d*\\b",
+          "[bB]loom\\w*\\.threshold\\s*=\\s*0?\\.[0-7]",
+          "[bB]loom\\w*\\.threshold\\s*=\\s*0\\s*;"
+        ]
+      }
+    },
+    {
+      "id": "no-blur-modal-before-play",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 09",
+      "title": "Don't hide a game behind a blurred instructions modal",
+      "why": "Cold-start friction: behind 44% of 2D Game losses and 35% of 3D Game losses.",
+      "fix": "Open on a sharp, playable scene. Show controls as a small dismissible hint or HUD tip, not a backdrop-blur wall of rules.",
+      "check": {
+        "type": "cooccur",
+        "groups": [
+          [
+            "backdrop-blur(?:-(?:sm|md|lg|xl|2xl|3xl))?\\b",
+            "backdrop-filter\\s*:\\s*blur"
+          ],
+          [
+            "how to play",
+            "press (?:any key|space|enter) to (?:start|begin|play)",
+            "click to (?:start|play|begin)",
+            "start game"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "hero-needs-media",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 10",
+      "title": "Don't ship text-only heroes or reuse 3-4 images across 30+ cards",
+      "why": "22.1% of losses have no media at all (-13.7pp Fullstack win rate), and losing sites recycle a few synthetic images everywhere.",
+      "fix": "Give the hero a real visual (photo, illustration, product UI, or 3D/SVG art). Every card gets distinct media or none at all.",
+      "check": {
+        "type": "judgment",
+        "hint": "Is half the hero empty? Is the same image repeated across cards?"
+      }
+    },
+    {
+      "id": "fullstack-multi-route",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena loss pattern 10",
+      "title": "Don't cram a fullstack app onto a single route",
+      "why": "60% of Fullstack losses put every feature on '/'.",
+      "fix": "Give core flows their own routes or views (list, detail, create, settings) with working navigation between them.",
+      "check": {
+        "type": "judgment",
+        "hint": "For app or fullstack prompts: are there at least 2-3 navigable views?"
+      }
+    },
+    {
+      "id": "localize-ui-copy",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "WebDev Arena localization gap",
+      "title": "Don't leak English UI or skip script font fallbacks on non-English prompts",
+      "why": "Non-English 2D websites trail English by 59.4 Elo, mostly from English pill and label leaks and missing font fallbacks.",
+      "fix": "Translate every label, pill, and button into the prompt's language; set lang on <html>; add script-appropriate fallbacks (e.g. Noto Sans SC/JP/KR as fallback only, never primary).",
+      "check": {
+        "type": "judgment",
+        "hint": "On a non-English prompt, scan for any English UI string and check glyphs render in a deliberate face."
+      }
+    },
+    {
+      "id": "screenshot-qa-before-ship",
+      "added": "2026-11-17",
+      "severity": "error",
+      "source": "WebDev Arena section 13",
+      "title": "Don't ship because the build passed; look at a rendered screenshot first",
+      "why": "88% of builds pass on the first try but only 3.4% get a screenshot check (peers: 55-88%). Screenshot QA adds about 1.10pp of win rate per 1k tokens, 12x the lift of more markup; we lose 12.6-19.2pp when only the opponent checks.",
+      "fix": "Render it headless (install Playwright with deps if needed; that works 100% of the time in the sandbox), take screenshots at 1280px and 390px (plus a 3D frame), and fix what you see. Never stop after the first passing build.",
+      "check": {
+        "type": "judgment",
+        "hint": "Did you actually view desktop + mobile screenshots of this build before presenting?"
+      }
+    },
+    {
+      "id": "no-eyebrow-descriptors",
+      "added": "2026-11-17",
+      "severity": "error",
+      "source": "Jason feedback 2026-11-17",
+      "title": "Don't add dot-separated eyebrow labels or tiny descriptor text that says what a card is",
+      "why": "Small uppercase kickers like 'OVERVIEW · METRICS · LIVE' or 'SECTION 02 / FEATURES' above cards are AI filler: they label the UI instead of carrying content, and they clutter every surface.",
+      "fix": "Delete the label. Let the real title, the data, and the layout say what the card is. If metadata is real (date, author, count), show it as plain content, never as a chain joined by · • | /.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          ">\\s*[^<>{}\\n]{0,40}?[A-Za-z0-9]\\s+[·•|∙]\\s+[A-Za-z0-9][^<>{}\\n]{0,60}<",
+          "[\\\"'`][A-Za-z0-9][^\\\"'`\\n<>{}]{0,40}?\\s[·•∙]\\s[^\\\"'`\\n<>{}]{1,60}[\\\"'`]",
+          "&middot;|&bull;|\\\\u00b7|\\\\u2022",
+          ">\\s*(?:SECTION|CHAPTER|PART|MODULE|STEP)\\s*\\d+\\s*(?:/|—|-|:)\\s*[A-Z]"
+        ]
+      }
+    },
+    {
+      "id": "eyebrow-microlabel-styling",
+      "added": "2026-11-17",
+      "severity": "warn",
+      "source": "Jason feedback 2026-11-17",
+      "title": "Check every tiny uppercase tracked label; it's usually a descriptor eyebrow",
+      "why": "Classes like 'text-[10px] uppercase tracking-widest' are how descriptor eyebrows get built.",
+      "fix": "Remove it unless it's a real column header, form label, or data unit. Never stack one above a card title.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          "class(?:Name)?=[\\\"'`{](?=[^\\\"'`]*\\buppercase\\b)(?=[^\\\"'`]*\\btracking-(?:wide|wider|widest|\\[[\\d.]+(?:em|px)\\]))(?=[^\\\"'`]*\\btext-(?:xs|\\[(?:8|9|10|11)px\\]))[^\\\"'`]*"
+        ]
+      }
+    },
+    {
+      "id": "no-self-referential-ui",
+      "added": "2026-11-17",
+      "severity": "error",
+      "source": "Jason feedback 2026-11-17",
+      "title": "Don't put fictitious UI, or UI that talks about itself, on the interface",
+      "why": "Fake system chrome (build numbers, 'Live Preview', 'All systems operational', 'v2.4 beta', 'Design System Active', 'This card shows...') describes the artifact instead of serving the user and reads as generated.",
+      "fix": "Only render UI the product's real user would see and use. Remove version/build tags, fake status, demo/preview badges, stack credits, and copy that narrates the interface. Write copy about the user's content and task.",
+      "check": {
+        "type": "pattern",
+        "patterns": [
+          "\\bLive (?:Preview|Interactive|Demo)\\b",
+          "\\bInteractive (?:Demo|Prototype|Preview)\\b",
+          "\\bDemo Mode\\b",
+          "\\bLorem ipsum\\b",
+          "\\b(?:Built|Made|Crafted) with (?:React|Tailwind|Vite|Next\\.?js|love)\\b",
+          "\\bPowered by (?:AI|React|Tailwind|Vite|Gemini|GPT)\\b",
+          "\\b(?:Design System|UI Kit|Component Library) (?:Active|Loaded|v?\\d)",
+          "\\bv\\d+\\.\\d+(?:\\.\\d+)?\\s*(?:build|beta|alpha|preview|stable)\\b",
+          "\\bBuild\\s*#\\s*\\d+",
+          "\\b(?:All )?systems? (?:operational|online|nominal)\\b",
+          "\\b(?:Hero|Feature|Pricing|Footer|CTA) Section\\b",
+          "\\bThis (?:card|section|panel|page|component|dashboard|interface|widget|module) (?:shows|displays|lets|is|contains|highlights)\\b"
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "webdev-arena-loss-patterns-2026-11",
+      "url": "https://aditipoduval.users.x20web.corp.google.com/www/design-flywheel-loss-patterns/index.html",
+      "note": "Design Flywheel: Web & App Loss Patterns, 1,508 WebDev Arena battles, 125 losses vs 35 frontier wins."
+    }
+  ]
+}

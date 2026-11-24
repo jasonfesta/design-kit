@@ -1,0 +1,200 @@
+/*
+ * Apple Human Interface Guidelines (Web Approximation) — Design Tokens (external-systems/apple-hig/tokens.css)
+ * Official source: Apple HIG — Color & Typography (web transcription)
+ * Docs: https://developer.apple.com/design/human-interface-guidelines · https://developer.apple.com/design/human-interface-guidelines/color · https://developer.apple.com/design/human-interface-guidelines/typography · https://developer.apple.com/design/resources/
+ * License: Reference only — Apple HIG content © Apple Inc.; SF Pro is licensed for Apple-platform UI only (Inter used as preview fallback)
+ *
+ * Layer 1 (`--apple-*`) = official token names & values extracted verbatim from the source above
+ *   (hand-transcribed from Apple HIG Color (system colors, iOS/iPadOS default light & dark) and Typography (iOS Dynamic Type “Large” default sizes); Apple publishes no npm/CSS token package).
+ * Layer 2 (`--hig-*`) = local semantic alias layer used by specimen.html; every alias points back to Layer 1.
+ * Polarity: light on :root, official dark values on html[data-theme="dark"].
+ */
+@layer tokens {
+  /* ---- Layer 1 · official shared + light values ---- */
+  :root {
+    --apple-font-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --apple-font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro', 'Helvetica Neue', sans-serif;
+    --apple-font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+    --apple-text-large-title-size: 34px;
+    --apple-text-large-title-line-height: 41px;
+    --apple-text-large-title-weight: 400;
+    --apple-text-title-1-size: 28px;
+    --apple-text-title-1-line-height: 34px;
+    --apple-text-title-1-weight: 400;
+    --apple-text-title-2-size: 22px;
+    --apple-text-title-2-line-height: 28px;
+    --apple-text-title-2-weight: 400;
+    --apple-text-title-3-size: 20px;
+    --apple-text-title-3-line-height: 25px;
+    --apple-text-title-3-weight: 400;
+    --apple-text-headline-size: 17px;
+    --apple-text-headline-line-height: 22px;
+    --apple-text-headline-weight: 600;
+    --apple-text-body-size: 17px;
+    --apple-text-body-line-height: 22px;
+    --apple-text-body-weight: 400;
+    --apple-text-callout-size: 16px;
+    --apple-text-callout-line-height: 21px;
+    --apple-text-callout-weight: 400;
+    --apple-text-subheadline-size: 15px;
+    --apple-text-subheadline-line-height: 20px;
+    --apple-text-subheadline-weight: 400;
+    --apple-text-footnote-size: 13px;
+    --apple-text-footnote-line-height: 18px;
+    --apple-text-footnote-weight: 400;
+    --apple-text-caption-1-size: 12px;
+    --apple-text-caption-1-line-height: 16px;
+    --apple-text-caption-1-weight: 400;
+    --apple-text-caption-2-size: 11px;
+    --apple-text-caption-2-line-height: 13px;
+    --apple-text-caption-2-weight: 400;
+    --apple-min-target: 44px;
+    --apple-radius-control: 10px;
+    --apple-radius-card: 12px;
+    --apple-radius-grouped: 10px;
+    --apple-radius-sheet: 16px;
+    --apple-space-1: 4px;
+    --apple-space-2: 8px;
+    --apple-space-3: 12px;
+    --apple-space-4: 16px;
+    --apple-space-5: 20px;
+    --apple-space-6: 24px;
+    --apple-space-8: 32px;
+    --apple-shadow-thumb: 0 3px 8px rgba(0, 0, 0, 0.12), 0 3px 1px rgba(0, 0, 0, 0.04);
+    --apple-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.06);
+    --apple-shadow-popover: 0 10px 40px rgba(0, 0, 0, 0.18);
+    --apple-system-gray: #8E8E93;
+    --apple-system-blue: #007AFF;
+    --apple-system-green: #34C759;
+    --apple-system-indigo: #5856D6;
+    --apple-system-orange: #FF9500;
+    --apple-system-pink: #FF2D55;
+    --apple-system-purple: #AF52DE;
+    --apple-system-red: #FF3B30;
+    --apple-system-teal: #30B0C7;
+    --apple-system-yellow: #FFCC00;
+    --apple-system-mint: #00C7BE;
+    --apple-system-cyan: #32ADE6;
+    --apple-system-brown: #A2845E;
+    --apple-system-gray-2: #AEAEB2;
+    --apple-system-gray-3: #C7C7CC;
+    --apple-system-gray-4: #D1D1D6;
+    --apple-system-gray-5: #E5E5EA;
+    --apple-system-gray-6: #F2F2F7;
+    --apple-system-background: #FFFFFF;
+    --apple-secondary-system-background: #F2F2F7;
+    --apple-tertiary-system-background: #FFFFFF;
+    --apple-system-grouped-background: #F2F2F7;
+    --apple-secondary-system-grouped-background: #FFFFFF;
+    --apple-tertiary-system-grouped-background: #F2F2F7;
+    --apple-label: #000000;
+    --apple-secondary-label: rgba(60, 60, 67, 0.6);
+    --apple-tertiary-label: rgba(60, 60, 67, 0.3);
+    --apple-quaternary-label: rgba(60, 60, 67, 0.18);
+    --apple-separator: rgba(60, 60, 67, 0.29);
+    --apple-opaque-separator: #C6C6C8;
+    --apple-system-fill: rgba(120, 120, 128, 0.2);
+    --apple-secondary-system-fill: rgba(120, 120, 128, 0.16);
+    --apple-tertiary-system-fill: rgba(118, 118, 128, 0.12);
+    --apple-link: #007AFF;
+  }
+
+  /* ---- Layer 1 · official dark values ---- */
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --apple-system-blue: #0A84FF;
+    --apple-system-green: #30D158;
+    --apple-system-indigo: #5E5CE6;
+    --apple-system-orange: #FF9F0A;
+    --apple-system-pink: #FF375F;
+    --apple-system-purple: #BF5AF2;
+    --apple-system-red: #FF453A;
+    --apple-system-teal: #40C8E0;
+    --apple-system-yellow: #FFD60A;
+    --apple-system-mint: #63E6E2;
+    --apple-system-cyan: #64D2FF;
+    --apple-system-brown: #AC8E68;
+    --apple-system-gray-2: #636366;
+    --apple-system-gray-3: #48484A;
+    --apple-system-gray-4: #3A3A3C;
+    --apple-system-gray-5: #2C2C2E;
+    --apple-system-gray-6: #1C1C1E;
+    --apple-system-background: #000000;
+    --apple-secondary-system-background: #1C1C1E;
+    --apple-tertiary-system-background: #2C2C2E;
+    --apple-system-grouped-background: #000000;
+    --apple-secondary-system-grouped-background: #1C1C1E;
+    --apple-tertiary-system-grouped-background: #2C2C2E;
+    --apple-label: #FFFFFF;
+    --apple-secondary-label: rgba(235, 235, 245, 0.6);
+    --apple-tertiary-label: rgba(235, 235, 245, 0.3);
+    --apple-quaternary-label: rgba(235, 235, 245, 0.16);
+    --apple-separator: rgba(84, 84, 88, 0.6);
+    --apple-opaque-separator: #38383A;
+    --apple-system-fill: rgba(120, 120, 128, 0.36);
+    --apple-secondary-system-fill: rgba(120, 120, 128, 0.32);
+    --apple-tertiary-system-fill: rgba(118, 118, 128, 0.24);
+    --apple-link: #0A84FF;
+  }
+
+  /* ---- Layer 2 · --hig-* semantic aliases ---- */
+  :root {
+    --hig-canvas: var(--apple-system-grouped-background);
+    --hig-surface: var(--apple-secondary-system-grouped-background);
+    --hig-surface-2: var(--apple-tertiary-system-fill);
+    --hig-border: var(--apple-separator);
+    --hig-border-strong: var(--apple-opaque-separator);
+    --hig-ink: var(--apple-label);
+    --hig-ink-2: var(--apple-secondary-label);
+    --hig-ink-3: var(--apple-tertiary-label);
+    --hig-accent: var(--apple-system-blue);
+    --hig-accent-hover: color-mix(in srgb, var(--apple-system-blue) 85%, black);
+    --hig-on-accent: #FFFFFF;
+    --hig-accent-subtle: color-mix(in srgb, var(--apple-system-blue) 15%, transparent);
+    --hig-accent-ink: var(--apple-link);
+    --hig-success: var(--apple-system-green);
+    --hig-warning: var(--apple-system-orange);
+    --hig-danger: var(--apple-system-red);
+    --hig-info: var(--apple-system-teal);
+    --hig-focus: var(--apple-system-blue);
+    --hig-font-sans: var(--apple-font-text);
+    --hig-font-mono: var(--apple-font-mono);
+    --hig-font-display: var(--hig-font-preview, var(--apple-font-display));
+    --hig-radius-sm: 6px;
+    --hig-radius-md: var(--apple-radius-control);
+    --hig-radius-lg: var(--apple-radius-card);
+    --hig-radius-full: 9999px;
+    --hig-btn-radius: 9999px;
+    --hig-control-h: var(--hig-control-base);
+    --hig-shadow-sm: none;
+    --hig-shadow-md: var(--apple-shadow-popover);
+    --hig-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --hig-duration: 200ms;
+    --hig-success-subtle: color-mix(in srgb, var(--hig-success) 14%, var(--hig-surface));
+    --hig-warning-subtle: color-mix(in srgb, var(--hig-warning) 18%, var(--hig-surface));
+    --hig-danger-subtle: color-mix(in srgb, var(--hig-danger) 14%, var(--hig-surface));
+    --hig-info-subtle: color-mix(in srgb, var(--hig-info) 14%, var(--hig-surface));
+    --hig-input-radius: var(--hig-radius-md);
+    --hig-card-radius: var(--hig-radius-lg);
+    --hig-badge-radius: var(--hig-radius-full);
+    --hig-control-base: var(--apple-min-target);
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--hig-canvas);
+    color: var(--hig-ink);
+    font-family: var(--hig-font-sans);
+    font-size: 17px;
+    line-height: 22px;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+  .hig-mono { font-family: var(--hig-font-mono); font-variant-numeric: tabular-nums; }
+}

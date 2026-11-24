@@ -1,0 +1,41 @@
+---
+title: Introduction
+description: Use unstyled custom elements with keyboard, focus, and screen reader support built in.
+---
+
+<Callout>
+
+These docs cover ui-sdk in Web Components. Using another framework? See [React](/docs/react), [Vue](/docs/vue), [Svelte](/docs/svelte) or [Solid](/docs/solid). To build your own components from behaviors, see [Core](/docs/core).
+
+</Callout>
+
+`@ui-sdk/web` gives you components such as Select, Dialog, and Tabs as custom elements, built on ui-sdk's behaviors. They handle interactions, focus, and ARIA attributes. You write the HTML and styles.
+
+Import the components you need to register their tags, add them to your page, and style them with your own CSS.
+
+## Quick Start
+
+Copy this prompt into your agent:
+
+<include>../../shared/setup-prompt/web-components.mdx</include>
+
+It installs ui-sdk and points your `AGENTS.md` at the docs that ship with the packages.
+
+## Set It Up Yourself
+
+<Cards>
+  <Card
+    title="Installation"
+    href="./installation"
+    description="Install the packages and register their custom elements."
+  />
+  <Card
+    title="First Component"
+    href="./first-component"
+    description="Add and style your first component."
+  />
+</Cards>
+
+## Explore the Components
+
+The [Using Components guides](./parts-and-composition) cover patterns the components share, such as composing parts, handling state, and styling.

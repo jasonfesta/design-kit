@@ -1,0 +1,16 @@
+{
+  "title": "Behaviors",
+  "pages": [
+    "index",
+    "focus",
+    "selection",
+    "drag-and-drop",
+    "direct-manipulation",
+    "lists",
+    "trees",
+    "motion",
+    "popups",
+    "preferences",
+    "canvas"
+  ]
+}

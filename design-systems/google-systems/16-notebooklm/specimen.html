@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NotebookLM (nlm v0.0.5) — Sources · Chat · Studio Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    body { background: var(--nlm-surface-page); }
+    .nl-top { height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+    .nl-title { display: flex; align-items: center; gap: 12px; font: 400 20px var(--nlm-font-flex); color: var(--nlm-titles-and-labels); }
+    .logo { width: 30px; height: 30px; border-radius: 50%; background: var(--nlm-secondary-button-fill); color: var(--nlm-surface-panel); display: grid; place-items: center; font-size: 15px; }
+    .btn { height: 36px; padding: 0 16px; border-radius: 9999px; border: 1px solid var(--nlm-default-stroke); background: var(--nlm-surface-panel); color: var(--nlm-titles-and-labels); font: 500 13px var(--nlm-font-body); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+    .btn.black { background: var(--nlm-secondary-button-fill); color: var(--nlm-surface-panel); border-color: transparent; }
+    .btn.blue { background: var(--nlm-primary-button-fill); color: #fff; border-color: transparent; }
+    .nl-grid { display: grid; grid-template-columns: 300px 1fr 340px; gap: 14px; padding: 0 16px 16px; height: calc(100vh - 60px); }
+    .panel { background: var(--nlm-surface-panel); border-radius: var(--nlm-sys-rounded-corners); border: 1px solid var(--nlm-default-stroke); display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+    .ph { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; border-bottom: 1px solid var(--nlm-default-stroke); font: 500 15px var(--nlm-font-brand); color: var(--nlm-titles-and-labels); }
+    .pb { padding: 14px 16px; overflow: hidden; display: flex; flex-direction: column; gap: 10px; }
+    .src { display: grid; grid-template-columns: 28px 1fr 18px; gap: 10px; align-items: center; padding: 8px 6px; border-radius: 10px; font-size: 13.5px; color: var(--nlm-body-text); }
+    .src .ic { width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center; font-size: 13px; }
+    .chk { width: 16px; height: 16px; border-radius: 4px; background: var(--nlm-primary-button-fill); color: #fff; font-size: 11px; display: grid; place-items: center; }
+    .chat { flex: 1; padding: 18px 26px; display: flex; flex-direction: column; gap: 16px; overflow: hidden; }
+    .q { align-self: flex-end; background: var(--nlm-pill-and-filters); color: var(--nlm-titles-and-labels); padding: 10px 16px; border-radius: 18px 18px 4px 18px; font-size: 14px; max-width: 80%; }
+    .a { font-size: 14.5px; line-height: 1.65; color: var(--nlm-body-text); }
+    .a p { margin: 0 0 var(--nlm-sys-paragraph-spacing); }
+    .cite { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 10px; background: var(--nlm-ui-grey-fill); color: var(--nlm-titles-and-labels); font: 600 11px var(--nlm-font-body); margin: 0 2px; padding: 0 5px; vertical-align: 1px; }
+    .sugg { display: flex; gap: 8px; flex-wrap: wrap; }
+    .sugg span { padding: 8px 12px; border-radius: 12px; background: var(--nlm-ui-light-grey-fill); border: 1px solid var(--nlm-default-stroke); font-size: 12.5px; color: var(--nlm-body-text); }
+    .composer { margin: 0 20px 16px; border: 1px solid var(--nlm-default-stroke); border-radius: 9999px; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 8px 0 20px; color: var(--nlm-ghost-text); font-size: 14px; }
+    .send { width: 38px; height: 38px; border-radius: 50%; border: 0; background: var(--nlm-primary-button-fill); color: #fff; font-size: 16px; }
+    .audio { background: var(--nlm-blue-tile); color: var(--nlm-blue-on-tile); border-radius: 14px; padding: 14px; }
+    .wave { display: flex; gap: 3px; align-items: center; height: 34px; margin: 10px 0; }
+    .wave i { width: 3px; border-radius: 2px; background: var(--nlm-blue-on-tile); display: block; opacity: .85; }
+    .tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tile { border-radius: 14px; padding: 12px; min-height: 74px; font: 500 13px var(--nlm-font-brand); display: flex; flex-direction: column; justify-content: space-between; }
+    .tile small { font: 400 11.5px var(--nlm-font-body); opacity: .85; }
+    @media (max-width: 860px) {
+      .nl-top { padding: 0 12px; height: 56px; }
+      .nl-top .btn.hide-m { display: none; }
+      .nl-title { font-size: 16px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; margin-right: 10px; }
+      .nl-title .logo { display: none; }
+      .nl-top .btn { white-space: nowrap; flex: none; }
+      .nl-grid { grid-template-columns: 1fr; height: auto; padding: 0 10px 12px; }
+      .panel.sources, .panel.studio { display: none; }
+      .chat { padding: 14px 14px; }
+      .composer { margin: 0 12px 12px; }
+      .mtabs { display: flex !important; }
+    }
+    .mtabs { display: none; gap: 6px; padding: 0 10px 10px; }
+    .mtabs span { flex: 1; display: flex; align-items: center; justify-content: center; height: 36px; border-radius: 9999px; font: 500 13px var(--nlm-font-body); color: var(--nlm-body-text); background: var(--nlm-surface-panel); border: 1px solid var(--nlm-default-stroke); }
+    .mtabs span.on { background: var(--nlm-secondary-button-fill); color: var(--nlm-surface-panel); border-color: transparent; }
+  </style>
+</head>
+<body>
+  <header class="nl-top">
+    <div class="nl-title"><span class="logo">◐</span>Watershed Restoration Field Notes</div>
+    <div style="display:flex;gap:8px;"><button class="btn hide-m" type="button">⤴ Share</button><button class="btn" id="theme-btn" type="button">◑ Light / Dark</button><button class="btn black hide-m" type="button">＋ Create notebook</button></div>
+  </header>
+  <div class="mtabs"><span>Sources</span><span class="on">Chat</span><span>Studio</span></div>
+  <main class="nl-grid">
+    <section class="panel sources">
+      <div class="ph">Sources <span style="font-size:13px;color:var(--nlm-secondary-text);">6</span></div>
+      <div class="pb">
+        <button class="btn" type="button" style="justify-content:center;">＋ Add source</button>
+        <div class="src"><span class="ic" style="background:var(--nlm-orange-tile);color:var(--nlm-orange-on-tile);">PDF</span>Riparian_Survey_2025.pdf<span class="chk">✓</span></div>
+        <div class="src"><span class="ic" style="background:var(--nlm-cyan-tile);color:var(--nlm-cyan-on-tile);">▶</span>Beaver dam analogs — lecture<span class="chk">✓</span></div>
+        <div class="src"><span class="ic" style="background:var(--nlm-green-tile);color:var(--nlm-green-on-tile);">▤</span>Sediment samples Q3.xlsx<span class="chk">✓</span></div>
+        <div class="src"><span class="ic" style="background:var(--nlm-blue-tile);color:var(--nlm-blue-on-tile);">🌐</span>USGS stream gauge 0911<span class="chk">✓</span></div>
+        <div class="src"><span class="ic" style="background:var(--nlm-yellow-tile);color:var(--nlm-yellow-on-tile);">✎</span>Volunteer interview notes<span class="chk">✓</span></div>
+        <div class="src"><span class="ic" style="background:var(--nlm-ui-grey-fill);color:var(--nlm-secondary-text);">G</span>Grant proposal draft (Docs)<span class="chk">✓</span></div>
+      </div>
+    </section>
+    <section class="panel">
+      <div class="ph">Chat <span style="font-size:12.5px;color:var(--nlm-secondary-text);font-weight:400;">Grounded in 6 sources</span></div>
+      <div class="chat">
+        <div class="q">What evidence shows the beaver dam analogs reduced sediment load?</div>
+        <div class="a">
+          <p>Three independent sources point the same direction. Downstream turbidity fell from <strong>48 to 19 NTU</strong> after the analogs were installed in reach C <span class="cite">1</span>, while sediment traps captured roughly <strong>2.4 t</strong> of fine material over the summer <span class="cite">3</span>.</p>
+          <p>The lecture notes that analogs work best where the channel gradient is below 2% — which matches reaches B and C but not the steeper reach A <span class="cite">2</span>. Volunteers also reported new willow growth along the ponded margins <span class="cite">5</span>.</p>
+          <div style="display:flex;gap:8px;"><span class="btn" style="height:30px;font-size:12px;">📌 Save to note</span><span class="btn" style="height:30px;font-size:12px;">⧉ Copy</span></div>
+        </div>
+        <div class="sugg"><span>How does reach A differ?</span><span>Summarize turbidity by month</span><span>Draft the grant results section</span></div>
+      </div>
+      <div class="composer">Start typing…<span style="display:flex;align-items:center;gap:10px;font-size:12px;">6 sources<button class="send" type="button">➤</button></span></div>
+    </section>
+    <section class="panel studio">
+      <div class="ph">Studio</div>
+      <div class="pb">
+        <div class="audio">
+          <div style="font:500 14px var(--nlm-font-brand);">Audio Overview</div>
+          <div style="font-size:12px;opacity:.85;">Deep dive · 2 hosts · 14 min</div>
+          <div class="wave">
+            <i style="height:30%"></i><i style="height:60%"></i><i style="height:90%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:35%"></i><i style="height:80%"></i><i style="height:100%"></i><i style="height:65%"></i><i style="height:40%"></i><i style="height:75%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:30%"></i><i style="height:60%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:55%"></i><i style="height:35%"></i><i style="height:65%"></i><i style="height:40%"></i>
+          </div>
+          <div style="display:flex;gap:8px;"><button class="btn blue" type="button">▶ Play</button><button class="btn" type="button">◎ Interactive</button></div>
+        </div>
+        <div class="tiles">
+          <div class="tile" style="background:var(--nlm-green-tile);color:var(--nlm-green-on-tile);">Study guide<small>12 key terms</small></div>
+          <div class="tile" style="background:var(--nlm-cyan-tile);color:var(--nlm-cyan-on-tile);">Mind map<small>4 branches</small></div>
+          <div class="tile" style="background:var(--nlm-orange-tile);color:var(--nlm-orange-on-tile);">Briefing doc<small>2 pages</small></div>
+          <div class="tile" style="background:var(--nlm-yellow-tile);color:var(--nlm-yellow-on-tile);">FAQ<small>9 questions</small></div>
+        </div>
+        <div style="font:500 13px var(--nlm-font-brand);color:var(--nlm-titles-and-labels);margin-top:4px;">Notes</div>
+        <div class="src" style="border:1px solid var(--nlm-default-stroke);"><span class="ic" style="background:var(--nlm-blue-tile);color:var(--nlm-blue-on-tile);">✎</span>Turbidity drop summary<span></span></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

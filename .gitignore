@@ -10,3 +10,14 @@ __pycache__/
 .DS_Store
 # large media (track with LFS if pushed)
 *.mp4
+
+# skill demo media (on disk only; skills run without them)
+plugins/*/skills/*/demo/
+
+# local runtimes (re-creatable; see tools/README.md)
+tools/python/
+tools/ms-playwright/
+
+# installed stacks
+libraries/stacks/*/node_modules/
+libraries/stacks/*/dist/

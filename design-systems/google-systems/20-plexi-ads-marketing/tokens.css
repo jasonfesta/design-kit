@@ -1,0 +1,97 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   20. PLEXI — GOOGLE ADS MARKETING DESIGN SYSTEM (PLEXI)
+   Version: 0.2.16 · Carbon: designSystems/320c302aad4aa959
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/plexi/versions/v0_2/sass_css_vars/
+     - //depot/google3/ux/tokens/design_systems/plexi/README.md
+     - //depot/google3/marketing/ads_mto/awmp/
+     - Docs: go/carbon-service-docs | go/carbon-service-code-gen-mwtc
+   Values: Verbatim Carbon/codegen values unless the line is annotated 'inferred'
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --plexi-sys-color--surface-primary: #ffffff;
+    --plexi-sys-color--surface-secondary-low: #f8f9fa;
+    --plexi-sys-color--surface-secondary-high: #f1f3f4;  /* inferred */
+    --plexi-sys-color--surface-tertiary-low: #f3f7ff;
+    --plexi-sys-color--surface-tertiary-high: #e8f0fe;
+    --plexi-sys-color--surface-accent: #7fcfff;
+    --plexi-sys-color--on-surface-accent: #001944;
+    --plexi-sys-color--on-surface-tertiary: #012c6f;
+    --plexi-sys-color--primary: #1a73e8;
+    --plexi-sys-color--text-headline: #202124;
+    --plexi-sys-color--text-primary: #3c4043;  /* inferred */
+    --plexi-sys-color--text-eyebrow: #5f6368;
+    --plexi-sys-color--outline: #dadce0;
+    --plexi-sys-color--outline-dark: #202124;
+    --plexi-sys-color--container-blue: #e8f0fe;  /* inferred */
+    --plexi-sys-color--container-green: #e6f4ea;
+    --plexi-sys-color--container-red: #fce8e6;
+    --plexi-sys-color--container-yellow: #fef7e0;
+    --plexi-sys-color--container-grey: #f1f3f4;  /* inferred */
+    --plexi-sys-color--container-white: #ffffff;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --plexi-sys-color--surface-primary: #202124;  /* inferred */
+    --plexi-sys-color--surface-secondary-low: #28292c;  /* inferred */
+    --plexi-sys-color--surface-secondary-high: #303134;  /* inferred */
+    --plexi-sys-color--surface-tertiary-low: #1d2738;  /* inferred */
+    --plexi-sys-color--surface-tertiary-high: #243552;  /* inferred */
+    --plexi-sys-color--surface-accent: #7fcfff;
+    --plexi-sys-color--on-surface-accent: #001944;
+    --plexi-sys-color--on-surface-tertiary: #d2e3fc;  /* inferred */
+    --plexi-sys-color--primary: #8ab4f8;  /* inferred */
+    --plexi-sys-color--text-headline: #f1f3f4;  /* inferred */
+    --plexi-sys-color--text-primary: #e8eaed;
+    --plexi-sys-color--text-eyebrow: #9aa0a6;  /* inferred */
+    --plexi-sys-color--outline: #3c4043;  /* inferred */
+    --plexi-sys-color--outline-dark: #e8eaed;  /* inferred */
+    --plexi-sys-color--container-blue: #243552;  /* inferred */
+    --plexi-sys-color--container-green: #1e3a29;  /* inferred */
+    --plexi-sys-color--container-red: #3c2321;  /* inferred */
+    --plexi-sys-color--container-yellow: #3a321a;  /* inferred */
+    --plexi-sys-color--container-grey: #303134;  /* inferred */
+    --plexi-sys-color--container-white: #28292c;  /* inferred */
+  }
+
+  /* Verbatim plexi.ref.typeface families + plexi.sys.shape radius ladder (mobile tier) v0.2.16 */
+  :root {
+    --plexi-x-font-display: 'Google Sans Display', 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --plexi-x-font-brand: 'Google Sans', Roboto, Arial, sans-serif;
+    --plexi-x-font-plain: 'Google Sans Text', 'Google Sans', Roboto, Arial, sans-serif;
+    --plexi-x-radius-xs: 8px;
+    --plexi-x-radius-sm: 12px;
+    --plexi-x-radius-md: 16px;
+    --plexi-x-radius-lg: 20px;
+    --plexi-x-radius-xl: 24px;
+    --plexi-x-radius-xxl: 32px;
+    --plexi-x-radius-circular: 1000px;
+    --plexi-x-size-hero-vw: 5vw;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--plexi-sys-color--surface-primary);
+    color: var(--plexi-sys-color--text-primary);
+    font-family: var(--plexi-x-font-body, var(--plexi-x-font-plain, var(--plexi-x-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

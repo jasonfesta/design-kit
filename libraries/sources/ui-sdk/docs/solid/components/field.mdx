@@ -1,0 +1,387 @@
+---
+title: Field
+description: Connect a form control to its label, description, and validation errors.
+---
+
+A field connects a form control to its label, its description and the errors it shows, and wires up `id`, `for` and `aria-describedby` for you.
+
+<ComponentExample
+  name="field/input"
+  caption="Press Username to focus the input, then type a name."
+/>
+
+## Installation
+
+```bash
+npm install @ui-sdk/solid @ui-sdk/core
+```
+
+## Composition
+
+Use the following composition to build a `Field`:
+
+```text
+Field
+├── FieldLabel
+├── Input
+├── FieldDescription
+└── FieldError
+```
+
+## Usage
+
+```tsx
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@ui-sdk/solid/field"
+import { Input } from "@ui-sdk/solid/input"
+
+function UsernameField() {
+  return (
+    <Field name="username">
+      <FieldLabel>Username</FieldLabel>
+      <Input autocomplete="username" required />
+      <FieldDescription>This is your public name.</FieldDescription>
+      <FieldError />
+    </Field>
+  )
+}
+
+export { UsernameField }
+```
+
+The control is one of ours, like an [Input](./input), a [Textarea](./textarea), a [Select](./select) or a [Checkbox](./checkbox), and it wires itself to the field.
+
+The label names the control, and the description and any error that shows describe it.
+
+Group related fields in a [field set](#field-sets):
+
+```tsx
+<FieldSet>
+  <FieldLegend />
+  <FieldDescription />
+  <FieldGroup>
+    <Field />
+    <Field />
+  </FieldGroup>
+</FieldSet>
+```
+
+## Controls
+
+Use an [Input](./input) for a line of text and a [Textarea](./textarea) for more:
+
+```tsx
+<Field>
+  <FieldLabel>Feedback</FieldLabel>
+  <Textarea name="feedback" />
+</Field>
+```
+
+For a control we don't ship, like a native `<select>`, use `FieldControl`. It renders an `<input>`, or another element with `render`, and connects it to the field the same way. An [agent](/docs/agents) sees only our components, so it can't fill a `FieldControl`: use ours where there is one.
+
+```tsx
+<Field>
+  <FieldLabel>Department</FieldLabel>
+  <FieldControl render={(props) => <select {...props} />} name="department">
+    <option value="design">Design</option>
+    <option value="engineering">Engineering</option>
+  </FieldControl>
+</Field>
+```
+
+A [Checkbox](./checkbox), [Switch](./switch) or [Radio Group](./radio) inside a field uses the field's label and description. Pressing the label toggles a checkbox or switch. A radio group takes the field's label as its name, and each radio keeps a label of its own:
+
+```tsx
+<Field>
+  <Switch name="mfa" />
+  <FieldLabel>Two-factor authentication</FieldLabel>
+  <FieldDescription>Ask for a code when you sign in.</FieldDescription>
+</Field>
+
+<Field>
+  <FieldLabel>Plan</FieldLabel>
+  <RadioGroup name="plan" defaultValue="monthly">
+    <label>
+      <Radio value="monthly" />
+      Monthly
+    </label>
+    <label>
+      <Radio value="yearly" />
+      Yearly
+    </label>
+  </RadioGroup>
+</Field>
+```
+
+## Validation
+
+Use native constraints such as `required`, `type="email"`, and `pattern`. Errors appear after a submit attempt and update as the value changes. The first invalid control takes focus.
+
+Leave an error empty to show the browser's message, or use `match="valueMissing"` and `match="typeMismatch"` for your own messages. Adding an error part replaces the browser's validation bubble with that message in the page.
+
+<ComponentExample
+  name="field/validation"
+  caption="Press Subscribe with an empty or invalid email, then correct it to clear the error."
+/>
+
+## Errors from Your Code
+
+Pass `invalid` when your server or form library supplies an error. `true` shows it immediately. Clear the value to return to the browser's validation.
+
+Give this error its own text and set `match` to `true`. Named matches such as `valueMissing` still refer to native validation. `invalid={false}` hides the field's invalid state, but does not make an invalid native control pass validation.
+
+```tsx
+<Field name="email" invalid={serverError() ? true : undefined}>
+  <FieldLabel>Email</FieldLabel>
+  <Input type="email" required onValueChange={() => setServerError(null)} />
+  <FieldError match="valueMissing">Enter your email address.</FieldError>
+  <Show when={serverError()}>
+    <FieldError match>{serverError()}</FieldError>
+  </Show>
+</Field>
+```
+
+## Required and Disabled
+
+A required control marks every part with `data-required`, and the parts' state has `required`, so a label can show a mark with CSS alone.
+
+A disabled field disables its control and marks every part with `data-disabled`, the way a [disabled field set](#disabled-field-sets) does for every field inside it.
+
+## Character Count
+
+Keep the text in a signal and show its length in the description. Set `maxlength` on the control to enforce the limit.
+
+```tsx
+<Field>
+  <FieldLabel>Bio</FieldLabel>
+  <Textarea value={bio()} onValueChange={setBio} maxlength={280} />
+  <FieldDescription>{bio().length} / 280</FieldDescription>
+</Field>
+```
+
+## Forms
+
+The control submits its value under its own `name`, or the field's name if it has none. Reset restores the control's default and hides validation errors. Disabled controls are left out of the submitted values. See [Forms](../forms) for the shared form behavior.
+
+## Field Sets
+
+A field set groups related fields under a legend, and disables them together.
+
+<ComponentExample
+  name="field/field-set"
+  caption="Move through the address fields. Their legend and description name the group."
+/>
+
+`FieldSet` is a native `<fieldset>` and `FieldLegend` a native `<legend>`, so the set is named, and disabled, before scripts run. Keep the legend the first child. A legend rendered as another element, like `render={(props) => <div {...props} />}`, still names the set through `aria-labelledby`.
+
+A `FieldDescription` right inside the set, outside any `Field`, describes the set, so screen readers read it as focus enters. `FieldGroup` is a `<div>` that stacks the fields, with no role and no state: the field set is what names and disables a group.
+
+## Disabled Field Sets
+
+Disabling the set disables its controls and nested field sets. The form leaves their values out of submissions.
+
+```tsx
+<FieldSet disabled={sameAsShipping()}>
+  <FieldLegend>Billing address</FieldLegend>
+  <Field name="billing-street">
+    <FieldLabel>Street address</FieldLabel>
+    <Input autocomplete="billing street-address" />
+  </Field>
+</FieldSet>
+```
+
+## Groups in a Field Set
+
+The legend names a [checkbox group](./checkbox#group) or a [radio group](./radio) inside the set, so the group needs no label of its own.
+
+```tsx
+<FieldSet>
+  <FieldLegend>Notifications</FieldLegend>
+  <CheckboxGroup name="notify" defaultValue={["mentions"]}>
+    <label>
+      <Checkbox value="mentions" />
+      Mentions
+    </label>
+    <label>
+      <Checkbox value="follows" />
+      New followers
+    </label>
+  </CheckboxGroup>
+</FieldSet>
+```
+
+## Custom Rendering
+
+Every part takes `render`, to render a different element or component in its place, like a `<select>` for `FieldControl`. It's a function that receives the props to spread and the field's state:
+
+```tsx
+<FieldDescription
+  render={(props, state) => (
+    <p {...props}>
+      {state.invalid ? "Use letters and numbers only." : "Letters and numbers."}
+    </p>
+  )}
+/>
+```
+
+`class`, `style` and `children` can be functions of the state too. `FieldError`'s state also has the `message` for the current problem.
+
+State is read lazily. A part re-renders for a change only if its render function or slot read that value. Each part's state is listed under [State](#state).
+
+## Custom Controls
+
+`useFieldControl` lets a control of your own join the field around it, the way ours do. Outside a field it returns `null`. Inside one, it returns:
+
+- `name()`: the field's `name`, for a control that doesn't set its own.
+- `disabled()`: whether the field is disabled.
+- `props(props)`: the control's props with the field's merged in: the `id`, `aria-labelledby`, `aria-describedby`, `aria-invalid`, `disabled` and the field's data attributes, and a ref that tells the field which element is its control. The control keeps its own `data-slot`.
+
+Call `props` once in the control's body and spread the result, like a part's `slot`, so the control updates in place when the field changes, like when its label or errors appear.
+
+```tsx
+import type { JSX } from "@solidjs/web"
+import { useFieldControl } from "@ui-sdk/solid/field"
+import { merge } from "solid-js"
+
+export function PhoneInput(props: JSX.InputHTMLAttributes<HTMLInputElement>) {
+  const field = useFieldControl()
+  const input = merge(
+    {
+      type: "tel",
+      autocomplete: "tel",
+      get name() {
+        return field?.name()
+      },
+    },
+    props,
+    { "data-slot": "phone-input" }
+  )
+  const control = field ? field.props(input) : input
+  return <input {...control} />
+}
+```
+
+```tsx
+<Field>
+  <FieldLabel>Phone</FieldLabel>
+  <PhoneInput required />
+  <FieldError />
+</Field>
+```
+
+The field reads validity from the native inputs, selects and textareas inside it, so `required` and `pattern` work on the input above. A control that isn't a native input, like a row of buttons, takes part through a native input of its own: ours render one, visually hidden, beside the control.
+
+To build a control from scratch on the primitives ours use, see [Primitives](../../core/kernel/define-a-primitive).
+
+## Styling
+
+Use `data-invalid` and `data-valid` for validation, and `data-focused`, `data-required` and `data-disabled` for the rest. Every part of a field gets the same attributes, so a label can turn red with its control.
+
+Each part has a `data-slot`, such as `field-label`, and its state attributes are listed under [Data Attributes](#data-attributes).
+
+## Data Attributes
+
+### Field [#data-attributes-field]
+
+<DataAttributes component="field" part="root" />
+
+### FieldLabel [#data-attributes-fieldlabel]
+
+<DataAttributes component="field" part="label" />
+
+### FieldControl [#data-attributes-fieldcontrol]
+
+<DataAttributes component="field" part="control" />
+
+### FieldDescription [#data-attributes-fielddescription]
+
+<DataAttributes component="field" part="description" />
+
+### FieldError [#data-attributes-fielderror]
+
+<DataAttributes component="field" part="error" />
+
+### FieldSet [#data-attributes-fieldset]
+
+`FieldGroup` has `data-slot="field-group"` and no state attributes.
+
+<DataAttributes component="field-set" part="set" />
+
+### FieldLegend [#data-attributes-fieldlegend]
+
+<DataAttributes component="field-set" part="legend" />
+
+### FieldDescription in a FieldSet [#data-attributes-fieldset-description]
+
+<DataAttributes component="field-set" part="description" />
+
+## API Reference
+
+Props are the same as below, as Solid props.
+
+A field has no change events. Read its state from the parts' data attributes, or from render functions. Set `debug` to log every state change and its reason.
+
+### Field
+
+<TypeTable
+  path="../../packages/core/src/components/field/field.ts"
+  name="FieldOptions"
+/>
+
+### FieldError
+
+<TypeTable
+  path="../../packages/core/src/components/field/field.ts"
+  name="FieldErrorProps"
+/>
+
+### FieldSet
+
+<TypeTable
+  path="../../packages/core/src/components/field/field-set.ts"
+  name="FieldSetOptions"
+/>
+
+### State
+
+<StateTable
+  path="../../packages/core/src/components/field/field.ts"
+  name="FieldState"
+/>
+
+<StateTable
+  path="../../packages/core/src/components/field/field.ts"
+  name="FieldErrorState"
+/>
+
+A `FieldDescription` receives the field's state, or only `disabled` when it describes a field set.
+
+<StateTable
+  path="../../packages/core/src/components/field/field.ts"
+  name="FieldDescriptionState"
+/>
+
+Every part of a field set receives the same state.
+
+<StateTable
+  path="../../packages/core/src/components/field/field-set.ts"
+  name="FieldSetState"
+/>
+
+## Accessibility
+
+The label names the control with `aria-labelledby`, beside a native `<label for>` where the control can take one. The description and any error that shows describe it with `aria-describedby`, and an invalid control has `aria-invalid`. The tests below cover these connections and keyboard behavior.
+
+<SpecList spec="field" />
+
+In a field set:
+
+<SpecList spec="field.set" />
+
+In a form:
+
+<SpecList spec="forms.form" />

@@ -1,9 +1,9 @@
 # Example: AVELA / Soft Form (`01-website-avela`) Mock-to-React Audit
 
 ## Source Authorities Audited
-- **Desktop Authority**: `/usr/local/google/home/jfesta/moodboards/homepage-study/images/desktop/01-avela.png` (`725 × 2170`)
-- **Mobile Authority**: `/usr/local/google/home/jfesta/moodboards/homepage-study/images/mobile/01-avela.jpg` (`390 × 3210`)
-- **Target Golden Template Package**: `/usr/local/google/home/jfesta/moodboards/index-7-moodboard/projects/01-website-avela/`
+- **Desktop Authority**: `/google/data/rw/users/jf/jfesta/moodboards/homepage-study/images/desktop/01-avela.png` (`725 × 2170`)
+- **Mobile Authority**: `/google/data/rw/users/jf/jfesta/moodboards/homepage-study/images/mobile/01-avela.jpg` (`390 × 3210`)
+- **Target Golden Template Package**: `/google/data/rw/users/jf/jfesta/moodboards/index-7-moodboard/projects/01-website-avela/`
 
 ## 8-Directive Verification Summary
 

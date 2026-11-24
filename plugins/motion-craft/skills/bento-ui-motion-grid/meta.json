@@ -1,0 +1,91 @@
+{
+  "id": "bento-ui-motion-grid",
+  "kind": "motion-video",
+  "title": "Bento UI motion grid: a locked-off grid of 24 polished UI cards on a light background where every card animates continuously and independently with spring easing, rolling digits and crossfades, staggered spring intro, rendered at 120 fps with a 60 fps cut for X",
+  "source_url": "https://x.com/dominikmartn/status/2120154832694858224",
+  "creator": "@dominikmartn (format reference); original widgets and code by James Camarota",
+  "video_type": [
+    "ui-tour"
+  ],
+  "style_tags": [
+    "bento-cards",
+    "ui-mockup",
+    "clean-minimal",
+    "light-airy",
+    "grotesk-led"
+  ],
+  "mood": [
+    "premium",
+    "calm",
+    "confident",
+    "technical"
+  ],
+  "palette": {
+    "bg": "#F7F7F5",
+    "tray": "#EEEEEA",
+    "card": "#FFFFFF",
+    "dark": "#0F0F12",
+    "ink": "#141416",
+    "muted": "#8B8B87",
+    "accent": "#2F5BFF",
+    "accent2": "#6E8BFF",
+    "tint": "#EEF2FF"
+  },
+  "fonts": {
+    "ui": {
+      "original": "Inter / SF-style UI sans",
+      "open": "Inter (tnum, cv11, ss01)"
+    }
+  },
+  "techniques": [
+    "single index.html with a pure draw(t) that re-renders every card for time t",
+    "from-rest damped spring, critically damped soft ease, ease-out-expo for reveals, quintic in-out for long travel",
+    "per-digit odometer rolling with tabular figures and stagger",
+    "independent per-card cycles with staggered offsets plus ambient sine motion",
+    "FLIP-style stack and list pushes (chat, notifications, kanban, avatars)",
+    "staggered spring intro keyed by card x/y",
+    "Playwright capture at 2.8125x then Lanczos downscale to 1440x1080",
+    "parallel frame workers, 120 fps master and 60 fps cut from the same frames",
+    "per-card frame-diff spike detector for smoothness QA"
+  ],
+  "stack": {
+    "original": [
+      "UI motion design (generated)"
+    ],
+    "template": [
+      "HTML",
+      "CSS",
+      "vanilla JS",
+      "Playwright (Python)",
+      "Pillow",
+      "numpy",
+      "ffmpeg"
+    ]
+  },
+  "use_cases": [
+    "\"this model can actually design\" social flex post",
+    "design system or component library showcase",
+    "app concept teaser with many features at once",
+    "portfolio reel for a UI or front end designer"
+  ],
+  "pick_when": "you need a silent 24 s locked-off grid of many polished UI widgets that all animate smoothly at once, ultra smooth (120 fps master), easy to re-skin in one HTML file.",
+  "avoid_when": "you need camera moves through one flow (pastel-glow-ui-film), a cursor-led tool tour (figma-motion-launch), a changelog film (linear-releases) or a hard-cut collage (fast-collage-recolor-demo).",
+  "closest_alternatives": [
+    "pastel-glow-ui-film",
+    "figma-motion-launch",
+    "fast-collage-recolor-demo"
+  ],
+  "fidelity_notes": "Format match only (locked-off 4:3 bento grid, 24 s, continuous per-card motion, staggered intro). All widgets, copy, palette and code are original; no assets from the reference.",
+  "skill_path": "skills/bento-ui-motion-grid/SKILL.md",
+  "template_path": "skills/bento-ui-motion-grid/template",
+  "external": false,
+  "status": "verified",
+  "format": {
+    "width": 1440,
+    "height": 1080,
+    "fps": 120,
+    "fps_social": 60,
+    "seconds": 24,
+    "audio": false
+  }
+}

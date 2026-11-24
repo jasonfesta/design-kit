@@ -1,0 +1,12 @@
+{
+  "name": "platform-design",
+  "displayName": "Platform Design",
+  "description": "Apple HIG (14 hig-* skills + HIG doctor audit), Material 3, Liquid Glass, SwiftUI patterns/pro/design, per-platform guidelines (iOS, iPadOS, macOS, watchOS, tvOS, visionOS, Android, web), mobile app UI design, and React Native best practices.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": [
+    "Audit this SwiftUI view against Apple HIG",
+    "Build a Material 3 theme from a seed color",
+    "Apply Liquid Glass to this toolbar"
+  ]
+}

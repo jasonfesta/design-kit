@@ -23,7 +23,7 @@ This document catalogs every Google3 skill, computer-vision tool, and evaluation
 
 ## 2. Local Zero-Blaze Scripts vs. Upstream Blaze Targets
 
-To ensure instant execution inside `/usr/local/google/home/jfesta/moodboards/` without waiting on a CitC client or Blaze daemon, all core computer-vision and evaluation pipelines are packaged directly inside [`skills/image-to-react/scripts/`](../scripts/):
+To ensure instant execution inside `/google/data/rw/users/jf/jfesta/moodboards/` without waiting on a CitC client or Blaze daemon, all core computer-vision and evaluation pipelines are packaged directly inside [`skills/image-to-react/scripts/`](../scripts/):
 
 1. **[`scripts/prepare-and-extract-image.py`](../../replicate-mock/scripts/prepare-and-extract-image.py)**:
    - Runs sRGB + Retina `@2x` normalization (`mockup.png`), computes `layout_metrics.json` (dominant hex palette, body container margins, horizontal section gutters, edge cuts), discovers visual clusters (`mockup_candidates_overlay.png`), and extracts non-widget media crops with 70% area-floor edge snapping (`assets.json` + `contact_sheet.png`).

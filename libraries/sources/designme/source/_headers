@@ -1,0 +1,56 @@
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), geolocation=()
+  X-Frame-Options: SAMEORIGIN
+
+# pages revalidate on every visit, so they always name the current /assets files
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# the homepage's styles and scripts, named by a hash of their content (tools/site/split-assets.js): a new build gives a
+# changed file a new name, so a browser can keep these for a year without asking again
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=604800
+
+/r/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+
+# fixed names, so never immutable: fresh for a while, then served from the cache while the browser checks for a new one
+/fonts/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=31536000
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/components/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/docs/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600
+
+/components/assets/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/art/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/fab/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/templates/*
+  X-Robots-Tag: noindex

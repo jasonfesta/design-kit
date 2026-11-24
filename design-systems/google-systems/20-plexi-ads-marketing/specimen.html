@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plexi Google Ads Marketing (plexi v0.2.16) — Feature Page Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .px-nav { height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; background: var(--plexi-sys-color--surface-primary); border-bottom: 1px solid var(--plexi-sys-color--outline); position: sticky; top: 0; z-index: 2; }
+    .px-logo { font: 400 21px var(--plexi-x-font-brand); color: var(--plexi-sys-color--text-eyebrow); }
+    .px-logo b { color: var(--plexi-sys-color--text-headline); font-weight: 500; }
+    .px-links { display: flex; gap: 26px; font: 500 14px var(--plexi-x-font-plain); color: var(--plexi-sys-color--text-primary); }
+    .b-high { height: 44px; padding: 0 24px; border-radius: var(--plexi-x-radius-circular); border: 0; background: var(--plexi-sys-color--primary); color: #fff; font: 500 15px var(--plexi-x-font-brand); cursor: pointer; }
+    .b-med { height: 44px; padding: 0 22px; border-radius: var(--plexi-x-radius-circular); border: 1px solid var(--plexi-sys-color--outline); background: transparent; color: var(--plexi-sys-color--primary); font: 500 15px var(--plexi-x-font-brand); cursor: pointer; }
+    .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; max-width: 1280px; margin: 0 auto; padding: 48px 32px 36px; }
+    .eyebrow { font: 500 14px var(--plexi-x-font-plain); color: var(--plexi-sys-color--text-eyebrow); letter-spacing: .02em; margin-bottom: 14px; }
+    .hero h1 { font: 400 clamp(36px, var(--plexi-x-size-hero-vw), 68px)/1.08 var(--plexi-x-font-display); margin: 0 0 18px; color: var(--plexi-sys-color--text-headline); letter-spacing: -0.01em; }
+    .hero p { font: 400 18px/1.55 var(--plexi-x-font-plain); color: var(--plexi-sys-color--text-primary); margin: 0 0 26px; max-width: 520px; }
+    .media { border-radius: var(--plexi-x-radius-xxl); background: var(--plexi-sys-color--surface-tertiary-high); min-height: 360px; position: relative; overflow: hidden; padding: 26px; }
+    .mock { background: var(--plexi-sys-color--container-white); border-radius: var(--plexi-x-radius-md); padding: 16px 18px; box-shadow: 0 6px 20px rgba(26,115,232,.14); position: absolute; }
+    .mock .k { font: 500 12px var(--plexi-x-font-plain); color: var(--plexi-sys-color--text-eyebrow); }
+    .mock .v { font: 400 30px var(--plexi-x-font-display); color: var(--plexi-sys-color--text-headline); font-variant-numeric: tabular-nums; }
+    .jump { display: flex; gap: 8px; justify-content: center; padding: 10px 32px 22px; flex-wrap: wrap; }
+    .jl { height: 40px; padding: 0 18px; border-radius: var(--plexi-x-radius-circular); background: var(--plexi-sys-color--surface-secondary-high); color: var(--plexi-sys-color--text-primary); font: 500 14px var(--plexi-x-font-plain); display: inline-flex; align-items: center; }
+    .jl.on { background: var(--plexi-sys-color--text-headline); color: var(--plexi-sys-color--surface-primary); }
+    .band { background: var(--plexi-sys-color--surface-secondary-low); padding: 36px 32px 44px; }
+    .band h2 { font: 400 36px var(--plexi-x-font-display); text-align: center; margin: 0 0 26px; color: var(--plexi-sys-color--text-headline); }
+    .three { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: var(--plexi-sys-color--surface-primary); border-radius: var(--plexi-x-radius-xl); padding: 24px; border: 1px solid var(--plexi-sys-color--outline); }
+    .card .ic { width: 48px; height: 48px; border-radius: var(--plexi-x-radius-sm); display: grid; place-items: center; font-size: 22px; margin-bottom: 16px; }
+    .card h3 { font: 500 20px var(--plexi-x-font-brand); margin: 0 0 8px; color: var(--plexi-sys-color--text-headline); }
+    .card p { font: 400 15px/1.55 var(--plexi-x-font-plain); color: var(--plexi-sys-color--text-primary); margin: 0 0 14px; }
+    .card a { color: var(--plexi-sys-color--primary); font: 500 15px var(--plexi-x-font-brand); text-decoration: none; }
+    .case { max-width: 1280px; margin: 26px auto 0; background: var(--plexi-sys-color--surface-accent); color: var(--plexi-sys-color--on-surface-accent); border-radius: var(--plexi-x-radius-xxl); padding: 28px 32px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 24px; align-items: center; }
+    .case .stat { font: 400 44px var(--plexi-x-font-display); font-variant-numeric: tabular-nums; }
+    @media (max-width: 860px) {
+      .px-nav { padding: 0 14px; height: 56px; }
+      .px-links, .px-nav .b-high { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 26px 16px 18px; gap: 22px; }
+      .hero p { font-size: 16px; }
+      .media { min-height: 240px; }
+      .jump { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding: 6px 16px 16px; }
+      .jl { white-space: nowrap; }
+      .band { padding: 24px 16px; }
+      .band h2 { font-size: 26px; }
+      .three { grid-template-columns: 1fr; gap: 14px; }
+      .case { grid-template-columns: 1fr 1fr; padding: 20px; }
+      .case > div:first-child { grid-column: 1 / -1; }
+      .case .stat { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="px-nav">
+    <div class="px-logo">Google <b>Ads</b></div>
+    <div class="px-links"><span>Overview</span><span>How it works</span><span>Solutions</span><span>Pricing</span><span>Resources</span></div>
+    <div style="display:flex;gap:10px;"><button class="b-med" id="theme-btn" type="button">◑ Light / Dark</button><button class="b-high" type="button">Start now</button></div>
+  </nav>
+  <section class="hero">
+    <div>
+      <div class="eyebrow">PERFORMANCE MAX</div>
+      <h1>Find more customers across every Google channel</h1>
+      <p>Reach people on Search, YouTube, Display, Discover, Gmail and Maps from a single campaign — with AI that optimizes bids and creative in real time.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;"><button class="b-high" type="button">Get started</button><button class="b-med" type="button">Talk to a specialist</button></div>
+    </div>
+    <div class="media">
+      <div class="mock" style="left:26px;top:26px;width:58%;"><div class="k">Conversions · last 30 days</div><div class="v">+27%</div>
+        <svg viewBox="0 0 200 50" width="100%" height="46"><polyline fill="none" stroke="#1a73e8" stroke-width="3" points="0,42 30,38 60,40 90,28 120,30 150,18 200,8"/></svg></div>
+      <div class="mock" style="right:26px;top:150px;width:46%;"><div class="k">Cost per acquisition</div><div class="v">$18.40</div><div class="k" style="color:#188038;">↓ 14% vs prior period</div></div>
+      <div class="mock" style="left:44px;bottom:26px;width:52%;display:flex;gap:10px;align-items:center;"><span style="width:38px;height:38px;border-radius:10px;background:var(--plexi-sys-color--surface-accent);display:grid;place-items:center;">✦</span><div><div class="k">Asset strength</div><div style="font:500 16px var(--plexi-x-font-brand);color:var(--plexi-sys-color--text-headline);">Excellent</div></div></div>
+    </div>
+  </section>
+  <div class="jump"><span class="jl on">Overview</span><span class="jl">Benefits</span><span class="jl">How it works</span><span class="jl">Case studies</span><span class="jl">FAQs</span></div>
+  <section class="band">
+    <h2>Why advertisers choose Performance Max</h2>
+    <div class="three">
+      <div class="card"><div class="ic" style="background:var(--plexi-sys-color--container-blue);">◎</div><h3>Unlock new audiences</h3><p>Google AI finds converting customers across channels you might not reach on your own.</p><a href="#">Learn more ›</a></div>
+      <div class="card"><div class="ic" style="background:var(--plexi-sys-color--container-green);">↗</div><h3>Drive better results</h3><p>Real-time bidding optimizes toward your conversion goals and value rules.</p><a href="#">See the data ›</a></div>
+      <div class="card"><div class="ic" style="background:var(--plexi-sys-color--container-yellow);">✦</div><h3>Create assets with AI</h3><p>Generate headlines, images and video variations right inside your campaign.</p><a href="#">Explore tools ›</a></div>
+    </div>
+    <div class="case">
+      <div><div class="eyebrow" style="color:var(--plexi-sys-color--on-surface-accent);">CASE STUDY · LUMEN OUTDOOR CO.</div><div style="font:400 24px/1.3 var(--plexi-x-font-display);">“We doubled online revenue in one season without raising our budget.”</div></div>
+      <div><div class="stat">2.1×</div><div>Online revenue</div></div>
+      <div><div class="stat">−32%</div><div>Cost per sale</div></div>
+    </div>
+  </section>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

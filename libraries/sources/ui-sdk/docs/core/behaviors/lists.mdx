@@ -1,0 +1,612 @@
+---
+title: Lists
+description: Search a list of options, render long lists, follow new messages, pick by scrolling, and edit values in place.
+---
+
+Use `createListbox` for options you move through and search, `createVirtualizer` for long lists, `createStickToBottom` for chats and logs, `bindScrollPicker` for wheels you scroll to pick from, and `createInlineEdit` for editable labels.
+
+Each helper works on its own or alongside [focus](./focus#grids) and [selection](./selection) in a component.
+
+## Options You Search
+
+### Move Through the Options
+
+`createListbox` keeps one option highlighted and moves the highlight with the arrow keys, the way a listbox or a combobox does. Keep the highlighted option's key in state, starting at `null`, and create the behavior in `api`:
+
+```ts
+import { createListbox } from "@ui-sdk/core"
+
+const listbox = createListbox(context, {
+  key: "highlighted",
+  focus: "virtual",
+})
+```
+
+With `focus: "virtual"`, focus stays where it is, like in a search input, and the input points `aria-activedescendant` at the highlighted option. Leave `focus` out and the highlight moves real focus from option to option instead.
+
+Each option joins in its slot's `bind`, and `attrs` gives it an `id`, `data-highlighted` and `aria-disabled`:
+
+```ts
+option: slot<{ value: string }>({
+  role: "option",
+  focus: "active-descendant",
+  props: { value: "string" },
+  selects: selects({ highlighted: ({ key }) => [key, null] }),
+  attrs: (state, part) => ({
+    ...part.api.listbox.attrs(state, part),
+    "aria-selected": String(state.value === part.key),
+  }),
+  press: ({ key, api }, event) => api.choose(key, event),
+  on: {
+    pointerdown: (event) => event.preventDefault(),
+    pointermove: (event, { key, api }) => api.listbox.highlight(key, { event }),
+  },
+  bind: (el, part) => part.api.listbox.bind(el, part),
+}),
+```
+
+`selects` lets a move reach only the option it leaves and the one it lands on. On the input, set `aria-activedescendant` to `api.listbox.activeId(state)` and pass `keydown` to `api.listbox.keydown(event)`. The arrows, PageUp and PageDown move the highlight. With real focus, Home, End and typing an option's name move it too. Moving past either end wraps around unless `loop` returns `false`.
+
+Choosing an option is yours. On Enter, read the highlighted key from state and write your value with [`createChange`](../kernel/handle-changes#changes), or with [`createSelection`](./selection) when people can choose several.
+
+### Filter as You Type
+
+Pass the text to filter by as `query`. In composed lists like the one above, an option only renders while it matches, so add `present` to the option slot:
+
+```ts
+const listbox = createListbox(context, {
+  key: "highlighted",
+  focus: "virtual",
+  query: () => context.store.get().query,
+})
+```
+
+```ts
+present: (_state, part) => part.api.listbox.shows(part),
+```
+
+Options match by their `label` prop, or by their text when they have none, ignoring case and accents. When the query changes, call `listbox.move("first")` to highlight the best match, as this search does:
+
+<ComponentExample
+  name="behaviors/listbox"
+  caption="Type to filter the fruit. Use Up and Down to move the highlight, and Enter or a click to choose one."
+/>
+
+`filter` decides what matches: `"contains"` by default, `"startsWith"`, or a function that returns `true`, `false`, or a score. A score ranks the options, best first, and 0 hides one. `listbox.count()` says how many options match, for a message when none do.
+
+### Options as Data
+
+For options that come from data, pass them as `items`: strings, items with a `value` and `label`, groups and separators. `listbox.items()` returns what matches the query, in order, so render that instead of the full list:
+
+```ts
+const listbox = createListbox(context, {
+  key: "highlighted",
+  items: () => context.options().items,
+  query: () => context.store.get().query,
+})
+```
+
+Pass `onHighlight` to hear where the highlight moved, with its index for a [virtualizer](#long-lists) to scroll to, and `onEnd` to load the next page when it reaches the last option.
+
+### Options
+
+<TypeTable
+  path="../../packages/core/src/foundation/lists/listbox-behavior.ts"
+  name="ListboxBehaviorOptions"
+  type="ListboxBehaviorOptions<{ highlighted: string | null }>"
+  events={false}
+  examples={{
+    key: "Move Through the Options",
+    focus: "Move Through the Options",
+    loop: "Move Through the Options",
+    query: "Filter as You Type",
+    filter: "Filter as You Type",
+    items: "Options as Data",
+    onHighlight: "Options as Data",
+    onEnd: "Options as Data",
+  }}
+/>
+
+## Long Lists
+
+### Render What's in View
+
+`createVirtualizer` tells you which rows to render and where to place them. Start with the number of rows and an estimated height in pixels:
+
+```ts
+import { createVirtualizer } from "@ui-sdk/core"
+
+const virtual = createVirtualizer({
+  count: () => entries.length,
+  estimate: () => 32,
+})
+```
+
+Once the scroller mounts, connect it and subscribe to changes:
+
+```ts
+const disconnect = virtual.connect(scroller)
+const unsubscribe = virtual.subscribe(render)
+```
+
+Render `virtual.items()` inside a relatively positioned box `virtual.size()` pixels tall. Each item gives you its `index`, `key`, `start` and `size`. Position its element absolutely at `start`, leaving the full-height box to provide the scrollbar.
+
+<ComponentExample
+  name="behaviors/virtualizer"
+  caption="Scroll through the ledger. The count shows how few of its 10,000 rows are rendered at once."
+/>
+
+Call `disconnect()` and `unsubscribe()` when the view unmounts. In a primitive, return `virtual.connect(el)` from the scroller slot's `bind`. Call `virtual.refresh()` after the row count or order changes.
+
+`items()` returns the same array until its contents change, so it works with subscriptions such as React's `useSyncExternalStore`. Give each row `aria-setsize` and `aria-posinset`, or use `aria-rowcount` and `aria-rowindex` for a grid, so assistive technology can tell where it sits in the full list.
+
+### Rows of Any Height
+
+For rows that wrap, estimate their height first and measure them after rendering. Give each row a stable data key so its measured size follows it when you sort:
+
+```ts
+const virtual = createVirtualizer({
+  count: () => notes.length,
+  key: (index) => notes[index].id,
+  estimate: () => 52,
+  overscan: 2,
+})
+```
+
+In the row slot, return the measurement cleanup:
+
+```ts
+bind: (el, { api, props }) => api.virtual.measure(props.index, el),
+```
+
+`measure` also observes later size changes. Keep each measurement binding associated with its index; this demo keys the rendered rows by index while the virtualizer tracks sizes by data key.
+
+<ComponentExample
+  name="behaviors/virtualizer-measure"
+  caption="Scroll through the notes, then try Newest First and Larger Text. Row positions adjust to their measured heights."
+/>
+
+Call `virtual.reset()` to discard cached measurements after a change that affects every row, such as a new text size. `overscan` keeps a few extra rows beyond each edge; it defaults to four. Fixed-height rows can skip measurement.
+
+### Jumping and Loading More
+
+Use `scrollToIndex` to bring a row into view. Indexes start at zero:
+
+```ts
+virtual.scrollToIndex(49, { align: "center" })
+virtual.scrollToIndex(79)
+```
+
+`align` can be `"start"`, `"center"`, `"end"` or `"auto"`. The default, `"auto"`, scrolls only far enough to show the row.
+
+<ComponentExample
+  name="behaviors/virtualizer-jump"
+  caption="Try Center 50 and Last. Near the end, more contacts load. Click a contact and scroll away; its focused element stays rendered."
+/>
+
+For a sticky header, set `scrollMargin` to its height. To load more, provide `onEnd` and optionally `endThreshold`:
+
+```ts
+scrollMargin: 32,
+onEnd: () => loadMore(),
+endThreshold: 5,
+keep: () => (focusedIndex === null ? [] : [focusedIndex]),
+```
+
+`onEnd` runs once per row count when the visible range approaches the end. After loading, update the count and call `refresh()`. `keep()` adds indexes that must stay rendered, such as the row holding focus.
+
+### Sideways
+
+For a horizontal list, set `horizontal: true`:
+
+```ts
+const virtual = createVirtualizer({
+  count: () => 365,
+  estimate: () => 56,
+  horizontal: true,
+})
+```
+
+Now `start` and `size` describe horizontal positions. Use a spacer `virtual.size()` pixels wide and position items with `translateX`.
+
+<ComponentExample
+  name="behaviors/virtualizer-horizontal"
+  caption="Scroll sideways through the days. Only the visible days and a few nearby ones are rendered."
+/>
+
+### Find in Page
+
+Find in page (⌘F, or Ctrl+F) sees only the rows a virtualizer renders. Give it the text of each row with `findable`, and connect with the findable layers, so it finds every row and the list scrolls to the one it matched:
+
+```ts
+const virtual = createVirtualizer({
+  count: () => invoices.length,
+  estimate: () => 36,
+  findable: (index) => [invoices[index].id, invoices[index].customer],
+})
+
+virtual.connect(scroller, { findable: true })
+```
+
+Keep `findable` the text the row shows, so a row is found the same rendered or not. Pass only the text worth finding, like a title rather than a timestamp.
+
+Then render that text through `findableText`, one empty element per piece, from its ref:
+
+<FrameworkContent value="react">
+
+```tsx
+<span ref={(el) => virtual.findableText(item.index, el, 0)} />
+<span ref={(el) => virtual.findableText(item.index, el, 1)} />
+```
+
+</FrameworkContent>
+<FrameworkContent value="vue">
+
+```vue
+<span
+  :ref="(el) => virtual.findableText(item.index, el as HTMLElement | null, 0)"
+/>
+<span
+  :ref="(el) => virtual.findableText(item.index, el as HTMLElement | null, 1)"
+/>
+```
+
+</FrameworkContent>
+<FrameworkContent value="svelte">
+
+```svelte
+<span {@attach (el) => virtual.findableText(item.index, el, 0)}></span>
+<span {@attach (el) => virtual.findableText(item.index, el, 1)}></span>
+```
+
+</FrameworkContent>
+<FrameworkContent value="solid">
+
+```tsx
+<span ref={(el) => virtual.findableText(item.index, el, 0)} />
+<span ref={(el) => virtual.findableText(item.index, el, 1)} />
+```
+
+</FrameworkContent>
+<FrameworkContent value="web-components">
+
+```ts
+const [idText, customerText] = row.querySelectorAll("span")
+const off = [
+  virtual.findableText(index, idText, 0),
+  virtual.findableText(index, customerText, 1),
+]
+```
+
+</FrameworkContent>
+
+A row that leaves `items()` gives its text back on its own, so frameworks that call a ref with `null` instead of running what it returned work the same.
+
+The element holds the very text find in page searches, so the browser highlights the match in the row itself, in the row's own styles, and counts it once. `part`, the last argument, picks the piece when `findable` returns several.
+
+<ComponentExample
+  name="behaviors/virtualizer-find"
+  caption="Press ⌘F or Ctrl+F and search for Acme. The find bar counts every Acme invoice, rendered or not; press Enter to step through them, and the list scrolls to each one."
+/>
+
+### The Row It Found
+
+The row find in page matched is `found` in `items()` until the next match, until it scrolls away, or until someone presses or types in the list. A row that renders its text without `findableText` still scrolls into view, but the browser's highlight can't show on it, so mark it yourself:
+
+```tsx
+<div data-found={item.found ? "" : undefined} className="data-found:bg-neutral-100">
+```
+
+### How It Works
+
+The findable layers are two elements that take no space, one at the start of the scroller and one at its end. They hold a stand-in for every row that isn't rendered: an element with just the row's text, `hidden="until-found"`, which find in page can search and nothing renders.
+
+1. **Order:** find in page steps through matches in page order, so the stand-ins of the rows above the ones in view sit in the first layer, and the rest in the last. Rendered rows have no stand-in in the page, so their text is found once, where it shows.
+2. **A match** fires the stand-in's `beforematch` before the browser scrolls to it. The list scrolls to the row first and renders it, with the stand-in lying clear over the row, so the browser's own scroll has nothing to do.
+3. **On the next frame,** the matched text moves into the row's `findableText` elements, so the browser's highlight shows there and the find bar's Enter continues with the rows after it. A row without them takes the clear stand-in instead, and the find bar counts it twice until it scrolls away.
+4. **Groups of stand-ins** are hidden until found too, so the browser skips style and layout for all of them until one matches.
+
+Each row costs a stand-in and a text node per piece, with a space between pieces: two DOM nodes for a single string, four for two pieces. They cost almost no layout, since the browser lays out only the groups. Call `virtual.refresh()` after the rows change: it updates only the text that changed, in place, and rebuilds the stand-ins only when the count changes.
+
+The stand-ins' code loads the first time a list connects with `findable`, so lists without it don't download it.
+
+Browsers without `hidden="until-found"` don't get the layers, and find in page sees only the rows on screen, as without `findable`; `supportsHiddenUntilFound()` tells you. Closed tabs, accordions, collapsibles, trees and navigation menus are findable the same way, through their `hiddenUntilFound` option or [`findableText`](./motion#find-in-page-on-its-own), and a list inside a closed panel opens the panel first.
+
+### Options
+
+<TypeTable
+  path="../../packages/core/src/foundation/lists/virtualizer.ts"
+  name="VirtualizerOptions"
+  events={false}
+  examples={{
+    count: "Render What's in View",
+    estimate: "Render What's in View",
+    key: "Rows of Any Height",
+    overscan: "Rows of Any Height",
+    horizontal: "Sideways",
+    scrollMargin: "Jumping and Loading More",
+    keep: "Jumping and Loading More",
+    onEnd: "Jumping and Loading More",
+    endThreshold: "Jumping and Loading More",
+    findable: "Find in Page",
+  }}
+/>
+
+## Logs That Follow Their End
+
+### Follow the Newest Line
+
+`createStickToBottom` follows new content while the reader is at the bottom. Scrolling up lets them read without being pulled away:
+
+```ts
+import { createStickToBottom } from "@ui-sdk/core"
+
+const stick = createStickToBottom()
+const disconnect = stick.connect(scroller)
+```
+
+The helper watches content size changes, including text that arrives a word at a time. Call `disconnect()` on unmount, or return `stick.connect(el)` from a slot's `bind`.
+
+<ComponentExample
+  name="behaviors/stick-to-bottom"
+  caption="While new lines arrive, scroll up to pause following. Jump to latest takes you back to the end."
+/>
+
+Use `stick.get()` to read whether the log is `following`, currently `atBottom`, or has `unseen` content below. `stick.subscribe(listener)` reports changes and returns a cleanup. These values can drive a jump button:
+
+```ts
+stick.scrollToBottom({ behavior: "smooth" })
+```
+
+Give the content `role="log"` when new entries should be announced by a screen reader.
+
+### Older Messages and Letting Go
+
+To open a conversation at its current position instead of jumping to the end, use `initial: false`:
+
+```ts
+const stick = createStickToBottom({ initial: false, threshold: 48 })
+```
+
+`threshold` is the distance in pixels that still counts as being at the bottom. Before adding older messages above the current ones, call `prepend()` to preserve the reader's position:
+
+```ts
+stick.prepend()
+addOlderMessages()
+```
+
+<ComponentExample
+  name="behaviors/stick-chat"
+  caption="Scroll to the end and Send a message. Load Older adds messages above without moving your view. Let Go stops following new messages. The console logs whether the thread is following."
+/>
+
+`stick.release()` stops following from code. Scrolling back to the end or calling `scrollToBottom()` resumes it. The helper manages scroll anchoring while connected so the browser doesn't apply a second adjustment.
+
+### Options
+
+<TypeTable
+  path="../../packages/core/src/foundation/lists/stick-to-bottom.ts"
+  name="StickToBottomOptions"
+  events={false}
+  examples={{
+    onChange: "Follow the Newest Line",
+    threshold: "Older Messages and Letting Go",
+    initial: "Older Messages and Letting Go",
+  }}
+/>
+
+## Wheels You Scroll to Pick From
+
+### Pick by Scrolling
+
+Import `bindScrollPicker` from `@ui-sdk/core`. It turns a scrolling listbox into a wheel, like the hour and minute drums of a time picker: the option at the center is the value. Bind it to a [Listbox](/docs/components/listbox) once the list is in the page, and select the option it reports. It returns a cleanup for when the list leaves:
+
+<FrameworkContent value="react">
+
+```tsx
+const list = React.useRef<HTMLDivElement>(null)
+const select = React.useEffectEvent((index: number) => setHour(hours[index]))
+
+React.useLayoutEffect(
+  () => bindScrollPicker(list.current!, { onSelect: (index) => select(index) }),
+  []
+)
+
+<Listbox ref={list} keepInView={false} value={hour} onValueChange={setHour}>
+```
+
+</FrameworkContent>
+<FrameworkContent value="vue">
+
+```vue
+<script setup lang="ts">
+const holder = useTemplateRef<HTMLElement>("holder")
+let unbind: (() => void) | undefined
+onMounted(() => {
+  const list = holder.value!.querySelector<HTMLElement>('[role="listbox"]')!
+  unbind = bindScrollPicker(list, {
+    onSelect: (index) => (hour.value = hours[index]),
+  })
+})
+onBeforeUnmount(() => unbind?.())
+</script>
+
+<template>
+  <div ref="holder">
+    <Listbox v-model="hour" :keep-in-view="false">…</Listbox>
+  </div>
+</template>
+```
+
+</FrameworkContent>
+<FrameworkContent value="svelte">
+
+```svelte
+<Listbox
+  bind:value={hour}
+  keepInView={false}
+  {@attach (el) =>
+    bindScrollPicker(el, { onSelect: (index) => (hour = hours[index]) })}
+>
+```
+
+</FrameworkContent>
+<FrameworkContent value="solid">
+
+```tsx
+let list: HTMLDivElement | undefined
+onSettled(() =>
+  bindScrollPicker(list!, { onSelect: (index) => setHour(hours[index]) })
+)
+
+<Listbox ref={list} keepInView={false} value={hour()} onValueChange={setHour}>
+```
+
+</FrameworkContent>
+<FrameworkContent value="web-components">
+
+```ts
+const listbox = document.querySelector("ui-listbox")!
+const unbind = bindScrollPicker(listbox, {
+  onSelect: (index) => (listbox.value = hours[index]),
+})
+```
+
+</FrameworkContent>
+
+`index` counts every option in the list, disabled ones included, so it matches your array. The picker selects nothing itself, so `onSelect` is where a read-only form or a check of your own decides.
+
+The list stays a listbox with one selection. Scrolling, a flick on a touch screen and a drag with the mouse select the option at the center as it passes, and the list settles on the nearest enabled option once it stops. When the listbox selects an option itself, from a click, an arrow key, Home, End or typing its name, the picker scrolls there smoothly without selecting the options in between. Page Up and Page Down move a screenful of options.
+
+Set the listbox's `keepInView` option to `false`, so it doesn't jump to an option the wheel is about to glide to. Give the list a height, `scroll-snap-type` and room at both ends for the first and last options to reach the center, and give each option `scroll-snap-align: center`:
+
+```css
+[role="listbox"] {
+  height: 180px;
+  padding-block: 72px;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+[role="option"] {
+  height: 36px;
+  scroll-snap-align: center;
+}
+```
+
+Snapping is the browser's own, so the list snaps before your JavaScript loads. Options can be any size: the picker measures them, and measures again when they or the list resize.
+
+### Draw a Wheel in CSS
+
+Each option gets `--picker-offset`, its distance from the center in options: `0` at the center, `1` for the next option, `-2` two before it. It's fractional while the list moves between options and updates every frame, so CSS can draw the wheel with no code of your own:
+
+```css
+[role="option"] {
+  transform: rotateX(calc(var(--picker-offset, 0) * -24deg));
+  opacity: calc(1 - abs(var(--picker-offset, 0)) * 0.25);
+}
+```
+
+The fallback of `0` covers the server's HTML, before the picker binds. Give the list `perspective` so the rotation looks round, and fade its ends with a `mask-image`:
+
+<ComponentExample
+  name="behaviors/scroll-picker"
+  caption="Scroll or drag a wheel, or flick it on a touch screen. Click an hour, or focus a wheel and use Up, Down, Home and End. The console logs the time."
+/>
+
+With reduced motion, the wheel jumps to an option instead of gliding there.
+
+### Sideways
+
+For a horizontal wheel, like a strip of page numbers, set the listbox's `orientation` to `"horizontal"`. The picker reads it from `aria-orientation`, so it scrolls and measures sideways, and in right-to-left text the strip runs from the right:
+
+<ComponentExample
+  name="behaviors/scroll-picker-pages"
+  caption="Scroll or drag the strip, or focus it and use Left and Right. The page in the middle is the current one, and the console logs it."
+/>
+
+### Options
+
+<TypeTable
+  path="../../packages/core/src/foundation/lists/scroll-picker.ts"
+  name="ScrollPickerOptions"
+  events={false}
+  examples={{
+    onSelect: "Pick by Scrolling",
+    orientation: "Sideways",
+  }}
+/>
+
+## Editing in Place
+
+### Rename Where It Shows
+
+`createInlineEdit` manages the editing session. Your state holds the item's id, or `null` when nothing is being edited. Your `commit` callback saves the new text:
+
+```ts
+import { createInlineEdit } from "@ui-sdk/core"
+
+const edit = createInlineEdit(context, {
+  key: "editing",
+  value: (id) => nameOf(id),
+  commit: (id, text, details) => {
+    if (!text.trim()) {
+      return false
+    }
+    return rename(id, text, details)
+  },
+})
+```
+
+Returning `false` keeps the editor open. Unchanged text finishes editing without calling `commit`.
+
+<ComponentExample
+  name="behaviors/inline-edit"
+  caption="Focus a playlist and press Enter or F2, or double-click it. Enter saves the name; Escape cancels. Typing a letter starts a replacement."
+/>
+
+On the item, pass `keydown` to `edit.keydown(event, key)` and `dblclick` to `edit.dblclick(event, key)`. Render an input for the id returned by `edit.editing(state)`, then connect it:
+
+```ts
+input: slot({
+  on: {
+    keydown: (event, { api }) => api.edit.inputKeydown(event),
+    focusout: (event, { api }) => api.edit.end("focus-out", event),
+  },
+  bind: (el, { api }) => api.edit.bindInput(el as HTMLInputElement),
+}),
+```
+
+`bindInput` fills and focuses the input. Enter saves; Escape cancels. The `focusout` handler saves when focus leaves. After editing ends, the helper restores focus if removing the input would otherwise lose it.
+
+### Moving on and Starting from Code
+
+Tab also saves, but your component decides where focus goes next. `inputKeydown` returns `true` when it handled the key successfully:
+
+```ts
+if (event.key === "Tab" && edit.inputKeydown(event)) {
+  nextField.focus()
+}
+```
+
+Keep validation in `commit`. Use `disabled(id)` for values that can't be edited, and `edit.start(id)` to begin from a separate button or menu. If that button or menu is gone when editing ends, focus goes to the closest focusable element around the input instead, such as its row.
+
+<ComponentExample
+  name="behaviors/inline-edit-fields"
+  caption="Edit a product value and press Tab to save and move on. Price requires a number, SKU stays read-only, and Rename starts editing the name."
+/>
+
+### Options
+
+<TypeTable
+  path="../../packages/core/src/foundation/lists/inline-edit.ts"
+  name="InlineEditOptions"
+  type="InlineEditOptions<{ editing: string | null }>"
+  events={false}
+  examples={{
+    key: "Rename Where It Shows",
+    value: "Rename Where It Shows",
+    commit: "Rename Where It Shows",
+    disabled: "Moving on and Starting from Code",
+  }}
+/>

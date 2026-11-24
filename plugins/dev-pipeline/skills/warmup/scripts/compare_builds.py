@@ -36,9 +36,7 @@ from typing import Any
 import cairo  # type: ignore
 
 SHARED_NODE_MODULES_CANDIDATES = (
-    "/usr/local/google/home/jfesta/moodboards/warm-landing-page/node_modules",
     "/usr/local/google/home/jfesta/design-kit/skills/golden-template/assets/dating/node_modules",
-    "/usr/local/google/home/jfesta/moodboards/modern-tech-brand/node_modules",
 )
 
 DOM_PROBE_JS = r"""

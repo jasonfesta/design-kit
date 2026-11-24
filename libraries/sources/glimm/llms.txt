@@ -1,0 +1,21 @@
+# glimm
+
+> Shader-driven page transitions for React and Next.js. About 11 KB, GPU-composited, drop-in.
+
+## Documentation
+
+- [Introduction](https://glimm.dev/): Library overview and interactive examples.
+- [Full text reference](https://glimm.dev/llms-full.txt): The library's existing README, including Next.js, React and vanilla JavaScript usage.
+- [Installation](https://glimm.dev/#installation): Install glimm with npm.
+- [Quick start](https://glimm.dev/#quick-start): Set up GlimmProvider.
+- [Triggers](https://glimm.dev/#triggers): TransitionLink, useTransitionRouter and InterceptLinks.
+- [Presets](https://glimm.dev/#presets): Built-in palettes.
+- [Props](https://glimm.dev/#props): Configuration reference.
+- [Best practices](https://glimm.dev/#best-practices): When to use transitions.
+- [Agent skill](https://glimm.dev/#skill): Installation and usage with coding agents.
+- [HTML-in-Canvas](https://glimm.dev/#html-in-canvas): Experimental page effects and browser support.
+
+## Package and releases
+
+- [npm package](https://www.npmjs.com/package/glimm): Published package and installation information.
+- [Changelog](https://glimm.dev/changelog): Published releases and changes.

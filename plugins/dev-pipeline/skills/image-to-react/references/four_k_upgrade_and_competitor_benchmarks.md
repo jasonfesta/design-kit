@@ -65,7 +65,7 @@ Before synthesizing or upgrading any 4K 5-page website inside `projects/<NN>-web
 
 ### Competitor Benchmark URLs for the Remaining 8 Website 4K Grid Categories
 
-Whenever running the 4K upgrade on any of the other 8 Website 4K Grid sheets in [`warm-landing-page/`](file:///usr/local/google/home/jfesta/moodboards/warm-landing-page) or `nano-banana-2-cleanup/websites/` (historical moodboard, may be archived), load the corresponding 5–8 Competitor Benchmark URLs in Stage 0:
+Whenever running the 4K upgrade on any of the other 8 Website 4K Grid sheets in [`warm-landing-page/`](file:///google/data/rw/users/jf/jfesta/moodboards/warm-landing-page) or `nano-banana-2-cleanup/websites/` (historical moodboard, may be archived), load the corresponding 5–8 Competitor Benchmark URLs in Stage 0:
 
 1. **`02-website-interiors` / Stillhaven** (*Architectural Interiors & Tactile Furniture*):
    - **Menu / Audo Copenhagen** (`https://audocph.com/`), **Vitra** (`https://www.vitra.com/` & `https://findmy.vitra.com/en-en/questionnaire/chairs`), **Frama Copenhagen** (`https://framacph.com/`), **Gubi** (`https://gubi.com/`), **TRNK NYC** (`https://trnk-nyc.com/`), **Carl Hansen & Søn** (`https://www.carlhansen.com/`), **Bolia** (`https://www.bolia.com/`).

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Merchant Center (merchant v2.0) — Product Feed Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .mc-shell { display: grid; grid-template-columns: 256px 1fr; grid-template-rows: 64px 1fr; min-height: 100vh; }
+    .mc-top { grid-column: 1 / -1; height: 64px; border-bottom: 1px solid var(--merchant-sys-color-outline); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+    .mc-brand { display: flex; align-items: center; gap: 12px; font: 400 20px var(--merchant-sys-font-brand); color: var(--merchant-sys-color-on-surface); }
+    .bag { width: 30px; height: 30px; border-radius: var(--merchant-sys-shape-small); background: var(--merchant-sys-color-primary); color: var(--merchant-sys-color-on-primary); display: grid; place-items: center; font-size: 15px; }
+    .btn-o { height: 36px; padding: 0 16px; border-radius: var(--merchant-sys-shape-small); border: 1px solid var(--merchant-sys-color-outline); background: transparent; color: var(--merchant-sys-color-primary); font: 500 14px var(--merchant-sys-font-brand); cursor: pointer; }
+    .btn-f { height: 36px; padding: 0 18px; border-radius: var(--merchant-sys-shape-small); border: 0; background: var(--merchant-sys-color-primary); color: var(--merchant-sys-color-on-primary); font: 500 14px var(--merchant-sys-font-brand); }
+    .mc-nav { padding: 8px 0; border-right: 1px solid var(--merchant-sys-color-outline); }
+    .nav-i { height: 40px; display: flex; align-items: center; gap: 14px; padding: 0 24px; font-size: 14px; color: var(--merchant-sys-color-on-surface); border-radius: 0 20px 20px 0; margin-right: 10px; }
+    .nav-i.on { background: var(--merchant-sys-color-secondary); color: var(--merchant-sys-color-on-secondary); font-weight: 500; }
+    .mc-main { padding: 22px 28px; min-width: 0; }
+    h1.mc-h { font: 400 24px var(--merchant-sys-font-brand); margin: 0 0 16px; color: var(--merchant-sys-color-on-background); }
+    .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+    .kpi { border: 1px solid var(--merchant-sys-color-outline); border-radius: var(--merchant-sys-shape-medium); padding: 14px 16px; }
+    .kpi .v { font: 400 28px var(--merchant-sys-font-brand); font-variant-numeric: tabular-nums; color: var(--merchant-sys-color-on-background); }
+    .kpi .l { font-size: 13px; color: var(--merchant-sys-color-on-surface-variant); }
+    .bar { height: 6px; border-radius: 3px; background: var(--merchant-sys-color-outline); overflow: hidden; margin-top: 10px; display: flex; }
+    .issue { display: flex; gap: 14px; align-items: center; justify-content: space-between; border: 1px solid var(--merchant-sys-color-outline); border-left: 4px solid var(--merchant-sys-color-error); border-radius: var(--merchant-sys-shape-medium); padding: 12px 16px; margin-bottom: 16px; }
+    .filters { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+    .tf { flex: 1; height: 48px; background: var(--merchant-sys-color-textfield-surface); border-radius: 4px 4px 0 0; border-bottom: 1px solid var(--merchant-sys-color-textfield-hairline); display: flex; align-items: center; padding: 0 14px; gap: 10px; color: var(--merchant-sys-color-on-surface-variant); font-size: 14px; }
+    .fchip { height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--merchant-sys-color-outline); font-size: 13px; display: inline-flex; align-items: center; gap: 6px; color: var(--merchant-sys-color-on-surface); white-space: nowrap; }
+    table.feed { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    .feed th { text-align: left; font-weight: 500; color: var(--merchant-sys-color-on-surface-variant); font-size: 12.5px; padding: 10px 12px; border-bottom: 1px solid var(--merchant-sys-color-outline); }
+    .feed td { padding: 8px 12px; border-bottom: 1px solid var(--merchant-sys-color-outline); color: var(--merchant-sys-color-on-surface); font-variant-numeric: tabular-nums; }
+    .thumb { width: 36px; height: 36px; border-radius: var(--merchant-sys-shape-small); display: inline-block; vertical-align: middle; margin-right: 10px; }
+    .st { padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 500; white-space: nowrap; }
+    .st.ok { background: var(--merchant-sys-color-positive-container); color: var(--merchant-sys-color-positive); }
+    .st.lim { background: var(--merchant-sys-color-warning-container); color: var(--merchant-sys-color-warning); }
+    .st.bad { background: var(--merchant-sys-color-error-container); color: var(--merchant-sys-color-error); }
+    @media (max-width: 860px) {
+      .mc-shell { grid-template-columns: 1fr; grid-template-rows: 56px auto; }
+      .mc-nav { display: none; }
+      .mc-top { padding: 0 12px; height: 56px; }
+      .mc-top .btn-o.hide-m { display: none; }
+      .mc-main { padding: 14px 12px; }
+      .kpis { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .kpi .v { font-size: 22px; }
+      .issue { flex-direction: column; align-items: flex-start; }
+      .filters .fchip { display: none; }
+      .feed .h-m { display: none; }
+      .feed td, .feed th { padding: 8px 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mc-shell">
+    <header class="mc-top">
+      <div class="mc-brand"><span class="bag">🛍</span>Merchant Center <span style="font-size:13px;color:var(--merchant-sys-color-on-surface-variant);">· Lumen Outdoor Co.</span></div>
+      <div style="display:flex;gap:8px;"><button class="btn-o hide-m" type="button">? Help</button><button class="btn-o" id="theme-btn" type="button">◑ Light / Dark</button></div>
+    </header>
+    <nav class="mc-nav">
+      <div class="nav-i">⌂ Overview</div>
+      <div class="nav-i on">▦ Products</div>
+      <div class="nav-i">⚑ Needs attention</div>
+      <div class="nav-i">↗ Performance</div>
+      <div class="nav-i">◷ Marketing</div>
+      <div class="nav-i">⇅ Data sources</div>
+      <div class="nav-i">⚙ Settings</div>
+    </nav>
+    <main class="mc-main">
+      <div style="display:flex;justify-content:space-between;align-items:center;"><h1 class="mc-h">Products</h1><button class="btn-f" type="button">＋ Add products</button></div>
+      <section class="kpis">
+        <div class="kpi"><div class="l">Total products</div><div class="v">12,486</div><div class="bar"><span style="width:82%;background:var(--merchant-sys-color-positive)"></span><span style="width:11%;background:var(--merchant-sys-color-warning)"></span><span style="width:7%;background:var(--merchant-sys-color-error)"></span></div></div>
+        <div class="kpi"><div class="l">Approved</div><div class="v" style="color:var(--merchant-sys-color-positive);">10,238</div><div class="l">82.0% of catalog</div></div>
+        <div class="kpi"><div class="l">Limited</div><div class="v" style="color:var(--merchant-sys-color-warning);">1,374</div><div class="l">Missing GTIN / shipping</div></div>
+        <div class="kpi"><div class="l">Not approved</div><div class="v" style="color:var(--merchant-sys-color-error);">874</div><div class="l">−126 vs last week</div></div>
+      </section>
+      <div class="issue">
+        <div><strong style="color:var(--merchant-sys-color-error-state-content);">⚠ Mismatched value (page crawl) [price]</strong><div style="font-size:13px;color:var(--merchant-sys-color-on-surface-variant);">412 products · Prices on your landing page differ from your product data</div></div>
+        <button class="btn-o" type="button">Fix products</button>
+      </div>
+      <div class="filters"><div class="tf">⌕ Search by title, ID or brand</div><span class="fchip">Status: All ▾</span><span class="fchip">Data source ▾</span><span class="fchip">＋ Add filter</span></div>
+      <table class="feed">
+        <thead><tr><th>Product</th><th class="h-m">Item ID</th><th class="h-m">Price</th><th>Status</th><th class="h-m">Clicks (30d)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="thumb" style="background:linear-gradient(135deg,#1a73e8,#8ab4f8);"></span>Ridgeline 40L Pack</td><td class="h-m">RL-40-BLU</td><td class="h-m">$189.00</td><td><span class="st ok">Approved</span></td><td class="h-m">3,412</td></tr>
+          <tr><td><span class="thumb" style="background:linear-gradient(135deg,#188038,#81c995);"></span>Alpine Down Jacket</td><td class="h-m">AD-JKT-M</td><td class="h-m">$249.00</td><td><span class="st lim">Limited</span></td><td class="h-m">2,087</td></tr>
+          <tr><td><span class="thumb" style="background:linear-gradient(135deg,#e37400,#fdd663);"></span>Trail Runner GTX</td><td class="h-m">TR-GTX-10</td><td class="h-m">$154.95</td><td><span class="st bad">Not approved</span></td><td class="h-m">0</td></tr>
+          <tr><td><span class="thumb" style="background:linear-gradient(135deg,#3c4043,#9aa0a6);"></span>Carbon Trek Poles</td><td class="h-m">CT-POLE-2</td><td class="h-m">$119.00</td><td><span class="st ok">Approved</span></td><td class="h-m">1,256</td></tr>
+          <tr><td><span class="thumb" style="background:linear-gradient(135deg,#d93025,#f28b82);"></span>Basecamp 2P Tent</td><td class="h-m">BC-TENT-2P</td><td class="h-m">$329.00</td><td><span class="st ok">Approved</span></td><td class="h-m">984</td></tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

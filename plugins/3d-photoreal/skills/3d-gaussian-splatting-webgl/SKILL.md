@@ -3,10 +3,11 @@ name: 3d-gaussian-splatting-webgl
 description: >-
   Render and integrate Inria-grade 3D Gaussian Splatting (3DGS) photorealistic
   scenes in WebGL2, WebGPU, and Three.js using Spark (@sparkjsdev/spark),
-  Three.js r186+ native GaussianSplat (TSL), or PlayCanvas/SuperSplat, with
-  compressed .sog / .spz pipelines, hybrid mesh compositing, mobile VRAM
-  guardrails, and generative 3DGS workflows (World Labs Marble, Apple SHARP,
-  Microsoft TRELLIS).
+  Three.js r186+ native GaussianSplat (TSL), PlayCanvas/SuperSplat, or
+  InfiniSplat (v1/v2/v3 SplatAnything) surface-aligned pipelines, with
+  compressed .sog / .spz / .isplat.bin pipelines, hybrid mesh compositing,
+  mobile VRAM guardrails, and generative 3DGS workflows (InfiniSplat, World
+  Labs Marble, Apple SHARP, Microsoft TRELLIS).
 metadata:
   icon: ✨
 ---
@@ -77,7 +78,7 @@ Single-photo 2.5D projection or monocular depth always hits a hard physical wall
    - Wire Marble's collider mesh + prop convex hulls into **Rapier WASM (`@dimforge/rapier3d-compat`)** for gravity, collisions, and object manipulation.
    - Where full-scene dynamic relighting is required over raw baked 3DGS, extract surface-aligned geometry and normals via **2DGS (2D Gaussian Splatting)**, **SuGaR**, or **GOF (Gaussian Opacity Fields)**.
 
-*(Fast local single-photo alternative for ±15–25° photographic parallax only: **Apple SHARP** — `<1s` metric `.ply`, research license.)*
+*(Fast local single-photo & multi-view feed-forward alternatives: **InfiniSplat v1 / v2 / v3 SplatAnything** (`zju3dv/InfiniSplat`, see the dedicated `infinisplat-3dgs` skill for surface-aligned sparse supports, 24-view panorama fusion, GSNorm scale canonicalization, and browser-native multi-layer portrait/scene baking via `infinisplat_bake.py`); or **Apple SHARP** — `<1s` metric `.ply`, research license.)*
 
 ### B. Cleanup & Web Compression
 1. Import raw `.ply` into **PlayCanvas SuperSplat** (browser) to crop floaters, align ground plane, and color-grade.

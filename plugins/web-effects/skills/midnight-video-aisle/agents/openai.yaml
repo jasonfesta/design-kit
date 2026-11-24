@@ -1,0 +1,4 @@
+interface:
+  display_name: "Midnight Video Aisle"
+  short_description: "First-person 3D shelf corridor with two-stage pull-out & Bezier-spring inspection"
+  default_prompt: "Use the midnight-video-aisle skill to build a Three.js WebGL first-person shelf corridor with damped movement, center-raycast highlight, and two-stage normal-clearance plus Bezier-spring item inspection."

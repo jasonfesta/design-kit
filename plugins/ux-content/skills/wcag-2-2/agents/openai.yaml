@@ -1,0 +1,5 @@
+interface:
+  display_name: "Web Content Accessibility Guidelines (WCAG) 2.2"
+  short_description: "W3C guidelines for making web content more accessible to people with disabilities."
+  brand_color: "#65D7C1"
+  default_prompt: "Use $wcag-2.2 to evaluate the accessibility of this web content."

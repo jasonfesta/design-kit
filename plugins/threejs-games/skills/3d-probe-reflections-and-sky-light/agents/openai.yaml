@@ -1,0 +1,4 @@
+interface:
+  display_name: "Probe Reflections and Sky Light"
+  short_description: "Traced reflections and sky light via GI probes"
+  default_prompt: "Use $3d-probe-reflections-and-sky-light to add traced reflections and atmospheric sky light to this probe GI scene."

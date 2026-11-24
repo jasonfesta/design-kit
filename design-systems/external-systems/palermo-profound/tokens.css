@@ -1,0 +1,276 @@
+/* Palermo (Profound) design tokens, transcribed from the PUBLIC docs at palermo.tryprofound.com (2026-11-11).
+ * Reference only: Palermo is not published or licensed for reuse ("the only way to install Palermo is to work at Profound").
+ * Use it to study structure and values; don't ship it as-is. Token names follow the docs' Tailwind utility names. */
+
+:root {
+
+  /* Background Colors */
+  --pal-bg-bg-base: #ffffff;
+  --pal-bg-bg-primary: #ffffff;
+  --pal-bg-bg-secondary: #fafafa;
+  --pal-bg-bg-tertiary: #f5f5f5;
+  --pal-bg-bg-quaternary: #e8e8e8;
+  --pal-bg-bg-blue: #376cff1a;
+  --pal-bg-bg-purple: #5d33f310;
+  --pal-bg-bg-red: #ff5f571a;
+  --pal-bg-bg-red-hover: #ff5f572a;
+  --pal-bg-bg-green: #15b4621a;
+  --pal-bg-bg-green-hover: #15b4622a;
+  --pal-bg-bg-orange: #f4a4621a;
+  --pal-bg-bg-orange-hover: #f4a4622a;
+  --pal-bg-bg-overlay: rgba(0, 0, 0, 0.1);
+  --pal-bg-bg-header: rgba(255, 255, 255, 0.7);
+  --pal-bg-bg-tooltip: rgba(24, 24, 26, 0.9);
+  --pal-bg-bg-transparent: transparent;
+  --pal-bg-dot-grid: #cccccc;
+
+  /* Fill Colors */
+  --pal-fill-fill-primary: #18181a;
+  --pal-fill-fill-primary-hover: #2c2c2e;
+  --pal-fill-fill-secondary: #969696;
+  --pal-fill-fill-tertiary: #d4d4d8;
+  --pal-fill-fill-quaternary: #e8e8e8;
+  --pal-fill-fill-quinary: #f0f0f0;
+  --pal-fill-fill-inverse: #ffffff;
+  --pal-fill-fill-green: #15b462;
+  --pal-fill-fill-green-hover: #01a04e;
+  --pal-fill-fill-red: #ff5f57;
+  --pal-fill-fill-red-hover: #e14139;
+  --pal-fill-fill-blue: #376cff;
+  --pal-fill-fill-orange: #f4a462;
+  --pal-fill-fill-orange-lightest: #fcf9f7;
+  --pal-fill-fill-orange-dark: #db7b2c;
+  --pal-fill-fill-tooltip: rgba(24, 24, 26, 0.9);
+  --pal-fill-fill-yellow: #f9ff57;
+
+  /* Control Colors */
+  --pal-control-control-bg: #ffffff;
+  --pal-control-control-hover: #fafafa;
+  --pal-control-control-selected: #f1f1f1;
+  --pal-control-control-primary: #18181a;
+  --pal-control-control-primary-hover: #2c2c2e;
+
+  /* Text Colors */
+  --pal-text-text-primary: #18181a;
+  --pal-text-text-secondary: #787878;
+  --pal-text-text-tertiary: #969696;
+  --pal-text-text-quaternary: #b4b4b4;
+  --pal-text-text-green: #15b462;
+  --pal-text-text-red: #ff5f57;
+  --pal-text-text-blue: #376cff;
+  --pal-text-text-purple: #9747ff;
+  --pal-text-text-inverse: #ffffff;
+  --pal-text-text-orange: #f4a462;
+  --pal-text-text-yellow: #dcdc43;
+  --pal-text-text-tooltip: #ffffff;
+
+  /* Stroke Colors */
+  --pal-stroke-stroke-sunburst-loading: rgba(255, 255, 255, 0.8);
+  --pal-stroke-stroke-sunburst: rgb(255, 255, 255);
+
+  /* Shadow Colors */
+  --pal-shadow-ring-1: rgba(0, 0, 0, 0.02);
+  --pal-shadow-ring-2: rgba(0, 0, 0, 0.05);
+  --pal-shadow-shadow-1: rgba(0, 0, 0, 0.02);
+  --pal-shadow-shadow-2: rgba(0, 0, 0, 0.05);
+  --pal-shadow-stroke: #ebebeb;
+
+  /* Destructive Shadows */
+  --pal-shadow-shadow-red-1: rgba(255, 95, 87, 0.08);
+  --pal-shadow-shadow-red-2: rgba(255, 95, 87, 0.12);
+  --pal-shadow-shadow-red-3: rgba(255, 95, 87, 0.2);
+
+  /* Workflow Colors */
+  --pal-workflow-workflow-bg-base: rgb(247, 247, 247);
+  --pal-workflow-workflow-fill-green: rgb(78, 168, 82);
+  --pal-workflow-workflow-fill-green-faint: #00ae351a;
+  --pal-workflow-workflow-fill-blue: rgb(72, 148, 238);
+  --pal-workflow-workflow-fill-blue-faint: #4894ee1a;
+  --pal-workflow-workflow-fill-purple: rgb(141, 88, 247);
+  --pal-workflow-workflow-fill-orange: rgb(255, 119, 78);
+  --pal-workflow-workflow-node-shadow-0: rgba(0, 0, 0, 0);
+  --pal-workflow-workflow-node-shadow-1: rgba(0, 0, 0, 0.05);
+  --pal-workflow-workflow-node-shadow-2: rgba(0, 0, 0, 0.03);
+
+  /* Typography (from site CSS) */
+  --pal-text-body-micro-medium: 10px;
+  --pal-text-body-micro-medium--font-weight: 500;
+  --pal-text-body-micro-medium--line-height: 14px;
+  --pal-text-body-micro-regular: 10px;
+  --pal-text-body-micro-regular--font-weight: 400;
+  --pal-text-body-micro-regular--line-height: 14px;
+  --pal-text-body-mini: .75rem;
+  --pal-text-body-mini-medium: .75rem;
+  --pal-text-body-mini-medium--font-weight: 500;
+  --pal-text-body-mini-medium--line-height: 16px;
+  --pal-text-body-mini-regular: 12px;
+  --pal-text-body-mini-regular--font-weight: 400;
+  --pal-text-body-mini-regular--line-height: 16px;
+  --pal-text-body-regular: .9375rem;
+  --pal-text-body-regular--font-weight: 400;
+  --pal-text-body-regular--line-height: 20px;
+  --pal-text-body-regular-medium: .9375rem;
+  --pal-text-body-regular-medium--font-weight: 500;
+  --pal-text-body-regular-medium--line-height: 20px;
+  --pal-text-body-regular-spaced: 14px;
+  --pal-text-body-regular-spaced--font-weight: 400;
+  --pal-text-body-regular-spaced--line-height: 24px;
+  --pal-text-body-small: .875rem;
+  --pal-text-body-small-medium: .875rem;
+  --pal-text-body-small-medium--font-weight: 500;
+  --pal-text-body-small-medium--line-height: 18px;
+  --pal-text-body-small-regular: 13px;
+  --pal-text-body-small-regular--font-weight: 400;
+  --pal-text-body-small-regular--line-height: 18px;
+  --pal-text-body-small-semibold: 13px;
+  --pal-text-body-small-semibold--font-weight: 600;
+  --pal-text-body-small-semibold--line-height: 18px;
+  --pal-text-body-small-spaced: 13px;
+  --pal-text-body-small-spaced--font-weight: 400;
+  --pal-text-body-small-spaced--line-height: 20px;
+  --pal-text-heading-large: 1.5rem;
+  --pal-text-heading-medium: 1.25rem;
+  --pal-text-heading-mini: 1rem;
+  --pal-text-heading-small: 1.125rem;
+  --pal-text-heading-xl: 3.5rem;
+  --pal-text-paragraph-regular: 14px;
+  --pal-text-paragraph-regular--font-weight: 400;
+  --pal-text-paragraph-regular--line-height: 20px;
+  --pal-text-paragraph-small: 13px;
+  --pal-text-paragraph-small--font-weight: 400;
+  --pal-text-paragraph-small--line-height: 18px;
+  --pal-text-title-mini-medium: 18px;
+  --pal-text-title-mini-medium--font-weight: 500;
+  --pal-text-title-mini-medium--letter-spacing: -.25px;
+  --pal-text-title-mini-medium--line-height: 24px;
+  --pal-text-title-mini-regular: 18px;
+  --pal-text-title-mini-regular--font-weight: 400;
+  --pal-text-title-mini-regular--letter-spacing: -.25px;
+  --pal-text-title-mini-regular--line-height: 24px;
+  --pal-text-title-mini-semibold: 18px;
+  --pal-text-title-mini-semibold--font-weight: 600;
+  --pal-text-title-mini-semibold--letter-spacing: -.25px;
+  --pal-text-title-mini-semibold--line-height: 24px;
+  --pal-text-title-regular: 28px;
+  --pal-text-title-regular--font-weight: 600;
+  --pal-text-title-regular--letter-spacing: -.25px;
+  --pal-text-title-regular--line-height: 32px;
+  --pal-text-title-small-regular: 24px;
+  --pal-text-title-small-regular--font-weight: 400;
+  --pal-text-title-small-regular--letter-spacing: -.25px;
+  --pal-text-title-small-regular--line-height: 32px;
+  --pal-text-title-small-semibold: 24px;
+  --pal-text-title-small-semibold--font-weight: 600;
+  --pal-text-title-small-semibold--letter-spacing: -.25px;
+  --pal-text-title-small-semibold--line-height: 32px;
+
+  /* Radius */
+  --pal-radius-1: 1px;
+  --pal-radius-2: 2px;
+  --pal-radius-4: 4px;
+  --pal-radius-5: 5px;
+  --pal-radius-6: 6px;
+  --pal-radius-8: 8px;
+  --pal-radius-10: 10px;
+  --pal-radius-12: 12px;
+  --pal-radius-16: 16px;
+  --pal-radius-18: 18px;
+  --pal-radius-20: 20px;
+
+  /* Fonts (Profound Inter is proprietary; use a stand-in from font-enricher) */
+  --pal-font-geist-mono: "Geist Mono", "Geist Mono Fallback";
+  --pal-font-inter: "Profound Inter", "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cant;
+  --pal-font-inter: "interVariable", "interVariable Fallback", SF Pro Display, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,;
+  --pal-font-mono: var(--font-geist-mono);
+}
+
+[data-theme="dark"] {
+
+  /* Background Colors */
+  --pal-bg-bg-base: #1e1e1e;
+  --pal-bg-bg-primary: #252525;
+  --pal-bg-bg-secondary: #272727;
+  --pal-bg-bg-tertiary: #343434;
+  --pal-bg-bg-quaternary: #414141;
+  --pal-bg-bg-blue: #376cff1a;
+  --pal-bg-bg-purple: #5d33f333;
+  --pal-bg-bg-red: #ff5f571a;
+  --pal-bg-bg-red-hover: #ff5f572a;
+  --pal-bg-bg-green: #15b4621a;
+  --pal-bg-bg-green-hover: #15b4622a;
+  --pal-bg-bg-orange: #f4a4621a;
+  --pal-bg-bg-orange-hover: #f4a4622a;
+  --pal-bg-bg-overlay: rgba(0, 0, 0, 0.1);
+  --pal-bg-bg-header: rgba(30, 30, 30, 0.7);
+  --pal-bg-bg-tooltip: rgba(24, 24, 26, 0.9);
+  --pal-bg-bg-transparent: transparent;
+  --pal-bg-dot-grid: #cccccc;
+
+  /* Fill Colors */
+  --pal-fill-fill-primary: #ffffff;
+  --pal-fill-fill-primary-hover: #fafafa;
+  --pal-fill-fill-secondary: #5a5a5a;
+  --pal-fill-fill-tertiary: #464646;
+  --pal-fill-fill-quaternary: #323232;
+  --pal-fill-fill-quinary: #2a2a2a;
+  --pal-fill-fill-inverse: #18181a;
+  --pal-fill-fill-green: #15b462;
+  --pal-fill-fill-green-hover: #01a04e;
+  --pal-fill-fill-red: #ff5f57;
+  --pal-fill-fill-red-hover: #e14139;
+  --pal-fill-fill-blue: #376cff;
+  --pal-fill-fill-orange: #f4a462;
+  --pal-fill-fill-orange-lightest: #331a01;
+  --pal-fill-fill-orange-dark: #db7b2c;
+  --pal-fill-fill-tooltip: rgba(24, 24, 26, 0.9);
+  --pal-fill-fill-yellow: #5e602b;
+
+  /* Control Colors */
+  --pal-control-control-bg: #292929;
+  --pal-control-control-hover: #333333;
+  --pal-control-control-selected: #393939;
+  --pal-control-control-primary: #ffffff;
+  --pal-control-control-primary-hover: #fafafa;
+
+  /* Text Colors */
+  --pal-text-text-primary: #ffffff;
+  --pal-text-text-secondary: #787878;
+  --pal-text-text-tertiary: #969696;
+  --pal-text-text-quaternary: #5a5a5a;
+  --pal-text-text-green: #15b462;
+  --pal-text-text-red: #ff5f57;
+  --pal-text-text-blue: #376cff;
+  --pal-text-text-purple: #9747ff;
+  --pal-text-text-inverse: #18181a;
+  --pal-text-text-orange: #f4a462;
+  --pal-text-text-yellow: #ffff00;
+  --pal-text-text-tooltip: #ffffff;
+
+  /* Stroke Colors */
+  --pal-stroke-stroke-sunburst-loading: rgba(255, 255, 255, 0.15);
+  --pal-stroke-stroke-sunburst: rgba(255, 255, 255, 0.4);
+
+  /* Shadow Colors */
+  --pal-shadow-ring-1: rgba(0, 0, 0, 0);
+  --pal-shadow-ring-2: rgba(255, 255, 255, 0.1);
+  --pal-shadow-shadow-1: rgba(0, 0, 0, 0);
+  --pal-shadow-shadow-2: rgba(0, 0, 0, 0.1);
+  --pal-shadow-stroke: #292929;
+
+  /* Destructive Shadows */
+  --pal-shadow-shadow-red-1: rgba(255, 95, 87, 0.15);
+  --pal-shadow-shadow-red-2: rgba(255, 95, 87, 0.25);
+  --pal-shadow-shadow-red-3: rgba(255, 95, 87, 0.3);
+
+  /* Workflow Colors */
+  --pal-workflow-workflow-bg-base: rgb(247, 247, 247);
+  --pal-workflow-workflow-fill-green: rgb(78, 168, 82);
+  --pal-workflow-workflow-fill-green-faint: #00ae351a;
+  --pal-workflow-workflow-fill-blue: rgb(72, 148, 238);
+  --pal-workflow-workflow-fill-blue-faint: #4894ee1a;
+  --pal-workflow-workflow-fill-purple: rgb(141, 88, 247);
+  --pal-workflow-workflow-fill-orange: rgb(255, 119, 78);
+  --pal-workflow-workflow-node-shadow-0: rgba(0, 0, 0, 0);
+  --pal-workflow-workflow-node-shadow-1: rgba(0, 0, 0, 0.05);
+  --pal-workflow-workflow-node-shadow-2: rgba(0, 0, 0, 0.03);
+}

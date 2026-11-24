@@ -1,0 +1,116 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   18. GOOGLE HELP DESIGN SYSTEM (HEX — HELP CENTER & SUPPORT)
+   Version: 0.626 · Carbon: designSystems/243a2341ef087f29
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/hex/versions/v0_626/mss_vars/_hex-sys-color-baseline.scss
+     - //depot/google3/ux/tokens/design_systems/hex/versions/v0_626/mss_vars/_hex-comp-bubble.scss
+     - //depot/google3/ux/tokens/design_systems/hex/versions/v0_626/mss_vars/
+     - //depot/google3/ux/tokens/design_systems/hex/config.textproto
+     - Docs: go/carbon-service-docs | go/carbon-service-code-gen-mwtc
+   Values: Verbatim Carbon/codegen values unless the line is annotated 'inferred'
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --hex-sys-color-baseline--surface: #fafafa;
+    --hex-sys-color-baseline--surface-bright: #ffffff;
+    --hex-sys-color-baseline--surface-container-lowest: #ffffff;
+    --hex-sys-color-baseline--surface-container-low: #f8fafd;
+    --hex-sys-color-baseline--surface-container: #f0f4f9;
+    --hex-sys-color-baseline--surface-container-high: #e9eef6;
+    --hex-sys-color-baseline--surface-container-highest: #dde3ea;
+    --hex-sys-color-baseline--surface-dim: #d3dbe5;
+    --hex-sys-color-baseline--on-surface: #1f1f1f;  /* inferred */
+    --hex-sys-color-baseline--on-surface-variant: #444746;  /* inferred */
+    --hex-sys-color-baseline--outline: #747775;  /* inferred */
+    --hex-sys-color-baseline--outline-variant: #c4c7c5;  /* inferred */
+    --hex-sys-color-baseline--primary: #0b57d0;
+    --hex-sys-color-baseline--on-primary: #ffffff;
+    --hex-sys-color-baseline--primary-container: #ecf3fe;
+    --hex-sys-color-baseline--on-primary-container: #041e49;
+    --hex-sys-color-baseline--primary-fixed: #d3e3fd;
+    --hex-sys-color-baseline--secondary: #00639b;
+    --hex-sys-color-baseline--secondary-container: #dff3ff;
+    --hex-sys-color-baseline--on-secondary-container: #001d35;
+    --hex-sys-color-baseline--tertiary: #146c2e;
+    --hex-sys-color-baseline--tertiary-container: #e7f8ed;
+    --hex-sys-color-baseline--on-tertiary-container: #072711;
+    --hex-sys-color-baseline--error: #b3261e;
+    --hex-sys-color-baseline--error-container: #fceeee;
+    --hex-sys-color-baseline--on-error-container: #410e0b;
+    --hex-sys-color-baseline--blue: #d7e6ff;
+    --hex-sys-color-baseline--sky-blue: #c7e4ff;
+    --hex-sys-color-baseline--inverse-surface: #303030;
+    --hex-sys-color-baseline--inverse-primary: #a8c7fa;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --hex-sys-color-baseline--surface: #1a1a1a;
+    --hex-sys-color-baseline--surface-bright: #32373e;
+    --hex-sys-color-baseline--surface-container-lowest: #0e0e0e;
+    --hex-sys-color-baseline--surface-container-low: #151515;
+    --hex-sys-color-baseline--surface-container: #1f1f1f;
+    --hex-sys-color-baseline--surface-container-high: #1e1f20;
+    --hex-sys-color-baseline--surface-container-highest: #282a2c;
+    --hex-sys-color-baseline--surface-dim: #131314;
+    --hex-sys-color-baseline--on-surface: #e3e3e3;  /* inferred */
+    --hex-sys-color-baseline--on-surface-variant: #c4c7c5;  /* inferred */
+    --hex-sys-color-baseline--outline: #8e918f;  /* inferred */
+    --hex-sys-color-baseline--outline-variant: #444746;  /* inferred */
+    --hex-sys-color-baseline--primary: #d3e3fd;
+    --hex-sys-color-baseline--on-primary: #062e6f;  /* inferred */
+    --hex-sys-color-baseline--primary-container: #0842a0;  /* inferred */
+    --hex-sys-color-baseline--on-primary-container: #ecf3fe;
+    --hex-sys-color-baseline--secondary: #c2e7ff;
+    --hex-sys-color-baseline--secondary-container: #004a77;  /* inferred */
+    --hex-sys-color-baseline--on-secondary-container: #dff3ff;
+    --hex-sys-color-baseline--tertiary: #e7f8ed;
+    --hex-sys-color-baseline--tertiary-container: #0f5223;  /* inferred */
+    --hex-sys-color-baseline--on-tertiary-container: #e7f8ed;
+    --hex-sys-color-baseline--error: #f2b8b5;
+    --hex-sys-color-baseline--error-container: #8c1d18;
+    --hex-sys-color-baseline--on-error-container: #f9dedc;
+    --hex-sys-color-baseline--blue: #2e64de;
+    --hex-sys-color-baseline--sky-blue: #3c8fe3;
+    --hex-sys-color-baseline--inverse-surface: #e3e3e3;
+  }
+
+  /* Verbatim hex-shape-corner-radius + hex-comp-bubble spacing (v0.626) */
+  :root {
+    --hex-sys-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --hex-sys-font-body: 'Google Sans Text', 'Roboto', Arial, sans-serif;
+    --hex-sys-corner-small: 8px;
+    --hex-sys-corner-medium: 12px;
+    --hex-sys-corner-large: 16px;
+    --hex-sys-x-large-rounding: 20px;
+    --hex-sys-corner-full: 9999px;
+    --hex-sys-bubble-inset-top: 20px;
+    --hex-sys-bubble-inset-x: 16px;
+    --hex-sys-bubble-inset-bottom: 12px;
+    --hex-sys-bubble-stack: 8px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--hex-sys-color-baseline--surface);
+    color: var(--hex-sys-color-baseline--on-surface);
+    font-family: var(--hex-sys-font-body, var(--hex-sys-font-plain, var(--hex-sys-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

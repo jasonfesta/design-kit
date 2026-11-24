@@ -3,26 +3,38 @@
     "21st": {
       "url": "https://21st.dev/api/mcp",
       "headers": {
-        "x-api-key": "<YOUR_KEY_HERE>"
+        "x-api-key": "<YOUR_21ST_KEY_HERE>"
       }
     },
-    "originkit": {
-      "url": "https://mcp.originkit.dev/mcp"
-    },
     "shadcn": {
-      "command": "npx",
+      "command": "/bin/sh",
       "args": [
-        "-y",
-        "shadcn@latest",
-        "mcp"
-      ]
+        "-c",
+        "cd /usr/local/google/home/jfesta/design-kit/mcp/shadcn && exec /usr/local/google/home/jfesta/.gemini/jetski/bin/npx -y shadcn@latest mcp"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
     },
     "spectrumui": {
-      "command": "npx",
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
       "args": [
         "-y",
         "@spectrumui/mcp"
-      ]
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "magicui": {
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
+      "args": [
+        "-y",
+        "@magicuidesign/mcp@latest"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
     }
   }
 }

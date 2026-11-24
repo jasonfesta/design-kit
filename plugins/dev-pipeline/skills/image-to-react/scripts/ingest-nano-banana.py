@@ -249,7 +249,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Ingest Nano Banana multi-screenshot export into Golden Template specs.")
     parser.add_argument("--input", "--input-dir", dest="input", required=True, help="Path to Nano Banana directory or manifest.json")
     parser.add_argument("--out-dir", required=True, help="Output workspace directory for per-project specs and extracted assets")
-    parser.add_argument("--moodboard-dir", default="/usr/local/google/home/jfesta/moodboards/warm-landing-page", help="Target moodboard directory")
+    parser.add_argument("--moodboard-dir", default="/google/data/rw/users/jf/jfesta/moodboards/warm-landing-page", help="Target moodboard directory")
     parser.add_argument("--start-index", type=int, default=1, help="Starting 2-digit project index (default: 1)")
     parser.add_argument("--extract-crops", action="store_true", help="Extract cropped photo/illustration assets per screen")
     args = parser.parse_args()

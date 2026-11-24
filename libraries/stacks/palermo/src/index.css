@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@fontsource-variable/geist-mono";
+/* Palermo tokens (reference values from the public docs) */
+@import "../../../../design-systems/external-systems/palermo-profound/tokens.css";
+/* Profound Inter is proprietary; Instrument Sans stands in (see font-enricher / design-donts). */
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..600&display=swap");
+:root { font-family: "Instrument Sans", system-ui, sans-serif; color: var(--pal-text-text-primary, #18181a); background: var(--pal-bg-bg-secondary, #fafafa); }
+code, .mono { font-family: "Geist Mono Variable", ui-monospace, monospace; }

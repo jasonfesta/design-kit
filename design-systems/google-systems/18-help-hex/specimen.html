@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Help Design System (hex v0.626) — Help Center &amp; Support Chat Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .hx-top { height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; background: var(--hex-sys-color-baseline--surface-bright); border-bottom: 1px solid var(--hex-sys-color-baseline--outline-variant); }
+    .hx-brand { font: 400 21px var(--hex-sys-font-brand); color: var(--hex-sys-color-baseline--on-surface-variant); }
+    .btn { height: 36px; padding: 0 16px; border-radius: var(--hex-sys-corner-full); border: 1px solid var(--hex-sys-color-baseline--outline-variant); background: transparent; color: var(--hex-sys-color-baseline--primary); font: 500 13.5px var(--hex-sys-font-body); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+    .btn.f { background: var(--hex-sys-color-baseline--primary); color: var(--hex-sys-color-baseline--on-primary); border-color: transparent; }
+    .hx-hero { background: var(--hex-sys-color-baseline--surface-container); padding: 26px 24px 22px; text-align: center; }
+    .hx-hero h1 { margin: 0 0 14px; font: 400 30px var(--hex-sys-font-brand); color: var(--hex-sys-color-baseline--on-surface); }
+    .hx-search { max-width: 620px; margin: 0 auto; height: 50px; border-radius: var(--hex-sys-corner-full); background: var(--hex-sys-color-baseline--surface-bright); display: flex; align-items: center; padding: 0 20px; gap: 12px; color: var(--hex-sys-color-baseline--on-surface-variant); font-size: 15px; box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+    .hx-body { max-width: 1200px; margin: 0 auto; padding: 22px 24px; display: grid; grid-template-columns: 1fr 380px; gap: 24px; }
+    .crumbs { font-size: 13px; color: var(--hex-sys-color-baseline--on-surface-variant); margin-bottom: 8px; }
+    .article { background: var(--hex-sys-color-baseline--surface-bright); border-radius: var(--hex-sys-corner-large); padding: 24px 28px; border: 1px solid var(--hex-sys-color-baseline--outline-variant); }
+    .article h2 { font: 400 26px var(--hex-sys-font-brand); margin: 0 0 10px; color: var(--hex-sys-color-baseline--on-surface); }
+    .article p { font-size: 15px; line-height: 1.6; margin: 0 0 14px; color: var(--hex-sys-color-baseline--on-surface); }
+    .selector { display: flex; gap: 6px; margin: 4px 0 16px; border-bottom: 1px solid var(--hex-sys-color-baseline--outline-variant); }
+    .selector span { padding: 10px 16px; font: 500 14px var(--hex-sys-font-body); color: var(--hex-sys-color-baseline--on-surface-variant); border-bottom: 3px solid transparent; }
+    .selector span.on { color: var(--hex-sys-color-baseline--primary); border-color: var(--hex-sys-color-baseline--primary); }
+    ol.steps { margin: 0 0 14px; padding-left: 22px; font-size: 15px; line-height: 1.75; color: var(--hex-sys-color-baseline--on-surface); }
+    .tip { background: var(--hex-sys-color-baseline--primary-container); color: var(--hex-sys-color-baseline--on-primary-container); border-radius: var(--hex-sys-corner-medium); padding: 12px 16px; font-size: 14px; margin-bottom: 12px; }
+    .warn { background: var(--hex-sys-color-baseline--error-container); color: var(--hex-sys-color-baseline--on-error-container); border-radius: var(--hex-sys-corner-medium); padding: 12px 16px; font-size: 14px; }
+    .helpful { display: flex; gap: 8px; align-items: center; margin-top: 18px; font-size: 14px; color: var(--hex-sys-color-baseline--on-surface-variant); }
+    .chip { height: 32px; padding: 0 14px; border-radius: var(--hex-sys-corner-small); border: 1px solid var(--hex-sys-color-baseline--outline-variant); display: inline-flex; align-items: center; font-size: 13px; color: var(--hex-sys-color-baseline--on-surface); }
+    .chat { background: var(--hex-sys-color-baseline--surface-bright); border-radius: var(--hex-sys-x-large-rounding); border: 1px solid var(--hex-sys-color-baseline--outline-variant); display: flex; flex-direction: column; overflow: hidden; align-self: start; }
+    .chat-h { padding: 14px 18px; border-bottom: 1px solid var(--hex-sys-color-baseline--outline-variant); display: flex; justify-content: space-between; align-items: center; }
+    .msgs { padding: 16px; display: flex; flex-direction: column; gap: var(--hex-sys-bubble-stack); }
+    .bubble { padding: var(--hex-sys-bubble-inset-top) var(--hex-sys-bubble-inset-x) var(--hex-sys-bubble-inset-bottom); border-radius: var(--hex-sys-corner-large); font-size: 14px; line-height: 1.5; max-width: 88%; }
+    .bubble .who { font: 500 12px var(--hex-sys-font-body); margin-bottom: 4px; color: var(--hex-sys-color-baseline--on-surface-variant); }
+    .b-user { align-self: flex-end; background: var(--hex-sys-color-baseline--primary-container); color: var(--hex-sys-color-baseline--on-primary-container); border-radius: 16px 16px 4px 16px; }
+    .b-ai { background: var(--hex-sys-color-baseline--surface-container); color: var(--hex-sys-color-baseline--on-surface); border-radius: 16px 16px 16px 4px; }
+    .b-agent { background: var(--hex-sys-color-baseline--tertiary-container); color: var(--hex-sys-color-baseline--on-tertiary-container); border-radius: 16px 16px 16px 4px; }
+    .compose { margin: 0 16px 16px; height: 46px; border-radius: var(--hex-sys-corner-full); background: var(--hex-sys-color-baseline--surface-container); display: flex; align-items: center; padding: 0 16px; color: var(--hex-sys-color-baseline--on-surface-variant); font-size: 14px; }
+    .topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .topic { background: var(--hex-sys-color-baseline--surface-bright); border: 1px solid var(--hex-sys-color-baseline--outline-variant); border-radius: var(--hex-sys-corner-large); padding: 14px; font-size: 13.5px; }
+    .topic b { display: block; font: 500 14.5px var(--hex-sys-font-brand); margin-bottom: 2px; color: var(--hex-sys-color-baseline--on-surface); }
+    .topic span { color: var(--hex-sys-color-baseline--on-surface-variant); }
+    @media (max-width: 860px) {
+      .hx-top { padding: 0 12px; height: 56px; }
+      .hx-top .hide-m { display: none; }
+      .hx-hero { padding: 18px 12px; }
+      .hx-hero h1 { font-size: 22px; }
+      .hx-body { grid-template-columns: 1fr; padding: 14px 12px; gap: 16px; }
+      .article { padding: 18px 16px; }
+      .article h2 { font-size: 21px; }
+      .topics { grid-template-columns: 1fr 1fr; }
+      .selector span { padding: 10px 10px; font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hx-top">
+    <div class="hx-brand">Google <b style="font-weight:500;">Help</b></div>
+    <div style="display:flex;gap:8px;"><span class="btn hide-m">Community</span><button class="btn" id="theme-btn" type="button">◑ Light / Dark</button><span class="btn f hide-m">Contact us</span></div>
+  </header>
+  <section class="hx-hero">
+    <h1>How can we help you?</h1>
+    <div class="hx-search">⌕ Describe your issue</div>
+  </section>
+  <main class="hx-body">
+    <section>
+      <div class="crumbs">Google Account Help › Security › Sign-in &amp; recovery</div>
+      <article class="article">
+        <h2>Turn on 2-Step Verification</h2>
+        <p>With 2-Step Verification, you add an extra layer of security to your account in case your password is stolen.</p>
+        <div class="selector"><span class="on">Computer</span><span>Android</span><span>iPhone &amp; iPad</span></div>
+        <ol class="steps">
+          <li>Open your Google Account.</li>
+          <li>In the navigation panel, select <b>Security</b>.</li>
+          <li>Under “How you sign in to Google,” select <b>2-Step Verification</b> › <b>Get started</b>.</li>
+          <li>Follow the on-screen steps to add a passkey, phone or security key.</li>
+        </ol>
+        <div class="tip"><b>Tip:</b> Passkeys let you sign in with your fingerprint, face or screen lock.</div>
+        <div class="warn"><b>Important:</b> If you use a work or school account, your administrator may manage this setting.</div>
+        <div class="helpful">Was this helpful? <span class="chip">👍 Yes</span><span class="chip">👎 No</span></div>
+      </article>
+      <div class="topics">
+        <div class="topic"><b>🔐 Account recovery</b><span>Get back into your account</span></div>
+        <div class="topic"><b>📱 Manage devices</b><span>See where you're signed in</span></div>
+        <div class="topic"><b>🛡 Security Checkup</b><span>Personalized recommendations</span></div>
+      </div>
+    </section>
+    <aside class="chat">
+      <div class="chat-h"><strong style="font:500 15px var(--hex-sys-font-brand);">Support chat</strong><span style="font-size:12px;color:var(--hex-sys-color-baseline--tertiary);">● Agent available</span></div>
+      <div class="msgs">
+        <div class="bubble b-user">I lost my phone and can't get my verification codes.</div>
+        <div class="bubble b-ai"><div class="who">✦ Help assistant</div>Sorry about that. You can still sign in with a backup code or a security key. Do you have either of those?</div>
+        <div class="bubble b-user">No, I only had my phone.</div>
+        <div class="bubble b-agent"><div class="who">Priya · Google Support</div>I can help with account recovery. I've sent a verification link to your recovery email ending in <b>•••@lumen.org</b>.</div>
+      </div>
+      <div class="compose">Type a message…</div>
+    </aside>
+  </main>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

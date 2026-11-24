@@ -1,0 +1,12 @@
+{
+  "name": "ux-content",
+  "displayName": "UX & Content",
+  "description": "Copywriting (marketing, SEO, social, tone of voice), UX writing, humanize-text, user research, accessibility and WCAG 2.2 audits/fixes, plan-mode design review, and grill-me/grilling interview loops.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": [
+    "Rewrite this empty state and error copy",
+    "Audit this form against WCAG 2.2",
+    "Grill me on this design plan"
+  ]
+}

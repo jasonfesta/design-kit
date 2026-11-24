@@ -1,0 +1,4 @@
+interface:
+  display_name: "Probe Global Illumination"
+  short_description: "World-space probe bounce light with hysteresis"
+  default_prompt: "Use $3d-probe-global-illumination to add probe-based bounce light and colour bleeding to this 3D scene."

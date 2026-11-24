@@ -1,0 +1,110 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   19. CHROMEOS JELLY / JELLYBEAN WEB COMPONENTS (CROS_COMPONENTS)
+   Version: google3 HEAD · Carbon: n/a (Jelly dynamic color — cros.sys.* tokens resolved in Chromium)
+   Google3 Provenance:
+     - //depot/google3/third_party/javascript/cros_components/
+     - //depot/google3/third_party/javascript/cros_components/g3doc/
+     - //depot/google3/third_party/javascript/cros_components/button/button.ts
+     - //depot/google3/third_party/javascript/cros_components/sidenav/
+     - Docs: go/cros-jellybean | go/cros-jellybean-charter | go/g3doc-jellybean | go/jb-bug
+   Values: ALL hex values inferred (GM3 baseline fallback); token NAMES verbatim from cros_components
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --cros-sys-app_base: #f8fafd;  /* inferred */
+    --cros-sys-app_base_shaded: #f0f4f9;  /* inferred */
+    --cros-sys-base_elevated: #ffffff;  /* inferred */
+    --cros-sys-surface: #ffffff;  /* inferred */
+    --cros-sys-on_surface: #1f1f1f;  /* inferred */
+    --cros-sys-on_surface_variant: #444746;  /* inferred */
+    --cros-sys-separator: #c4c7c5;  /* inferred */
+    --cros-sys-primary: #0b57d0;  /* inferred */
+    --cros-sys-on_primary: #ffffff;  /* inferred */
+    --cros-sys-primary_container: #d3e3fd;  /* inferred */
+    --cros-sys-on_primary_container: #041e49;  /* inferred */
+    --cros-sys-secondary: #00639b;  /* inferred */
+    --cros-sys-on_secondary: #ffffff;  /* inferred */
+    --cros-sys-on_secondary_container: #004a77;  /* inferred */
+    --cros-sys-secondary_container: #c2e7ff;  /* inferred */
+    --cros-sys-error: #b3261e;  /* inferred */
+    --cros-sys-on_error_container: #410e0b;  /* inferred */
+    --cros-sys-success: #146c2e;  /* inferred */
+    --cros-sys-focus_ring: #0b57d0;  /* inferred */
+    --cros-sys-hover_on_subtle: rgba(31, 31, 31, 0.06);  /* inferred */
+    --cros-sys-ripple_primary: rgba(11, 87, 208, 0.12);  /* inferred */
+    --cros-sys-disabled: rgba(31, 31, 31, 0.38);  /* inferred */
+    --cros-sys-disabled_container: rgba(31, 31, 31, 0.12);  /* inferred */
+    --cros-sys-inverse_surface: #303030;  /* inferred */
+    --cros-sys-inverse_on_surface: #f2f2f2;  /* inferred */
+    --cros-sys-inverse_primary: #a8c7fa;  /* inferred */
+    --cros-sys-shelf: rgba(255, 255, 255, 0.72);  /* inferred */
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --cros-sys-app_base: #1b1b1f;  /* inferred */
+    --cros-sys-app_base_shaded: #141418;  /* inferred */
+    --cros-sys-base_elevated: #2b2c30;  /* inferred */
+    --cros-sys-surface: #1f1f23;  /* inferred */
+    --cros-sys-on_surface: #e3e3e3;  /* inferred */
+    --cros-sys-on_surface_variant: #c4c7c5;  /* inferred */
+    --cros-sys-separator: #444746;  /* inferred */
+    --cros-sys-primary: #a8c7fa;  /* inferred */
+    --cros-sys-on_primary: #062e6f;  /* inferred */
+    --cros-sys-primary_container: #0842a0;  /* inferred */
+    --cros-sys-on_primary_container: #d3e3fd;  /* inferred */
+    --cros-sys-secondary: #7fcfff;  /* inferred */
+    --cros-sys-on_secondary: #003355;  /* inferred */
+    --cros-sys-on_secondary_container: #c2e7ff;  /* inferred */
+    --cros-sys-secondary_container: #004a77;  /* inferred */
+    --cros-sys-error: #f2b8b5;  /* inferred */
+    --cros-sys-on_error_container: #f9dedc;  /* inferred */
+    --cros-sys-success: #6dd58c;  /* inferred */
+    --cros-sys-focus_ring: #a8c7fa;  /* inferred */
+    --cros-sys-hover_on_subtle: rgba(227, 227, 227, 0.08);  /* inferred */
+    --cros-sys-ripple_primary: rgba(168, 199, 250, 0.16);  /* inferred */
+    --cros-sys-disabled: rgba(227, 227, 227, 0.38);  /* inferred */
+    --cros-sys-disabled_container: rgba(227, 227, 227, 0.12);  /* inferred */
+    --cros-sys-inverse_surface: #e3e3e3;  /* inferred */
+    --cros-sys-inverse_on_surface: #303030;  /* inferred */
+    --cros-sys-inverse_primary: #0b57d0;  /* inferred */
+    --cros-sys-shelf: rgba(32, 33, 36, 0.72);  /* inferred */
+  }
+
+  /* --cros-icon-button-icon-size default 20px is verbatim (icon_button); other values inferred */
+  :root {
+    --cros-x-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --cros-x-font-body: 'Google Sans Text', 'Roboto', Arial, sans-serif;
+    --cros-x-button-2-font-size: 13px;  /* inferred */
+    --cros-x-button-2-font-weight: 500;  /* inferred */
+    --cros-x-body-2-font-size: 13px;  /* inferred */
+    --cros-x-icon-button-icon-size: 20px;
+    --cros-x-corner-card: 16px;  /* inferred */
+    --cros-x-corner-window: 12px;  /* inferred */
+    --cros-x-corner-full: 9999px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cros-sys-surface);
+    color: var(--cros-sys-on_surface);
+    font-family: var(--cros-x-font-body, var(--cros-x-font-plain, var(--cros-x-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Microsoft Fluent 2 — Interactive Token Specimen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Source+Code+Pro:wght@400;500&display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    :root { --fl-font-preview: 'Segoe UI', 'Open Sans', var(--fontFamilyBase); }
+
+    :root { --fl-font-ui: var(--fl-font-preview, var(--fl-font-sans)); }
+    body { font-family: var(--fl-font-ui); }
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--fl-surface); border: 1px solid var(--fl-border); border-radius: var(--fl-card-radius); margin-bottom: 20px; }
+    .top-bar strong { font-size: 15px; letter-spacing: -0.01em; }
+    .meta { font-family: var(--fl-font-mono); font-size: 11.5px; color: var(--fl-ink-2); }
+    .tb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { height: var(--fl-control-h); padding: 0 16px; border-radius: var(--fl-btn-radius); border: 1px solid transparent;
+      font: inherit; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--fl-duration) var(--fl-ease), box-shadow var(--fl-duration) var(--fl-ease), transform 120ms var(--fl-ease); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, .field:focus-visible, .tab:focus-visible, .nav a:focus-visible { outline: 2px solid var(--fl-focus); outline-offset: 2px; }
+    .btn-primary { background: var(--fl-accent); color: var(--fl-on-accent); }
+    .btn-primary:hover, .btn-primary.is-hover { background: var(--fl-accent-hover); }
+    .btn-secondary { background: var(--fl-surface); color: var(--fl-ink); border-color: var(--fl-border-strong); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--fl-surface-2); }
+    .btn-ghost { background: transparent; color: var(--fl-accent-ink); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: var(--fl-accent-subtle); }
+    .btn-danger { background: var(--fl-danger); color: #fff; }
+    .btn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-sm { height: calc(var(--fl-control-h) - 8px); padding: 0 12px; font-size: 13px; }
+    .card { background: var(--fl-surface); border: 1px solid var(--fl-border); border-radius: var(--fl-card-radius); box-shadow: var(--fl-shadow-sm); }
+    .section { padding: 20px; margin-bottom: 20px; }
+    .section h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.01em; }
+    .section .lede { margin: 0 0 16px; color: var(--fl-ink-2); font-size: 13px; }
+
+    /* App frame */
+    .app { display: grid; grid-template-columns: 220px 1fr; overflow: hidden; margin-bottom: 20px; }
+    .nav { background: var(--fl-surface-2); border-right: 1px solid var(--fl-border); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 14px; font-weight: 700; font-size: 14px; }
+    .brand i { width: 22px; height: 22px; border-radius: var(--fl-radius-sm); background: var(--fl-accent); display: inline-block; }
+    .nav a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: var(--fl-radius-sm);
+      color: var(--fl-ink-2); text-decoration: none; font-size: 13.5px; }
+    .nav a:hover { background: var(--fl-surface); color: var(--fl-ink); }
+    .nav a.active { background: var(--fl-accent-subtle); color: var(--fl-accent-ink); font-weight: 600; }
+    .nav a .count { font-size: 11.5px; font-variant-numeric: tabular-nums; color: var(--fl-ink-3); }
+    .main { padding: 20px 24px 24px; min-width: 0; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+    .crumb { font-size: 12px; color: var(--fl-ink-3); margin-bottom: 4px; }
+    .page-head h1 { margin: 0; font-family: var(--fl-font-display, var(--fl-font-ui)); font-size: 24px; line-height: 1.25; letter-spacing: -0.015em; }
+    .page-head p { margin: 4px 0 0; color: var(--fl-ink-2); font-size: 13.5px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--fl-border); margin-bottom: 16px; overflow-x: auto; }
+    .tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; font: inherit; font-size: 13.5px; color: var(--fl-ink-2); cursor: pointer; white-space: nowrap; }
+    .tab[aria-selected="true"] { color: var(--fl-ink); border-bottom-color: var(--fl-accent-ink); font-weight: 600; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric { padding: 14px 16px; }
+    .metric .label { font-size: 12.5px; color: var(--fl-ink-2); }
+    .metric .value { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .metric .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .delta.up { color: var(--fl-success-ink, var(--fl-success)); } .delta.down { color: var(--fl-danger-ink, var(--fl-danger)); }
+    .split { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
+    .tbl-wrap { overflow-x: auto; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; font-weight: 600; font-size: 12px; color: var(--fl-ink-2); background: var(--fl-surface-2); padding: 9px 12px; border-bottom: 1px solid var(--fl-border); white-space: nowrap; }
+    .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--fl-border); white-space: nowrap; }
+    .tbl tr:last-child td { border-bottom: 0; }
+    .tbl tbody tr { cursor: pointer; }
+    .tbl tbody tr:hover td { background: var(--fl-surface-2); }
+    .tbl tbody tr.selected td { background: var(--fl-accent-subtle); }
+    .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tbl th.num { text-align: right; }
+    .tbl .id { font-family: var(--fl-font-mono); font-size: 12px; color: var(--fl-ink-2); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: var(--fl-badge-radius); font-size: 12px; font-weight: 550; color: var(--fl-ink); white-space: nowrap; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.success { background: var(--fl-success-subtle); } .badge.success::before { background: var(--fl-success); }
+    .badge.warning { background: var(--fl-warning-subtle); } .badge.warning::before { background: var(--fl-warning); }
+    .badge.danger { background: var(--fl-danger-subtle); } .badge.danger::before { background: var(--fl-danger); }
+    .badge.info { background: var(--fl-info-subtle); } .badge.info::before { background: var(--fl-info); }
+    .badge.neutral { background: var(--fl-surface-2); } .badge.neutral::before { background: var(--fl-ink-3); }
+    .panel { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .panel h3 { margin: 0; font-size: 14px; }
+    .fld label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--fl-ink); }
+    .field { width: 100%; height: var(--fl-control-h); padding: 0 12px; border-radius: var(--fl-input-radius); border: 1px solid var(--fl-border-strong); background: var(--fl-surface); color: var(--fl-ink); font: inherit; font-size: 14px; }
+    .field::placeholder { color: var(--fl-ink-3); }
+    .helper { font-size: 12px; color: var(--fl-ink-3); margin-top: 4px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+    .switch { position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--fl-border-strong); border: 0; cursor: pointer; transition: background-color var(--fl-duration) var(--fl-ease); flex: none; }
+    .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform var(--fl-duration) var(--fl-ease); }
+    .switch[aria-checked="true"] { background: var(--fl-accent); }
+    .switch[aria-checked="true"]::after { transform: translateX(16px); }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+    .check input { width: 16px; height: 16px; accent-color: var(--fl-accent); margin: 0; }
+    .alert { display: flex; gap: 10px; padding: 12px 14px; border-radius: var(--fl-input-radius); font-size: 13px; border: 1px solid var(--fl-border); background: var(--fl-info-subtle); }
+    .alert::before { content: ""; flex: none; width: 4px; border-radius: 4px; background: var(--fl-info); }
+    .alert.warning { background: var(--fl-warning-subtle); } .alert.warning::before { background: var(--fl-warning); }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Token sections */
+    .ramp { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .ramp-name { font-size: 12.5px; font-weight: 600; }
+    .ramp-steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; }
+    .sw { height: 56px; border-radius: var(--fl-radius-sm); padding: 6px; display: flex; flex-direction: column; justify-content: flex-end; font-family: var(--fl-font-mono); font-size: 9.5px; line-height: 1.25; border: 1px solid rgba(127,127,127,.18); overflow: hidden; }
+    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .role { border: 1px solid var(--fl-border); border-radius: var(--fl-radius-sm); overflow: hidden; background: var(--fl-surface); }
+    .role .chip { height: 40px; border-bottom: 1px solid var(--fl-border); }
+    .role .txt { padding: 6px 8px; font-size: 11px; font-family: var(--fl-font-mono); color: var(--fl-ink-2); }
+    .role .txt b { display: block; color: var(--fl-ink); font-family: var(--fl-font-ui); font-size: 12px; font-weight: 600; }
+    .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--fl-border); }
+    .type-row:last-child { border-bottom: 0; }
+    .type-meta { font-family: var(--fl-font-mono); font-size: 11px; color: var(--fl-ink-2); }
+    .type-meta b { display: block; font-family: var(--fl-font-ui); color: var(--fl-ink); font-size: 12.5px; }
+    .type-sample { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tok-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tok-col h3 { margin: 0 0 10px; font-size: 13px; }
+    .rad { display: flex; flex-wrap: wrap; gap: 10px; }
+    .rad div { width: 64px; height: 64px; background: var(--fl-accent-subtle); border: 1.5px solid var(--fl-accent-ink); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-family: var(--fl-font-mono); font-size: 9.5px; color: var(--fl-ink); text-align: center; }
+    .sp { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: center; font-family: var(--fl-font-mono); font-size: 10.5px; color: var(--fl-ink-2); margin-bottom: 5px; }
+    .sp span:last-child { height: 10px; background: var(--fl-accent); border-radius: 2px; }
+    .elev { display: grid; gap: 12px; }
+    .elev div { padding: 14px; background: var(--fl-surface); border-radius: var(--fl-radius-md); font-family: var(--fl-font-mono); font-size: 10.5px; color: var(--fl-ink-2); }
+    .states { display: grid; grid-template-columns: 120px repeat(3, max-content); gap: 10px 14px; align-items: center; font-size: 12px; color: var(--fl-ink-2); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .tok-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 12px 12px 48px; }
+      .app { grid-template-columns: 1fr; }
+      .nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--fl-border); padding: 8px; }
+      .brand { padding: 4px 8px; }
+      .nav a .count { display: none; }
+      .main { padding: 16px 14px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics .metric:last-child { grid-column: span 2; }
+      .metric .value { font-size: 22px; }
+      .ramp { grid-template-columns: 1fr; gap: 4px; }
+      .ramp-steps { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .type-row { grid-template-columns: 1fr; gap: 4px; }
+      .states { grid-template-columns: 1fr 1fr; }
+      .states > .lbl { grid-column: span 2; }
+      .page-head h1 { font-size: 21px; }
+    }
+
+    /* ---- Fluent 2 signature details ---- */
+
+    .btn { font-weight: 600; font-size: 14px; }
+    .btn-secondary { background: var(--colorNeutralBackground1); border-color: var(--colorNeutralStroke1); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--colorNeutralBackground1Hover); border-color: var(--colorNeutralStroke1Hover); }
+    .btn-ghost { color: var(--colorNeutralForeground2); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: var(--colorSubtleBackgroundHover); color: var(--colorNeutralForeground2BrandHover); }
+    .btn-danger { background: var(--colorStatusDangerBackground3); }
+    .card { border: 0; box-shadow: var(--shadow4); }
+    .top-bar { border: 0; box-shadow: var(--shadow4); }
+    .nav { background: var(--colorNeutralBackground3); border-right: 0; }
+    .nav a { color: var(--colorNeutralForeground2); position: relative; }
+    .nav a.active { background: var(--colorNeutralBackground1); color: var(--colorNeutralForeground1); font-weight: 600; }
+    .nav a.active::before { content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; border-radius: 2px; background: var(--colorBrandForeground1); }
+    .brand i { background: linear-gradient(135deg, #0F6CBD 0 50%, #2886DE 50%); }
+    .page-head h1 { font-weight: 600; font-size: 24px; letter-spacing: 0; }
+    .tab { padding: 10px 10px 12px; }
+    .tab[aria-selected="true"] { border-bottom: 3px solid var(--colorCompoundBrandStroke); font-weight: 600; }
+    .metric .value { font-weight: 600; }
+    .tbl th { background: transparent; color: var(--colorNeutralForeground1); }
+    .field { border-color: var(--colorNeutralStroke1); border-bottom-color: var(--colorNeutralStrokeAccessible); }
+    .field:focus-visible { outline: 0; border-bottom: 2px solid var(--colorCompoundBrandStroke); }
+    .badge { border-radius: var(--borderRadiusCircular); font-weight: 600; height: 20px; }
+    .badge::before { display: none; }
+    .badge.success { color: var(--colorStatusSuccessForeground1); } .badge.danger { color: var(--colorStatusDangerForeground1); } .badge.warning { color: var(--colorStatusWarningForeground1); } .badge.info { color: var(--colorBrandForeground1); }
+    .alert { border-color: var(--colorStatusWarningBorder1, var(--colorNeutralStroke2)); }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong>Microsoft Fluent 2</strong>
+        <div class="meta">@fluentui/tokens@1.0.0-alpha.24 · <span>--fl-* → --colorNeutral* / --colorBrand* / --borderRadius* / --fontSize* / --spacing*</span></div>
+      </div>
+      <div class="tb-actions">
+        <button class="btn btn-secondary btn-sm" id="theme-btn" type="button">Polarity: Light / Dark</button>
+        <button class="btn btn-secondary btn-sm" id="density-btn" type="button">Density: Default</button>
+        <a class="btn btn-ghost btn-sm" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card app" aria-label="Microsoft 365 product surface">
+      <nav class="nav">
+        <div class="brand"><i></i>Microsoft 365</div>
+          <a href="#" class="active"><span>Home</span><span class="count"></span></a>
+          <a href="#" class=""><span>Files</span><span class="count">214</span></a>
+          <a href="#" class=""><span>Shared</span><span class="count">38</span></a>
+          <a href="#" class=""><span>Teams</span><span class="count">6</span></a>
+          <a href="#" class=""><span>Calendar</span><span class="count"></span></a>
+          <a href="#" class=""><span>Apps</span><span class="count"></span></a>
+      </nav>
+      <div class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Finance / FY26 Planning</div>
+            <h1>Budget workbook</h1>
+            <p>Shared with Finance Leads · autosaved 2 minutes ago</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-secondary" type="button">Open in app</button>
+            <button class="btn btn-primary" type="button">Share</button>
+          </div>
+        </div>
+        <div class="tabs" role="tablist"><button class="tab" role="tab" type="button" aria-selected="true">Summary</button><button class="tab" role="tab" type="button" aria-selected="false">Q1</button><button class="tab" role="tab" type="button" aria-selected="false">Q2</button><button class="tab" role="tab" type="button" aria-selected="false">Q3</button><button class="tab" role="tab" type="button" aria-selected="false">Q4</button></div>
+        <div class="metrics">
+            <div class="card metric"><div class="label">Planned spend</div><div class="value">$4.82M</div><div class="delta up">2.1% under target</div></div>
+            <div class="card metric"><div class="label">Approvals pending</div><div class="value">7</div><div class="delta down">3 due today</div></div>
+            <div class="card metric"><div class="label">Variance (YTD)</div><div class="value">−$118K</div><div class="delta up">Within 5% band</div></div>
+        </div>
+        <div class="split">
+          <div class="card tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th class="">Cost center</th><th class="">Owner</th><th class="">Region</th><th class="num">Budget</th><th class="">Status</th></tr></thead>
+              <tbody>
+                <tr class=""><td class="id">CC-1020</td><td class="">Ana Silva</td><td class="">EMEA</td><td class="num">$1,240,000</td><td><span class="badge success">Approved</span></td></tr>
+                <tr class="selected"><td class="id">CC-1031</td><td class="">Tomás Ortiz</td><td class="">LATAM</td><td class="num">$642,500</td><td><span class="badge warning">Pending</span></td></tr>
+                <tr class=""><td class="id">CC-1044</td><td class="">Mei Chen</td><td class="">APAC</td><td class="num">$918,200</td><td><span class="badge success">Approved</span></td></tr>
+                <tr class=""><td class="id">CC-1052</td><td class="">Raj Patel</td><td class="">NA</td><td class="num">$1,580,000</td><td><span class="badge danger">Over budget</span></td></tr>
+                <tr class=""><td class="id">CC-1067</td><td class="">Elif Kaya</td><td class="">EMEA</td><td class="num">$440,000</td><td><span class="badge info">Draft</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card panel">
+            <h3>Request approval</h3>
+              <div class="fld"><label>Approver</label><input class="field" placeholder="" value="Megan Bowen"></div>
+              <div class="fld"><label>Due date</label><input class="field" placeholder="" value="Thu, Nov 20"></div>
+              <div class="fld"><label>Priority</label><select class="field"><option>Normal</option><option>High</option><option>Low</option></select></div>
+            <label class="check"><input type="checkbox" checked> Attach workbook snapshot</label>
+            <div class="row"><span>Notify in Teams</span><button class="switch" role="switch" aria-checked="true" type="button" aria-label="Notify in Teams"></button></div>
+            <div class="alert warning"><div><strong>CC-1052 is 6.4% over budget</strong>Add a justification before quarter close.</div></div>
+            <div class="actions"><button class="btn btn-primary" type="button">Send request</button><button class="btn btn-ghost" type="button">Cancel</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>1. Official Palette Ramps</h2>
+      <p class="lede">Swatches render live from Layer 1 official tokens in <code>tokens.css</code>.</p>
+          <div class="ramp"><div class="ramp-name">Neutral backgrounds</div><div class="ramp-steps"><div class="sw" style="background:var(--colorNeutralBackground1);color:#111">colorNeutralBackground1<br>#FFFFFF</div><div class="sw" style="background:var(--colorNeutralBackground2);color:#111">colorNeutralBackground2<br>#FAFAFA</div><div class="sw" style="background:var(--colorNeutralBackground3);color:#111">colorNeutralBackground3<br>#F5F5F5</div><div class="sw" style="background:var(--colorNeutralBackground4);color:#111">colorNeutralBackground4<br>#F0F0F0</div><div class="sw" style="background:var(--colorNeutralBackground5);color:#111">colorNeutralBackground5<br>#EBEBEB</div><div class="sw" style="background:var(--colorNeutralBackground6);color:#111">colorNeutralBackground6<br>#E6E6E6</div><div class="sw" style="background:var(--colorNeutralStroke2);color:#111">colorNeutralStroke2<br>#E0E0E0</div><div class="sw" style="background:var(--colorNeutralStroke1);color:#111">colorNeutralStroke1<br>#D1D1D1</div><div class="sw" style="background:var(--colorNeutralForeground3);color:#fff">colorNeutralForeground3<br>#616161</div><div class="sw" style="background:var(--colorNeutralForeground1);color:#fff">colorNeutralForeground1<br>#242424</div></div></div>
+          <div class="ramp"><div class="ramp-name">Brand (web)</div><div class="ramp-steps"><div class="sw" style="background:var(--colorBrandBackground2);color:#111">colorBrandBackground2<br>#EBF3FC</div><div class="sw" style="background:var(--colorBrandStroke2);color:#111">colorBrandStroke2<br>#B4D6FA</div><div class="sw" style="background:var(--colorBrandForeground2);color:#fff">colorBrandForeground2<br>#115EA3</div><div class="sw" style="background:var(--colorBrandBackground);color:#fff">colorBrandBackground<br>#0F6CBD</div><div class="sw" style="background:var(--colorBrandBackgroundHover);color:#fff">colorBrandBackgroundHover<br>#115EA3</div><div class="sw" style="background:var(--colorBrandBackgroundPressed);color:#fff">colorBrandBackgroundPressed<br>#0C3B5E</div><div class="sw" style="background:var(--colorBrandForeground1);color:#fff">colorBrandForeground1<br>#0F6CBD</div><div class="sw" style="background:var(--colorBrandStroke1);color:#fff">colorBrandStroke1<br>#0F6CBD</div><div class="sw" style="background:var(--colorBrandBackgroundSelected);color:#fff">colorBrandBackgroundSelected<br>#0F548C</div><div class="sw" style="background:var(--colorBrandForegroundLink);color:#fff">colorBrandForegroundLink<br>#115EA3</div></div></div>
+          <div class="ramp"><div class="ramp-name">Status</div><div class="ramp-steps"><div class="sw" style="background:var(--colorStatusSuccessBackground1);color:#111">colorStatusSuccessBackground1<br>#F1FAF1</div><div class="sw" style="background:var(--colorStatusSuccessBackground3);color:#fff">colorStatusSuccessBackground3<br>#107C10</div><div class="sw" style="background:var(--colorStatusWarningBackground1);color:#111">colorStatusWarningBackground1<br>#FFF9F5</div><div class="sw" style="background:var(--colorStatusWarningBackground3);color:#fff">colorStatusWarningBackground3<br>#F7630C</div><div class="sw" style="background:var(--colorStatusDangerBackground1);color:#111">colorStatusDangerBackground1<br>#FDF3F4</div><div class="sw" style="background:var(--colorStatusDangerBackground3);color:#fff">colorStatusDangerBackground3<br>#C50F1F</div><div class="sw" style="background:var(--colorPaletteBerryBackground3);color:#fff">colorPaletteBerryBackground3<br>#C239B3</div><div class="sw" style="background:var(--colorPaletteTealBackground2);color:#111">colorPaletteTealBackground2<br>#9BD9DB</div><div class="sw" style="background:var(--colorPaletteYellowBackground3);color:#111">colorPaletteYellowBackground3<br>#FDE300</div><div class="sw" style="background:var(--colorPaletteDarkOrangeBackground3);color:#fff">colorPaletteDarkOrangeBackground3<br>#DA3B01</div></div></div>
+    </section>
+
+    <section class="card section">
+      <h2>2. Semantic Roles (<code>--fl-*</code> → official tokens)</h2>
+      <p class="lede">Toggle polarity to see the official dark mapping resolve in place.</p>
+      <div class="roles">
+            <div class="role"><div class="chip" style="background:var(--fl-canvas)"></div><div class="txt"><b>canvas</b>--colorNeutralBackground2<br><span data-resolve="--fl-canvas"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-surface)"></div><div class="txt"><b>surface</b>--colorNeutralBackground1<br><span data-resolve="--fl-surface"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-surface-2)"></div><div class="txt"><b>surface-2</b>--colorNeutralBackground3<br><span data-resolve="--fl-surface-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-border)"></div><div class="txt"><b>border</b>--colorNeutralStroke2<br><span data-resolve="--fl-border"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-border-strong)"></div><div class="txt"><b>border-strong</b>--colorNeutralStroke1<br><span data-resolve="--fl-border-strong"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-ink)"></div><div class="txt"><b>ink</b>--colorNeutralForeground1<br><span data-resolve="--fl-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-ink-2)"></div><div class="txt"><b>ink-2</b>--colorNeutralForeground2<br><span data-resolve="--fl-ink-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-ink-3)"></div><div class="txt"><b>ink-3</b>--colorNeutralForeground3<br><span data-resolve="--fl-ink-3"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-accent)"></div><div class="txt"><b>accent</b>--colorBrandBackground<br><span data-resolve="--fl-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-accent-hover)"></div><div class="txt"><b>accent-hover</b>--colorBrandBackgroundHover<br><span data-resolve="--fl-accent-hover"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-on-accent)"></div><div class="txt"><b>on-accent</b>--colorNeutralForegroundOnBrand<br><span data-resolve="--fl-on-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-accent-subtle)"></div><div class="txt"><b>accent-subtle</b>--colorBrandBackground2<br><span data-resolve="--fl-accent-subtle"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-accent-ink)"></div><div class="txt"><b>accent-ink</b>--colorBrandForeground1<br><span data-resolve="--fl-accent-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-success)"></div><div class="txt"><b>success</b>--colorStatusSuccessBackground3<br><span data-resolve="--fl-success"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-warning)"></div><div class="txt"><b>warning</b>--colorStatusWarningBackground3<br><span data-resolve="--fl-warning"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-danger)"></div><div class="txt"><b>danger</b>--colorStatusDangerBackground3<br><span data-resolve="--fl-danger"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-info)"></div><div class="txt"><b>info</b>--colorBrandBackground<br><span data-resolve="--fl-info"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--fl-focus)"></div><div class="txt"><b>focus</b>--colorStrokeFocus2<br><span data-resolve="--fl-focus"></span></div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>3. Type Scale</h2>
+      <p class="lede">Segoe UI is proprietary; where it is not installed the specimen previews with Open Sans (similar humanist proportions) before the official stack.</p>
+          <div class="type-row"><div class="type-meta"><b>Display</b>--fontSizeHero1000 · 68px/92px · 600</div><div class="type-sample" style="font-size:var(--fontSizeHero1000);line-height:var(--lineHeightHero1000);font-weight:var(--fontWeightSemibold);">Fluent 2 · 1,284</div></div>
+          <div class="type-row"><div class="type-meta"><b>Large title</b>--fontSizeHero900 · 40px/52px · 600</div><div class="type-sample" style="font-size:var(--fontSizeHero900);line-height:var(--lineHeightHero900);font-weight:var(--fontWeightSemibold);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Title 2</b>--fontSizeHero700 · 28px/36px · 600</div><div class="type-sample" style="font-size:var(--fontSizeHero700);line-height:var(--lineHeightHero700);font-weight:var(--fontWeightSemibold);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Subtitle 1</b>--fontSizeBase500 · 20px/28px · 600</div><div class="type-sample" style="font-size:var(--fontSizeBase500);line-height:var(--lineHeightBase500);font-weight:var(--fontWeightSemibold);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body 2</b>--fontSizeBase400 · 16px/22px · 400</div><div class="type-sample" style="font-size:var(--fontSizeBase400);line-height:var(--lineHeightBase400);font-weight:var(--fontWeightRegular);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body 1</b>--fontSizeBase300 · 14px/20px · 400</div><div class="type-sample" style="font-size:var(--fontSizeBase300);line-height:var(--lineHeightBase300);font-weight:var(--fontWeightRegular);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Caption 1</b>--fontSizeBase200 · 12px/16px · 400</div><div class="type-sample" style="font-size:var(--fontSizeBase200);line-height:var(--lineHeightBase200);font-weight:var(--fontWeightRegular);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+    </section>
+
+    <section class="card section">
+      <h2>4. Shape, Space &amp; Elevation</h2>
+      <div class="tok-grid">
+        <div class="tok-col"><h3>Radius</h3><div class="rad"><div style="border-radius:var(--borderRadiusSmall)">Small</div><div style="border-radius:var(--borderRadiusMedium)">Medium</div><div style="border-radius:var(--borderRadiusLarge)">Large</div><div style="border-radius:var(--borderRadiusXLarge)">XLarge</div><div style="border-radius:var(--borderRadius2XLarge)">2XLarge</div><div style="border-radius:var(--borderRadiusCircular)">Circular</div></div></div>
+        <div class="tok-col"><h3>Spacing</h3>
+              <div class="sp"><span>spacingHorizontalXS · 4px</span><span style="width:var(--spacingHorizontalXS)"></span></div>
+              <div class="sp"><span>spacingHorizontalS · 8px</span><span style="width:var(--spacingHorizontalS)"></span></div>
+              <div class="sp"><span>spacingHorizontalM · 12px</span><span style="width:var(--spacingHorizontalM)"></span></div>
+              <div class="sp"><span>spacingHorizontalL · 16px</span><span style="width:var(--spacingHorizontalL)"></span></div>
+              <div class="sp"><span>spacingHorizontalXL · 20px</span><span style="width:var(--spacingHorizontalXL)"></span></div>
+              <div class="sp"><span>spacingHorizontalXXL · 24px</span><span style="width:var(--spacingHorizontalXXL)"></span></div>
+              <div class="sp"><span>spacingHorizontalXXXL · 32px</span><span style="width:var(--spacingHorizontalXXXL)"></span></div>
+        </div>
+        <div class="tok-col"><h3>Elevation</h3><div class="elev">
+              <div style="box-shadow:var(--shadow4)">shadow4</div>
+              <div style="box-shadow:var(--shadow8)">shadow8</div>
+              <div style="box-shadow:var(--shadow16)">shadow16</div>
+              <div style="box-shadow:var(--shadow28)">shadow28</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>5. Action States</h2>
+      <div class="states">
+        <span class="lbl">Primary</span><button class="btn btn-primary" type="button">Share</button><button class="btn btn-primary is-hover" type="button">Hover</button><button class="btn btn-primary" type="button" disabled>Disabled</button>
+        <span class="lbl">Secondary</span><button class="btn btn-secondary" type="button">Open in app</button><button class="btn btn-secondary is-hover" type="button">Hover</button><button class="btn btn-secondary" type="button" disabled>Disabled</button>
+        <span class="lbl">Ghost / tertiary</span><button class="btn btn-ghost" type="button">View details</button><button class="btn btn-ghost is-hover" type="button">Hover</button><button class="btn btn-ghost" type="button" disabled>Disabled</button>
+        <span class="lbl">Destructive</span><button class="btn btn-danger" type="button">Delete</button><button class="btn btn-danger" type="button" style="filter:brightness(.9)">Hover</button><button class="btn btn-danger" type="button" disabled>Disabled</button>
+      </div>
+      <div class="badges"><span class="badge success">Success</span><span class="badge warning">Warning</span><span class="badge danger">Critical</span><span class="badge info">Info</span><span class="badge neutral">Neutral</span></div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    const resolveAll = () => document.querySelectorAll('[data-resolve]').forEach((el) => {
+      const probe = document.createElement('i');
+      probe.style.color = 'var(' + el.dataset.resolve + ')';
+      document.body.appendChild(probe);
+      const rgb = getComputedStyle(probe).color; probe.remove();
+      const m = rgb.match(/[\d.]+/g) || [];
+      el.textContent = m.length >= 3 ? '#' + m.slice(0, 3).map((n) => (+n).toString(16).padStart(2, '0')).join('').toUpperCase() + (m[3] && +m[3] < 1 ? ' · α' + (+m[3]).toFixed(2) : '') : rgb;
+    });
+    resolveAll();
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) themeBtn.addEventListener('click', () => { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; resolveAll(); });
+    const densityBtn = document.getElementById('density-btn');
+    densityBtn.addEventListener('click', () => {
+      const compact = html.classList.toggle('compact');
+      html.style.setProperty('--fl-control-h', compact ? 'calc(var(--fl-control-base) - 8px)' : 'var(--fl-control-base)');
+      densityBtn.textContent = compact ? 'Density: Compact' : 'Density: Default';
+    });
+    document.querySelectorAll('[role="tablist"]').forEach((list) => list.addEventListener('click', (e) => {
+      const t = e.target.closest('[role="tab"]'); if (!t) return;
+      list.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    }));
+    document.querySelectorAll('.switch').forEach((sw) => sw.addEventListener('click', () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'))));
+    document.querySelectorAll('.tbl tbody tr').forEach((tr) => tr.addEventListener('click', () => {
+      tr.parentElement.querySelectorAll('tr').forEach((x) => x.classList.toggle('selected', x === tr));
+    }));
+    document.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); a.parentElement.querySelectorAll('a').forEach((x) => x.classList.toggle('active', x === a));
+    }));
+  </script>
+</body>
+</html>

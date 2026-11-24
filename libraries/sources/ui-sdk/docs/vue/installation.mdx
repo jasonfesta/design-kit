@@ -1,0 +1,97 @@
+---
+title: Installation
+description: Install UI SDK in your Vue app.
+---
+
+Start with an app using Vue 3.5 or newer.
+
+## Install the Packages
+
+```bash
+npm install @ui-sdk/vue @ui-sdk/core
+```
+
+`@ui-sdk/vue` provides the Vue components. `@ui-sdk/core` provides their behavior and is a peer dependency. Install both so the components and any helpers you use share one copy of the core.
+
+## Import a Component
+
+Import each component from its own entry:
+
+```ts
+import { Button } from "@ui-sdk/vue/button"
+import { Toggle } from "@ui-sdk/vue/toggle"
+```
+
+A Dialog has separate parts for its trigger, content, and title. Import those parts from the same entry:
+
+```ts
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogTrigger,
+} from "@ui-sdk/vue/dialog"
+```
+
+Each [component page](./components) lists the parts you can use. Its examples draw icons from `@lucide/vue`, so install it to copy them as they are, or use your own icons.
+
+## Use with Nuxt
+
+Install the same two packages in a Nuxt app, then add `@ui-sdk/vue` to its modules:
+
+```ts title="nuxt.config.ts"
+export default defineNuxtConfig({
+  modules: ["@ui-sdk/vue"],
+})
+```
+
+Nuxt finds the module at `@ui-sdk/vue/nuxt`. It registers each part of every entry as an auto-imported component, like `<DialogTrigger>`, and auto-imports their other exports, like `createDialogController`, in `<script>`. Each one is still imported from its own entry, so a page bundles only what it uses. When a name clashes, your own component or `utils/` export wins. `confirm` is left out because it would replace the browser's `confirm()` in your code, so import it from `@ui-sdk/vue/alert-dialog`.
+
+The module adds no plugin and no styles. Components render on the server and hydrate in the browser without one, so importing them from their entries, as above, works in Nuxt too.
+
+Pass `prefix` to use ui-sdk's components beside your own of the same name:
+
+```ts title="nuxt.config.ts"
+export default defineNuxtConfig({
+  modules: ["@ui-sdk/vue"],
+  uiSdk: { prefix: "U" },
+})
+```
+
+With that prefix, `<DialogTrigger>` becomes `<UDialogTrigger>`. Other exports keep their names.
+
+## Add Your Styles
+
+Components are unstyled, so you style them with your app's CSS or with Tailwind CSS. [Styling and Animation](./styling-and-animation) covers both.
+
+For a default look to start from, import `@ui-sdk/core/web.css` once. In a Vite app, import it at the top of `main.ts`:
+
+```ts
+import "@ui-sdk/core/web.css"
+```
+
+In Nuxt, add it to `css` in `nuxt.config.ts`:
+
+```ts title="nuxt.config.ts"
+export default defineNuxtConfig({
+  modules: ["@ui-sdk/vue"],
+  css: ["@ui-sdk/core/web.css"],
+})
+```
+
+With Tailwind CSS, import it in your global stylesheet instead, after Tailwind. `layer(components)` puts it above Tailwind's base styles, so they don't reset it, and below its utilities, so a class still wins. Declare [the ui-sdk layer](./styling-and-animation#the-ui-sdk-layer) above both:
+
+```css
+@layer ui-sdk;
+
+@import "tailwindcss";
+@import "@ui-sdk/core/web.css" layer(components);
+```
+
+You can render your first component without setting up a provider or adding a portal root. [Server Rendering](./server-rendering) covers rendering the initial HTML and adding interactions during hydration, in Nuxt or your own server. If your Nuxt app sends a Content Security Policy, [Content Security Policy](./styling-and-animation#content-security-policy) covers nuxt-security.
+
+## Right to Left
+
+Set `dir="rtl"` on the page or a container. Arrow keys and popup placement follow that direction without a provider. Use logical CSS properties, such as `padding-inline-start`, for your styles.
+
+Continue with [First Component](./first-component) to add a working toggle to your app.

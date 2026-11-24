@@ -1,0 +1,62 @@
+{
+  "projectName": "design-kit-jig",
+  "defaultTheme": "dark",
+  "styles": [
+    "clone",
+    "clean",
+    "grid",
+    "editorial",
+    "cinematic",
+    "product",
+    "brutal",
+    "playful",
+    "retro"
+  ],
+  "libraries": [
+    { "id": "shadcn", "label": "shadcn" },
+    { "id": "ease", "label": "ease" },
+    { "id": "fluid", "label": "fluid" }
+  ],
+  "cloneSource": {
+    "enabled": true,
+    "provider": "manual",
+    "serviceName": "",
+    "endpoint": "",
+    "command": "",
+    "notes": "Baseline 1:1 clone slot. Swap provider to 'external-service' (or set enabled: false / pass --no-clone) when connecting an external clone service or starting greenfield."
+  },
+  "domains": [
+    {
+      "domain": "fullstack",
+      "label": "full stack",
+      "defaultSlide": "component",
+      "chromeMode": "standard",
+      "items": [
+        { "id": "component", "label": "component", "stageMode": "component" },
+        { "id": "full-view", "label": "full view", "stageMode": "view" }
+      ]
+    },
+    {
+      "domain": "immersive",
+      "label": "immersive",
+      "defaultSlide": "3d",
+      "chromeMode": "immersive",
+      "items": [
+        { "id": "3d", "label": "3d", "stageMode": "view", "inspectorSchema": "3d" },
+        { "id": "parallax", "label": "parallax", "stageMode": "view", "inspectorSchema": "parallax" },
+        { "id": "shader", "label": "shader", "stageMode": "view", "inspectorSchema": "shader" }
+      ]
+    },
+    {
+      "domain": "app",
+      "label": "app",
+      "defaultSlide": "menu",
+      "chromeMode": "app",
+      "items": [
+        { "id": "menu", "label": "menu", "stageMode": "component", "inspectorSchema": "menu" },
+        { "id": "cards", "label": "cards", "stageMode": "component", "inspectorSchema": "cards" },
+        { "id": "bg", "label": "bg", "stageMode": "component", "inspectorSchema": "bg" }
+      ]
+    }
+  ]
+}

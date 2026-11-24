@@ -1,0 +1,8 @@
+{
+  "name": "design-mcp",
+  "displayName": "Design MCP",
+  "description": "Design-support MCP servers: library docs (Context7, DeepWiki, Tailwind, Three.js, Google Fonts repo), Iconify icons, color and palette tools, Excalidraw diagrams, and browser QA with Chrome DevTools and Playwright. Optional Figma, Refero, LottieFiles, and Framer entries need a local app or a key.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": ["Find a right-arrow icon in Iconify and give me the SVG", "Check contrast of #777 on white and suggest a passing shade", "Screenshot localhost:5173 at 375px and run a Lighthouse audit"]
+}

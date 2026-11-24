@@ -1,0 +1,105 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   13. GOOGLE TRAVEL DESIGN SYSTEM (FLIGHTS, HOTELS & TRIPS — TRAVEL)
+   Version: 6.1.7 · Carbon: designSystems/3cc7d1c3ea79f855
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/travel/versions/v6_1/sass/
+     - //depot/google3/ux/tokens/design_systems/travel/versions/v6_1/mss_vars/
+     - //depot/google3/ux/tokens/design_systems/travel/sass_vars_config.textproto
+     - Docs: go/carbon-service-docs | go/carbon-service-code-gen-mwtc
+   Values: Verbatim Carbon/codegen values unless the line is annotated 'inferred'
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --travel-sys-color-surface: #ffffff;
+    --travel-sys-color-tertiary: #f1f3f4;
+    --travel-sys-color-secondary: #e8f0fe;
+    --travel-sys-color-on-surface-emphasis: #202124;
+    --travel-sys-color-on-surface-default: #3c4043;
+    --travel-sys-color-on-surface-de-emphasis: #70757a;
+    --travel-sys-color-on-surface-icon-secondary: #5f6368;
+    --travel-sys-color-on-surface-link-default: #1558d6;
+    --travel-sys-color-primary: #1a73e8;
+    --travel-sys-color-primary-variant: #4285f4;
+    --travel-sys-color-on-primary: #ffffff;
+    --travel-sys-color-on-secondary: #1967d2;
+    --travel-sys-color-divider-secondary: #dadce0;
+    --travel-sys-color-outline-default: #dadce0;
+    --travel-sys-color-outline-selected: #d2e3fc;
+    --travel-sys-color-on-surface-positive: #188038;
+    --travel-sys-color-on-surface-neutral: #e37400;
+    --travel-sys-color-on-surface-negative: #d93025;
+    --travel-sys-color-surface-highlight-primary: #e8f0fe;
+    --travel-sys-color-surface-highlight-positive: #e6f4ea;
+    --travel-sys-color-surface-highlight-warning: #fef7e0;
+    --travel-sys-color-surface-highlight-negative: #fce8e6;
+    --travel-sys-color-surface-level1: #ffffff;
+    --travel-sys-color-surface-level3: #ffffff;
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --travel-sys-color-surface: #202124;  /* inferred */
+    --travel-sys-color-tertiary: #303134;  /* inferred */
+    --travel-sys-color-secondary: #394457;  /* inferred */
+    --travel-sys-color-on-surface-emphasis: #e8eaed;
+    --travel-sys-color-on-surface-default: #bdc1c6;
+    --travel-sys-color-on-surface-de-emphasis: #9aa0a6;
+    --travel-sys-color-on-surface-icon-secondary: #9aa0a6;
+    --travel-sys-color-on-surface-link-default: #8ab4f8;
+    --travel-sys-color-primary: #8ab4f8;
+    --travel-sys-color-primary-variant: #669df6;
+    --travel-sys-color-on-primary: #202124;
+    --travel-sys-color-on-secondary: #8ab4f8;  /* inferred */
+    --travel-sys-color-divider-secondary: #3c4043;  /* inferred */
+    --travel-sys-color-outline-default: #5f6368;  /* inferred */
+    --travel-sys-color-outline-selected: #394457;  /* inferred */
+    --travel-sys-color-on-surface-positive: #81c995;
+    --travel-sys-color-on-surface-neutral: #fdd663;
+    --travel-sys-color-on-surface-negative: #f28b82;
+    --travel-sys-color-surface-highlight-primary: rgba(138, 180, 248, 0.24);  /* inferred */
+    --travel-sys-color-surface-highlight-positive: rgba(129, 201, 149, 0.24);  /* inferred */
+    --travel-sys-color-surface-highlight-warning: rgba(253, 214, 99, 0.24);  /* inferred */
+    --travel-sys-color-surface-highlight-negative: rgba(242, 139, 130, 0.24);  /* inferred */
+    --travel-sys-color-surface-level1: #2a2b2e;
+    --travel-sys-color-surface-level3: #36373a;
+  }
+
+  /* travel.sys.typescale v6.1.7 (sizes verbatim); radii inferred from rendered product */
+  :root {
+    --travel-sys-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --travel-sys-font-display: 'Google Sans Display', 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --travel-sys-font-plain: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --travel-sys-display-md-size: 56px;
+    --travel-sys-headline-sm-size: 24px;
+    --travel-sys-body-md-size: 16px;
+    --travel-sys-body-sm-size: 14px;
+    --travel-sys-caption-size: 12px;
+    --travel-sys-radius-field: 4px;  /* inferred */
+    --travel-sys-radius-card: 8px;  /* inferred */
+    --travel-sys-radius-pill: 9999px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--travel-sys-color-surface);
+    color: var(--travel-sys-color-on-surface-default);
+    font-family: var(--travel-sys-font-body, var(--travel-sys-font-plain, var(--travel-sys-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

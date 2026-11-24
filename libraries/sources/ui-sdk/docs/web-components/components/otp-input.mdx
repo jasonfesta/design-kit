@@ -1,0 +1,277 @@
+---
+title: OTP Input
+description: Enter a one-time code with support for pasting, autofill, and native form validation.
+---
+
+Use an OTP Input for a short code sent by text or email, like a sign-in or verification code. Each character gets its own slot, and a pasted or autofilled code fills them all at once.
+
+<ComponentExample
+  name="otp-input/basic"
+  caption="Type a six-digit code or paste 123-456. Click a slot to edit it, use the arrow keys to move, and use your usual undo shortcut to undo a change."
+/>
+
+## Installation
+
+```bash
+npm install @ui-sdk/web @ui-sdk/core
+```
+
+Importing the component defines its elements. Import the field too if you use it. On the server the import does nothing.
+
+```ts
+import "@ui-sdk/web/otp-input"
+import "@ui-sdk/web/field"
+```
+
+## Composition
+
+Use the following composition to build a `ui-otp-input`:
+
+```text
+ui-otp-input
+└── ui-otp-input-group
+    ├── ui-otp-input-slot
+    └── ui-otp-input-slot
+```
+
+`ui-otp-input` creates the native input and holds the code. `ui-otp-input-group` lays out a run of slots. Each `ui-otp-input-slot` displays the character at its place among the input's slots, or at its zero-based `index` if you set one. Add `ui-otp-input-separator` between groups when the code is easier to read in sections, like the dash in the example above.
+
+Groups and separators change the presentation of one value. They do not create additional fields or tab stops: the slots display the value of a single native input, which handles selection, paste, undo, form submission, and autofill. It uses `autocomplete="one-time-code"` so supported browsers and password managers can offer a saved or received code.
+
+## Usage
+
+Import the parts and put them together:
+
+```html
+<script type="module">
+  import "@ui-sdk/web/otp-input"
+</script>
+
+<ui-otp-input max-length="4" aria-label="Verification code">
+  <ui-otp-input-group>
+    <ui-otp-input-slot></ui-otp-input-slot>
+    <ui-otp-input-slot></ui-otp-input-slot>
+    <ui-otp-input-slot></ui-otp-input-slot>
+    <ui-otp-input-slot></ui-otp-input-slot>
+  </ui-otp-input-group>
+</ui-otp-input>
+```
+
+## Four Digits
+
+Set `max-length` to the code's length and render that many slots. The default length is six.
+
+<ComponentExample
+  name="otp-input/four-digits"
+  caption="Enter four digits in PIN. Once it is full, typing another digit replaces the selected slot. Click another slot to edit it."
+/>
+
+## Alphanumeric
+
+Set `pattern` to `digits`, `letters`, or `alphanumeric`. The default is `digits`. The pattern filters characters and selects a suitable keyboard on touch devices.
+
+<ComponentExample
+  name="otp-input/alphanumeric"
+  caption="Type letters and digits into Recovery code, or paste ab12-cd34. The hyphen is removed and the eight characters fill the slots."
+/>
+
+## Custom Pattern
+
+Pass the source of a regular expression, such as `pattern="[0-9A-Fa-f]"` to accept hexadecimal characters. Use `input-mode` to choose the keyboard separately. The example displays letters in uppercase without changing their stored case.
+
+<ComponentExample
+  name="otp-input/pattern"
+  caption="Try typing 12zzab into Device code. The z characters are rejected; the accepted value is 12ab, displayed as 12AB."
+/>
+
+## Validation
+
+Inside a [Field](./field), set `invalid` on `ui-field` when your code rejects the value, such as a code the server didn't accept. The field marks the input with `aria-invalid` and connects its `ui-field-error`. Outside a field, pass `aria-invalid` and `aria-describedby` yourself.
+
+<ComponentExample
+  name="otp-input/invalid"
+  caption="Verification code is marked invalid, and the error below explains why. Edit any digit to clear the error."
+/>
+
+## Controlled
+
+Listen for `valuechange` to read changes, and set the element's `value` property to update it. Call `event.preventDefault()` in the listener to reject a change. Incoming values are filtered by the pattern and limited to `max-length`, just like typed values.
+
+<ComponentExample
+  name="otp-input/controlled"
+  caption="Enter, paste, or delete digits in One-time password. The console logs each new code and its reason."
+/>
+
+See [State and Events](../state-and-events) for the shared state conventions. The [reason](#reasons) distinguishes typing, pasting, undo, and controller actions.
+
+## On Complete
+
+`valuecommit` fires when a change fills every slot, including typing, paste, autofill, and controller writes. Changing an already-full code fires it again. Form resets and page restoration do not.
+
+<ComponentExample
+  name="otp-input/complete"
+  caption="Fill all six slots. The console logs the complete code and the change reason. Replace a digit to log it again; deleting one logs nothing."
+/>
+
+## Forms
+
+Set `name` to include the code in `FormData`. `required` blocks an empty code, and a partial code fails length validation. Reset restores the default value. Use `form` to associate a control outside the form with its ID.
+
+<ComponentExample
+  name="otp-input/form"
+  caption="Choose Verify with an empty or partial code to see validation. Enter all six digits and choose Verify to log the form values. Recovery code sits outside the form but submits with it. Reset clears both fields."
+/>
+
+A typed partial code reports `tooShort`. Partial default values and controller writes are checked through the native input's pattern, because browsers do not apply minlength validation to those values.
+
+## Disabled and Read-Only
+
+A disabled input cannot be focused, changed, or submitted. `read-only` prevents changes while keeping the input focusable and included in form data.
+
+```html
+<ui-otp-input disabled default-value="123456" aria-label="Disabled code">
+  ...
+</ui-otp-input>
+<ui-otp-input read-only default-value="654321" aria-label="Read-only code">
+  ...
+</ui-otp-input>
+```
+
+## Controller
+
+Use the element's `api` to read, fill, clear, or focus the input from another control. Writes use the `imperative` reason and pass through the same filtering and `valuechange` events as typing.
+
+```html
+<button type="button" data-action="fill">Fill</button>
+<button type="button" data-action="clear">Clear</button>
+<button type="button" data-action="read">Read</button>
+<button type="button" data-action="focus">Focus</button>
+<ui-otp-input aria-label="Verification code"> ... </ui-otp-input>
+```
+
+```ts
+const code = document.querySelector("ui-otp-input")!.api
+document
+  .querySelector('[data-action="fill"]')!
+  .addEventListener("click", () => code.setValue("123456"))
+document
+  .querySelector('[data-action="clear"]')!
+  .addEventListener("click", () => code.clear())
+document
+  .querySelector('[data-action="read"]')!
+  .addEventListener("click", () => console.log(code.getValue()))
+document
+  .querySelector('[data-action="focus"]')!
+  .addEventListener("click", () => code.focus())
+```
+
+[Controllers](../controllers) covers an element's `api`.
+
+## Custom Rendering
+
+Elements have no render functions. Each slot shows its character, and marks `active` and `hasFakeCaret` with `data-active` and `data-fake-caret`. Read the whole code from the `value` property or the `valuechange` event. See [Parts and Composition](../parts-and-composition) for choosing the elements parts bind.
+
+## Styling
+
+Draw the active slot and caret with `data-active` and `data-fake-caret`. The examples include the caret animation and disable it for reduced motion. Keep `position: relative` on each slot so its caret stays inside it.
+
+Each part has a `data-slot`, such as `otp-input-slot`, and its state attributes are listed under [Data Attributes](#data-attributes).
+
+## Data Attributes
+
+### `<ui-otp-input>` [#data-attributes-otpinput]
+
+<DataAttributes component="otp-input" part="root" />
+
+### `<ui-otp-input-group>` [#data-attributes-otpinputgroup]
+
+<DataAttributes component="otp-input" part="group" />
+
+### `<ui-otp-input-slot>` [#data-attributes-otpinputslot]
+
+<DataAttributes component="otp-input" part="slot" />
+
+### `<ui-otp-input-separator>` [#data-attributes-otpinputseparator]
+
+<DataAttributes component="otp-input" part="separator" />
+
+## API Reference
+
+Props are attributes in kebab case, like `max-length`, `default-value` and `read-only`. `pattern` is a
+preset name or the source of a regular expression. `controller` is a property. Callbacks are DOM events.
+
+### OTPInput
+
+<TypeTable
+  path="../../packages/core/src/components/otp-input/otp-input.ts"
+  name="OTPInputOptions"
+/>
+
+### OTPInputSlot
+
+<TypeTable
+  path="../../packages/core/src/components/otp-input/otp-input.ts"
+  name="OTPInputSlotProps"
+/>
+
+### State
+
+The same state shows as data attributes on each element. The root, groups and separators get the
+input's state.
+
+<StateTable
+  path="../../packages/core/src/components/otp-input/otp-input.ts"
+  name="OTPInputState"
+/>
+
+Slots get their own:
+
+<StateTable
+  path="../../packages/core/src/components/otp-input/otp-input.ts"
+  name="OTPInputSlotState"
+/>
+
+### Reasons
+
+`event.detail.reason` says why the code changed. Autofill and a code from the keyboard's suggestions are `input-change`.
+
+<ReasonTable
+  path="../../packages/core/src/components/otp-input/otp-input.ts"
+  name="OTPInputValueChangeReason"
+/>
+
+### Controller
+
+The element's `api` property has the same methods. The `value` property reads and sets the code.
+
+`setValue()` and `clear()` take an optional `{ reason, event }`, and fire `valuechange` like typing.
+
+<ControllerTable
+  path="../../packages/core/src/components/otp-input/otp-input.ts"
+  name="OTPInputController"
+/>
+
+### Events
+
+Events fire on their own element and don't bubble, with the code in `event.detail.value` and the `reason` and `event` beside it. Calling `preventDefault()` on `valuechange` cancels the change.
+
+| Member                      | On             | Description                                                |
+| --------------------------- | -------------- | ---------------------------------------------------------- |
+| `value` property, attribute | `ui-otp-input` | The code                                                   |
+| `api` property              | `ui-otp-input` | The [controller](#controller)                              |
+| `valuechange` event         | `ui-otp-input` | `detail: { value, reason, event }`, on every change        |
+| `valuecommit` event         | `ui-otp-input` | `detail: { value, reason, event }`, when a change fills it |
+
+## Accessibility
+
+Name the input with `ui-field-label`, a native label, `aria-label`, or `aria-labelledby`. Screen readers encounter one input with the whole code; the visual slots, groups, and separators are hidden from them.
+
+### Keyboard
+
+The input keeps its native keys. Arrow keys, Home, and End move the selection between slots, Backspace deletes, and your usual shortcuts undo and redo. Pasting a code such as `123-456` removes the separators.
+
+### Tested Behavior
+
+Every line below is an automated test.
+
+<SpecList spec="otp-input" />

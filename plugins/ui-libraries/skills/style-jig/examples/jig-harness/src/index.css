@@ -1,0 +1,1501 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   CANONICAL SLIDES DESIGN KIT JIG HARNESS (style-jig + variant-notches)
+   - Matte Backplates (--plate: #151514 Dark / #e7e5df Light)
+   - Smooth Sliding Active Pill (.jig-active-pill)
+   - Top Centered Style + UI Library/Theme Backplates (.top-jig-wrap)
+   - Bottom Centered Playback, Record, Trace, Prompt, Open (.bottom-motion-wrap)
+   - Right-Side 16x16 Donor Variant Notches + 176x124 Preview (.right-variant-notches)
+   - Right-Side .dk-panel Horizontal Drag-Scrub Inspector + Custom Backplate Dropdown
+   - Autopilot Playback Cursor (.ap-cursor) + Zero-Halo Stage Corridor
+   ========================================================================= */
+
+:root,
+html[data-jig-theme="light"],
+body[data-theme="light"] {
+  color-scheme: light dark;
+  --bg: #faf9f6;
+  --plate: #e7e5df;
+  --g1: #eceae4;
+  --g2: #dcd9d0;
+  --g3: #d0cdc3;
+  --g4: #c2beb3;
+  --fg: #18181b;
+  --muted: #4a4945;
+  --faint: #62605a;
+  --pill-bg: rgba(24, 24, 27, 0.085);
+  --dk-fill: rgba(24, 24, 27, 0.09);
+  --dk-fill-drag: rgba(24, 24, 27, 0.16);
+  --dk-shadow: 0 12px 30px rgba(24, 24, 27, 0.10);
+  --dk-menu-border: rgba(24, 24, 27, 0.09);
+  --dk-menu-shadow: inset 0 0 0 1px rgba(24, 24, 27, 0.09), 0 14px 30px rgba(24, 24, 27, 0.14);
+  --dk-swatch-ring: rgba(24, 24, 27, 0.18);
+  --stage-vessel-bg: #ffffff;
+  --stage-vessel-border: rgba(24, 24, 27, 0.09);
+  --tab-menu-bg: rgba(24, 24, 27, 0.045);
+  --tab-menu-border: rgba(24, 24, 27, 0.07);
+  --tab-active-bg: #ffffff;
+  --tab-active-shadow: 0 1px 2px rgba(24, 24, 27, 0.10), inset 0 0 0 1px rgba(24, 24, 27, 0.07);
+  --style-radius: 16px;
+  --style-border-w: 1px;
+  --style-border-style: solid;
+  --style-accent: #18181b;
+}
+
+html[data-jig-theme="dark"],
+body[data-theme="dark"] {
+  --bg: #000000;
+  --plate: #151514;
+  --g1: #141413;
+  --g2: #1b1b19;
+  --g3: #232320;
+  --g4: #2c2c29;
+  --fg: #ededec;
+  --muted: #a3a29d;
+  --faint: #868580;
+  --pill-bg: rgba(255, 255, 255, 0.085);
+  --dk-fill: rgba(237, 237, 236, 0.09);
+  --dk-fill-drag: rgba(237, 237, 236, 0.16);
+  --dk-shadow: 0 14px 36px rgba(0, 0, 0, 0.42);
+  --dk-menu-border: rgba(255, 255, 255, 0.08);
+  --dk-menu-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 16px 36px rgba(0, 0, 0, 0.52);
+  --dk-swatch-ring: rgba(255, 255, 255, 0.18);
+  --stage-vessel-bg: #141413;
+  --stage-vessel-border: rgba(255, 255, 255, 0.08);
+  --tab-menu-bg: rgba(255, 255, 255, 0.045);
+  --tab-menu-border: rgba(255, 255, 255, 0.07);
+  --tab-active-bg: rgba(255, 255, 255, 0.12);
+  --tab-active-shadow: 0 1px 2px rgba(0, 0, 0, 0.36), inset 0 0 0 1px rgba(255, 255, 255, 0.09);
+  --style-accent: #ededec;
+}
+
+@layer base {
+  :root {
+    --font-sans: "Instrument Sans", "Hanken Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+    --jig-soft-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  html,
+  body,
+  #root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.18s ease, color 0.18s ease;
+  }
+
+  body,
+  #root {
+    font-size: 15px;
+  }
+
+  button {
+    font-family: inherit;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Soft 180ms Jig Theme / Style Surface Settle (zero-specificity :where so explicit animations always win) */
+:where(
+    #root
+      :is(
+        div,
+        main,
+        section,
+        aside,
+        header,
+        footer,
+        nav,
+        article,
+        button,
+        span,
+        p,
+        h1,
+        h2,
+        h3,
+        textarea,
+        input,
+        table,
+        thead,
+        tbody,
+        tr,
+        th,
+        td
+      )
+  ) {
+  transition:
+    background-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    fill 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    stroke 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hidden OS Scrollbars */
+*,
+*::before,
+*::after {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.no-scrollbar {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+.no-scrollbar::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+/* =========================================================================
+   2-COLUMN SLIDES LAYOUT: Left Expandable Accordion TOC + Right Isolated Stage
+   ========================================================================= */
+.layout {
+  display: grid;
+  grid-template-columns: clamp(156px, 15.5vw, 206px) minmax(0, 1fr);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.toc {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: calc(var(--jig-top-safe, 66px) + 6px) clamp(12px, 1.5vw, 22px) 64px clamp(14px, 1.8vw, 26px);
+  background: transparent;
+  border: none;
+  z-index: 20;
+  min-width: 0;
+  user-select: none;
+}
+.toc::-webkit-scrollbar {
+  display: none;
+}
+
+.toc-list {
+  list-style: none;
+  margin: auto 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toc-domain-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-group-btn {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+  text-transform: lowercase;
+  white-space: nowrap;
+  /* -2px optical vertical centering */
+  padding: 4px 0 1px 0;
+  min-height: 24px;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.toc-group-btn:hover {
+  color: var(--muted);
+}
+.toc-group-btn.active-domain {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+@keyframes tocSubReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toc-sub-list {
+  list-style: none;
+  margin: 2px 0 6px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: tocSubReveal 160ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.toc-item {
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  text-align: left;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+  cursor: pointer;
+  min-height: 23px;
+  min-width: 24px;
+  /* -2px optical vertical centering */
+  padding: 4px 0 1px 14px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.15s ease;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+.toc-item:hover {
+  color: var(--muted);
+}
+.toc-item.active {
+  color: var(--fg);
+  font-weight: 500;
+}
+
+/* =========================================================================
+   TOP & BOTTOM VIEWPORT-CENTERED FLOATING JIG BACKPLATES (z-index: 9999)
+   ========================================================================= */
+.top-jig-wrap {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 12px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+}
+
+.floating-style-plate,
+.floating-lib-plate {
+  pointer-events: auto;
+  position: relative;
+  flex: 0 1 auto;
+  background: var(--plate);
+  border: none;
+  border-radius: 13px;
+  height: 40px;
+  min-height: 40px;
+  padding: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px 6px;
+  transition: background-color 0.18s ease, opacity 0.18s ease;
+}
+
+/* Smooth Sliding Active Pill inside .floating-style-plate & .floating-lib-plate */
+.jig-active-pill {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 0;
+  width: 0;
+  border: none;
+  border-radius: 8px;
+  background: var(--pill-bg);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  will-change: transform, width, opacity;
+  transition:
+    transform 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.18s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.16s ease;
+}
+
+.jig-word {
+  position: relative;
+  z-index: 1;
+  min-height: 30px;
+  min-width: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  outline: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+  cursor: pointer;
+  /* -2px optical vertical shift: top 5px / bottom 1px */
+  padding: 5px 10px 1px 10px;
+  text-transform: lowercase;
+  white-space: nowrap;
+  transition: color 0.16s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.16s ease;
+}
+.jig-word:hover {
+  color: var(--muted);
+}
+.jig-word.active {
+  color: var(--fg);
+}
+
+.jig-theme-btn {
+  position: relative;
+  z-index: 1;
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  min-height: 26px;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 0 0 0 2px;
+  padding: 2px 0 0 0;
+  transition: color 0.15s ease, background 0.15s ease, opacity 0.16s ease;
+}
+.jig-theme-btn:hover {
+  color: var(--fg);
+  background: var(--pill-bg);
+}
+
+/* Bottom Centered Stack: Output Banner + Playback / Record / Trace / Prompt / Open */
+.bottom-motion-wrap {
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  z-index: 9999;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes jigOutputReveal {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.jig-record-output-plate {
+  pointer-events: auto;
+  background: var(--plate);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 11px;
+  min-height: 36px;
+  padding: 4px 8px 4px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  animation: jigOutputReveal 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.jig-output-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #10b981;
+  border: none;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+
+.jig-output-summary {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  padding: 3px 2px 1px 0;
+  white-space: nowrap;
+}
+
+.jig-output-action-btn,
+.jig-output-close-btn {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 7px;
+  background: var(--pill-bg);
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  padding: 4px 9px 2px 9px;
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.jig-output-close-btn {
+  background: transparent;
+  color: var(--muted);
+  padding: 4px 7px 2px 7px;
+}
+.jig-output-action-btn:hover {
+  background: var(--g3);
+}
+.jig-output-close-btn:hover {
+  background: var(--pill-bg);
+  color: var(--fg);
+}
+
+.jig-bottom-controls-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: 100%;
+}
+
+.floating-motion-plate {
+  pointer-events: auto;
+  background: var(--plate);
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 11px;
+  height: 38px;
+  min-height: 38px;
+  padding: 5px 8px 5px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.18s ease, color 0.16s ease;
+}
+
+.floating-motion-plate .jig-word {
+  padding: 2px 2px 0 2px;
+  min-height: 28px;
+  line-height: 1.2;
+}
+
+html[data-jig-theme="dark"] .floating-motion-plate .jig-word.active,
+body[data-theme="dark"] .floating-motion-plate .jig-word.active {
+  color: #ffffff;
+}
+
+/* Separate trace, prompt, and open Jig Backplate Buttons/Links */
+button.floating-motion-plate.jig-action-plate,
+a.floating-motion-plate.jig-action-plate {
+  /* -2px optical vertical centering on the button element itself */
+  padding: 6px 14px 4px 14px;
+  gap: 0;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--fg);
+  text-decoration: none;
+  text-transform: lowercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+html[data-jig-theme="dark"] button.floating-motion-plate.jig-action-plate,
+body[data-theme="dark"] button.floating-motion-plate.jig-action-plate,
+html[data-jig-theme="dark"] a.floating-motion-plate.jig-action-plate,
+body[data-theme="dark"] a.floating-motion-plate.jig-action-plate {
+  color: #ffffff;
+}
+
+button.floating-motion-plate.jig-action-plate:hover,
+a.floating-motion-plate.jig-action-plate:hover {
+  background: var(--g3);
+  color: var(--fg);
+}
+
+html[data-jig-theme="dark"] button.floating-motion-plate.jig-action-plate:hover,
+body[data-theme="dark"] button.floating-motion-plate.jig-action-plate:hover,
+html[data-jig-theme="dark"] a.floating-motion-plate.jig-action-plate:hover,
+body[data-theme="dark"] a.floating-motion-plate.jig-action-plate:hover {
+  color: #ffffff;
+}
+
+.jig-action-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  line-height: 1.2;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Fixed-width resting anchor around prompt so "copied to clipboard" never shifts neighbor plates */
+.jig-prompt-anchor {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 38px;
+  min-height: 38px;
+  pointer-events: none;
+}
+
+.jig-prompt-sizer {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+  height: 38px;
+  min-height: 38px;
+  padding: 5px 14px 5px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+button.floating-motion-plate.jig-prompt-plate {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+button.floating-motion-plate.jig-prompt-plate.copied {
+  z-index: 4;
+}
+
+.jig-play-btn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 2px 0 0 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.jig-play-btn:hover {
+  color: var(--fg);
+  background: var(--pill-bg);
+}
+.jig-play-btn.playing {
+  color: var(--bg);
+  background: var(--fg);
+}
+
+@keyframes jigRecordPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.14;
+  }
+}
+
+.jig-record-btn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  /* -2px optical vertical shift; zero stroke */
+  padding: 2px 0 0 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+.jig-record-btn:hover {
+  background: var(--pill-bg);
+  border: none;
+  box-shadow: none;
+}
+.jig-record-btn.recording,
+.jig-record-btn.recording:hover {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 2px 0 0 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.jig-record-dot {
+  width: 13.5px;
+  height: 13.5px;
+  border-radius: 999px;
+  background: #ef4444;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  flex-shrink: 0;
+}
+.jig-record-btn.recording .jig-record-dot {
+  animation: jigRecordPulse 0.85s ease-in-out infinite;
+}
+
+/* Immersive Dimming Rule (dims coding libraries and motion-craft label to 25%, keeping Moon/Sun and Play/Record active) */
+body[data-imm-libs-disabled="true"] .floating-lib-plate [data-lib-pick],
+body[data-imm-libs-disabled="true"] .floating-motion-plate [data-motion-pick] {
+  color: var(--muted) !important;
+  font-weight: 400 !important;
+  opacity: 0.25 !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* App Stage Lock Rule (dims coding libraries and theme toggle on mobile app frames) */
+body[data-app-libs-disabled="true"] .floating-lib-plate [data-lib-pick],
+body[data-app-libs-disabled="true"] .floating-lib-plate .jig-theme-btn {
+  color: var(--muted) !important;
+  opacity: 0.25 !important;
+  pointer-events: none !important;
+  cursor: default !important;
+}
+body[data-app-libs-disabled="true"][data-slide="bg"] .floating-motion-plate [data-motion-pick] {
+  color: var(--muted) !important;
+  opacity: 0.25 !important;
+  pointer-events: none !important;
+}
+
+/* Collapsed Right-Hand Inspector Pill Docked in .top-jig-wrap */
+.dk-collapsed-pill {
+  pointer-events: auto;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 13px;
+  background: var(--plate);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* =========================================================================
+   RIGHT-SIDE FLOATING TACTILE SCRUB INSPECTOR (.dk-panel)
+   ========================================================================= */
+.dk-panel {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 256px;
+  max-height: calc(100vh - 148px);
+  background: var(--plate);
+  border: none;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: visible;
+  z-index: 9999;
+  color: var(--fg);
+  box-shadow: var(--dk-shadow);
+  pointer-events: auto;
+  user-select: none;
+}
+
+.dk-panel.mapp-paired {
+  right: auto;
+  left: calc(50% + 116px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+@media (max-width: 980px) {
+  .dk-panel.mapp-paired {
+    left: auto;
+    right: 44px;
+  }
+}
+
+.dk-root-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.dk-root-title {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  text-transform: lowercase;
+}
+.dk-collapse-word {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+  text-transform: lowercase;
+  cursor: pointer;
+  padding: 4px 0 0 0;
+  min-height: 24px;
+  min-width: 24px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.16s ease;
+}
+.dk-collapse-word:hover {
+  color: var(--muted);
+}
+
+.dk-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Custom Stylized Jig Backplate Dropdown */
+.dk-backplate-dropdown {
+  position: relative;
+  width: 100%;
+  z-index: 30;
+}
+.dk-dropdown-trigger {
+  width: 100%;
+  height: 36px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: var(--g2);
+  color: var(--fg);
+  padding: 2px 12px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  cursor: pointer;
+  transition: background 0.16s ease;
+}
+.dk-dropdown-trigger:hover,
+.dk-backplate-dropdown.open .dk-dropdown-trigger {
+  background: var(--g3);
+}
+.dk-dropdown-chevron {
+  color: var(--muted);
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), color 0.15s ease;
+  flex-shrink: 0;
+}
+.dk-backplate-dropdown.open .dk-dropdown-chevron {
+  transform: rotate(180deg);
+  color: var(--fg);
+}
+.dk-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  z-index: 80;
+  background: var(--plate);
+  border-radius: 12px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: var(--dk-menu-shadow);
+}
+.dk-dropdown-item {
+  width: 100%;
+  height: 32px;
+  border: none;
+  outline: none;
+  padding: 2px 10px 0 10px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13.5px;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+.dk-dropdown-item:hover,
+.dk-dropdown-item.active {
+  background: var(--g2);
+  color: var(--fg);
+}
+.dk-dropdown-item.active {
+  font-weight: 500;
+}
+.dk-dropdown-item .item-check {
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--fg);
+  opacity: 0;
+  transition: opacity 0.14s ease;
+}
+.dk-dropdown-item.active .item-check {
+  opacity: 0.9;
+}
+
+/* Word Strip (chain, helix, ring, wave, arch) */
+.dk-word-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 13px;
+}
+.dk-word-btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--faint);
+  text-transform: lowercase;
+  cursor: pointer;
+  padding: 4px 0 0 0;
+  min-height: 24px;
+  min-width: 24px;
+  display: inline-flex;
+  align-items: center;
+  transition: color 0.16s ease;
+}
+.dk-word-btn:hover {
+  color: var(--muted);
+}
+.dk-word-btn.active {
+  color: var(--fg);
+}
+
+/* Segmented Tab Menus (floating, bar, circle) */
+.dk-tab-menu {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 9px;
+  background: var(--tab-menu-bg);
+  border: 1px solid var(--tab-menu-border);
+}
+.dk-tab-menu-primary {
+  padding: 3.5px;
+  border-radius: 10px;
+}
+.dk-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  border: none;
+  outline: none;
+  padding: 2px 8px 0 8px;
+  border-radius: 6.5px;
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  background: transparent;
+  cursor: pointer;
+  text-transform: lowercase;
+  transition: background-color 0.16s ease, color 0.16s ease, box-shadow 0.16s ease;
+}
+.dk-tab-menu-primary .dk-tab-btn {
+  height: 28px;
+  font-size: 13px;
+}
+.dk-tab-btn:hover {
+  color: var(--fg);
+}
+.dk-tab-btn.active {
+  color: var(--fg);
+  background: var(--tab-active-bg);
+  box-shadow: var(--tab-active-shadow);
+}
+
+/* Signature 34px Horizontal Drag-Scrub Sliders (.dk-slider-row) */
+.dk-folder-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.dk-slider-row {
+  position: relative;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--g2);
+  overflow: hidden;
+  cursor: ew-resize;
+  touch-action: none;
+  transition: background 0.16s ease;
+}
+.dk-slider-row:hover {
+  background: var(--g3);
+}
+.dk-slider-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--dk-fill);
+  pointer-events: none;
+}
+.dk-slider-row.dragging .dk-slider-fill {
+  background: var(--dk-fill-drag);
+}
+.dk-slider-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13.5px;
+  font-weight: 450;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  pointer-events: none;
+  text-transform: lowercase;
+}
+.dk-slider-val {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+.dk-toggle-row,
+.dk-readout-row {
+  height: 34px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: var(--g2);
+  padding: 2px 12px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+  font-weight: 450;
+  color: var(--muted);
+  text-transform: lowercase;
+}
+.dk-toggle-row {
+  cursor: pointer;
+}
+.dk-toggle-row:hover {
+  background: var(--g3);
+}
+.dk-toggle-state {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--faint);
+}
+.dk-toggle-row.checked .dk-toggle-state {
+  color: var(--fg);
+}
+
+.dk-color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+.dk-color-swatch::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.dk-color-swatch::-webkit-color-swatch {
+  border: 1px solid var(--dk-swatch-ring);
+  border-radius: 999px;
+}
+
+.dk-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+/* =========================================================================
+   RIGHT-SIDE 16x16 STYLE DONOR THUMBNAIL NOTCHES + 176x124 HOVER PREVIEW
+   ========================================================================= */
+#jigStyleVariants,
+.right-variant-notches {
+  position: fixed;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  background: var(--plate);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 6px;
+  user-select: none;
+}
+
+.rvn-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+
+.rvn-notch,
+.vnotch-btn {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background: var(--g3);
+  opacity: 0.68;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    opacity 0.16s ease,
+    transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.16s ease;
+}
+.rvn-notch::after {
+  content: '';
+  position: absolute;
+  inset: -4px -8px;
+}
+.rvn-thumb {
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.rvn-notch:hover,
+.rvn-notch:focus-visible {
+  opacity: 1;
+  transform: scale(1.08);
+}
+.rvn-notch.active {
+  opacity: 1;
+  box-shadow: 0 0 0 2px var(--fg);
+}
+
+.rvn-tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--plate);
+  color: var(--fg);
+  border: none;
+  border-radius: 12px;
+  padding: 6px;
+  pointer-events: none;
+  box-shadow: var(--dk-menu-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.14s ease;
+}
+.rvn-tooltip.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+.rvn-tooltip-img {
+  width: 176px;
+  height: 124px;
+  border: none;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  background: var(--g2);
+}
+.rvn-tooltip-label {
+  padding: 0 4px 1px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* =========================================================================
+   CENTERED STAGE ENVIRONMENT ([data-jig-stage-viewport], Zero Halo)
+   ========================================================================= */
+.stage {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  width: 100%;
+  height: 100vh;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+[data-jig-stage-viewport],
+.jig-stage-mount,
+.slides-viewport,
+.component-host {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+[data-jig-stage-viewport][data-stage-mode="component"] {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--jig-top-safe, 66px) 56px 66px 24px;
+}
+
+[data-jig-stage-viewport][data-stage-mode="view"] {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+[data-jig-stage-viewport].imm-stage-viewport {
+  overflow: hidden;
+  padding: 0 !important;
+}
+
+.imm-view-frame {
+  width: 100%;
+  height: 100%;
+  padding: var(--jig-top-safe, 66px) 20px 64px 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  background: transparent !important;
+}
+
+.jig-view-shell {
+  width: 100%;
+  max-width: 1120px;
+  min-height: 100vh;
+  margin-inline: auto;
+  padding: var(--jig-top-safe, 66px) 56px 66px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: transparent !important;
+}
+
+.mapp-shifted-left {
+  transform: translateX(-142px);
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mapp-blank-frame {
+  aspect-ratio: 9 / 16;
+  width: auto;
+  max-width: calc(100vw - 240px);
+  border-radius: 30px;
+}
+body[data-jig="grid"] .mapp-blank-frame {
+  border-radius: 8px;
+}
+body[data-jig="brutal"] .mapp-blank-frame,
+body[data-jig="retro"] .mapp-blank-frame {
+  border-radius: 0px;
+}
+
+.blank-stage-surface {
+  background: var(--stage-vessel-bg);
+  border-width: var(--style-border-w, 1px);
+  border-style: var(--style-border-style, solid);
+  border-color: var(--stage-vessel-border);
+  border-radius: var(--style-radius, 16px);
+  transition:
+    border-radius 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================================
+   ANIMATED AUTOPILOT PLAYBACK CURSOR (.ap-cursor)
+   ========================================================================= */
+.ap-cursor {
+  position: fixed;
+  top: -9px;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.92);
+  border: 2px solid #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(9, 9, 11, 0.55),
+    0 4px 14px rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    scale 140ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ap-cursor.is-tapping {
+  scale: 0.84;
+}
+
+.ap-cursor::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(16, 185, 129, 0.85);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@keyframes apTapRing {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+.ap-cursor.is-tapping::after {
+  animation: apTapRing 380ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* =========================================================================
+   RESPONSIVE BREAKPOINTS & REDUCED-MOTION GUARDRAILS
+   ========================================================================= */
+@media (max-width: 980px) {
+  .jig-word {
+    padding: 5px 7px 1px 7px;
+    font-size: 12.5px;
+  }
+  button.floating-motion-plate.jig-action-plate,
+  a.floating-motion-plate.jig-action-plate,
+  .jig-prompt-sizer {
+    font-size: 12.5px;
+  }
+  .floating-style-plate,
+  .floating-lib-plate {
+    gap: 2px 3px;
+  }
+  .mapp-shifted-left {
+    transform: translateX(-124px);
+  }
+  [data-jig-stage-viewport][data-stage-mode="component"],
+  .jig-view-shell {
+    padding-top: var(--jig-top-safe, 96px);
+    padding-bottom: 72px;
+    padding-inline: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-jig-wrap {
+    padding: 0 10px;
+  }
+  .floating-style-plate {
+    max-width: calc(100vw - 20px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-content: flex-start;
+  }
+  .floating-style-plate .jig-word {
+    flex-shrink: 0;
+  }
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .toc {
+    max-height: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: calc(var(--jig-top-safe, 62px) + 4px) 12px 6px;
+  }
+  .toc-list {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+  }
+  .toc-domain-item {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .toc-sub-list {
+    flex-direction: row;
+    margin: 0;
+    gap: 8px;
+  }
+  .toc-item {
+    padding: 4px 6px 1px;
+  }
+}
+
+@media (max-width: 520px) {
+  .jig-bottom-controls-row {
+    gap: 6px;
+  }
+  .floating-motion-plate:not(.jig-action-plate) {
+    padding: 5px 6px 5px 10px;
+    gap: 5px;
+  }
+  button.floating-motion-plate.jig-action-plate,
+  a.floating-motion-plate.jig-action-plate,
+  .jig-prompt-sizer {
+    font-size: 12px;
+    padding: 5px 10px 5px 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toc-sub-list,
+  .jig-record-btn.recording .jig-record-dot,
+  .ap-cursor,
+  .ap-cursor::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

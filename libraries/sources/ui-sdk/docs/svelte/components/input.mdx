@@ -1,0 +1,243 @@
+---
+title: Input
+description: Enter text, add a clear button, and connect the value to your form or state.
+---
+
+An input is a native text field for short values like a name, an email address or a search. It works inside a field and a form, and adds a clear button, text around the input, and change reasons.
+
+<ComponentExample
+  name="input/basic"
+  caption="Edit the website, then press Clear website. The text clears, focus returns to the input and the console logs the reason. Pressing https:// focuses the input too."
+/>
+
+## Installation
+
+```bash
+npm install @ui-sdk/svelte @ui-sdk/core
+```
+
+## Composition
+
+Use the following composition to build an `Input` or an `InputGroup`:
+
+```text
+Input
+
+InputGroup
+├── Input
+└── InputClear
+```
+
+`Input` renders a native `<input>`. Pass its type, placeholder, autocomplete and other native attributes directly. `InputGroup` holds text or buttons around it, and `InputClear` empties it.
+
+## Usage
+
+Import the parts and put them together:
+
+```svelte
+<script lang="ts">
+  import { Input, InputClear, InputGroup } from "@ui-sdk/svelte/input"
+</script>
+
+<InputGroup>
+  <Input type="search" aria-label="Search" />
+  <InputClear aria-label="Clear search" />
+</InputGroup>
+```
+
+## Fields
+
+Wrap the input in a [Field](./field) to give it a visible label, a description and errors. The field also supplies its `name` when the input has none.
+
+```svelte
+<Field name="username">
+  <FieldLabel>Username</FieldLabel>
+  <Input autocomplete="username" />
+  <FieldDescription>Choose a unique username for your account.</FieldDescription
+  >
+</Field>
+```
+
+## Disabled and Read Only
+
+Set `disabled` on the input or its field to prevent editing and leave it out of the tab order and the submitted values. A `readOnly` input can still be focused, selected and submitted.
+
+```svelte
+<Field disabled>
+  <FieldLabel>Email</FieldLabel>
+  <Input type="email" defaultValue="hollis@example.com" />
+</Field>
+
+<Field>
+  <FieldLabel>Profile URL</FieldLabel>
+  <Input readOnly value="example.com/hollis" />
+</Field>
+```
+
+## Validation
+
+Use native constraints such as `required`, `type="email"` and `pattern`. The field shows its error after a submit attempt and updates it as the value changes. Set `invalid` on the field for an error your app decides; the input gets `aria-invalid`. [Field](./field#validation) covers the error parts and their matches.
+
+```svelte
+<Field name="email" invalid={emailTaken ? true : undefined}>
+  <FieldLabel>Email</FieldLabel>
+  <Input type="email" required />
+  <FieldError match="valueMissing">Enter your email address.</FieldError>
+  <FieldError match>That email is already in use.</FieldError>
+</Field>
+```
+
+## Input Group
+
+Place text or buttons around an input with `InputGroup`. Pressing the group's text focuses the input. The text is display content, not part of the submitted value.
+
+```svelte
+<InputGroup>
+  <span>https://</span>
+  <Input aria-label="Website" placeholder="example" />
+  <span>.com</span>
+</InputGroup>
+```
+
+## Clear Button
+
+`InputClear` shows while the input has text it can clear. Pressing it empties the value, reports `clear-press` and returns focus to the input. Controlled state and native input listeners receive the change too.
+
+```svelte
+<InputGroup>
+  <Input type="search" aria-label="Search people" />
+  <InputClear aria-label="Clear search">
+    <XIcon aria-hidden="true" />
+  </InputClear>
+</InputGroup>
+```
+
+## Controlled
+
+Bind `value` with `bind:value` to control the input. `onValueChange` also receives the change details, and native `oninput` still works.
+
+```svelte
+<script lang="ts">
+  let name = $state("Hollis Grant")
+</script>
+
+<Input bind:value={name} />
+```
+
+See [State and Events](../state-and-events) for the shared controlled-state conventions. Input's [reasons](#reasons) tell typing, clearing, resetting and controller changes apart.
+
+## Filtering What's Typed
+
+Call `details.cancel()` in `onValueChange` to reject a change. The previous text and caret position are restored.
+
+```svelte
+<Input
+  inputmode="numeric"
+  maxlength={6}
+  onValueChange={(value, details) => {
+    if (!/^\d*$/.test(value)) details.cancel()
+  }}
+/>
+```
+
+## Controller
+
+Use `createInputController()` for actions outside the input. Its methods update the input through the same change callbacks as typing.
+
+```svelte
+<script lang="ts">
+  const message = createInputController()
+</script>
+
+<Input controller={message} aria-label="Message" />
+<button onclick={() => message.setValue("On my way!")}>Quick Reply</button>
+<button onclick={() => message.clear()}>Clear</button>
+<button onclick={() => message.focus()}>Focus</button>
+```
+
+[Controllers](../controllers) covers creating and sharing a controller.
+
+## Passwords and Files
+
+Use [Password Input](./password-input) to show and hide a password. A native file input works with `type="file"`; use [File Input](./file-input) for dropping, previews and validation.
+
+## Styling
+
+Each part has a `data-slot`, such as `input-group`, and shows its state through the attributes listed under [Data Attributes](#data-attributes). Use `data-filled`, `data-disabled`, `data-readonly` and `data-required` on the input, and the field's validation and focus attributes inside a field. For a group's focus ring, style `:has(input:focus-visible)`, so a focused button inside it keeps its own ring.
+
+## Data Attributes
+
+### Input [#data-attributes-input]
+
+<DataAttributes component="input" part="root" />
+
+### InputGroup [#data-attributes-inputgroup]
+
+<DataAttributes component="input-group" part="group" />
+
+### InputClear [#data-attributes-inputclear]
+
+<DataAttributes component="input-group" part="clear" />
+
+## API Reference
+
+Props and callbacks are the same as below, as Svelte props, plus every native input attribute. `value` can be bound with `bind:value`.
+
+### Input
+
+<TypeTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputOptions"
+/>
+
+<TypeTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputProps"
+/>
+
+### InputGroup
+
+<TypeTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputGroupOptions"
+/>
+
+### InputClear
+
+A `<button>` that empties the input in its group and focuses it. It renders only while there's text to clear.
+
+### State
+
+<StateTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputState"
+/>
+
+`InputGroup` and `InputClear` receive the state of the input inside the group.
+
+<StateTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputGroupState"
+/>
+
+### Reasons
+
+<ReasonTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputValueChangeReason"
+/>
+
+### Controller
+
+Create one with `createInputController()` and pass it as `controller`.
+
+<ControllerTable
+  path="../../packages/core/src/components/input/input.ts"
+  name="InputController"
+/>
+
+## Accessibility
+
+Give the input a visible field label or an `aria-label`, and give the clear button an accessible name. The native input keeps standard text editing, selection, autocomplete and form behavior.
+
+<SpecList spec="input" />

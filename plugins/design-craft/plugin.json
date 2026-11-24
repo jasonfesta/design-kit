@@ -1,0 +1,12 @@
+{
+  "name": "design-craft",
+  "displayName": "Design Craft",
+  "description": "Taste, UI craft, interface review, typography, color (color-expert, OKLCH, better-colors), design tokens, 67 named visual styles (style-*), 14 SVG illustration styles, Impeccable, Superdesign, UI Craft, UI/UX Pro Max, interfaces.dev better-* skills, and Anthropic brand/theme/canvas skills.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": [
+    "Review this screen and give me one ranked report",
+    "Build an OKLCH palette with semantic tokens",
+    "Restyle this page in a neobrutalism style"
+  ]
+}

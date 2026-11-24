@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Earth (earth v0.3.6) — Immersive Globe Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    body { background: var(--earth-sys-color-constant-dark); color: var(--earth-sys-color-on-constant-dark); overflow: hidden; height: 100vh; }
+    .stage { position: fixed; inset: 0; background: radial-gradient(circle at 62% 52%, rgba(79,160,255,0.18), transparent 38%), #000; }
+    .stars { position: absolute; inset: 0; background-image: radial-gradient(1px 1px at 10% 20%, #fff8, transparent), radial-gradient(1px 1px at 80% 12%, #fff6, transparent), radial-gradient(1px 1px at 30% 80%, #fff5, transparent), radial-gradient(1px 1px at 90% 70%, #fff7, transparent), radial-gradient(1px 1px at 55% 6%, #fff6, transparent), radial-gradient(1px 1px at 70% 92%, #fff5, transparent); }
+    .globe { position: absolute; width: 640px; height: 640px; left: 58%; top: 52%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle at 35% 30%, #5fa8d8 0%, #2d6f9e 30%, #123d63 62%, #061a2e 100%); box-shadow: inset -60px -40px 120px rgba(0,0,0,.75), 0 0 80px rgba(79,160,255,.25); overflow: hidden; }
+    .land { position: absolute; border-radius: 46% 54% 40% 60%; background: radial-gradient(circle at 40% 40%, #7c9a5a, #4e6b3a 60%, #3b5230); opacity: .92; }
+    .clouds { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 60%, rgba(255,255,255,.35), transparent 30%), radial-gradient(ellipse at 70% 30%, rgba(255,255,255,.28), transparent 25%); }
+    .pin { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: var(--earth-sys-color-constant-dark-primary); box-shadow: 0 0 0 6px rgba(168,199,250,.25); }
+    .topbar { position: fixed; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 3; gap: 10px; }
+    .search { width: 380px; height: 48px; border-radius: var(--earth-sys-corner-full); background: var(--earth-sys-color-surface); color: var(--earth-sys-color-on-surface-variant); display: flex; align-items: center; padding: 0 18px; gap: 12px; font-size: 14.5px; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+    .cd-btn { height: 40px; padding: 0 16px; border-radius: var(--earth-sys-corner-full); border: 1px solid var(--earth-sys-color-constant-dark-outline); background: rgba(0,0,0,.72); color: var(--earth-sys-color-on-constant-dark); font: 500 13px var(--earth-sys-font-body); display: inline-flex; gap: 6px; align-items: center; cursor: pointer; backdrop-filter: blur(8px); }
+    .cd-btn.sel { background: var(--earth-sys-color-constant-dark-selected-container); color: var(--earth-sys-color-on-constant-dark-selected-container); border-color: transparent; }
+    .ai-chip { padding: 1.5px; border-radius: 9999px; background: linear-gradient(90deg, var(--earth-sys-color-ai-brand-gradient-primary-start), var(--earth-sys-color-ai-brand-gradient-primary-middle), var(--earth-sys-color-ai-brand-gradient-primary-end)); }
+    .ai-chip span { display: inline-flex; height: 37px; align-items: center; padding: 0 16px; border-radius: 9999px; background: #000; color: #fff; font: 500 13px var(--earth-sys-font-body); gap: 6px; }
+    .rail { position: fixed; left: 16px; top: 84px; display: flex; flex-direction: column; gap: 8px; z-index: 3; }
+    .rail .cd-btn { width: 44px; padding: 0; justify-content: center; font-size: 16px; }
+    .panel { position: fixed; left: 76px; top: 84px; width: 360px; bottom: 92px; background: var(--earth-sys-color-surface); color: var(--earth-sys-color-on-surface); border-radius: var(--earth-sys-corner-panel); z-index: 3; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 4px 16px rgba(0,0,0,.5); }
+    .hero-img { height: 168px; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.55)), linear-gradient(120deg, #2b5d7c, #6aa0b8 40%, #c9b48a 70%, #7f6a4a); position: relative; }
+    .hero-img span { position: absolute; left: 16px; bottom: 12px; color: #fff; font: 500 12px var(--earth-sys-font-body); letter-spacing: .08em; }
+    .pbody { padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .pbody h2 { font: 400 24px var(--earth-sys-font-brand); margin: 0; }
+    .stat { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .stat div { background: var(--earth-sys-color-surface-container); border-radius: 12px; padding: 10px; font-size: 11.5px; color: var(--earth-sys-color-on-surface-variant); }
+    .stat b { display: block; font: 500 17px var(--earth-sys-font-brand); color: var(--earth-sys-color-on-surface); font-variant-numeric: tabular-nums; }
+    .layer { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--earth-sys-color-outline-decorative); font-size: 13.5px; }
+    .tog { width: 36px; height: 20px; border-radius: 10px; background: var(--earth-sys-color-primary); position: relative; }
+    .tog::after { content: ''; position: absolute; right: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--earth-sys-color-on-primary); }
+    .tog.off { background: var(--earth-sys-color-outline-decorative); }
+    .tog.off::after { left: 3px; right: auto; }
+    .warn { background: var(--earth-sys-color-caution-container); color: var(--earth-sys-color-on-caution-container); border-radius: 12px; padding: 10px 12px; font-size: 12.5px; }
+    .pager { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; border-top: 1px solid var(--earth-sys-color-outline-decorative); }
+    .btn-p { height: 40px; padding: 0 20px; border-radius: 9999px; border: 0; background: var(--earth-sys-color-primary); color: var(--earth-sys-color-on-primary); font: 500 14px var(--earth-sys-font-body); }
+    .bottombar { position: fixed; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 3; font: 12px var(--earth-sys-font-body); color: var(--earth-sys-color-on-constant-dark-variant); }
+    @media (max-width: 860px) {
+      .globe { width: 420px; height: 420px; left: 50%; top: 34%; }
+      .search { width: auto; flex: 1; height: 44px; font-size: 13.5px; }
+      .topbar .hide-m, .rail { display: none; }
+      .panel { left: 8px; right: 8px; width: auto; top: auto; bottom: 0; height: 52%; border-radius: 28px 28px 0 0; }
+      .hero-img { height: 96px; }
+      .bottombar { display: none; }
+      .pbody h2 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage"><div class="stars"></div>
+    <div class="globe">
+      <div class="land" style="width:260px;height:200px;left:150px;top:150px;"></div>
+      <div class="land" style="width:160px;height:240px;left:360px;top:250px;"></div>
+      <div class="land" style="width:120px;height:90px;left:90px;top:400px;"></div>
+      <div class="clouds"></div>
+      <div class="pin" style="left:300px;top:250px;"></div>
+      <div class="pin" style="left:420px;top:330px;"></div>
+    </div>
+  </div>
+  <div class="topbar">
+    <div style="display:flex;gap:10px;align-items:center;flex:1;">
+      <div class="search">⌕ Search Google Earth<span style="margin-left:auto;">🎤</span></div>
+      <span class="ai-chip hide-m"><span>✦ Ask Earth</span></span>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <span class="cd-btn sel hide-m">◉ Satellite</span><span class="cd-btn hide-m">⛰ Terrain</span><button class="cd-btn" id="theme-btn" type="button">◑ Panel theme</button>
+    </div>
+  </div>
+  <div class="rail"><span class="cd-btn">☰</span><span class="cd-btn sel">✈</span><span class="cd-btn">◫</span><span class="cd-btn">⌖</span><span class="cd-btn">✎</span></div>
+  <aside class="panel">
+    <div class="hero-img"><span>VOYAGER · STORY 3 OF 8</span></div>
+    <div class="pbody">
+      <h2>Retreat of the Rhône Glacier</h2>
+      <div style="font-size:13.5px;line-height:1.55;color:var(--earth-sys-color-on-surface-variant);">Compare 140 years of ice loss in the Swiss Alps with historical imagery and elevation overlays.</div>
+      <div class="stat"><div><b>−1.4 km</b>Front retreat</div><div><b>2,208 m</b>Snout elev.</div><div><b>1874</b>Baseline</div></div>
+      <div class="layer">Historical imagery (Timelapse)<span class="tog"></span></div>
+      <div class="layer">3D buildings<span class="tog off"></span></div>
+      <div class="layer">Elevation contours<span class="tog"></span></div>
+      <div class="warn">⚠ Imagery from 2019 tile set; cloud cover above 30% in 2 frames.</div>
+    </div>
+    <div class="pager"><span style="font-size:13px;color:var(--earth-sys-color-on-surface-variant);">‹ Prev</span><button class="btn-p" type="button">Next stop ›</button></div>
+  </aside>
+  <div class="bottombar"><span>Camera: 4,812 m · 46°34′N 8°22′E</span><span>Google · Landsat / Copernicus · Data SIO, NOAA</span></div>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

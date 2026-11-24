@@ -1,7 +1,7 @@
 {
   "name": "ui-libraries",
   "displayName": "UI Libraries",
-  "description": "Pick and use the right frontend library and component registries (21st, shadcn, Spectrum UI, Originkit), faux product UI with Stageshow, prototype variants, break-ui stress tests, mobile-native polish, and clone-to-prompt reskins.",
+  "description": "Pick and use the right frontend library and component registries via MCP (21st, shadcn incl. Magic UI/Aceternity/Kokonut/React Bits registries, Magic UI, Spectrum UI; Originkit optional with a key), active view-detecting Jig Agent (style-jig / jig-agent + 3d-ui-jig), faux product UI with Stageshow, Vercel Labs UI SDK (ui-sdk skill for agent-ready headless behaviors), prototype variants, break-ui stress tests, mobile-native polish, and clone-to-prompt reskins.",
   "version": "1.0.0",
   "author": "Jason Festa",
   "suggestedPrompts": ["Which library should I use for a command menu?", "Build a faux product UI hero with a cursor walkthrough", "Stress-test this component with worst-case data"]

@@ -1,0 +1,112 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   14. GOOGLE MERCHANT CENTER & SHOPPING DESIGN SYSTEM (MERCHANT)
+   Version: 2.0 · Carbon: designSystems/564a63edb68006ec
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/merchant/versions/v2_0/sass/
+     - //depot/google3/ux/tokens/design_systems/merchant/versions/v2_0/mss_vars/
+     - //depot/google3/ux/tokens/design_systems/merchant/sass_vars_config.textproto
+     - Docs: go/carbon-service-docs | go/carbon-service-code-gen-mwtc
+   Values: Verbatim Carbon/codegen values unless the line is annotated 'inferred'
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --merchant-sys-color-background: #ffffff;
+    --merchant-sys-color-surface: #ffffff;
+    --merchant-sys-color-on-background: #202124;
+    --merchant-sys-color-on-surface: #3c4043;
+    --merchant-sys-color-on-surface-variant: #5f6368;
+    --merchant-sys-color-on-surface-state-content: #202124;
+    --merchant-sys-color-primary: #1a73e8;
+    --merchant-sys-color-primary-variant: #4285f4;
+    --merchant-sys-color-on-primary: #ffffff;
+    --merchant-sys-color-primary-state-content: #174ea6;
+    --merchant-sys-color-secondary: #e8f0fe;
+    --merchant-sys-color-secondary-variant: #d2e3fc;
+    --merchant-sys-color-on-secondary: #1967d2;
+    --merchant-sys-color-error: #d93025;
+    --merchant-sys-color-error-state-content: #a50e0e;
+    --merchant-sys-color-on-error: #ffffff;
+    --merchant-sys-color-positive: #188038;
+    --merchant-sys-color-negative: #d93025;
+    --merchant-sys-color-textfield-surface: #f1f3f4;
+    --merchant-sys-color-textfield-hairline: #80868b;
+    --merchant-sys-color-textfield-primary: #1967d2;
+    --merchant-sys-color-textfield-error: #c5221f;
+    --merchant-sys-color-inverse-surface: #202124;
+    --merchant-sys-color-inverse-on-surface: #e8eaed;
+    --merchant-sys-color-inverse-primary: #8ab4f8;
+    --merchant-sys-color-outline: #dadce0;  /* inferred */
+    --merchant-sys-color-positive-container: #e6f4ea;  /* inferred */
+    --merchant-sys-color-error-container: #fce8e6;  /* inferred */
+    --merchant-sys-color-warning: #e37400;  /* inferred */
+    --merchant-sys-color-warning-container: #fef7e0;  /* inferred */
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --merchant-sys-color-background: #202124;  /* inferred */
+    --merchant-sys-color-surface: #202124;
+    --merchant-sys-color-on-background: #e8eaed;  /* inferred */
+    --merchant-sys-color-on-surface: #e8eaed;
+    --merchant-sys-color-on-surface-variant: #9aa0a6;  /* inferred */
+    --merchant-sys-color-on-surface-state-content: #f8f9fa;  /* inferred */
+    --merchant-sys-color-primary: #8ab4f8;
+    --merchant-sys-color-primary-variant: #669df6;  /* inferred */
+    --merchant-sys-color-on-primary: #202124;  /* inferred */
+    --merchant-sys-color-primary-state-content: #aecbfa;  /* inferred */
+    --merchant-sys-color-secondary: #394457;  /* inferred */
+    --merchant-sys-color-secondary-variant: #41526d;  /* inferred */
+    --merchant-sys-color-on-secondary: #8ab4f8;  /* inferred */
+    --merchant-sys-color-error: #f28b82;  /* inferred */
+    --merchant-sys-color-error-state-content: #f6aea9;  /* inferred */
+    --merchant-sys-color-on-error: #202124;  /* inferred */
+    --merchant-sys-color-positive: #81c995;  /* inferred */
+    --merchant-sys-color-negative: #f28b82;  /* inferred */
+    --merchant-sys-color-textfield-surface: #303134;  /* inferred */
+    --merchant-sys-color-textfield-hairline: #9aa0a6;  /* inferred */
+    --merchant-sys-color-textfield-primary: #8ab4f8;  /* inferred */
+    --merchant-sys-color-textfield-error: #f28b82;  /* inferred */
+    --merchant-sys-color-inverse-surface: #e8eaed;  /* inferred */
+    --merchant-sys-color-inverse-on-surface: #202124;  /* inferred */
+    --merchant-sys-color-inverse-primary: #1a73e8;  /* inferred */
+    --merchant-sys-color-outline: #3c4043;  /* inferred */
+    --merchant-sys-color-positive-container: rgba(129, 201, 149, 0.16);  /* inferred */
+    --merchant-sys-color-error-container: rgba(242, 139, 130, 0.16);  /* inferred */
+    --merchant-sys-color-warning: #fdd663;  /* inferred */
+    --merchant-sys-color-warning-container: rgba(253, 214, 99, 0.16);  /* inferred */
+  }
+
+  /* Verbatim merchant.sys.shape v2.0 (small 4px / medium 8px / large 8px) */
+  :root {
+    --merchant-sys-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --merchant-sys-font-display: 'Google Sans Display', 'Google Sans', sans-serif;
+    --merchant-sys-font-body: 'Roboto', Arial, sans-serif;
+    --merchant-sys-shape-small: 4px;
+    --merchant-sys-shape-medium: 8px;
+    --merchant-sys-shape-large: 8px;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--merchant-sys-color-surface);
+    color: var(--merchant-sys-color-on-surface);
+    font-family: var(--merchant-sys-font-body, var(--merchant-sys-font-plain, var(--merchant-sys-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

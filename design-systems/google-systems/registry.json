@@ -1,8 +1,9 @@
 {
-  "version": "1.0.0",
-  "catalog": "Google Internal Design Systems — Top 10 High-Usage Documented Systems",
-  "provenance": "Verified directly from //depot/google3/ HEAD (srcfs) & Carbon Design System Compiler (go/carbon-service-code-gen-mwtc)",
-  "purple_guardrail": "<9.5% purple pixel coverage (0.0% purple across all 10 baseline palettes & hero specimens)",
+  "version": "2.0.0",
+  "catalog": "Google Internal Design Systems — Top 20 High-Usage Documented Systems",
+  "total_systems": 20,
+  "provenance": "Verified directly from //depot/google3/ HEAD (srcfs) & Carbon Design System Compiler (go/carbon-service-code-gen-mwtc); systems 11-20 added 2026-11-11 from //depot/google3/ux/tokens/design_systems/{gemini,ghs,travel,merchant,gpay,notebooklm,earth,hex,plexi} and //depot/google3/third_party/javascript/cros_components (values not present in google3 are marked inferred; see token_values_inferred)",
+  "purple_guardrail": "<9.5% purple pixel coverage (0.0% purple across all 10 baseline palettes & hero specimens); systems 11-20 keep purple/Aurora roles (Gemini primary-emphasis, NotebookLM pink tile, GHS purple/upload) out of hero fills",
   "hero_viewports": {
     "desktop": {
       "css_viewport": "1440x900",
@@ -443,6 +444,454 @@
         "mobile_hero_png": "10-devsite-codelabs/mobile.png"
       },
       "recommended_wda_archetypes": ["#06", "#25", "#27", "#30"]
+    },
+    {
+      "id": "gemini-gem",
+      "order": 11,
+      "slug": "11-gemini-gem",
+      "name": "Google Gemini App Design System (gem / GemSys)",
+      "carbon_design_system_id": "designSystems/3f0fcc618b7f3e7b",
+      "carbon_version": "39.0.0",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/gemini/versions/latest/sass/",
+        "//depot/google3/ux/tokens/design_systems/gemini/versions/v33_7/android_compose/",
+        "//depot/google3/ux/tokens/design_systems/gemini_chrome/",
+        "//depot/google3/ux/tokens/design_systems/gemini/config.textproto"
+      ],
+      "doc_links": ["go/carbon-service-docs", "go/carbon-service-code-gen-mwtc"],
+      "frameworks": ["Angular / Boq (bard_web chatui)", "Jetpack Compose (GemSys*)", "SwiftUI / UIKit"],
+      "polarity": "Dual (Light #FFFFFF default + Dark #131314)",
+      "density": "Conversational / Comfortable (16px-28px corners, 1.5 line-height reading)",
+      "font_families": ["Google Sans", "Google Sans Text", "Google Sans Flex (rounded variants)"],
+      "token_prefix": "--gem-sys-color-*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "surface_container_light": "#F0F4F9",
+        "surface_dark": "#131314",
+        "primary": "#0B57D0",
+        "brand_blue": "#3186FF",
+        "brand_transition_blue": "#346BF1",
+        "secondary_container": "#C2E7FF",
+        "tertiary": "#146C2E",
+        "error": "#B3261E"
+      },
+      "signature_components": [
+        "Pill Prompt Input with Brand-Blue Gradient Outline (outline-gradient / input-drop-shadow)",
+        "Collapsible Conversation Drawer with Gems & Recent Chats",
+        "Markdown Response Stack (markdown-type-scale) with Draft Chips & Action Row",
+        "Gems Color Tiles (gems-*-high / gems-*-low tonal pairs)"
+      ],
+      "files": {
+        "readme": "11-gemini-gem/README.md",
+        "tokens_css": "11-gemini-gem/tokens.css",
+        "specimen_html": "11-gemini-gem/specimen.html",
+        "desktop_hero_png": "11-gemini-gem/desktop.png",
+        "mobile_hero_png": "11-gemini-gem/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#25", "#26", "#28", "#32", "#36"]
+    },
+    {
+      "id": "home-ghs",
+      "order": 12,
+      "slug": "12-home-ghs",
+      "name": "Google Home System (ghs / Home UI GHST)",
+      "carbon_design_system_id": "designSystems/6bd78148a84cf216",
+      "carbon_version": "3.977",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/ghs/versions/latest/android_compose/color/GhsSysColorLightTokens.kt",
+        "//depot/google3/ux/tokens/design_systems/ghs/versions/latest/swiftui/Color/src/Color+GHS.swift",
+        "//depot/google3/ux/tokens/design_systems/ghs/versions/v3_962/android_compose/",
+        "//depot/google3/java/com/google/android/libraries/home/ui/implementation/ghst/"
+      ],
+      "doc_links": ["go/carbon", "go/carbon-codegen-automation"],
+      "frameworks": ["Jetpack Compose (Home UI ThemeTest)", "SwiftUI (Color+GHS)"],
+      "polarity": "Dual (Light #FFFFFF / #F0F4F9 + Dark #131314 device-control)",
+      "density": "Touch-First Device Tiles (16px-28px corners, 48dp targets)",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto (FontFamily.Default fallback)"],
+      "token_prefix": "--ghs-sys-color-*",
+      "token_values_inferred": "none",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "surface_container_light": "#F0F4F9",
+        "surface_dark": "#131314",
+        "primary": "#0B57D0",
+        "heating": "#A83900",
+        "cooling": "#1157CE",
+        "lighting": "#745C00",
+        "eco": "#1E8E3E",
+        "live_camera": "#8C1D18"
+      },
+      "signature_components": [
+        "Thermostat Dial with Heating/Cooling Stage Rings (heating-stage-1..3, cooling-stage-1..3)",
+        "Device Control Tiles with Semantic Active Containers (lighting / cooling / default-active)",
+        "Live Camera Event Card (live / on-live) & Activity Timeline",
+        "Energy Eco Leaf & Energy-Programs Chips (eco, energy-green, energy-programs)"
+      ],
+      "files": {
+        "readme": "12-home-ghs/README.md",
+        "tokens_css": "12-home-ghs/tokens.css",
+        "specimen_html": "12-home-ghs/specimen.html",
+        "desktop_hero_png": "12-home-ghs/desktop.png",
+        "mobile_hero_png": "12-home-ghs/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#01", "#05", "#15", "#17", "#19", "#37"]
+    },
+    {
+      "id": "travel-flights",
+      "order": 13,
+      "slug": "13-travel-flights",
+      "name": "Google Travel Design System (Flights, Hotels & Trips — travel)",
+      "carbon_design_system_id": "designSystems/3cc7d1c3ea79f855",
+      "carbon_version": "6.1.7",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/travel/versions/v6_1/sass/",
+        "//depot/google3/ux/tokens/design_systems/travel/versions/v6_1/mss_vars/",
+        "//depot/google3/ux/tokens/design_systems/travel/sass_vars_config.textproto"
+      ],
+      "doc_links": ["go/carbon-service-docs", "go/carbon-service-code-gen-mwtc"],
+      "frameworks": ["Wiz / Closure (google.com/travel)", "Material Sass (MSS vars)"],
+      "polarity": "Dual (Light #FFFFFF + Legacy-Desktop Dark #202124 with 5 surface levels)",
+      "density": "Comparison-Dense Results (56-72px itinerary rows, sticky search form)",
+      "font_families": ["Google Sans", "Google Sans Display", "Roboto / Helvetica Neue (plain)"],
+      "token_prefix": "--travel-sys-color-*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "tertiary_fill": "#F1F3F4",
+        "surface_dark": "#202124",
+        "primary": "#1A73E8",
+        "link": "#1558D6",
+        "positive_low_price": "#188038",
+        "neutral_amber": "#E37400",
+        "negative": "#D93025"
+      },
+      "signature_components": [
+        "Sticky Round-Trip Search Form (origin ⇄ destination, dates, travellers)",
+        "Price-Insight Banner with Low/Typical/High Price Graph",
+        "Best Flights Itinerary Rows (airline, duration, stops, CO2e, price)",
+        "Date-Grid Price Calendar with Positive-Highlight Cheapest Cells"
+      ],
+      "files": {
+        "readme": "13-travel-flights/README.md",
+        "tokens_css": "13-travel-flights/tokens.css",
+        "specimen_html": "13-travel-flights/specimen.html",
+        "desktop_hero_png": "13-travel-flights/desktop.png",
+        "mobile_hero_png": "13-travel-flights/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#15", "#33", "#35", "#37"]
+    },
+    {
+      "id": "merchant-center",
+      "order": 14,
+      "slug": "14-merchant-center",
+      "name": "Google Merchant Center & Shopping Design System (merchant)",
+      "carbon_design_system_id": "designSystems/564a63edb68006ec",
+      "carbon_version": "2.0",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/merchant/versions/v2_0/sass/",
+        "//depot/google3/ux/tokens/design_systems/merchant/versions/v2_0/mss_vars/",
+        "//depot/google3/ux/tokens/design_systems/merchant/sass_vars_config.textproto"
+      ],
+      "doc_links": ["go/carbon-service-docs", "go/carbon-service-code-gen-mwtc"],
+      "frameworks": ["Angular (Merchant Center Next)", "Material Sass (sass + MSS vars)"],
+      "polarity": "Tri-Mode (Light #FFFFFF + Dark #202124 + High-Contrast variants)",
+      "density": "Commerce-Ops Dense (4px/8px shape, 48px product rows, filled text fields)",
+      "font_families": ["Google Sans", "Google Sans Display", "Roboto"],
+      "token_prefix": "--merchant-sys-color-*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "textfield_surface": "#F1F3F4",
+        "surface_dark": "#202124",
+        "primary": "#1A73E8",
+        "secondary_container": "#E8F0FE",
+        "positive": "#188038 (green700)",
+        "error": "#D93025"
+      },
+      "signature_components": [
+        "Products Overview KPI Cards (Approved / Limited / Not approved)",
+        "Product Feed Table with Status Chips & Thumbnail Column",
+        "Filled Text-Field Filter Bar (textfield-surface / textfield-hairline)",
+        "Diagnostics Issue Panel with Fix CTA (error-state-content)"
+      ],
+      "files": {
+        "readme": "14-merchant-center/README.md",
+        "tokens_css": "14-merchant-center/tokens.css",
+        "specimen_html": "14-merchant-center/specimen.html",
+        "desktop_hero_png": "14-merchant-center/desktop.png",
+        "mobile_hero_png": "14-merchant-center/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#09", "#12", "#13", "#16", "#33"]
+    },
+    {
+      "id": "gpay-wallet",
+      "order": 15,
+      "slug": "15-gpay-wallet",
+      "name": "Google Pay & Wallet Design System (gpay Flutter tokens)",
+      "carbon_design_system_id": "gpay (design_system_id slug)",
+      "carbon_version": "0.12.80",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/gpay/versions/v0_12_80/flutter/lib/src/sys/color.dart",
+        "//depot/google3/ux/tokens/design_systems/gpay/versions/v0_12_80/flutter/lib/src/sys/color_extended_light.dart",
+        "//depot/google3/ux/tokens/design_systems/gpay/versions/v0_12_80/flutter/lib/src/sys/color_extended_dark.dart",
+        "//depot/google3/ux/tokens/design_systems/gpay/config.textproto"
+      ],
+      "doc_links": ["go/gmdc-flutter-tokens", "go/carbon-service-docs"],
+      "frameworks": ["Flutter (material_ui TokenColor / TokenColorExtended)"],
+      "polarity": "Dual (Light #FFFFFF / #F0F4F9 + Dark, protected-surface variants)",
+      "density": "Mobile-First Wallet (card stack, 56-72px transaction rows)",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto"],
+      "token_prefix": "--gpay-sys-color-*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_light": "#FFFFFF",
+        "surface_container_light": "#F0F4F9",
+        "surface_dark": "#131314 (inferred)",
+        "primary": "#0B57D0",
+        "positive": "#146C2E",
+        "caution": "#BF502B",
+        "chart": "#009EBB",
+        "rewards_container": "#FFEFD6",
+        "star_rating": "#FFBB29"
+      },
+      "signature_components": [
+        "Payment-Method Card Stack with FOP Logo Backgrounds (fop-logo-background)",
+        "Balance & Spend Insight with Pie-Chart Category Colors (pie-chart-*)",
+        "Transaction List with Positive/Alert Status Containers",
+        "Rewards / Referrals / QR Pay Quick-Action Tiles (qr-blue/green/red/yellow)"
+      ],
+      "files": {
+        "readme": "15-gpay-wallet/README.md",
+        "tokens_css": "15-gpay-wallet/tokens.css",
+        "specimen_html": "15-gpay-wallet/specimen.html",
+        "desktop_hero_png": "15-gpay-wallet/desktop.png",
+        "mobile_hero_png": "15-gpay-wallet/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#07", "#09", "#11", "#17", "#32"]
+    },
+    {
+      "id": "notebooklm",
+      "order": 16,
+      "slug": "16-notebooklm",
+      "name": "NotebookLM Design System (nlm)",
+      "carbon_design_system_id": "designSystems/227421e97a36bc18",
+      "carbon_version": "0.0.5",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/notebooklm/versions/v0_0_5/sass/",
+        "//depot/google3/ux/tokens/design_systems/notebooklm/versions/v0_0_5/flutter/",
+        "//depot/google3/ux/tokens/design_systems/notebooklm/sass_vars_config.textproto"
+      ],
+      "doc_links": ["go/carbon-service-docs", "go/carbon-service-code-gen-mwtc"],
+      "frameworks": ["Angular web (notebooklm.google.com)", "Flutter mobile (static_light / static_dark)"],
+      "polarity": "Dual (Light #EDEFFA page / #FFFFFF panels + Dark #1A1D22 / #22262B)",
+      "density": "Three-Panel Research Workspace (Sources | Chat | Studio, 16px corners)",
+      "font_families": ["Google Sans", "Google Sans Text", "Google Sans Flex"],
+      "token_prefix": "--nlm-*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_page": "#EDEFFA",
+        "surface_panel": "#FFFFFF",
+        "surface_page_dark": "#1A1D22",
+        "primary_button": "#4259FF",
+        "secondary_button": "#000000",
+        "blue_tile": "#EDEFFA",
+        "green_tile": "#E1F1E5",
+        "cyan_tile": "#DEF1F7",
+        "orange_tile": "#F7EDEB"
+      },
+      "signature_components": [
+        "Sources Panel with Checkable Source Rows & Add-Source Button",
+        "Grounded Chat with Numbered Citation Chips & Suggested Questions",
+        "Studio Panel: Audio Overview Player + Colored Note Tiles (blue/green/cyan/orange/yellow)",
+        "Black Secondary / Blue Primary Pill Buttons (primary-button-fill / secondary-button-fill)"
+      ],
+      "files": {
+        "readme": "16-notebooklm/README.md",
+        "tokens_css": "16-notebooklm/tokens.css",
+        "specimen_html": "16-notebooklm/specimen.html",
+        "desktop_hero_png": "16-notebooklm/desktop.png",
+        "mobile_hero_png": "16-notebooklm/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#20", "#25", "#30", "#31"]
+    },
+    {
+      "id": "earth-immersive",
+      "order": 17,
+      "slug": "17-earth-immersive",
+      "name": "Google Earth Design System (earth Flutter tokens)",
+      "carbon_design_system_id": "earth (Flutter token package)",
+      "carbon_version": "0.3.6",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/earth/versions/v0_3_6/flutter/lib/src/sys_color_light_normal_contrast.dart",
+        "//depot/google3/ux/tokens/design_systems/earth/versions/v0_3_6/flutter/lib/src/sys_color_dark_normal_contrast.dart",
+        "//depot/google3/ux/tokens/design_systems/earth/versions/v0_3_6/flutter/lib/src/"
+      ],
+      "doc_links": ["go/gmdc-flutter-tokens", "go/carbon-service-docs"],
+      "frameworks": ["Flutter (Earth web / mobile)", "Web: WebAssembly globe + Flutter chrome"],
+      "polarity": "Immersive Constant-Dark Globe (#000000) + Light/Dark Panels (#FFFFFF / #131314), Normal + High Contrast",
+      "density": "Spatial Immersive (floating panels, 100vw x 100vh 3D globe)",
+      "font_families": ["Google Sans (GoogleSans)", "Google Sans Text (GoogleSansText)"],
+      "token_prefix": "--earth-sys-color-*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "constant_dark": "#000000",
+        "constant_dark_primary": "#A8C7FA",
+        "constant_dark_selected": "#004A77",
+        "surface_light": "#FFFFFF",
+        "surface_dark": "#131314",
+        "primary": "#0B57D0",
+        "ai_main": "#217BFE",
+        "positive": "#146C2E",
+        "caution": "#B16300"
+      },
+      "signature_components": [
+        "Full-Bleed 3D Globe Stage with constant-dark Chrome",
+        "Floating Search + Layer/Map-Style Panel (selected-container)",
+        "Voyager / Projects Story Card with Media & Step Pager",
+        "AI Brand-Gradient Ask Earth Chip (ai-brand-gradient-primary-*)"
+      ],
+      "files": {
+        "readme": "17-earth-immersive/README.md",
+        "tokens_css": "17-earth-immersive/tokens.css",
+        "specimen_html": "17-earth-immersive/specimen.html",
+        "desktop_hero_png": "17-earth-immersive/desktop.png",
+        "mobile_hero_png": "17-earth-immersive/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#01", "#02", "#05", "#35", "#37"]
+    },
+    {
+      "id": "help-hex",
+      "order": 18,
+      "slug": "18-help-hex",
+      "name": "Google Help Design System (hex — Help Center & Support)",
+      "carbon_design_system_id": "designSystems/243a2341ef087f29",
+      "carbon_version": "0.626",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/hex/versions/v0_626/mss_vars/_hex-sys-color-baseline.scss",
+        "//depot/google3/ux/tokens/design_systems/hex/versions/v0_626/mss_vars/_hex-comp-bubble.scss",
+        "//depot/google3/ux/tokens/design_systems/hex/versions/v0_626/mss_vars/",
+        "//depot/google3/ux/tokens/design_systems/hex/config.textproto"
+      ],
+      "doc_links": ["go/carbon-service-docs", "go/carbon-service-code-gen-mwtc"],
+      "frameworks": ["Material Sass MSS vars (support.google.com)", "Product contexts: ads-guide, youtube"],
+      "polarity": "Dual (Light #FAFAFA canvas + Dark #1A1A1A) with per-product context toggles",
+      "density": "Reading & Troubleshooting (article column + support chat bubbles)",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto"],
+      "token_prefix": "--hex-sys-color-baseline--*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_light": "#FAFAFA",
+        "surface_bright": "#FFFFFF",
+        "surface_dark": "#1A1A1A",
+        "primary": "#0B57D0",
+        "primary_container": "#ECF3FE",
+        "secondary_container": "#DFF3FF",
+        "tertiary_container": "#E7F8ED",
+        "error": "#B3261E"
+      },
+      "signature_components": [
+        "Help Center Search Hero & Topic Cards (hex-comp-card)",
+        "Step-by-Step Article with Selector Tabs (Android / iPhone / Computer — hex-comp-selector)",
+        "Support Chat Bubbles: User / Agent / AI (hex-comp-bubble)",
+        "Global Banner & 'Was this helpful?' Chips (hex-global-comp-banner, hex-comp-chip)"
+      ],
+      "files": {
+        "readme": "18-help-hex/README.md",
+        "tokens_css": "18-help-hex/tokens.css",
+        "specimen_html": "18-help-hex/specimen.html",
+        "desktop_hero_png": "18-help-hex/desktop.png",
+        "mobile_hero_png": "18-help-hex/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#20", "#21", "#22", "#25", "#30"]
+    },
+    {
+      "id": "chromeos-jellybean",
+      "order": 19,
+      "slug": "19-chromeos-jellybean",
+      "name": "ChromeOS Jelly / Jellybean Web Components (cros_components)",
+      "carbon_design_system_id": "n/a (Jelly dynamic color — cros.sys.* tokens resolved in Chromium)",
+      "carbon_version": "google3 HEAD",
+      "google3_paths": [
+        "//depot/google3/third_party/javascript/cros_components/",
+        "//depot/google3/third_party/javascript/cros_components/g3doc/",
+        "//depot/google3/third_party/javascript/cros_components/button/button.ts",
+        "//depot/google3/third_party/javascript/cros_components/sidenav/"
+      ],
+      "doc_links": ["go/cros-jellybean", "go/cros-jellybean-charter", "go/g3doc-jellybean", "go/jb-bug"],
+      "frameworks": ["Lit Web Components (cros-*)", "Chromium WebUI (copybara)", "@material/web underneath"],
+      "polarity": "Dual (Light + Dark) with Jelly dynamic wallpaper-derived color",
+      "density": "Desktop App Windows (Settings / Files / Camera SWA), 20px icons",
+      "font_families": ["Google Sans", "Google Sans Text", "Roboto"],
+      "token_prefix": "--cros-sys-*",
+      "token_values_inferred": "all",
+      "core_palette": {
+        "app_base": "#F8FAFD (inferred)",
+        "base_elevated": "#FFFFFF (inferred)",
+        "app_base_dark": "#1B1B1F (inferred)",
+        "primary": "#0B57D0 (inferred)",
+        "primary_container": "#D3E3FD (inferred)",
+        "separator": "#C4C7C5 (inferred)",
+        "error": "#B3261E (inferred)"
+      },
+      "signature_components": [
+        "cros-sidenav Settings Navigation (sidenav)",
+        "cros-switch / cros-slider / cros-tab-slider Controls",
+        "cros-dropdown, cros-textfield & cros-card Rows",
+        "cros-snackbar, cros-dialog & cros-button (filled / tonal / text)"
+      ],
+      "files": {
+        "readme": "19-chromeos-jellybean/README.md",
+        "tokens_css": "19-chromeos-jellybean/tokens.css",
+        "specimen_html": "19-chromeos-jellybean/specimen.html",
+        "desktop_hero_png": "19-chromeos-jellybean/desktop.png",
+        "mobile_hero_png": "19-chromeos-jellybean/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#03", "#06", "#16", "#18", "#29"]
+    },
+    {
+      "id": "plexi-ads-marketing",
+      "order": 20,
+      "slug": "20-plexi-ads-marketing",
+      "name": "Plexi — Google Ads Marketing Design System (plexi)",
+      "carbon_design_system_id": "designSystems/320c302aad4aa959",
+      "carbon_version": "0.2.16",
+      "google3_paths": [
+        "//depot/google3/ux/tokens/design_systems/plexi/versions/v0_2/sass_css_vars/",
+        "//depot/google3/ux/tokens/design_systems/plexi/README.md",
+        "//depot/google3/marketing/ads_mto/awmp/"
+      ],
+      "doc_links": ["go/carbon-service-docs", "go/carbon-service-code-gen-mwtc"],
+      "frameworks": ["Sass CSS vars (ads.google.com marketing / AWMP)", "Plexi comp tokens (module-*, card-*, button-*)"],
+      "polarity": "Light Editorial (#FFFFFF / #F8F9FA / #E8F0FE tiers) + Dark text inversion (grey200)",
+      "density": "Spacious Marketing Modules (vw-scaled display type, 8-60px radii)",
+      "font_families": ["Google Sans Display", "Google Sans", "Google Sans Text"],
+      "token_prefix": "--plexi-sys-color--*",
+      "token_values_inferred": "partial",
+      "core_palette": {
+        "surface_primary": "#FFFFFF",
+        "surface_secondary_low": "#F8F9FA",
+        "surface_tertiary_high": "#E8F0FE",
+        "primary": "#1A73E8",
+        "surface_accent": "#7FCFFF",
+        "on_surface_accent": "#001944",
+        "text_headline": "#202124",
+        "container_green": "#E6F4EA"
+      },
+      "signature_components": [
+        "Feature Hero Module with vw-Scaled Display Type (module-feature-hero)",
+        "3-Up Staggered / Featured Card Modules (module-3up-*)",
+        "Case-Study Card with Stat Callouts (card-case-study)",
+        "Sticky Jumplink Bar & High/Medium/Tonal Pill Buttons (button-jumplink, button-*-emphasis)"
+      ],
+      "files": {
+        "readme": "20-plexi-ads-marketing/README.md",
+        "tokens_css": "20-plexi-ads-marketing/tokens.css",
+        "specimen_html": "20-plexi-ads-marketing/specimen.html",
+        "desktop_hero_png": "20-plexi-ads-marketing/desktop.png",
+        "mobile_hero_png": "20-plexi-ads-marketing/mobile.png"
+      },
+      "recommended_wda_archetypes": ["#10", "#20", "#31", "#33", "#35"]
     }
   ]
 }

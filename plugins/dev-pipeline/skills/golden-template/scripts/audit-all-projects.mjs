@@ -15,7 +15,7 @@
  * so the moodboard is 100% staged and ready for new high-res screenshots and `image-to-react` eval loops.
  *
  * Usage:
- *   node audit-all-projects.mjs --dir=/usr/local/google/home/jfesta/moodboards/warm-landing-page [--sync-screenshots]
+ *   node audit-all-projects.mjs --dir=/google/data/rw/users/jf/jfesta/moodboards/warm-landing-page [--sync-screenshots]
  */
 
 import fs from "node:fs";

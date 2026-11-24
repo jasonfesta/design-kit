@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ant Design 6 — Interactive Token Specimen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    :root { --an-font-preview: Roboto, var(--ant-font-family); }
+
+    :root { --an-font-ui: var(--an-font-preview, var(--an-font-sans)); }
+    body { font-family: var(--an-font-ui); }
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--an-surface); border: 1px solid var(--an-border); border-radius: var(--an-card-radius); margin-bottom: 20px; }
+    .top-bar strong { font-size: 15px; letter-spacing: -0.01em; }
+    .meta { font-family: var(--an-font-mono); font-size: 11.5px; color: var(--an-ink-2); }
+    .tb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { height: var(--an-control-h); padding: 0 16px; border-radius: var(--an-btn-radius); border: 1px solid transparent;
+      font: inherit; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--an-duration) var(--an-ease), box-shadow var(--an-duration) var(--an-ease), transform 120ms var(--an-ease); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, .field:focus-visible, .tab:focus-visible, .nav a:focus-visible { outline: 2px solid var(--an-focus); outline-offset: 2px; }
+    .btn-primary { background: var(--an-accent); color: var(--an-on-accent); }
+    .btn-primary:hover, .btn-primary.is-hover { background: var(--an-accent-hover); }
+    .btn-secondary { background: var(--an-surface); color: var(--an-ink); border-color: var(--an-border-strong); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--an-surface-2); }
+    .btn-ghost { background: transparent; color: var(--an-accent-ink); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: var(--an-accent-subtle); }
+    .btn-danger { background: var(--an-danger); color: #fff; }
+    .btn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-sm { height: calc(var(--an-control-h) - 8px); padding: 0 12px; font-size: 13px; }
+    .card { background: var(--an-surface); border: 1px solid var(--an-border); border-radius: var(--an-card-radius); box-shadow: var(--an-shadow-sm); }
+    .section { padding: 20px; margin-bottom: 20px; }
+    .section h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.01em; }
+    .section .lede { margin: 0 0 16px; color: var(--an-ink-2); font-size: 13px; }
+
+    /* App frame */
+    .app { display: grid; grid-template-columns: 220px 1fr; overflow: hidden; margin-bottom: 20px; }
+    .nav { background: var(--an-surface-2); border-right: 1px solid var(--an-border); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 14px; font-weight: 700; font-size: 14px; }
+    .brand i { width: 22px; height: 22px; border-radius: var(--an-radius-sm); background: var(--an-accent); display: inline-block; }
+    .nav a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: var(--an-radius-sm);
+      color: var(--an-ink-2); text-decoration: none; font-size: 13.5px; }
+    .nav a:hover { background: var(--an-surface); color: var(--an-ink); }
+    .nav a.active { background: var(--an-accent-subtle); color: var(--an-accent-ink); font-weight: 600; }
+    .nav a .count { font-size: 11.5px; font-variant-numeric: tabular-nums; color: var(--an-ink-3); }
+    .main { padding: 20px 24px 24px; min-width: 0; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+    .crumb { font-size: 12px; color: var(--an-ink-3); margin-bottom: 4px; }
+    .page-head h1 { margin: 0; font-family: var(--an-font-display, var(--an-font-ui)); font-size: 24px; line-height: 1.25; letter-spacing: -0.015em; }
+    .page-head p { margin: 4px 0 0; color: var(--an-ink-2); font-size: 13.5px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--an-border); margin-bottom: 16px; overflow-x: auto; }
+    .tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; font: inherit; font-size: 13.5px; color: var(--an-ink-2); cursor: pointer; white-space: nowrap; }
+    .tab[aria-selected="true"] { color: var(--an-ink); border-bottom-color: var(--an-accent-ink); font-weight: 600; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric { padding: 14px 16px; }
+    .metric .label { font-size: 12.5px; color: var(--an-ink-2); }
+    .metric .value { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .metric .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .delta.up { color: var(--an-success-ink, var(--an-success)); } .delta.down { color: var(--an-danger-ink, var(--an-danger)); }
+    .split { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
+    .tbl-wrap { overflow-x: auto; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; font-weight: 600; font-size: 12px; color: var(--an-ink-2); background: var(--an-surface-2); padding: 9px 12px; border-bottom: 1px solid var(--an-border); white-space: nowrap; }
+    .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--an-border); white-space: nowrap; }
+    .tbl tr:last-child td { border-bottom: 0; }
+    .tbl tbody tr { cursor: pointer; }
+    .tbl tbody tr:hover td { background: var(--an-surface-2); }
+    .tbl tbody tr.selected td { background: var(--an-accent-subtle); }
+    .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tbl th.num { text-align: right; }
+    .tbl .id { font-family: var(--an-font-mono); font-size: 12px; color: var(--an-ink-2); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: var(--an-badge-radius); font-size: 12px; font-weight: 550; color: var(--an-ink); white-space: nowrap; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.success { background: var(--an-success-subtle); } .badge.success::before { background: var(--an-success); }
+    .badge.warning { background: var(--an-warning-subtle); } .badge.warning::before { background: var(--an-warning); }
+    .badge.danger { background: var(--an-danger-subtle); } .badge.danger::before { background: var(--an-danger); }
+    .badge.info { background: var(--an-info-subtle); } .badge.info::before { background: var(--an-info); }
+    .badge.neutral { background: var(--an-surface-2); } .badge.neutral::before { background: var(--an-ink-3); }
+    .panel { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .panel h3 { margin: 0; font-size: 14px; }
+    .fld label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--an-ink); }
+    .field { width: 100%; height: var(--an-control-h); padding: 0 12px; border-radius: var(--an-input-radius); border: 1px solid var(--an-border-strong); background: var(--an-surface); color: var(--an-ink); font: inherit; font-size: 14px; }
+    .field::placeholder { color: var(--an-ink-3); }
+    .helper { font-size: 12px; color: var(--an-ink-3); margin-top: 4px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+    .switch { position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--an-border-strong); border: 0; cursor: pointer; transition: background-color var(--an-duration) var(--an-ease); flex: none; }
+    .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform var(--an-duration) var(--an-ease); }
+    .switch[aria-checked="true"] { background: var(--an-accent); }
+    .switch[aria-checked="true"]::after { transform: translateX(16px); }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+    .check input { width: 16px; height: 16px; accent-color: var(--an-accent); margin: 0; }
+    .alert { display: flex; gap: 10px; padding: 12px 14px; border-radius: var(--an-input-radius); font-size: 13px; border: 1px solid var(--an-border); background: var(--an-info-subtle); }
+    .alert::before { content: ""; flex: none; width: 4px; border-radius: 4px; background: var(--an-info); }
+    .alert.warning { background: var(--an-warning-subtle); } .alert.warning::before { background: var(--an-warning); }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Token sections */
+    .ramp { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .ramp-name { font-size: 12.5px; font-weight: 600; }
+    .ramp-steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; }
+    .sw { height: 56px; border-radius: var(--an-radius-sm); padding: 6px; display: flex; flex-direction: column; justify-content: flex-end; font-family: var(--an-font-mono); font-size: 9.5px; line-height: 1.25; border: 1px solid rgba(127,127,127,.18); overflow: hidden; }
+    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .role { border: 1px solid var(--an-border); border-radius: var(--an-radius-sm); overflow: hidden; background: var(--an-surface); }
+    .role .chip { height: 40px; border-bottom: 1px solid var(--an-border); }
+    .role .txt { padding: 6px 8px; font-size: 11px; font-family: var(--an-font-mono); color: var(--an-ink-2); }
+    .role .txt b { display: block; color: var(--an-ink); font-family: var(--an-font-ui); font-size: 12px; font-weight: 600; }
+    .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--an-border); }
+    .type-row:last-child { border-bottom: 0; }
+    .type-meta { font-family: var(--an-font-mono); font-size: 11px; color: var(--an-ink-2); }
+    .type-meta b { display: block; font-family: var(--an-font-ui); color: var(--an-ink); font-size: 12.5px; }
+    .type-sample { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tok-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tok-col h3 { margin: 0 0 10px; font-size: 13px; }
+    .rad { display: flex; flex-wrap: wrap; gap: 10px; }
+    .rad div { width: 64px; height: 64px; background: var(--an-accent-subtle); border: 1.5px solid var(--an-accent-ink); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-family: var(--an-font-mono); font-size: 9.5px; color: var(--an-ink); text-align: center; }
+    .sp { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: center; font-family: var(--an-font-mono); font-size: 10.5px; color: var(--an-ink-2); margin-bottom: 5px; }
+    .sp span:last-child { height: 10px; background: var(--an-accent); border-radius: 2px; }
+    .elev { display: grid; gap: 12px; }
+    .elev div { padding: 14px; background: var(--an-surface); border-radius: var(--an-radius-md); font-family: var(--an-font-mono); font-size: 10.5px; color: var(--an-ink-2); }
+    .states { display: grid; grid-template-columns: 120px repeat(3, max-content); gap: 10px 14px; align-items: center; font-size: 12px; color: var(--an-ink-2); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .tok-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 12px 12px 48px; }
+      .app { grid-template-columns: 1fr; }
+      .nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--an-border); padding: 8px; }
+      .brand { padding: 4px 8px; }
+      .nav a .count { display: none; }
+      .main { padding: 16px 14px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics .metric:last-child { grid-column: span 2; }
+      .metric .value { font-size: 22px; }
+      .ramp { grid-template-columns: 1fr; gap: 4px; }
+      .ramp-steps { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .type-row { grid-template-columns: 1fr; gap: 4px; }
+      .states { grid-template-columns: 1fr 1fr; }
+      .states > .lbl { grid-column: span 2; }
+      .page-head h1 { font-size: 21px; }
+    }
+
+    /* ---- Ant Design signature details ---- */
+
+    .btn { font-weight: 400; font-size: 14px; padding: 0 15px; }
+    .btn-primary { box-shadow: 0 2px 0 rgba(5,145,255,.1); }
+    .btn-secondary { background: var(--ant-color-bg-container); border-color: var(--ant-color-border); }
+    .btn-secondary:hover, .btn-secondary.is-hover { color: var(--ant-color-primary-hover); border-color: var(--ant-color-primary-hover); background: var(--ant-color-bg-container); }
+    .btn-ghost { color: var(--ant-color-link); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: transparent; color: var(--ant-color-link-hover); }
+    .btn-danger { background: var(--ant-color-error); }
+    .card { border: 0; box-shadow: none; }
+    .top-bar { border: 0; }
+    .nav { background: #001529; border-right: 0; }
+    .nav a { color: rgba(255,255,255,.65); border-radius: var(--ant-border-radius-lg); }
+    .nav a:hover { color: #fff; background: transparent; }
+    .nav a.active { background: var(--ant-color-primary); color: #fff; font-weight: 400; }
+    .nav a .count { color: rgba(255,255,255,.45); }
+    .nav a.active .count { color: rgba(255,255,255,.85); }
+    .brand { color: #fff; }
+    .brand i { background: conic-gradient(#1677ff 0 25%, #f5222d 0 50%, #1677ff 0 75%, #13c2c2 0); border-radius: 50%; }
+    .main { background: var(--ant-color-bg-layout); }
+    .page-head h1 { font-weight: 600; font-size: 20px; letter-spacing: 0; }
+    .tab[aria-selected="true"] { color: var(--ant-color-primary); border-bottom-color: var(--ant-color-primary); font-weight: 400; }
+    .metric .value { font-weight: 400; font-size: 24px; }
+    .tbl th { background: var(--ant-color-fill-alter); color: var(--ant-color-text); font-weight: 600; font-size: 14px; padding: 12px; }
+    .tbl td { padding: 12px; font-size: 14px; }
+    .field { border-color: var(--ant-color-border); padding: 0 11px; }
+    .badge { height: 22px; border: 1px solid; font-weight: 400; padding: 0 7px; }
+    .badge::before { display: none; }
+    .badge.success { color: var(--ant-color-success-text); border-color: var(--ant-color-success-border); }
+    .badge.warning { color: var(--ant-color-warning-text); border-color: var(--ant-color-warning-border); }
+    .badge.danger { color: var(--ant-color-error-text); border-color: var(--ant-color-error-border); }
+    .badge.info { color: var(--ant-color-info-text); border-color: var(--ant-color-info-border); }
+    .badge.neutral { border-color: var(--ant-color-border); background: var(--ant-color-fill-quaternary); }
+    .alert { border: 1px solid var(--ant-color-info-border); border-radius: var(--ant-border-radius-lg); }
+    .alert.warning { border-color: var(--ant-color-warning-border); }
+    .alert::before { display: none; }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong>Ant Design 6</strong>
+        <div class="meta">antd@6.7.0 · @ant-design/colors@8.0.1 · <span>--an-* → --ant-*</span></div>
+      </div>
+      <div class="tb-actions">
+        <button class="btn btn-secondary btn-sm" id="theme-btn" type="button">Polarity: Light / Dark</button>
+        <button class="btn btn-secondary btn-sm" id="density-btn" type="button">Density: Default</button>
+        <a class="btn btn-ghost btn-sm" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card app" aria-label="Ant Design Pro product surface">
+      <nav class="nav">
+        <div class="brand"><i></i>Ant Design Pro</div>
+          <a href="#" class="active"><span>Dashboard</span><span class="count"></span></a>
+          <a href="#" class=""><span>Invoices</span><span class="count">1,284</span></a>
+          <a href="#" class=""><span>Payments</span><span class="count"></span></a>
+          <a href="#" class=""><span>Customers</span><span class="count"></span></a>
+          <a href="#" class=""><span>Reports</span><span class="count"></span></a>
+          <a href="#" class=""><span>Settings</span><span class="count"></span></a>
+      </nav>
+      <div class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Home / Finance / Invoices</div>
+            <h1>Invoice management</h1>
+            <p>Fiscal period 2026-11 · 1,284 invoices · ¥ 8,420,300.00 receivable</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-secondary" type="button">Batch import</button>
+            <button class="btn btn-primary" type="button">New invoice</button>
+          </div>
+        </div>
+        <div class="tabs" role="tablist"><button class="tab" role="tab" type="button" aria-selected="true">All</button><button class="tab" role="tab" type="button" aria-selected="false">Pending approval</button><button class="tab" role="tab" type="button" aria-selected="false">Overdue</button><button class="tab" role="tab" type="button" aria-selected="false">Paid</button></div>
+        <div class="metrics">
+            <div class="card metric"><div class="label">Receivable</div><div class="value">¥ 8,420,300</div><div class="delta up">↑ 12% week over week</div></div>
+            <div class="card metric"><div class="label">Collected (MTD)</div><div class="value">¥ 3,102,880</div><div class="delta up">↑ 4.6%</div></div>
+            <div class="card metric"><div class="label">Overdue</div><div class="value">37</div><div class="delta down">↑ 5 since Monday</div></div>
+        </div>
+        <div class="split">
+          <div class="card tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th class="">Invoice No.</th><th class="">Customer</th><th class="">Due date</th><th class="num">Amount</th><th class="">Status</th></tr></thead>
+              <tbody>
+                <tr class=""><td class="id">INV-260112</td><td class="">Hangzhou Jiuyu Tech</td><td class="">2026-11-20</td><td class="num">¥ 128,000.00</td><td><span class="badge info">Processing</span></td></tr>
+                <tr class="selected"><td class="id">INV-260111</td><td class="">Shenzhen Lumen Ltd.</td><td class="">2026-11-18</td><td class="num">¥ 46,250.00</td><td><span class="badge success">Paid</span></td></tr>
+                <tr class=""><td class="id">INV-260109</td><td class="">Ningbo Harbor Group</td><td class="">2026-11-02</td><td class="num">¥ 312,900.00</td><td><span class="badge danger">Overdue</span></td></tr>
+                <tr class=""><td class="id">INV-260106</td><td class="">Suzhou Kite Labs</td><td class="">2026-11-25</td><td class="num">¥ 18,400.00</td><td><span class="badge warning">Pending</span></td></tr>
+                <tr class=""><td class="id">INV-260101</td><td class="">Xiamen Fleet Co.</td><td class="">2026-12-01</td><td class="num">¥ 77,600.00</td><td><span class="badge neutral">Draft</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card panel">
+            <h3>Quick filter</h3>
+              <div class="fld"><label>Customer</label><input class="field" placeholder="Search by name or tax ID" value=""></div>
+              <div class="fld"><label>Status</label><select class="field"><option>All statuses</option><option>Processing</option><option>Paid</option><option>Overdue</option></select></div>
+              <div class="fld"><label>Amount range</label><input class="field" placeholder="" value="10,000 – 500,000"></div>
+            <label class="check"><input type="checkbox" checked> Only my invoices</label>
+            <div class="row"><span>Show archived</span><button class="switch" role="switch" aria-checked="true" type="button" aria-label="Show archived"></button></div>
+            <div class="alert warning"><div><strong>37 invoices are overdue</strong>Automatic reminders will be sent at 09:00 tomorrow.</div></div>
+            <div class="actions"><button class="btn btn-primary" type="button">Query</button><button class="btn btn-ghost" type="button">Cancel</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>1. Official Palette Ramps</h2>
+      <p class="lede">Swatches render live from Layer 1 official tokens in <code>tokens.css</code>.</p>
+          <div class="ramp"><div class="ramp-name">Daybreak blue</div><div class="ramp-steps"><div class="sw" style="background:var(--ant-blue-1);color:#111">ant-blue-1<br>#E6F4FF</div><div class="sw" style="background:var(--ant-blue-2);color:#111">ant-blue-2<br>#BAE0FF</div><div class="sw" style="background:var(--ant-blue-3);color:#111">ant-blue-3<br>#91CAFF</div><div class="sw" style="background:var(--ant-blue-4);color:#111">ant-blue-4<br>#69B1FF</div><div class="sw" style="background:var(--ant-blue-5);color:#fff">ant-blue-5<br>#4096FF</div><div class="sw" style="background:var(--ant-blue-6);color:#fff">ant-blue-6<br>#1677FF</div><div class="sw" style="background:var(--ant-blue-7);color:#fff">ant-blue-7<br>#0958D9</div><div class="sw" style="background:var(--ant-blue-8);color:#fff">ant-blue-8<br>#003EB3</div><div class="sw" style="background:var(--ant-blue-9);color:#fff">ant-blue-9<br>#002C8C</div><div class="sw" style="background:var(--ant-blue-10);color:#fff">ant-blue-10<br>#001D66</div></div></div>
+          <div class="ramp"><div class="ramp-name">Polar green</div><div class="ramp-steps"><div class="sw" style="background:var(--ant-green-1);color:#111">ant-green-1<br>#F6FFED</div><div class="sw" style="background:var(--ant-green-2);color:#111">ant-green-2<br>#D9F7BE</div><div class="sw" style="background:var(--ant-green-3);color:#111">ant-green-3<br>#B7EB8F</div><div class="sw" style="background:var(--ant-green-4);color:#111">ant-green-4<br>#95DE64</div><div class="sw" style="background:var(--ant-green-5);color:#111">ant-green-5<br>#73D13D</div><div class="sw" style="background:var(--ant-green-6);color:#111">ant-green-6<br>#52C41A</div><div class="sw" style="background:var(--ant-green-7);color:#fff">ant-green-7<br>#389E0D</div><div class="sw" style="background:var(--ant-green-8);color:#fff">ant-green-8<br>#237804</div><div class="sw" style="background:var(--ant-green-9);color:#fff">ant-green-9<br>#135200</div><div class="sw" style="background:var(--ant-green-10);color:#fff">ant-green-10<br>#092B00</div></div></div>
+          <div class="ramp"><div class="ramp-name">Calendula gold</div><div class="ramp-steps"><div class="sw" style="background:var(--ant-gold-1);color:#111">ant-gold-1<br>#FFFBE6</div><div class="sw" style="background:var(--ant-gold-2);color:#111">ant-gold-2<br>#FFF1B8</div><div class="sw" style="background:var(--ant-gold-3);color:#111">ant-gold-3<br>#FFE58F</div><div class="sw" style="background:var(--ant-gold-4);color:#111">ant-gold-4<br>#FFD666</div><div class="sw" style="background:var(--ant-gold-5);color:#111">ant-gold-5<br>#FFC53D</div><div class="sw" style="background:var(--ant-gold-6);color:#111">ant-gold-6<br>#FAAD14</div><div class="sw" style="background:var(--ant-gold-7);color:#fff">ant-gold-7<br>#D48806</div><div class="sw" style="background:var(--ant-gold-8);color:#fff">ant-gold-8<br>#AD6800</div><div class="sw" style="background:var(--ant-gold-9);color:#fff">ant-gold-9<br>#874D00</div><div class="sw" style="background:var(--ant-gold-10);color:#fff">ant-gold-10<br>#613400</div></div></div>
+          <div class="ramp"><div class="ramp-name">Dust red</div><div class="ramp-steps"><div class="sw" style="background:var(--ant-red-1);color:#111">ant-red-1<br>#FFF1F0</div><div class="sw" style="background:var(--ant-red-2);color:#111">ant-red-2<br>#FFCCC7</div><div class="sw" style="background:var(--ant-red-3);color:#111">ant-red-3<br>#FFA39E</div><div class="sw" style="background:var(--ant-red-4);color:#fff">ant-red-4<br>#FF7875</div><div class="sw" style="background:var(--ant-red-5);color:#fff">ant-red-5<br>#FF4D4F</div><div class="sw" style="background:var(--ant-red-6);color:#fff">ant-red-6<br>#F5222D</div><div class="sw" style="background:var(--ant-red-7);color:#fff">ant-red-7<br>#CF1322</div><div class="sw" style="background:var(--ant-red-8);color:#fff">ant-red-8<br>#A8071A</div><div class="sw" style="background:var(--ant-red-9);color:#fff">ant-red-9<br>#820014</div><div class="sw" style="background:var(--ant-red-10);color:#fff">ant-red-10<br>#5C0011</div></div></div>
+          <div class="ramp"><div class="ramp-name">Geek blue</div><div class="ramp-steps"><div class="sw" style="background:var(--ant-geekblue-1);color:#111">ant-geekblue-1<br>#F0F5FF</div><div class="sw" style="background:var(--ant-geekblue-2);color:#111">ant-geekblue-2<br>#D6E4FF</div><div class="sw" style="background:var(--ant-geekblue-3);color:#111">ant-geekblue-3<br>#ADC6FF</div><div class="sw" style="background:var(--ant-geekblue-4);color:#111">ant-geekblue-4<br>#85A5FF</div><div class="sw" style="background:var(--ant-geekblue-5);color:#fff">ant-geekblue-5<br>#597EF7</div><div class="sw" style="background:var(--ant-geekblue-6);color:#fff">ant-geekblue-6<br>#2F54EB</div><div class="sw" style="background:var(--ant-geekblue-7);color:#fff">ant-geekblue-7<br>#1D39C4</div><div class="sw" style="background:var(--ant-geekblue-8);color:#fff">ant-geekblue-8<br>#10239E</div><div class="sw" style="background:var(--ant-geekblue-9);color:#fff">ant-geekblue-9<br>#061178</div><div class="sw" style="background:var(--ant-geekblue-10);color:#fff">ant-geekblue-10<br>#030852</div></div></div>
+    </section>
+
+    <section class="card section">
+      <h2>2. Semantic Roles (<code>--an-*</code> → official tokens)</h2>
+      <p class="lede">Toggle polarity to see the official dark mapping resolve in place.</p>
+      <div class="roles">
+            <div class="role"><div class="chip" style="background:var(--an-canvas)"></div><div class="txt"><b>canvas</b>--ant-color-bg-layout<br><span data-resolve="--an-canvas"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-surface)"></div><div class="txt"><b>surface</b>--ant-color-bg-container<br><span data-resolve="--an-surface"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-surface-2)"></div><div class="txt"><b>surface-2</b>--ant-color-fill-alter<br><span data-resolve="--an-surface-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-border)"></div><div class="txt"><b>border</b>--ant-color-border-secondary<br><span data-resolve="--an-border"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-border-strong)"></div><div class="txt"><b>border-strong</b>--ant-color-border<br><span data-resolve="--an-border-strong"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-ink)"></div><div class="txt"><b>ink</b>--ant-color-text<br><span data-resolve="--an-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-ink-2)"></div><div class="txt"><b>ink-2</b>--ant-color-text-secondary<br><span data-resolve="--an-ink-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-ink-3)"></div><div class="txt"><b>ink-3</b>--ant-color-text-tertiary<br><span data-resolve="--an-ink-3"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-accent)"></div><div class="txt"><b>accent</b>--ant-color-primary<br><span data-resolve="--an-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-accent-hover)"></div><div class="txt"><b>accent-hover</b>--ant-color-primary-hover<br><span data-resolve="--an-accent-hover"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-on-accent)"></div><div class="txt"><b>on-accent</b>--ant-color-text-light-solid<br><span data-resolve="--an-on-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-accent-subtle)"></div><div class="txt"><b>accent-subtle</b>--ant-color-primary-bg<br><span data-resolve="--an-accent-subtle"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-accent-ink)"></div><div class="txt"><b>accent-ink</b>--ant-color-link<br><span data-resolve="--an-accent-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-success)"></div><div class="txt"><b>success</b>--ant-color-success<br><span data-resolve="--an-success"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-warning)"></div><div class="txt"><b>warning</b>--ant-color-warning<br><span data-resolve="--an-warning"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-danger)"></div><div class="txt"><b>danger</b>--ant-color-error<br><span data-resolve="--an-danger"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-info)"></div><div class="txt"><b>info</b>--ant-color-info<br><span data-resolve="--an-info"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--an-focus)"></div><div class="txt"><b>focus</b>--ant-color-primary-border-hover<br><span data-resolve="--an-focus"></span></div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>3. Type Scale</h2>
+      <p class="lede">antd uses the platform system stack; on Linux the specimen loads Roboto (fourth in the official stack).</p>
+          <div class="type-row"><div class="type-meta"><b>Heading 1</b>--ant-font-size-heading-1 · 38px/1.2105 · 600</div><div class="type-sample" style="font-size:var(--ant-font-size-heading-1);line-height:var(--ant-line-height-heading-1);font-weight:var(--ant-font-weight-strong);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Heading 2</b>--ant-font-size-heading-2 · 30px/1.2667 · 600</div><div class="type-sample" style="font-size:var(--ant-font-size-heading-2);line-height:var(--ant-line-height-heading-2);font-weight:var(--ant-font-weight-strong);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Heading 3</b>--ant-font-size-heading-3 · 24px/1.3333 · 600</div><div class="type-sample" style="font-size:var(--ant-font-size-heading-3);line-height:var(--ant-line-height-heading-3);font-weight:var(--ant-font-weight-strong);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Heading 5</b>--ant-font-size-heading-5 · 16px/1.5 · 600</div><div class="type-sample" style="font-size:var(--ant-font-size-heading-5);line-height:var(--ant-line-height-heading-5);font-weight:var(--ant-font-weight-strong);">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body LG</b>--ant-font-size-lg · 16px/1.5 · 400</div><div class="type-sample" style="font-size:var(--ant-font-size-lg);line-height:var(--ant-line-height-lg);font-weight:400;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body (base)</b>--ant-font-size · 14px/1.5714 · 400</div><div class="type-sample" style="font-size:var(--ant-font-size);line-height:var(--ant-line-height);font-weight:400;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body SM</b>--ant-font-size-sm · 12px/1.6667 · 400</div><div class="type-sample" style="font-size:var(--ant-font-size-sm);line-height:var(--ant-line-height-sm);font-weight:400;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+    </section>
+
+    <section class="card section">
+      <h2>4. Shape, Space &amp; Elevation</h2>
+      <div class="tok-grid">
+        <div class="tok-col"><h3>Radius</h3><div class="rad"><div style="border-radius:var(--ant-border-radius-xs)">XS</div><div style="border-radius:var(--ant-border-radius-sm)">SM</div><div style="border-radius:var(--ant-border-radius)">base</div><div style="border-radius:var(--ant-border-radius-lg)">LG</div></div></div>
+        <div class="tok-col"><h3>Spacing</h3>
+              <div class="sp"><span>ant-padding-xxs · 4px</span><span style="width:var(--ant-padding-xxs)"></span></div>
+              <div class="sp"><span>ant-padding-xs · 8px</span><span style="width:var(--ant-padding-xs)"></span></div>
+              <div class="sp"><span>ant-padding-sm · 12px</span><span style="width:var(--ant-padding-sm)"></span></div>
+              <div class="sp"><span>ant-padding · 16px</span><span style="width:var(--ant-padding)"></span></div>
+              <div class="sp"><span>ant-padding-lg · 24px</span><span style="width:var(--ant-padding-lg)"></span></div>
+              <div class="sp"><span>ant-padding-xl · 32px</span><span style="width:var(--ant-padding-xl)"></span></div>
+              <div class="sp"><span>ant-margin-xxl · 48px</span><span style="width:var(--ant-margin-xxl)"></span></div>
+        </div>
+        <div class="tok-col"><h3>Elevation</h3><div class="elev">
+              <div style="box-shadow:var(--ant-box-shadow-tertiary)">boxShadowTertiary</div>
+              <div style="box-shadow:var(--ant-box-shadow)">boxShadow</div>
+              <div style="box-shadow:var(--ant-box-shadow-secondary)">boxShadowSecondary</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>5. Action States</h2>
+      <div class="states">
+        <span class="lbl">Primary</span><button class="btn btn-primary" type="button">New invoice</button><button class="btn btn-primary is-hover" type="button">Hover</button><button class="btn btn-primary" type="button" disabled>Disabled</button>
+        <span class="lbl">Secondary</span><button class="btn btn-secondary" type="button">Batch import</button><button class="btn btn-secondary is-hover" type="button">Hover</button><button class="btn btn-secondary" type="button" disabled>Disabled</button>
+        <span class="lbl">Ghost / tertiary</span><button class="btn btn-ghost" type="button">View details</button><button class="btn btn-ghost is-hover" type="button">Hover</button><button class="btn btn-ghost" type="button" disabled>Disabled</button>
+        <span class="lbl">Destructive</span><button class="btn btn-danger" type="button">Delete</button><button class="btn btn-danger" type="button" style="filter:brightness(.9)">Hover</button><button class="btn btn-danger" type="button" disabled>Disabled</button>
+      </div>
+      <div class="badges"><span class="badge success">Success</span><span class="badge warning">Warning</span><span class="badge danger">Critical</span><span class="badge info">Info</span><span class="badge neutral">Neutral</span></div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    const resolveAll = () => document.querySelectorAll('[data-resolve]').forEach((el) => {
+      const probe = document.createElement('i');
+      probe.style.color = 'var(' + el.dataset.resolve + ')';
+      document.body.appendChild(probe);
+      const rgb = getComputedStyle(probe).color; probe.remove();
+      const m = rgb.match(/[\d.]+/g) || [];
+      el.textContent = m.length >= 3 ? '#' + m.slice(0, 3).map((n) => (+n).toString(16).padStart(2, '0')).join('').toUpperCase() + (m[3] && +m[3] < 1 ? ' · α' + (+m[3]).toFixed(2) : '') : rgb;
+    });
+    resolveAll();
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) themeBtn.addEventListener('click', () => { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; resolveAll(); });
+    const densityBtn = document.getElementById('density-btn');
+    densityBtn.addEventListener('click', () => {
+      const compact = html.classList.toggle('compact');
+      html.style.setProperty('--an-control-h', compact ? 'calc(var(--an-control-base) - 8px)' : 'var(--an-control-base)');
+      densityBtn.textContent = compact ? 'Density: Compact' : 'Density: Default';
+    });
+    document.querySelectorAll('[role="tablist"]').forEach((list) => list.addEventListener('click', (e) => {
+      const t = e.target.closest('[role="tab"]'); if (!t) return;
+      list.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    }));
+    document.querySelectorAll('.switch').forEach((sw) => sw.addEventListener('click', () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'))));
+    document.querySelectorAll('.tbl tbody tr').forEach((tr) => tr.addEventListener('click', () => {
+      tr.parentElement.querySelectorAll('tr').forEach((x) => x.classList.toggle('selected', x === tr));
+    }));
+    document.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); a.parentElement.querySelectorAll('a').forEach((x) => x.classList.toggle('active', x === a));
+    }));
+  </script>
+</body>
+</html>

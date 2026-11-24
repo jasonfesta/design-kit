@@ -1,0 +1,27 @@
+@layer theme, base, mui, components, utilities;
+@import "tailwindcss";
+@import "konsta/react/theme.css";
+@import "@radix-ui/themes/styles.css" layer(components);
+
+@theme {
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  :root {
+    --font-display: "Instrument Serif", ui-serif, Georgia, serif;
+  }
+  html,
+  body {
+    background: #faf8f4;
+    color: #1c1b19;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Radix Themes uses its own font var — point it at the kit pairing, not system/Material faces. */
+  .radix-themes {
+    --default-font-family: var(--font-sans);
+  }
+}

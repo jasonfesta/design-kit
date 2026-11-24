@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Gemini App (gem v39) — Conversational AI Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    body { min-height: 100vh; }
+    .gem-shell { display: grid; grid-template-columns: 272px 1fr; min-height: 100vh; }
+    .gem-drawer { background: var(--gem-sys-color-surface-container-low); padding: 14px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .gem-drawer .new-chat { height: 40px; border-radius: var(--gem-sys-corner-full); background: var(--gem-sys-color-surface-container-high); border: 0; color: var(--gem-sys-color-on-surface-variant); font: 500 14px var(--gem-sys-font-body); display: inline-flex; align-items: center; gap: 10px; padding: 0 16px; width: fit-content; margin: 8px 0 14px; }
+    .gem-drawer h4 { margin: 12px 12px 4px; font: 500 13px var(--gem-sys-font-body); color: var(--gem-sys-color-on-surface); }
+    .drawer-item { height: 36px; border-radius: var(--gem-sys-corner-full); display: flex; align-items: center; gap: 10px; padding: 0 12px; font-size: 13.5px; color: var(--gem-sys-color-on-surface); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .drawer-item.active { background: var(--gem-sys-color-secondary-container); color: var(--gem-sys-color-on-secondary-container); font-weight: 500; }
+    .gem-dot { width: 22px; height: 22px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 11px; font-weight: 700; flex: none; }
+    .gem-main { display: flex; flex-direction: column; min-width: 0; }
+    .gem-top { height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+    .wordmark { font: 400 21px var(--gem-sys-font-brand); color: var(--gem-sys-color-on-surface); display: flex; align-items: center; gap: 8px; }
+    .model-pill { height: 30px; padding: 0 12px; border-radius: var(--gem-sys-corner-full); background: var(--gem-sys-color-surface-container); font-size: 12.5px; color: var(--gem-sys-color-on-surface-variant); display: inline-flex; align-items: center; gap: 6px; }
+    .icon-btn { height: 36px; padding: 0 14px; border-radius: var(--gem-sys-corner-full); border: 1px solid var(--gem-sys-color-outline-variant); background: transparent; color: var(--gem-sys-color-on-surface); font: 500 12.5px var(--gem-sys-font-body); cursor: pointer; }
+    .thread { flex: 1; width: 100%; max-width: 780px; margin: 0 auto; padding: 8px 24px 24px; display: flex; flex-direction: column; gap: 22px; }
+    .user-turn { align-self: flex-end; max-width: 78%; background: var(--gem-sys-color-surface-container-high); border-radius: 24px 4px 24px 24px; padding: 12px 18px; font-size: 15px; line-height: 1.5; }
+    .model-turn { display: grid; grid-template-columns: 32px 1fr; gap: 14px; }
+    .spark { width: 28px; height: 28px; border-radius: 50%; background: conic-gradient(from 200deg, var(--gem-sys-color-brand-transition-blue-1), var(--gem-sys-color-brand-transition-blue-2), var(--gem-sys-color-brand-blue), var(--gem-sys-color-brand-transition-blue-1)); position: relative; }
+    .spark::after { content: '✦'; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: 14px; }
+    .md h3 { font: 500 1.375rem/1.75rem var(--gem-sys-font-brand); margin: 2px 0 8px; }
+    .md p { margin: 0 0 12px; font-size: var(--gem-sys-body-l-size); line-height: var(--gem-sys-body-l-line-height); }
+    .md ol { margin: 0 0 12px; padding-left: 22px; line-height: 1.6; }
+    .md code { font-family: var(--gem-sys-font-mono); font-size: 13px; background: var(--gem-sys-color-surface-container-high); padding: 1px 6px; border-radius: 6px; }
+    .md table { border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 4px 0 12px; font-variant-numeric: tabular-nums; }
+    .md th, .md td { border-bottom: 1px solid var(--gem-sys-color-outline-low); padding: 8px 10px; text-align: left; }
+    .md th { color: var(--gem-sys-color-on-surface-variant); font-weight: 500; }
+    .actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip { height: 32px; padding: 0 14px; border-radius: var(--gem-sys-corner-small); border: 1px solid var(--gem-sys-color-outline-variant); font-size: 12.5px; display: inline-flex; align-items: center; gap: 6px; color: var(--gem-sys-color-on-surface-variant); background: var(--gem-sys-color-surface); }
+    .composer-wrap { padding: 0 24px 22px; }
+    .composer { max-width: 780px; margin: 0 auto; border-radius: var(--gem-sys-corner-extra-large); padding: 1.5px; background: linear-gradient(90deg, var(--gem-sys-color-brand-transition-blue-1), var(--gem-sys-color-brand-transition-blue-2), var(--gem-sys-color-brand-transition-teal)); }
+    .composer-inner { background: var(--gem-sys-color-surface-container); border-radius: 27px; padding: 14px 18px 10px; }
+    .composer-inner .ph { font-size: 15.5px; color: var(--gem-sys-color-on-surface-variant); margin-bottom: 12px; }
+    .composer-row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .tool-chip { height: 34px; padding: 0 14px; border-radius: var(--gem-sys-corner-full); background: transparent; border: 0; color: var(--gem-sys-color-on-surface-variant); font: 500 13px var(--gem-sys-font-body); display: inline-flex; gap: 6px; align-items: center; }
+    .send { width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--gem-sys-color-primary); color: var(--gem-sys-color-on-primary); font-size: 17px; }
+    .disclaimer { text-align: center; font-size: 11.5px; color: var(--gem-sys-color-on-surface-low); margin-top: 10px; }
+    @media (max-width: 860px) {
+      .gem-shell { grid-template-columns: 1fr; }
+      .gem-drawer { display: none; }
+      .gem-top { padding: 0 12px; height: 56px; }
+      .thread { padding: 4px 14px 16px; gap: 18px; }
+      .user-turn { max-width: 88%; font-size: 14px; }
+      .model-turn { grid-template-columns: 1fr; gap: 8px; }
+      .md h3 { font-size: 1.15rem; }
+      .md p, .md ol { font-size: 14.5px; }
+      .md table { font-size: 12px; }
+      .composer-wrap { padding: 0 10px 12px; }
+      .tool-chip.hide-m { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="gem-shell">
+    <nav class="gem-drawer">
+      <div style="font-size:18px;padding:6px 10px;color:var(--gem-sys-color-on-surface-variant);">☰</div>
+      <button class="new-chat" type="button">＋ New chat</button>
+      <h4>Gems</h4>
+      <div class="drawer-item"><span class="gem-dot" style="background:var(--gem-sys-color-gems-blue-low);color:var(--gem-sys-color-gems-blue-high);">L</span>Learning coach</div>
+      <div class="drawer-item"><span class="gem-dot" style="background:var(--gem-sys-color-gems-teal-low);color:var(--gem-sys-color-gems-teal-high);">D</span>Data analyst</div>
+      <div class="drawer-item"><span class="gem-dot" style="background:var(--gem-sys-color-gems-orange-low);color:var(--gem-sys-color-gems-orange-high);">W</span>Writing editor</div>
+      <h4>Recent</h4>
+      <div class="drawer-item active">Q3 water-loss variance by district</div>
+      <div class="drawer-item">Summarize pump telemetry PDF</div>
+      <div class="drawer-item">Trip plan: Lisbon in 4 days</div>
+      <div class="drawer-item">Python: dedupe sensor readings</div>
+      <div class="drawer-item">Compare heat-pump quotes</div>
+      <div style="margin-top:auto;font-size:12px;color:var(--gem-sys-color-on-surface-low);padding:8px 12px;">gem.sys.* v39.0.0 · Carbon 3f0fcc61</div>
+    </nav>
+    <main class="gem-main">
+      <header class="gem-top">
+        <div class="wordmark">Gemini <span class="model-pill">2.5 Pro ▾</span></div>
+        <button class="icon-btn" id="theme-btn" type="button">◑ Light / Dark</button>
+      </header>
+      <section class="thread">
+        <div class="user-turn">Which districts drove the Q3 non-revenue water increase? Give me the top three with the change vs Q2.</div>
+        <div class="model-turn">
+          <div class="spark"></div>
+          <div class="md">
+            <h3>Three districts explain 71% of the increase</h3>
+            <p>Non-revenue water rose from <strong>18.4%</strong> to <strong>21.9%</strong> quarter-over-quarter. Most of the change traces to aging mains in the eastern network.</p>
+            <table>
+              <thead><tr><th>District</th><th>Q2 NRW</th><th>Q3 NRW</th><th>Δ pts</th></tr></thead>
+              <tbody>
+                <tr><td>East Ridge</td><td>22.1%</td><td>29.8%</td><td style="color:var(--gem-sys-color-error);">+7.7</td></tr>
+                <tr><td>Harbor Flats</td><td>19.5%</td><td>24.0%</td><td style="color:var(--gem-sys-color-error);">+4.5</td></tr>
+                <tr><td>Old Town</td><td>17.2%</td><td>20.3%</td><td style="color:var(--gem-sys-color-error);">+3.1</td></tr>
+              </tbody>
+            </table>
+            <ol>
+              <li>Prioritize acoustic leak surveys on the <code>DN300</code> trunk in East Ridge.</li>
+              <li>Re-calibrate the two district meters flagged with drift &gt; 2%.</li>
+            </ol>
+            <div class="actions">
+              <span class="chip">👍</span><span class="chip">👎</span><span class="chip">↻ Regenerate</span><span class="chip">⤴ Share &amp; export</span><span class="chip">✓ Double-check</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="composer-wrap">
+        <div class="composer"><div class="composer-inner">
+          <div class="ph">Ask Gemini</div>
+          <div class="composer-row">
+            <div style="display:flex;gap:2px;">
+              <button class="tool-chip" type="button">＋</button>
+              <button class="tool-chip" type="button">⚙ Tools</button>
+              <button class="tool-chip hide-m" type="button">◎ Deep Research</button>
+              <button class="tool-chip hide-m" type="button">▣ Canvas</button>
+            </div>
+            <button class="send" type="button">➤</button>
+          </div>
+        </div></div>
+        <div class="disclaimer">Gemini can make mistakes, so double-check it.</div>
+      </div>
+    </main>
+  </div>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>

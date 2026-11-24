@@ -1,0 +1,118 @@
+@layer reset, tokens, base, utilities;
+
+/* ==========================================================================
+   16. NOTEBOOKLM DESIGN SYSTEM (NLM)
+   Version: 0.0.5 · Carbon: designSystems/227421e97a36bc18
+   Google3 Provenance:
+     - //depot/google3/ux/tokens/design_systems/notebooklm/versions/v0_0_5/sass/
+     - //depot/google3/ux/tokens/design_systems/notebooklm/versions/v0_0_5/flutter/
+     - //depot/google3/ux/tokens/design_systems/notebooklm/sass_vars_config.textproto
+     - Docs: go/carbon-service-docs | go/carbon-service-code-gen-mwtc
+   Values: Verbatim Carbon/codegen values unless the line is annotated 'inferred'
+   ========================================================================== */
+
+@layer tokens {
+  :root,
+  html[data-theme="light"] {
+    color-scheme: light;
+
+    --nlm-surface-page: #edeffa;
+    --nlm-surface-panel: #ffffff;
+    --nlm-surface-landing: #ffffff;
+    --nlm-titles-and-labels: #1b1b1c;
+    --nlm-body-text: #303030;
+    --nlm-secondary-text: #5e5e5e;
+    --nlm-ghost-text: #777777;
+    --nlm-default-stroke: #dde1eb;
+    --nlm-focus-stroke: #919191;
+    --nlm-primary-button-fill: #4259ff;
+    --nlm-primary-button-fill-hover: #3d52eb;
+    --nlm-secondary-button-fill: #000000;
+    --nlm-tertiary-button-fill-hover: #f0f2ff;
+    --nlm-cta-text-and-icon-blue: #4259ff;
+    --nlm-cta-text-and-icon-primary: #ffffff;
+    --nlm-pill-and-filters: #edeffa;
+    --nlm-ui-grey-fill: #f2f2f2;
+    --nlm-ui-light-grey-fill: #f9f9f9;
+    --nlm-blue-tile: #edeffa;
+    --nlm-blue-on-tile: #224484;
+    --nlm-green-tile: #e1f1e5;
+    --nlm-green-on-tile: #0f5223;
+    --nlm-cyan-tile: #def1f7;
+    --nlm-cyan-on-tile: #056a95;
+    --nlm-orange-tile: #f7edeb;
+    --nlm-orange-on-tile: #8c2e2a;
+    --nlm-yellow-tile: #f2f2e8;
+    --nlm-yellow-on-tile: #796731;
+    --nlm-blue-icon: #3271ea;
+    --nlm-green-icon: #128937;
+    --nlm-red-icon: #db372d;
+    --nlm-yellow-icon: #fcbd00;
+    --nlm-nlm-green: #45ec6d;
+    --nlm-scrim: rgba(0, 0, 0, 0.32);
+  }
+
+  html[data-theme="dark"] {
+    color-scheme: dark;
+
+    --nlm-surface-page: #1a1d22;
+    --nlm-surface-panel: #22262b;
+    --nlm-surface-landing: #22262b;
+    --nlm-titles-and-labels: #f2f2f2;
+    --nlm-body-text: #c6c6c6;  /* inferred */
+    --nlm-secondary-text: #ababab;  /* inferred */
+    --nlm-ghost-text: #919191;  /* inferred */
+    --nlm-default-stroke: #37383b;
+    --nlm-focus-stroke: #5e5e5e;
+    --nlm-primary-button-fill: #4259ff;
+    --nlm-primary-button-fill-hover: #5166ff;
+    --nlm-secondary-button-fill: #ffffff;
+    --nlm-tertiary-button-fill-hover: #22262b;
+    --nlm-cta-text-and-icon-blue: #c3caff;
+    --nlm-cta-text-and-icon-primary: #ffffff;
+    --nlm-pill-and-filters: #2f334b;
+    --nlm-ui-grey-fill: #3e4a59;
+    --nlm-ui-light-grey-fill: #1a1d22;
+    --nlm-blue-tile: #32343e;
+    --nlm-blue-on-tile: #d4dafa;
+    --nlm-green-tile: #303632;
+    --nlm-green-on-tile: #cdf1d6;
+    --nlm-cyan-tile: #32383e;
+    --nlm-cyan-on-tile: #c9eff0;
+    --nlm-orange-tile: #3a3230;
+    --nlm-orange-on-tile: #f7d8d2;
+    --nlm-yellow-tile: #3a3a2f;
+    --nlm-yellow-on-tile: #f2f2ce;
+    --nlm-scrim: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Verbatim nlm.sys.numeric (rounded-corners 16, paragraph-spacing 12) + text-styles sizes */
+  :root {
+    --nlm-sys-font-brand: 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --nlm-sys-font-body: 'Google Sans Text', 'Roboto', Arial, sans-serif;
+    --nlm-sys-font-flex: 'Google Sans Flex', 'Google Sans', 'Plus Jakarta Sans', sans-serif;
+    --nlm-sys-rounded-corners: 16px;
+    --nlm-sys-paragraph-spacing: 12px;
+    --nlm-sys-title-xlarge-size: 1.75rem;
+    --nlm-sys-title-large-size: 1.375rem;
+    --nlm-sys-body-large-size: 1rem;
+    --nlm-sys-body-medium-size: 0.875rem;
+  }
+}
+
+@layer reset {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--nlm-surface-page);
+    color: var(--nlm-titles-and-labels);
+    font-family: var(--nlm-sys-font-body, var(--nlm-sys-font-plain, var(--nlm-sys-font-brand)));
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+}

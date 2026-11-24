@@ -1,0 +1,47 @@
+{
+  "_comment": "NOT loaded by Jetski. Local-only or key/OAuth servers. Move an entry into mcp_config.json once its prerequisite is met, then toggle the plugin.",
+  "mcpServers": {
+    "figma-desktop": {
+      "url": "http://127.0.0.1:3845/mcp"
+    },
+    "figma": {
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "refero": {
+      "url": "https://api.refero.design/mcp",
+      "headers": {
+        "Authorization": "Bearer <REFERO_TOKEN>"
+      }
+    },
+    "lottiefiles": {
+      "url": "https://mcp.lottiefiles.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <LOTTIEFILES_TOKEN>"
+      }
+    },
+    "framer": {
+      "url": "https://mcp.framer.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <FRAMER_TOKEN>"
+      }
+    },
+    "excalidraw-plus": {
+      "url": "https://api.excalidraw.com/api/v1/mcp",
+      "headers": {
+        "Authorization": "Bearer <EXCALIDRAW_PLUS_KEY>"
+      }
+    },
+    "google-fonts": {
+      "command": "uvx",
+      "args": [
+        "google-fonts-mcp"
+      ]
+    },
+    "palletism": {
+      "url": "https://palletism.art/mcp",
+      "headers": {
+        "Authorization": "Bearer <PALLETISM_KEY plt_...>"
+      }
+    }
+  }
+}

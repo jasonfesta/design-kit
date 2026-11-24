@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Kit Jig (style-jig) — Reusable Jetski Skill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Instrument+Sans:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --surface: #f1efe9;
+      --surface-strong: #e6e3da;
+      --fg: #151514;
+      --muted: #585752;
+      --faint: #78766f;
+      --line: rgba(21, 21, 20, 0.10);
+      --accent: #0f766e;
+      --accent-hover: #0d5e58;
+      --accent-ink: #faf9f6;
+      --accent-soft: rgba(15, 118, 110, 0.11);
+      --code-bg: #ebe8e0;
+      --stage-frame-bg: #0c0c0c;
+      --shadow-soft: 0 18px 42px -24px rgba(21, 21, 20, 0.24);
+    }
+
+    html[data-theme="dark"] {
+      --bg: #0c0c0b;
+      --surface: #161614;
+      --surface-strong: #22221f;
+      --fg: #f3f2ee;
+      --muted: #a9a79f;
+      --faint: #7f7d76;
+      --line: rgba(243, 242, 238, 0.11);
+      --accent: #10b981;
+      --accent-hover: #059669;
+      --accent-ink: #071410;
+      --accent-soft: rgba(16, 185, 129, 0.15);
+      --code-bg: #1b1b18;
+      --stage-frame-bg: #000000;
+      --shadow-soft: 0 24px 56px -24px rgba(0, 0, 0, 0.72);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 180ms ease, color 180ms ease;
+    }
+
+    h1, h2, h3 {
+      font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: -0.025em;
+      margin: 0;
+      color: var(--fg);
+    }
+
+    a {
+      color: var(--fg);
+    }
+
+    code, pre {
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header.topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 60px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: "Instrument Sans", sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: nowrap;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 150ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--fg);
+    }
+
+    button {
+      font-family: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
+      cursor: pointer;
+      border: none;
+      outline: none;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 34px;
+      padding: 8px 13px 6px 13px;
+      border-radius: 9px;
+      background: var(--surface);
+      color: var(--fg);
+      font-size: 13.5px;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: background-color 150ms ease, transform 120ms ease;
+    }
+
+    .theme-btn:hover {
+      background: var(--surface-strong);
+    }
+
+    .theme-btn:active {
+      transform: scale(0.98);
+    }
+
+    main {
+      padding: 34px 0 96px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 4.5vw, 50px);
+      font-weight: 600;
+      line-height: 1.06;
+      max-width: 13ch;
+    }
+
+    .hero-copy p {
+      margin: 0 0 22px;
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 48ch;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 11px 18px 9px 18px;
+      border-radius: 10px;
+      font-size: 14.5px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 150ms ease, transform 120ms ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--fg);
+    }
+
+    .btn-secondary:hover {
+      background: var(--surface-strong);
+    }
+
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: scale(0.98);
+    }
+
+    .stage-showcase {
+      margin-bottom: 68px;
+    }
+
+    .stage-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 420px;
+      max-height: 540px;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--stage-frame-bg);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stage-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #000000;
+    }
+
+    .stage-caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .stage-caption a {
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    section.block {
+      margin-top: 68px;
+    }
+
+    section.block h2 {
+      font-size: clamp(24px, 2.8vw, 30px);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    section.block > p.lead {
+      margin: 0 0 26px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 64ch;
+    }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .surface-card {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 22px 24px;
+      min-width: 0;
+    }
+
+    .surface-card h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .surface-card p {
+      margin: 0 0 14px;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+
+    .code-box {
+      position: relative;
+      background: var(--code-bg);
+      border-radius: 10px;
+      padding: 13px 14px;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+
+    .code-box pre {
+      margin: 0;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: var(--fg);
+      white-space: pre;
+    }
+
+    .prompt-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .prompt-item {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .prompt-item h3 {
+      font-size: 15.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .prompt-quote {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--fg);
+      line-height: 1.5;
+    }
+
+    .prompt-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .prompt-note {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 7px 12px 5px 12px;
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--fg);
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--surface-strong);
+    }
+
+    .copy-btn.copied {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+
+    .controls-table-wrap {
+      overflow-x: auto;
+      max-width: 100%;
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 8px 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+    }
+
+    th, td {
+      padding: 14px 10px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    th {
+      font-family: "Instrument Sans", sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    td code {
+      font-size: 12.5px;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 6px;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .docs-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .doc-link {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: var(--surface);
+      text-decoration: none;
+      transition: background-color 150ms ease, transform 120ms ease;
+    }
+
+    .doc-link:hover {
+      background: var(--surface-strong);
+      transform: translateY(-1px);
+    }
+
+    .doc-link strong {
+      font-family: "Instrument Sans", sans-serif;
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--fg);
+    }
+
+    .doc-link span {
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    footer {
+      margin-top: 72px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 13.5px;
+      color: var(--faint);
+    }
+
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .install-grid,
+      .prompt-list,
+      .docs-list {
+        grid-template-columns: 1fr;
+      }
+      .stage-frame {
+        aspect-ratio: 4 / 3;
+        min-height: 360px;
+      }
+      .nav-links a.hide-mobile {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .wrap {
+        padding: 0 16px;
+      }
+      main {
+        padding: 36px 0 64px;
+      }
+      .nav-links {
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Design Kit Jig</span>
+      </a>
+      <nav class="nav-links" aria-label="Skill sections">
+        <a href="#install">Install</a>
+        <a href="#reuse">Ask Jetski</a>
+        <a href="#controls" class="hide-mobile">Controls</a>
+        <a href="#docs" class="hide-mobile">Docs</a>
+        <button type="button" class="theme-btn" id="themeToggle" aria-label="Toggle color theme">Dark mode</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <h1>Wrap any prototype in the Design Kit Jig</h1>
+      <div class="hero-copy">
+        <p>
+          Install <code>style-jig</code> once in Jetski and reuse it across every project. Includes
+          the latest Slides controls: interactive Playback cursor, strokeless Red Record MP4
+          walkthroughs, Trace markdown viewer, live rendered Prompt HTML+CSS copy, and 100%
+          standalone Open launch.
+        </p>
+        <div class="cta-row">
+          <a class="btn-primary" href="./style-jig.skill" download>Download .skill</a>
+          <a class="btn-secondary" href="./design-kit-jig-plugin.zip" download>Plugin .zip</a>
+          <a class="btn-secondary" href="./harness.html" target="_blank" rel="noopener noreferrer">Open Live Jig</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage-showcase" aria-label="Interactive Design Kit Jig preview">
+      <div class="stage-frame">
+        <iframe
+          src="./harness.html"
+          title="Interactive Design Kit Jig harness"
+        ></iframe>
+      </div>
+      <div class="stage-caption">
+        <span>Try switching styles, hovering the right-edge donor notches, or clicking Playback, Trace, Prompt, and Open.</span>
+        <a href="./harness.html" target="_blank" rel="noopener noreferrer">Open full screen</a>
+      </div>
+    </section>
+
+    <section id="install" class="block">
+      <h2>Install once in Jetski</h2>
+      <p class="lead">
+        Install either the standalone skill or the full <code>design-kit-jig</code> Jetski plugin
+        (skill + <code>jig-agent</code> + <code>jig-recorder</code>). Everything is driven by
+        <code>jig.config.json</code>, so your project can use any slide types, custom style names,
+        UI/motion libraries, and optional clone service. Read <a href="./INSTALL.md">INSTALL.md</a>
+        for the full walkthrough.
+      </p>
+      <div class="install-grid">
+        <div class="surface-card">
+          <h3>Standalone Skill (Global)</h3>
+          <p>Available in every Jetski chat across all workspaces. Also downloadable as <a href="./style-jig.zip" download>style-jig.zip</a>.</p>
+          <div class="code-box">
+            <pre>mkdir -p ~/.gemini/config/skills
+unzip -o style-jig.zip -d ~/.gemini/config/skills/
+# Or one-liner on corp workstations:
+bash /google/data/ro/users/jf/jfesta/www/style-jig/install.sh</pre>
+          </div>
+        </div>
+        <div class="surface-card">
+          <h3>Full Jetski Plugin (<code>design-kit-jig</code>)</h3>
+          <p>Bundles <code>style-jig</code>, <code>jig-agent</code>, and <code>jig-recorder</code> with a valid <code>plugin.json</code> manifest.</p>
+          <div class="code-box">
+            <pre>mkdir -p ~/.gemini/config/plugins
+unzip -o design-kit-jig-plugin.zip -d ~/.gemini/config/plugins/
+# Or one-liner on corp workstations:
+bash /google/data/ro/users/jf/jfesta/www/style-jig/install.sh --plugin</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reuse" class="block">
+      <h2>How it sets itself up — and reuses across projects</h2>
+      <p class="lead">
+        Do not edit boilerplate by hand. After installing, ask Jetski to set up <code>style-jig</code>:
+        it inspects your <code>package.json</code>, asks for your slide types, libraries, styles, and
+        optional clone source, and writes <code>jig.config.json</code> automatically.
+      </p>
+      <div class="prompt-list">
+        <div class="prompt-item">
+          <div>
+            <h3>Guided first-run self-setup</h3>
+            <p class="prompt-quote">"Set up style-jig for my project — ask me for my slide types, UI and motion libraries, style slots, and optional clone source."</p>
+          </div>
+          <div class="prompt-foot">
+            <span class="prompt-note">Generates jig.config.json without assuming defaults</span>
+            <button type="button" class="copy-btn" data-copy="Set up style-jig for my project — ask me for my slide types, UI and motion libraries, style slots, and optional clone source.">Copy</button>
+          </div>
+        </div>
+
+        <div class="prompt-item">
+          <div>
+            <h3>Custom types, styles, and libraries in one shot</h3>
+            <p class="prompt-quote">"Use style-jig to create a light-mode Landing and Checkout workspace with MUI + GSAP, 3 custom styles (warm-paper, swiss-grid, editorial), and no clone slot."</p>
+          </div>
+          <div class="prompt-foot">
+            <span class="prompt-note">Runs init_style_jig.py with --domains, --styles, --no-clone, --libs</span>
+            <button type="button" class="copy-btn" data-copy="Use style-jig to create a light-mode Landing and Checkout workspace with MUI + GSAP, 3 custom styles (warm-paper, swiss-grid, editorial), and no clone slot.">Copy</button>
+          </div>
+        </div>
+
+        <div class="prompt-item">
+          <div>
+            <h3>Plug in an external clone service</h3>
+            <p class="prompt-quote">"Configure cloneSource in jig.config.json to use our external clone service and mount its baseline output in the clone slot."</p>
+          </div>
+          <div class="prompt-foot">
+            <span class="prompt-note">Clean adapter slot in jig.config.json and Trace .md</span>
+            <button type="button" class="copy-btn" data-copy="Configure cloneSource in jig.config.json to use our external clone service and mount its baseline output in the clone slot.">Copy</button>
+          </div>
+        </div>
+
+        <div class="prompt-item">
+          <div>
+            <h3>Run Playback and record an MP4</h3>
+            <p class="prompt-quote">"Use style-jig to play the showcase walkthrough, record a 12-second H.264 MP4, and critique the keyframes."</p>
+          </div>
+          <div class="prompt-foot">
+            <span class="prompt-note">Captures MP4, 6 keyframes, and DOM/contrast checks</span>
+            <button type="button" class="copy-btn" data-copy="Use style-jig to play the showcase walkthrough, record a 12-second H.264 MP4, and critique the keyframes.">Copy</button>
+          </div>
+        </div>
+
+        <div class="prompt-item">
+          <div>
+            <h3>Add a 3D, shader, or mobile inspector slide</h3>
+            <p class="prompt-quote">"Add an immersive 3D slide to jig.config.json and bind the right-hand drag-scrub inspector sliders to camera depth and roughness."</p>
+          </div>
+          <div class="prompt-foot">
+            <span class="prompt-note">Auto-dims top libraries while keeping Moon/Sun and Play live</span>
+            <button type="button" class="copy-btn" data-copy="Add an immersive 3D slide to jig.config.json and bind the right-hand drag-scrub inspector sliders to camera depth and roughness.">Copy</button>
+          </div>
+        </div>
+
+        <div class="prompt-item">
+          <div>
+            <h3>Wire a static HTML demo</h3>
+            <p class="prompt-quote">"Drop the vanilla style-jig overlay onto index.html so I can switch styles, run Trace, and share a standalone Open link."</p>
+          </div>
+          <div class="prompt-foot">
+            <span class="prompt-note">No React build step required via --vanilla</span>
+            <button type="button" class="copy-btn" data-copy="Drop the vanilla style-jig overlay onto index.html so I can switch styles, run Trace, and share a standalone Open link.">Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="controls" class="block">
+      <h2>What is included in this version</h2>
+      <p class="lead">
+        Full parity with the latest Slides harness, tested end-to-end across desktop 1440px and mobile 390px.
+      </p>
+      <div class="controls-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Control</th>
+              <th>What it does</th>
+              <th>Hook / shortcut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Playback</strong></td>
+              <td>Toggles interactive stage motion and spawns the visible emerald autopilot cursor stepping across <code>[data-ap]</code> waypoints. Yields on manual click or Escape.</td>
+              <td><code>[data-jig-play-toggle]</code> / <code>Esc</code></td>
+            </tr>
+            <tr>
+              <td><strong>Record</strong></td>
+              <td>Strokeless red dot runs a 12-second showcase across styles, themes, and slides, then opens a post-take output banner with Replay and Export JSON.</td>
+              <td><code>[data-jig-record-toggle]</code></td>
+            </tr>
+            <tr>
+              <td><strong>Trace</strong></td>
+              <td>Builds a complete markdown spec for the active slide, style, donor variant, and standalone URL. Opens in a new tab or in-app modal when embedded.</td>
+              <td><code>[data-jig-action="trace"]</code></td>
+            </tr>
+            <tr>
+              <td><strong>Prompt</strong></td>
+              <td>Snapshots the live rendered stage DOM and matched CSS rules (stripping all Jig chrome), copies rich HTML + plain text, and swaps to <em>copied to clipboard</em> with 0px shift.</td>
+              <td><code>[data-jig-action="prompt"]</code></td>
+            </tr>
+            <tr>
+              <td><strong>Open</strong></td>
+              <td>Launches the active view 100% chromeless in a new window with URL state preserved.</td>
+              <td><code>?app=&amp;slide=&amp;style=&amp;variant=&amp;theme=&amp;lib=</code></td>
+            </tr>
+            <tr>
+              <td><strong>Styles &amp; Notches</strong></td>
+              <td>9 styles (<code>clone</code> through <code>retro</code>), 5 right-edge 16x16 donor notches with 176x124 hover preview, plus UI library and dark/light theme toggle.</td>
+              <td><code>Alt+1</code> .. <code>Alt+5</code></td>
+            </tr>
+            <tr>
+              <td><strong>Inspector &amp; TOC</strong></td>
+              <td>Expandable accordion Left TOC (horizontal bar on mobile) and right-hand <code>.dk-panel</code> drag-scrub inspector with hide/show docking.</td>
+              <td><code>window.JigAgent</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="docs" class="block">
+      <h2>Files and documentation</h2>
+      <p class="lead">
+        Browse the included markdown guides, templates, and portable CLI scripts directly or grab the complete bundle above.
+      </p>
+      <div class="docs-list">
+        <a class="doc-link" href="./INSTALL.md">
+          <strong>INSTALL.md</strong>
+          <span>Skill &amp; Plugin install guide plus custom types, libraries, styles, and cloneSource setup.</span>
+        </a>
+        <a class="doc-link" href="./README.md">
+          <strong>README.md</strong>
+          <span>Designer quickstart, self-setup flow, and reusable Jetski prompt library.</span>
+        </a>
+        <a class="doc-link" href="./SKILL.md">
+          <strong>SKILL.md</strong>
+          <span>Full skill instructions and first-run self-setup interview read by Jetski.</span>
+        </a>
+        <a class="doc-link" href="./DESIGN-KIT-JIG.md">
+          <strong>DESIGN-KIT-JIG.md</strong>
+          <span>Architecture spec for surfaces, tokens, donor notches, and bottom controls.</span>
+        </a>
+        <a class="doc-link" href="./references/playback-prompt-open-spec.md">
+          <strong>Playback, Prompt &amp; Open Spec</strong>
+          <span>Deep technical reference for autopilot, live DOM capture, and standalone URLs.</span>
+        </a>
+        <a class="doc-link" href="./scripts/README.md">
+          <strong>Scripts &amp; Plugin Bundler</strong>
+          <span>Portable CLIs for self-setup, Artifact Pane builds, MP4 audits, and plugin packing.</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>Design Kit Jig (<code>style-jig</code>) — Portable Jetski Skill Bundle</span>
+      <span><a href="../skills/index.html">Browse all skills</a></span>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var toggle = document.getElementById('themeToggle');
+      var stored = null;
+      try {
+        stored = window.localStorage.getItem('style-jig-portal-theme');
+      } catch (e) {
+        stored = null;
+      }
+
+      function applyTheme(theme) {
+        var next = theme === 'dark' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        if (toggle) {
+          toggle.textContent = next === 'dark' ? 'Light mode' : 'Dark mode';
+        }
+        try {
+          window.localStorage.setItem('style-jig-portal-theme', next);
+        } catch (e) {}
+      }
+
+      if (stored === 'dark' || stored === 'light') {
+        applyTheme(stored);
+      }
+
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          var current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+          applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+      }
+
+      function copyFallback(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand('copy');
+        } catch (e) {}
+        ta.remove();
+      }
+
+      var buttons = document.querySelectorAll('.copy-btn[data-copy]');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var text = btn.getAttribute('data-copy') || '';
+          if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+            navigator.clipboard.writeText(text).catch(function () {
+              copyFallback(text);
+            });
+          } else {
+            copyFallback(text);
+          }
+          btn.textContent = 'Copied';
+          btn.classList.add('copied');
+          window.setTimeout(function () {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 1600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apple Human Interface Guidelines (Web Approximation) — Interactive Token Specimen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&display=swap">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    :root { --hig-font-preview: -apple-system, BlinkMacSystemFont, 'Inter', var(--apple-font-text); }
+
+    :root { --hig-font-ui: var(--hig-font-preview, var(--hig-font-sans)); }
+    body { font-family: var(--hig-font-ui); }
+    .shell { max-width: 1360px; margin: 0 auto; padding: 20px 28px 64px; }
+    .top-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 12px 16px; background: var(--hig-surface); border: 1px solid var(--hig-border); border-radius: var(--hig-card-radius); margin-bottom: 20px; }
+    .top-bar strong { font-size: 15px; letter-spacing: -0.01em; }
+    .meta { font-family: var(--hig-font-mono); font-size: 11.5px; color: var(--hig-ink-2); }
+    .tb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { height: var(--hig-control-h); padding: 0 16px; border-radius: var(--hig-btn-radius); border: 1px solid transparent;
+      font: inherit; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      cursor: pointer; text-decoration: none; white-space: nowrap; transition: background-color var(--hig-duration) var(--hig-ease), box-shadow var(--hig-duration) var(--hig-ease), transform 120ms var(--hig-ease); }
+    .btn:active { transform: translateY(1px); }
+    .btn:focus-visible, .field:focus-visible, .tab:focus-visible, .nav a:focus-visible { outline: 2px solid var(--hig-focus); outline-offset: 2px; }
+    .btn-primary { background: var(--hig-accent); color: var(--hig-on-accent); }
+    .btn-primary:hover, .btn-primary.is-hover { background: var(--hig-accent-hover); }
+    .btn-secondary { background: var(--hig-surface); color: var(--hig-ink); border-color: var(--hig-border-strong); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--hig-surface-2); }
+    .btn-ghost { background: transparent; color: var(--hig-accent-ink); }
+    .btn-ghost:hover, .btn-ghost.is-hover { background: var(--hig-accent-subtle); }
+    .btn-danger { background: var(--hig-danger); color: #fff; }
+    .btn[disabled] { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .btn-sm { height: calc(var(--hig-control-h) - 8px); padding: 0 12px; font-size: 13px; }
+    .card { background: var(--hig-surface); border: 1px solid var(--hig-border); border-radius: var(--hig-card-radius); box-shadow: var(--hig-shadow-sm); }
+    .section { padding: 20px; margin-bottom: 20px; }
+    .section h2 { margin: 0 0 4px; font-size: 16px; letter-spacing: -0.01em; }
+    .section .lede { margin: 0 0 16px; color: var(--hig-ink-2); font-size: 13px; }
+
+    /* App frame */
+    .app { display: grid; grid-template-columns: 220px 1fr; overflow: hidden; margin-bottom: 20px; }
+    .nav { background: var(--hig-surface-2); border-right: 1px solid var(--hig-border); padding: 16px 10px; display: flex; flex-direction: column; gap: 2px; }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 14px; font-weight: 700; font-size: 14px; }
+    .brand i { width: 22px; height: 22px; border-radius: var(--hig-radius-sm); background: var(--hig-accent); display: inline-block; }
+    .nav a { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: var(--hig-radius-sm);
+      color: var(--hig-ink-2); text-decoration: none; font-size: 13.5px; }
+    .nav a:hover { background: var(--hig-surface); color: var(--hig-ink); }
+    .nav a.active { background: var(--hig-accent-subtle); color: var(--hig-accent-ink); font-weight: 600; }
+    .nav a .count { font-size: 11.5px; font-variant-numeric: tabular-nums; color: var(--hig-ink-3); }
+    .main { padding: 20px 24px 24px; min-width: 0; }
+    .page-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+    .crumb { font-size: 12px; color: var(--hig-ink-3); margin-bottom: 4px; }
+    .page-head h1 { margin: 0; font-family: var(--hig-font-display, var(--hig-font-ui)); font-size: 24px; line-height: 1.25; letter-spacing: -0.015em; }
+    .page-head p { margin: 4px 0 0; color: var(--hig-ink-2); font-size: 13.5px; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--hig-border); margin-bottom: 16px; overflow-x: auto; }
+    .tab { background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 12px; font: inherit; font-size: 13.5px; color: var(--hig-ink-2); cursor: pointer; white-space: nowrap; }
+    .tab[aria-selected="true"] { color: var(--hig-ink); border-bottom-color: var(--hig-accent-ink); font-weight: 600; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 16px; }
+    .metric { padding: 14px 16px; }
+    .metric .label { font-size: 12.5px; color: var(--hig-ink-2); }
+    .metric .value { font-size: 26px; font-weight: 650; letter-spacing: -0.02em; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .metric .delta { font-size: 12px; margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .delta.up { color: var(--hig-success-ink, var(--hig-success)); } .delta.down { color: var(--hig-danger-ink, var(--hig-danger)); }
+    .split { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
+    .tbl-wrap { overflow-x: auto; }
+    table.tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .tbl th { text-align: left; font-weight: 600; font-size: 12px; color: var(--hig-ink-2); background: var(--hig-surface-2); padding: 9px 12px; border-bottom: 1px solid var(--hig-border); white-space: nowrap; }
+    .tbl td { padding: 10px 12px; border-bottom: 1px solid var(--hig-border); white-space: nowrap; }
+    .tbl tr:last-child td { border-bottom: 0; }
+    .tbl tbody tr { cursor: pointer; }
+    .tbl tbody tr:hover td { background: var(--hig-surface-2); }
+    .tbl tbody tr.selected td { background: var(--hig-accent-subtle); }
+    .tbl td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .tbl th.num { text-align: right; }
+    .tbl .id { font-family: var(--hig-font-mono); font-size: 12px; color: var(--hig-ink-2); }
+    .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 9px; border-radius: var(--hig-badge-radius); font-size: 12px; font-weight: 550; color: var(--hig-ink); white-space: nowrap; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge.success { background: var(--hig-success-subtle); } .badge.success::before { background: var(--hig-success); }
+    .badge.warning { background: var(--hig-warning-subtle); } .badge.warning::before { background: var(--hig-warning); }
+    .badge.danger { background: var(--hig-danger-subtle); } .badge.danger::before { background: var(--hig-danger); }
+    .badge.info { background: var(--hig-info-subtle); } .badge.info::before { background: var(--hig-info); }
+    .badge.neutral { background: var(--hig-surface-2); } .badge.neutral::before { background: var(--hig-ink-3); }
+    .panel { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .panel h3 { margin: 0; font-size: 14px; }
+    .fld label { display: block; font-size: 12.5px; font-weight: 600; margin-bottom: 6px; color: var(--hig-ink); }
+    .field { width: 100%; height: var(--hig-control-h); padding: 0 12px; border-radius: var(--hig-input-radius); border: 1px solid var(--hig-border-strong); background: var(--hig-surface); color: var(--hig-ink); font: inherit; font-size: 14px; }
+    .field::placeholder { color: var(--hig-ink-3); }
+    .helper { font-size: 12px; color: var(--hig-ink-3); margin-top: 4px; }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+    .switch { position: relative; width: 36px; height: 20px; border-radius: 999px; background: var(--hig-border-strong); border: 0; cursor: pointer; transition: background-color var(--hig-duration) var(--hig-ease); flex: none; }
+    .switch::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform var(--hig-duration) var(--hig-ease); }
+    .switch[aria-checked="true"] { background: var(--hig-accent); }
+    .switch[aria-checked="true"]::after { transform: translateX(16px); }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 13.5px; }
+    .check input { width: 16px; height: 16px; accent-color: var(--hig-accent); margin: 0; }
+    .alert { display: flex; gap: 10px; padding: 12px 14px; border-radius: var(--hig-input-radius); font-size: 13px; border: 1px solid var(--hig-border); background: var(--hig-info-subtle); }
+    .alert::before { content: ""; flex: none; width: 4px; border-radius: 4px; background: var(--hig-info); }
+    .alert.warning { background: var(--hig-warning-subtle); } .alert.warning::before { background: var(--hig-warning); }
+    .alert strong { display: block; margin-bottom: 2px; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Token sections */
+    .ramp { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; margin-bottom: 10px; }
+    .ramp-name { font-size: 12.5px; font-weight: 600; }
+    .ramp-steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 4px; }
+    .sw { height: 56px; border-radius: var(--hig-radius-sm); padding: 6px; display: flex; flex-direction: column; justify-content: flex-end; font-family: var(--hig-font-mono); font-size: 9.5px; line-height: 1.25; border: 1px solid rgba(127,127,127,.18); overflow: hidden; }
+    .roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .role { border: 1px solid var(--hig-border); border-radius: var(--hig-radius-sm); overflow: hidden; background: var(--hig-surface); }
+    .role .chip { height: 40px; border-bottom: 1px solid var(--hig-border); }
+    .role .txt { padding: 6px 8px; font-size: 11px; font-family: var(--hig-font-mono); color: var(--hig-ink-2); }
+    .role .txt b { display: block; color: var(--hig-ink); font-family: var(--hig-font-ui); font-size: 12px; font-weight: 600; }
+    .type-row { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: baseline; padding: 10px 0; border-bottom: 1px solid var(--hig-border); }
+    .type-row:last-child { border-bottom: 0; }
+    .type-meta { font-family: var(--hig-font-mono); font-size: 11px; color: var(--hig-ink-2); }
+    .type-meta b { display: block; font-family: var(--hig-font-ui); color: var(--hig-ink); font-size: 12.5px; }
+    .type-sample { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .tok-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .tok-col h3 { margin: 0 0 10px; font-size: 13px; }
+    .rad { display: flex; flex-wrap: wrap; gap: 10px; }
+    .rad div { width: 64px; height: 64px; background: var(--hig-accent-subtle); border: 1.5px solid var(--hig-accent-ink); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 4px; font-family: var(--hig-font-mono); font-size: 9.5px; color: var(--hig-ink); text-align: center; }
+    .sp { display: grid; grid-template-columns: 150px 1fr; gap: 8px; align-items: center; font-family: var(--hig-font-mono); font-size: 10.5px; color: var(--hig-ink-2); margin-bottom: 5px; }
+    .sp span:last-child { height: 10px; background: var(--hig-accent); border-radius: 2px; }
+    .elev { display: grid; gap: 12px; }
+    .elev div { padding: 14px; background: var(--hig-surface); border-radius: var(--hig-radius-md); font-family: var(--hig-font-mono); font-size: 10.5px; color: var(--hig-ink-2); }
+    .states { display: grid; grid-template-columns: 120px repeat(3, max-content); gap: 10px 14px; align-items: center; font-size: 12px; color: var(--hig-ink-2); }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+
+    @media (max-width: 980px) {
+      .split { grid-template-columns: 1fr; }
+      .tok-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .shell { padding: 12px 12px 48px; }
+      .app { grid-template-columns: 1fr; }
+      .nav { flex-direction: row; overflow-x: auto; border-right: 0; border-bottom: 1px solid var(--hig-border); padding: 8px; }
+      .brand { padding: 4px 8px; }
+      .nav a .count { display: none; }
+      .main { padding: 16px 14px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics .metric:last-child { grid-column: span 2; }
+      .metric .value { font-size: 22px; }
+      .ramp { grid-template-columns: 1fr; gap: 4px; }
+      .ramp-steps { grid-auto-flow: row; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .type-row { grid-template-columns: 1fr; gap: 4px; }
+      .states { grid-template-columns: 1fr 1fr; }
+      .states > .lbl { grid-column: span 2; }
+      .page-head h1 { font-size: 21px; }
+    }
+
+    /* ---- Apple HIG signature details ---- */
+
+    body { font-size: 15px; line-height: 20px; }
+    .btn { font-weight: 600; font-size: 15px; height: 34px; padding: 0 16px; letter-spacing: -0.01em; }
+    .btn-secondary { background: var(--apple-system-fill); border: 0; color: var(--apple-link); }
+    .btn-secondary:hover, .btn-secondary.is-hover { background: var(--apple-secondary-system-fill); }
+    .btn-ghost { color: var(--apple-link); font-weight: 400; }
+    .btn-danger { background: var(--apple-system-red); }
+    .card { border: 0; border-radius: var(--apple-radius-card); }
+    .top-bar { border: 0; background: color-mix(in srgb, var(--apple-secondary-system-grouped-background) 80%, transparent); backdrop-filter: blur(20px) saturate(180%); }
+    .app { box-shadow: var(--apple-shadow-card); }
+    .nav { background: var(--apple-secondary-system-background); border-right: 1px solid var(--apple-separator); }
+    .nav a { color: var(--apple-label); font-size: 15px; border-radius: 8px; }
+    .nav a.active { background: var(--apple-system-blue); color: #fff; font-weight: 500; }
+    .nav a.active .count { color: rgba(255,255,255,.8); }
+    .brand i { background: linear-gradient(180deg, #34C759, #30B0C7); border-radius: 7px; }
+    .main { background: var(--apple-system-grouped-background); }
+    .page-head h1 { font-size: 34px; line-height: 41px; font-weight: 700; letter-spacing: 0.01em; }
+    .tabs { border: 0; background: var(--apple-tertiary-system-fill); border-radius: 9px; padding: 2px; display: inline-flex; gap: 0; }
+    .tab { border: 0; border-radius: 7px; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--apple-label); }
+    .tab[aria-selected="true"] { background: var(--apple-tertiary-system-background); box-shadow: var(--apple-shadow-thumb); font-weight: 600; }
+    .metric .label { font-size: 13px; text-transform: uppercase; color: var(--apple-secondary-label); }
+    .metric .value { font-weight: 700; font-size: 28px; letter-spacing: 0.01em; }
+    .tbl th { background: transparent; text-transform: uppercase; font-size: 13px; font-weight: 400; color: var(--apple-secondary-label); }
+    .tbl td { font-size: 15px; padding: 11px 12px; border-bottom-color: var(--apple-separator); }
+    .field { background: var(--apple-tertiary-system-fill); border: 0; border-radius: 10px; font-size: 17px; }
+    .switch { width: 51px; height: 31px; }
+    .switch::after { width: 27px; height: 27px; box-shadow: var(--apple-shadow-thumb); }
+    .switch[aria-checked="true"] { background: var(--apple-system-green); }
+    .switch[aria-checked="true"]::after { transform: translateX(20px); }
+    .badge { font-size: 13px; font-weight: 500; }
+    .badge.success { color: var(--apple-system-green); } .badge.danger { color: var(--apple-system-red); } .badge.warning { color: var(--apple-system-orange); } .badge.info { color: var(--apple-system-teal); }
+    .alert { border: 0; border-radius: 12px; }
+
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top-bar">
+      <div>
+        <strong>Apple Human Interface Guidelines (Web Approximation)</strong>
+        <div class="meta">Apple HIG — Color &amp; Typography (web transcription) · <span>--hig-* → --apple-*</span></div>
+      </div>
+      <div class="tb-actions">
+        <button class="btn btn-secondary btn-sm" id="theme-btn" type="button">Polarity: Light / Dark</button>
+        <button class="btn btn-secondary btn-sm" id="density-btn" type="button">Density: Default</button>
+        <a class="btn btn-ghost btn-sm" href="../index.html">← External Systems Index</a>
+      </div>
+    </header>
+
+    <section class="card app" aria-label="Health product surface">
+      <nav class="nav">
+        <div class="brand"><i></i>Health</div>
+          <a href="#" class="active"><span>Summary</span><span class="count"></span></a>
+          <a href="#" class=""><span>Sharing</span><span class="count">2</span></a>
+          <a href="#" class=""><span>Browse</span><span class="count"></span></a>
+          <a href="#" class=""><span>Activity</span><span class="count"></span></a>
+          <a href="#" class=""><span>Heart</span><span class="count"></span></a>
+          <a href="#" class=""><span>Sleep</span><span class="count"></span></a>
+          <a href="#" class=""><span>Medications</span><span class="count">3</span></a>
+      </nav>
+      <div class="main">
+        <div class="page-head">
+          <div>
+            <div class="crumb">Summary</div>
+            <h1>Summary</h1>
+            <p>Tuesday, Nov 11 · Pinned metrics</p>
+          </div>
+          <div class="actions">
+            <button class="btn btn-secondary" type="button">Edit</button>
+            <button class="btn btn-primary" type="button">Add Data</button>
+          </div>
+        </div>
+        <div class="tabs" role="tablist"><button class="tab" role="tab" type="button" aria-selected="true">D</button><button class="tab" role="tab" type="button" aria-selected="false">W</button><button class="tab" role="tab" type="button" aria-selected="false">M</button><button class="tab" role="tab" type="button" aria-selected="false">6M</button><button class="tab" role="tab" type="button" aria-selected="false">Y</button></div>
+        <div class="metrics">
+            <div class="card metric"><div class="label">Steps</div><div class="value">9,482</div><div class="delta up">↑ 1,204 vs. avg</div></div>
+            <div class="card metric"><div class="label">Resting HR</div><div class="value">58 BPM</div><div class="delta up">↓ 3 BPM this month</div></div>
+            <div class="card metric"><div class="label">Sleep</div><div class="value">6 hr 12 min</div><div class="delta down">↓ 48 min vs. goal</div></div>
+        </div>
+        <div class="split">
+          <div class="card tbl-wrap">
+            <table class="tbl">
+              <thead><tr><th class="">Time</th><th class="">Metric</th><th class="">Source</th><th class="num">Value</th><th class="">Range</th></tr></thead>
+              <tbody>
+                <tr class=""><td class="id">07:12</td><td class="">Heart Rate</td><td class="">Apple Watch</td><td class="num">64 BPM</td><td><span class="badge success">Normal</span></td></tr>
+                <tr class="selected"><td class="id">07:30</td><td class="">Blood Oxygen</td><td class="">Apple Watch</td><td class="num">98%</td><td><span class="badge success">Normal</span></td></tr>
+                <tr class=""><td class="id">08:05</td><td class="">Walking Steadiness</td><td class="">iPhone</td><td class="num">OK</td><td><span class="badge info">Stable</span></td></tr>
+                <tr class=""><td class="id">12:40</td><td class="">Noise Level</td><td class="">Apple Watch</td><td class="num">84 dB</td><td><span class="badge warning">Loud</span></td></tr>
+                <tr class=""><td class="id">23:58</td><td class="">Respiratory Rate</td><td class="">Apple Watch</td><td class="num">17 br/min</td><td><span class="badge success">Normal</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card panel">
+            <h3>Add Data</h3>
+              <div class="fld"><label>Date</label><input class="field" placeholder="" value="Nov 11, 2026"></div>
+              <div class="fld"><label>Time</label><input class="field" placeholder="" value="8:30 AM"></div>
+              <div class="fld"><label>Type</label><select class="field"><option>Blood Pressure</option><option>Weight</option><option>Body Temperature</option></select></div>
+            <label class="check"><input type="checkbox" checked> Add to Favorites</label>
+            <div class="row"><span>Share with Doctor</span><button class="switch" role="switch" aria-checked="true" type="button" aria-label="Share with Doctor"></button></div>
+            <div class="alert warning"><div><strong>Headphone audio levels</strong>You reached 100% of your weekly sound allowance.</div></div>
+            <div class="actions"><button class="btn btn-primary" type="button">Add</button><button class="btn btn-ghost" type="button">Cancel</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>1. Official Palette Ramps</h2>
+      <p class="lede">Swatches render live from Layer 1 official tokens in <code>tokens.css</code>.</p>
+          <div class="ramp"><div class="ramp-name">System hues</div><div class="ramp-steps"><div class="sw" style="background:var(--apple-system-red);color:#fff">apple-system-red<br>#FF3B30</div><div class="sw" style="background:var(--apple-system-orange);color:#111">apple-system-orange<br>#FF9500</div><div class="sw" style="background:var(--apple-system-yellow);color:#111">apple-system-yellow<br>#FFCC00</div><div class="sw" style="background:var(--apple-system-green);color:#111">apple-system-green<br>#34C759</div><div class="sw" style="background:var(--apple-system-mint);color:#111">apple-system-mint<br>#00C7BE</div><div class="sw" style="background:var(--apple-system-teal);color:#fff">apple-system-teal<br>#30B0C7</div><div class="sw" style="background:var(--apple-system-cyan);color:#111">apple-system-cyan<br>#32ADE6</div><div class="sw" style="background:var(--apple-system-blue);color:#fff">apple-system-blue<br>#007AFF</div><div class="sw" style="background:var(--apple-system-indigo);color:#fff">apple-system-indigo<br>#5856D6</div><div class="sw" style="background:var(--apple-system-purple);color:#fff">apple-system-purple<br>#AF52DE</div><div class="sw" style="background:var(--apple-system-pink);color:#fff">apple-system-pink<br>#FF2D55</div><div class="sw" style="background:var(--apple-system-brown);color:#fff">apple-system-brown<br>#A2845E</div></div></div>
+          <div class="ramp"><div class="ramp-name">System grays</div><div class="ramp-steps"><div class="sw" style="background:var(--apple-system-gray-6);color:#111">apple-system-gray-6<br>#F2F2F7</div><div class="sw" style="background:var(--apple-system-gray-5);color:#111">apple-system-gray-5<br>#E5E5EA</div><div class="sw" style="background:var(--apple-system-gray-4);color:#111">apple-system-gray-4<br>#D1D1D6</div><div class="sw" style="background:var(--apple-system-gray-3);color:#111">apple-system-gray-3<br>#C7C7CC</div><div class="sw" style="background:var(--apple-system-gray-2);color:#111">apple-system-gray-2<br>#AEAEB2</div><div class="sw" style="background:var(--apple-system-gray);color:#fff">apple-system-gray<br>#8E8E93</div></div></div>
+          <div class="ramp"><div class="ramp-name">Backgrounds &amp; labels</div><div class="ramp-steps"><div class="sw" style="background:var(--apple-system-background);color:#111">apple-system-background<br>#FFFFFF</div><div class="sw" style="background:var(--apple-secondary-system-background);color:#111">apple-secondary-system-background<br>#F2F2F7</div><div class="sw" style="background:var(--apple-tertiary-system-background);color:#111">apple-tertiary-system-background<br>#FFFFFF</div><div class="sw" style="background:var(--apple-system-grouped-background);color:#111">apple-system-grouped-background<br>#F2F2F7</div><div class="sw" style="background:var(--apple-opaque-separator);color:#111">apple-opaque-separator<br>#C6C6C8</div><div class="sw" style="background:var(--apple-tertiary-label);color:#111">apple-tertiary-label<br>#3C3C434D</div><div class="sw" style="background:var(--apple-secondary-label);color:#fff">apple-secondary-label<br>#3C3C4399</div><div class="sw" style="background:var(--apple-label);color:#fff">apple-label<br>#000000</div></div></div>
+    </section>
+
+    <section class="card section">
+      <h2>2. Semantic Roles (<code>--hig-*</code> → official tokens)</h2>
+      <p class="lede">Toggle polarity to see the official dark mapping resolve in place.</p>
+      <div class="roles">
+            <div class="role"><div class="chip" style="background:var(--hig-canvas)"></div><div class="txt"><b>canvas</b>--apple-system-grouped-background<br><span data-resolve="--hig-canvas"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-surface)"></div><div class="txt"><b>surface</b>--apple-secondary-system-grouped-background<br><span data-resolve="--hig-surface"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-surface-2)"></div><div class="txt"><b>surface-2</b>--apple-tertiary-system-fill<br><span data-resolve="--hig-surface-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-border)"></div><div class="txt"><b>border</b>--apple-separator<br><span data-resolve="--hig-border"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-border-strong)"></div><div class="txt"><b>border-strong</b>--apple-opaque-separator<br><span data-resolve="--hig-border-strong"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-ink)"></div><div class="txt"><b>ink</b>--apple-label<br><span data-resolve="--hig-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-ink-2)"></div><div class="txt"><b>ink-2</b>--apple-secondary-label<br><span data-resolve="--hig-ink-2"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-ink-3)"></div><div class="txt"><b>ink-3</b>--apple-tertiary-label<br><span data-resolve="--hig-ink-3"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-accent)"></div><div class="txt"><b>accent</b>--apple-system-blue<br><span data-resolve="--hig-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-accent-hover)"></div><div class="txt"><b>accent-hover</b>color-mix(in srgb, var(--apple-system-blue) 85%, black)<br><span data-resolve="--hig-accent-hover"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-on-accent)"></div><div class="txt"><b>on-accent</b>#FFFFFF<br><span data-resolve="--hig-on-accent"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-accent-subtle)"></div><div class="txt"><b>accent-subtle</b>color-mix(in srgb, var(--apple-system-blue) 15%, transparent)<br><span data-resolve="--hig-accent-subtle"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-accent-ink)"></div><div class="txt"><b>accent-ink</b>--apple-link<br><span data-resolve="--hig-accent-ink"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-success)"></div><div class="txt"><b>success</b>--apple-system-green<br><span data-resolve="--hig-success"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-warning)"></div><div class="txt"><b>warning</b>--apple-system-orange<br><span data-resolve="--hig-warning"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-danger)"></div><div class="txt"><b>danger</b>--apple-system-red<br><span data-resolve="--hig-danger"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-info)"></div><div class="txt"><b>info</b>--apple-system-teal<br><span data-resolve="--hig-info"></span></div></div>
+            <div class="role"><div class="chip" style="background:var(--hig-focus)"></div><div class="txt"><b>focus</b>--apple-system-blue<br><span data-resolve="--hig-focus"></span></div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>3. Type Scale</h2>
+      <p class="lede">On Apple devices the specimen renders real SF Pro via -apple-system; elsewhere it falls back to Inter (similar neo-grotesque metrics).</p>
+          <div class="type-row"><div class="type-meta"><b>Large Title</b>--apple-text-large-title-* · 34px/41px · 400</div><div class="type-sample" style="font-size:var(--apple-text-large-title-size);line-height:var(--apple-text-large-title-line-height);font-weight:var(--apple-text-large-title-weight);font-family:var(--hig-font-display, var(--hig-font-ui));letter-spacing:0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Title 1</b>--apple-text-title-1-* · 28px/34px · 400</div><div class="type-sample" style="font-size:var(--apple-text-title-1-size);line-height:var(--apple-text-title-1-line-height);font-weight:var(--apple-text-title-1-weight);font-family:var(--hig-font-display, var(--hig-font-ui));letter-spacing:0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Title 2</b>--apple-text-title-2-* · 22px/28px · 400</div><div class="type-sample" style="font-size:var(--apple-text-title-2-size);line-height:var(--apple-text-title-2-line-height);font-weight:var(--apple-text-title-2-weight);font-family:var(--hig-font-display, var(--hig-font-ui));letter-spacing:0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Title 3</b>--apple-text-title-3-* · 20px/25px · 400</div><div class="type-sample" style="font-size:var(--apple-text-title-3-size);line-height:var(--apple-text-title-3-line-height);font-weight:var(--apple-text-title-3-weight);font-family:var(--hig-font-display, var(--hig-font-ui));letter-spacing:0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Headline</b>--apple-text-headline-* · 17px/22px · 600</div><div class="type-sample" style="font-size:var(--apple-text-headline-size);line-height:var(--apple-text-headline-line-height);font-weight:var(--apple-text-headline-weight);letter-spacing:-0.022em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Body</b>--apple-text-body-* · 17px/22px · 400</div><div class="type-sample" style="font-size:var(--apple-text-body-size);line-height:var(--apple-text-body-line-height);font-weight:var(--apple-text-body-weight);letter-spacing:-0.022em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Callout</b>--apple-text-callout-* · 16px/21px · 400</div><div class="type-sample" style="font-size:var(--apple-text-callout-size);line-height:var(--apple-text-callout-line-height);font-weight:var(--apple-text-callout-weight);letter-spacing:-0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Subheadline</b>--apple-text-subheadline-* · 15px/20px · 400</div><div class="type-sample" style="font-size:var(--apple-text-subheadline-size);line-height:var(--apple-text-subheadline-line-height);font-weight:var(--apple-text-subheadline-weight);letter-spacing:-0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Footnote</b>--apple-text-footnote-* · 13px/18px · 400</div><div class="type-sample" style="font-size:var(--apple-text-footnote-size);line-height:var(--apple-text-footnote-line-height);font-weight:var(--apple-text-footnote-weight);letter-spacing:-0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Caption 1</b>--apple-text-caption-1-* · 12px/16px · 400</div><div class="type-sample" style="font-size:var(--apple-text-caption-1-size);line-height:var(--apple-text-caption-1-line-height);font-weight:var(--apple-text-caption-1-weight);letter-spacing:-0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+          <div class="type-row"><div class="type-meta"><b>Caption 2</b>--apple-text-caption-2-* · 11px/13px · 400</div><div class="type-sample" style="font-size:var(--apple-text-caption-2-size);line-height:var(--apple-text-caption-2-line-height);font-weight:var(--apple-text-caption-2-weight);letter-spacing:-0.01em;">The quick brown fox jumps over 1,284 lazy dogs</div></div>
+    </section>
+
+    <section class="card section">
+      <h2>4. Shape, Space &amp; Elevation</h2>
+      <div class="tok-grid">
+        <div class="tok-col"><h3>Radius</h3><div class="rad"><div style="border-radius:var(--hig-radius-sm)">6</div><div style="border-radius:var(--apple-radius-control)">control 10</div><div style="border-radius:var(--apple-radius-card)">card 12</div><div style="border-radius:var(--apple-radius-sheet)">sheet 16</div><div style="border-radius:var(--hig-btn-radius)">capsule</div></div></div>
+        <div class="tok-col"><h3>Spacing</h3>
+              <div class="sp"><span>apple-space-1 · 4px</span><span style="width:var(--apple-space-1)"></span></div>
+              <div class="sp"><span>apple-space-2 · 8px</span><span style="width:var(--apple-space-2)"></span></div>
+              <div class="sp"><span>apple-space-3 · 12px</span><span style="width:var(--apple-space-3)"></span></div>
+              <div class="sp"><span>apple-space-4 · 16px</span><span style="width:var(--apple-space-4)"></span></div>
+              <div class="sp"><span>apple-space-5 · 20px</span><span style="width:var(--apple-space-5)"></span></div>
+              <div class="sp"><span>apple-space-6 · 24px</span><span style="width:var(--apple-space-6)"></span></div>
+              <div class="sp"><span>apple-space-8 · 32px</span><span style="width:var(--apple-space-8)"></span></div>
+        </div>
+        <div class="tok-col"><h3>Elevation</h3><div class="elev">
+              <div style="box-shadow:var(--apple-shadow-thumb)">switch / segmented thumb</div>
+              <div style="box-shadow:var(--apple-shadow-card)">floating card</div>
+              <div style="box-shadow:var(--apple-shadow-popover)">popover / menu</div>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>5. Action States</h2>
+      <div class="states">
+        <span class="lbl">Primary</span><button class="btn btn-primary" type="button">Add Data</button><button class="btn btn-primary is-hover" type="button">Hover</button><button class="btn btn-primary" type="button" disabled>Disabled</button>
+        <span class="lbl">Secondary</span><button class="btn btn-secondary" type="button">Edit</button><button class="btn btn-secondary is-hover" type="button">Hover</button><button class="btn btn-secondary" type="button" disabled>Disabled</button>
+        <span class="lbl">Ghost / tertiary</span><button class="btn btn-ghost" type="button">View details</button><button class="btn btn-ghost is-hover" type="button">Hover</button><button class="btn btn-ghost" type="button" disabled>Disabled</button>
+        <span class="lbl">Destructive</span><button class="btn btn-danger" type="button">Delete</button><button class="btn btn-danger" type="button" style="filter:brightness(.9)">Hover</button><button class="btn btn-danger" type="button" disabled>Disabled</button>
+      </div>
+      <div class="badges"><span class="badge success">Success</span><span class="badge warning">Warning</span><span class="badge danger">Critical</span><span class="badge info">Info</span><span class="badge neutral">Neutral</span></div>
+    </section>
+  </div>
+  <script>
+    const html = document.documentElement;
+    const resolveAll = () => document.querySelectorAll('[data-resolve]').forEach((el) => {
+      const probe = document.createElement('i');
+      probe.style.color = 'var(' + el.dataset.resolve + ')';
+      document.body.appendChild(probe);
+      const rgb = getComputedStyle(probe).color; probe.remove();
+      const m = rgb.match(/[\d.]+/g) || [];
+      el.textContent = m.length >= 3 ? '#' + m.slice(0, 3).map((n) => (+n).toString(16).padStart(2, '0')).join('').toUpperCase() + (m[3] && +m[3] < 1 ? ' · α' + (+m[3]).toFixed(2) : '') : rgb;
+    });
+    resolveAll();
+    const themeBtn = document.getElementById('theme-btn');
+    if (themeBtn) themeBtn.addEventListener('click', () => { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; resolveAll(); });
+    const densityBtn = document.getElementById('density-btn');
+    densityBtn.addEventListener('click', () => {
+      const compact = html.classList.toggle('compact');
+      html.style.setProperty('--hig-control-h', compact ? 'calc(var(--hig-control-base) - 8px)' : 'var(--hig-control-base)');
+      densityBtn.textContent = compact ? 'Density: Compact' : 'Density: Default';
+    });
+    document.querySelectorAll('[role="tablist"]').forEach((list) => list.addEventListener('click', (e) => {
+      const t = e.target.closest('[role="tab"]'); if (!t) return;
+      list.querySelectorAll('[role="tab"]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+    }));
+    document.querySelectorAll('.switch').forEach((sw) => sw.addEventListener('click', () => sw.setAttribute('aria-checked', String(sw.getAttribute('aria-checked') !== 'true'))));
+    document.querySelectorAll('.tbl tbody tr').forEach((tr) => tr.addEventListener('click', () => {
+      tr.parentElement.querySelectorAll('tr').forEach((x) => x.classList.toggle('selected', x === tr));
+    }));
+    document.querySelectorAll('.nav a').forEach((a) => a.addEventListener('click', (e) => {
+      e.preventDefault(); a.parentElement.querySelectorAll('a').forEach((x) => x.classList.toggle('active', x === a));
+    }));
+  </script>
+</body>
+</html>

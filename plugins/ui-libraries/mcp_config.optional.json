@@ -1,0 +1,14 @@
+{
+  "_comment": "NOT loaded by Jetski. Servers that need a key/OAuth. Fill the key, then move the entry into mcp_config.json and toggle the plugin.",
+  "mcpServers": {
+    "originkit": {
+      "url": "https://mcp.originkit.dev/mcp",
+      "headers": {
+        "Authorization": "Bearer <ORIGINKIT_API_KEY>"
+      }
+    },
+    "tactile": {
+      "url": "https://tactileui.dev/mcp"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "mcpServers": {
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "deepwiki": {
+      "url": "https://mcp.deepwiki.com/mcp"
+    },
+    "tailwind-docs": {
+      "url": "https://gitmcp.io/tailwindlabs/tailwindcss.com"
+    },
+    "threejs-docs": {
+      "url": "https://gitmcp.io/mrdoob/three.js"
+    },
+    "google-fonts-docs": {
+      "url": "https://gitmcp.io/google/fonts"
+    },
+    "iconify": {
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
+      "args": [
+        "-y",
+        "@sohampatwardhan/iconify-mcp"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "color": {
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
+      "args": [
+        "-y",
+        "@rog0x/mcp-color-tools"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "palette": {
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
+      "args": [
+        "-y",
+        "color-palette-mcp"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "excalidraw": {
+      "url": "https://mcp.excalidraw.com/mcp"
+    },
+    "appllama": {
+      "url": "https://mcp.appllama.io/mcp"
+    },
+    "chrome-devtools": {
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
+      "args": [
+        "-y",
+        "chrome-devtools-mcp@latest",
+        "--headless",
+        "--isolated"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    },
+    "playwright": {
+      "command": "/usr/local/google/home/jfesta/.gemini/jetski/bin/npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--headless",
+        "--browser",
+        "chrome",
+        "--isolated",
+        "--output-dir",
+        "/tmp/playwright-mcp"
+      ],
+      "env": {
+        "PATH": "/usr/local/google/home/jfesta/.gemini/jetski/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  }
+}

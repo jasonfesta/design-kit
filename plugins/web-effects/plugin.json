@@ -1,0 +1,12 @@
+{
+  "name": "web-effects",
+  "displayName": "Web Effects",
+  "description": "Meng To's web-design recipe library: ~94 landing-page styles and effects (GSAP/ScrollTrigger storytelling, WebGL/shaders, dither, glass, progressive blur, marquees, globes, particles, Three.js scenes, pricing and SaaS layouts) plus AI-slop audits and media skills (HTML reels, explainer videos, avatars, Unsplash/Aura assets).",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": [
+    "Add a scroll-scrubbed word reveal to this hero",
+    "Build a dither laser dark-mode landing page",
+    "Audit this page for AI design slop"
+  ]
+}

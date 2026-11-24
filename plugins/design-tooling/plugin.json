@@ -1,0 +1,12 @@
+{
+  "name": "design-tooling",
+  "displayName": "Design Tooling",
+  "description": "Tool-specific skills: Figma MCP (use, generate, design-to-code, code connect, FigJam, slides), shadcn, Tailwind design systems, GSAP and Framer Motion, Remotion video, Slidev decks, AntV charts, Excalidraw diagrams, MJML email, Vercel React patterns, TypeScript types, agent-browser, Textual TUIs, and Meng To's Codex/workflow capture and prompt skills.",
+  "version": "1.0.0",
+  "author": "Jason Festa",
+  "suggestedPrompts": [
+    "Turn this Figma frame into React with our tokens",
+    "Make a Remotion explainer video",
+    "Draw an Excalidraw architecture diagram"
+  ]
+}

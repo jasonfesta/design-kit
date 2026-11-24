@@ -1,0 +1,4 @@
+interface:
+  display_name: "Screen-Space Global Illumination"
+  short_description: "Depth-marched bounce light with temporal accumulation"
+  default_prompt: "Use $3d-screen-space-global-illumination to add screen-space bounce light to this post-processing pipeline."

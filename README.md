@@ -7,7 +7,7 @@ Every Jetski workspace loads it automatically through `~/.gemini/config/plugins.
 ```text
 ~/design-kit/
 ├── INDEX.md          ← start here: "I need X" → where it lives
-├── plugins/          ← INSTALLABLE (7 Jetski plugins: skills + agents + MCP)
+├── plugins/          ← INSTALLABLE (14 Jetski plugins: 501 skills, 29 agents, 16 MCP servers)
 ├── skills/           ← flat view: one symlink per skill (this is also ~/design-kit/skills)
 ├── design-systems/   ← WDA six, external six, Google ten, hero grabs (wda/design-systems links here)
 ├── references/       ← saas-goldens, plus shortcuts to hero-grabs, google-systems, external-systems

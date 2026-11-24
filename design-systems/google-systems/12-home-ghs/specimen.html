@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Home System (ghs v3.977) — Device Control Specimen</title>
+  <link rel="stylesheet" href="../../fonts/directory-fonts.css">
+  <link rel="stylesheet" href="../../fonts/wardline-fonts.css">
+  <link rel="stylesheet" href="./tokens.css">
+  <style>
+    .home-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px 6px; max-width: 1240px; margin: 0 auto; }
+    .home-title { font: 400 28px var(--ghs-sys-font-brand); margin: 0; }
+    .pill { height: 36px; padding: 0 16px; border-radius: var(--ghs-sys-corner-full); border: 1px solid var(--ghs-sys-color-outline-variant); background: transparent; color: var(--ghs-sys-color-on-surface); font: 500 13px var(--ghs-sys-font-body); display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+    .chips { display: flex; gap: 8px; padding: 8px 28px 14px; max-width: 1240px; margin: 0 auto; overflow-x: auto; }
+    .chips .pill.on { background: var(--ghs-sys-color-secondary-container); color: var(--ghs-sys-color-on-secondary-container); border-color: transparent; }
+    .home-grid { max-width: 1240px; margin: 0 auto; padding: 0 28px 28px; display: grid; grid-template-columns: 420px 1fr; gap: 20px; }
+    .card { background: var(--ghs-sys-color-surface-container); border-radius: var(--ghs-sys-corner-extra-large); padding: 22px; }
+    .thermo { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .dial { width: 280px; height: 280px; position: relative; }
+    .dial svg { width: 100%; height: 100%; }
+    .dial .readout { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+    .setpoint { font: 400 76px/1 var(--ghs-sys-font-brand); color: var(--ghs-sys-color-on-surface); font-variant-numeric: tabular-nums; }
+    .mode-row { display: flex; gap: 8px; }
+    .mode { height: 44px; padding: 0 18px; border-radius: var(--ghs-sys-corner-full); border: 0; font: 500 13.5px var(--ghs-sys-font-body); background: var(--ghs-sys-color-surface-container-highest); color: var(--ghs-sys-color-on-surface); }
+    .mode.heat { background: var(--ghs-sys-color-heating-container); color: var(--ghs-sys-color-on-heating-container); }
+    .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-content: start; }
+    .tile { min-height: 96px; border-radius: var(--ghs-sys-corner-large); background: var(--ghs-sys-color-surface-container); padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+    .tile strong { font: 500 15px var(--ghs-sys-font-brand); }
+    .tile span { font-size: 12.5px; color: var(--ghs-sys-color-on-surface-variant); }
+    .tile.light-on { background: var(--ghs-sys-color-lighting-container); color: var(--ghs-sys-color-on-lighting-container); }
+    .tile.light-on span { color: var(--ghs-sys-color-on-lighting-container); }
+    .tile.cool-on { background: var(--ghs-sys-color-cooling-container); color: var(--ghs-sys-color-on-cooling-container); }
+    .tile.cool-on span { color: var(--ghs-sys-color-on-cooling-container); }
+    .tile.active { background: var(--ghs-sys-color-default-active-container); color: var(--ghs-sys-color-on-default-active-container); }
+    .tile.active span { color: var(--ghs-sys-color-on-default-active-container); }
+    .tile.off { background: var(--ghs-sys-color-semantic-inactive-container); color: var(--ghs-sys-color-on-semantic-inactive-container); }
+    .glyph { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 16px; background: rgba(255,255,255,0.55); }
+    .cam { grid-column: span 3; display: grid; grid-template-columns: 1.3fr 1fr; gap: 14px; background: var(--ghs-sys-color-surface-container); border-radius: var(--ghs-sys-corner-extra-large); padding: 14px; }
+    .cam-feed { border-radius: var(--ghs-sys-corner-large); min-height: 180px; position: relative; overflow: hidden; background: linear-gradient(160deg, #2b3a2f, #4b5b4a 45%, #7d8a76 70%, #a8b29c); }
+    .cam-feed::after { content: ''; position: absolute; left: 18%; bottom: 0; width: 22%; height: 58%; background: linear-gradient(#1d241f, #2f3a31); border-radius: 40% 40% 4px 4px; }
+    .live { position: absolute; top: 12px; left: 12px; background: var(--ghs-sys-color-live); color: var(--ghs-sys-color-on-live); font: 700 11px var(--ghs-sys-font-body); padding: 4px 10px; border-radius: var(--ghs-sys-corner-full); z-index: 1; letter-spacing: 0.06em; }
+    .event { display: flex; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--ghs-sys-color-outline-variant); font-size: 13px; }
+    .event:last-child { border-bottom: 0; }
+    .event time { margin-left: auto; color: var(--ghs-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; font-size: 12px; }
+    .eco { display: inline-flex; align-items: center; gap: 6px; color: var(--ghs-sys-color-eco); font-weight: 600; font-size: 13px; }
+    @media (max-width: 860px) {
+      .home-top { padding: 14px 16px 4px; }
+      .home-title { font-size: 22px; }
+      .chips { padding: 6px 16px 12px; }
+      .home-grid { grid-template-columns: 1fr; padding: 0 14px 20px; gap: 14px; }
+      .dial { width: 220px; height: 220px; }
+      .setpoint { font-size: 60px; }
+      .tiles { grid-template-columns: repeat(2, 1fr); }
+      .cam { grid-column: span 2; grid-template-columns: 1fr; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="home-top">
+    <h1 class="home-title">Lakeview Home</h1>
+    <div style="display:flex;gap:8px;"><span class="pill">☀ 18°C out</span><button class="pill" id="theme-btn" type="button">◑ Light / Dark</button></div>
+  </header>
+  <div class="chips"><span class="pill on">⌂ Favorites</span><span class="pill">🌡 Climate</span><span class="pill">💡 Lights</span><span class="pill">📷 Cameras</span><span class="pill">⚡ Energy</span><span class="pill">🔒 Security</span></div>
+  <main class="home-grid">
+    <section class="card thermo">
+      <div style="display:flex;justify-content:space-between;width:100%;align-items:center;">
+        <strong style="font:500 16px var(--ghs-sys-font-brand);">Living Room Thermostat</strong>
+        <span class="eco">🍃 Eco</span>
+      </div>
+      <div class="dial">
+        <svg viewBox="0 0 280 280">
+          <circle cx="140" cy="140" r="118" fill="none" stroke="var(--ghs-sys-color-surface-container-highest)" stroke-width="18" stroke-dasharray="556 186" transform="rotate(135 140 140)" stroke-linecap="round"/>
+          <circle cx="140" cy="140" r="118" fill="none" stroke="var(--ghs-sys-color-heating-stage-1)" stroke-width="18" stroke-dasharray="190 552" transform="rotate(135 140 140)" stroke-linecap="round"/>
+          <circle cx="140" cy="140" r="118" fill="none" stroke="var(--ghs-sys-color-heating)" stroke-width="18" stroke-dasharray="120 622" transform="rotate(135 140 140)" stroke-linecap="round"/>
+          <circle cx="140" cy="140" r="96" fill="var(--ghs-sys-color-heating-surface)"/>
+        </svg>
+        <div class="readout"><div>
+          <div style="font-size:13px;color:var(--ghs-sys-color-heating);font-weight:600;">HEATING TO</div>
+          <div class="setpoint">21.5°</div>
+          <div style="font-size:12.5px;color:var(--ghs-sys-color-on-surface-variant);">Indoor 19.8° · Humidity 46%</div>
+        </div></div>
+      </div>
+      <div class="mode-row"><button class="mode heat" type="button">🔥 Heat</button><button class="mode" type="button">❄ Cool</button><button class="mode" type="button">⟳ Auto</button><button class="mode" type="button">Off</button></div>
+    </section>
+    <section class="tiles">
+      <div class="tile light-on"><div class="glyph">💡</div><div><strong>Kitchen lights</strong><br><span>On · 80%</span></div></div>
+      <div class="tile cool-on"><div class="glyph">❄</div><div><strong>Bedroom AC</strong><br><span>Cooling · 22°</span></div></div>
+      <div class="tile active"><div class="glyph">🔊</div><div><strong>Nest Audio</strong><br><span>Playing · Jazz FM</span></div></div>
+      <div class="tile"><div class="glyph">🔒</div><div><strong>Front door</strong><br><span>Locked</span></div></div>
+      <div class="tile off"><div class="glyph">📺</div><div><strong>Chromecast</strong><br><span>Offline</span></div></div>
+      <div class="tile light-on"><div class="glyph">💡</div><div><strong>Porch</strong><br><span>On · Sunset</span></div></div>
+      <div class="cam">
+        <div class="cam-feed"><span class="live">● LIVE</span></div>
+        <div>
+          <strong style="font:500 15px var(--ghs-sys-font-brand);">Backyard camera</strong>
+          <div class="event">🧍 Person seen near gate<time>2:41 PM</time></div>
+          <div class="event">📦 Package delivered<time>1:08 PM</time></div>
+          <div class="event">🐾 Animal detected<time>11:52 AM</time></div>
+          <div class="event" style="color:var(--ghs-sys-color-eco);">⚡ Saved 3.2 kWh with Rush Hour Rewards<time>Today</time></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.getElementById('theme-btn').addEventListener('click', () => {
+      const r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+    });
+  </script>
+</body>
+</html>
